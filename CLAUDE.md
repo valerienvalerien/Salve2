@@ -29,7 +29,7 @@ de copy ou de chiffrage doit refléter ce MB-first.
 Démarrage **100 % freelances**, payés **1,8-2 M Ar/mois chacun** (~2,5× le marché local),
 y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. Démarrage à
 4 agents + 2 managers, montée à 8+ au rythme des contrats. Rentabilité vérifiée :
-`FINANCE-PREVISIONNEL.md` (v2).
+`01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v2).
 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
