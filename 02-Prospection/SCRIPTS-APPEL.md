@@ -99,14 +99,17 @@
 
 #### Objection 2 — « Vous êtes à Madagascar, l'accent ça va poser problème aux patients âgés. »
 
-**Réponse** — **C'est la question qu'on entend le plus.** Le français est ma langue maternelle, comme pour toutes nos télésecrétaires. **Je vous propose le 1er mois à -50 %** : vos patients appellent, et vous jugez en direct — écoute en double ligne quand vous voulez, ou un appel test de 5 min avec la télésecrétaire avant même de démarrer. On n'enregistre jamais les appels patients (conformité RGPD), donc tout se vérifie en temps réel. Si un seul patient se plaint de l'accent, on arrête, sans engagement.
+**Réponse** — **C'est la question qu'on entend le plus.** Le français est ma langue maternelle, comme pour toutes nos télésecrétaires. **Je vous propose le 1er mois à -50 %** : vos patients appellent, et vous jugez en direct — écoute en double ligne quand vous voulez, ou un appel test de 5 min avec la télésecrétaire avant même de démarrer. Par défaut on n'enregistre pas les appels patients (conformité RGPD), donc tout se vérifie en temps réel. Si un seul patient se plaint de l'accent, on arrête, sans engagement.
 
 - Si « OK pour tester » → Passe au closing → fixe RDV pour démarrer le pilote.
 - Si « même comme ça non » → « Je comprends. Acceptez juste un appel téléphonique avec une de nos secrétaires pour vous faire votre opinion. 5 minutes. »
 
-> 🔒 **Garde-fou conformité** (`CONFORMITE-HDS-RGPD.md §2`) : **zéro enregistrement
-> des appels patients**. Ne jamais proposer « vous écoutez les enregistrements ».
-> La preuve se fait en **double écoute / double ligne** ou par **appel test**.
+> 🔒 **Garde-fou conformité** (`CONFORMITE-HDS-RGPD.md §2`) : **par défaut, zéro
+> enregistrement des appels patients**. La preuve qualité se fait en **double écoute /
+> double ligne** ou par **appel test** — ne pas proposer « vous écoutez les
+> enregistrements ». Ne pas non plus promettre « jamais d'enregistrement possible » :
+> c'est une **option sur demande**, portée par la stack / le HDS du client (jamais sur le
+> poste de l'agent), **à ne pas improviser** → escalade direction.
 
 #### Objection 3 — « C'est trop cher pour un cabinet de notre taille. »
 
@@ -339,8 +342,9 @@
 - **Marque** : « Salverys » uniquement. Jamais Nesvalo / Vinlo.
 - **Médical** : on dit **forfait**, jamais « abonnement ».
 - **Aucun claim** « direction issue d'une structure de 1 000 collaborateurs ».
-- **Conformité médicale** (`CONFORMITE-HDS-RGPD.md §2`) : **zéro enregistrement
-  des appels patients** — la preuve qualité se fait en double écoute / appel test.
+- **Conformité médicale** (`CONFORMITE-HDS-RGPD.md §2`) : **par défaut, zéro
+  enregistrement des appels patients** — la preuve qualité se fait en double écoute /
+  appel test. L'enregistrement existe en **option sur demande** (stack/HDS du client).
 - **Tarifs MB** (marque blanche) : **jamais en clair côté public**. Les forfaits
   cités ici (350/590/950) sont les prix **médical standard publics** (`PRICING.md`).
 

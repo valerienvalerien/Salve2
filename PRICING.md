@@ -411,4 +411,9 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
   pour un **logiciel lourd installé** (ex. Médistory local).
+- **Enregistrement des appels** : **disponible sur demande, zéro par défaut ; non facturé en add-on.**
+  Hébergement HDS **selon la stack client** — HDS du donneur d'ordre en **marque blanche** (coût ~0) ;
+  en **direct**, hébergeur HDS dédié (OVHcloud/Scaleway), **coût d'hébergement absorbé dans le forfait**
+  (ordre de grandeur interne ~100-500 €/mois, **à absorber, pas un prix client**). Cadre conformité :
+  `CONFORMITE-HDS-RGPD.md §2`.
 - **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement + backfill.
