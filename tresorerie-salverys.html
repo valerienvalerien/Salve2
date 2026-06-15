@@ -98,7 +98,7 @@
         <div class="hint">H7 · €/mois par poste (téléphonie + connectivité)</div></div>
       <div class="ctl"><label>Superviseur / manager <b id="vSup"></b></label>
         <input type="range" id="costSup" min="0" max="1500" step="50" value="750">
-        <div class="hint">H8 · €/mois — coût de pilotage présent dès M1</div></div>
+        <div class="hint">H8 · €/mois — compté dès 3 freelances (en deçà, supervision assurée par la direction)</div></div>
       <div class="check"><input type="checkbox" id="founders" checked>
         <span>Deal « cabinets fondateurs » (5 premiers : −50/−30/−15 % sur 3 mois)</span></div>
       <div class="check"><input type="checkbox" id="churn">
@@ -121,7 +121,7 @@
   <p class="note">
     <b>Mécanique du modèle (v3 — médical · freelances)</b> : revenu = <b>cabinets × forfait moyen</b>,
     encaissement décalé de 30 j (le CA de M(n) rentre en M(n+1)). Coûts <b>bottom-up</b> :
-    <code>ceil(cabinets / ratio)</code> freelances × (coût freelance + VoIP) + superviseur (présent dès M1)
+    <code>ceil(cabinets / ratio)</code> freelances × (coût freelance + VoIP) + superviseur (compté dès 3 freelances)
     + coûts de création ponctuels sur M1. Plus de forfait de charges fixes : chaque coût est construit à
     partir des unités réelles. Deal fondateurs = −50/−30/−15 % sur les 3 premiers mois des 5 premiers cabinets.
     <b>IT / Support N1 hors périmètre</b> de ce simulateur (médical-first). Prix : <b>PRICING.md fait foi</b>.
@@ -206,7 +206,8 @@ function simulate(){
 
     // coûts bottom-up
     const freelances = cabinets>0 ? Math.ceil(cabinets/ratio) : 0;
-    const costs = freelances*(costFL+voip) + costSup + (m===1?setupInit:0);
+    const supActive = freelances>=3;   // superviseur justifié à partir de 3 freelances
+    const costs = freelances*(costFL+voip) + (supActive?costSup:0) + (m===1?setupInit:0);
 
     const enc = m===1?0:rows[m-2].rev;   // encaissement à 30 j
     cash += prevRev - costs;
