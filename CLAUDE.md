@@ -3,8 +3,13 @@
 ## Contexte activité
 
 BPO basé à Antananarivo (Madagascar) ciblant des clients **français**.
-Direction expérimentée (ex-structure 1000 collaborateurs) qui repart de zéro
-avec une équipe de **10 personnes**.
+Direction expérimentée qui repart de zéro avec une équipe de **10 personnes**.
+
+> ⚠️ **Claim interdit (décision 2026-06-12)** : « direction issue d'une structure de
+> 1 000 collaborateurs » était une consigne de persona initiale, **pas la réalité**.
+> Ne plus jamais l'utiliser dans aucun livrable, email, page ou support. Mettre en
+> avant à la place : process documentés, cadrage qualité (script, double écoute,
+> reporting), pilote mesuré.
 
 ### Niches cibles (par priorité)
 1. **Télésecrétariat médical** (priorité absolue)
@@ -24,7 +29,7 @@ de copy ou de chiffrage doit refléter ce MB-first.
 Démarrage **100 % freelances**, payés **1,8-2 M Ar/mois chacun** (~2,5× le marché local),
 y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. Démarrage à
 4 agents + 2 managers, montée à 8+ au rythme des contrats. Rentabilité vérifiée :
-`FINANCE-PREVISIONNEL.md` (v2).
+`01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v2).
 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France

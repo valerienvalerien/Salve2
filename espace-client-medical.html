@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Salverys — Espace partenaire — Télésecrétariat médical</title>
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  .ec-wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
+  .ec-lock { max-width: 420px; margin: 10vh auto 0; text-align: center; }
+  .ec-lock h1 { font-size: 26px; margin-bottom: 8px; }
+  .ec-lock p { color: var(--text-soft); font-size: 14.5px; margin-bottom: 22px; }
+  .ec-lock input[type="password"] {
+    width: 100%; padding: 13px 16px; font-size: 16px; border: 1.5px solid var(--line, #d8ded8);
+    border-radius: 10px; margin-bottom: 12px; box-sizing: border-box;
+  }
+  .ec-error { color: #b3261e; font-size: 13.5px; min-height: 18px; margin-top: 10px; }
+  .ec-actions { display: flex; gap: 12px; justify-content: flex-end; margin: 18px 0 26px; }
+  .ec-doc h1 { font-size: 28px; margin: 8px 0 10px; }
+  .ec-doc h2 { font-size: 19px; margin: 30px 0 10px; }
+  .ec-doc .ec-lead { font-size: 16px; color: var(--text-soft); }
+  .ec-doc ul { padding-left: 20px; } .ec-doc li { margin: 6px 0; }
+  .ec-confidentiel {
+    background: #fff6e8; border: 1px solid #e8c98a; color: #7a5410; border-radius: 8px;
+    padding: 8px 14px; font-size: 12.5px; font-weight: 600; letter-spacing: .3px;
+    text-transform: uppercase; margin-bottom: 22px;
+  }
+  .ec-table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; font-size: 15px; }
+  .ec-table th, .ec-table td { border: 1px solid var(--line, #d8ded8); padding: 9px 12px; text-align: left; }
+  .ec-table th { background: var(--soft, #f2f5f2); }
+  .ec-note { font-size: 13px; color: var(--text-soft); }
+  .ec-cta { margin-top: 30px; padding: 16px 18px; background: var(--soft, #f2f5f2); border-radius: 10px; }
+  @media print {
+    .nav, .footer, .ec-actions, .ec-lock { display: none !important; }
+    .ec-wrap { padding: 0; max-width: none; }
+    .ec-doc { font-size: 12px; }
+    .ec-doc h1 { font-size: 20px; } .ec-doc h2 { font-size: 15px; margin-top: 18px; }
+    .ec-table { font-size: 12px; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys.svg" alt="Salverys" /></a>
+    <nav class="nav-links"><a href="index.html">Accueil</a><a href="espace-client.html">Espaces partenaires</a><a href="espace-candidat.html">Nous rejoindre</a></nav>
+  </div>
+</header>
+
+<div class="ec-wrap">
+
+  <div class="ec-lock" id="ec-lock">
+    <h1>Espace partenaire — Télésecrétariat médical</h1>
+    <p>Réservé aux partenaires Salverys. Le code d'accès vous a été remis lors du cadrage.</p>
+    <form id="ec-form">
+      <input type="password" id="ec-pass" placeholder="Code d'accès" autocomplete="current-password" autofocus />
+      <button type="submit" class="btn btn-primary" style="display:block;margin:0 auto;padding:13px 44px;">Déverrouiller</button>
+      <div class="ec-error" id="ec-error"></div>
+    </form>
+  </div>
+
+  <div id="ec-content" hidden>
+    <div class="ec-actions">
+      <button class="btn btn-outline" id="ec-print">Imprimer / PDF de cadrage</button>
+      <button class="btn btn-outline" id="ec-logout">Verrouiller</button>
+    </div>
+    <div id="mb-content"></div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container"><div class="footer-meta"><span>© Salverys — espace partenaires</span><span>Document confidentiel</span></div></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  /* Payload chiffré AES-256-GCM, clé dérivée PBKDF2-SHA256 — généré par tools/espace-client-build.mjs */
+  var VAULT = {"salt":"JvMeFHGpBSiZg5EY+P7qEg==","iv":"smT1rgyPk4/C27Cz","iter":310000,"data":"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"};
+
+  var b64 = function (s) { var bin = atob(s), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
+  var $ = function (id) { return document.getElementById(id); };
+  var SS_KEY = 'salverys_ec_pw_medical';
+
+  function show(html) {
+    $('mb-content').innerHTML = html;
+    var d = document.getElementById('ec-date');
+    if (d) d.textContent = new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+    $('ec-lock').hidden = true;
+    $('ec-content').hidden = false;
+  }
+
+  async function unlock(pw) {
+    var enc = new TextEncoder();
+    var km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: b64(VAULT.salt), iterations: VAULT.iter, hash: 'SHA-256' },
+      km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(VAULT.iv) }, key, b64(VAULT.data));
+    return new TextDecoder().decode(plain);
+  }
+
+  $('ec-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pw = $('ec-pass').value;
+    $('ec-error').textContent = '';
+    unlock(pw).then(function (html) {
+      try { sessionStorage.setItem(SS_KEY, pw); } catch (_) {}
+      show(html);
+    }).catch(function () {
+      $('ec-error').textContent = 'Code d’accès incorrect.';
+    });
+  });
+
+  $('ec-print').addEventListener('click', function () { window.print(); });
+  $('ec-logout').addEventListener('click', function () {
+    try { sessionStorage.removeItem(SS_KEY); } catch (_) {}
+    location.reload();
+  });
+
+  /* Déverrouillage auto si déjà ouvert dans cette session */
+  try {
+    var saved = sessionStorage.getItem(SS_KEY);
+    if (saved) unlock(saved).then(show).catch(function () { sessionStorage.removeItem(SS_KEY); });
+  } catch (_) {}
+
+  if (!window.isSecureContext) {
+    $('ec-error').textContent = 'Cette page nécessite HTTPS (ou localhost).';
+  }
+})();
+</script>
+</body>
+</html>

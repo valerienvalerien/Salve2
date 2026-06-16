@@ -14,15 +14,17 @@
 <!-- NAV -->
 <header class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys-it.svg" alt="Salverys" /></a>
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys-helpdesk.svg" alt="Salverys" /></a>
     <nav class="nav-links">
       <a href="index.html">Accueil</a>
       <a href="simulateur-salverys.html">Télésecrétariat médical</a>
       <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
       <a href="simulateur-helpdesk-it.html" class="active">Helpdesk IT N1</a>
+      <a href="espace-candidat.html" class="nav-rejoin">Nous rejoindre</a>
       <a href="#simulator" class="nav-cta">Simuler mon équipe</a>
     </nav>
     <a href="#simulator" class="nav-cta">Simuler mon équipe</a>
+    <a href="espace-candidat.html" class="nav-rejoin-standalone">Nous rejoindre</a>
     <button class="nav-burger" aria-label="Menu">☰</button>
   </div>
 </header>
@@ -33,7 +35,7 @@
   <div class="container hero-grid">
     <div class="hero-copy reveal">
       <span class="eyebrow"><span class="pulse"></span> Helpdesk IT N1 · Support utilisateurs · Ticketing structuré</span>
-      <h1>Arrêtez de <span class="hl">reformer</span> votre helpdesk tous les 6 mois.</h1>
+      <h1>Arrêtez de <span class="hl">reformer</span> votre helpdesk tous les 3-4 mois.</h1>
       <p class="lead">Le turnover des prestataires vous oblige à tout réexpliquer en boucle. Nous montons une équipe N1 francophone dédiée et stable, formée à vos outils une fois pour toutes — escalade N2 cadrée vers vos équipes, KPI partagés.</p>
       <div class="hero-actions">
         <a href="#simulator" class="btn btn-helpdesk">Simuler mon équipe</a>
@@ -147,7 +149,7 @@
           <div class="result-stat"><div class="result-stat-label">Économie annuelle</div><div class="result-stat-value accent" id="annual-savings">17 100 €</div></div>
         </div>
 
-        <a href="mailto:contact@salverys.fr?subject=Devis%20helpdesk%20IT%20N1%20sous%2024h" class="btn btn-helpdesk" style="width:100%;justify-content:center;margin-top:14px;">Recevoir mon devis sous 24 h</a>
+        <a href="mailto:contact@salverys.fr?subject=Devis%20helpdesk%20IT%20N1%20sous%2024h" class="btn btn-helpdesk" data-devis style="width:100%;justify-content:center;margin-top:14px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
         <div class="disclaimer">Estimation indicative · devis précis sous 24 h · contrat dès 3 mois.</div>
       </div>
     </div>
@@ -199,7 +201,7 @@
           <li>Reporting hebdo + KPI</li>
           <li>Onboarding 5 jours</li>
         </ul>
-        <a href="#contact" class="pkg-cta">Démarrer</a>
+        <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
       <div class="pkg featured reveal d1">
@@ -215,7 +217,7 @@
           <li>Reporting hebdomadaire + KPI support</li>
           <li>Backup agent inclus</li>
         </ul>
-        <a href="#contact" class="pkg-cta">Choisir Helpdesk Pro</a>
+        <a href="#contact" class="pkg-cta" data-devis>Choisir Helpdesk Pro</a>
       </div>
 
       <div class="pkg reveal d2">
@@ -230,7 +232,7 @@
           <li>Astreinte soir / week-end possible</li>
           <li>Account manager dédié</li>
         </ul>
-        <a href="#contact" class="pkg-cta">Passer à Scale</a>
+        <a href="#contact" class="pkg-cta" data-devis>Passer à Scale</a>
       </div>
     </div>
   </div>
@@ -315,7 +317,7 @@
   <div class="container">
     <div class="footer-top">
       <div>
-        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc-it.svg" alt="Salverys" /></a>
+        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc-helpdesk.svg" alt="Salverys" /></a>
         <p class="brand-desc">Helpdesk IT N1 — Support utilisateurs</p>
         <p style="max-width:280px;margin-top:12px;font-size:14px;">Helpdesk IT N1 externalisé, depuis Antananarivo vers la France.</p>
       </div>
@@ -353,5 +355,61 @@
   window.SIM_CONFIG = { baseDirect: 2500, frBench: 3200 };
 </script>
 <script src="assets/site.js"></script>
+
+<!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
+<div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Fermer">&#215;</button>
+    <h3 id="modal-title">Recevoir votre devis sous 24 h</h3>
+    <p class="modal-sub">Gratuit · sans engagement · réponse garantie sous 24 h ouvrées.</p>
+    <form id="form-devis" action="https://formspree.io/f/xjgdkblp" method="POST">
+      <input type="hidden" name="_subject" value="Devis Salverys — Helpdesk IT N1" />
+      <input type="hidden" name="source" value="simulateur-helpdesk" />
+      <input type="hidden" name="estimation" value="" />
+      <input type="hidden" name="recommandation" value="" />
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-nom">Nom *</label>
+          <input type="text" id="f-nom" name="nom" required placeholder="Dupont" autocomplete="family-name" />
+        </div>
+        <div class="form-field">
+          <label for="f-prenom">Prénom</label>
+          <input type="text" id="f-prenom" name="prenom" placeholder="Marie" autocomplete="given-name" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="f-email">Email professionnel *</label>
+        <input type="email" id="f-email" name="email" required placeholder="vous@societe.fr" autocomplete="email" />
+      </div>
+      <div class="form-field">
+        <label for="f-segment">Votre besoin</label>
+        <select id="f-segment" name="segment">
+          <option value="medical">Télésecrétariat médical</option>
+          <option value="saas">Support applicatif N1 SaaS</option>
+          <option value="helpdesk" selected>Helpdesk IT N1</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="f-volume">Volume estimé</label>
+        <select id="f-volume" name="volume">
+          <option value="1-etp">1 ETP (ou &lt; 250 appels/mois)</option>
+          <option value="2-3-etp">2–3 ETP (250–600 appels/mois)</option>
+          <option value="4-6-etp">4–6 ETP (600–1 000 appels/mois)</option>
+          <option value="7plus-etp">7 ETP et plus — sur mesure</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-helpdesk" style="width:100%;justify-content:center;margin-top:1.1rem;">
+        Envoyer ma demande <span class="arrow">→</span>
+      </button>
+      <p class="form-legal">Données utilisées uniquement pour répondre à votre demande.</p>
+    </form>
+    <div id="form-success" class="form-success" style="display:none">
+      <div class="form-success-icon">✓</div>
+      <p>Demande envoyée !</p>
+      <p class="form-success-sub">Vous recevrez votre devis sous 24 h ouvrées.<br>
+      En attendant : <a href="mailto:contact@salverys.fr">contact@salverys.fr</a></p>
+    </div>
+  </div>
+</div>
 </body>
 </html>

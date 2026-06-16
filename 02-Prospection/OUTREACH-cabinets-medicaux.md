@@ -28,6 +28,13 @@
 - **RGPD (sous-traitant art. 28)**, comptes nommés, zéro download.
 - Fuseau France, coût ~40 % inférieur à une secrétaire en métropole (**conséquence**, pas
   l'argument de tête).
+- **Recadrage €/jour** : 350 €/mois ≈ **16 €/jour ouvré** — moins d'une demi-consultation ;
+  2-3 RDV récupérés paient le forfait (`OFFRE-MEDICAL.md §1`).
+- **Clients fondateurs** (5 premiers cabinets) : dégressif **−50/−30/−15 %** sur 3 mois,
+  garantie incluse, contre témoignage à 60 j + 1 mise en relation (`PRICING.md §7`).
+- **Mise en service : 490 € — offerte** (à afficher sur chaque devis).
+- Options d'amplitude en add-on (samedi matin +90 €…) — levier de closing : offrir
+  l'option, jamais remiser le forfait.
 
 ### Grille de forfaits
 
@@ -52,6 +59,22 @@ de décroché** une fois en régime (cf. `PRICING.md §7`).
 | `{nom}` | Caron | nom (usage « Dr {nom} ») |
 | `{structure}` | Cabinet Bichat-Confluence | nom du cabinet/centre |
 | `{ville_dept}` | Lyon (Rhône 69) | ville + département |
+
+---
+
+## Lead magnet — audit de décroché (avant E1, optionnel mais puissant)
+
+> La preuve fabriquée la moins chère qui existe : **10 appels mystères** sur le standard
+> du prospect, répartis sur 2-3 créneaux de tension (11h-12h, 14h-15h, fin de journée),
+> AVANT l'Email 1. On note : décroché ou non, temps d'attente, message d'accueil.
+
+- **Usage en accroche** (remplace la 1re ligne générique de l'Email 1) :
+  « Bonjour {prenom}, mardi entre 11h et 12h, X de nos 10 appels test au {structure} ont
+  sonné dans le vide — c'est exactement le problème qu'on règle. »
+- **Usage en RDV** : le 1er rendez-vous devient une **restitution chiffrée**, pas un pitch.
+- Réserver l'audit aux prospects à fort potentiel (chaînes, gros cabinets) : ~15 min de
+  travail par prospect, à faire faire par un agent en banc (zéro coût marginal).
+- Rester factuel et non agressif dans la formulation (constat, pas reproche).
 
 ---
 
@@ -101,7 +124,7 @@ Bonjour {prenom},
 
 Un repère utile : sur un cabinet actif, une part non négligeable des appels arrive pendant les consultations, donc sans réponse. Chaque appel non décroché, c'est soit un patient qui renonce, soit un créneau d'agenda qui reste vide.
 
-Une équipe dédiée récupère ces appels au nom de votre cabinet — sans que vous ayez à embaucher, ni à gérer un contrat de travail. Et on ne se contente pas d'une promesse : une fois en régime, **on s'engage sur le taux de décroché**.
+Une équipe dédiée récupère ces appels au nom de votre cabinet — sans que vous ayez à embaucher, ni à gérer un contrat de travail. Pour situer : l'entrée de gamme revient à **~16 € par jour ouvré** — moins d'une demi-consultation — et 2 à 3 RDV récupérés dans le mois paient le forfait. Et on ne se contente pas d'une promesse : une fois en régime, **on s'engage sur le taux de décroché**.
 
 Si c'est un sujet au {structure}, je vous montre concrètement ce que ça donne.
 
@@ -121,6 +144,10 @@ Si c'est un sujet au {structure}, je vous montre concrètement ce que ça donne.
 
 **Objet A :** `on s'engage sur votre taux de décroché — {structure}`
 **Objet B :** `tester, puis mesurer`
+**Objet C :** `≥ 90 % d'appels décrochés, sinon on vous crédite`
+
+> L'Objet C met le différenciateur n°1 (la garantie) là où le taux d'ouverture se joue —
+> personne d'autre sur le marché offshore ne peut écrire cette ligne. À tester en A/B.
 
 ---
 
@@ -144,6 +171,36 @@ Je vous ouvre un pilote cette semaine ?
 #### Variantes A/B
 **1re ligne A :** « La meilleure façon de juger une télésecrétaire, c'est de la mesurer sur vos vrais appels. »
 **1re ligne B :** « Dr {nom}, je ne vais pas vous demander de me croire — on s'engage sur le décroché, chiffres à l'appui. »
+
+---
+
+### Email 3-bis — Clients fondateurs (J10, optionnel — prospects chauds uniquement)
+
+> À n'envoyer qu'aux prospects ayant ouvert/cliqué ou aux cibles « client en or ». La
+> rareté est **vraie** (5 places, capacité 10 agents) — ne jamais la simuler une fois
+> les 5 logos signés : retirer cet email de la séquence à ce moment-là.
+
+**Objet A :** `5 cabinets fondateurs — il reste {n} places`
+**Objet B :** `le tarif fondateur, expliqué simplement`
+
+---
+
+Bonjour {prenom},
+
+Un mot de transparence : nous lançons l'offre en France et nous réservons un statut de **cabinet fondateur** aux 5 premiers cabinets — il en reste {n}.
+
+Concrètement : **−50 % le 1er mois, −30 % le 2e, −15 % le 3e**, la garantie de décroché incluse (≥ 90 %, sinon 20 % d'avoir). En échange, si vous êtes satisfait à 60 jours : un témoignage, et une mise en relation avec un confrère.
+
+C'est donnant-donnant : vous bénéficiez du meilleur tarif que nous ferons jamais, nous construisons nos premières références avec des cabinets exigeants.
+
+15 minutes pour voir si le {structure} veut une de ces places ?
+
+{signature}
+
+---
+
+**CTA :** « 15 minutes pour voir si le {structure} veut une de ces places ? »
+**Variable supplémentaire :** `{n}` = places fondateur restantes (tenir à jour à la main — ne jamais afficher un faux compte).
 
 ---
 
@@ -239,10 +296,10 @@ Bonne continuation,
 | « J'ai déjà une secrétaire. » | On ne la remplace pas — on prend le débordement : les appels pendant les consultations, les absences, les congés, les pics. Votre secrétaire garde son rôle, on absorbe le reste. |
 | « Et le secret médical / la confidentialité ? » | Télésecrétaires formées au secret médical, **RGPD en sous-traitant (art. 28)**, comptes nommés et **zéro download** : les données restent chez votre hébergeur, jamais sur le poste de l'agent. On vous détaille exactement quelles données sont manipulées et comment, avant tout démarrage. |
 | « C'est en plus à gérer / à paramétrer. » | L'intégration à Doctolib ou Maiia se fait **de notre côté**, et le mois pilote sert justement à tester sans rien bousculer. Vous gardez la main sur vos agendas. |
-| « C'est trop cher pour mon cabinet. » | À partir de 350 €/mois — soit bien moins qu'un poste de secrétariat. Surtout, **2 à 3 RDV récupérés** sur des appels qui auraient été manqués paient le forfait. Et vous le vérifiez **en mois pilote sans engagement** avant de vous décider. |
+| « C'est trop cher pour mon cabinet. » | À partir de 350 €/mois, soit **~16 € par jour ouvré** — moins d'une demi-consultation par jour. Surtout, **2 à 3 RDV récupérés** sur des appels qui auraient été manqués paient le forfait. Et vous le vérifiez **en mois pilote sans engagement** avant de vous décider. |
 | « Comment je sais que vous décrochez vraiment ? » | C'est précisément pourquoi on **s'engage sur le décroché** : une fois en régime, ≥ 90 % d'appels décrochés sur 8h-20h, sinon **20 % d'avoir** sur le mois suivant. Vous le mesurez via notre reporting mensuel. |
 | « Les patients vont sentir que ce n'est pas le cabinet. » | Télésecrétaires francophones natives, formées à votre cabinet et à votre logiciel, qui répondent **sous votre marque**. Le mois pilote sans engagement vous permet de juger le ressenti patient avant de vous engager. |
-| « J'ai vu des offres à 0,50-1 € l'appel, vous êtes plus cher. » | Exact — et c'est volontaire. À 0,50 € l'appel, l'agent est payé au minimum local, tourne en 6 mois, et personne ne vous garantit le décroché. Nous, on s'engage **contractuellement** : ≥ 90 % d'appels décrochés, sinon 20 % d'avoir automatique. Plan de continuité écrit (double opérateur internet, groupe électrogène), conformité RGPD documentée, backup +1 agent. La vraie question n'est pas le prix de l'appel : c'est le prix du patient perdu quand le prestataire low-cost ne décroche pas. |
+| « J'ai vu des offres à 0,50-1 € l'appel, vous êtes plus cher. » | Exact — et c'est volontaire. À 0,50 € l'appel, l'agent est payé au minimum local, tourne en 6 mois, et personne ne vous garantit le décroché. Nous, on s'engage **contractuellement** : ≥ 90 % d'appels décrochés, sinon 20 % d'avoir automatique. Plan de continuité écrit (double connexion par agent, hub de repli alimenté), conformité RGPD documentée, backup +1 agent. La vraie question n'est pas le prix de l'appel : c'est le prix du patient perdu quand le prestataire low-cost ne décroche pas. |
 | « On a déjà la prise de RDV en ligne / on va mettre un bot. » | Très bien — gardez-les. Le RDV en ligne absorbe les demandes simples ; nous, on décroche **les appels qui restent** : urgences, patients âgés, demandes complexes, débordement. Ce sont justement les appels qui coûtent le plus cher à perdre — et comme on travaille **dans votre Doctolib**, les deux se complètent sans rien changer à vos outils. (cf. `NARRATIF-HYBRIDE-CALLBOT.md`) |
 
 ---

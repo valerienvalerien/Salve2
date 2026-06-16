@@ -194,6 +194,7 @@ Pas de demande aujourd'hui — juste un repère utile si vous arbitrez entre int
 
 **Objet A :** comment on prendrait vos appels
 **Objet B :** testez notre réactivité en direct
+**Objet C :** ≥ 90 % d'appels décrochés, sinon on vous crédite
 
 ---
 
@@ -436,6 +437,7 @@ Pas de demande aujourd'hui — juste un repère utile si {{structure}} arbitre e
 
 **Objet A :** comment on prendrait vos tickets {{outil_ticketing}}
 **Objet B :** testez notre réactivité en direct
+**Objet C :** un SLA garanti par contrat — sinon on vous crédite
 
 ---
 

@@ -82,7 +82,7 @@ Ne pas partir sur le coût en premier message. Sani est un bâtisseur de modèle
 
 ### Niveau 3 — Moyen terme (J14-J60)
 - Si call qualifié : modéliser la complémentarité Papeete + Salverys sur un schéma horaire simple (très visuel)
-- Proposer pilote 60j sur le créneau ouverture matin (7h-9h) pour 1-2 clients Kincy
+- Proposer un mois pilote à −50 % sur le créneau ouverture matin (7h-9h) pour 1-2 clients Kincy
 
 ---
 

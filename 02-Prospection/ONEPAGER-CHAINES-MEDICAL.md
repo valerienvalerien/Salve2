@@ -69,9 +69,9 @@ volume contractuel, hors coupure côté centre. Seuil et périmètre figés au c
 nous** · **backup +1 agent / compte** (continuité) · **reporting mensuel** · **forfait,
 jamais à l'appel** · vous gardez la main sur les agendas.
 
-**Plan de continuité écrit** : double opérateur internet + secours 4G, groupe électrogène
-et onduleurs sur le plateau — l'accueil de vos centres ne dépend ni d'une ligne ni du
-réseau électrique local. Remis au cadrage, avant tout démarrage.
+**Plan de continuité écrit** : agents en double connexion (fibre + 4G), hub de repli
+alimenté (groupe électrogène, onduleurs) — l'accueil de vos centres ne dépend ni d'une
+ligne ni du réseau électrique local. Remis au cadrage, avant tout démarrage.
 
 ---
 
@@ -79,11 +79,15 @@ réseau électrique local. Remis au cadrage, avant tout démarrage.
 
 Modèle **forfait mensuel par volume** (cf. grille `PRICING.md` : 350 / 590 / 950 €), ou
 **sur-mesure multi-postes** dès que le réseau justifie plusieurs positions d'agents
-dédiées. **Mois pilote à −50 %** sur le site pilote. Coût ~40 % inférieur à un secrétariat
-interne équivalent.
+dédiées. **Mois pilote à −50 %** sur le site pilote. **Mise en service : 490 € par site —
+offerte.** Coût ~40 % inférieur à un secrétariat interne équivalent.
 
-> Pour un réseau, on chiffre en **capacité dédiée / postes** plutôt qu'en forfait unitaire :
-> devis sur la base du volume consolidé. `PRICING.md` fait foi.
+> **Présenter le chiffrage en coût par site et par mois** (ex. « ~X €/site selon le
+> volume consolidé ») plutôt qu'en somme de forfaits unitaires : c'est l'unité dans
+> laquelle raisonne un coordinateur de centres, celle qui passe le plus facilement en
+> validation interne, et celle qui colle au déploiement progressif site par site.
+> Devis sur la base du volume consolidé — `PRICING.md` fait foi (options d'amplitude
+> en add-on : §1.a).
 
 ---
 

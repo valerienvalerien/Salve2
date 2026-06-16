@@ -59,7 +59,7 @@ navigateur. Un **hub léger de repli** (plateau réduit) couvre le risque déles
 
 | Offre | Prix | Coût direct | Marge brute |
 |---|---|---|---|
-| Télésec MB (à l'appel, 0,90-1,40 €) | agent mutualisé ~1 800 appels ⇒ 1 620-2 520 €/agent | ~450 € | **~72-82 %** |
+| Télésec MB (à l'appel **par créneau**, 0,90-1,40 €, `PRICING.md §1.b`) | agent mutualisé ~1 800 appels ⇒ 1 620-2 520 €/agent | ~450 € | **~72-82 %** |
 | Support N1 SaaS — MB | 1 350-1 700 €/ETP | ~450 € | **~67-74 %** |
 | Helpdesk IT N1 — MB | 1 550-2 000 €/ETP | ~450 € | **~71-78 %** |
 | Médical direct (Confort, ~4 forfaits/agent) | 2 360 €/agent | ~450 € | **~81 %** |

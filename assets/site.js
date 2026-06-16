@@ -70,6 +70,7 @@
   /* ---------- Pills (partagé par les deux simulateurs) ---------- */
   function bindPills(onChange) {
     document.querySelectorAll('.pill-group').forEach(group => {
+      if (group.dataset.multi !== undefined) return; // groupes multi-sélection gérés à part (add-ons)
       const name = group.dataset.group;
       group.querySelectorAll('.pill').forEach(pill => {
         pill.addEventListener('click', () => {
@@ -97,26 +98,29 @@
       { name: 'Intensif',  max: 900, price: 950 },
     ];
     const MARGINAL_PER_100 = 95;
-    const daysMult = { 5: 1.0, 6: 1.12, 7: 1.22 };
-    const st = { calls: 250, days: 5, schedule: 1.0, integration: 1.0 };
+    // Add-ons d'amplitude à prix fixes (PRICING.md §1.a) — base : 5j/7, 8h–20h.
+    const WORKDAYS_PER_MONTH = 5 * 4.33; // ≈ 21,7 jours ouvrés
+    const st = { calls: 250, integration: 1.0, addons: {} };
 
     const tierFor = c => TIERS.find(t => c <= t.max) || null;
     const $ = id => document.getElementById(id);
+    const addonsTotal = () => Object.values(st.addons).reduce((s, p) => s + p, 0);
 
     function calc() {
-      const mult = (daysMult[st.days] || 1) * st.schedule;
       const tier = tierFor(st.calls);
       let name, base, custom = false;
       if (tier) { name = tier.name; base = tier.price; }
       else { custom = true; name = 'Sur-mesure'; base = 950 + Math.ceil((st.calls - 900) / 100) * MARGINAL_PER_100; }
-      const price = base * mult;
+      const addons = addonsTotal();
+      const price = base + addons;
       const INTERNAL_SECRETARY = 2200; // secrétaire interne au cabinet, charges comprises (cf. comparatif)
-      const perDay = Math.round(st.calls / (st.days * 4.33));
+      const perDay = Math.round(st.calls / WORKDAYS_PER_MONTH);
 
       $('price-monthly').textContent = (custom ? '≈ ' : '') + euro(price);
-      $('calls-monthly').textContent = st.calls.toLocaleString('fr-FR');
+      $('price-per-day').textContent = '≈ ' + euro(price / WORKDAYS_PER_MONTH) + ' €';
       $('calls-perday').textContent = '≈ ' + perDay;
-      $('coverage').textContent = st.days + ' j · ' + (st.schedule > 1 ? '8h–22h' : '8h–20h');
+      const days = st.addons['samedi-complet'] ? '6 j' : (st.addons['samedi-matin'] ? '5 j + sam. matin' : '5 j');
+      $('coverage').textContent = days + ' · ' + (st.addons['soiree'] ? '8h–22h' : '8h–20h');
 
       const savings = INTERNAL_SECRETARY - price;
       $('savings-monthly').textContent = euro(Math.max(savings, 0)) + ' €';
@@ -138,9 +142,9 @@
 
       const disc = $('sim-disclaimer');
       if (disc) {
-        disc.textContent = (custom || mult > 1)
-          ? 'Estimation · couverture étendue = devis sur-mesure · 1er mois à -50 %.'
-          : 'Montants fermes · 1er mois à -50 %, sans engagement.';
+        disc.textContent = custom
+          ? 'Estimation au-delà de 900 appels · 1er mois à -50 %, sans engagement.'
+          : 'Montants fermes (options incluses) · 1er mois à -50 %, sans engagement.';
       }
 
       // Chip de palier dans la valeur du slider
@@ -158,7 +162,7 @@
           const ni = TIERS.indexOf(tier) + 1;
           const nextName = ni < TIERS.length ? TIERS[ni].name : 'Sur-mesure';
           const nextPrice = ni < TIERS.length ? TIERS[ni].price : 950 + MARGINAL_PER_100;
-          alertEl.textContent = 'Ce volume reste dans le forfait ' + name + ' — ' + nextName + ' à ' + euro(nextPrice * mult) + ' €/mois au-delà.';
+          alertEl.textContent = 'Ce volume reste dans le forfait ' + name + ' — ' + nextName + ' à ' + euro(nextPrice + addons) + ' €/mois au-delà.';
           alertEl.hidden = false;
         } else {
           alertEl.hidden = true;
@@ -172,10 +176,25 @@
       st.calls = parseInt(e.target.value);
       calc();
     });
-    $('days').addEventListener('input', e => {
-      st.days = parseInt(e.target.value);
-      $('days-value').textContent = st.days + ' j';
-      calc();
+    // Add-ons d'amplitude : pills multi-sélection (samedi matin / complet exclusifs).
+    document.querySelectorAll('[data-addon]').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const id = pill.dataset.addon;
+        if (st.addons[id] !== undefined) {
+          delete st.addons[id];
+          pill.classList.remove('active');
+        } else {
+          const excl = pill.dataset.excl;
+          if (excl && st.addons[excl] !== undefined) {
+            delete st.addons[excl];
+            const other = document.querySelector('[data-addon="' + excl + '"]');
+            if (other) other.classList.remove('active');
+          }
+          st.addons[id] = parseInt(pill.dataset.price, 10);
+          pill.classList.add('active');
+        }
+        calc();
+      });
     });
     bindPills((name, m) => { st[name] = m; calc(); });
     calc();
@@ -196,7 +215,7 @@
     const CFG = Object.assign({
       baseDirect: 2100, frBench: 3200,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, FR_PEN = 1.35, BAND = 0.10; // ±10 % autour de l'estimation
+    const PROD = 0.85, FR_PEN = 1.35, BAND = 0.05; // ±5 % autour de l'estimation
     const st = {
       posts: 1, hours: 35,
       service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, schedule: 1.0,
@@ -349,4 +368,67 @@
 
     calc();
   }
+
+  /* ========================================================
+     MODAL DEVIS — Formspree AJAX
+     L'endpoint Formspree est défini dans l'attribut action du
+     formulaire #form-devis de chaque simulateur.
+     ======================================================== */
+  (function () {
+    const overlay = document.getElementById('modal-devis');
+    if (!overlay) return;
+    const form     = overlay.querySelector('#form-devis');
+    const okEl     = overlay.querySelector('#form-success');
+    const closeBtn = overlay.querySelector('.modal-close');
+
+    function openModal() {
+      const priceEl = document.getElementById('price-monthly');
+      const recoEl  = document.getElementById('recommendation');
+      const hEst    = form.querySelector('[name="estimation"]');
+      const hReco   = form.querySelector('[name="recommandation"]');
+      if (priceEl && hEst)  hEst.value  = priceEl.textContent.trim() + ' €/mois';
+      if (recoEl  && hReco) hReco.value = recoEl.textContent.trim();
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const first = form.querySelector('input:not([type=hidden])');
+      if (first) setTimeout(() => first.focus(), 60);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-devis]').forEach(el =>
+      el.addEventListener('click', e => { e.preventDefault(); openModal(); })
+    );
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+      try {
+        const r = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (r.ok) {
+          form.style.display = 'none';
+          okEl.style.display = 'block';
+        } else {
+          throw new Error(r.status);
+        }
+      } catch (_) {
+        btn.disabled = false;
+        btn.innerHTML = 'Réessayer <span class="arrow">→</span>';
+      }
+    });
+  }());
 })();

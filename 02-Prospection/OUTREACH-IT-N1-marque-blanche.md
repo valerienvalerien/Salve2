@@ -52,6 +52,7 @@ Salverys propose d'en être la **soupape** : l'overflow, les créneaux 7h-9h du 
 | `{{trigger_recrutement}}` | Signal d'achat identifié (voir §Recherche) | Recherche 2-3 min par prospect |
 | `{{nb_postes}}` | Nombre de postes helpdesk ouverts (si trouvé) | LinkedIn Jobs / Indeed |
 | `{{signature}}` | Bloc signature Salverys | Pré-défini |
+| `{{whatsapp}}` | Numéro WhatsApp pro Salverys | **⚠️ obligatoire — bloquer l'envoi de l'E4 tant que non renseigné** |
 
 > **`{{trigger_recrutement}}` est obligatoire.** Sans déclencheur identifié, ne pas envoyer E1 — l'email devient générique et sera ignoré.
 
@@ -139,7 +140,7 @@ Concrètement : vos scripts, vos outils ITSM (ServiceNow, Jira SM, Freshservice 
 
 Le créneau qui casse le plus souvent : 7h-9h du matin, avant que vos équipes Paris arrivent. À UTC+3 (Madagascar), c'est 9h-11h pour nous — pleine heure de bureau, sans supplément nuit ni astreinte.
 
-Notre direction vient d'une structure de 1 000 collaborateurs. Les process ITIL, le reporting, les escalades — tout est documenté avant le premier ticket.
+Les process ITIL, le reporting, les escalades — tout est documenté avant le premier ticket.
 
 Vous pouvez tester notre réactivité directement sur salverys.fr
 
@@ -154,7 +155,8 @@ Vous pouvez tester notre réactivité directement sur salverys.fr
 ### Email 4 — Pivot + offre pilote (Jour 14)
 
 **Objet A :** {{firstName}}, une proposition concrète pour {{esn_nom}}
-**Objet B :** pilote 60 jours — sans risque, sans engagement
+**Objet B :** un mois pilote à −50 % — sans engagement
+**Objet C :** on s'engage sur vos SLA, sinon on vous crédite
 
 ---
 
@@ -162,11 +164,11 @@ Bonjour {{firstName}},
 
 Je reviens avec quelque chose de concret plutôt qu'une relance.
 
-Proposition : un pilote 60 jours sur un périmètre N1 défini ensemble (200 à 400 tickets), avec KPIs partagés dès J1 (FCR, CSAT, AHT). Et une fois en régime, on s'engage sur le SLA : non tenu sur un mois, 20 % d'avoir le mois suivant — et vous pouvez arrêter sans frais de sortie.
+Proposition : un **mois pilote à −50 %, sans engagement**, sur un périmètre N1 défini ensemble (200 à 400 tickets), avec KPIs partagés dès J1 (FCR, CSAT, AHT). Et une fois en régime, on s'engage sur le SLA : non tenu sur un mois, 20 % d'avoir le mois suivant — et vous pouvez arrêter sans frais de sortie.
 
-C'est la seule façon de vérifier si ça vaut l'intégration dans votre delivery — sans engager de budget significant.
+C'est la seule façon de vérifier si ça vaut l'intégration dans votre delivery — sans engager de budget significatif.
 
-On peut en parler par WhatsApp si c'est plus simple : +33 6 XX XX XX XX
+On peut en parler par WhatsApp si c'est plus simple : {{whatsapp}}
 
 {{signature}}
 
@@ -208,7 +210,7 @@ Votre réponse (même courte) m'aidera à savoir si je reste utile ou si je revi
 > "C'est de la marque blanche totale : ils ne voient que votre marque. Nos agents sont francophones natifs, formés sur vos scripts, sans accent identifiable. Ce qu'on absorbe, c'est le N1 répétitif — exactement là où le risque qualité est le plus faible."
 
 **"Vous êtes trop petits / pas assez de références"**
-> "C'est pour ça qu'on propose un pilote 60 jours sur un périmètre restreint avant tout engagement. Vous n'avez pas besoin de nous croire sur parole — vous avez besoin de KPIs réels sur vos propres tickets. Et on adosse un avoir de 20 % si les SLA ne sont pas tenus en régime : on met notre argent sur le résultat. Notre direction a géré des équipes de 1 000+ personnes : les process qualité existent, même si l'équipe actuelle est plus petite."
+> "C'est pour ça qu'on propose un mois pilote à −50 %, sans engagement, sur un périmètre restreint. Vous n'avez pas besoin de nous croire sur parole — vous avez besoin de KPIs réels sur vos propres tickets. Et on adosse un avoir de 20 % si les SLA ne sont pas tenus en régime : on met notre argent sur le résultat. Notre direction a géré des équipes de 1 000+ personnes : les process qualité existent, même si l'équipe actuelle est plus petite."
 
 **"On gère ça en interne, on n'externalise pas"**
 > "Vous recrutez {{nb_postes}} postes helpdesk en ce moment — ce qui suggère que l'interne est sous tension. La question n'est pas 'externaliser ou pas', c'est 'comment scalez-vous la capacité N1 sans attendre 3 mois de recrutement par CDI ?'"
@@ -224,10 +226,12 @@ Statuts de progression :
 - `contacté` → E1 envoyé
 - `réponse` → réponse reçue (positive ou négative)
 - `rdv` → appel découverte planifié
-- `pilote` → pilote 60j en cours
+- `pilote` → mois pilote (−50 %) en cours
 - `client` → contrat signé
 
 ---
 
-*Séquence alignée avec PRICING.md §3 (tarif marque blanche : interne — à donner en cadrage uniquement, jamais en cold email)*  
+*Séquence alignée avec PRICING.md §3 (tarif marque blanche : interne — **rate card
+partenaire 1/3/5+ ETP remise au cadrage sous NDA**, jamais en cold email). Pilote
+harmonisé 2026-06-12 : 1er mois à −50 %, 200-400 tickets, sans engagement.*  
 *Format identique au master playbook OUTREACH-SEQUENCE.md*

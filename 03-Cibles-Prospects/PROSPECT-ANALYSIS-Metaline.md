@@ -38,7 +38,7 @@ Metaline est un infogéreur de premier plan basé à Nanterre (92), 850+ collabo
 | Company Fit | 25% | 22/25 | Exactement dans la cible : ESN infogérance avec helpdesk N1 massif, volume 1,8M appels/an, modèle managé services. Salverys répond au même type de clients. Risque : Metaline est lui-même un concurrent potentiel pour d'autres cibles — ici il est acheteur. |
 | Contact Access | 20% | 14/20 | Samuel Amiet (Président) et Alexandre Sebban (DG Ops) identifiés avec LinkedIn confirmé pour Amiet. Email direct non trouvé. Sebban : plusieurs profils homonymes à valider. |
 | Opportunity Quality | 20% | 18/20 | Signal d'achat fort et multi-source : 75+ offres Indeed actives, croissance x3 en 5 ans, actionnaire PE qui exige rentabilité, aucune soupape offshore existante. La douleur est réelle et documentée. |
-| Competitive Position | 15% | 11/15 | Pas de filiale offshore identifiée (avantage Salverys). Risque : Metaline peut décider de créer sa propre entité offshore ou de faire appel à un concurrent (Intelcia, Webhelp, Concentrix). L'offre pilote 60j à risque limité réduit la barrière. |
+| Competitive Position | 15% | 11/15 | Pas de filiale offshore identifiée (avantage Salverys). Risque : Metaline peut décider de créer sa propre entité offshore ou de faire appel à un concurrent (Intelcia, Webhelp, Concentrix). L'offre mois pilote à −50 % sans engagement réduit la barrière. |
 | Outreach Readiness | 20% | 13/20 | Email E1 rédigé ci-dessous. Décideur Amiet identifié sur LinkedIn mais email pro non confirmé. Sebban est le profil opérationnel idéal mais son email reste à identifier. Prêt à envoyer sur LinkedIn InMail ou en cold email si email trouvé. |
 | **TOTAL** | 100% | **78/100** | Seuil de go : 60/100. GO. |
 
@@ -98,7 +98,7 @@ Le Directeur Delivery ou Responsable Centre de Services n'a pas été identifié
 ## Email E1 prêt à envoyer
 
 **Objet A :** Absorber vos pics helpdesk sans recruter en France
-**Objet B :** Overflow N1 : pilote 60j pour Metaline ?
+**Objet B :** Overflow N1 : un mois pilote pour Metaline ?
 
 ---
 

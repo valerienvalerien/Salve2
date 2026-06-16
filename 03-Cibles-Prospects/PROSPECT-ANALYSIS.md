@@ -183,7 +183,7 @@ Everience Group (siège Nanterre)
 - Français natif sans accent = incomparable pour N1 IT client final français
 - UTC+3 = couverture matinale unique (7h-9h Paris avant ouverture des équipes)
 - Taille = réactivité totale, pas de minimum contractuel lourds
-- Direction ex-1000 collaborateurs = process ITIL solides dans une structure agile
+- Process ITIL documentés dans une structure agile, sans lourdeur contractuelle
 
 ---
 
@@ -225,7 +225,7 @@ Bonjour [Prénom],
 
 Votre carte offshore couvre Tunis, Bangalore et Mexico — Madagascar est le blanc manquant pour le créneau francophone 7h-9h du matin. Tunis à UTC+1 ne peut pas l'absorber sans surcoût de nuit.
 
-Chez Salverys (Antananarivo), on opère du N1 IT en marque blanche — francophone natif, process ITIL, UTC+3 : vos agents paris arrivent, les tickets sont déjà triés. Direction issue d'une structure de 1 000 collaborateurs.
+Chez Salverys (Antananarivo), on opère du N1 IT en marque blanche — francophone natif, process ITIL, UTC+3 : vos agents paris arrivent, les tickets sont déjà triés. Process ITIL, reporting et escalades documentés avant le premier ticket.
 
 Un pilote cadré (60 jours, périmètre limité, KPIs partagés) suffit à évaluer la complémentarité.
 

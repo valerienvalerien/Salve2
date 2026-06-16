@@ -1,0 +1,4 @@
+{
+  "_doc": "Statuts des candidatures, par code candidat (anonyme — jamais de nom ici). Valeurs : recue | entretien | test | acceptee | refusee. Tout code absent = recue. Procédure : ESPACE-CLIENT-CANDIDAT.md.",
+  "SLV-DEMO1": "entretien"
+}

@@ -1,0 +1,12 @@
+# Déploiement Netlify — seul le contenu de _site est servi.
+# Les .md (stratégie, prix), le CRM, la trésorerie et tools/ ne sont jamais publiés.
+[build]
+  command = "bash tools/build-site.sh"
+  publish = "_site"
+
+# Les espaces partenaires ne doivent être ni indexés ni mis en cache par des intermédiaires.
+[[headers]]
+  for = "/espace-client*.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

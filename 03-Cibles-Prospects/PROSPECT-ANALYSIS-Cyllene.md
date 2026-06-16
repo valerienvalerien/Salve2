@@ -67,7 +67,7 @@ La tension RH est documentée : offres d'emploi helpdesk/technicien actives en p
 
 À 450 personnes, la décision opérationnelle d'un partenariat de sous-traitance helpdesk se joue d'abord au niveau **Delivery / Centre de Services**, pas à la présidence. C'est ce contact qu'il faut identifier en priorité (LinkedIn Sales Nav sur "Cyllene" + delivery/production/service desk). Lui seul peut juger la faisabilité technique et le périmètre du pilote. **Action bloquante : ne pas envoyer d'E1 avant d'avoir ce nom.**
 
-Olivier Poelaert (Président, fondateur-bâtisseur) intervient en **sponsor stratégique**, pas en premier contact. Comme un partenariat marque blanche touche au modèle économique, il devra valider — mais on l'aborde une fois le Directeur Delivery intéressé, pour sécuriser le go au niveau du modèle. Si on l'attaque en premier, on tombe sur son réflexe "on recrute / on acquiert" (12 acquisitions au compteur). Son angle : vitesse (3 semaines vs 3 mois de CDI) + risque zéro (pilote 60j sortie libre).
+Olivier Poelaert (Président, fondateur-bâtisseur) intervient en **sponsor stratégique**, pas en premier contact. Comme un partenariat marque blanche touche au modèle économique, il devra valider — mais on l'aborde une fois le Directeur Delivery intéressé, pour sécuriser le go au niveau du modèle. Si on l'attaque en premier, on tombe sur son réflexe "on recrute / on acquiert" (12 acquisitions au compteur). Son angle : vitesse (3 semaines vs 3 mois de CDI) + risque zéro (mois pilote à −50 %, sans engagement — `PRICING.md §3`).
 
 Aymar de Vaissière (DGA Finances) est l'allié du calcul TCO (coût réel d'une astreinte nuit France vs ETP Salverys). À mobiliser quand le dossier passe en validation budgétaire.
 
@@ -85,7 +85,7 @@ Aymar de Vaissière (DGA Finances) est l'allié du calcul TCO (coût réel d'une
 - Si le Directeur Delivery reste introuvable à J+5 : approche de repli sur Olivier Poelaert (Président) avec demande de mise en relation vers le bon interlocuteur delivery — jamais comme cible d'achat directe
 
 ### Niveau 3 — Moyen terme (J14-J60)
-- Si call qualifié : proposer pilote 60j sur le créneau nuit/week-end d'un site Cyllene identifié
+- Si call qualifié : proposer un mois pilote à −50 % (200-400 tickets) sur le créneau nuit/week-end d'un site Cyllene identifié
 - Préparer calcul TCO : coût astreinte nuit France (prime + salaire) vs 1 ETP Salverys à 1 550 €/mois
 
 ---
@@ -93,7 +93,7 @@ Aymar de Vaissière (DGA Finances) est l'allié du calcul TCO (coût réel d'une
 ## Email E1 prêt à envoyer
 
 **Objet A :** Votre couverture 24/7 — qui gère le créneau 7h-9h du matin en France ?
-**Objet B :** Overflow helpdesk nuit/week-end pour Cyllene — pilote 60j ?
+**Objet B :** Overflow helpdesk nuit/week-end pour Cyllene — un mois pilote ?
 
 ---
 

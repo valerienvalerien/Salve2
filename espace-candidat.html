@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — Nous rejoindre</title>
+<meta name="description" content="Rejoignez Salverys à Antananarivo : télésecrétaires médicales et agents support IT francophones, rémunération bien au-dessus du marché." />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  .cd-wrap { max-width: 680px; margin: 0 auto; padding: 44px 20px 80px; }
+  .cd-wrap h1 { font-size: 30px; margin-bottom: 8px; }
+  .cd-wrap .cd-lead { color: var(--text-soft); margin-bottom: 26px; }
+  .cd-perks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin: 0 0 30px; padding: 0; list-style: none; font-size: 14.5px; }
+  .cd-perks li::before { content: "✓ "; color: var(--accent, #6F8770); font-weight: 700; }
+  .cd-form label { display: block; font-size: 13.5px; font-weight: 600; margin: 16px 0 6px; }
+  .cd-form input, .cd-form select, .cd-form textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px; border: 1.5px solid var(--line, #d8ded8);
+    border-radius: 10px; box-sizing: border-box; font-family: inherit; background: #fff;
+  }
+  .cd-form textarea { min-height: 110px; resize: vertical; }
+  .cd-form .req::after { content: " *"; color: #b3261e; }
+  .cd-submit { display: block; margin: 24px auto 0; padding: 14px 44px; width: auto; }
+  .cd-hidden { display: none; }
+  .cd-success { background: #eef5ee; border: 1.5px solid var(--accent, #6F8770); border-radius: 12px; padding: 22px; }
+  .cd-success .cd-code { font-size: 26px; font-weight: 800; letter-spacing: 1px; margin: 10px 0; }
+  .cd-fallback { background: #fff6e8; border: 1px solid #e8c98a; border-radius: 10px; padding: 14px 16px; font-size: 14px; margin-top: 16px; }
+  .cd-note { font-size: 12.5px; color: var(--text-soft); margin-top: 14px; }
+  @media (max-width: 640px) { .cd-perks { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys.svg" alt="Salverys" /></a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="espace-candidat.html" class="active">Nous rejoindre</a>
+      <a href="suivi-candidature.html">Suivre ma candidature</a>
+    </nav>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="cd-wrap">
+  <h1>Rejoindre Salverys</h1>
+  <p class="cd-lead">Télésecrétariat médical et support IT pour des clients français, depuis
+  Antananarivo. Nous recrutons peu, nous payons bien, et nous gardons nos équipes.</p>
+
+  <ul class="cd-perks">
+    <li>Rémunération bien au-dessus du marché</li>
+    <li>Horaires alignés sur la France (pas de nuit)</li>
+    <li>Formation cadrée avant le premier appel</li>
+    <li>Statut freelance, contrat de prestation clair</li>
+  </ul>
+
+  <form class="cd-form" id="cd-form" name="candidature" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="candidature" />
+    <input type="hidden" name="code_candidat" id="cd-code-field" />
+    <p class="cd-hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+    <label class="req" for="cd-prenom">Prénom</label>
+    <input id="cd-prenom" name="prenom" required autocomplete="given-name" />
+
+    <label class="req" for="cd-nom">Nom</label>
+    <input id="cd-nom" name="nom" required autocomplete="family-name" />
+
+    <label class="req" for="cd-email">Email</label>
+    <input id="cd-email" name="email" type="email" required autocomplete="email" />
+
+    <label for="cd-whatsapp">WhatsApp</label>
+    <input id="cd-whatsapp" name="whatsapp" type="tel" placeholder="+261 …" autocomplete="tel" />
+
+    <label class="req" for="cd-poste">Poste visé</label>
+    <select id="cd-poste" name="poste" required>
+      <option value="">— Choisir —</option>
+      <option>Télésecrétaire médical(e)</option>
+      <option>Agent support N1 (SaaS)</option>
+      <option>Technicien helpdesk IT N1</option>
+      <option>Manager (médical ou IT)</option>
+    </select>
+
+    <label class="req" for="cd-exp">Expérience en centre d'appels / support (années, postes)</label>
+    <textarea id="cd-exp" name="experience" required placeholder="Ex. : 3 ans téléconseil chez …, 1 an support logiciel chez …"></textarea>
+
+    <label for="cd-cv">Lien vers votre CV (Google Drive, Dropbox…)</label>
+    <input id="cd-cv" name="cv_lien" type="url" placeholder="https://…" />
+
+    <label for="cd-msg">Message (facultatif)</label>
+    <textarea id="cd-msg" name="message"></textarea>
+
+    <button type="submit" class="btn btn-primary cd-submit" id="cd-submit">Envoyer ma candidature</button>
+    <p class="cd-note">Les champs marqués * sont obligatoires. Vos données servent uniquement au
+    traitement de votre candidature (RGPD) — aucune diffusion à des tiers.</p>
+  </form>
+
+  <div class="cd-success" id="cd-success" hidden>
+    <b>Candidature envoyée — merci !</b>
+    <p>Notez votre code candidat, il vous permettra de suivre l'avancement :</p>
+    <div class="cd-code" id="cd-code-display">SLV-•••••</div>
+    <p><a href="suivi-candidature.html">Suivre ma candidature →</a></p>
+  </div>
+
+  <div class="cd-fallback" id="cd-fallback" hidden>
+    L'envoi automatique n'a pas abouti (site hors ligne ou formulaire non activé).
+    <a id="cd-mailto" href="#">Envoyer votre candidature par email</a> — votre code candidat
+    y est déjà inclus.
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" /></a>
+        <p class="brand-desc">Télésecrétariat Médical <span class="sep">·</span> Support IT &amp; Applicatif</p>
+        <p style="max-width:280px;margin-top:12px;font-size:14px;">Externalisation francophone : télésecrétariat médical &amp; support IT, depuis Antananarivo vers la France.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Métiers</h5>
+          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
+          <a href="index.html#contact">Contactez-nous</a>
+        </div>
+        <div class="footer-col">
+          <h5>Salverys</h5>
+          <a href="espace-candidat.html">Nous rejoindre</a>
+          <a href="suivi-candidature.html">Suivre ma candidature</a>
+          <a href="espace-client.html">Espace client</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© Salverys — Antananarivo → France</span>
+      <span>Montants indicatifs · devis personnalisé sur demande</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Code candidat : généré côté navigateur, transmis dans la soumission
+     (rapprochement côté Salverys) et affiché au candidat pour le suivi. */
+  function genCode() {
+    var chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789', out = 'SLV-';
+    var rnd = new Uint8Array(5); crypto.getRandomValues(rnd);
+    for (var i = 0; i < 5; i++) out += chars[rnd[i] % chars.length];
+    return out;
+  }
+  var code = genCode();
+  $('cd-code-field').value = code;
+
+  var form = $('cd-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form.elements['bot-field'].value) return; // honeypot
+    var btn = $('cd-submit');
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    var body = new URLSearchParams(new FormData(form)).toString();
+    /* Netlify Forms : POST vers la page elle-même, encodé en formulaire. */
+    fetch(location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      success();
+    }).catch(function () {
+      /* Repli : email pré-rempli (avant mise en ligne Netlify, ou si Forms inactif). */
+      var f = form.elements;
+      var subject = 'Candidature ' + f.poste.value + ' — ' + f.prenom.value + ' ' + f.nom.value + ' [' + code + ']';
+      var lines = ['Code candidat : ' + code, 'Poste : ' + f.poste.value,
+        'Nom : ' + f.prenom.value + ' ' + f.nom.value, 'Email : ' + f.email.value,
+        'WhatsApp : ' + f.whatsapp.value, 'CV : ' + f.cv_lien.value, '',
+        'Expérience :', f.experience.value, '', 'Message :', f.message.value];
+      $('cd-mailto').href = 'mailto:contact@salverys.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+      $('cd-fallback').hidden = false;
+      btn.disabled = false; btn.textContent = 'Envoyer ma candidature';
+      $('cd-code-display').textContent = code;
+      $('cd-success').hidden = false;
+    });
+  });
+
+  function success() {
+    form.hidden = true;
+    $('cd-code-display').textContent = code;
+    $('cd-success').hidden = false;
+  }
+})();
+</script>
+</body>
+</html>

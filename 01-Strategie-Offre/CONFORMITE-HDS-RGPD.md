@@ -26,7 +26,9 @@ réglementaire.
 L'approche par défaut (cf. `CLAUDE.md`, arbitrage SaaS-first) **supprime le besoin d'une
 brique HDS payante** en évitant de produire de la donnée de santé côté Salverys :
 
-- **Pas d'enregistrement des appels patients.**
+- **Par défaut, pas d'enregistrement des appels patients.** C'est cette posture qui
+  supprime la brique HDS, allège les formalités RGPD et évite le cumul « donnée de santé
+  + accès offshore » (cf. §3).
 - **Donnée patient uniquement dans Doctolib** (lui-même HDS) — le télésecrétaire saisit
   directement dans l'outil du cabinet, qui reste l'hébergeur.
 - La **téléphonie ne fait que router** l'appel → **exposition HDS ~nulle** côté Salverys,
@@ -35,6 +37,46 @@ brique HDS payante** en évitant de produire de la donnée de santé côté Salv
 **CRM maison** : il ne contient que des **données B2B cabinets** (prospects/clients
 professionnels), **jamais de donnée patient**. Les **freelances signent des DPA**
 (accords de sous-traitance RGPD).
+
+### Option enregistrement (sur demande, selon la stack client)
+
+Le zéro enregistrement est la **posture par défaut**, pas une interdiction technique :
+certains donneurs d'ordre médicaux attendent un enregistrement + QA a posteriori (modèle
+type Secrétel). On **n'impose aucun logiciel d'enregistrement** — quand l'option est
+activée, **l'enregistrement suit la stack du client** et le fichier **n'atterrit jamais
+sur le poste de l'agent** (cohérent avec la règle « zéro download » du §10 de
+`RAPPORT-PRIX.html`). L'option **n'est pas un add-on facturé** (cf. `PRICING.md`).
+
+Arbre selon le cas :
+
+- **Marque blanche (cas dominant, GTM prioritaire)** : l'enregistrement est porté par le
+  **système du donneur d'ordre** (sa téléphonie / son outil métier — Ubicentrex, Clopilote,
+  Doctolib Phone, son PBX…) et **stocké sur SON HDS**. Le donneur d'ordre reste
+  **responsable de traitement** ; Salverys opère dedans → **coût brique ~0** pour nous.
+- **Client direct sans stack** : **téléphonie cloud avec enregistrement (Aircall /
+  Ringover / 3CX)** + **stockage sur hébergeur certifié HDS** (OVHcloud HDS, Scaleway HDS…).
+  Rappel §1 : vérifier la certif **nominativement sur la liste ANS** ; ce n'est pas la
+  téléphonie mais **l'hébergement du fichier** qui doit être HDS. Coût d'hébergement HDS
+  **absorbé dans le forfait** (pas de facturation séparée).
+- **Client avec sa propre téléphonie / PBX** : enregistrement côté client, sur son infra.
+
+**Règle d'or** : le fichier d'enregistrement **vit sur un HDS, jamais sur le poste de
+l'agent**.
+
+**Formalités RGPD à activer avec l'option** (renvoi §3/§4) :
+
+- **Base légale** intérêt légitime + **test de balance (LIA)** documenté.
+- **Double information** : patient (annonce au décroché + politique de confidentialité) et
+  agent (clause contrat + DPA).
+- **Durée de conservation courte / échantillonnage** — l'enregistrement permanent de 100 %
+  des appels est jugé **disproportionné par la CNIL** ; privilégier l'échantillon QA.
+- **Registre art. 30** + **DPA art. 28** couvrant explicitement l'enregistrement **et** son
+  hébergement HDS ; **AIPD** à évaluer.
+
+> ⚠️ **Cohérence §3/§4** : enregistrer de la donnée de santé **cumule HDS + accès
+> hors-UE**. Contractualiser **de préférence sur le HDS du donneur d'ordre** (marque
+> blanche) pour éviter ce cumul, et **re-vérifier au regard du décret souveraineté** (§4)
+> avant tout engagement long sur l'option.
 
 ---
 

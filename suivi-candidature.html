@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — Suivre ma candidature</title>
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  .sv-wrap { max-width: 520px; margin: 0 auto; padding: 60px 20px 90px; text-align: center; }
+  .sv-wrap h1 { font-size: 28px; margin-bottom: 8px; }
+  .sv-wrap p { color: var(--text-soft); }
+  .sv-form { display: flex; gap: 10px; margin: 26px 0 8px; }
+  .sv-form input {
+    flex: 1; padding: 13px 16px; font-size: 16px; letter-spacing: 1px; text-transform: uppercase;
+    border: 1.5px solid var(--line, #d8ded8); border-radius: 10px;
+  }
+  .sv-result { margin-top: 26px; padding: 22px; border-radius: 12px; background: var(--soft, #f2f5f2); text-align: left; }
+  .sv-status { font-size: 21px; font-weight: 800; margin: 6px 0; }
+  .sv-steps { display: flex; gap: 6px; margin-top: 14px; }
+  .sv-step { flex: 1; height: 6px; border-radius: 3px; background: #dfe5df; }
+  .sv-step.on { background: var(--accent, #6F8770); }
+  .sv-error { color: #b3261e; font-size: 13.5px; min-height: 18px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys.svg" alt="Salverys" /></a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="espace-candidat.html">Nous rejoindre</a>
+      <a href="suivi-candidature.html" class="active">Suivre ma candidature</a>
+    </nav>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="sv-wrap">
+  <h1>Suivre ma candidature</h1>
+  <p>Entrez le code candidat reçu lors du dépôt (format SLV-XXXXX).</p>
+  <form class="sv-form" id="sv-form">
+    <input id="sv-code" placeholder="SLV-XXXXX" maxlength="9" autocomplete="off" />
+    <button type="submit" class="btn btn-primary">Voir</button>
+  </form>
+  <div class="sv-error" id="sv-error"></div>
+
+  <div class="sv-result" id="sv-result" hidden>
+    <div style="font-size:13px;color:var(--text-soft);">Candidature <span id="sv-code-echo"></span></div>
+    <div class="sv-status" id="sv-status"></div>
+    <div id="sv-detail" style="font-size:14.5px;"></div>
+    <div class="sv-steps" id="sv-steps"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" /></a>
+        <p class="brand-desc">Télésecrétariat Médical <span class="sep">·</span> Support IT &amp; Applicatif</p>
+        <p style="max-width:280px;margin-top:12px;font-size:14px;">Externalisation francophone : télésecrétariat médical &amp; support IT, depuis Antananarivo vers la France.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Métiers</h5>
+          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
+          <a href="index.html#contact">Contactez-nous</a>
+        </div>
+        <div class="footer-col">
+          <h5>Salverys</h5>
+          <a href="espace-candidat.html">Nous rejoindre</a>
+          <a href="suivi-candidature.html">Suivre ma candidature</a>
+          <a href="espace-client.html">Espace client</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© Salverys — Antananarivo → France</span>
+      <span>Montants indicatifs · devis personnalisé sur demande</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  /* Statuts publiés dans assets/candidatures-statuts.json (codes anonymes uniquement).
+     Tout code au bon format absent du fichier = « reçue » (défaut). */
+  var STATUS = {
+    'recue':     { label: 'Reçue — en cours d’examen', step: 1, detail: 'Votre dossier est dans notre file d’examen. Nous revenons vers vous sous 2 semaines.' },
+    'entretien': { label: 'Entretien', step: 2, detail: 'Votre profil est retenu pour un entretien — vous serez contacté(e) par email ou WhatsApp.' },
+    'test':      { label: 'Test pratique', step: 3, detail: 'Un test de mise en situation (appels ou tickets) vous est proposé.' },
+    'acceptee':  { label: 'Acceptée 🎉', step: 4, detail: 'Bienvenue ! Nous vous contactons pour le contrat de prestation et la formation.' },
+    'refusee':   { label: 'Non retenue', step: 0, detail: 'Merci pour votre candidature. Nous la conservons 6 mois : nos besoins évoluent vite.' },
+  };
+  var TOTAL_STEPS = 4;
+
+  $('sv-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var code = $('sv-code').value.trim().toUpperCase();
+    $('sv-error').textContent = '';
+    $('sv-result').hidden = true;
+    if (!/^SLV-[A-Z2-9]{5}$/.test(code)) {
+      $('sv-error').textContent = 'Format attendu : SLV-XXXXX.';
+      return;
+    }
+    fetch('assets/candidatures-statuts.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (map) {
+        var key = (map[code] || 'recue').toLowerCase();
+        var s = STATUS[key] || STATUS['recue'];
+        $('sv-code-echo').textContent = code;
+        $('sv-status').textContent = s.label;
+        $('sv-detail').textContent = s.detail;
+        var steps = '';
+        for (var i = 1; i <= TOTAL_STEPS; i++) steps += '<div class="sv-step' + (s.step >= i ? ' on' : '') + '"></div>';
+        $('sv-steps').innerHTML = s.step > 0 ? steps : '';
+        $('sv-result').hidden = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>

@@ -25,6 +25,10 @@ de patients, et vous ne gérez rien »**.
 **CA récupéré** — 2 à 3 RDV sauvés d'appels qui auraient été manqués paient le forfait.
 À ce moment, 350 € n'est plus un coût, c'est un investissement à ROI évident.
 
+**Recadrage €/jour (systématique — emails, simulateur, RDV)** : 350 €/mois ≈ **16 €/jour
+ouvré**, soit **moins d'une demi-consultation par jour** pour ne plus perdre aucun appel.
+Toujours donner les deux reformulations ensemble (€/jour + RDV équivalents).
+
 ---
 
 ## 2. Réassurance en deux temps (≠ remise sèche)
@@ -50,6 +54,12 @@ qu'on ne connaît pas encore.
 > (« et si ça ne me convient pas ? »), l'engagement de décroché enlève le risque de
 > *durée* (« et s'ils baissent en qualité ? »). Deux peurs, deux réponses.
 
+**Amorçage — clients fondateurs (5 premiers cabinets)** : le mois pilote s'inscrit dans
+le deal « clients fondateurs » (`PRICING.md §7`) — dégressif **−50/−30/−15 %** sur
+3 mois, garantie décroché incluse, contre **témoignage à 60 j + 1 mise en relation**.
+Rareté **vraie** (capacité 10 agents) : utilisable en copy sans tactique artificielle,
+et c'est notre seul substitut d'urgence tant qu'on n'a pas de logos.
+
 ---
 
 ## 3. Value stack — ce qui est inclus (et qu'on rend VISIBLE)
@@ -68,6 +78,8 @@ Confidentialité en tête, exprès.
 | **Reporting mensuel** (décroché, délai de réponse) | Vous mesurez, vous ne croyez pas sur parole |
 | **Forfait mensuel, jamais à l'appel** | Coût prévisible, pas de mauvaise surprise |
 | **Vous gardez la main sur l'agenda** | Aucune perte de contrôle |
+| **Plan de continuité écrit** (double connexion fibre + 4G par agent, hub de repli alimenté) | Votre accueil ne dépend ni d'une ligne ni du réseau électrique local |
+| **Mise en service : 490 € — offerte** | L'intégration a un coût réel ; vous ne le payez pas |
 
 ---
 
@@ -82,6 +94,11 @@ Confidentialité en tête, exprès.
 
 Couverture 8h-20h, 5j/7 minimum. **Mois pilote à −50 %** sur tous les forfaits.
 Dépassement = bascule au palier supérieur, **jamais de surfacturation à l'appel**.
+
+**Options d'amplitude** (add-ons cumulables, `PRICING.md §1.a`) : samedi matin **+90 €** ·
+soirée 20h-22h **+120 €** · samedi complet **+150 €**. En négociation, **offrir une option**
+(ex. samedi matin offert 3 mois) plutôt que remiser le forfait.
+**Mise en service : 490 € — offerte** (affichée sur chaque devis, `PRICING.md §1.c`).
 
 ---
 

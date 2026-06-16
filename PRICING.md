@@ -4,7 +4,9 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-06-06 (ajout §7 « engagement de décroché ») · base 2026-05-30 · Branche `claude/salverys-pricing-strategy-ZMff3`
+> Dernière révision : 2026-06-12 (rate card partenaire MB §3, télésec MB par créneau §1.b,
+> add-ons amplitude + mise en service §1, pilote IT harmonisé) · précédente 2026-06-06
+> (ajout §7 « engagement de décroché ») · base 2026-05-30
 > Rapport de réflexion détaillé : `RAPPORT-PRIX.html`
 
 ---
@@ -48,6 +50,62 @@ au palier supérieur, **jamais de surfacturation à l'appel**.
 - **Prix fermes** (alignés marché FR 2025 : forfaits 300-900 €/mois temps plein — cf.
   §5). On retire la mention « indicatifs à valider ».
 - **Offre de lancement** : voir §7 (1er mois à -50 %).
+- **Recadrage ROI (à utiliser partout)** : 350 €/mois ≈ **16 €/jour ouvré** — moins d'une
+  demi-consultation par jour ; **2 à 3 RDV récupérés** sur des appels manqués paient le
+  forfait. C'est le recadrage anti-objection prix le moins cher qui existe.
+
+### 1.a Options d'amplitude — add-ons nommés (décidé 2026-06-12)
+
+L'amplitude étendue n'est plus diluée dans le « sur-mesure » : elle devient des **options
+nommées et pricées**, cumulables avec n'importe quel forfait. Trois effets : panier moyen
+en hausse, grille d'entrée intacte (le 350 € ne bouge pas), et un « give » de négociation
+offrable sans toucher au prix du forfait.
+
+| Option | Couverture ajoutée | Prix |
+|---|---|---|
+| **Samedi matin** | 8h-13h le samedi | **+90 €/mois** |
+| **Soirée étendue** | 20h-22h en semaine | +120 €/mois |
+| **Samedi complet** | 8h-18h le samedi | +150 €/mois |
+
+- Créneaux mutualisés entre comptes → coût marginal faible, marge préservée.
+- **Levier de closing** : « extension samedi matin offerte 3 mois » coûte ~270 € et peut
+  débloquer une signature — toujours préférer **offrir une option** plutôt que remiser le
+  forfait (le prix de référence reste intact).
+
+### 1.b Médical — marque blanche télésec FR (revente) — **INTERNE, jamais public**
+
+> Prix de gros pour les télésecrétariats français qui sous-traitent leur débordement
+> (cible GTM n°1). Tarification **à l'appel traité, par créneau** (décidé 2026-06-12) :
+> on vend précisément les créneaux que le partenaire ne peut pas rentabiliser en France —
+> c'est là que sa douleur est maximale et notre prix peut monter. Un tarif à plat
+> laisserait de la valeur sur la table.
+
+| Créneau | Prix de gros / appel traité |
+|---|---|
+| Jour semaine (8h-20h) — débordement & pics | **0,90 - 1,10 €** |
+| Soir (20h-22h) & samedi | **1,20 - 1,40 €** |
+| Capacité réservée sur pics annoncés (rentrée, épidémies) | base créneau **+15-20 %** (engagement de volume) |
+
+- Remplace l'ancienne référence à plat « 0,90-1,40 € » (`FINANCE-PREVISIONNEL.md §3`) :
+  mêmes bornes, mais le haut de fourchette est **structuré** (créneaux pénibles) au lieu
+  d'être négocié.
+- **Plancher inchangé** : jamais sous coût chargé agent + ~20 %.
+- Jamais de chiffre en cold email ; grille remise **au cadrage** uniquement.
+
+### 1.c Mise en service — affichée, puis offerte (décidé 2026-06-12)
+
+L'onboarding (2-3 semaines : intégration Doctolib/Maiia, formation aux consignes du
+cabinet, paramétrage) était invisible et gratuit. Désormais **affiché à sa valeur sur
+chaque devis** :
+
+> **Mise en service : 490 € — offerte.**
+
+- Matérialise la value stack (le client voit ce qu'il ne paie pas).
+- Justifie le refus de l'essai gratuit (un onboarding a un coût réel).
+- Crée un « give » de closing à coût nul.
+- **Toujours offerte** (la facturer contredirait le « sans engagement ») : c'est un
+  affichage de valeur, pas une ligne de revenu. Vaut aussi pour Support N1 / Helpdesk
+  (afficher « cadrage & mise en place : offerts » sur les propositions).
 
 ---
 
@@ -80,6 +138,29 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 coût d'acquisition est ~nul et le volume est apporté. **Plancher absolu** : jamais sous
 le coût chargé agent + ~20 % (cf. §7).
 
+**Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12)**
+
+Remplace le « prix donné en cadrage » au cas par cas : un donneur d'ordre qui revend a
+besoin de **visibilité** pour construire sa propre marge — le flou rallonge le cycle de
+closing. Grille **confidentielle** (PDF remis au cadrage, sous NDA — jamais en email),
+où le dégressif **achète du volume** au lieu d'être concédé en négociation :
+
+| Engagement | Support N1 SaaS MB (€/mois/ETP) | Helpdesk IT N1 MB (€/mois/ETP) |
+|---|---|---|
+| 1 ETP | 1 700 € | 2 000 € |
+| 3 ETP | 1 500 € | 1 750 € |
+| 5+ ETP | 1 350 € | 1 550 € |
+
+- Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
+  on ne baisse rien. Plancher inchangé (coût + ~20 % ≈ 540 €).
+- Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : ~5 ETP placés) : le palier 5+
+  est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
+- **Canal de remise** : espaces partenaires protégés du site, **un par niche avec son
+  propre mot de passe** (`espace-client-support.html` / `espace-client-helpdesk.html` /
+  `espace-client-medical.html` pour la grille télésec §1.b — pages chiffrées, mot de
+  passe donné au cadrage) ou impression « PDF de cadrage » depuis la page — procédure
+  dans `ESPACE-CLIENT-CANDIDAT.md`.
+
 - **À l'heure** : ~12-15 €/h (direct) · ~8-11 €/h (marque blanche).
 - **À l'interaction** : ~2,5-4 €/ticket N1 (direct) · ~1,8-2,8 € (marque blanche).
 - **Benchmark interne (coût à battre côté client)** : un CDI FR chargé = ~38-46 k€/an,
@@ -87,7 +168,10 @@ le coût chargé agent + ~20 % (cf. §7).
 - **Durée de contrat (révisée)** : engagement initial **3 mois**, puis **12 mois
   renouvelable** ; 24-36 mois réservés aux grands comptes avec dégressif.
   ⚠️ La copy dit « contrats 12 à 36 mois » → reformuler en « dès 3 mois, puis 12 mois ».
-- **Pilote** : 15 j cadré (~80 tickets) → repositionner en « 1er mois -50 % » si validé.
+- **Pilote (harmonisé 2026-06-12)** : **1er mois à −50 %**, périmètre N1 cadré
+  (**200-400 tickets**), sans engagement — même mécanique que le médical (§7). Les
+  anciennes formules « pilote 15 j (~80 tickets) » et « pilote 60 jours » sont
+  **abandonnées partout** (copy alignée, cf. `OUTREACH-IT-N1-marque-blanche.md`).
 
 ### Tier « Priority » (ex-« Premium ITIL+ ») — service critique
 
@@ -287,6 +371,11 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | Go-to-market | direct uniquement | **direct + marque blanche (sous-traitance)** |
 | Affichage public | « hybride » (médical public, reste interne) | **3 paliers (§9)** : médical public ferme · support/helpdesk **direct = estimation** · **toute MB jamais publique** |
 | Simulateurs IT (helpdesk/informatique) | prix **ETP marque blanche** affiché publiquement (fuite de marge) | **estimation directe (fourchette)** + « devis sous 24 h », chiffres MB retirés |
+| Pilote Support/Helpdesk (2026-06-12) | « 15 j (~80 tickets) » / « 60 jours » (incohérent) | **1er mois à −50 %, 200-400 tickets, sans engagement** |
+| Prix MB Support/Helpdesk (2026-06-12) | fourchette donnée « en cadrage » au cas par cas | **rate card partenaire 1/3/5+ ETP** (confidentielle, NDA, §3) |
+| Télésec MB à l'appel (2026-06-12) | tarif à plat 0,90-1,40 € | **par créneau** : jour 0,90-1,10 € · soir/samedi 1,20-1,40 € · pics réservés +15-20 % (§1.b) |
+| Amplitude médical (2026-06-12) | diluée dans « sur-mesure » | **add-ons nommés** : samedi matin +90 € · soirée +120 € · samedi complet +150 € (§1.a) |
+| Onboarding (2026-06-12) | invisible, gratuit | **« Mise en service : 490 € — offerte »** sur chaque devis (§1.c) |
 
 ---
 
@@ -314,12 +403,17 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 > Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **freelances + équipes dédiées** est
 > viable sous conditions. Détail (tableaux par domaine) dans `RAPPORT-PRIX.html §10`.
 
-- **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **double FAI +
-  4G backup + onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
+- **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **double connexion
+  par agent (fibre + 4G) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
   **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **backfill +1
   agent/compte** ; documentation écrite dès le client n°1.
 - **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
   pour un **logiciel lourd installé** (ex. Médistory local).
+- **Enregistrement des appels** : **disponible sur demande, zéro par défaut ; non facturé en add-on.**
+  Hébergement HDS **selon la stack client** — HDS du donneur d'ordre en **marque blanche** (coût ~0) ;
+  en **direct**, hébergeur HDS dédié (OVHcloud/Scaleway), **coût d'hébergement absorbé dans le forfait**
+  (ordre de grandeur interne ~100-500 €/mois, **à absorber, pas un prix client**). Cadre conformité :
+  `CONFORMITE-HDS-RGPD.md §2`.
 - **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement + backfill.
