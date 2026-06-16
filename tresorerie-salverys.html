@@ -49,6 +49,12 @@
   td:first-child,th:first-child{text-align:left}
   tr.be td{background:#eef3ee;font-weight:600}
   .neg-cell{color:var(--rouge)}
+  .rate-bar{background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(46,59,78,.08)}
+  .rate-bar label{font-size:.9rem;font-weight:700;white-space:nowrap}
+  .rate-bar input{width:110px;padding:6px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;color:var(--bleu)}
+  .rate-hint{font-size:.75rem;color:#9ca3af}
+  .rate-ex{font-size:.85rem;color:var(--or);font-weight:600;margin-left:auto}
+  .ar-equiv{font-size:.72rem;color:var(--or);font-weight:600;margin-left:6px}
   .note{font-size:.75rem;color:#6b7280;margin-top:16px;line-height:1.5}
   /* Carte stack interne */
   .stack{margin-top:20px}
@@ -65,7 +71,15 @@
 <body>
 <div class="wrap">
   <h1>Trésorerie Salverys — simulateur 24 mois</h1>
-  <p class="sub">Interne · v4 du 2026-06-15 (médical + IT · freelances · coûts bottom-up + SaaS) · aligné sur <b>FINANCE-PREVISIONNEL.md</b> et <b>PRICING.md</b> · encaissement à 30 jours</p>
+  <p class="sub">Interne · v4 du 2026-06-16 (médical + IT · freelances · coûts bottom-up + SaaS) · aligné sur <b>FINANCE-PREVISIONNEL.md</b> et <b>PRICING.md</b> · encaissement à 30 jours</p>
+
+  <!-- TAUX EUR → MGA — TOUT EN HAUT -->
+  <div class="rate-bar">
+    <label for="rate">Taux EUR → MGA</label>
+    <input type="number" id="rate" value="5000" step="50" min="3500" max="7000" />
+    <span class="rate-hint">Ar / €</span>
+    <span class="rate-ex" id="vRateEx">1 000 € = 5 000 000 Ar</span>
+  </div>
 
   <div class="kpis">
     <div class="kpi" id="kpiBE"><div class="v">—</div><div class="l">Point mort (CA ≥ charges)</div></div>
@@ -91,8 +105,8 @@
         <input type="range" id="forfait" min="300" max="950" step="10" value="420">
         <div class="hint">H1 · €/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
       <div class="ctl"><label>Cabinets / freelance <b id="vRatio"></b></label>
-        <input type="range" id="ratio" min="1" max="12" step="1" value="6">
-        <div class="hint">H2 · nombre de cabinets par freelance médical</div></div>
+        <input type="range" id="ratio" min="1" max="20" step="1" value="6">
+        <div class="hint">H2 · nombre de cabinets par freelance médical (max 20)</div></div>
       <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
         <input type="range" id="cab0" min="0" max="10" step="1" value="0">
         <div class="hint">Déjà signés au lancement</div></div>
@@ -109,13 +123,13 @@
         <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (GTM MB-first)</div></div>
 
       <h3>Équipe — coûts opérationnels</h3>
-      <div class="ctl"><label>Coût freelance <b id="vCostFL"></b></label>
+      <div class="ctl"><label>Coût freelance <b id="vCostFL"></b><span class="ar-equiv" id="vCostFLAr"></span></label>
         <input type="range" id="costFL" min="300" max="700" step="10" value="450">
         <div class="hint">H6 · €/mois (~1,8-2 M Ar, ~2,5× marché local)</div></div>
       <div class="ctl"><label>VoIP médical / freelance <b id="vVoip"></b></label>
         <input type="range" id="voip" min="0" max="150" step="10" value="50">
         <div class="hint">H7 · €/mois par poste (téléphonie + connectivité)</div></div>
-      <div class="ctl"><label>Superviseur / manager <b id="vSup"></b></label>
+      <div class="ctl"><label>Superviseur / manager <b id="vSup"></b><span class="ar-equiv" id="vSupAr"></span></label>
         <input type="range" id="costSup" min="0" max="1500" step="50" value="750">
         <div class="hint">H8 · €/mois — compté dès 3 freelances médical</div></div>
 
@@ -124,10 +138,9 @@
         <div class="tool"><b>HubSpot</b> Free</div>
         <div class="amount">0 €/mois</div>
       </div>
-      <div class="saas-row">
-        <div class="tool"><b>Emelia</b></div>
-        <div class="amount">99 €/mois</div>
-      </div>
+      <div class="ctl"><label>Emelia (outreach email) <b id="vEmelia"></b></label>
+        <input type="range" id="emelia" min="0" max="500" step="5" value="99">
+        <div class="hint">€/mois — montant selon votre plan (saisie libre)</div></div>
       <div class="saas-row">
         <div class="tool"><b>CloudTalk</b></div>
         <div class="amount">29 €/user (× freelances méd.)</div>
@@ -156,10 +169,11 @@
       <div class="legend">Vert sauge = trésorerie positive · Rouge = négative · Survoler une barre pour le détail</div>
       <div style="max-height:350px;overflow:auto">
       <table id="tbl">
-        <thead><tr><th>M</th><th>Cab</th><th>Free</th><th>ETP IT</th><th>CA €</th><th>Enc €</th><th>Charges €</th><th>Tréso €</th></tr></thead>
+        <thead><tr><th>M</th><th>Cab</th><th>Free</th><th>ETP IT</th><th>Masse sal.</th><th>CA €</th><th title="CA facturé le mois précédent, encaissé ce mois (paiement à 30 j)">Reçu J+30</th><th>Charges €</th><th>Tréso €</th></tr></thead>
         <tbody></tbody>
       </table>
       </div>
+      <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">« Reçu J+30 » = CA facturé le mois précédent, encaissé ce mois (conditions de paiement à 30 j) — d'où un décalage systématique en M1.</p>
     </div>
   </div>
 
@@ -209,14 +223,16 @@ const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
 const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
 
 function simulate(){
+  const rate=+$('rate').value;
   const cap=+$('cap').value, setupInit=+$('setupInit').value,
         forfait=+$('forfait').value, ratio=+$('ratio').value,
         cab0=+$('cab0').value, acq=+$('acq').value,
         itQ=+$('itQ').value, itMix=+$('itMix').value/100,
         costFL=+$('costFL').value, voip=+$('voip').value, costSup=+$('costSup').value,
-        ovh=+$('ovh').value, m365=+$('m365').value,
+        emelia=+$('emelia').value, ovh=+$('ovh').value, m365=+$('m365').value,
         founders=$('founders').checked, churn=$('churn').checked;
 
+  $('vRateEx').textContent=`1 000 € = ${(1000*rate).toLocaleString('fr-FR')} Ar`;
   $('vCap').textContent=fmtK(cap);
   $('vSetup').textContent=fmtE(setupInit);
   $('vForfait').textContent=fmtE(forfait);
@@ -226,25 +242,25 @@ function simulate(){
   $('vItQ').textContent=itQ;
   $('vItMix').textContent=Math.round(itMix*100)+' %';
   $('vCostFL').textContent=fmtE(costFL);
+  $('vCostFLAr').textContent=`≈ ${((costFL*rate)/1e6).toFixed(2)} M Ar`;
   $('vVoip').textContent=fmtE(voip);
   $('vSup').textContent=fmtE(costSup);
+  $('vSupAr').textContent=`≈ ${((costSup*rate)/1e6).toFixed(2)} M Ar`;
+  $('vEmelia').textContent=fmtE(emelia);
 
   const priceItMB=1350, priceItDirect=2150;
   const priceIt=priceItMB*itMix+priceItDirect*(1-itMix);
   const M=24, rows=[]; let cash=cap, prevRev=0, signups=[], churned=0;
 
   for(let m=1;m<=M;m++){
-    // cabinets cumulés
     const baseTarget = cab0 + Math.round(acq*(m-1));
     while(signups.length < baseTarget) signups.push(m);
     if(churn && m>=9 && (m-9)%6===0) churned++;
     const active = signups.slice(churned);
     const cabinets = active.length;
 
-    // IT ETP : démarre M4, cumule par trimestre
     const itEtp = m>=4 ? Math.min(8, itQ*Math.floor((m-4)/3+1)) : 0;
 
-    // CA médical avec remises fondateurs
     let revMed=0;
     active.forEach((s,i)=>{
       const age=m-s+1; let f=1;
@@ -254,17 +270,17 @@ function simulate(){
     const revIt = itEtp*priceIt;
     const rev = revMed + revIt;
 
-    // coûts bottom-up
     const freelances = cabinets>0 ? Math.ceil(cabinets/ratio) : 0;
     const supActive = freelances>=3;
+    const masseSal = freelances*costFL + (supActive?costSup:0);
     const costCloudtalk = freelances*29;
-    const costSaaS = 99 + costCloudtalk + ovh + m365*10;  // Emelia + CloudTalk + OVH + M365
-    const costs = freelances*(costFL+voip) + (supActive?costSup:0) + costSaaS + (m===1?setupInit:0);
+    const costSaaS = emelia + costCloudtalk + ovh + m365*10;
+    const costs = masseSal + freelances*voip + costSaaS + (m===1?setupInit:0);
 
     const enc = m===1?0:rows[m-2].rev;
     cash += prevRev - costs;
     prevRev = rev;
-    rows.push({m,cabinets,freelances,itEtp,rev,enc,costs,cash});
+    rows.push({m,cabinets,freelances,itEtp,masseSal,rev,enc,costs,cash});
   }
 
   // KPIs
@@ -295,8 +311,8 @@ function simulate(){
     const tr=document.createElement('tr');
     if(be&&r.m===be.m) tr.className='be';
     tr.innerHTML=`<td>M${r.m}</td><td>${r.cabinets}</td><td>${r.freelances}</td><td>${r.itEtp>0?r.itEtp.toFixed(1):'-'}</td>
-      <td>${fmtE(r.rev)}</td><td>${fmtE(r.enc)}</td><td>${fmtE(r.costs)}</td>
-      <td class="${r.cash<0?'neg-cell':''}">${fmtE(r.cash)}</td>`;
+      <td>${fmtE(r.masseSal)}</td><td>${fmtE(r.rev)}</td><td>${fmtE(r.enc)}</td>
+      <td>${fmtE(r.costs)}</td><td class="${r.cash<0?'neg-cell':''}">${fmtE(r.cash)}</td>`;
     tb.appendChild(tr);
   });
 }
