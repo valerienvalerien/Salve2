@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trésorerie Salverys — simulateur 24 mois (médical · freelances)</title>
+<title>Trésorerie Salverys — simulateur 24 mois (médical + IT · freelances)</title>
 <style>
   :root{
     --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
@@ -18,13 +18,19 @@
   @media(max-width:900px){.grid{grid-template-columns:1fr}}
   .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08)}
   .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
+  .card h3{font-size:.85rem;margin-top:16px;margin-bottom:8px;color:var(--bleu);text-transform:uppercase}
   .ctl{margin-bottom:14px}
   .ctl label{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:4px}
   .ctl label b{color:var(--bleu)}
   .ctl input[type=range]{width:100%;accent-color:var(--sauge)}
+  .ctl input[type=number]{width:100%;padding:5px;border:1px solid #e5e7eb;border-radius:6px;font-size:.85rem}
   .ctl .hint{font-size:.72rem;color:#9ca3af;margin-top:2px}
   .check{display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:14px}
   .check input{accent-color:var(--sauge);width:16px;height:16px}
+  .saas-row{display:flex;gap:10px;margin-bottom:12px;align-items:center}
+  .saas-row .tool{flex:1;font-size:.8rem;color:#6b7280}
+  .saas-row input{flex:0 0 60px;padding:4px;border:1px solid #e5e7eb;border-radius:6px;font-size:.8rem}
+  .saas-row .amount{flex:0 0 80px;text-align:right;font-size:.75rem;color:#9ca3af}
   .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
   @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
   .kpi{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(46,59,78,.08)}
@@ -37,8 +43,8 @@
   .bar:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
     background:var(--bleu);color:var(--creme);font-size:.7rem;padding:4px 8px;border-radius:6px;white-space:nowrap;z-index:5}
   .legend{font-size:.75rem;color:#6b7280;margin-top:8px}
-  table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:16px}
-  th,td{padding:5px 8px;text-align:right;border-bottom:1px solid #eee}
+  table{width:100%;border-collapse:collapse;font-size:.75rem;margin-top:16px}
+  th,td{padding:4px 6px;text-align:right;border-bottom:1px solid #eee}
   th{background:var(--bleu);color:var(--creme);position:sticky;top:0}
   td:first-child,th:first-child{text-align:left}
   tr.be td{background:#eef3ee;font-weight:600}
@@ -53,14 +59,13 @@
   .stack-list li{padding:5px 0;border-bottom:1px solid #f0ede6}
   .stack-list b{color:var(--bleu)}
   .tag{display:inline-block;font-size:.64rem;padding:1px 6px;border-radius:6px;background:var(--creme);color:var(--sauge);margin-left:4px;vertical-align:middle}
-  .tag.open{background:#fbeee9;color:var(--rouge)}
   .garde{font-size:.74rem;color:#6b7280;margin-top:14px;border-left:3px solid var(--or);padding-left:10px;line-height:1.5}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Trésorerie Salverys — simulateur 24 mois</h1>
-  <p class="sub">Interne · v3 du 2026-06-15 (médical · freelances · coûts bottom-up) · modèle aligné sur <b>FINANCE-PREVISIONNEL.md</b> et les prix <b>PRICING.md</b> · encaissement à 30 jours · IT/Support N1 hors périmètre de ce simulateur (médical-first)</p>
+  <p class="sub">Interne · v4 du 2026-06-15 (médical + IT · freelances · coûts bottom-up + SaaS) · aligné sur <b>FINANCE-PREVISIONNEL.md</b> et <b>PRICING.md</b> · encaissement à 30 jours</p>
 
   <div class="kpis">
     <div class="kpi" id="kpiBE"><div class="v">—</div><div class="l">Point mort (CA ≥ charges)</div></div>
@@ -72,33 +77,73 @@
   <div class="grid">
     <div class="card">
       <h2>Hypothèses</h2>
+
+      <h3>Financement &amp; structure</h3>
       <div class="ctl"><label>Capital initial <b id="vCap"></b></label>
         <input type="range" id="cap" min="500" max="10000" step="500" value="2000">
         <div class="hint">Démarrage léger (freelances) — jauge 500 € → 10 k€</div></div>
       <div class="ctl"><label>Coûts de création / setup initial (M1) <b id="vSetup"></b></label>
         <input type="range" id="setupInit" min="0" max="3000" step="100" value="0">
-        <div class="hint">Si société en cours de création (VJUS / formalités) — ponctuel sur M1</div></div>
+        <div class="hint">Si société en cours de création (VJUS / formalités)</div></div>
+
+      <h3>Médical — clients &amp; opérations</h3>
       <div class="ctl"><label>Forfait médical moyen <b id="vForfait"></b></label>
         <input type="range" id="forfait" min="300" max="950" step="10" value="420">
-        <div class="hint">H1 · €/mois par cabinet (Essentiel 350 → Intensif 950, cf. PRICING.md)</div></div>
+        <div class="hint">H1 · €/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
       <div class="ctl"><label>Cabinets / freelance <b id="vRatio"></b></label>
         <input type="range" id="ratio" min="1" max="12" step="1" value="6">
-        <div class="hint">H2 · nombre de cabinets qu'un freelance médical absorbe</div></div>
+        <div class="hint">H2 · nombre de cabinets par freelance médical</div></div>
       <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
         <input type="range" id="cab0" min="0" max="10" step="1" value="0">
         <div class="hint">Déjà signés au lancement</div></div>
       <div class="ctl"><label>Acquisition cabinets / mois <b id="vAcq"></b></label>
         <input type="range" id="acq" min="0" max="4" step="0.5" value="1.5">
         <div class="hint">H3 · rythme réaliste 1–2 nouveaux cabinets/mois</div></div>
+
+      <h3>IT / Support N1 — clients &amp; opérations</h3>
+      <div class="ctl"><label>ETP IT ajoutés / mois <b id="vItQ"></b></label>
+        <input type="range" id="itQ" min="0" max="8" step="0.5" value="0">
+        <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
+      <div class="ctl"><label>Mix IT : % marque blanche <b id="vItMix"></b></label>
+        <input type="range" id="itMix" min="0" max="100" step="10" value="100">
+        <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (GTM MB-first)</div></div>
+
+      <h3>Équipe — coûts opérationnels</h3>
       <div class="ctl"><label>Coût freelance <b id="vCostFL"></b></label>
         <input type="range" id="costFL" min="300" max="700" step="10" value="450">
-        <div class="hint">H6 · €/mois (~1,8-2 M Ar, ~2,5× le marché local — objectif zéro turnover)</div></div>
+        <div class="hint">H6 · €/mois (~1,8-2 M Ar, ~2,5× marché local)</div></div>
       <div class="ctl"><label>VoIP médical / freelance <b id="vVoip"></b></label>
         <input type="range" id="voip" min="0" max="150" step="10" value="50">
         <div class="hint">H7 · €/mois par poste (téléphonie + connectivité)</div></div>
       <div class="ctl"><label>Superviseur / manager <b id="vSup"></b></label>
         <input type="range" id="costSup" min="0" max="1500" step="50" value="750">
-        <div class="hint">H8 · €/mois — compté dès 3 freelances (en deçà, supervision assurée par la direction)</div></div>
+        <div class="hint">H8 · €/mois — compté dès 3 freelances médical</div></div>
+
+      <h3>SaaS &amp; outils internes</h3>
+      <div class="saas-row">
+        <div class="tool"><b>HubSpot</b> Free</div>
+        <div class="amount">0 €/mois</div>
+      </div>
+      <div class="saas-row">
+        <div class="tool"><b>Emelia</b></div>
+        <div class="amount">99 €/mois</div>
+      </div>
+      <div class="saas-row">
+        <div class="tool"><b>CloudTalk</b></div>
+        <div class="amount">29 €/user (× freelances méd.)</div>
+      </div>
+      <div class="saas-row">
+        <div class="tool"><b>OVH</b> domaine</div>
+        <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="1"></div>
+        <div class="amount">€/mois</div>
+      </div>
+      <div class="saas-row">
+        <div class="tool"><b>M365 + GWS</b></div>
+        <div style="flex:1"><input type="number" id="m365" min="0" max="10" step="1" value="2"></div>
+        <div class="amount">× 10 €/PU</div>
+      </div>
+
+      <h3>Conditions</h3>
       <div class="check"><input type="checkbox" id="founders" checked>
         <span>Deal « cabinets fondateurs » (5 premiers : −50/−30/−15 % sur 3 mois)</span></div>
       <div class="check"><input type="checkbox" id="churn">
@@ -109,9 +154,9 @@
       <h2>Courbe de trésorerie (fin de mois)</h2>
       <div class="chart" id="chart"></div>
       <div class="legend">Vert sauge = trésorerie positive · Rouge = négative · Survoler une barre pour le détail</div>
-      <div style="max-height:300px;overflow:auto">
+      <div style="max-height:350px;overflow:auto">
       <table id="tbl">
-        <thead><tr><th>Mois</th><th>Cabinets</th><th>Freelances</th><th>CA facturé</th><th>Encaissé</th><th>Charges</th><th>Trésorerie</th></tr></thead>
+        <thead><tr><th>M</th><th>Cab</th><th>Free</th><th>ETP IT</th><th>CA €</th><th>Enc €</th><th>Charges €</th><th>Tréso €</th></tr></thead>
         <tbody></tbody>
       </table>
       </div>
@@ -119,47 +164,42 @@
   </div>
 
   <p class="note">
-    <b>Mécanique du modèle (v3 — médical · freelances)</b> : revenu = <b>cabinets × forfait moyen</b>,
-    encaissement décalé de 30 j (le CA de M(n) rentre en M(n+1)). Coûts <b>bottom-up</b> :
-    <code>ceil(cabinets / ratio)</code> freelances × (coût freelance + VoIP) + superviseur (compté dès 3 freelances)
-    + coûts de création ponctuels sur M1. Plus de forfait de charges fixes : chaque coût est construit à
-    partir des unités réelles. Deal fondateurs = −50/−30/−15 % sur les 3 premiers mois des 5 premiers cabinets.
-    <b>IT / Support N1 hors périmètre</b> de ce simulateur (médical-first). Prix : <b>PRICING.md fait foi</b>.
-    Outil interne — ne remplace pas la comptabilité (SaaS-first : Pennylane ou équivalent à trancher).
+    <b>Mécanique du modèle (v4)</b> :
+    <b>Revenu</b> = (cabinets × forfait médical avec remises fondateurs) + (ETP IT × prix ETP mix).
+    <b>Encaissement</b> décalé de 30 j.
+    <b>Coûts bottom-up</b> : freelances méd. = ceil(cabinets/ratio), chaque freelance coûte (coût+VoIP), superviseur compté dès 3 freelances. CloudTalk scale avec les freelances médical (29€/user). SaaS : HubSpot Free (0€) + Emelia (99€ flat) + CloudTalk (× freelances) + OVH (€/mois éditable) + M365 (€ × nb licences). IT opère en parallèle (démarrage M4) avec son propre prix et mix MB%. Prix : <b>PRICING.md fait foi</b>.
   </p>
 
   <!-- ============ STACK INTERNE VALIDÉE ============ -->
   <div class="card stack">
     <h2>Stack &amp; organisation interne — éléments validés</h2>
-    <p class="sub" style="margin:0 0 6px">Principe : séparer ce qui est <b>imposé</b> (delivery, choisi par les clients) de ce qui est <b>à moi</b> (la boîte, que je choisis et possède).</p>
+    <p class="sub" style="margin:0 0 6px">Principe : séparer ce qui est <b>imposé</b> (delivery, clients) de ce qui est <b>à moi</b> (la boîte, que je choisis).</p>
     <div class="stack-grid">
       <div class="stack-col">
         <h3>Ma boîte — je choisis</h3>
         <ul class="stack-list">
           <li><b>Messagerie &amp; collab</b> — Microsoft 365 Business Basic (~6 $/mois) + Teams, sur <code>salverys.fr</code>.</li>
-          <li><b>Cold email — domaine</b> — <code>salverys-bpo.fr</code> isolé du tenant M365 · <b>2 inboxes</b> dès le départ · SPF+DKIM+DMARC <b>avant</b> 1er envoi.</li>
-          <li><b>Outreach</b> — Emelia (warm-up auto inclus) · montée 5→10→20→30/jour.</li>
-          <li><b>CRM commercial</b> — Pipedrive vs Zoho <span class="tag open">décision ouverte</span> · penche Pipedrive (solo, cold pur).</li>
+          <li><b>Cold email — domaine</b> — <code>salverys-bpo.fr</code> isolé · <b>2 inboxes</b> dès le départ · SPF+DKIM+DMARC <b>avant</b> 1er envoi.</li>
+          <li><b>Outreach</b> — Emelia (99 €/mois, warm-up auto inclus) · montée 5→10→20→30/jour.</li>
+          <li><b>CRM commercial</b> — <b>HubSpot Free</b> (0 €, décision tranchée).</li>
           <li><b>Coordination freelances</b> — Teams (même outil que la collab interne).</li>
           <li><b>Facturation</b> — VJUS (société malgache), HT en autoliquidation (art. 283-2 CGI) · modèle PDF jusqu'à ~10 clients · Wise Business pour EUR→MGA.</li>
           <li><b>Dev &amp; assets</b> — GitHub (repo <code>Salve2</code>) + Netlify + Claude Code.</li>
           <li><b>Modèles IA</b> — Opus (stratégique) · Sonnet/Haiku (volume).</li>
-          <li><b>Téléphonie sortante</b> — CloudTalk Essential (29 €/user/mois annuel) · <b>numéro +33 obligatoire</b> · qualité Tana→FR à tester sur l'essai 14 j.</li>
+          <li><b>Téléphonie sortante</b> — CloudTalk Essential (29 €/user/mois) · <b>numéro +33 obligatoire</b> · scale avec les agents.</li>
+          <li><b>Domaine &amp; sous-domaines</b> — OVH · €/mois éditable dans le simulateur.</li>
+          <li><b>Licences mailing</b> — M365 + GWS · 10 €/PU/mois · nombre éditable.</li>
         </ul>
       </div>
       <div class="stack-col">
         <h3>Imposé — delivery (je ne choisis pas)</h3>
         <ul class="stack-list">
           <li><b>TLS médical</b> — très probablement <b>Ubicentrex</b> (agenda/RDV + SMS natifs) · à confirmer client par client (certains sur Doctolib).</li>
-          <li><b>Support IT &amp; applicatif</b> — ACD + ticketing <b>imposés par le donneur d'ordre</b> · mes agents se connectent à l'instance du client.</li>
-        </ul>
-        <h3 style="margin-top:14px">À trancher</h3>
-        <ul class="stack-list">
-          <li>CRM commercial : <b>Pipedrive vs Zoho</b> <span class="tag open">en suspens</span> — seule vraie décision restante.</li>
+          <li><b>Support IT &amp; applicatif</b> — ACD + ticketing <b>imposés par le donneur d'ordre</b> · agents connectés à l'instance client.</li>
         </ul>
       </div>
     </div>
-    <p class="garde"><b>Garde-fou</b> — ne pas sur-équiper. Chaque outil payant répond à un besoin <b>présent</b>, pas anticipé. La stack évolue au rythme du CA, pas l'inverse.</p>
+    <p class="garde"><b>Garde-fou</b> — ne pas sur-équiper. Chaque outil répond à un besoin <b>présent</b>, pas anticipé. La stack évolue au rythme du CA, pas l'inverse.</p>
   </div>
 </div>
 
@@ -172,7 +212,9 @@ function simulate(){
   const cap=+$('cap').value, setupInit=+$('setupInit').value,
         forfait=+$('forfait').value, ratio=+$('ratio').value,
         cab0=+$('cab0').value, acq=+$('acq').value,
+        itQ=+$('itQ').value, itMix=+$('itMix').value/100,
         costFL=+$('costFL').value, voip=+$('voip').value, costSup=+$('costSup').value,
+        ovh=+$('ovh').value, m365=+$('m365').value,
         founders=$('founders').checked, churn=$('churn').checked;
 
   $('vCap').textContent=fmtK(cap);
@@ -181,44 +223,54 @@ function simulate(){
   $('vRatio').textContent=ratio;
   $('vCab0').textContent=cab0;
   $('vAcq').textContent=acq;
+  $('vItQ').textContent=itQ;
+  $('vItMix').textContent=Math.round(itMix*100)+' %';
   $('vCostFL').textContent=fmtE(costFL);
   $('vVoip').textContent=fmtE(voip);
   $('vSup').textContent=fmtE(costSup);
 
+  const priceItMB=1350, priceItDirect=2150;
+  const priceIt=priceItMB*itMix+priceItDirect*(1-itMix);
   const M=24, rows=[]; let cash=cap, prevRev=0, signups=[], churned=0;
 
   for(let m=1;m<=M;m++){
-    // cabinets cumulés : cab0 signés à M1, puis acquisition mensuelle
+    // cabinets cumulés
     const baseTarget = cab0 + Math.round(acq*(m-1));
     while(signups.length < baseTarget) signups.push(m);
-    // churn : 1 cabinet tous les 6 mois à partir de M9 (le plus ancien part)
     if(churn && m>=9 && (m-9)%6===0) churned++;
     const active = signups.slice(churned);
     const cabinets = active.length;
 
-    // CA médical avec remise fondateurs (5 premiers cabinets, âge 1/2/3 mois)
-    let rev=0;
+    // IT ETP : démarre M4, cumule par trimestre
+    const itEtp = m>=4 ? Math.min(8, itQ*Math.floor((m-4)/3+1)) : 0;
+
+    // CA médical avec remises fondateurs
+    let revMed=0;
     active.forEach((s,i)=>{
       const age=m-s+1; let f=1;
       if(founders && i<5){ if(age===1)f=.5; else if(age===2)f=.7; else if(age===3)f=.85; }
-      rev+=forfait*f;
+      revMed+=forfait*f;
     });
+    const revIt = itEtp*priceIt;
+    const rev = revMed + revIt;
 
     // coûts bottom-up
     const freelances = cabinets>0 ? Math.ceil(cabinets/ratio) : 0;
-    const supActive = freelances>=3;   // superviseur justifié à partir de 3 freelances
-    const costs = freelances*(costFL+voip) + (supActive?costSup:0) + (m===1?setupInit:0);
+    const supActive = freelances>=3;
+    const costCloudtalk = freelances*29;
+    const costSaaS = 99 + costCloudtalk + ovh + m365*10;  // Emelia + CloudTalk + OVH + M365
+    const costs = freelances*(costFL+voip) + (supActive?costSup:0) + costSaaS + (m===1?setupInit:0);
 
-    const enc = m===1?0:rows[m-2].rev;   // encaissement à 30 j
+    const enc = m===1?0:rows[m-2].rev;
     cash += prevRev - costs;
     prevRev = rev;
-    rows.push({m,cabinets,freelances,rev,enc,costs,cash});
+    rows.push({m,cabinets,freelances,itEtp,rev,enc,costs,cash});
   }
 
   // KPIs
   const be=rows.find(r=>r.rev>=r.costs);
   const creux=Math.min(...rows.map(r=>r.cash));
-  $('kpiBE').querySelector('.v').textContent = be?('M+'+be.m):'> M24';
+  $('kpiBE').querySelector('.v').textContent = be?('M'+be.m):'> M24';
   $('kpiBE').className='kpi '+(be&&be.m<=8?'good':be?'':'bad');
   $('kpiCreux').querySelector('.v').textContent=fmtK(creux);
   $('kpiCreux').className='kpi '+(creux<0?'bad':'good');
@@ -242,7 +294,7 @@ function simulate(){
   rows.forEach(r=>{
     const tr=document.createElement('tr');
     if(be&&r.m===be.m) tr.className='be';
-    tr.innerHTML=`<td>M${r.m}</td><td>${r.cabinets}</td><td>${r.freelances}</td>
+    tr.innerHTML=`<td>M${r.m}</td><td>${r.cabinets}</td><td>${r.freelances}</td><td>${r.itEtp>0?r.itEtp.toFixed(1):'-'}</td>
       <td>${fmtE(r.rev)}</td><td>${fmtE(r.enc)}</td><td>${fmtE(r.costs)}</td>
       <td class="${r.cash<0?'neg-cell':''}">${fmtE(r.cash)}</td>`;
     tb.appendChild(tr);
