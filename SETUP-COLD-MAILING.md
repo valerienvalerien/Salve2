@@ -60,6 +60,7 @@ Mélanger `.fr` (crédibilité marché FR) et `.com`.
 
 ## 6. Outils & coûts
 
+- **CRM : HubSpot Free** (gratuit — pipeline de deals + contacts, cf. `CLAUDE.md`). 0 €/mois.
 - **Envoi : Emelia** (outil retenu, cf. `CLAUDE.md`).
 - **Infra : GWS** (~6 €/boîte/mois) + domaines (~10-15 €/an chacun).
 - Ordre de grandeur : 3 dom × 2 boîtes × 6 € = **~36 €/mois** + Emelia.

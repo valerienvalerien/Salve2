@@ -47,8 +47,19 @@ plus apparaître dans aucun livrable, séquence, CRM ou support client.
 > `nesvalo_` a été abandonné ; les CRM ouverts après cette date repartent du
 > seed (180 leads + décideurs vérifiés sont définis dans le code).
 
-## Outils retenus
-- **Cold mailing : Emelia** (outil de prospection email retenu)
+## Outils retenus (stack définitive)
+
+> Décision direction 2026-06-16 : au stade actuel (**solo, +1 personne au max** pour gérer la
+> prospection), la stack est volontairement minimale.
+
+- **CRM : HubSpot Free** (gratuit, illimité en contacts, pipeline de deals, scale au recrutement).
+  Remplace Folk/Pipedrive — non justifiés à 1-2 personnes tant que HubSpot Free couvre le besoin.
+- **Cold mailing : Emelia** (outil de prospection email retenu — **non redondant** : warm-up +
+  délivrabilité, ce que ni HubSpot ni un CRM ne couvrent ; critique sur le médical).
+
+> Folk reste une option « confort » (UX, enrichissement folkX) à reconsidérer plus tard, pas au
+> démarrage. Emelia ne deviendrait redondant que si l'on renonçait au cold au profit de la seule
+> relance de contacts tièdes.
 
 ## Source de vérité tarifaire
 
