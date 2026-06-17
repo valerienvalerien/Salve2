@@ -106,7 +106,7 @@
         <div class="hint">H1 · €/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
       <div class="ctl"><label>Cabinets / freelance <b id="vRatio"></b></label>
         <input type="range" id="ratio" min="1" max="20" step="1" value="6">
-        <div class="hint">H2 · nombre de cabinets par freelance médical (max 20)</div></div>
+        <div class="hint">H2 · plancher Erlang : minimum 2 freelances dès le 1er cabinet (jamais 1 seul agent)</div></div>
       <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
         <input type="range" id="cab0" min="0" max="10" step="1" value="0">
         <div class="hint">Déjà signés au lancement</div></div>
@@ -270,7 +270,7 @@ function simulate(){
     const revIt = itEtp*priceIt;
     const rev = revMed + revIt;
 
-    const freelances = cabinets>0 ? Math.ceil(cabinets/ratio) : 0;
+    const freelances = cabinets>0 ? Math.max(2, Math.ceil(cabinets/ratio)) : 0; // min 2 agents (Erlang)
     const supActive = freelances>=3;
     const masseSal = freelances*costFL + (supActive?costSup:0);
     const costCloudtalk = freelances*29;
