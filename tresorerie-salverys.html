@@ -120,7 +120,16 @@
         <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
       <div class="ctl"><label>Mix IT : % marque blanche <b id="vItMix"></b></label>
         <input type="range" id="itMix" min="0" max="100" step="10" value="100">
-        <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (GTM MB-first)</div></div>
+        <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (s'applique au dédié)</div></div>
+      <div class="ctl"><label>Mix IT : % mutualisé (vs dédié) <b id="vPctMut"></b></label>
+        <input type="range" id="pctMut" min="0" max="100" step="10" value="20">
+        <div class="hint">80 % dédié/priority · 20 % mutualisé partagé (attendu)</div></div>
+      <div class="ctl"><label>Clients IT mutualisés / freelance <b id="vItRatioMut"></b></label>
+        <input type="range" id="itRatioMut" min="1" max="15" step="1" value="6">
+        <div class="hint">Offres à niveaux de service mutualisés (SLA N1 partagé)</div></div>
+      <div class="ctl"><label>Forfait IT mutualisé moyen <b id="vForfaitMut"></b></label>
+        <input type="range" id="forfaitMut" min="300" max="1500" step="50" value="700">
+        <div class="hint">€/mois/client · SLA N1 partagé</div></div>
 
       <h3>Équipe — coûts opérationnels</h3>
       <div class="ctl"><label>Coût freelance <b id="vCostFL"></b><span class="ar-equiv" id="vCostFLAr"></span></label>
@@ -178,10 +187,12 @@
   </div>
 
   <p class="note">
-    <b>Mécanique du modèle (v4)</b> :
-    <b>Revenu</b> = (cabinets × forfait médical avec remises fondateurs) + (ETP IT × prix ETP mix).
+    <b>Mécanique du modèle (v5)</b> :
+    <b>Revenu</b> = médical (cabinets × forfait, remises fondateurs) + IT.
+    <b>IT en 2 flux</b> : <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 350 € / direct 2 150 €) ;
+    <b>mutualisé</b> = freelances pool × (clients/freelance × forfait SLA). Le curseur « % mutualisé » répartit la capacité IT entre les deux.
     <b>Encaissement</b> décalé de 30 j.
-    <b>Coûts bottom-up</b> : freelances méd. = ceil(cabinets/ratio), chaque freelance coûte (coût+VoIP), superviseur compté dès 3 freelances. CloudTalk scale avec les freelances médical (29€/user). SaaS : HubSpot Free (0€) + Emelia (99€ flat) + CloudTalk (× freelances) + OVH (€/mois éditable) + M365 (€ × nb licences). IT opère en parallèle (démarrage M4) avec son propre prix et mix MB%. Prix : <b>PRICING.md fait foi</b>.
+    <b>Coûts bottom-up</b> : freelances méd. = ceil(cabinets/ratio) avec plancher Erlang min 2 ; chaque freelance méd. coûte (coût+VoIP), superviseur compté dès 3 freelances médical. <b>Staffing IT</b> = chaque ETP/freelance IT coûte un salaire (sans VoIP CloudTalk — l'IT utilise l'ACD/ticketing imposé par le client) → la marge IT est désormais réelle, plus surévaluée. <b>Pas de plancher Erlang côté IT</b> : le dédié est un placement nominatif, le mutualisé hérite du backup via le pool. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× freelances méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
   </p>
 
   <!-- ============ STACK INTERNE VALIDÉE ============ -->
@@ -228,6 +239,7 @@ function simulate(){
         forfait=+$('forfait').value, ratio=+$('ratio').value,
         cab0=+$('cab0').value, acq=+$('acq').value,
         itQ=+$('itQ').value, itMix=+$('itMix').value/100,
+        pctMut=+$('pctMut').value/100, itRatioMut=+$('itRatioMut').value, forfaitMut=+$('forfaitMut').value,
         costFL=+$('costFL').value, voip=+$('voip').value, costSup=+$('costSup').value,
         emelia=+$('emelia').value, ovh=+$('ovh').value, m365=+$('m365').value,
         founders=$('founders').checked, churn=$('churn').checked;
@@ -241,6 +253,9 @@ function simulate(){
   $('vAcq').textContent=acq;
   $('vItQ').textContent=itQ;
   $('vItMix').textContent=Math.round(itMix*100)+' %';
+  $('vPctMut').textContent=Math.round(pctMut*100)+' %';
+  $('vItRatioMut').textContent=itRatioMut;
+  $('vForfaitMut').textContent=fmtE(forfaitMut);
   $('vCostFL').textContent=fmtE(costFL);
   $('vCostFLAr').textContent=`≈ ${((costFL*rate)/1e6).toFixed(2)} M Ar`;
   $('vVoip').textContent=fmtE(voip);
@@ -249,7 +264,7 @@ function simulate(){
   $('vEmelia').textContent=fmtE(emelia);
 
   const priceItMB=1350, priceItDirect=2150;
-  const priceIt=priceItMB*itMix+priceItDirect*(1-itMix);
+  const priceItDed=priceItMB*itMix+priceItDirect*(1-itMix);  // prix ETP dédié (mix MB/direct)
   const M=24, rows=[]; let cash=cap, prevRev=0, signups=[], churned=0;
 
   for(let m=1;m<=M;m++){
@@ -259,7 +274,10 @@ function simulate(){
     const active = signups.slice(churned);
     const cabinets = active.length;
 
+    // capacité IT totale (croissance trimestrielle dès M4), répartie dédié/mutualisé
     const itEtp = m>=4 ? Math.min(8, itQ*Math.floor((m-4)/3+1)) : 0;
+    const itDed = itEtp*(1-pctMut);   // ETP placés (régie)
+    const itMut = itEtp*pctMut;       // freelances en pool mutualisé partagé
 
     let revMed=0;
     active.forEach((s,i)=>{
@@ -267,12 +285,15 @@ function simulate(){
       if(founders && i<5){ if(age===1)f=.5; else if(age===2)f=.7; else if(age===3)f=.85; }
       revMed+=forfait*f;
     });
-    const revIt = itEtp*priceIt;
+    const revItDed = itDed*priceItDed;                    // 1 ETP = 1 facturation ETP
+    const revItMut = itMut*(itRatioMut*forfaitMut);       // 1 freelance × N clients × forfait
+    const revIt = revItDed + revItMut;
     const rev = revMed + revIt;
 
-    const freelances = cabinets>0 ? Math.max(2, Math.ceil(cabinets/ratio)) : 0; // min 2 agents (Erlang)
+    const freelances = cabinets>0 ? Math.max(2, Math.ceil(cabinets/ratio)) : 0; // min 2 agents (Erlang) — médical
     const supActive = freelances>=3;
-    const masseSal = freelances*costFL + (supActive?costSup:0);
+    // masse salariale = médical + staffing IT (itEtp = freelances IT, dédié + mutualisé), sans VoIP IT
+    const masseSal = freelances*costFL + itEtp*costFL + (supActive?costSup:0);
     const costCloudtalk = freelances*29;
     const costSaaS = emelia + costCloudtalk + ovh + m365*10;
     const costs = masseSal + freelances*voip + costSaaS + (m===1?setupInit:0);
