@@ -124,9 +124,9 @@
       <div class="ctl"><label>Mix IT : % mutualisé (vs dédié) <b id="vPctMut"></b></label>
         <input type="range" id="pctMut" min="0" max="100" step="10" value="20">
         <div class="hint">80 % dédié/priority · 20 % mutualisé partagé (attendu)</div></div>
-      <div class="ctl"><label>Clients IT mutualisés / freelance <b id="vItRatioMut"></b></label>
-        <input type="range" id="itRatioMut" min="1" max="15" step="1" value="6">
-        <div class="hint">Offres à niveaux de service mutualisés (SLA N1 partagé)</div></div>
+      <div class="ctl"><label>Freelances / Client IT mutualisé <b id="vItRatioMut"></b></label>
+        <input type="range" id="itRatioMut" min="0.5" max="3" step="0.5" value="0.5">
+        <div class="hint">Combien de freelances couvrent 1 client mutualisé (max 3)</div></div>
       <div class="ctl"><label>Forfait IT mutualisé moyen <b id="vForfaitMut"></b></label>
         <input type="range" id="forfaitMut" min="300" max="1500" step="50" value="700">
         <div class="hint">€/mois/client · SLA N1 partagé</div></div>
@@ -254,7 +254,7 @@ function simulate(){
   $('vItQ').textContent=itQ;
   $('vItMix').textContent=Math.round(itMix*100)+' %';
   $('vPctMut').textContent=Math.round(pctMut*100)+' %';
-  $('vItRatioMut').textContent=itRatioMut;
+  $('vItRatioMut').textContent=itRatioMut.toFixed(1);
   $('vForfaitMut').textContent=fmtE(forfaitMut);
   $('vCostFL').textContent=fmtE(costFL);
   $('vCostFLAr').textContent=`≈ ${((costFL*rate)/1e6).toFixed(2)} M Ar`;
@@ -286,7 +286,8 @@ function simulate(){
       revMed+=forfait*f;
     });
     const revItDed = itDed*priceItDed;                    // 1 ETP = 1 facturation ETP
-    const revItMut = itMut*(itRatioMut*forfaitMut);       // 1 freelance × N clients × forfait
+    const clientsServedMut = itMut / itRatioMut;          // freelances / (freelances per client) = clients
+    const revItMut = clientsServedMut * forfaitMut;       // clients × forfait/client
     const revIt = revItDed + revItMut;
     const rev = revMed + revIt;
 
