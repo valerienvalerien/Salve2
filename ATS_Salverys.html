@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — Suivi Candidats</title>
+<style>
+:root {
+  --primary: #2563EB;
+  --primary-dark: #1D4ED8;
+  --sidebar-bg: #0F172A;
+  --sidebar-text: #94A3B8;
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+  --text: #1E293B;
+  --text-muted: #64748B;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --purple: #8B5CF6;
+  --amber: #F59E0B;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); height:100vh; overflow:hidden; }
+.app { display:flex; height:100vh; }
+
+/* ─ Sidebar ─ */
+.sidebar { width:220px; min-width:220px; background:var(--sidebar-bg); display:flex; flex-direction:column; }
+.sidebar-logo { padding:22px 18px 18px; border-bottom:1px solid rgba(255,255,255,0.07); }
+.sidebar-logo h1 { font-size:17px; font-weight:800; color:#fff; letter-spacing:-0.3px; }
+.sidebar-logo span { font-size:11px; color:var(--sidebar-text); }
+.sidebar-nav { flex:1; padding:10px 8px; overflow-y:auto; }
+.nav-section { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.25); padding:14px 10px 4px; }
+.nav-item { display:flex; align-items:center; gap:9px; padding:9px 12px; border-radius:8px; cursor:pointer; color:var(--sidebar-text); font-size:13.5px; font-weight:500; transition:all 0.12s; margin-bottom:1px; }
+.nav-item:hover { background:rgba(255,255,255,0.06); color:#fff; }
+.nav-item.active { background:var(--primary); color:#fff; }
+.nav-item .ic { font-size:15px; width:18px; text-align:center; }
+.sidebar-footer { padding:16px 12px; border-top:1px solid rgba(255,255,255,0.07); font-size:11px; color:rgba(255,255,255,0.3); }
+
+/* ─ Main ─ */
+.main { flex:1; overflow:hidden; display:flex; flex-direction:column; }
+.section { display:none; flex-direction:column; height:100%; overflow:hidden; }
+.section.active { display:flex; }
+.section-header { padding:18px 24px 14px; border-bottom:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.section-header h2 { font-size:18px; font-weight:700; }
+.section-header p { font-size:12px; color:var(--text-muted); margin-top:2px; }
+.section-body { flex:1; padding:20px 24px; overflow-y:auto; }
+
+/* ─ Buttons ─ */
+.btn { display:inline-flex; align-items:center; gap:5px; padding:8px 16px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; border:none; transition:all 0.12s; white-space:nowrap; }
+.btn-primary { background:var(--primary); color:#fff; }
+.btn-primary:hover { background:var(--primary-dark); }
+.btn-ghost { background:transparent; color:var(--text-muted); border:1px solid var(--border); }
+.btn-ghost:hover { background:var(--bg); }
+.btn-danger { background:#FEF2F2; color:#DC2626; border:1px solid #FECACA; }
+.btn-sm { padding:5px 10px; font-size:12px; }
+
+/* ─ Stats ─ */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; }
+.stat-card .lbl { font-size:11px; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+.stat-card .val { font-size:28px; font-weight:800; margin:4px 0 2px; }
+.stat-card .sub { font-size:11px; color:var(--text-muted); }
+
+/* ─ Funnel ─ */
+.funnel-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.funnel-lbl { width:120px; font-size:12px; font-weight:500; text-align:right; color:var(--text-muted); }
+.funnel-track { flex:1; height:20px; background:var(--bg); border-radius:4px; overflow:hidden; }
+.funnel-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:7px; font-size:10.5px; font-weight:700; color:#fff; min-width:8px; transition:width 0.3s; }
+.funnel-num { width:22px; font-size:13px; font-weight:700; text-align:right; }
+
+/* ─ Table ─ */
+.table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.table-toolbar { padding:12px 14px; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.search-input { flex:1; min-width:160px; padding:7px 12px; border:1px solid var(--border); border-radius:8px; font-size:13.5px; outline:none; }
+.search-input:focus { border-color:var(--primary); }
+.filter-sel { padding:7px 10px; border:1px solid var(--border); border-radius:8px; font-size:13px; background:#fff; cursor:pointer; outline:none; }
+.filter-sel:focus { border-color:var(--primary); }
+table { width:100%; border-collapse:collapse; }
+th { background:var(--bg); padding:9px 14px; text-align:left; font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; }
+td { padding:10px 14px; font-size:13.5px; border-top:1px solid var(--border); vertical-align:middle; }
+tr:hover td { background:#FAFBFC; cursor:pointer; }
+.no-data { text-align:center; padding:40px; color:var(--text-muted); font-size:14px; }
+.icon-btn { background:none; border:none; cursor:pointer; padding:4px 6px; border-radius:6px; font-size:14px; color:var(--text-muted); transition:all 0.12s; }
+.icon-btn:hover { background:var(--bg); color:var(--text); }
+
+/* ─ Badges ─ */
+.badge { display:inline-flex; align-items:center; gap:3px; padding:3px 9px; border-radius:20px; font-size:11.5px; font-weight:600; }
+.badge-nouveau    { background:#F1F5F9; color:#475569; }
+.badge-a-explorer { background:#EFF6FF; color:#2563EB; }
+.badge-interessant{ background:#FFFBEB; color:#D97706; }
+.badge-entretien  { background:#F5F3FF; color:#7C3AED; }
+.badge-retenu     { background:#ECFDF5; color:#059669; }
+.badge-non-retenu { background:#FEF2F2; color:#DC2626; }
+.badge-cv { background:#EFF6FF; color:#2563EB; font-size:10px; padding:2px 7px; }
+
+/* ─ Stars ─ */
+.stars { color:#94A3B8; font-size:14px; letter-spacing:1px; cursor:default; }
+.stars .on { color:#F59E0B; }
+
+/* ─ Kanban ─ */
+.kanban-board { display:flex; gap:12px; overflow-x:auto; padding-bottom:16px; height:100%; }
+.kanban-col { min-width:185px; max-width:205px; background:var(--bg); border-radius:12px; padding:12px; border:1px solid var(--border); flex-shrink:0; display:flex; flex-direction:column; }
+.kanban-col-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.kanban-col-title { font-size:13px; font-weight:700; }
+.kanban-count { background:var(--border); border-radius:20px; padding:2px 8px; font-size:11px; font-weight:700; }
+.kanban-cards { flex:1; overflow-y:auto; }
+.kanban-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:7px; cursor:pointer; transition:all 0.12s; }
+.kanban-card:hover { border-color:var(--primary); box-shadow:0 2px 8px rgba(37,99,235,0.1); }
+.kanban-card-name { font-size:12.5px; font-weight:700; margin-bottom:3px; }
+.kanban-card-sub { font-size:11.5px; color:var(--text-muted); margin-bottom:5px; }
+.kanban-card-foot { display:flex; align-items:center; gap:6px; margin-top:4px; }
+.kanban-empty { text-align:center; padding:14px; font-size:12px; color:#CBD5E1; }
+
+/* ─ Modal ─ */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal { background:#fff; border-radius:16px; padding:24px; width:540px; max-width:95vw; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+.modal-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.modal-hd h3 { font-size:17px; font-weight:700; }
+.modal-close { background:none; border:none; font-size:20px; cursor:pointer; color:var(--text-muted); padding:2px; }
+.form-group { margin-bottom:13px; }
+.form-group label { display:block; font-size:12.5px; font-weight:700; color:var(--text); margin-bottom:5px; }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:8px 12px; border:1px solid var(--border); border-radius:8px; font-size:13.5px; outline:none; font-family:inherit; background:#fff; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(37,99,235,0.08); }
+.form-group textarea { min-height:70px; resize:vertical; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:20px; padding-top:14px; border-top:1px solid var(--border); }
+.modal-section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin:16px 0 8px; padding-top:14px; border-top:1px solid var(--border); }
+.check-row { display:flex; align-items:center; gap:8px; font-size:13.5px; }
+.check-row input[type=checkbox] { width:15px; height:15px; cursor:pointer; }
+
+/* ─ Star picker ─ */
+.star-picker { display:flex; gap:4px; }
+.star-pick { font-size:22px; cursor:pointer; color:#CBD5E1; transition:color 0.1s; }
+.star-pick.active { color:#F59E0B; }
+
+/* ─ Dash panels ─ */
+.dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+.dash-panel { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; }
+.dash-panel h3 { font-size:14px; font-weight:700; margin-bottom:14px; }
+.recent-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #F1F5F9; font-size:13px; }
+.recent-row:last-child { border-bottom:none; }
+.recent-name { font-weight:600; flex:1; }
+.recent-date { font-size:11.5px; color:var(--text-muted); }
+
+/* ─ FAB ─ */
+.fab { position:fixed; bottom:24px; right:24px; width:50px; height:50px; border-radius:50%; background:var(--primary); color:#fff; border:none; font-size:26px; cursor:pointer; box-shadow:0 4px 16px rgba(37,99,235,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.12s; z-index:50; }
+.fab:hover { background:var(--primary-dark); transform:scale(1.05); }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- ──────────────── SIDEBAR ──────────────── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <h1>Salverys RH</h1>
+    <span>Suivi candidats — Facebook</span>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Vue</div>
+    <div class="nav-item active" onclick="showSection('dashboard')">
+      <span class="ic">📊</span> Tableau de bord
+    </div>
+    <div class="nav-item" onclick="showSection('list')">
+      <span class="ic">👥</span> Tous les profils
+    </div>
+    <div class="nav-item" onclick="showSection('interessants')">
+      <span class="ic">⭐</span> Intéressants
+    </div>
+    <div class="nav-item" onclick="showSection('entretiens')">
+      <span class="ic">📅</span> Entretiens
+    </div>
+    <div class="nav-item" onclick="showSection('kanban')">
+      <span class="ic">🗂</span> Pipeline Kanban
+    </div>
+  </div>
+  <div class="sidebar-footer">Données locales · Non synchronisées</div>
+</nav>
+
+<!-- ──────────────── MAIN ──────────────── -->
+<div class="main">
+
+  <!-- DASHBOARD -->
+  <div class="section active" id="sec-dashboard">
+    <div class="section-header">
+      <div>
+        <h2>Tableau de bord</h2>
+        <p>Vue globale du pipeline de recrutement</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Nouveau profil</button>
+    </div>
+    <div class="section-body">
+      <div class="stats-grid" id="dash-stats"></div>
+      <div class="dash-grid">
+        <div class="dash-panel">
+          <h3>Entonnoir pipeline</h3>
+          <div id="dash-funnel"></div>
+        </div>
+        <div class="dash-panel">
+          <h3>Derniers ajouts</h3>
+          <div id="dash-recent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTE TOUS -->
+  <div class="section" id="sec-list">
+    <div class="section-header">
+      <div>
+        <h2>Tous les profils</h2>
+        <p id="list-count">–</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Nouveau profil</button>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" id="search-all" placeholder="Rechercher un nom…" oninput="renderList('all')" />
+          <select class="filter-sel" id="filter-statut" onchange="renderList('all')">
+            <option value="">Tous statuts</option>
+            <option value="nouveau">Nouveau</option>
+            <option value="a-explorer">À explorer</option>
+            <option value="interessant">Intéressant</option>
+            <option value="entretien">Entretien</option>
+            <option value="retenu">Retenu</option>
+            <option value="non-retenu">Non retenu</option>
+          </select>
+          <select class="filter-sel" id="filter-profil" onchange="renderList('all')">
+            <option value="">Tous profils</option>
+            <option value="medical">Télésecrétaire médical</option>
+            <option value="support-saas">Support SaaS N1</option>
+            <option value="helpdesk-it">Helpdesk IT N1</option>
+            <option value="manager-medical">Manager médical</option>
+            <option value="manager-it">Manager IT/support</option>
+            <option value="autre">Autre</option>
+          </select>
+          <select class="filter-sel" id="filter-source" onchange="renderList('all')">
+            <option value="">Toutes sources</option>
+            <option value="messenger">Messenger</option>
+            <option value="cv">CV reçu</option>
+            <option value="post-fb">Post Facebook</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Profil</th>
+                <th>Statut</th>
+                <th>Source</th>
+                <th>Note</th>
+                <th>CV</th>
+                <th>Contact</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-all"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTÉRESSANTS -->
+  <div class="section" id="sec-interessants">
+    <div class="section-header">
+      <div>
+        <h2>Profils intéressants</h2>
+        <p>Statut « Intéressant » + 3 étoiles et plus</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Nouveau profil</button>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Profil</th>
+                <th>Statut</th>
+                <th>Note rapide</th>
+                <th>Étoiles</th>
+                <th>Contact</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-interessants"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRETIENS -->
+  <div class="section" id="sec-entretiens">
+    <div class="section-header">
+      <div>
+        <h2>Entretiens</h2>
+        <p>Candidats au stade entretien</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Nouveau profil</button>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Profil</th>
+                <th>Note rapide</th>
+                <th>Étoiles</th>
+                <th>Tel / Email</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-entretiens"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KANBAN -->
+  <div class="section" id="sec-kanban">
+    <div class="section-header">
+      <div>
+        <h2>Pipeline Kanban</h2>
+        <p>Vue par statut — cliquer une carte pour modifier</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Nouveau profil</button>
+    </div>
+    <div class="section-body" style="padding:16px 20px;">
+      <div class="kanban-board" id="kanban-board"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- FAB -->
+<button class="fab" onclick="openModal()" title="Ajouter un profil">+</button>
+
+<!-- ──────────────── MODAL AJOUT/EDIT ──────────────── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-hd">
+      <h3 id="modal-title">Nouveau profil</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom complet *</label>
+        <input id="f-nom" placeholder="Marie Rakoto" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label>Profil recherché *</label>
+        <select id="f-profil">
+          <option value="medical">🩺 Télésecrétaire médical</option>
+          <option value="support-saas">💻 Support SaaS N1</option>
+          <option value="helpdesk-it">🖥 Helpdesk IT N1</option>
+          <option value="manager-medical">👩‍⚕️ Manager médical</option>
+          <option value="manager-it">👨‍💼 Manager IT/support</option>
+          <option value="autre">👤 Autre</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Statut *</label>
+        <select id="f-statut">
+          <option value="nouveau">Nouveau</option>
+          <option value="a-explorer">À explorer</option>
+          <option value="interessant">Intéressant</option>
+          <option value="entretien">Entretien planifié</option>
+          <option value="retenu">Retenu</option>
+          <option value="non-retenu">Non retenu</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Source</label>
+        <select id="f-source">
+          <option value="messenger">Messenger</option>
+          <option value="cv">CV reçu</option>
+          <option value="post-fb">Post Facebook</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Lien profil Facebook</label>
+      <input id="f-fb-url" placeholder="https://facebook.com/..." type="url" />
+    </div>
+
+    <div class="form-group">
+      <label>Note rapide (visible dans la liste)</label>
+      <input id="f-note-rapide" placeholder="Ex : français excellent, expérience secrétariat 2 ans…" />
+    </div>
+
+    <div class="form-group">
+      <label>Intérêt — Étoiles</label>
+      <div class="star-picker" id="star-picker">
+        <span class="star-pick" data-v="1" onclick="setStar(1)">★</span>
+        <span class="star-pick" data-v="2" onclick="setStar(2)">★</span>
+        <span class="star-pick" data-v="3" onclick="setStar(3)">★</span>
+        <span class="star-pick" data-v="4" onclick="setStar(4)">★</span>
+        <span class="star-pick" data-v="5" onclick="setStar(5)">★</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="check-row">
+        <input type="checkbox" id="f-cv" />
+        <label for="f-cv" style="margin:0; font-weight:500; cursor:pointer;">CV reçu</label>
+      </div>
+    </div>
+
+    <div class="modal-section-title">Coordonnées (optionnel)</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Téléphone / WhatsApp</label>
+        <input id="f-tel" placeholder="+261 …" type="tel" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input id="f-email" placeholder="marie@…" type="email" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Notes longues</label>
+      <textarea id="f-notes" placeholder="Historique échanges Messenger, impressions entretien…"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-danger btn-sm" id="btn-delete" onclick="deleteCandidat()" style="margin-right:auto; display:none;">Supprimer</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveCandidat()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────── Data ───────────────
+const KEY = 'salverys_ats_v1';
+
+const STATUTS = {
+  'nouveau':     { label:'Nouveau',            cls:'badge-nouveau',    color:'#64748B' },
+  'a-explorer':  { label:'À explorer',         cls:'badge-a-explorer', color:'#3B82F6' },
+  'interessant': { label:'Intéressant',        cls:'badge-interessant',color:'#D97706' },
+  'entretien':   { label:'Entretien planifié', cls:'badge-entretien',  color:'#7C3AED' },
+  'retenu':      { label:'Retenu',             cls:'badge-retenu',     color:'#059669' },
+  'non-retenu':  { label:'Non retenu',         cls:'badge-non-retenu', color:'#DC2626' },
+};
+
+const PROFILS = {
+  'medical':         '🩺 Télésecrétaire médical',
+  'support-saas':    '💻 Support SaaS N1',
+  'helpdesk-it':     '🖥 Helpdesk IT N1',
+  'manager-medical': '👩‍⚕️ Manager médical',
+  'manager-it':      '👨‍💼 Manager IT/support',
+  'autre':           '👤 Autre',
+};
+
+const SOURCES = {
+  'messenger':  'Messenger',
+  'cv':         'CV reçu',
+  'post-fb':    'Post Facebook',
+  'whatsapp':   'WhatsApp',
+  'autre':      'Autre',
+};
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e) { return []; }
+}
+function save(data) { localStorage.setItem(KEY, JSON.stringify(data)); }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+let candidates = load();
+
+// ─────────────── Modal ───────────────
+let editId = null;
+let currentStar = 0;
+
+function openModal(id) {
+  editId = id || null;
+  currentStar = 0;
+  const c = id ? candidates.find(x => x.id === id) : null;
+
+  document.getElementById('modal-title').textContent = c ? 'Modifier le profil' : 'Nouveau profil';
+  document.getElementById('f-nom').value         = c ? c.nom : '';
+  document.getElementById('f-profil').value      = c ? c.profil : 'medical';
+  document.getElementById('f-statut').value      = c ? c.statut : 'nouveau';
+  document.getElementById('f-source').value      = c ? c.source : 'messenger';
+  document.getElementById('f-fb-url').value      = c ? c.fb_url : '';
+  document.getElementById('f-note-rapide').value = c ? c.note_rapide : '';
+  document.getElementById('f-tel').value         = c ? (c.tel||'') : '';
+  document.getElementById('f-email').value       = c ? (c.email||'') : '';
+  document.getElementById('f-notes').value       = c ? (c.notes||'') : '';
+  document.getElementById('f-cv').checked        = c ? !!c.cv : false;
+  setStar(c ? (c.etoiles||0) : 0);
+
+  document.getElementById('btn-delete').style.display = c ? 'inline-flex' : 'none';
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('f-nom').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  editId = null;
+}
+
+function setStar(n) {
+  currentStar = n;
+  document.querySelectorAll('.star-pick').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.v) <= n);
+  });
+}
+
+function saveCandidat() {
+  const nom = document.getElementById('f-nom').value.trim();
+  if (!nom) { document.getElementById('f-nom').focus(); return; }
+
+  const now = new Date().toISOString().slice(0,10);
+  const obj = {
+    id:         editId || uid(),
+    nom,
+    profil:     document.getElementById('f-profil').value,
+    statut:     document.getElementById('f-statut').value,
+    source:     document.getElementById('f-source').value,
+    fb_url:     document.getElementById('f-fb-url').value.trim(),
+    note_rapide:document.getElementById('f-note-rapide').value.trim(),
+    etoiles:    currentStar,
+    cv:         document.getElementById('f-cv').checked,
+    tel:        document.getElementById('f-tel').value.trim(),
+    email:      document.getElementById('f-email').value.trim(),
+    notes:      document.getElementById('f-notes').value.trim(),
+    date_maj:   now,
+    date_contact: editId ? (candidates.find(x=>x.id===editId)||{}).date_contact||now : now,
+  };
+
+  if (editId) {
+    const idx = candidates.findIndex(x => x.id === editId);
+    if (idx >= 0) candidates[idx] = obj;
+  } else {
+    candidates.unshift(obj);
+  }
+
+  save(candidates);
+  closeModal();
+  refreshAll();
+}
+
+function deleteCandidat() {
+  if (!editId) return;
+  if (!confirm('Supprimer ce profil définitivement ?')) return;
+  candidates = candidates.filter(x => x.id !== editId);
+  save(candidates);
+  closeModal();
+  refreshAll();
+}
+
+// ─────────────── Helpers ───────────────
+function starsHtml(n) {
+  let h = '';
+  for(let i=1; i<=5; i++) h += `<span class="${i<=n?'on':''}">★</span>`;
+  return `<span class="stars">${h}</span>`;
+}
+
+function badgeStatut(s) {
+  const d = STATUTS[s] || { label:s, cls:'badge-nouveau' };
+  return `<span class="badge ${d.cls}">${d.label}</span>`;
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  return new Intl.DateTimeFormat('fr-FR', { day:'2-digit', month:'short' }).format(new Date(d));
+}
+
+// ─────────────── Render List ───────────────
+function filterCandidates(mode) {
+  let list = [...candidates];
+
+  if (mode === 'interessants') {
+    list = list.filter(c => c.statut === 'interessant' || c.etoiles >= 3);
+  } else if (mode === 'entretiens') {
+    list = list.filter(c => c.statut === 'entretien');
+  } else if (mode === 'all') {
+    const q = (document.getElementById('search-all')||{value:''}).value.toLowerCase();
+    const fs = (document.getElementById('filter-statut')||{value:''}).value;
+    const fp = (document.getElementById('filter-profil')||{value:''}).value;
+    const fso = (document.getElementById('filter-source')||{value:''}).value;
+    if (q)   list = list.filter(c => c.nom.toLowerCase().includes(q));
+    if (fs)  list = list.filter(c => c.statut === fs);
+    if (fp)  list = list.filter(c => c.profil === fp);
+    if (fso) list = list.filter(c => c.source === fso);
+  }
+  return list;
+}
+
+function renderList(mode) {
+  const list = filterCandidates(mode);
+
+  if (mode === 'all') {
+    document.getElementById('list-count').textContent = `${list.length} profil(s)`;
+    const tbody = document.getElementById('tbody-all');
+    if (!list.length) { tbody.innerHTML = `<tr><td colspan="8" class="no-data">Aucun profil — ajoutez votre premier candidat 👆</td></tr>`; return; }
+    tbody.innerHTML = list.map(c => `
+      <tr onclick="openModal('${c.id}')">
+        <td>
+          <strong>${esc(c.nom)}</strong>
+          ${c.fb_url ? `<br><a href="${esc(c.fb_url)}" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;color:var(--primary)">Facebook ↗</a>` : ''}
+        </td>
+        <td style="font-size:12.5px">${PROFILS[c.profil]||c.profil}</td>
+        <td>${badgeStatut(c.statut)}</td>
+        <td style="font-size:12.5px;color:var(--text-muted)">${SOURCES[c.source]||c.source}</td>
+        <td style="font-size:12px;color:var(--text-muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.note_rapide||'')}</td>
+        <td>${starsHtml(c.etoiles||0)}</td>
+        <td>${c.cv ? `<span class="badge badge-cv">CV</span>` : ''}</td>
+        <td style="font-size:11.5px;color:var(--text-muted)">${fmtDate(c.date_contact)}</td>
+      </tr>
+    `).join('');
+    return;
+  }
+
+  if (mode === 'interessants') {
+    const tbody = document.getElementById('tbody-interessants');
+    if (!list.length) { tbody.innerHTML = `<tr><td colspan="7" class="no-data">Aucun profil intéressant pour l'instant</td></tr>`; return; }
+    tbody.innerHTML = list.map(c => `
+      <tr onclick="openModal('${c.id}')">
+        <td><strong>${esc(c.nom)}</strong></td>
+        <td style="font-size:12.5px">${PROFILS[c.profil]||c.profil}</td>
+        <td>${badgeStatut(c.statut)}</td>
+        <td style="font-size:12px;color:var(--text-muted)">${esc(c.note_rapide||'—')}</td>
+        <td>${starsHtml(c.etoiles||0)}</td>
+        <td style="font-size:12.5px">
+          ${c.tel ? `📞 ${esc(c.tel)}<br>` : ''}
+          ${c.email ? `✉ ${esc(c.email)}` : ''}
+        </td>
+        <td><button class="icon-btn" onclick="event.stopPropagation();openModal('${c.id}')">✏️</button></td>
+      </tr>
+    `).join('');
+    return;
+  }
+
+  if (mode === 'entretiens') {
+    const tbody = document.getElementById('tbody-entretiens');
+    if (!list.length) { tbody.innerHTML = `<tr><td colspan="6" class="no-data">Aucun entretien planifié</td></tr>`; return; }
+    tbody.innerHTML = list.map(c => `
+      <tr onclick="openModal('${c.id}')">
+        <td><strong>${esc(c.nom)}</strong></td>
+        <td style="font-size:12.5px">${PROFILS[c.profil]||c.profil}</td>
+        <td style="font-size:12px;color:var(--text-muted)">${esc(c.note_rapide||'—')}</td>
+        <td>${starsHtml(c.etoiles||0)}</td>
+        <td style="font-size:12.5px">
+          ${c.tel ? `📞 ${esc(c.tel)}<br>` : ''}
+          ${c.email ? `✉ ${esc(c.email)}` : '—'}
+        </td>
+        <td><button class="icon-btn" onclick="event.stopPropagation();openModal('${c.id}')">✏️</button></td>
+      </tr>
+    `).join('');
+    return;
+  }
+}
+
+// ─────────────── Kanban ───────────────
+function renderKanban() {
+  const board = document.getElementById('kanban-board');
+  const order = ['nouveau','a-explorer','interessant','entretien','retenu','non-retenu'];
+  board.innerHTML = order.map(statut => {
+    const d = STATUTS[statut];
+    const items = candidates.filter(c => c.statut === statut);
+    const cards = items.length
+      ? items.map(c => `
+        <div class="kanban-card" onclick="openModal('${c.id}')">
+          <div class="kanban-card-name">${esc(c.nom)}</div>
+          <div class="kanban-card-sub">${PROFILS[c.profil]||c.profil}</div>
+          <div class="kanban-card-foot">
+            ${starsHtml(c.etoiles||0)}
+            ${c.cv ? `<span class="badge badge-cv" style="margin-left:4px">CV</span>` : ''}
+          </div>
+          ${c.note_rapide ? `<div style="font-size:11px;color:var(--text-muted);margin-top:5px">${esc(c.note_rapide)}</div>` : ''}
+        </div>
+      `).join('')
+      : `<div class="kanban-empty">—</div>`;
+
+    return `
+      <div class="kanban-col">
+        <div class="kanban-col-hd">
+          <span class="kanban-col-title" style="color:${d.color}">${d.label}</span>
+          <span class="kanban-count">${items.length}</span>
+        </div>
+        <div class="kanban-cards">${cards}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ─────────────── Dashboard ───────────────
+function renderDashboard() {
+  const total       = candidates.length;
+  const interessants= candidates.filter(c => c.statut === 'interessant').length;
+  const entretiens  = candidates.filter(c => c.statut === 'entretien').length;
+  const retenus     = candidates.filter(c => c.statut === 'retenu').length;
+
+  document.getElementById('dash-stats').innerHTML = `
+    <div class="stat-card"><div class="lbl">Total profils</div><div class="val">${total}</div><div class="sub">depuis le début</div></div>
+    <div class="stat-card"><div class="lbl">Intéressants</div><div class="val" style="color:#D97706">${interessants}</div><div class="sub">à recontacter</div></div>
+    <div class="stat-card"><div class="lbl">Entretiens</div><div class="val" style="color:#7C3AED">${entretiens}</div><div class="sub">planifiés</div></div>
+    <div class="stat-card"><div class="lbl">Retenus</div><div class="val" style="color:#059669">${retenus}</div><div class="sub">pour démarrage</div></div>
+  `;
+
+  const order = ['nouveau','a-explorer','interessant','entretien','retenu','non-retenu'];
+  const maxN = Math.max(...order.map(s => candidates.filter(c=>c.statut===s).length), 1);
+  document.getElementById('dash-funnel').innerHTML = order.map(s => {
+    const n = candidates.filter(c => c.statut === s).length;
+    const pct = total ? Math.max(6, Math.round(n/maxN*100)) : 0;
+    const d = STATUTS[s];
+    return `
+      <div class="funnel-row">
+        <div class="funnel-lbl">${d.label}</div>
+        <div class="funnel-track">
+          <div class="funnel-fill" style="width:${pct}%;background:${d.color}">${n>0?n:''}</div>
+        </div>
+        <div class="funnel-num">${n}</div>
+      </div>
+    `;
+  }).join('');
+
+  const recent = [...candidates].sort((a,b) => b.date_contact > a.date_contact ? 1 : -1).slice(0,6);
+  document.getElementById('dash-recent').innerHTML = recent.length
+    ? recent.map(c => `
+        <div class="recent-row">
+          <div class="recent-name" style="cursor:pointer" onclick="openModal('${c.id}')">${esc(c.nom)}</div>
+          <div style="font-size:12px">${PROFILS[c.profil]||''}</div>
+          ${badgeStatut(c.statut)}
+          <div class="recent-date">${fmtDate(c.date_contact)}</div>
+        </div>
+      `).join('')
+    : `<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:13px">Aucun profil ajouté</div>`;
+}
+
+// ─────────────── Navigation ───────────────
+const SECTIONS = ['dashboard','list','interessants','entretiens','kanban'];
+
+function showSection(name) {
+  SECTIONS.forEach(s => {
+    document.getElementById(`sec-${s}`).classList.toggle('active', s === name);
+  });
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.classList.remove('active');
+    if (el.getAttribute('onclick') && el.getAttribute('onclick').includes(`'${name}'`)) {
+      el.classList.add('active');
+    }
+  });
+  if (name === 'dashboard')   renderDashboard();
+  if (name === 'list')        renderList('all');
+  if (name === 'interessants')renderList('interessants');
+  if (name === 'entretiens')  renderList('entretiens');
+  if (name === 'kanban')      renderKanban();
+}
+
+function refreshAll() {
+  candidates = load();
+  const active = SECTIONS.find(s => document.getElementById(`sec-${s}`).classList.contains('active'));
+  showSection(active || 'dashboard');
+}
+
+// ─────────────── Utils ───────────────
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Close modal on overlay click
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openModal(); }
+});
+
+// ─────────────── Init ───────────────
+renderDashboard();
+</script>
+</body>
+</html>
