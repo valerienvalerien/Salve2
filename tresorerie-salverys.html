@@ -97,7 +97,7 @@
     <div class="kpi" id="kpiBE"><div class="v">—</div><div class="l">Point mort (CA ≥ charges)</div></div>
     <div class="kpi" id="kpiCreux"><div class="v">—</div><div class="l">Creux de trésorerie max</div></div>
     <div class="kpi" id="kpiCash"><div class="v">—</div><div class="l">Trésorerie M24</div></div>
-    <div class="kpi" id="kpiCA"><div class="v">—</div><div class="l">CA mensuel M24</div></div>
+    <div class="kpi" id="kpiProfit"><div class="v">—</div><div class="l"><div style="font-size:.65rem">Bénéfice mensuel M24</div><div style="font-size:.65rem;margin-top:2px">Bénéfice annuel (M24×12)</div></div></div>
   </div>
 
   <div class="grid2">
@@ -193,11 +193,11 @@
         <h4>SaaS &amp; outils</h4>
         <div class="saas-row"><div class="tool"><b>HubSpot</b> Free</div><div class="amount">0 €/mois</div></div>
         <div class="ctl"><label>Emelia (outreach) <b id="vEmelia"></b></label>
-          <input type="range" id="emelia" min="0" max="500" step="5" value="99">
+          <input type="range" id="emelia" min="0" max="500" step="5" value="40">
           <div class="hint">€/mois — selon votre plan (saisie libre)</div></div>
         <div class="saas-row"><div class="tool"><b>CloudTalk</b></div><div class="amount">29 €/free méd.</div></div>
         <div class="saas-row"><div class="tool"><b>OVH</b> domaine</div>
-          <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="1"></div>
+          <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="2"></div>
           <div class="amount">€/mois</div></div>
         <div class="saas-row"><div class="tool"><b>M365 + GWS</b></div>
           <div style="flex:1"><input type="number" id="m365" min="0" max="10" step="1" value="2"></div>
@@ -376,13 +376,17 @@ function simulate(){
   // KPIs
   const be=rows.find(r=>r.rev>=r.costs);
   const creux=Math.min(...rows.map(r=>r.cash));
+  const lastRow=rows[M-1];
+  const profitMonth=lastRow.rev-lastRow.costs;
+  const profitYear=profitMonth*12;
   $('kpiBE').querySelector('.v').textContent = be?('M'+be.m):'> M24';
   $('kpiBE').className='kpi '+(be&&be.m<=8?'good':be?'':'bad');
   $('kpiCreux').querySelector('.v').textContent=fmtK(creux);
   $('kpiCreux').className='kpi '+(creux<0?'bad':'good');
   $('kpiCash').querySelector('.v').textContent=fmtK(rows[M-1].cash);
   $('kpiCash').className='kpi '+(rows[M-1].cash>cap?'good':rows[M-1].cash<0?'bad':'');
-  $('kpiCA').querySelector('.v').textContent=fmtE(rows[M-1].rev);
+  $('kpiProfit').querySelector('.v').innerHTML=`${fmtE(profitMonth)}<br><small style="font-size:.75em">${fmtK(profitYear)}</small>`;
+  $('kpiProfit').className='kpi '+(profitMonth>0?'good':'bad');
 
   // chart
   const ch=$('chart'); ch.innerHTML='';
