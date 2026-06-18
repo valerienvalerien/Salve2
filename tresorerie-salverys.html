@@ -12,13 +12,14 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
   body{background:var(--creme);color:var(--bleu);padding:24px}
-  .wrap{max-width:1320px;margin:0 auto}
+  .wrap{max-width:1760px;margin:0 auto}
+  .grid2{display:grid;grid-template-columns:600px 1fr;gap:20px;align-items:start}
+  @media(max-width:1200px){.grid2{grid-template-columns:1fr}}
   h1{font-size:1.5rem;margin-bottom:4px}
   .sub{color:#6b7280;font-size:.9rem;margin-bottom:20px}
   .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08);margin-bottom:20px}
   .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
-  .hyp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  @media(max-width:1100px){.hyp-grid{grid-template-columns:repeat(2,1fr)}}
+  .hyp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   @media(max-width:620px){.hyp-grid{grid-template-columns:1fr}}
   .hyp-col{border-top:3px solid #ccc;padding-top:10px}
   .hyp-col.c-med{border-color:var(--med)}
@@ -99,7 +100,8 @@
     <div class="kpi" id="kpiCA"><div class="v">—</div><div class="l">CA mensuel M24</div></div>
   </div>
 
-  <!-- ============ HYPOTHÈSES — 4 COLONNES ============ -->
+  <div class="grid2">
+  <!-- ============ HYPOTHÈSES — 4 BLOCS MÉTIER (2×2) ============ -->
   <div class="card">
     <h2>Hypothèses</h2>
     <div class="hyp-grid">
@@ -234,6 +236,7 @@
     </div>
     <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">Colonnes teintées = par métier (vert médical · or Support · bleu IT). « Reçu J+30 » = CA total facturé le mois précédent, encaissé ce mois (paiement à 30 j) — d'où un décalage systématique en M1.</p>
   </div>
+  </div><!-- /grid2 -->
 
   <p class="note">
     <b>Mécanique du modèle (v5 · 3 métiers séparés)</b> :
