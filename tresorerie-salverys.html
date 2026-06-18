@@ -56,8 +56,8 @@
   .bar:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
     background:var(--bleu);color:var(--creme);font-size:.7rem;padding:4px 8px;border-radius:6px;white-space:nowrap;z-index:5}
   .legend{font-size:.75rem;color:#6b7280;margin-top:8px}
-  table{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:16px}
-  th,td{padding:4px 6px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
+  table{width:100%;border-collapse:collapse;font-size:.68rem;margin-top:16px}
+  th,td{padding:3px 4px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
   th{background:var(--bleu);color:var(--creme);position:sticky;top:0}
   td.g-med{background:rgba(111,135,112,.10)}
   td.g-sup{background:rgba(184,153,104,.12)}
@@ -97,7 +97,7 @@
     <div class="kpi" id="kpiBE"><div class="v">—</div><div class="l">Point mort (CA ≥ charges)</div></div>
     <div class="kpi" id="kpiCreux"><div class="v">—</div><div class="l">Creux de trésorerie max</div></div>
     <div class="kpi" id="kpiCash"><div class="v">—</div><div class="l">Trésorerie M24</div></div>
-    <div class="kpi" id="kpiProfit"><div class="v">—</div><div class="l"><div style="font-size:.65rem">Bénéfice mensuel M24</div><div style="font-size:.65rem;margin-top:2px">Bénéfice annuel (M24×12)</div></div></div>
+    <div class="kpi" id="kpiCA"><div class="v">—</div><div class="l">CA mensuel M24</div></div>
   </div>
 
   <div class="grid2">
@@ -193,11 +193,11 @@
         <h4>SaaS &amp; outils</h4>
         <div class="saas-row"><div class="tool"><b>HubSpot</b> Free</div><div class="amount">0 €/mois</div></div>
         <div class="ctl"><label>Emelia (outreach) <b id="vEmelia"></b></label>
-          <input type="range" id="emelia" min="0" max="500" step="5" value="40">
+          <input type="range" id="emelia" min="0" max="500" step="5" value="99">
           <div class="hint">€/mois — selon votre plan (saisie libre)</div></div>
         <div class="saas-row"><div class="tool"><b>CloudTalk</b></div><div class="amount">29 €/free méd.</div></div>
         <div class="saas-row"><div class="tool"><b>OVH</b> domaine</div>
-          <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="2"></div>
+          <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="1"></div>
           <div class="amount">€/mois</div></div>
         <div class="saas-row"><div class="tool"><b>M365 + GWS</b></div>
           <div style="flex:1"><input type="number" id="m365" min="0" max="10" step="1" value="2"></div>
@@ -222,14 +222,14 @@
     <table id="tbl">
       <thead><tr>
         <th>M</th>
-        <th>Cab</th><th>Free méd</th>
-        <th>ETP Sup</th>
-        <th>ETP IT</th>
-        <th>Masse sal.</th>
+        <th>Cab</th><th>Free</th>
+        <th>Sup</th>
+        <th>IT</th>
+        <th>M.sal</th>
         <th>CA méd</th><th>CA Sup</th><th>CA IT</th>
-        <th>CA total</th>
-        <th title="CA facturé le mois précédent, encaissé ce mois (paiement à 30 j)">Reçu J+30</th>
-        <th>Charges</th><th>Tréso</th>
+        <th>CA tot</th>
+        <th title="CA facturé mois précédent, encaissé ce mois (J+30)">Enc</th>
+        <th>Chrg</th><th>Bén</th><th>Tréso</th>
       </tr></thead>
       <tbody></tbody>
     </table>
@@ -366,27 +366,24 @@ function simulate(){
     const masseSal = freelancesMed*costFL + (supEtp+itEtp)*costFL + (mgrActive?costMgr:0);
     const costSaaS = emelia + freelancesMed*29 + ovh + m365*10; // CloudTalk sur freelances médical
     const costs = masseSal + freelancesMed*voip + costSaaS + (m===1?setupInit:0);
+    const profit = rev - costs;
 
     const enc = m===1?0:rows[m-2].rev;
     cash += prevRev - costs;
     prevRev = rev;
-    rows.push({m,cabinets,freelancesMed,supEtp,itEtp,masseSal,revMed,revSup,revIt,rev,enc,costs,cash});
+    rows.push({m,cabinets,freelancesMed,supEtp,itEtp,masseSal,revMed,revSup,revIt,rev,enc,costs,profit,cash});
   }
 
   // KPIs
   const be=rows.find(r=>r.rev>=r.costs);
   const creux=Math.min(...rows.map(r=>r.cash));
-  const lastRow=rows[M-1];
-  const profitMonth=lastRow.rev-lastRow.costs;
-  const profitYear=profitMonth*12;
   $('kpiBE').querySelector('.v').textContent = be?('M'+be.m):'> M24';
   $('kpiBE').className='kpi '+(be&&be.m<=8?'good':be?'':'bad');
   $('kpiCreux').querySelector('.v').textContent=fmtK(creux);
   $('kpiCreux').className='kpi '+(creux<0?'bad':'good');
   $('kpiCash').querySelector('.v').textContent=fmtK(rows[M-1].cash);
   $('kpiCash').className='kpi '+(rows[M-1].cash>cap?'good':rows[M-1].cash<0?'bad':'');
-  $('kpiProfit').querySelector('.v').innerHTML=`${fmtE(profitMonth)}<br><small style="font-size:.75em">${fmtK(profitYear)}</small>`;
-  $('kpiProfit').className='kpi '+(profitMonth>0?'good':'bad');
+  $('kpiCA').querySelector('.v').textContent=fmtE(rows[M-1].rev);
 
   // chart
   const ch=$('chart'); ch.innerHTML='';
@@ -414,6 +411,7 @@ function simulate(){
       <td><b>${fmtE(r.rev)}</b></td>
       <td>${fmtE(r.enc)}</td>
       <td>${fmtE(r.costs)}</td>
+      <td class="${r.profit<0?'neg-cell':''}">${fmtE(r.profit)}</td>
       <td class="${r.cash<0?'neg-cell':''}">${fmtE(r.cash)}</td>`;
     tb.appendChild(tr);
   });
