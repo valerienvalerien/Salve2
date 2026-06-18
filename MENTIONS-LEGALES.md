@@ -49,9 +49,11 @@ le direct (client final) vient en second temps.
   (cf. CGV) :
   - **Petits contrats / direct** : droit malgache + **médiation préalable obligatoire**,
     juridiction compétente = tribunaux d'Antananarivo.
-  - **Gros contrats marque blanche** : **arbitrage international** (siège neutre type
-    Maurice / Genève) pour neutraliser la réticence d'un donneur d'ordre français face à
-    une juridiction malgache et faciliter l'exécution (Convention de New York 1958).
+  - **Gros contrats marque blanche** : **arbitrage international** (Règlement CCI, **siège
+    à Maurice**) pour neutraliser la réticence d'un donneur d'ordre français face à une
+    juridiction malgache et faciliter l'exécution (Convention de New York 1958).
+
+> Clauses prêtes à coller : voir **Annexe — Clauses litiges**.
 
 ## TVA / facturation transfrontalière
 
@@ -75,3 +77,54 @@ Netlify, Inc. + adresse.)_
 - Tarifs : `PRICING.md` reste la source de vérité tarifaire.
 - Conformité données de santé : `CONFORMITE-HDS-RGPD.md`.
 - Marque : « Salverys » uniquement côté public ; jamais Nesvalo / Vinlo.
+
+---
+
+## Annexe — Clauses litiges (prêtes à coller)
+
+Modèle **à deux gabarits** : chaque contrat ne reprend **qu'une seule** de ces clauses,
+choisie à la signature selon le type de client. Ne jamais insérer les deux dans un même
+contrat.
+
+### Gabarit 1 — CGV standard (direct / petit contrat)
+
+À insérer dans les CGV vendues aux cabinets médicaux, petites structures, contrats au
+forfait mensuel.
+
+> **Article [X] — Droit applicable et règlement des litiges**
+>
+> Les présentes conditions générales et tout contrat conclu sur leur fondement sont régis
+> par le **droit malgache**.
+>
+> En cas de différend relatif à leur formation, leur interprétation, leur exécution ou
+> leur résiliation, les parties s'engagent, **préalablement à toute action contentieuse**,
+> à rechercher une solution amiable. La partie la plus diligente notifie à l'autre, par
+> écrit, l'objet du différend ; les parties disposent alors d'un délai de **trente (30)
+> jours** à compter de cette notification pour parvenir à un accord, le cas échéant avec
+> l'assistance d'un médiateur désigné d'un commun accord.
+>
+> **À défaut d'accord amiable** à l'expiration de ce délai, le litige sera porté devant
+> les **tribunaux compétents d'Antananarivo (Madagascar)**, auxquels les parties
+> attribuent expressément compétence, nonobstant pluralité de défendeurs ou appel en
+> garantie.
+
+### Gabarit 2 — Contrat-cadre marque blanche (gros contrat / donneur d'ordre)
+
+À insérer dans le contrat-cadre signé avec un donneur d'ordre français (télésecrétariat,
+éditeur SaaS, ESN/MSP). **Réservé aux engagements annuels significatifs** — ne pas
+appliquer aux petits contrats.
+
+> **Article [X] — Droit applicable et arbitrage**
+>
+> Le présent contrat est régi par le **droit malgache**.
+>
+> Tout différend découlant du présent contrat ou en relation avec celui-ci fera d'abord
+> l'objet d'une **tentative de règlement amiable** dans un délai de **trente (30) jours** à
+> compter de sa notification écrite par la partie la plus diligente.
+>
+> **À défaut de résolution amiable**, le différend sera **tranché définitivement suivant le
+> Règlement d'arbitrage de la Chambre de Commerce Internationale (CCI)** par **un (1)
+> arbitre** nommé conformément à ce règlement. Le **siège de l'arbitrage est fixé à
+> Maurice**. La **langue** de l'arbitrage est le **français**. La sentence arbitrale est
+> **définitive et s'impose aux parties**, qui renoncent à tout recours dans la mesure
+> permise par la loi.
