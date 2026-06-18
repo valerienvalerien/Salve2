@@ -56,19 +56,19 @@
   --ok: #1E9E6A;
 }
 
-/* ----- Thème Helpdesk : rose #D20073 ----- */
+/* ----- Thème Helpdesk : corail #E06B52 ----- */
 .theme-helpdesk {
   --bg-deep: #0E3D4E;
   --primary: #1A5F7A;
   --primary-deep: #114457;
-  --accent: #D20073;
-  --accent-soft: #E8408A;
-  --accent-tint: #FCE8F2;
-  --gold: #D20073;
-  --gold-soft: #E8408A;
-  --cta: #D20073;
+  --accent: #E06B52;
+  --accent-soft: #EA8B7A;
+  --accent-tint: #FDEEE9;
+  --gold: #E06B52;
+  --gold-soft: #EA8B7A;
+  --cta: #E06B52;
   --cta-text: #FFFFFF;
-  --halo: rgba(210,0,115,0.34);
+  --halo: rgba(224,107,82,0.34);
   --ok: #1E9E6A;
 }
 
@@ -117,7 +117,7 @@ img { display: block; max-width: 100%; }
 .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:2px; height:2px; background: var(--accent); transition: right .25s var(--ease); }
 .nav-links a[href="simulateur-salverys.html"]::after { background: #6F8770; }
 .nav-links a[href="simulateur-informatique.html"]::after { background: #FCE27C; }
-.nav-links a[href="simulateur-helpdesk-it.html"]::after { background: #D20073; }
+.nav-links a[href="simulateur-helpdesk-it.html"]::after { background: #E06B52; }
 .nav-links a:hover { color: var(--primary); }
 .nav-links a:hover::after, .nav-links a.active::after { right: 0; }
 .nav-links a.active { color: var(--primary); }
@@ -156,8 +156,8 @@ img { display: block; max-width: 100%; }
 .btn-outline:hover { background: var(--primary); color: #fff; }
 .btn-it { background: linear-gradient(120deg, #FCE27C 0%, #FCE27C 42%, #FFF0B3 50%, #FCE27C 58%, #FCE27C 100%); background-size: 260% 100%; background-position: 100% 0; color: #013C58; box-shadow: 0 6px 20px -8px rgba(252,226,124,.55), var(--shadow-md); transition: transform .18s var(--ease), box-shadow .25s, background-position .7s var(--ease); }
 .btn-it:hover { transform: translateY(-2px); background-position: 0 0; box-shadow: 0 14px 30px -8px rgba(252,226,124,.7), var(--shadow-lg); }
-.btn-helpdesk { background: linear-gradient(120deg, #D20073 0%, #D20073 42%, #E8408A 50%, #D20073 58%, #D20073 100%); background-size: 260% 100%; background-position: 100% 0; color: #fff; box-shadow: 0 6px 20px -8px rgba(210,0,115,.55), var(--shadow-md); transition: transform .18s var(--ease), box-shadow .25s, background-position .7s var(--ease); }
-.btn-helpdesk:hover { transform: translateY(-2px); background-position: 0 0; box-shadow: 0 14px 30px -8px rgba(210,0,115,.7), var(--shadow-lg); }
+.btn-helpdesk { background: linear-gradient(120deg, #E06B52 0%, #E06B52 42%, #EA8B7A 50%, #E06B52 58%, #E06B52 100%); background-size: 260% 100%; background-position: 100% 0; color: #fff; box-shadow: 0 6px 20px -8px rgba(224,107,82,.55), var(--shadow-md); transition: transform .18s var(--ease), box-shadow .25s, background-position .7s var(--ease); }
+.btn-helpdesk:hover { transform: translateY(-2px); background-position: 0 0; box-shadow: 0 14px 30px -8px rgba(224,107,82,.7), var(--shadow-lg); }
 
 /* ================= HERO ================= */
 .hero { position: relative; overflow: hidden; padding: 72px 0 84px; }
@@ -173,7 +173,7 @@ img { display: block; max-width: 100%; }
 .theme-it .hero h1 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.03em; }
 .hero h1 .hl { color: #fff; background: var(--accent); padding: 0 10px; border-radius: 8px; line-height: 1; display: inline-block; white-space: nowrap; }
 .theme-it .hero h1 .hl { color: inherit; background: var(--accent); padding: 0 10px; border-radius: 8px; line-height: 1; display: inline-block; }
-.theme-helpdesk .hero h1 .hl { color: #fff; background: #D20073; padding: 0 10px; border-radius: 8px; line-height: 1; display: inline-block; }
+.theme-helpdesk .hero h1 .hl { color: #fff; background: #E06B52; padding: 0 10px; border-radius: 8px; line-height: 1; display: inline-block; }
 .hero p.lead { font-size: 19px; color: var(--text-soft); max-width: 540px; margin-bottom: 30px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .ctas-metiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 720px; margin: 0 auto; }
@@ -498,27 +498,27 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
   animation: pulse-glow 1s ease-in-out infinite;
 }
 
-/* Helpdesk : bouton "À résilience égale" en rose CTA + glow assorti */
-@keyframes pulse-glow-rose {
+/* Helpdesk : bouton "À résilience égale" en corail CTA + glow assorti */
+@keyframes pulse-glow-corail {
   0%, 100% {
-    box-shadow: 0 0 0 0 #D20073,
-                0 0 8px 2px rgba(210, 0, 115, 0.45);
+    box-shadow: 0 0 0 0 #E06B52,
+                0 0 8px 2px rgba(224, 107, 82, 0.45);
   }
   50% {
-    box-shadow: 0 0 0 6px #D20073,
-                0 0 12px 4px rgba(210, 0, 115, 0.65);
+    box-shadow: 0 0 0 6px #E06B52,
+                0 0 12px 4px rgba(224, 107, 82, 0.65);
   }
 }
 
 .theme-helpdesk .pill[data-chart-view="resilience"],
 .theme-helpdesk .pill[data-chart-view="resilience"].active {
-  background: #D20073;
-  border-color: #D20073;
+  background: #E06B52;
+  border-color: #E06B52;
   color: #fff;
 }
 
 .theme-helpdesk .pill[data-chart-view="resilience"] {
-  animation: pulse-glow-rose 1s ease-in-out infinite;
+  animation: pulse-glow-corail 1s ease-in-out infinite;
 }
 /* ================================================================
    Modal devis — capture email SaaS-first (Formspree endpoint)
@@ -621,9 +621,9 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .feat-col-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 32px; }
 
 /* ===== Helpdesk : btn-helpdesk en rose (override du bleu global) ===== */
-.theme-helpdesk .btn-helpdesk { background: linear-gradient(120deg, #D20073 0%, #D20073 42%, #E8408A 50%, #D20073 58%, #D20073 100%); box-shadow: 0 6px 20px -8px rgba(210,0,115,.55), var(--shadow-md); }
-.theme-helpdesk .btn-helpdesk:hover { box-shadow: 0 14px 30px -8px rgba(210,0,115,.7), var(--shadow-lg); }
+.theme-helpdesk .btn-helpdesk { background: linear-gradient(120deg, #E06B52 0%, #E06B52 42%, #EA8B7A 50%, #E06B52 58%, #E06B52 100%); box-shadow: 0 6px 20px -8px rgba(224,107,82,.55), var(--shadow-md); }
+.theme-helpdesk .btn-helpdesk:hover { box-shadow: 0 14px 30px -8px rgba(224,107,82,.7), var(--shadow-lg); }
 
 /* ===== Helpdesk : tier zones rose ===== */
-.theme-helpdesk .tz-confort { background: #D20073; }
-.theme-helpdesk .tc-confort { background: #FCE8F2; color: #D20073; }
+.theme-helpdesk .tz-confort { background: #E06B52; }
+.theme-helpdesk .tc-confort { background: #FDEEE9; color: #E06B52; }
