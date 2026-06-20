@@ -27,6 +27,8 @@ Cible : les profils des 3 niches + les 2 managers — **1,8-2 M Ar/mois**, objec
 | Fichier | Rôle |
 |---|---|
 | `README.md` | Ce mode d'emploi |
+| `OUTREACH-Post-Groupes-FB.md` | **Point d'entrée** : post public de sourcing publié dans les groupes FB |
+| `Script-MP-Screening-Freelances-N1.html` | **Boîte à phrases MP** pour le screening en discussion (Support N1) |
 | `vivier-template.csv` | Modèle d'import (27 champs) — **Airtable et Notion** |
 | `VIVIER-Airtable-GUIDE.md` | Montage Airtable (multi-éditeurs + relances auto) |
 | `VIVIER-Notion-GUIDE.md` | Montage Notion (mono-user, blocs illimités) |
@@ -36,10 +38,12 @@ Cible : les profils des 3 niches + les 2 managers — **1,8-2 M Ar/mois**, objec
 ## Le flux en 1 coup d'œil
 
 ```
-Repérage FB (mobile, form 20 s)
+Sourcing FB :
+  • Post public dans les groupes (OUTREACH-Post-Groupes-FB.md)  ──► réponses commentaire / MP
+  • + repérage manuel ciblé (mobile, form 20 s)
         │
         ▼
-  Qualification à froid (desktop)
+  Screening en MP (Script-MP-Screening-Freelances-N1.html)
         │
         ▼
   Mini-test /20  ──►  Note A / B / C   (reporté dans « Résultat test »)
