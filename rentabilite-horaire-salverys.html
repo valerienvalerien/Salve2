@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rentabilité horaire Salverys — €/h vendu vs €/h freelance (2,5 → 25 €/h)</title>
+<title>Rentabilité horaire Salverys — forfaits Mutualisé · Dédié · Priority (base 35 h Tél+ticket FR)</title>
 <style>
   :root{
     --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
@@ -32,6 +32,17 @@
   .ctl input[type=range]{width:100%;accent-color:var(--sauge)}
   .ctl .hint{font-size:.7rem;color:#9ca3af;margin-top:2px;line-height:1.3}
   .ar-equiv{font-size:.7rem;color:var(--or);font-weight:600}
+  .pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+  .pillbtn{flex:1;min-width:74px;text-align:center;font-size:.78rem;padding:7px 6px;border:1px solid #d1d5db;border-radius:8px;background:#fff;color:var(--bleu);cursor:pointer;transition:.15s;font-weight:600}
+  .pillbtn:hover{border-color:var(--it)}
+  .pillbtn.active{background:var(--it);border-color:var(--it);color:#fff}
+  .pillbtn .mlt{display:block;font-size:.64rem;font-weight:400;opacity:.8}
+  .basebox{background:rgba(91,127,158,.07);border:1px dashed rgba(91,127,158,.4);border-radius:8px;padding:8px 10px;font-size:.72rem;color:#6b7280;margin:10px 0;line-height:1.5}
+  .basebox b{color:var(--bleu)}
+  .derived{display:flex;gap:10px;margin-top:8px}
+  .derived .d{flex:1;text-align:center;background:#fff;border:1px solid #eee;border-radius:8px;padding:8px}
+  .derived .d .dv{font-size:1.05rem;font-weight:700;color:var(--it)}
+  .derived .d .dl{font-size:.66rem;color:#9ca3af;text-transform:uppercase}
   .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
   @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
   .kpi{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(46,59,78,.08)}
@@ -45,7 +56,6 @@
   .bar.cur{outline:2px solid var(--bleu);outline-offset:1px}
   .bar:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
     background:var(--bleu);color:var(--creme);font-size:.7rem;padding:4px 8px;border-radius:6px;white-space:nowrap;z-index:5}
-  .zero-line{position:absolute;left:0;right:0;border-top:1px dashed #9ca3af;font-size:.6rem;color:#9ca3af}
   .legend{font-size:.75rem;color:#6b7280;margin-top:8px}
   table{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:8px}
   th,td{padding:4px 6px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
@@ -72,12 +82,14 @@
   .pill.ok{background:rgba(94,127,96,.15);color:var(--ok)}
   .pill.warn{background:rgba(201,154,75,.18);color:var(--orange)}
   .pill.bad{background:rgba(176,92,74,.15);color:var(--rouge)}
+  .ref-table td,.ref-table th{font-size:.72rem}
+  .ref-table .rowhdr{text-align:left;font-weight:700;color:var(--it)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Rentabilité horaire Salverys — €/h vendu vs €/h freelance</h1>
-  <p class="sub">Interne · v1 du 2026-06-20 · « <b>euro de l'heure par euro de l'heure</b> » · balayage du tarif freelance de <b>2,5 € à 25 €/h</b> · aligné sur <b>PRICING.md</b> (à l'heure : direct 12-15 €/h · marque blanche 8-11 €/h ; plancher = coût + ~20 %)</p>
+  <h1>Rentabilité horaire — forfaits Mutualisé · Dédié · Priority</h1>
+  <p class="sub">Interne · v2 du 2026-06-20 · « <b>euro de l'heure par euro de l'heure</b> » · prix de vente <b>dérivés des simulateurs</b> (base 35 h/sem · Tél+ticket · FR) · balayage du tarif freelance de <b>2,5 € à 25 €/h</b> · aligné sur <b>PRICING.md</b> &amp; <b>simulateur-informatique.html</b> / <b>simulateur-helpdesk-it.html</b></p>
 
   <!-- TAUX EUR → MGA -->
   <div class="rate-bar">
@@ -106,22 +118,41 @@
   <div class="card">
     <h2>Hypothèses</h2>
 
-    <!-- VENTE -->
+    <!-- FORFAIT / VENTE -->
     <div class="hyp-col c-vente">
-      <h3>Prix de vente client (à l'heure)</h3>
-      <span class="coltag">Source PRICING.md · direct 12-15 €/h · MB 8-11 €/h</span>
-      <div class="ctl"><label>Tarif vente — Direct <b id="vVenteDir"></b></label>
-        <input type="range" id="venteDir" min="6" max="25" step="0.5" value="13">
-        <div class="hint">€/h facturé au client final (fourchette PRICING : 12-15 €/h)</div></div>
-      <div class="ctl"><label>Tarif vente — Marque blanche <b id="vVenteMb"></b></label>
-        <input type="range" id="venteMb" min="5" max="20" step="0.5" value="9">
-        <div class="hint">€/h facturé au donneur d'ordre (fourchette PRICING : 8-11 €/h)</div></div>
+      <h3>Forfait &amp; prix de vente (à l'heure)</h3>
+      <span class="coltag">Dérivé des simulateurs publics · base 35 h Tél+ticket FR</span>
+
+      <h4>Métier</h4>
+      <div class="pills" id="grpMetier">
+        <button class="pillbtn active" data-k="metier" data-v="support">Support N1 SaaS<span class="mlt">base 2 300 €/mois</span></button>
+        <button class="pillbtn" data-k="metier" data-v="helpdesk">Helpdesk IT N1<span class="mlt">base 2 500 €/mois</span></button>
+      </div>
+
+      <h4>Niveau de forfait</h4>
+      <div class="pills" id="grpNiveau">
+        <button class="pillbtn" data-k="niveau" data-v="mutualise">Mutualisé<span class="mlt">×0,85</span></button>
+        <button class="pillbtn active" data-k="niveau" data-v="dedie">Dédié<span class="mlt">×1,0</span></button>
+        <button class="pillbtn" data-k="niveau" data-v="priority">Priority<span class="mlt">×1,25</span></button>
+      </div>
+
+      <div class="basebox">
+        Base de calcul fixe : <b>35 h/sem = 152 h/mois</b> · canal <b>Tél+ticket (×1,08)</b> · langue <b>FR (×1,0)</b>.<br>
+        Prix mensuel forfait (direct) : <b id="vMois">—</b> → soit <b id="vVenteDir">—</b>/h.
+      </div>
+
+      <div class="ctl"><label>Décote marque blanche <b id="vDecote"></b></label>
+        <input type="range" id="decote" min="0" max="45" step="5" value="30">
+        <div class="hint">Le donneur d'ordre prend sa marge (PRICING : ~25-35 %). MB = direct × (1 − décote).</div></div>
       <div class="ctl"><label>% de marque blanche dans le mix <b id="vMix"></b></label>
         <input type="range" id="mix" min="0" max="100" step="10" value="100">
         <div class="hint">MB-first (décision GTM) → 100 % par défaut. 0 % = 100 % direct.</div></div>
-      <div class="ctl"><label>Heures facturables / mois / ETP <b id="vHeures"></b></label>
-        <input type="range" id="heures" min="100" max="170" step="1" value="152">
-        <div class="hint">35 h/sem ≈ 152 h/mois. Baissez pour tenir compte des temps morts.</div></div>
+
+      <div class="derived">
+        <div class="d"><div class="dv" id="dDir">—</div><div class="dl">Direct €/h</div></div>
+        <div class="d"><div class="dv" id="dMb">—</div><div class="dl">Marque blanche €/h</div></div>
+        <div class="d"><div class="dv" id="dMix">—</div><div class="dl">Vente retenue €/h</div></div>
+      </div>
     </div>
 
     <!-- COÛTS -->
@@ -147,11 +178,11 @@
     <div class="legend">Vert = marge ≥ seuil plancher · Orange = marge positive mais sous le seuil · Rouge = perte · Contour bleu = position du curseur · Survoler une barre pour le détail.</div>
 
     <div style="margin-top:10px;font-size:.8rem">
-      <b>Lecture rapide au tarif actuel (<span id="lblMix"></span>) :</b>
+      <b>Forfait courant : <span id="lblForfait"></span></b> —
       <span id="verdict"></span>
     </div>
 
-    <div style="max-height:360px;overflow:auto;margin-top:10px">
+    <div style="max-height:340px;overflow:auto;margin-top:10px">
     <table id="tbl">
       <thead><tr>
         <th>Freelance €/h</th>
@@ -167,29 +198,46 @@
       <tbody></tbody>
     </table>
     </div>
-    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">« Coût total €/h » = tarif freelance + charges indirectes. « Vente €/h » = mix MB/direct. La ligne surlignée or = bascule (passage sous le seuil plancher). Ligne en gras = position du curseur.</p>
+    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">« Coût total €/h » = tarif freelance + charges indirectes. « Vente €/h » = mix MB/direct du forfait courant. Ligne or = bascule sous le seuil plancher · ligne en gras = position du curseur.</p>
   </div>
   </div><!-- /grid2 -->
 
+  <!-- ============ TABLE DE RÉFÉRENCE DES FORFAITS ============ -->
+  <div class="card">
+    <h2>Tarifs horaires par forfait — base 35 h Tél+ticket FR</h2>
+    <p class="sub" style="margin:0 0 8px">Vente €/h dérivée des simulateurs (prix mensuel ÷ 152 h). Direct = prix public · MB = direct − décote courante (<span id="vDecote2"></span>).</p>
+    <table class="ref-table">
+      <thead><tr>
+        <th>Métier</th>
+        <th>Mutualisé ×0,85</th>
+        <th>Dédié ×1,0</th>
+        <th>Priority ×1,25</th>
+      </tr></thead>
+      <tbody id="refBody"></tbody>
+    </table>
+    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">Format cellule : <b>direct €/h</b> · <span style="color:var(--or)">MB €/h</span> · (prix mensuel direct). Cliquez un forfait dans les boutons ci-dessus pour le passer en analyse détaillée.</p>
+  </div>
+
   <p class="note">
     <b>Mécanique (€/h par €/h)</b> :
-    <b>Vente €/h</b> = tarif MB × %MB + tarif direct × (1−%MB).
+    <b>Prix mensuel direct</b> = base métier (2 300 Support / 2 500 IT) × niveau (Mutualisé 0,85 · Dédié 1,0 · Priority 1,25) × canal Tél+ticket (1,08) × FR (1,0).
+    <b>Vente direct €/h</b> = prix mensuel ÷ 152 h · <b>Vente MB €/h</b> = direct × (1 − décote).
+    <b>Vente retenue</b> = MB × %MB + direct × (1−%MB).
     <b>Coût total €/h</b> = tarif freelance (curseur) + charges indirectes/h.
-    <b>Marge nette €/h</b> = Vente − Coût total · <b>Marge %</b> = marge ÷ vente.
-    <b>Mensuel/ETP</b> = marge €/h × heures facturables. <b>Équipe</b> = × nb ETP.
-    Le <b>tarif freelance max rentable</b> = vente × (1 − seuil%) − charges indirectes : au-delà, on passe sous le plancher PRICING (coût + ~20 %).
-    Conversion mensuelle du freelance : tarif €/h × heures facturables (ex. 3 €/h × 152 h ≈ 456 €/mois, cohérent avec le modèle 1,8-2 M Ar).
+    <b>Marge nette €/h</b> = vente − coût · <b>Mensuel/ETP</b> = marge × 152 h · <b>Équipe</b> = × nb ETP.
+    Le <b>tarif freelance max rentable</b> = vente × (1 − seuil%) − charges : au-delà on passe sous le plancher PRICING (coût + ~20 %).
   </p>
 
   <div class="card">
     <h2>Repères &amp; garde-fous</h2>
     <p style="font-size:.82rem;line-height:1.6">
-      • <b>Modèle actuel</b> : freelance ~450 €/mois ≈ <b>3 €/h</b> (à 152 h). C'est la borne basse du curseur (2,5 €/h).<br>
-      • <b>Bornes de vente PRICING.md</b> : à l'heure = <b>12-15 €/h direct</b>, <b>8-11 €/h en marque blanche</b>. En MB-first à 9 €/h, la rentabilité décroche dès que le freelance dépasse ~6-7 €/h (selon charges/seuil).<br>
-      • <b>Plancher absolu</b> (PRICING §7) : jamais facturer sous le coût chargé + ~20 %. Le seuil ajustable matérialise cette règle (zone orange).<br>
-      • <b>Levier clé en MB</b> : le prix de vente MB est bas (8-11 €/h), donc la marge tient surtout par un <b>coût freelance bas</b> (2,5-4 €/h). Un freelance à 25 €/h n'est rentable qu'en <b>direct haut de gamme</b> — et encore négatif sous ~15 €/h de vente.
+      • <b>Concordance simulateurs</b> : les multiplicateurs Mutualisé/Dédié/Priority (0,85 / 1,0 / 1,25), le canal Tél+ticket (×1,08) et la langue FR (×1,0) viennent directement de <code>simulateur-informatique.html</code> et <code>simulateur-helpdesk-it.html</code>. Bases mensuelles : Support 2 300 € · IT 2 500 € (1 agent dédié 35 h).<br>
+      • <b>Modèle actuel</b> : freelance ~450 €/mois ≈ <b>3 €/h</b> (à 152 h) = borne basse du curseur.<br>
+      • <b>Plancher absolu</b> (PRICING §7) : jamais sous le coût chargé + ~20 %. Le seuil ajustable matérialise cette règle (zone orange).<br>
+      • <b>Lecture MB-first</b> : en marque blanche (décote 30 %), même un forfait Priority redescend autour de 14-15 €/h de vente — la rentabilité tient surtout par un <b>coût freelance bas</b> (2,5-4 €/h).<br>
+      • <b>Note Priority</b> : ici Priority = ×1,25 (multiplicateur plat des simulateurs). PRICING.md prévoit aussi un multiplicateur dégressif <code>priorityMult(n)=1,10+0,90/n</code> selon le nombre d'agents — non appliqué dans ce comparateur horaire mono-poste.
     </p>
-    <p class="garde"><b>Garde-fou</b> — ce simulateur raisonne « à l'heure » (modèle 2 de PRICING, après l'ETP). Pour le pilotage trésorerie complet (acquisition, encaissement J+30, 3 métiers), garder <b>tresorerie-salverys.html</b>. Ici on isole une seule question : à partir de quel tarif horaire un freelance cesse d'être rentable, vente par vente.</p>
+    <p class="garde"><b>Garde-fou</b> — ce simulateur raisonne « à l'heure » (modèle 2 de PRICING). Pour le pilotage trésorerie complet (acquisition, encaissement J+30, 3 métiers), garder <b>tresorerie-salverys.html</b>. Ici on isole une seule question : à partir de quel tarif horaire un freelance cesse d'être rentable, forfait par forfait.</p>
   </div>
 </div>
 
@@ -199,67 +247,84 @@ const fmtE2=n=>n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFraction
 const fmtE0=n=>Math.round(n).toLocaleString('fr-FR')+' €';
 const fmtPct=n=>n.toLocaleString('fr-FR',{maximumFractionDigits:0})+' %';
 
+// --- Paramètres dérivés des simulateurs publics ---
+const BASE   = {support:2300, helpdesk:2500};            // €/mois, 1 agent dédié 35 h
+const NIVEAU = {mutualise:0.85, dedie:1.0, priority:1.25};
+const CANAL  = 1.08;   // Tél + ticket (vs ticket/email 1,0)
+const LANGUE = 1.0;    // FR
+const HBASE  = 152;    // 35 h/sem ≈ 152 h/mois
+const LBL    = {support:'Support N1 SaaS', helpdesk:'Helpdesk IT N1',
+                mutualise:'Mutualisé', dedie:'Dédié', priority:'Priority'};
+
+// état des toggles
+const state={metier:'support', niveau:'dedie'};
+
+function moisDirect(metier,niveau){ return BASE[metier]*NIVEAU[niveau]*CANAL*LANGUE; }
+function venteDirectH(metier,niveau){ return moisDirect(metier,niveau)/HBASE; }
+
 function compute(){
   const rate=+$('rate').value;
-  const venteDir=+$('venteDir').value, venteMb=+$('venteMb').value, mix=+$('mix').value/100,
-        heures=+$('heures').value, overhead=+$('overhead').value, seuil=+$('seuil').value/100,
+  const decote=+$('decote').value/100, mix=+$('mix').value/100,
+        overhead=+$('overhead').value, seuil=+$('seuil').value/100,
         nbEtp=+$('nbEtp').value, tarifFL=+$('tarifFL').value;
 
-  const vente = venteMb*mix + venteDir*(1-mix);
+  const mois  = moisDirect(state.metier,state.niveau);
+  const vDir  = mois/HBASE;
+  const vMb   = vDir*(1-decote);
+  const vente = vMb*mix + vDir*(1-mix);
 
-  // affichage des valeurs des curseurs
+  // affichage curseurs / valeurs
   $('vRateEx').textContent=`1 € = ${rate.toLocaleString('fr-FR')} Ar`;
   $('vTarifFL').textContent=fmtE2(tarifFL)+'/h';
-  $('vTarifFLAr').textContent=`≈ ${fmtE0(tarifFL*heures)}/mois  ·  ${((tarifFL*heures*rate)/1e6).toFixed(2)} M Ar/mois`;
-  $('vVenteDir').textContent=fmtE2(venteDir)+'/h';
-  $('vVenteMb').textContent=fmtE2(venteMb)+'/h';
+  $('vTarifFLAr').textContent=`≈ ${fmtE0(tarifFL*HBASE)}/mois  ·  ${((tarifFL*HBASE*rate)/1e6).toFixed(2)} M Ar/mois`;
+  $('vMois').textContent=fmtE0(mois)+'/mois';
+  $('vVenteDir').textContent=fmtE2(vDir);
+  $('vDecote').textContent=Math.round(decote*100)+' %';
+  $('vDecote2').textContent='décote '+Math.round(decote*100)+' %';
   $('vMix').textContent=Math.round(mix*100)+' % MB';
-  $('vHeures').textContent=heures+' h';
   $('vOverhead').textContent=fmtE2(overhead)+'/h';
-  $('vOverheadAr').textContent=`≈ ${((overhead*heures*rate)/1e6).toFixed(2)} M Ar/mois`;
+  $('vOverheadAr').textContent=`≈ ${((overhead*HBASE*rate)/1e6).toFixed(2)} M Ar/mois`;
   $('vSeuil').textContent=Math.round(seuil*100)+' %';
   $('vNbEtp').textContent=nbEtp;
-  $('lblMix').textContent=`${Math.round(mix*100)} % MB · vente ${fmtE2(vente)}/h`;
+  $('dDir').textContent=fmtE2(vDir);
+  $('dMb').textContent=fmtE2(vMb);
+  $('dMix').textContent=fmtE2(vente);
+  $('lblForfait').textContent=`${LBL[state.metier]} · ${LBL[state.niveau]} · vente ${fmtE2(vente)}/h (${Math.round(mix*100)} % MB)`;
 
-  // fonction marge pour un tarif freelance donné
-  const M=t=>{
-    const coutTot=t+overhead;
-    const marge=vente-coutTot;
-    return {t, coutTot, marge, pct:marge/vente, mois:marge*heures, equipe:marge*heures*nbEtp};
-  };
+  // toggles actifs
+  document.querySelectorAll('#grpMetier .pillbtn').forEach(b=>b.classList.toggle('active',b.dataset.v===state.metier));
+  document.querySelectorAll('#grpNiveau .pillbtn').forEach(b=>b.classList.toggle('active',b.dataset.v===state.niveau));
 
-  // KPIs au curseur
+  // marge pour un tarif freelance donné
+  const M=t=>{const coutTot=t+overhead; const marge=vente-coutTot;
+    return {t,coutTot,marge,pct:marge/vente,mois:marge*HBASE,equipe:marge*HBASE*nbEtp};};
+
   const cur=M(tarifFL);
-  const plancherTarif = vente*(1-seuil) - overhead; // tarif freelance max pour rester >= seuil
+  const plancherTarif=vente*(1-seuil)-overhead;
+  const cls=r=> r.marge<0?'bad':r.pct<seuil?'warn':'good';
 
-  const kMargeH=$('kpiMargeH'), kPct=$('kpiMargePct'), kMois=$('kpiMargeMois'), kPl=$('kpiPlancher');
-  kMargeH.querySelector('.v').textContent=fmtE2(cur.marge)+'/h';
-  kPct.querySelector('.v').textContent=fmtPct(cur.pct*100);
-  kMois.querySelector('.v').textContent=fmtE0(cur.mois);
-  kPl.querySelector('.v').textContent=fmtE2(Math.max(0,plancherTarif))+'/h';
+  $('kpiMargeH').querySelector('.v').textContent=fmtE2(cur.marge)+'/h';
+  $('kpiMargePct').querySelector('.v').textContent=fmtPct(cur.pct*100);
+  $('kpiMargeMois').querySelector('.v').textContent=fmtE0(cur.mois);
+  $('kpiPlancher').querySelector('.v').textContent=fmtE2(Math.max(0,plancherTarif))+'/h';
+  $('kpiMargeH').className='kpi '+cls(cur);
+  $('kpiMargePct').className='kpi '+cls(cur);
+  $('kpiMargeMois').className='kpi '+cls(cur);
+  $('kpiPlancher').className='kpi '+(plancherTarif>=tarifFL?'good':'bad');
 
-  const cls=r=> r.marge<0?'bad' : r.pct<seuil?'warn':'good';
-  kMargeH.className='kpi '+cls(cur);
-  kPct.className='kpi '+cls(cur);
-  kMois.className='kpi '+cls(cur);
-  kPl.className='kpi '+(plancherTarif>=tarifFL?'good':'bad');
-
-  // verdict
-  let v, pill;
+  let pill,v;
   if(cur.marge<0){ v=`perte de ${fmtE2(-cur.marge)}/h — on facture moins que le coût.`; pill='<span class="pill bad">PERTE</span>'; }
-  else if(cur.pct<seuil){ v=`marge positive mais sous le plancher (${fmtPct(seuil*100)}) — à éviter en pérenne.`; pill='<span class="pill warn">SOUS PLANCHER</span>'; }
+  else if(cur.pct<seuil){ v=`marge positive mais sous le plancher (${fmtPct(seuil*100)}).`; pill='<span class="pill warn">SOUS PLANCHER</span>'; }
   else { v=`marge saine de ${fmtE2(cur.marge)}/h (${fmtPct(cur.pct*100)}).`; pill='<span class="pill ok">RENTABLE</span>'; }
   $('verdict').innerHTML=' '+pill+' '+v;
 
-  // balayage 2,5 → 25 €/h pas 0,5
+  // balayage 2,5 → 25 €/h
   const tarifs=[]; for(let t=2.5;t<=25.0001;t+=0.5) tarifs.push(Math.round(t*10)/10);
   const data=tarifs.map(M);
 
   // chart
   const ch=$('chart'); ch.innerHTML='';
   const maxAbs=Math.max(...data.map(d=>Math.abs(d.marge)),1);
-  // ligne zéro
-  const negSpace=Math.min(...data.map(d=>d.marge))<0;
   data.forEach(d=>{
     const b=document.createElement('div');
     let c='bar'+(d.marge<0?' neg':(d.pct<seuil?' warn':''));
@@ -270,22 +335,20 @@ function compute(){
     ch.appendChild(b);
   });
 
-  // table — trouver la bascule (première ligne sous le seuil)
-  let beIdx=data.findIndex(d=>d.pct<seuil);
+  // table balayage
+  const beIdx=data.findIndex(d=>d.pct<seuil);
   const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
   data.forEach((d,i)=>{
     const tr=document.createElement('tr');
     let klass='';
-    if(Math.abs(d.t-tarifFL)<0.01) klass='cur';
-    else if(i===beIdx) klass='be';
+    if(Math.abs(d.t-tarifFL)<0.01) klass='cur'; else if(i===beIdx) klass='be';
     if(klass) tr.className=klass;
-    const stat = d.marge<0
-      ? '<span class="pill bad">perte</span>'
-      : d.pct<seuil ? '<span class="pill warn">sous plancher</span>'
-      : '<span class="pill ok">rentable</span>';
-    const mc = d.marge<0?'neg-cell':(d.pct<seuil?'warn-cell':'ok-cell');
+    const stat=d.marge<0?'<span class="pill bad">perte</span>'
+      :d.pct<seuil?'<span class="pill warn">sous plancher</span>'
+      :'<span class="pill ok">rentable</span>';
+    const mc=d.marge<0?'neg-cell':(d.pct<seuil?'warn-cell':'ok-cell');
     tr.innerHTML=`<td><b>${fmtE2(d.t)}</b></td>
-      <td>${fmtE0(d.t*heures)}</td>
+      <td>${fmtE0(d.t*HBASE)}</td>
       <td>${fmtE2(d.coutTot)}</td>
       <td>${fmtE2(vente)}</td>
       <td class="${mc}">${fmtE2(d.marge)}</td>
@@ -295,8 +358,28 @@ function compute(){
       <td>${stat}</td>`;
     tb.appendChild(tr);
   });
+
+  // table de référence des forfaits
+  const rb=$('refBody'); rb.innerHTML='';
+  ['support','helpdesk'].forEach(met=>{
+    const tr=document.createElement('tr');
+    let cells=`<td class="rowhdr">${LBL[met]}<br><span style="font-weight:400;color:#9ca3af;font-size:.66rem">base ${fmtE0(BASE[met])}/mois</span></td>`;
+    ['mutualise','dedie','priority'].forEach(niv=>{
+      const mo=moisDirect(met,niv), dh=mo/HBASE, mbh=dh*(1-decote);
+      const isCur=(met===state.metier&&niv===state.niveau);
+      cells+=`<td${isCur?' style="background:rgba(91,127,158,.12);font-weight:700"':''}>`
+        +`<b>${fmtE2(dh)}</b>/h · <span style="color:var(--or)">${fmtE2(mbh)}</span>`
+        +`<br><span style="color:#9ca3af;font-size:.66rem">${fmtE0(mo)}/mois</span></td>`;
+    });
+    tr.innerHTML=cells; rb.appendChild(tr);
+  });
 }
+
+// branchements
 document.querySelectorAll('input').forEach(i=>i.addEventListener('input',compute));
+document.querySelectorAll('.pillbtn').forEach(b=>b.addEventListener('click',()=>{
+  state[b.dataset.k]=b.dataset.v; compute();
+}));
 compute();
 </script>
 </body>
