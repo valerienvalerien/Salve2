@@ -43,7 +43,7 @@ helpdesk). Plus simple, et recherche **transverse** aux 3 niches.
 | Lien Facebook | **URL** | cliquable |
 | Email / WhatsApp | Email / Phone | |
 | Date repérage · Date relance · Info candidat faite | **Date** | |
-| Repéré par | Single select | `Valérie`, `Manager médical`, `Manager IT` |
+| Repéré par | Single select | `Valérien`, `Manager médical`, `Manager IT` |
 | **Niche** | Single select | `Télésecrétariat médical`, `Support N1 SaaS`, `Helpdesk IT N1`, `Manager` |
 | Niveau français | Single select | `Natif (oral+écrit)`, `Natif (oral) / Bon (écrit)`, `Bon`, `À tester` |
 | Expérience (années) | Number | |

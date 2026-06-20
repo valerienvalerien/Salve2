@@ -108,7 +108,7 @@ Concrètement : vous gardez la relation client, vous prenez votre marge, on opè
 
 Est-ce que ça colle avec un projet en cours chez vous ?
 
-Valérie
+Valérien
 Salverys — Helpdesk IT N1 en marque blanche
 [email protected]
 

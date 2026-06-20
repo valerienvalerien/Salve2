@@ -37,7 +37,7 @@
 | Lien Facebook | **URL** | cliquable |
 | Email / WhatsApp | Email / Phone | |
 | Date repérage · Date relance · Info candidat faite | **Date** | |
-| Repéré par | Select | `Valérie`, `Manager médical`, `Manager IT` |
+| Repéré par | Select | `Valérien`, `Manager médical`, `Manager IT` |
 | **Niche** | **Select** | `Télésecrétariat médical`, `Support N1 SaaS`, `Helpdesk IT N1`, `Manager` |
 | Niveau français | Select | `Natif (oral+écrit)`, `Natif (oral) / Bon (écrit)`, `Bon`, `À tester` |
 | Expérience (années) · Prétention (Ar/mois) | **Number** | |

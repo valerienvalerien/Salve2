@@ -93,10 +93,10 @@ Score total = **Bloc 1 (/10) + Bloc 2 (/6) + Bloc 3 (/4) = /20**
 Code court, lisible d'un coup d'œil :
 
 ```
-[DATE] B1:8/10 B2:5/6 B3:3/4 = 16/20 → A | testé par: Valérie | note: bon écrit, équipement OK
+[DATE] B1:8/10 B2:5/6 B3:3/4 = 16/20 → A | testé par: Valérien | note: bon écrit, équipement OK
 ```
 
 Exemples :
-- `2026-06-25 B1:9 B2:6 B3:4 = 19/20 → A | Valérie | top, prête à affecter`
+- `2026-06-25 B1:9 B2:6 B3:4 = 19/20 → A | Valérien | top, prête à affecter`
 - `2026-06-23 B1:6 B2:3 B3:2 = 11/20 → B | Manager IT | 4G à fiabiliser avant validation`
-- `2026-06-22 B1:4 B2:2 B3:1 = 7/20 → C | Valérie | à retester dans 3 mois`
+- `2026-06-22 B1:4 B2:2 B3:1 = 7/20 → C | Valérien | à retester dans 3 mois`
