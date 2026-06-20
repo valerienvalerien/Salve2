@@ -9,8 +9,8 @@
 Kanban, formulaire de saisie). Fichier d'import : `vivier-template.csv` (à côté de ce guide).
 
 **Limites du gratuit à garder en tête :** 1 000 lignes/base · 100 automatisations/mois ·
-5 éditeurs max. Largement suffisant pour des centaines de profils *actifs* si on purge les
-écartés (cf. §7). Déclencheur de bascule en §8.
+5 éditeurs max. Largement suffisant pour des centaines de profils *actifs* (le vivier est un
+actif : on **archive** plutôt qu'on supprime, cf. §9). Déclencheur de bascule en §10.
 
 ---
 
@@ -42,7 +42,7 @@ helpdesk). Plus simple, et recherche **transverse** aux 3 niches.
 | Code interne | Single line text | Format `VIV-0001`, `VIV-0002`… (incrément manuel) |
 | Lien Facebook | **URL** | cliquable |
 | Email / WhatsApp | Email / Phone | |
-| Date repérage · Date relance · Date péremption · Info candidat faite | **Date** | |
+| Date repérage · Date relance · Info candidat faite | **Date** | |
 | Repéré par | Single select | `Valérie`, `Manager médical`, `Manager IT` |
 | **Niche** | Single select | `Télésecrétariat médical`, `Support N1 SaaS`, `Helpdesk IT N1`, `Manager` |
 | Niveau français | Single select | `Natif (oral+écrit)`, `Natif (oral) / Bon (écrit)`, `Bon`, `À tester` |
@@ -75,8 +75,8 @@ Sur la table, **Create view** :
    Date relance. Ta to-do du jour.
 4. **Par niche** : 3 vues Grid filtrées sur `Niche` (médical / support / helpdesk), pour
    que chaque manager voie son périmètre.
-5. **🧹 À purger** : Grid, filtre `Date péremption` *is on or before* `today`. Pour exécuter
-   le nettoyage (§7) en 2 clics.
+5. **🗄️ Écartés (archive)** : Grid, filtre `Étape pipeline = ⛔ Écarté`. Garde tes vues
+   actives propres **sans rien supprimer** — le vivier reste un actif.
 
 Recherche transverse : la **barre de recherche** (loupe) + les filtres combinés
 (niche × niveau français × compétence × dispo × localisation) couvrent tous tes critères.
@@ -102,8 +102,8 @@ Recherche transverse : la **barre de recherche** (loupe) + les filtres combinés
 - **Minimisation** : stocke le **lien** Facebook, pas la photo ni des captures du mur.
 - **Information au 1er contact** : dis à la personne que tu as noté son profil et que tu
   le conserves pour un éventuel poste (et comment se faire retirer).
-- **Purge** : `Date péremption` = date de repérage + 18 mois. La vue `🧹 À purger` te liste
-  les profils inactifs à supprimer. Le `Code interne VIV-XXXX` permet d'en parler en interne
+- **Pas de suppression programmée** : le vivier est un actif. On **archive** (statut
+  `⛔ Écarté`) au lieu de supprimer. Le `Code interne VIV-XXXX` permet d'en parler en interne
   sans manipuler l'identité.
 
 ## 10. Quand quitter Airtable (déclencheur)
@@ -125,4 +125,4 @@ simple export/import. À décider seulement quand le gratuit bloque réellement.
 4. ☐ Créer les 5 vues (§6).
 5. ☐ Publier le formulaire de saisie rapide + l'épingler sur le mobile (§7).
 6. ☐ Activer le digest de relances (§8).
-7. ☐ Définir la règle de purge à 18 mois (§9).
+7. ☐ Archiver les profils inactifs en `⛔ Écarté` (pas de suppression — §9).
