@@ -1,0 +1,656 @@
+<!--
+  Outil de screening freelances Support N1 — boîte à phrases pour MP Facebook.
+  Source de vérité : ce fichier. Ouvrir dans un navigateur (tout tourne en local,
+  rien n'est enregistré). Saisir le prénom du candidat à gauche → [Prénom] est
+  remplacé automatiquement à la copie. Toggle Tu/Vous pour le registre.
+
+  Place dans le funnel recrutement (cf. OUTREACH-Recrutement-Sequence.md) :
+  Post public (OUTREACH-Post-Groupes-FB.md) → réponses MP → SCREENING (ce fichier)
+  → appel → mini-test (MINI-TEST-Qualification.md) → vivier.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Script MP — Screening freelances Support N1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f1f4ec;
+    --surface:#ffffff;
+    --sidebar:#e8eede;
+    --sage:#7d9a6a;
+    --sage-deep:#5f7a4e;
+    --sage-deeper:#4c6440;
+    --forest:#2f3a28;
+    --tint:#dde6d2;
+    --line:#cdd8bf;
+    --ink:#39432e;
+    --ink-dim:#6c7860;
+    --ink-faint:#94a087;
+    --ok:#3f7a4d;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .layout{display:flex;max-width:1180px;margin:0 auto;gap:0;align-items:flex-start;}
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    width:288px;flex:0 0 288px;position:sticky;top:0;height:100vh;
+    background:var(--sidebar);border-right:1px solid var(--line);
+    padding:26px 22px;overflow-y:auto;
+  }
+  .brand{margin-bottom:22px;}
+  .brand .eyebrow{
+    font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--sage-deep);font-weight:600;margin:0 0 7px;
+  }
+  .brand h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;
+    line-height:1.15;margin:0;color:var(--forest);letter-spacing:-.01em;
+  }
+  .brand h1 .accent{color:var(--sage-deep);}
+
+  .ctl{margin-bottom:14px;}
+  .ctl label{
+    display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;margin:0 0 5px;font-family:'Space Grotesk',sans-serif;
+  }
+  .ctl input{
+    width:100%;padding:10px 12px;border-radius:9px;background:var(--surface);
+    border:1px solid var(--line);color:var(--ink);font-size:13.5px;font-family:inherit;
+    transition:border-color .15s,box-shadow .15s;
+  }
+  .ctl input::placeholder{color:var(--ink-faint);}
+  .ctl input:focus{outline:none;border-color:var(--sage);box-shadow:0 0 0 3px rgba(125,154,106,.2);}
+  .search-wrap{position:relative;}
+  .clear-search{
+    position:absolute;right:7px;top:50%;transform:translateY(-50%);
+    background:none;border:none;color:var(--ink-faint);cursor:pointer;
+    font-size:17px;line-height:1;padding:4px;display:none;
+  }
+  .clear-search:hover{color:var(--ink);}
+
+  .nav-label{
+    font-family:'Space Grotesk',sans-serif;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-faint);font-weight:600;
+    margin:20px 0 8px;padding-top:16px;border-top:1px solid var(--line);
+  }
+
+  .tone-ctl{margin-bottom:4px;}
+  .tone-switch{
+    position:relative;display:flex;width:100%;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;padding:3px;cursor:pointer;
+    user-select:none;
+  }
+  .tone-knob{
+    position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);
+    background:var(--sage);border-radius:7px;transition:transform .2s cubic-bezier(.4,0,.2,1);
+    z-index:0;
+  }
+  .tone-switch[aria-pressed="true"] .tone-knob{transform:translateX(100%);}
+  .tone-opt{
+    position:relative;z-index:1;flex:1;text-align:center;padding:7px 0;
+    font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
+    color:var(--ink-dim);transition:color .2s;
+  }
+  .tone-switch[aria-pressed="false"] .tone-opt[data-tone="tu"]{color:#fff;}
+  .tone-switch[aria-pressed="true"] .tone-opt[data-tone="vous"]{color:#fff;}
+  .tone-switch:focus-visible{outline:2px solid var(--sage-deep);outline-offset:2px;}
+  nav.cats{display:flex;flex-direction:column;gap:1px;}
+  nav.cats a{
+    display:flex;align-items:baseline;gap:8px;
+    font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink-dim);
+    border-radius:7px;padding:7px 9px;transition:background .14s,color .14s;
+  }
+  nav.cats a .n{
+    font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;
+    color:var(--sage);flex:0 0 auto;width:16px;
+  }
+  nav.cats a:hover{background:var(--tint);color:var(--forest);}
+  nav.cats a.active{background:var(--sage);color:#fff;}
+  nav.cats a.active .n{color:rgba(255,255,255,.85);}
+
+  /* ===== Main ===== */
+  .main{flex:1;min-width:0;padding:30px 30px 80px;}
+  .intro{margin-bottom:8px;}
+  .intro p{color:var(--ink-dim);font-size:14.5px;max-width:62ch;margin:0;}
+
+  section{margin-top:30px;scroll-margin-top:24px;}
+  section.pinned{background:linear-gradient(135deg, rgba(125,154,106,.06) 0%, rgba(125,154,106,.02) 100%);border-radius:12px;padding:18px 15px;margin-top:24px;margin-bottom:28px;border:1px solid rgba(125,154,106,.15);}
+  section.pinned .sec-head{border-color:rgba(125,154,106,.2);}
+  .sec-head{display:flex;align-items:baseline;gap:11px;margin-bottom:13px;border-bottom:1px solid var(--line);padding-bottom:8px;}
+  .sec-num{font-family:'Space Grotesk',sans-serif;color:var(--sage-deep);font-weight:700;font-size:13px;}
+  .sec-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin:0;color:var(--forest);}
+  .sec-count{margin-left:auto;font-size:11.5px;color:var(--ink-faint);font-family:'Space Grotesk',sans-serif;}
+
+  .card{
+    display:flex;gap:12px;align-items:stretch;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:11px;padding:13px 13px 13px 15px;margin-bottom:8px;
+    transition:border-color .15s,box-shadow .15s;
+  }
+  .card:hover{border-color:var(--sage);box-shadow:0 2px 10px rgba(95,122,78,.08);}
+  .card.hidden{display:none;}
+  .phrase{flex:1;font-size:14px;color:var(--ink);align-self:center;}
+  .phrase .tag{color:var(--sage-deep);font-weight:600;}
+  .copy-btn{
+    flex:0 0 auto;display:flex;align-items:center;gap:6px;
+    font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:600;
+    color:#fff;background:var(--sage);border:none;border-radius:8px;
+    padding:0 14px;cursor:pointer;transition:background .15s,transform .05s;white-space:nowrap;
+  }
+  .copy-btn:hover{background:var(--sage-deep);}
+  .copy-btn:active{transform:scale(.96);}
+  .copy-btn.copied{background:var(--ok);}
+  .copy-btn svg{width:14px;height:14px;}
+
+  #empty{display:none;text-align:center;color:var(--ink-dim);padding:48px 20px;font-size:15px;}
+
+  .foot{margin-top:46px;color:var(--ink-faint);font-size:12.5px;border-top:1px solid var(--line);padding-top:18px;}
+
+  /* ===== Mobile ===== */
+  @media (max-width:820px){
+    .layout{flex-direction:column;}
+    .sidebar{
+      width:100%;flex:none;position:sticky;top:0;height:auto;
+      border-right:none;border-bottom:1px solid var(--line);padding:16px 16px 12px;z-index:40;
+    }
+    .brand{margin-bottom:14px;}
+    .nav-label{margin:14px 0 8px;padding-top:12px;}
+    nav.cats{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+    nav.cats a{
+      white-space:nowrap;background:var(--surface);border:1px solid var(--line);
+      border-radius:999px;padding:6px 12px;flex:0 0 auto;
+    }
+    nav.cats a .n{display:none;}
+    .ctl-row{display:flex;gap:10px;}
+    .ctl-row .ctl{flex:1;}
+    .main{padding:20px 16px 70px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <p class="eyebrow">Boîte à phrases · MP</p>
+      <h1>Screening freelances<br><span class="accent">Support N1</span></h1>
+    </div>
+
+    <div class="ctl-row">
+      <div class="ctl">
+        <label for="name">Prénom du candidat</label>
+        <input type="text" id="name" placeholder="ex. Tahiana" autocomplete="off">
+      </div>
+      <div class="ctl">
+        <label for="search">Filtrer</label>
+        <div class="search-wrap">
+          <input type="text" id="search" placeholder="préavis, stack, tarif…" autocomplete="off">
+          <button class="clear-search" id="clearSearch" aria-label="Effacer">×</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctl tone-ctl">
+      <label>Registre</label>
+      <div class="tone-switch" id="toneSwitch" role="button" tabindex="0" aria-pressed="false">
+        <span class="tone-opt" data-tone="tu">Tu</span>
+        <span class="tone-opt" data-tone="vous">Vous</span>
+        <span class="tone-knob"></span>
+      </div>
+    </div>
+
+    <p class="nav-label">Catégories</p>
+    <nav class="cats" id="catNav"></nav>
+  </aside>
+
+  <main class="main">
+    <div class="intro">
+      <p>Pioche la formulation qui colle au moment de la discussion, clique pour copier, colle dans ton MP. Le prénom renseigné à gauche remplace <span style="color:var(--sage-deep);font-weight:600">[Prénom]</span> automatiquement à chaque copie.</p>
+    </div>
+    <section class="pinned">
+      <div class="sec-head">
+        <span style="font-size:16px;margin-right:6px;">📌</span>
+        <h2 class="sec-title">Ouverture — formules</h2>
+      </div>
+      <div class="card">
+        <div class="phrase">Bonjour, comment allez-vous ?</div>
+        <button class="copy-btn" onclick="copyPinnedPhrase('Bonjour, comment allez-vous ?', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copier</span></button>
+      </div>
+      <div class="card">
+        <div class="phrase">J'ai quelques questions si vous permettez</div>
+        <button class="copy-btn" onclick="copyPinnedPhrase('J\'ai quelques questions si vous permettez', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copier</span></button>
+      </div>
+      <div class="card">
+        <div class="phrase">Est-ce que je peux vous tutoyer ?</div>
+        <button class="copy-btn" onclick="copyPinnedPhrase('Est-ce que je peux vous tutoyer ?', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copier</span></button>
+      </div>
+    </section>
+    <div id="content"></div>
+    <div id="empty">Aucune phrase ne correspond à « <span id="emptyTerm"></span> ».</div>
+    <div class="foot">Tout tourne en local, rien n'est enregistré.</div>
+  </main>
+</div>
+
+<script>
+const DATA = [
+  {
+    title:"Ouverture du contact",
+    phrases:[
+      "Salut [Prénom], merci pour ton intérêt 🙏 Comme je disais, je recrute pas tout de suite, mais j'aimerais bien voir ton profil pour te recontacter dès qu'une mission tombe. T'as 5 min pour quelques questions ?",
+      "Salut [Prénom] ! Merci d'avoir répondu à l'annonce. Je note les profils dispo pour du support N1, y'a pas d'embauche tout de suite. Ça t'embête si je te pose deux-trois questions ?",
+      "Hello [Prénom], merci pour ton message 👍 Je repère les gens chauds pour les rappeler quand une mission se présente. Quelques questions pour mieux te connaître, ça roule ?",
+      "Bonjour [Prénom], merci de ton retour. Y'a pas de mission là tout de suite, je fais juste le tour des profils dispo. Je peux te poser deux-trois questions ?",
+      "Salut [Prénom] 🙂 Pour bien situer ton profil et te recontacter au bon moment, je te pose quelques questions vite fait — pas besoin de longs pavés, des réponses courtes c'est nickel."
+    ]
+  },
+  {
+    title:"Expliquer la démarche (sourcing)",
+    phrases:[
+      "Juste pour être clair : c'est du sourcing en amont, je recrute pas tout de suite. Là je prends juste contact avec des profils comme toi pour un prochain projet que j'espère signer vite, pour des postes de techniciens IT (support helpdesk et/ou applicatif).",
+      "L'idée c'est de repérer les bonnes personnes maintenant, pour pouvoir te recontacter vite dès qu'une mission arrive.",
+      "Je me fais une liste de profils sérieux. Comme ça, quand ça démarre, je sais direct vers qui aller.",
+      "Pas de pression de ton côté, je fais juste le tour des gens du secteur pour préparer la suite.",
+      "Je m'organise à l'avance : je note les bons profils maintenant, pour pas galérer à chercher quand une mission tombe.",
+      "C'est juste pour anticiper : avoir déjà des gens fiables sous la main le jour où ça bouge."
+    ]
+  },
+  {
+    title:"Statut freelance déclaré",
+    phrases:[
+      "Tu es bien déclaré en freelance, avec tes impôts à jour ?"
+    ]
+  },
+  {
+    title:"Confirmer le domaine (IT / applicatif)",
+    phrases:[
+      "Pour être sûr qu'on parle de la même chose : tu fais du support IT ou du support applicatif ?",
+      "C'est quoi ton domaine exactement : support informatique, support logiciel, ou les deux ?",
+      "Tu interviens plutôt sur le matériel et les systèmes (poste, réseau, messagerie) ou sur des applications métier ?",
+      "C'est quoi le genre de problèmes que tu traites au quotidien ?",
+      "Tu fais du premier niveau (N1), ou tu vas plus loin (N2/N3) ?",
+      "Tu bosses sur quels types de logiciels ? (bureautique, ERP, CRM, outils métier…)"
+    ]
+  },
+  {
+    title:"Dispo — plein / partiel",
+    phrases:[
+      "Tu cherches plutôt du temps plein ou du temps partiel ?",
+      "Tu serais sur quel rythme : temps plein, mi-temps, ou juste quelques heures par semaine ?",
+      "T'es dispo à fond, ou t'as déjà d'autres trucs en parallèle ?",
+      "C'est pour du temps plein que tu cherches, ou plutôt du partiel / à la mission ?",
+      "Tu veux remplir tes journées, ou tu jongles déjà avec d'autres clients à côté ?"
+    ]
+  },
+  {
+    title:"Dispo — à partir de quand",
+    phrases:[
+      "Tu serais dispo à partir de quand ?",
+      "Tu pourrais commencer une mission dans combien de temps ?",
+      "Si une mission tombait, tu serais opé quand ?",
+      "T'es dispo quand là : tout de suite, dans quelques semaines, plus tard ?",
+      "Côté timing, tu te libères quand pour un nouveau truc ?"
+    ]
+  },
+  {
+    title:"Engagement / préavis",
+    phrases:[
+      "T'es en poste quelque part en ce moment ? Si oui, t'as quel préavis ?",
+      "T'as un préavis à faire, ou t'es libre ?",
+      "T'es déjà pris sur un contrat ou une mission ? Faut combien de temps pour te libérer ?",
+      "Niveau engagement : t'es freelance dispo, salarié avec préavis, ou autre ?",
+      "T'as une mission en cours qui se finit bientôt, ou t'es carrément libre là ?"
+    ]
+  },
+  {
+    title:"Expérience — ancienneté",
+    phrases:[
+      "T'as combien d'expérience en support N1 (helpdesk / support logiciel) ?",
+      "Ça fait combien de temps que tu bosses dans le support technique ?",
+      "T'as combien d'années de support / helpdesk au compteur ?",
+      "Tu fais du support N1 depuis quand ?",
+      "Ton parcours en support, c'est plutôt 1 an, 3 ans, 5 ans et plus ?"
+    ]
+  },
+  {
+    title:"Expérience — type & canaux",
+    phrases:[
+      "T'étais plutôt sur des appels, des tickets, du chat, ou un peu de tout ?",
+      "Ton support, c'était surtout au tel, par mail/ticket, ou en prise en main à distance ?",
+      "Tu gérais quoi comme canaux : tel, mail, chat, remote ?",
+      "C'était du support entrant (les gens t'appellent) ou plutôt de la gestion de tickets ?",
+      "Sur ton dernier poste, ta journée type c'était quoi : beaucoup d'appels, de tickets… ?"
+    ]
+  },
+  {
+    title:"Dernier client / employeur",
+    phrases:[
+      "C'était chez qui ta dernière mission (ou quel genre de client) ?",
+      "Ton dernier client / ta dernière boîte, c'était qui ? Et pendant combien de temps ?",
+      "T'as bossé pour quelle boîte en dernier ? Dans quel secteur ?",
+      "Ta mission la plus récente, c'était pour quel client et ça a duré combien ?",
+      "Tu peux me dire deux-trois mots sur ta dernière expérience : le client, ce que tu faisais, la durée ?"
+    ]
+  },
+  {
+    title:"Stack & outils",
+    phrases:[
+      "T'as bossé avec quels outils ? (ticketing genre GLPI / Zendesk / Freshdesk, téléphonie, prise en main à distance…)",
+      "Tu maîtrises quelle stack côté support ? Ticketing, téléphonie, remote, etc.",
+      "Tu connais quels outils de support ? (GLPI, Jira, Zendesk, ServiceNow, AnyDesk, TeamViewer…)",
+      "Niveau outils, t'es à l'aise avec quoi ? Ticketing, téléphonie, Windows/Mac, AD, Microsoft 365 ?",
+      "T'as utilisé quels logiciels de ticketing et de prise en main à distance ?"
+    ]
+  },
+  {
+    title:"Compétences techniques",
+    phrases:[
+      "T'es à l'aise sur quel environnement : Windows, Mac, les deux ?",
+      "T'as déjà touché à de l'admin de base (Active Directory, Microsoft 365, gestion des comptes) ?",
+      "Niveau diagnostic, tu vas jusqu'où avant de passer la main au N2 ?",
+      "T'as de l'expérience en prise en main à distance ?",
+      "Tu te débrouilles sur quel genre d'incidents : matériel, logiciel, réseau, messagerie… ?"
+    ]
+  },
+  {
+    title:"Clients français & français",
+    phrases:[
+      "T'as déjà géré du support pour des utilisateurs en France ? (au tel ou à l'écrit)",
+      "T'as l'habitude des clients français ?",
+      "Tu te sentirais à l'aise pour prendre des appels avec des utilisateurs français ?",
+      "Tu mettrais quoi comme niveau de français à l'oral ? Et ça te dérange pas un petit échange vocal ?",
+      "Le support que tu faisais c'était en français, avec quel genre d'interlocuteurs ?"
+    ]
+  },
+  {
+    title:"Proposer un appel",
+    phrases:[
+      "On se ferait un petit appel de 5 min pour échanger de vive voix ? T'es dispo quand ?",
+      "Ça te dit qu'on s'appelle vite fait pour faire connaissance ?",
+      "Pour aller plus vite, un petit appel ce serait top. Tu préfères quel créneau ?",
+      "T'es ok pour un petit coup de fil ? C'est juste pour échanger de vive voix, rien de stressant 🙂",
+      "Le mieux ce serait un appel rapide. Tu me dis un créneau qui t'arrange et je t'appelle ?"
+    ]
+  },
+  {
+    title:"Statut & facturation",
+    phrases:[
+      "T'es en freelance déclaré, tu peux facturer ?",
+      "Tu peux faire des factures en tant qu'indépendant ?",
+      "Tu bosses sous quel statut pour les missions freelance ?",
+      "Côté paperasse, tu factures comment ? (statut local, auto-entreprise, etc.)",
+      "T'es déjà en règle pour facturer, ou c'est un truc à voir ?"
+    ]
+  },
+  {
+    title:"Tarif / fourchette",
+    phrases:[
+      "Tu te situes dans quelle fourchette de tarif ?",
+      "T'as un tarif horaire ou un TJM ?",
+      "Tu factures à l'heure, à la journée ou au mois ?",
+      "C'est quoi ton tarif, en gros ?",
+      "Tu travailles sur quelle base : heure, jour, mois ?"
+    ]
+  },
+  {
+    title:"Demander un CV",
+    phrases:[
+      "T'aurais un CV ou un petit récap de ton parcours à m'envoyer ?",
+      "Si t'as un CV sous la main, hésite pas à me l'envoyer, ça complètera bien.",
+      "Tu peux me partager un CV ou un profil (LinkedIn, portfolio) ?",
+      "Pour garder une trace propre de ton profil, t'aurais un CV à jour ?"
+    ]
+  },
+  {
+    title:"Clôture / garder le contact",
+    phrases:[
+      "Super, merci pour tout ça 🙏 Je garde ton profil et je te recontacte dès qu'une mission tombe.",
+      "C'est noté, merci ! Je reviens vers toi dès que j'ai du concret de mon côté.",
+      "Nickel, j'ai tout ce qu'il me faut pour l'instant. Je te tiens au courant 👍",
+      "Merci [Prénom] ! Je te recontacte dès qu'une mission colle avec ton profil. Bonne continuation en attendant 🙂",
+      "Top, merci pour ta dispo. Ton profil est noté, je reviens vers toi au bon moment."
+    ]
+  },
+  {
+    title:"Relance (sans réponse)",
+    phrases:[
+      "Hello [Prénom], je reviens vers toi 🙂 Toujours chaud pour qu'on échange sur ton profil ?",
+      "Petit up [Prénom] ! Si t'es toujours intéressé, dis-moi et je note ton profil.",
+      "Salut [Prénom], pas de souci si t'es pris — mais si tu veux que je garde ton profil, fais-moi signe 👍",
+      "Coucou [Prénom], je relance juste au cas où mon message serait passé à la trappe 🙂"
+    ]
+  }
+];
+
+const content=document.getElementById('content');
+const catNav=document.getElementById('catNav');
+const nameInput=document.getElementById('name');
+const searchInput=document.getElementById('search');
+const clearBtn=document.getElementById('clearSearch');
+const emptyEl=document.getElementById('empty');
+const emptyTerm=document.getElementById('emptyTerm');
+
+const COPY_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+const CHECK_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+function slug(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-');}
+function highlightTag(t){return t.replace(/\[Prénom\]/g,'<span class="tag">[Prénom]</span>');}
+
+// ===== Bascule Tu / Vous =====
+let currentTone='tu';
+
+// Construit une regex dont les frontières reconnaissent les lettres accentuées
+// (é, è, î, ê, â, ô, û, ç…) et les apostrophes, pour ne JAMAIS toucher un
+// fragment caché dans un mot (ex. "te" dans "boîte", "tes" dans "êtes").
+function tvRe(pattern){
+  const pat = pattern.replace(/'/g, "['’]");
+  return new RegExp("(?<![\\p{L}\\p{M}'’])(?:"+pat+")(?![\\p{L}\\p{M}'’])","giu");
+}
+
+// Paires [forme « tu », forme « vous »], ordonnées du plus spécifique au plus général.
+const TU_TO_VOUS = [
+  // contractions t'
+  ["t'as","vous avez"],
+  ["t'es","vous êtes"],
+  ["tu es","vous êtes"],
+  ["t'étais","vous étiez"],
+  ["t'embête","vous embête"],
+  ["t'aurais","vous auriez"],
+  ["t'évalues","vous évaluez"],
+  ["t'appellent","vous appellent"],
+  ["t'appelle","vous appelle"],
+  ["t'arrange","vous arrange"],
+  // tournures réflexives "tu te ..."
+  ["tu te sentirais","vous vous sentiriez"],
+  ["tu te débrouilles","vous vous débrouillez"],
+  ["tu te situes","vous vous situez"],
+  ["tu te libères","vous vous libérez"],
+  // verbes "tu ..."
+  ["tu serais sur","vous seriez sur"],
+  ["tu serais","vous seriez"],
+  ["tu pourrais","vous pourriez"],
+  ["tu cherches","vous cherchez"],
+  ["tu peux","vous pouvez"],
+  ["tu préfères","vous préférez"],
+  ["tu veux","vous voulez"],
+  ["tu connais","vous connaissez"],
+  ["tu gérais","vous gériez"],
+  ["tu maîtrises","vous maîtrisez"],
+  ["tu mettrais","vous mettriez"],
+  ["tu dirais","vous diriez"],
+  ["tu raisonnes","vous raisonnez"],
+  ["tu bosses","vous bossez"],
+  ["tu factures","vous facturez"],
+  ["tu travailles","vous travaillez"],
+  ["tu interviens","vous intervenez"],
+  ["tu traites","vous traitez"],
+  ["tu faisais","vous faisiez"],
+  ["tu fais","vous faites"],
+  ["tu jongles","vous jonglez"],
+  ["tu totalises","vous totalisez"],
+  ["tu donnerais","vous donneriez"],
+  ["tu vas","vous allez"],
+  ["tu me dis","vous me dites"],
+  // inversions et amorces
+  ["vas-tu","allez-vous"],
+  ["est-ce que tu","est-ce que vous"],
+  ["si tu","si vous"],
+  // pronoms / possessifs génériques (en dernier)
+  ["tu","vous"],
+  ["te","vous"],
+  ["toi","vous"],
+  ["ton","votre"],
+  ["ta","votre"],
+  ["tes","vos"],
+];
+
+const TU_TO_VOUS_RE = TU_TO_VOUS.map(([from,to])=>[tvRe(from),to]);
+
+function applyTone(text){
+  if(currentTone==='tu') return text;
+  let out=text;
+  TU_TO_VOUS_RE.forEach(([re,rep])=>{out=out.replace(re,rep);});
+  // Recapitalise le début de chaque phrase (le « Tu » initial devient « vous » en minuscule)
+  out=out.replace(/([.?!…]\s+)(\p{L})/gu,(m,p1,p2)=>p1+p2.toUpperCase());
+  out=out.charAt(0).toUpperCase()+out.slice(1);
+  return out;
+}
+
+function copyPinnedPhrase(text,btn){
+  const done=()=>{
+    btn.classList.add('copied');
+    btn.innerHTML=CHECK_ICON+'<span>Copié</span>';
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML=COPY_ICON+'<span>Copier</span>';},1300);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallback(text,done));
+  }else{fallback(text,done);}
+}
+
+const navLinks=[];
+DATA.forEach((sec,i)=>{
+  const id=slug(sec.title);
+
+  const a=document.createElement('a');
+  a.href='#'+id;
+  a.dataset.target=id;
+  a.innerHTML=`<span class="n">${String(i+1).padStart(2,'0')}</span><span>${sec.title}</span>`;
+  catNav.appendChild(a);
+  navLinks.push(a);
+
+  const s=document.createElement('section');
+  s.id=id;
+  s.dataset.sec=sec.title.toLowerCase();
+  s.innerHTML=`<div class="sec-head">
+      <span class="sec-num">${String(i+1).padStart(2,'0')}</span>
+      <h2 class="sec-title">${sec.title}</h2>
+      <span class="sec-count">${sec.phrases.length} variantes</span>
+    </div>`;
+
+  sec.phrases.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.dataset.original=p;
+    card.dataset.raw=p.toLowerCase();
+    const ph=document.createElement('div');
+    ph.className='phrase';
+    ph.innerHTML=highlightTag(applyTone(p));
+    const btn=document.createElement('button');
+    btn.className='copy-btn';
+    btn.innerHTML=COPY_ICON+'<span>Copier</span>';
+    btn.addEventListener('click',()=>copyPhrase(card.dataset.original,btn));
+    card.appendChild(ph);card.appendChild(btn);
+    s.appendChild(card);
+  });
+  content.appendChild(s);
+});
+
+function copyPhrase(text,btn){
+  const name=nameInput.value.trim();
+  const toned=applyTone(text);
+  const final=name?toned.replace(/\[Prénom\]/g,name):toned;
+  const done=()=>{
+    btn.classList.add('copied');
+    btn.innerHTML=CHECK_ICON+'<span>Copié</span>';
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML=COPY_ICON+'<span>Copier</span>';},1300);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(final).then(done).catch(()=>fallback(final,done));
+  }else{fallback(final,done);}
+}
+function fallback(t,cb){
+  const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);cb();
+}
+
+function runFilter(){
+  const q=searchInput.value.trim().toLowerCase();
+  clearBtn.style.display=q?'block':'none';
+  let anyVisible=false;
+  document.querySelectorAll('section:not(.pinned)').forEach(sec=>{
+    let secHas=false;
+    sec.querySelectorAll('.card').forEach(card=>{
+      const match=!q||card.dataset.raw.includes(q)||sec.dataset.sec.includes(q);
+      card.classList.toggle('hidden',!match);
+      if(match)secHas=true;
+    });
+    sec.style.display=secHas?'':'none';
+    const link=catNav.querySelector(`a[data-target="${sec.id}"]`);
+    if(link)link.style.display=secHas?'':'none';
+    if(secHas)anyVisible=true;
+  });
+  emptyEl.style.display=anyVisible?'none':'block';
+  emptyTerm.textContent=q;
+}
+searchInput.addEventListener('input',runFilter);
+clearBtn.addEventListener('click',()=>{searchInput.value='';runFilter();searchInput.focus();});
+
+// ===== Toggle Tu / Vous =====
+const toneSwitch=document.getElementById('toneSwitch');
+
+function rerenderTone(){
+  document.querySelectorAll('.main .card').forEach(card=>{
+    const original=card.dataset.original;
+    if(!original) return; // cartes épinglées sans dataset.original gérées séparément
+    const ph=card.querySelector('.phrase');
+    ph.innerHTML=highlightTag(applyTone(original));
+  });
+}
+
+function setTone(tone){
+  currentTone=tone;
+  toneSwitch.setAttribute('aria-pressed', tone==='vous' ? 'true' : 'false');
+  rerenderTone();
+}
+
+toneSwitch.addEventListener('click',()=>setTone(currentTone==='tu'?'vous':'tu'));
+toneSwitch.addEventListener('keydown',(e)=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();toneSwitch.click();}
+});
+
+// Scrollspy : surligne la catégorie active
+const sections=[...document.querySelectorAll('section:not(.pinned)')];
+const spy=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.toggle('active',l.dataset.target===e.target.id));
+    }
+  });
+},{rootMargin:'-10% 0px -80% 0px',threshold:0});
+sections.forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
