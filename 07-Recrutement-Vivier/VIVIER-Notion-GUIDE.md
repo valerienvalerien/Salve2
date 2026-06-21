@@ -35,6 +35,7 @@
 | Propriété | Type Notion | Options / notes |
 |---|---|---|
 | Lien Facebook | **URL** | cliquable |
+| **Lien CV** | **URL** | **lien Google Drive** vers le CV (le fichier reste dans Drive, pas dans Notion) |
 | Email / WhatsApp | Email / Phone | |
 | Date repérage · Date relance · Info candidat faite | **Date** | |
 | Repéré par | Select | `Valérien`, `Manager médical`, `Manager IT` |

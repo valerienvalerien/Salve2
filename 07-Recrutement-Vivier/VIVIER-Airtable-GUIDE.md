@@ -41,6 +41,7 @@ helpdesk). Plus simple, et recherche **transverse** aux 3 niches.
 |---|---|---|
 | Code interne | Single line text | Format `VIV-0001`, `VIV-0002`… (incrément manuel) |
 | Lien Facebook | **URL** | cliquable |
+| **Lien CV** | **URL** | **lien Google Drive** vers le CV (le fichier reste dans Drive, **pas** stocké dans Airtable) — cf. §9 |
 | Email / WhatsApp | Email / Phone | |
 | Date repérage · Date relance · Info candidat faite | **Date** | |
 | Repéré par | Single select | `Valérien`, `Manager médical`, `Manager IT` |
@@ -100,6 +101,9 @@ Recherche transverse : la **barre de recherche** (loupe) + les filtres combinés
 ## 9. Hygiène données (pratique, pas juridique)
 
 - **Minimisation** : stocke le **lien** Facebook, pas la photo ni des captures du mur.
+- **CV** : range le fichier dans un dossier **Google Drive** (`CV-Vivier`) et ne mets que
+  le **lien** dans le champ `Lien CV`. On évite de dupliquer le fichier dans Airtable (ça
+  économise le 1 Go d'attachments gratuit, et le CV reste maître au même endroit).
 - **Information au 1er contact** : dis à la personne que tu as noté son profil et que tu
   le conserves pour un éventuel poste (et comment se faire retirer).
 - **Pas de suppression programmée** : le vivier est un actif. On **archive** (statut
