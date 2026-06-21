@@ -21,21 +21,21 @@ Info candidat faite `fldpiisEJmQeoPsdE` · Lien CV `fldAyWfftaeezDel2` · Histor
 
 ---
 
-## ⏳ VIV-0005 — Fernandez Ornella — **C / ⛔ Écarté**
+## ✅ VIV-0005 — Fernandez Ornella — **C / ⛔ Écarté** *(écrite Airtable 2026-06-21 — recVh375uBnfJoBHj)*
 - Localisation : **Cameroun** · Repéré par : Valérien · Date repérage : 2026-06-21
 - Niche visée : (IT) non retenue · Prétention : 10-20 €/h
 - Points de vigilance : Hors zone (Cameroun, hors modèle Tana) ; tarif 10-20 €/h (2-3× marché Mada) ; « Exactement » à une question à choix (flou périmètre IT) ; en poste temps plein.
 - Prochaine action : Aucune — archivée (motif structurel : zone + tarif).
 - Historique : Évaluée via Messenger. Pas de CV. Écartée sur critère structurel.
 
-## ⏳ VIV-0006 — Harison (Messenger « Steve ») — **C / ⛔ Écarté**
+## ✅ VIV-0006 — Harison (Messenger « Steve ») — **C / ⛔ Écarté** *(écrite Airtable 2026-06-21 — reclDKmEEmyGYwTUW)*
 - Localisation : Madagascar (probable, via Portaljob) · Repéré par : Valérien · Date repérage : 2026-06-21
 - Niche visée : Support technique N1 — non retenue · Prétention : **900 €/mois min** (~4,5 M Ar)
 - Points de vigilance : Tarif ~1,4× la bande Salverys (freelances ET managers à 3 250 000 Ar / 650 €) ; CV admis « pas à jour » → expérience justificative invérifiable ; incohérence technicien N1 vs « équipe de 9 » ; offre concurrente brandie (Portaljob, client canadien, 1000 USD) = prime horaires de nuit, pas compétence ; en mission.
 - Prochaine action : Aucune — archivé (budget). Rouvrir si profil rare + prix /2,5.
 - Lien CV : `OneDrive /CV/CV HARISON-1.pdf` (à lire au retour connecteur)
 
-## ⏳ VIV-0007 — Miranto Itokiana Razafindrabe (CV « Ialy ») — **A / Relation Clients / Repéré**
+## ✅ VIV-0007 — Miranto Itokiana Razafindrabe (CV « Ialy ») — **A / Relation Clients / Repéré** *(écrite Airtable 2026-06-21 — recEo02vYKftlIjcB)*
 - Repéré par : Valérien · Date repérage : 2026-06-21 · Date relance : 2026-09-01
 - Niche : **Relation Clients** (branche future) · Niveau français : Bon
 - Note : **A** (provisoire, oral non réalisé)
@@ -44,7 +44,7 @@ Info candidat faite `fldpiisEJmQeoPsdE` · Lien CV `fldAyWfftaeezDel2` · Histor
 - Prochaine action : À recontacter si/quand la branche Relation Clients ouvre.
 - Lien CV : `OneDrive /CV/CV Ialy-1.pdf` (réconcilier prénom « Ialy » vs « Miranto » au retour connecteur)
 
-## ⏳ VIV-0008 — Naboson Finaritra Rasoloarijaona — **B / Helpdesk IT N1 (potentiel Manager) / En discussion**
+## ✅ VIV-0008 — Naboson Finaritra Rasoloarijaona — **B / Helpdesk IT N1 (potentiel Manager) / En discussion** *(écrite Airtable 2026-06-21 — recIFrw9PggsUkcoj)*
 - Repéré par : Valérien · Date repérage : 2026-06-21
 - Niche : **Helpdesk IT N1** (à confirmer — parcours télécom, pas IT pur) · potentiel **Manager**
 - Expérience : 10 ans télécom (SFR 8 dont **7 managérial**, Orange 2). Hands-on technique réel ≈ 3 ans. · Niveau français : écrit télégraphique (oral à tester)
