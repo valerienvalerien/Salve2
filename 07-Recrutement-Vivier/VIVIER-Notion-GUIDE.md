@@ -38,7 +38,7 @@
 | Email / WhatsApp | Email / Phone | |
 | Date repérage · Date relance · Info candidat faite | **Date** | |
 | Repéré par | Select | `Valérien`, `Manager médical`, `Manager IT` |
-| **Niche** | **Select** | `Télésecrétariat médical`, `Support N1 SaaS`, `Helpdesk IT N1`, `Manager` |
+| **Niche** | **Select** | `Télésecrétariat médical`, `Support N1 SaaS`, `Helpdesk IT N1`, `Manager`, `Relation Clients` (branche future) |
 | Niveau français | Select | `Natif (oral+écrit)`, `Natif (oral) / Bon (écrit)`, `Bon`, `À tester` |
 | Expérience (années) · Prétention (Ar/mois) | **Number** | |
 | **Compétences** | **Multi-select** | Notion crée 1 tag par valeur séparée par virgule |
