@@ -316,7 +316,10 @@ function compute(){
   if(cur.marge<0){ v=`perte de ${fmtE2(-cur.marge)}/h — on facture moins que le coût.`; pill='<span class="pill bad">PERTE</span>'; }
   else if(cur.pct<seuil){ v=`marge positive mais sous le plancher (${fmtPct(seuil*100)}).`; pill='<span class="pill warn">SOUS PLANCHER</span>'; }
   else { v=`marge saine de ${fmtE2(cur.marge)}/h (${fmtPct(cur.pct*100)}).`; pill='<span class="pill ok">RENTABLE</span>'; }
-  $('verdict').innerHTML=' '+pill+' '+v;
+  const equipeTxt = cur.marge>=0
+    ? ` → soit <b>${fmtE0(cur.mois)}/mois/ETP × ${nbEtp} ETP = ${fmtE0(cur.equipe)}/mois</b> pour l'équipe.`
+    : ` → soit <b>${fmtE0(cur.equipe)}/mois</b> de perte sur ${nbEtp} ETP.`;
+  $('verdict').innerHTML=' '+pill+' '+v+equipeTxt;
 
   // balayage 2,5 → 25 €/h
   const tarifs=[]; for(let t=2.5;t<=25.0001;t+=0.5) tarifs.push(Math.round(t*10)/10);
