@@ -44,15 +44,16 @@ Info candidat faite `fldpiisEJmQeoPsdE` · Lien CV `fldAyWfftaeezDel2` · Histor
 - Prochaine action : À recontacter si/quand la branche Relation Clients ouvre.
 - Lien CV : `OneDrive /CV/CV Ialy-1.pdf` (réconcilier prénom « Ialy » vs « Miranto » au retour connecteur)
 
-## ✅ VIV-0008 — Naboson Finaritra Rasoloarijaona — **B / Helpdesk IT N1 (potentiel Manager) / En discussion** *(écrite Airtable 2026-06-21 — recIFrw9PggsUkcoj)*
+## ✅ VIV-0008 — Soafinaritra Rasoloarijaona — **B / Télésecrétariat médical (potentiel Manager) / En discussion** *(écrite + révisée Airtable 2026-06-21 — recIFrw9PggsUkcoj)*
+- Prénom réel **Soafinaritra** (et non « Naboson ») · Email : fy.rasolo@gmail.com · WhatsApp : +261 32 01 409 75 · Localisation : **Antananarivo** (Ambohijanahary) ✓ · Mariée, 3 enfants, 33 ans
 - Repéré par : Valérien · Date repérage : 2026-06-21
-- Niche : **Helpdesk IT N1** (à confirmer — parcours télécom, pas IT pur) · potentiel **Manager**
-- Expérience : 10 ans télécom (SFR 8 dont **7 managérial**, Orange 2). Hands-on technique réel ≈ 3 ans. · Niveau français : écrit télégraphique (oral à tester)
-- Note : **B** (provisoire)
-- Points forts : 7 ans management support télécom (clients FR : SFR/Orange) ; vrai vécu service client / ticketing / suivi intervention ; candidat **Manager IT** crédible.
-- Points de vigilance : « 8 ans N1/N2 » **gonflé** (7 ans = management → ~3 ans hands-on) ; stack = ADSL/fibre (**télécom, pas helpdesk IT** : ni Windows/ERP/CRM ni outil ITSM cité) ; français écrit à surveiller.
-- Prochaine action : Mini-test technique + clarifier s'il vise agent ou manager.
-- Lien CV : `OneDrive /CV/CV Rasoloarijaona.jpg` (JPG → OCR au retour connecteur)
+- Niche : **Télésecrétariat médical** (reposition depuis Helpdesk IT N1 après OCR du CV) · potentiel **Manager médical**
+- Expérience : 8+ ans service client/management télécom — Intelcia/SFR Nov 2017-Avr 2024 (~6,5 ans, Responsable équipe Senior II), Orange Business MGA/VIP Mai 2024-Avr 2025 (Responsable opérationnel), Intelcia qualité FTTx/ADSL 2016-2017. **Récent : secrétaire médicale freelance Mai-Déc 2025 + secrétaire virtuelle DELEGEO Jan-Mai 2026.** · Niveau français : **Bon** (CV bien rédigé)
+- Note : **B** (provisoire, potentiel A après oral)
+- Points forts : expérience récente directe **télésecrétariat médical** (agenda, RDV, urgences) + secrétaire virtuelle (mails, relance, BDD) → niche #1 ; 8+ ans management service client télécom (clients FR : SFR/Orange) → **Manager médical crédible** ; basée à Tana.
+- Points de vigilance : enchaînement récent court (DELEGEO 4 mois, médicale 7 mois, Orange ~1 an → raisons de départ ?) ; vécu « technique » = management d'équipe technicien télécom, **pas helpdesk IT pur** (niche IT N1 initiale erronée) ; tarif non communiqué ; oral non réalisé.
+- Prochaine action : oral télésecrétariat médical (agent vs Manager) + récupérer tarif + comprendre les départs récents.
+- Lien CV : `OneDrive /CV/CV Rasoloarijaona.jpg` (OCRé 2026-06-21 via screenshot)
 
 ---
 
