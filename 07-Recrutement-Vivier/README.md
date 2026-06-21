@@ -4,7 +4,7 @@ Constitution d'un **vivier préqualifié** de profils repérés **sur Facebook**
 **sortant**), pour avoir des candidats **prêts à affecter dès qu'un client signe**.
 Distinct du flux **entrant** (`espace-candidat.html`, où le candidat postule de lui-même).
 
-Cible : les profils des 3 niches + les 2 managers — **1,8-2 M Ar/mois**, objectif
+Cible : les profils des 3 niches + les 2 managers — **3 250 000 Ar/mois (650 €)**, objectif
 **zéro turnover** (cf. `CLAUDE.md`).
 
 ## Par où commencer (30 min)

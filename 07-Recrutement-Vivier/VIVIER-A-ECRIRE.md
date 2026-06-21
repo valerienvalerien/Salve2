@@ -31,7 +31,7 @@ Info candidat faite `fldpiisEJmQeoPsdE` · Lien CV `fldAyWfftaeezDel2` · Histor
 ## ⏳ VIV-0006 — Harison (Messenger « Steve ») — **C / ⛔ Écarté**
 - Localisation : Madagascar (probable, via Portaljob) · Repéré par : Valérien · Date repérage : 2026-06-21
 - Niche visée : Support technique N1 — non retenue · Prétention : **900 €/mois min** (~4,5 M Ar)
-- Points de vigilance : Tarif ~2,5× la bande Salverys (freelances ET managers à 1,8-2 M Ar) ; CV admis « pas à jour » → expérience justificative invérifiable ; incohérence technicien N1 vs « équipe de 9 » ; offre concurrente brandie (Portaljob, client canadien, 1000 USD) = prime horaires de nuit, pas compétence ; en mission.
+- Points de vigilance : Tarif ~1,4× la bande Salverys (freelances ET managers à 3 250 000 Ar / 650 €) ; CV admis « pas à jour » → expérience justificative invérifiable ; incohérence technicien N1 vs « équipe de 9 » ; offre concurrente brandie (Portaljob, client canadien, 1000 USD) = prime horaires de nuit, pas compétence ; en mission.
 - Prochaine action : Aucune — archivé (budget). Rouvrir si profil rare + prix /2,5.
 - Lien CV : `OneDrive /CV/CV HARISON-1.pdf` (à lire au retour connecteur)
 
