@@ -34,6 +34,7 @@ Cible : les profils des 3 niches + les 2 managers — **1,8-2 M Ar/mois**, objec
 | `VIVIER-Notion-GUIDE.md` | Montage Notion (mono-user, blocs illimités) |
 | `MINI-TEST-Qualification.md` | Grille de test /20 → Note `A/B/C` |
 | `MINI-TEST-Scripts-Reponses.md` | Scripts de mise en situation + corrigé **A vs C** par niche |
+| `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
 
 ## Le flux en 1 coup d'œil
 
@@ -44,6 +45,10 @@ Sourcing FB :
         │
         ▼
   Screening en MP (Script-MP-Screening-Freelances-N1.html)
+        │
+        ▼
+  Réclamer le CV (→ Drive, lien dans « Lien CV ») + évaluation écrite
+  (ROUTINE-Evaluation-Candidat.md : surévaluation / mensonges → note provisoire)
         │
         ▼
   Mini-test /20  ──►  Note A / B / C   (reporté dans « Résultat test »)
