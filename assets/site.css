@@ -72,6 +72,16 @@
   --ok: #1E9E6A;
 }
 
+/* ----- Thème bleu : réservé à la page « Qui sommes-nous » (couleurs seulement) ----- */
+.theme-bleu {
+  --accent: #0D4D9B;
+  --accent-soft: #9FC0E8;
+  --accent-tint: #E6EEF8;
+  --cta: #0D4D9B;
+  --halo: rgba(13,77,155,0.30);
+  /* --ok inchangé : on garde un vert succès */
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -104,7 +114,7 @@ img { display: block; max-width: 100%; }
   transition: border-color .25s, box-shadow .25s, background .25s;
 }
 .nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
-.nav-inner { display: flex; align-items: center; gap: 24px; height: 70px; }
+.nav-inner { display: flex; align-items: center; gap: 18px; height: 70px; }
 .nav .container { max-width: 1320px; }
 .brand { font-family: 'Georgia', serif; font-size: 23px; font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
 .theme-it .brand { font-family: 'Inter', sans-serif; font-weight: 800; color: var(--primary); }
@@ -113,8 +123,9 @@ img { display: block; max-width: 100%; }
 .footer .brand::after { content: "."; color: var(--accent); margin-left: 1px; }
 .brand-logo { display: block; height: 40px; width: auto; aspect-ratio: 765 / 195; }
 .nav .brand { display: inline-flex; align-items: center; }
-.nav-links { display: flex; gap: 20px; margin-left: 14px; flex: 1; }
-.nav-links a { font-size: 14.5px; font-weight: 600; color: var(--text-soft); padding: 8px 0; position: relative; white-space: nowrap; }
+.nav-links { display: flex; gap: 16px; margin-left: 14px; flex: 1; }
+.nav-links a { font-size: 13.5px; font-weight: 600; color: var(--text-soft); padding: 8px 0; position: relative; white-space: nowrap; }
+.nav-links a + a::before { content: ""; position: absolute; left: -9px; top: 50%; transform: translateY(-50%); width: 1px; height: 15px; background: var(--line); }
 .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:2px; height:2px; background: var(--accent); transition: right .25s var(--ease); }
 .nav-links a[href="simulateur-salverys.html"]::after { background: #6F8770; }
 .nav-links a[href="simulateur-informatique.html"]::after { background: #FCE27C; }
@@ -131,10 +142,11 @@ img { display: block; max-width: 100%; }
 .nav-rejoin-standalone:hover { color: var(--primary); }
 .nav-rejoin-standalone:hover::after { right: 0; }
 .nav-burger { display: none; background: none; border: 0; font-size: 26px; color: var(--primary); cursor: pointer; }
-@media (max-width: 780px) {
+@media (max-width: 1180px) {
   .nav-links { position: fixed; inset: 70px 0 auto 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 24px 20px; transform: translateY(-130%); transition: transform .3s var(--ease); }
   .nav-links.open { transform: translateY(0); }
   .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+  .nav-links a + a::before { content: none; }
   .nav-burger { display: block; }
   .nav-links { margin-left: 0; }
   .nav-inner > .nav-cta { display: none; }
@@ -151,6 +163,8 @@ img { display: block; max-width: 100%; }
 .btn:hover .arrow { transform: translateX(4px); }
 .btn-primary { background: linear-gradient(120deg, #6F8770 0%, #6F8770 42%, #92AE93 50%, #6F8770 58%, #6F8770 100%); background-size: 260% 100%; background-position: 100% 0; color: #fff; box-shadow: 0 6px 20px -8px rgba(111,135,112,.55), var(--shadow-md); transition: transform .18s var(--ease), box-shadow .25s, background-position .7s var(--ease); }
 .btn-primary:hover { transform: translateY(-2px); background-position: 0 0; box-shadow: 0 14px 30px -8px rgba(111,135,112,.7), var(--shadow-lg); }
+.theme-bleu .btn-primary { background: linear-gradient(120deg, #0D4D9B 0%, #0D4D9B 42%, #2E6FC2 50%, #0D4D9B 58%, #0D4D9B 100%); background-size: 260% 100%; background-position: 100% 0; box-shadow: 0 6px 20px -8px rgba(13,77,155,.55), var(--shadow-md); }
+.theme-bleu .btn-primary:hover { box-shadow: 0 14px 30px -8px rgba(13,77,155,.7), var(--shadow-lg); }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
 .btn-ghost:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
 .btn-outline { background: transparent; color: var(--primary); border: 1.6px solid var(--primary); }
