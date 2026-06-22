@@ -184,6 +184,9 @@
           <div class="hint">Création société (VJUS / formalités)</div></div>
 
         <h4>Équipe — coûts</h4>
+        <div class="ctl"><label>Plafond ETP par métier (Sup / IT) <b id="vCapEtp"></b></label>
+          <input type="range" id="capEtp" min="4" max="20" step="1" value="8">
+          <div class="hint">Taille max modélisée d'une équipe technique par métier. Au-delà : restructurer l'encadrement &amp; renégocier les paliers tarifaires.</div></div>
         <div class="ctl"><label>Coût freelance <b id="vCostFL"></b></label>
           <input type="range" id="costFL" min="300" max="1500" step="10" value="450">
           <div class="hint"><span class="ar-equiv" id="vCostFLAr"></span> · €/mois (~1,8-2 M Ar, tous métiers)</div></div>
@@ -228,8 +231,8 @@
         <th title="Mois de simulation (M1 à M24)">M</th>
         <th title="Cabinets médicaux actifs ce mois (signés moins churn éventuel)">Cab</th>
         <th title="Freelances médical = ceil(cabinets / cabinets-par-freelance), avec plancher Erlang minimum 2">Free</th>
-        <th title="Sup = nombre d'ETP (équivalents temps plein) Support N1 SaaS facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP Support / mois » et gagne un palier à chaque trimestre. Plafonné à 8 ETP : taille maximale d'une équipe technique modélisée à ce stade (société d'une dizaine de personnes ; au-delà, il faudrait restructurer encadrement et tarifs).">Sup</th>
-        <th title="IT = nombre d'ETP (équivalents temps plein) Helpdesk IT N1 facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP IT / mois » et gagne un palier à chaque trimestre. Plafonné à 8 ETP : taille maximale d'une équipe technique modélisée à ce stade (société d'une dizaine de personnes ; au-delà, il faudrait restructurer encadrement et tarifs).">IT</th>
+        <th title="Sup = nombre d'ETP (équivalents temps plein) Support N1 SaaS facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP Support / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">Sup</th>
+        <th title="IT = nombre d'ETP (équivalents temps plein) Helpdesk IT N1 facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP IT / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">IT</th>
         <th title="Masse salariale : freelances médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
         <th title="Chiffre d'affaires Télésecrétariat médical = cabinets × forfait (remises fondateurs incluses)">CA méd</th>
         <th title="Chiffre d'affaires Support N1 SaaS = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA Sup</th>
@@ -297,7 +300,7 @@ const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€'
 const PRICE_MB=1350, PRICE_DIRECT=2150;
 
 // capacité d'un métier IT/Support : croissance trimestrielle dès M4, plafond 8
-function etpCapacity(m,q){ return m>=4 ? Math.min(8, q*Math.floor((m-4)/3+1)) : 0; }
+function etpCapacity(m,q,cap){ return m>=4 ? Math.min(cap, q*Math.floor((m-4)/3+1)) : 0; }
 
 // CA d'un métier IT/Support en 2 flux (dédié + mutualisé)
 function revFlux(etp,mix,pctMut,ratioMut,forfaitMut){
@@ -317,6 +320,7 @@ function simulate(){
         supPctMut=+$('supPctMut').value/100, supRatioMut=+$('supRatioMut').value, supForfaitMut=+$('supForfaitMut').value,
         itQ=+$('itQ').value, itMix=+$('itMix').value/100,
         itPctMut=+$('itPctMut').value/100, itRatioMut=+$('itRatioMut').value, itForfaitMut=+$('itForfaitMut').value,
+        capEtp=+$('capEtp').value,
         costFL=+$('costFL').value, voip=+$('voip').value, costMgr=+$('costMgr').value,
         emelia=+$('emelia').value, ovh=+$('ovh').value, m365=+$('m365').value,
         founders=$('founders').checked, churn=$('churn').checked;
@@ -325,6 +329,7 @@ function simulate(){
   $('vRateEx').textContent=`1 000 € = ${(1000*rate).toLocaleString('fr-FR')} Ar`;
   $('vCap').textContent=fmtK(cap);
   $('vSetup').textContent=fmtE(setupInit);
+  $('vCapEtp').textContent=capEtp+' ETP';
   $('vForfait').textContent=fmtE(forfait);
   $('vRatio').textContent=ratio;
   $('vCab0').textContent=cab0;
@@ -363,8 +368,8 @@ function simulate(){
     const freelancesMed = cabinets>0 ? Math.max(2, Math.ceil(cabinets/ratio)) : 0; // plancher Erlang min 2
 
     // ② Support N1 SaaS · ③ Helpdesk IT — capacités + CA en 2 flux
-    const supEtp = etpCapacity(m,supQ);
-    const itEtp  = etpCapacity(m,itQ);
+    const supEtp = etpCapacity(m,supQ,capEtp);
+    const itEtp  = etpCapacity(m,itQ,capEtp);
     const revSup = revFlux(supEtp,supMix,supPctMut,supRatioMut,supForfaitMut);
     const revIt  = revFlux(itEtp ,itMix ,itPctMut ,itRatioMut ,itForfaitMut );
 
