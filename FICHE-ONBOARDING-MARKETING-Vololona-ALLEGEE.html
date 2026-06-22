@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — Aperçu marketing (version allégée) · Vololona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Georgia:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --paper:#F8F5F0; --bg:#FFFFFF; --bg-soft:#F6F2EA;
+  --ink:#20303F; --text:#2A2620; --text-soft:#5C5448;
+  --line:#E7DFD1; --line-soft:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B;
+  --accent:#6F8770; --accent-soft:#C5D2C5; --accent-tint:#EAF0EA;
+  --gold:#B89968; --danger:#B6604D; --danger-tint:#F6E7E2;
+  --shadow-sm:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+  --radius:16px; --radius-pill:100px; --maxw:920px;
+}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.cover{background:var(--primary-deep);color:#fff;padding:64px 28px 52px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(111,135,112,.28),transparent 68%);top:-220px;left:50%;transform:translateX(-50%)}
+.cover-logo{height:46px;width:auto;margin:0 auto 24px}
+.cover .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft);margin-bottom:12px;position:relative;font-weight:600}
+.cover h1{font-family:'Georgia',serif;font-size:clamp(28px,5vw,42px);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:12px;position:relative}
+.cover p{font-size:15px;color:rgba(255,255,255,.72);position:relative;max-width:560px;margin:0 auto}
+.cover-meta{margin-top:30px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.85);position:relative}
+.cover-meta b{color:rgba(255,255,255,.5);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:600}
+.banner{background:#FBF4E6;border-bottom:1px solid var(--gold);color:#6b552c;text-align:center;padding:12px 20px;font-size:13.5px;font-weight:600}
+section{padding:30px 0;border-top:1px solid var(--line-soft)}
+section:first-of-type{border-top:none}
+h2{font-family:'Georgia',serif;font-size:24px;font-weight:600;color:var(--ink);margin:0 0 14px}
+h3{font-size:18px;font-weight:700;color:var(--ink);margin:22px 0 6px}
+p{margin:0 0 12px;color:var(--text-soft)}
+p strong,li strong{color:var(--text)}
+ul{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px;color:var(--text-soft)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:16px 0}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.card .ico{font-size:20px;margin-bottom:6px}
+.card b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.card span{font-size:13.5px;color:var(--text-soft)}
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.tbl th{background:var(--bg-soft);text-align:left;padding:11px 14px;font-weight:700;color:var(--ink);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--line)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--line-soft);color:var(--text-soft)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--text)}
+.note{border-left:4px solid var(--accent);background:var(--accent-tint);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--text)}
+.note.gold{border-color:var(--gold);background:#FBF4E6}
+.note.warn{border-color:var(--danger);background:var(--danger-tint)}
+.note b{color:var(--ink)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
+.rule{background:var(--primary-deep);color:#fff;border-radius:var(--radius);padding:16px 18px}
+.rule b{display:block;color:#8FA890;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.rule span{font-size:13.5px;color:rgba(255,255,255,.82)}
+footer{background:var(--primary-deep);color:rgba(255,255,255,.6);text-align:center;padding:30px 28px;margin-top:40px;font-size:13px}
+footer b{color:#fff}
+@media print{.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}.rule,.cover,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.tbl,.note{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <img class="cover-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" onerror="this.style.display='none'" />
+  <div class="kicker">Aperçu marketing · Version allégée</div>
+  <h1>Salverys, en quelques pages</h1>
+  <p>Une première vue de notre activité et de notre environnement marketing — sans les éléments confidentiels.</p>
+  <div class="cover-meta">
+    <div><b>Pour</b>Vololona — Consultante marketing</div>
+    <div><b>De</b>Direction Salverys</div>
+    <div><b>Date</b>22 juin 2026</div>
+  </div>
+</header>
+
+<div class="banner">📄 Version allégée — à partager <b>avant la signature de l'accord de confidentialité</b>. Les grilles tarifaires internes, le prévisionnel et les listes de cibles sont communiqués <b>après signature</b>.</div>
+
+<div class="wrap">
+
+<section>
+  <h2>Qui nous sommes</h2>
+  <p><strong>Salverys</strong> est un BPO (centre de services externalisé) basé à
+  <strong>Antananarivo (Madagascar)</strong> qui adresse des <strong>clients français</strong>.</p>
+  <div class="cards">
+    <div class="card"><div class="ico">🇫🇷</div><b>Français langue maternelle</b><span>Nos agents parlent un français natif.</span></div>
+    <div class="card"><div class="ico">🕐</div><b>Fuseau compatible</b><span>Mêmes horaires que la France, en temps réel.</span></div>
+    <div class="card"><div class="ico">💶</div><b>~−40 % de coût</b><span>Vs un prestataire ou un poste interne en France.</span></div>
+    <div class="card"><div class="ico">📋</div><b>Process documentés</b><span>Script, double écoute, reporting, pilote mesuré.</span></div>
+  </div>
+  <div class="note"><b>Côté marketing, nous sommes 2 aujourd'hui :</b> la direction + toi (Vololona).</div>
+</section>
+
+<section>
+  <h2>Nos niches &amp; notre approche</h2>
+  <table class="tbl">
+    <tr><th>Priorité</th><th>Niche</th></tr>
+    <tr><td><b>n°1</b></td><td><b>Support N1 SaaS &amp; Helpdesk IT N1</b> — éditeurs SaaS français, ESN / MSP (priorité).</td></tr>
+    <tr><td><b>n°2</b></td><td><b>Télésecrétariat médical</b> — cabinets, centres &amp; chaînes médicales.</td></tr>
+    <tr><td><b>plus tard</b></td><td><b>Relation client de toutes sortes</b> — dans un futur non déterminé.</td></tr>
+  </table>
+  <p><strong>Approche « marque blanche d'abord » :</strong> on travaille souvent comme
+  sous-traitant d'un acteur déjà établi, qui revend notre capacité <strong>sous son propre
+  nom</strong>. Nos équipes répondent au nom du client — « Salverys » n'apparaît pas au bout
+  de la ligne. C'est un avantage clé.</p>
+</section>
+
+<section>
+  <h2>La stack outils (vue d'ensemble)</h2>
+  <div class="cards">
+    <div class="card"><div class="ico">📧</div><b>Emelia</b><span>Cold mailing (prospection email).</span></div>
+    <div class="card"><div class="ico">✉️</div><b>Microsoft 365 + Google Workspace</b><span>Email quotidien/clients ; et domaine de prospection <code>@salverys-bpo.fr</code>.</span></div>
+    <div class="card"><div class="ico">🗂️</div><b>Airtable + Google Drive</b><span>Vivier de recrutement &amp; stockage des CV.</span></div>
+    <div class="card"><div class="ico">📇</div><b>CRM maison (HTML)</b><span>Suivi des leads — version provisoire, à retravailler.</span></div>
+    <div class="card"><div class="ico">📞</div><b>VoIP cloud</b><span>Téléphonie (à trancher).</span></div>
+    <div class="card"><div class="ico">💳</div><b>Facturation</b><span>Virement sur compte pro malgache, ou Stripe.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Notre offre publique (médical)</h2>
+  <p>Le télésecrétariat médical a une grille de prix <strong>publique</strong> :</p>
+  <table class="tbl">
+    <tr><th>Forfait</th><th>Volume inclus</th><th>Prix / mois</th></tr>
+    <tr><td><b>Essentiel</b></td><td>jusqu'à ~250 appels/mois</td><td><b>350 €</b></td></tr>
+    <tr><td><b>Confort</b></td><td>jusqu'à ~500 appels/mois</td><td><b>590 €</b></td></tr>
+    <tr><td><b>Intensif</b></td><td>jusqu'à ~900 appels/mois</td><td><b>950 €</b></td></tr>
+  </table>
+  <ul>
+    <li><b>Offre de lancement :</b> 1er mois à −50 %, sans engagement.</li>
+    <li><b>Mise en service</b> affichée à 490 € — toujours offerte.</li>
+  </ul>
+  <div class="note warn"><b>Confidentiel (après NDA) :</b> les tarifs « marque blanche », les prix IT, les marges et le prévisionnel ne figurent <strong>pas</strong> dans cette version.</div>
+</section>
+
+<section>
+  <h2>Prospection &amp; canaux</h2>
+  <p>Prospection B2B principalement par <strong>email cold</strong> (séquences de plusieurs
+  emails + appels), avec relais <strong>WhatsApp</strong>, <strong>téléphone</strong> et
+  <strong>LinkedIn</strong>. Le recrutement se source surtout via <strong>Facebook</strong>.</p>
+  <div class="note gold"><b>Règle de délivrabilité :</b> on ne lance jamais une campagne avant la fin du <strong>warm-up (3-4 semaines)</strong> du domaine d'envoi.</div>
+</section>
+
+<section>
+  <h2>Les règles d'or marketing</h2>
+  <div class="rules">
+    <div class="rule"><b>1 · Source de vérité prix</b><span>Tout prix vient du fichier de référence interne. On n'invente jamais un tarif.</span></div>
+    <div class="rule"><b>2 · SaaS-first</b><span>On achète un outil plutôt que de le coder, sauf cas justifié.</span></div>
+    <div class="rule"><b>3 · Marque blanche</b><span>On répond sous le nom du client ; les grilles « marque blanche » sont confidentielles.</span></div>
+    <div class="rule"><b>4 · Confidentialité</b><span>CRM, prix internes, prévisionnel ne sont jamais publiés ni partagés à l'extérieur.</span></div>
+  </div>
+  <div class="note"><b>Style attendu :</b> toujours en français, direct et opérationnel.</div>
+</section>
+
+<section>
+  <h2>Et après signature ?</h2>
+  <p>Une fois l'accord de confidentialité signé, tu reçois la <strong>fiche complète</strong>
+  (détail des outils, grilles internes, séquences, accès aux SaaS) et les documents
+  stratégiques en partage nominatif.</p>
+</section>
+
+</div>
+
+<footer>
+  <p><b>Salverys</b> — Aperçu marketing (version allégée) · Vololona</p>
+  <p>Document interne — ne pas diffuser à l'extérieur.</p>
+</footer>
+
+</body>
+</html>
