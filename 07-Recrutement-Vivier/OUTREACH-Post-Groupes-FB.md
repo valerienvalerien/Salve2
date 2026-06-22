@@ -46,6 +46,6 @@ Si ce type de mission t'intéresse, mets un commentaire ou MP pour discuter
   l'entreprise en MP, c'est **Salverys** uniquement (jamais Nesvalo/Vinlo), et **interdiction**
   du claim « direction issue d'une structure de 1 000 collaborateurs ».
 
-> 💡 **Médical = priorité 1** (`CLAUDE.md`). Une déclinaison de ce post pour le
-> **télésecrétariat médical** (+ une boîte à phrases médicale) reste à produire si tu veux
-> lancer le sourcing sur la niche n°1.
+> 💡 **IT = priorité n°1, médical = n°2** (`CLAUDE.md`, révisé 2026-06-22). Ce post cible
+> l'IT (freelances N1). Une déclinaison **télésecrétariat médical** (+ une boîte à phrases
+> médicale) reste à produire pour sourcer la niche n°2.

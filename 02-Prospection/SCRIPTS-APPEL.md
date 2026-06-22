@@ -32,8 +32,8 @@
 
 # 1. Télésecrétariat médical — `CALL_SCRIPTS.telemed`
 
-> Niche **priorité absolue**. Côté médical, on parle toujours de **forfait**
-> (jamais « abonnement »).
+> Niche **priorité n°2** (depuis 2026-06-22 ; l'IT est passé n°1). Côté médical, on parle
+> toujours de **forfait** (jamais « abonnement »).
 
 ### `CALL_SCRIPTS.telemed.opening` — Ouverture
 

@@ -1,8 +1,11 @@
 # Fiche Client Idéal — Salverys
 
-> Mise à jour le 2026-06-12 | **Alignée sur le GTM marque-blanche-first** (décision
-> direction 2026-06-10, cf. `CLAUDE.md`). Remplace la version du 2026-05-27 (qui classait
-> les bailleurs en n°2 et ignorait les donneurs d'ordre MB).
+> Mise à jour le 2026-06-22 | **Alignée sur le GTM marque-blanche-first** (décision
+> direction 2026-06-10, cf. `CLAUDE.md`). **Priorité niches revue 2026-06-22 : l'IT
+> (Support N1 SaaS + Helpdesk IT) passe en n°1, le médical en n°2 ; les bailleurs, élargis
+> à « relation client de toutes sortes », sont repoussés à un futur non déterminé.**
+> Remplace la version du 2026-05-27 (qui classait les bailleurs en n°2 et ignorait les
+> donneurs d'ordre MB).
 > Salverys fournit des **agents francophones depuis Antananarivo, qui travaillent sous la
 > marque du client** (le client final ne sait jamais que l'équipe est externalisée).
 > Atouts : français langue maternelle, mêmes horaires que la France, coût ~40 % inférieur
@@ -24,7 +27,36 @@ plusieurs ETP d'un coup. Le **direct** (cabinets, chaînes, bailleurs) vient en 
 > — le point mort (~5 ETP, cf. `FINANCE-PREVISIONNEL.md §4`) est atteignable avec
 > 2-3 donneurs d'ordre, contre 10-15 clients finaux en direct.
 
-### 1.a Télésecrétariats médicaux français (niche médicale)
+### 1.a Éditeurs SaaS & prestataires de support (Support N1) — **priorité IT n°1**
+
+**Qui :** éditeurs SaaS français en croissance et prestataires de support qui n'arrivent
+plus à staffer le N1.
+
+**Sa douleur :** files de tickets qui s'allongent, recrutement support 2-3 mois,
+coût complet CDI 36-44 k€/an, churn client lié au support lent.
+
+**Pourquoi Salverys :** ETP N1 dédié en marque blanche, leurs outils et leurs scripts,
+SLA de première réponse contractuel (avoir 20 % en deçà), rate card dégressive 1/3/5+ ETP
+remise au cadrage (`PRICING.md §3`).
+
+**Qui contacter :** Head of Support / Customer Care / COO (pas le CEO sauf < 50 personnes).
+
+### 1.b ESN / MSP (Helpdesk IT N1) — **priorité IT**
+
+**Qui :** ESN et MSP françaises 50-300 personnes (cf. `ESN-TARGETS.md`), surtout celles
+avec des postes helpdesk ouverts ou une offre 24/7 affichée.
+
+**Sa douleur :** le créneau 7h-9h avant l'arrivée des équipes, l'overflow, les pics ;
+recruter un technicien N1 = 60-90 jours sur un marché tendu.
+
+**Pourquoi Salverys :** soupape helpdesk sous leur marque, process ITIL, UTC+3 (le 7h-9h
+français = pleine heure de bureau à Tana, sans prime de nuit), SLA de prise en charge
+contractuel.
+
+**Qui contacter :** fondateur/DG (< 100 pers.), Directeur des Opérations / Directeur
+Delivery (au-delà). **Jamais** la direction commerciale ni les RH.
+
+### 1.c Télésecrétariats médicaux français (niche médicale — n°2)
 
 **Qui :** télésecrétariats FR établis (Simplify, Médi Services, IPContact, Stanpro,
 Tellma, Optilib… — cf. `TELESEC-TARGETS.md`) qui ont la clientèle médecins mais pas la
@@ -43,35 +75,6 @@ continuité écrit. Tarification à l'appel **par créneau** (`PRICING.md §1.b`
 **⚠️ Vigilance :** qualifier le **prix d'achat cible dès le 1er échange** (cas Callmed :
 vend dès 0,50 €/appel — un partenariat n'est viable que sur les créneaux que son plateau
 ne couvre pas, cf. `EVALUATION-STRATEGIQUE-2026-06.md §1.4`).
-
-### 1.b Éditeurs SaaS & prestataires de support (Support N1)
-
-**Qui :** éditeurs SaaS français en croissance et prestataires de support qui n'arrivent
-plus à staffer le N1.
-
-**Sa douleur :** files de tickets qui s'allongent, recrutement support 2-3 mois,
-coût complet CDI 36-44 k€/an, churn client lié au support lent.
-
-**Pourquoi Salverys :** ETP N1 dédié en marque blanche, leurs outils et leurs scripts,
-SLA de première réponse contractuel (avoir 20 % en deçà), rate card dégressive 1/3/5+ ETP
-remise au cadrage (`PRICING.md §3`).
-
-**Qui contacter :** Head of Support / Customer Care / COO (pas le CEO sauf < 50 personnes).
-
-### 1.c ESN / MSP (Helpdesk IT N1)
-
-**Qui :** ESN et MSP françaises 50-300 personnes (cf. `ESN-TARGETS.md`), surtout celles
-avec des postes helpdesk ouverts ou une offre 24/7 affichée.
-
-**Sa douleur :** le créneau 7h-9h avant l'arrivée des équipes, l'overflow, les pics ;
-recruter un technicien N1 = 60-90 jours sur un marché tendu.
-
-**Pourquoi Salverys :** soupape helpdesk sous leur marque, process ITIL, UTC+3 (le 7h-9h
-français = pleine heure de bureau à Tana, sans prime de nuit), SLA de prise en charge
-contractuel.
-
-**Qui contacter :** fondateur/DG (< 100 pers.), Directeur des Opérations / Directeur
-Delivery (au-delà). **Jamais** la direction commerciale ni les RH.
 
 ---
 
@@ -99,10 +102,16 @@ centres** (le dirigeant valide, l'opérationnel décide) ; cabinet de groupe →
 
 ---
 
-## Cible n°3 — Bailleurs sociaux & grandes structures (débordement)
+## Cible n°3 — Relation client de toutes sortes (futur non déterminé)
 
-**Qui :** bailleurs sociaux, organismes publics, grandes associations dont le standard
-interne **déborde** (pics, files d'attente, appels abandonnés).
+> ⚠️ **Repoussée à un futur non déterminé (décision 2026-06-22).** Anciennement « bailleurs
+> sociaux & grandes structures », la niche est élargie à la **relation client de toutes
+> sortes** mais n'est **plus une cible de prospection active**. Conservée ici comme repère
+> pour le jour où on l'ouvrira.
+
+**Qui (à terme) :** bailleurs sociaux, organismes publics, grandes associations dont le
+standard interne **déborde** (pics, files d'attente, appels abandonnés), et plus largement
+toute organisation à fort volume de relation client.
 
 **Le besoin :** capacité d'appoint sous leur marque, activable sur les pics — pas un
 remplacement du CRC. Toujours sur devis (`PRICING.md §4`), pilote payant sur 1 pic

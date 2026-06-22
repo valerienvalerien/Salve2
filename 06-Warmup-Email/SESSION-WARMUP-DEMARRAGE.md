@@ -9,7 +9,8 @@
 ## Contexte
 
 BPO Salverys (salverys-bpo.fr), basé à Antananarivo, ciblant des clients
-français. Priorité absolue : **télésecrétariat médical**.
+français. Priorité n°1 (revue 2026-06-22) : **IT — Support N1 SaaS & Helpdesk IT** ;
+télésecrétariat médical en n°2.
 Adresse d'envoi : **valerien@salverys-bpo.fr** (Google Workspace).
 
 ---
@@ -157,8 +158,10 @@ Valérien
 
 ## Ce qui vient après le warm-up (semaine 5–6)
 
-Première campagne cold email → **cabinets médicaux** (niche priorité 1).
-Séquences prêtes dans `OUTREACH-cabinets-medicaux.md`.
+Première campagne cold email → **IT (Support N1 SaaS & Helpdesk IT)**, désormais niche
+priorité n°1 (révision 2026-06-22). Séquences prêtes : `OUTREACH-IT-N1-marque-blanche.md`
+(helpdesk) et la séquence Support N1 de `OUTREACH-SEQUENCE.md`. Le médical (priorité n°2)
+suit, avec `OUTREACH-cabinets-medicaux.md` et `OUTREACH-telesec-marque-blanche.md`.
 Volume de départ : 20–30 cold emails/jour, augmentation progressive.
 
 ---
