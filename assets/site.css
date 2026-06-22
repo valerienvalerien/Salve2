@@ -105,6 +105,7 @@ img { display: block; max-width: 100%; }
 }
 .nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
 .nav-inner { display: flex; align-items: center; gap: 24px; height: 70px; }
+.nav .container { max-width: 1320px; }
 .brand { font-family: 'Georgia', serif; font-size: 23px; font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
 .theme-it .brand { font-family: 'Inter', sans-serif; font-weight: 800; color: var(--primary); }
 .brand b { color: inherit; font-weight: inherit; }
@@ -112,8 +113,8 @@ img { display: block; max-width: 100%; }
 .footer .brand::after { content: "."; color: var(--accent); margin-left: 1px; }
 .brand-logo { display: block; height: 40px; width: auto; aspect-ratio: 765 / 195; }
 .nav .brand { display: inline-flex; align-items: center; }
-.nav-links { display: flex; gap: 24px; margin-left: 14px; flex: 1; }
-.nav-links a { font-size: 14.5px; font-weight: 600; color: var(--text-soft); padding: 8px 0; position: relative; }
+.nav-links { display: flex; gap: 20px; margin-left: 14px; flex: 1; }
+.nav-links a { font-size: 14.5px; font-weight: 600; color: var(--text-soft); padding: 8px 0; position: relative; white-space: nowrap; }
 .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:2px; height:2px; background: var(--accent); transition: right .25s var(--ease); }
 .nav-links a[href="simulateur-salverys.html"]::after { background: #6F8770; }
 .nav-links a[href="simulateur-informatique.html"]::after { background: #FCE27C; }
