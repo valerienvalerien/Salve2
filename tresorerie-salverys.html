@@ -188,7 +188,7 @@
           <div class="hint">€/mois par poste médical (IT/Support : ACD client)</div></div>
         <div class="ctl"><label>Superviseur / manager <b id="vMgr"></b></label>
           <input type="range" id="costMgr" min="300" max="1500" step="50" value="750">
-          <div class="hint"><span class="ar-equiv" id="vMgrAr"></span> · €/mois — dès 3 freelances médical</div></div>
+          <div class="hint"><span class="ar-equiv" id="vMgrAr"></span> · €/mois — superviseur médical dès 3 freelances médical · <b>+ 1 superviseur partagé IT+Support / 8 technicians (dès 3)</b></div></div>
 
         <h4>SaaS &amp; outils</h4>
         <div class="saas-row"><div class="tool"><b>HubSpot</b> Free</div><div class="amount">0 €/mois</div></div>
@@ -242,7 +242,7 @@
     <b>Mécanique du modèle (v5 · 3 métiers séparés)</b> :
     <b>① Médical</b> = cabinets × forfait (remises fondateurs) ; freelances = ceil(cabinets/ratio), plancher Erlang min 2 ; coût = (freelance + VoIP) par poste, superviseur dès 3 freelances médical.
     <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 350 € / direct 2 150 €) ; <b>mutualisé</b> = (freelances pool ÷ freelances-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
-    <b>Staffing IT &amp; Support</b> : chaque ETP/freelance coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool).
+    <b>Staffing IT &amp; Support</b> : chaque ETP/freelance coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool). <b>Encadrement technique</b> : 1 superviseur partagé IT+Support dès 3 technicians cumulés, +1 par tranche de 8 (ceil((Sup+IT)/8)).
     <b>Encaissement</b> décalé de 30 j. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× freelances méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
   </p>
 
@@ -362,8 +362,11 @@ function simulate(){
     const rev = revMed + revSup + revIt;
 
     // coûts bottom-up
-    const mgrActive = freelancesMed>=3;
-    const masseSal = freelancesMed*costFL + (supEtp+itEtp)*costFL + (mgrActive?costMgr:0);
+    const medMgr = freelancesMed>=3 ? 1 : 0;            // superviseur médical dès 3 freelances médical
+    const techTotal = supEtp+itEtp;                      // technicians IT + Support
+    const techMgr = techTotal>=3 ? Math.ceil(techTotal/8) : 0; // 1 superviseur partagé / 8 technicians (dès 3)
+    const nbMgr = medMgr + techMgr;
+    const masseSal = freelancesMed*costFL + techTotal*costFL + nbMgr*costMgr;
     const costSaaS = emelia + freelancesMed*29 + ovh + m365*10; // CloudTalk sur freelances médical
     const costs = masseSal + freelancesMed*voip + costSaaS + (m===1?setupInit:0);
     const profit = rev - costs;
