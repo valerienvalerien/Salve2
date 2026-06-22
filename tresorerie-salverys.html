@@ -58,7 +58,7 @@
   .legend{font-size:.75rem;color:#6b7280;margin-top:8px}
   table{width:100%;border-collapse:collapse;font-size:.68rem;margin-top:16px}
   th,td{padding:3px 4px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
-  th{background:var(--bleu);color:var(--creme);position:sticky;top:0}
+  th{background:var(--bleu);color:var(--creme);position:sticky;top:0;cursor:help}
   td.g-med{background:rgba(111,135,112,.10)}
   td.g-sup{background:rgba(184,153,104,.12)}
   td.g-it{background:rgba(91,127,158,.12)}
@@ -221,15 +221,20 @@
     <div style="max-height:380px;overflow:auto">
     <table id="tbl">
       <thead><tr>
-        <th>M</th>
-        <th>Cab</th><th>Free</th>
-        <th>Sup</th>
-        <th>IT</th>
-        <th>M.sal</th>
-        <th>CA méd</th><th>CA Sup</th><th>CA IT</th>
-        <th>CA tot</th>
-        <th title="CA facturé mois précédent, encaissé ce mois (J+30)">Enc</th>
-        <th>Chrg</th><th>Bén</th><th>Tréso</th>
+        <th title="Mois de simulation (M1 à M24)">M</th>
+        <th title="Cabinets médicaux actifs ce mois (signés moins churn éventuel)">Cab</th>
+        <th title="Freelances médical = ceil(cabinets / cabinets-par-freelance), avec plancher Erlang minimum 2">Free</th>
+        <th title="ETP Support N1 SaaS en capacité ce mois (croissance trimestrielle dès M4, plafond 8)">Sup</th>
+        <th title="ETP Helpdesk IT N1 en capacité ce mois (croissance trimestrielle dès M4, plafond 8)">IT</th>
+        <th title="Masse salariale : freelances médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
+        <th title="Chiffre d'affaires Télésecrétariat médical = cabinets × forfait (remises fondateurs incluses)">CA méd</th>
+        <th title="Chiffre d'affaires Support N1 SaaS = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA Sup</th>
+        <th title="Chiffre d'affaires Helpdesk IT N1 = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA IT</th>
+        <th title="Chiffre d'affaires total facturé ce mois (médical + Support + IT)">CA tot</th>
+        <th title="Encaissé ce mois = CA total facturé le mois précédent, payé à 30 jours (J+30)">Enc</th>
+        <th title="Charges totales du mois = masse salariale + VoIP médical + SaaS/outils (+ setup initial en M1)">Chrg</th>
+        <th title="Bénéfice du mois = CA total − charges (comptable, hors décalage d'encaissement)">Bén</th>
+        <th title="Trésorerie en fin de mois = trésorerie précédente + encaissé (J+30) − charges du mois">Tréso</th>
       </tr></thead>
       <tbody></tbody>
     </table>
