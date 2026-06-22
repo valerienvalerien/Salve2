@@ -59,6 +59,10 @@
   table{width:100%;border-collapse:collapse;font-size:.68rem;margin-top:16px}
   th,td{padding:3px 4px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
   th{background:var(--bleu);color:var(--creme);position:sticky;top:0;cursor:help}
+  .th-tip{position:fixed;display:none;transform:translateX(-50%);max-width:300px;
+    background:var(--bleu);color:var(--creme);font-size:.72rem;font-weight:400;
+    padding:7px 11px;border-radius:6px;line-height:1.45;z-index:50;pointer-events:none;
+    box-shadow:0 4px 14px rgba(46,59,78,.28);white-space:normal;text-align:left}
   td.g-med{background:rgba(111,135,112,.10)}
   td.g-sup{background:rgba(184,153,104,.12)}
   td.g-it{background:rgba(91,127,158,.12)}
@@ -426,6 +430,21 @@ function simulate(){
 }
 document.querySelectorAll('input').forEach(i=>i.addEventListener('input',simulate));
 simulate();
+
+// Infobulles fiables sur les en-têtes de colonnes (remplacent le title natif lent)
+(function(){
+  const tip=document.createElement('div'); tip.className='th-tip'; document.body.appendChild(tip);
+  document.querySelectorAll('#tbl thead th[title]').forEach(th=>{
+    th.dataset.tip=th.getAttribute('title'); th.removeAttribute('title');
+    th.addEventListener('mouseenter',()=>{
+      tip.textContent=th.dataset.tip; tip.style.display='block';
+      const r=th.getBoundingClientRect();
+      let left=Math.min(Math.max(r.left+r.width/2,158),window.innerWidth-158);
+      tip.style.left=left+'px'; tip.style.top=(r.bottom+6)+'px';
+    });
+    th.addEventListener('mouseleave',()=>{tip.style.display='none';});
+  });
+})();
 </script>
 </body>
 </html>
