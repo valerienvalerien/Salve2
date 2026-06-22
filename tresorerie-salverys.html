@@ -228,8 +228,8 @@
         <th title="Mois de simulation (M1 à M24)">M</th>
         <th title="Cabinets médicaux actifs ce mois (signés moins churn éventuel)">Cab</th>
         <th title="Freelances médical = ceil(cabinets / cabinets-par-freelance), avec plancher Erlang minimum 2">Free</th>
-        <th title="ETP Support N1 SaaS en capacité ce mois (croissance trimestrielle dès M4, plafond 8)">Sup</th>
-        <th title="ETP Helpdesk IT N1 en capacité ce mois (croissance trimestrielle dès M4, plafond 8)">IT</th>
+        <th title="Sup = nombre d'ETP (équivalents temps plein) Support N1 SaaS facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP Support / mois » et gagne un palier à chaque trimestre. Plafonné à 8 ETP : taille maximale d'une équipe technique modélisée à ce stade (société d'une dizaine de personnes ; au-delà, il faudrait restructurer encadrement et tarifs).">Sup</th>
+        <th title="IT = nombre d'ETP (équivalents temps plein) Helpdesk IT N1 facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP IT / mois » et gagne un palier à chaque trimestre. Plafonné à 8 ETP : taille maximale d'une équipe technique modélisée à ce stade (société d'une dizaine de personnes ; au-delà, il faudrait restructurer encadrement et tarifs).">IT</th>
         <th title="Masse salariale : freelances médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
         <th title="Chiffre d'affaires Télésecrétariat médical = cabinets × forfait (remises fondateurs incluses)">CA méd</th>
         <th title="Chiffre d'affaires Support N1 SaaS = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA Sup</th>
