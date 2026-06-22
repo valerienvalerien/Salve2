@@ -26,7 +26,7 @@ ESN/MSP). Le direct (client final) vient en 2e temps. Toute priorisation de pros
 de copy ou de chiffrage doit refléter ce MB-first.
 
 ### Modèle d'équipe (décision direction, 2026-06-10)
-Démarrage **100 % freelances**, payés **1,8-2 M Ar/mois chacun** (~2,5× le marché local),
+Démarrage **100 % freelances**, payés **3 250 000 Ar/mois chacun** (650 € — ~4,5× le marché local),
 y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. Démarrage à
 4 agents + 2 managers, montée à 8+ au rythme des contrats. Rentabilité vérifiée :
 `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v2).
