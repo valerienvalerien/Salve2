@@ -1,6 +1,6 @@
 # Engagement de confidentialité, de non-sollicitation et de cession des livrables
 
-> **Consultant / Business Developer — Vololoniaina Randrianasinoro (VIV-0010).**
+> **Consultant / Business Developer — Vololoniaina Randrianasinoro.**
 > Document **prêt à signer**. Sert aussi de **modèle réutilisable** pour les futurs
 > consultants / freelances (remplacer le bloc « Le Consultant » et les `[à compléter]`).
 >
@@ -18,8 +18,8 @@
 
 **La Société** : **VJUS**, société de droit malgache, NIF **6018198778**,
 STAT **74908 11 2023 0 06077**, RCS **102071032469**, dont le siège est sis à
-Antananarivo, Madagascar `[adresse complète à compléter]`, représentée par
-**Valérien Rakotosalama** en sa qualité de `[fonction à compléter]`
+Antananarivo, Madagascar Lot IIE 21 A ter, représentée par
+**Valérien Rakotosalama** en sa qualité de Gérant
 (ci-après « **la Société** » ou « **VJUS** »).
 
 **VJUS** exploite son activité sous le **nom commercial « Salverys »**. « Salverys »
@@ -135,7 +135,7 @@ personnelle de ses **cotisations et obligations fiscales et sociales**.
 ## Article 8 — Durée
 
 L'obligation de **confidentialité** (art. 3) court pendant toute la durée de la mission et
-pendant **trois (3) ans** `[durée à valider]` après son terme. L'obligation de
+pendant **trois (3) ans** après son terme. L'obligation de
 **non-sollicitation** (art. 5) s'applique selon la durée qui y est fixée. La **cession des
 livrables** (art. 6) est définitive.
 
@@ -179,6 +179,6 @@ Fait à `[lieu]`, le `[JJ/MM/AAAA]`, en deux (2) exemplaires originaux.
 | La Société — VJUS (nom commercial Salverys) | Le Consultant |
 |---|---|
 | Nom : Valérien Rakotosalama | Nom : Vololoniaina Randrianasinoro |
-| Fonction : `[à compléter]` | Qualité : Consultant indépendant |
+| Fonction : Gérant | Qualité : Consultant indépendant |
 | Date : `[JJ/MM/AAAA]` | Date : `[JJ/MM/AAAA]` |
 | Signature : | Signature (précédée de « Lu et approuvé ») : |
