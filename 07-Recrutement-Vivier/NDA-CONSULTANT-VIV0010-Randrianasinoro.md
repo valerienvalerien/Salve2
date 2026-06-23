@@ -27,7 +27,7 @@ est une **marque / un nom commercial de VJUS** et **ne constitue pas une entité
 juridique distincte** : le seul cocontractant au titre du présent engagement est
 **VJUS**.
 
-**Le Consultant** : **Vololoniaina Randrianasinoro** (« Vloul Niaina »), consultant
+**Le Consultant** : **Vololoniaina Randrianasinoro**, consultant
 indépendant, demeurant à Tamatave, Madagascar `[adresse complète à compléter]`,
 courriel `randrianasinoro@gmail.com`, téléphone +261 32 07 042 29 / +261 34 28 533 24
 (ci-après « **le Consultant** »).
