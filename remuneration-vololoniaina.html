@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rémunération Business Developer (Vololoniaina) — 4 modèles · OTE 1 000 €/mois</title>
+<style>
+  :root{
+    --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
+    --rouge:#B05C4A; --ok:#5E7F60;
+    --p1:#5B7F9E; --p2:#6F8770; --p3:#B89968; --p4:#8A7A9B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+  body{background:var(--creme);color:var(--bleu);padding:24px}
+  .wrap{max-width:1500px;margin:0 auto}
+  h1{font-size:1.5rem;margin-bottom:4px}
+  .sub{color:#6b7280;font-size:.9rem;margin-bottom:20px}
+  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08);margin-bottom:20px}
+  .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
+  .rate-bar{background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(46,59,78,.08)}
+  .rate-bar .fld{display:flex;align-items:center;gap:8px}
+  .rate-bar label{font-size:.85rem;font-weight:700;white-space:nowrap}
+  .rate-bar input,.rate-bar select{padding:6px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:.85rem;color:var(--bleu)}
+  .rate-bar input[type=number]{width:90px}
+  .rate-hint{font-size:.72rem;color:#9ca3af}
+  .defbox{font-size:.8rem;color:#4b5563;background:#fbf8f1;border-left:4px solid var(--or);padding:10px 14px;border-radius:6px;margin-bottom:18px;line-height:1.55}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .pcard{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(46,59,78,.08);border-top:4px solid #ccc}
+  .pcard.p1{border-color:var(--p1)} .pcard.p2{border-color:var(--p2)}
+  .pcard.p3{border-color:var(--p3)} .pcard.p4{border-color:var(--p4)}
+  .pcard h3{font-size:.95rem;margin-bottom:2px}
+  .pcard .tag{font-size:.7rem;color:#9ca3af;display:block;margin-bottom:10px}
+  .pcard .fixrow{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+  .pcard .fixrow input{width:70px;padding:4px 6px;border:1px solid #e5e7eb;border-radius:6px;font-size:.82rem}
+  .pcard .line{display:flex;justify-content:space-between;font-size:.8rem;padding:3px 0;border-bottom:1px solid #f0ede6}
+  .pcard .line b{color:var(--bleu)}
+  .pcard .big{font-size:1.25rem;font-weight:700;margin-top:8px}
+  .pcard.p1 .big{color:var(--p1)} .pcard.p2 .big{color:var(--p2)}
+  .pcard.p3 .big{color:var(--p3)} .pcard.p4 .big{color:var(--p4)}
+  .pcard .ar{font-size:.7rem;color:var(--or)}
+  .chart{display:flex;align-items:flex-end;gap:18px;height:170px;padding:8px 0 0;border-bottom:2px solid var(--bleu);margin-top:8px}
+  .barwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .bar{width:60%;border-radius:4px 4px 0 0;position:relative;min-height:2px}
+  .bar.p1{background:var(--p1)} .bar.p2{background:var(--p2)}
+  .bar.p3{background:var(--p3)} .bar.p4{background:var(--p4)}
+  .bar .v{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:700;white-space:nowrap;padding-bottom:2px}
+  .barwrap .lbl{font-size:.72rem;color:#6b7280;margin-top:6px;text-align:center}
+  table{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:8px}
+  th,td{padding:5px 8px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
+  th{background:var(--bleu);color:var(--creme);position:sticky;top:0}
+  td:first-child,th:first-child{text-align:left}
+  .c1{background:rgba(91,127,158,.10)} .c2{background:rgba(111,135,112,.10)}
+  .c3{background:rgba(184,153,104,.12)} .c4{background:rgba(138,122,155,.12)}
+  tr.prep td{color:#9ca3af;font-style:italic}
+  .note{font-size:.78rem;color:#6b7280;margin-top:8px;line-height:1.55}
+  .legend{font-size:.74rem;color:#6b7280;margin:6px 0 0}
+  .warn{font-size:.78rem;color:#7a4a3a;background:#f7efea;border-left:4px solid var(--rouge);padding:10px 14px;border-radius:6px;margin-top:14px;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Rémunération — Business Developer (Vololoniaina)</h1>
+  <p class="sub">Interne · 4 modèles comparés · <b>OTE 1 000 €/mois</b> (On-Target Earnings = rému totale à la cible) · freelance indépendante · aligné <b>FINANCE-PREVISIONNEL.md</b> &amp; <b>PRICING.md</b></p>
+
+  <div class="rate-bar">
+    <div class="fld"><label>Taux EUR→MGA</label><input type="number" id="rate" value="5000" step="50" min="3500" max="7000"><span class="rate-hint">Ar/€</span></div>
+    <div class="fld"><label>OTE cible</label><input type="number" id="ote" value="1000" step="50" min="500" max="2000"><span class="rate-hint">€/mois</span></div>
+    <div class="fld"><label>Cible contrats/mois</label><input type="number" id="cible" value="2" step="1" min="1" max="6"><span class="rate-hint">définit l'OTE des modèles 1-3</span></div>
+    <div class="fld"><label>MRR / contrat</label><input type="number" id="prix" value="1350" step="50" min="500" max="3000"><span class="rate-hint">€/mois (ETP MB ≈ 1 350)</span></div>
+    <div class="fld"><label>Portefeuille cible (modèle 4)</label><input type="number" id="pf" value="7" step="1" min="3" max="15"><span class="rate-hint">contrats actifs où le modèle 4 ≈ OTE</span></div>
+    <div class="fld"><label>Trajectoire</label>
+      <select id="scen">
+        <option value="prudent">Prudent (+1/trim. dès M4)</option>
+        <option value="median" selected>Médian (+1/mois dès M4)</option>
+        <option value="ambitieux">Ambitieux (+2/mois dès M3)</option>
+      </select></div>
+  </div>
+
+  <div class="defbox">
+    <b>Définition « contrat gagné » (vaut pour les 4 modèles)</b> — contrat signé <b>+ 1<sup>er</sup> mois encaissé</b> (pilote −50 % passé, sans résiliation). On ne paie pas une signature qui churne au mois 1.
+    <b>Unité</b> = <span id="uniteTxt">1 contrat = 1 ETP placé</span> (un donneur d'ordre MB peut en placer 2-5 d'un coup — <i>FINANCE §4</i>).
+    <b>3 premiers mois</b> = préparation du lancement (livrables, retroplanning) → généralement <b>0 contrat encaissé</b> : la rému y est ≈ le fixe seul.
+  </div>
+
+  <!-- 4 CARTES MODÈLES -->
+  <div class="kpis">
+    <div class="pcard p1" id="card1">
+      <h3>① Sécurité</h3><span class="tag">fixe dominant · la rassure</span>
+      <div class="fixrow">Fixe <input type="number" id="f1" value="750" step="25" min="0"> €/mois</div>
+      <div class="line"><span>Commission / contrat</span><b id="c1">—</b></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl1">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q1">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y1">—</b></div>
+      <div class="big" id="ote1">—</div><div class="ar" id="ar1"></div>
+    </div>
+    <div class="pcard p2" id="card2">
+      <h3>② Équilibré</h3><span class="tag">50 / 50</span>
+      <div class="fixrow">Fixe <input type="number" id="f2" value="500" step="25" min="0"> €/mois</div>
+      <div class="line"><span>Commission / contrat</span><b id="c2">—</b></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl2">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q2">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y2">—</b></div>
+      <div class="big" id="ote2">—</div><div class="ar" id="ar2"></div>
+    </div>
+    <div class="pcard p3" id="card3">
+      <h3>③ Chasseuse</h3><span class="tag">bas fixe · gros incitatif</span>
+      <div class="fixrow">Fixe <input type="number" id="f3" value="300" step="25" min="0"> €/mois</div>
+      <div class="line"><span>Commission / contrat</span><b id="c3">—</b></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl3">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q3">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y3">—</b></div>
+      <div class="big" id="ote3">—</div><div class="ar" id="ar3"></div>
+    </div>
+    <div class="pcard p4" id="card4">
+      <h3>④ Résiduel MRR</h3><span class="tag">récurrent · aligné rétention</span>
+      <div class="fixrow">Fixe <input type="number" id="f4" value="250" step="25" min="0"> €/mois</div>
+      <div class="line"><span>Taux sur MRR actif</span><b id="c4">—</b></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl4">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q4">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y4">—</b></div>
+      <div class="big" id="ote4">—</div><div class="ar" id="ar4"></div>
+    </div>
+  </div>
+
+  <!-- CHART COUT 12 MOIS -->
+  <div class="card">
+    <h2>Coût total pour la boîte sur 12 mois (selon la trajectoire choisie)</h2>
+    <div class="chart" id="chart"></div>
+    <p class="legend">Plus la trajectoire est lente, plus les modèles à <b>fixe bas (③④)</b> protègent la trésorerie. À la cible, les 4 convergent vers ~OTE.</p>
+  </div>
+
+  <!-- TABLE MENSUELLE -->
+  <div class="card">
+    <h2>Rému mensuelle de Vololoniaina, par modèle (12 mois)</h2>
+    <div style="max-height:460px;overflow:auto">
+    <table id="tbl">
+      <thead><tr>
+        <th>Mois</th><th>Contrats gagnés</th><th>Cumul actifs</th><th>MRR actif</th>
+        <th>① Sécurité</th><th>② Équilibré</th><th>③ Chasseuse</th><th>④ Résiduel</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="note"><b>Lecture</b> — Modèles ①-③ : commission <b>one-shot</b> au mois où le contrat est gagné. Modèle ④ : <b>% récurrent</b> du MRR actif cumulé (monte avec le portefeuille, redescend si churn). Les 3 premiers mois (préparation) sont en italique = ≈ fixe seul.</p>
+  </div>
+
+  <div class="warn">
+    <b>Garde-fous</b> — (1) <b>Cohérence freelance</b> : garder un vocabulaire d'<b>honoraires/forfait + commission de performance</b>, jamais « salaire/prime » → limite le risque de requalification (NDA art. 7).
+    (2) <b>Repère interne</b> : le fee freelance standard Salverys = <b>650 €/mois</b> (3,25 M Ar). Un fixe &gt; 650 € (modèle ①) dépasse ce repère <b>avant même</b> tout résultat — c'est le plus coûteux tant qu'il n'y a pas de clients.
+    (3) <b>Affordabilité</b> : la commission n'est versée que sur du <b>réellement encaissé</b> (définition ci-dessus) → elle s'autofinance par la marge (~50 % en MB, <i>FINANCE §3</i>).
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
+const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
+
+// trajectoires : contrats gagnés par mois sur 12 mois (M1..M12)
+const SCEN={
+  prudent: [0,0,0, 1,0,0, 1,0,0, 1,0,0],
+  median:  [0,0,0, 1,1,1, 1,1,1, 1,1,1],
+  ambitieux:[0,0, 2,2,2,2, 2,2,2,2, 2,2]
+};
+
+function run(){
+  const rate=+$('rate').value, ote=+$('ote').value, cible=+$('cible').value,
+        prix=+$('prix').value, pf=+$('pf').value,
+        f=[+$('f1').value,+$('f2').value,+$('f3').value,+$('f4').value];
+  const ramp=SCEN[$('scen').value];
+
+  // paramètres dérivés (OTE pinné à la cible)
+  const comm=[(ote-f[0])/cible,(ote-f[1])/cible,(ote-f[2])/cible,0]; // 1-3 : €/contrat
+  const taux4=(ote-f[3])/(prix*pf);                                   // 4 : % du MRR actif
+  const arEq=v=>`≈ ${((v*rate)/1e6).toFixed(2)} M Ar/mois`;
+
+  // affichage cartes
+  for(let i=0;i<3;i++){ $('c'+(i+1)).textContent=fmtE(comm[i]); }
+  $('c4').textContent=(taux4*100).toFixed(1)+' % du MRR';
+  for(let i=0;i<4;i++){ $('pl'+(i+1)).textContent=fmtE(f[i]); }
+
+  // simulation 12 mois
+  let cum=0, sumPay=[0,0,0,0], sum3=[0,0,0,0], rows=[];
+  for(let m=1;m<=12;m++){
+    const nc=ramp[m-1]; cum+=nc; const mrr=cum*prix;
+    const pay=[
+      f[0]+nc*comm[0],
+      f[1]+nc*comm[1],
+      f[2]+nc*comm[2],
+      f[3]+taux4*mrr
+    ];
+    for(let i=0;i<4;i++){ sumPay[i]+=pay[i]; if(m<=3) sum3[i]+=pay[i]; }
+    rows.push({m,nc,cum,mrr,pay,prep:m<=3});
+  }
+
+  // OTE affiché par carte : modèles 1-3 = fixe + cible×comm ; modèle 4 = fixe + taux×(pf×prix)
+  const oteShown=[f[0]+cible*comm[0], f[1]+cible*comm[1], f[2]+cible*comm[2], f[3]+taux4*pf*prix];
+  for(let i=0;i<4;i++){
+    $('ote'+(i+1)).textContent='OTE '+fmtE(oteShown[i]);
+    $('ar'+(i+1)).textContent=arEq(oteShown[i]);
+    $('q'+(i+1)).textContent=fmtE(sum3[i]);
+    $('y'+(i+1)).textContent=fmtE(sumPay[i]);
+  }
+
+  // chart coût 12 mois
+  const ch=$('chart'); ch.innerHTML='';
+  const maxY=Math.max(...sumPay,1);
+  const names=['① Sécurité','② Équilibré','③ Chasseuse','④ Résiduel'];
+  sumPay.forEach((v,i)=>{
+    const w=document.createElement('div'); w.className='barwrap';
+    const b=document.createElement('div'); b.className='bar p'+(i+1);
+    b.style.height=Math.max(2, v/maxY*140)+'px';
+    b.innerHTML=`<span class="v">${fmtK(v)}</span>`;
+    const l=document.createElement('div'); l.className='lbl'; l.textContent=names[i];
+    w.appendChild(b); w.appendChild(l); ch.appendChild(w);
+  });
+
+  // table
+  const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr'); if(r.prep) tr.className='prep';
+    tr.innerHTML=`<td>M${r.m}</td><td>${r.nc||'–'}</td><td>${r.cum}</td><td>${fmtE(r.mrr)}</td>
+      <td class="c1">${fmtE(r.pay[0])}</td><td class="c2">${fmtE(r.pay[1])}</td>
+      <td class="c3">${fmtE(r.pay[2])}</td><td class="c4">${fmtE(r.pay[3])}</td>`;
+    tb.appendChild(tr);
+  });
+}
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',run));
+run();
+</script>
+</body>
+</html>
