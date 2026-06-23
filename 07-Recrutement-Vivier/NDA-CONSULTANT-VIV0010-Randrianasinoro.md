@@ -16,11 +16,16 @@
 
 ## Entre les soussignés
 
-**La Société** : **VJUS**, société de droit malgache exploitant la marque commerciale
-**Salverys**, NIF **6018198778**, STAT **74908 11 2023 0 06077**, RCS **102071032469**,
-dont le siège est sis à Antananarivo, Madagascar `[adresse complète à compléter]`,
-représentée par **Valérien Rakotosalama** en sa qualité de `[fonction à compléter]`
-(ci-après « **la Société** » ou « **Salverys** »).
+**La Société** : **VJUS**, société de droit malgache, NIF **6018198778**,
+STAT **74908 11 2023 0 06077**, RCS **102071032469**, dont le siège est sis à
+Antananarivo, Madagascar `[adresse complète à compléter]`, représentée par
+**Valérien Rakotosalama** en sa qualité de `[fonction à compléter]`
+(ci-après « **la Société** » ou « **VJUS** »).
+
+**VJUS** exploite son activité sous le **nom commercial « Salverys »**. « Salverys »
+est une **marque / un nom commercial de VJUS** et **ne constitue pas une entité
+juridique distincte** : le seul cocontractant au titre du présent engagement est
+**VJUS**.
 
 **Le Consultant** : **Vololoniaina Randrianasinoro** (« Vloul Niaina »), consultant
 indépendant, demeurant à Tamatave, Madagascar `[adresse complète à compléter]`,
@@ -34,7 +39,8 @@ Ci-après désignés ensemble « les Parties ».
 ## Préambule
 
 La Société confie au Consultant une **mission de développement commercial (business
-development)** pour le compte de Salverys. À ce titre, et dès avant le démarrage de la
+development)** pour son propre compte, sous son nom commercial **Salverys**. À ce titre,
+et dès avant le démarrage de la
 mission, la Société remet au Consultant des **documents et informations stratégiques
 internes** (stratégie commerciale, grille de prix, listes de prospects et de donneurs
 d'ordre, CRM, vivier de candidats, séquences et scripts de prospection, éléments
@@ -170,7 +176,7 @@ expressément compétence.
 
 Fait à `[lieu]`, le `[JJ/MM/AAAA]`, en deux (2) exemplaires originaux.
 
-| La Société (VJUS — Salverys) | Le Consultant |
+| La Société — VJUS (nom commercial Salverys) | Le Consultant |
 |---|---|
 | Nom : Valérien Rakotosalama | Nom : Vololoniaina Randrianasinoro |
 | Fonction : `[à compléter]` | Qualité : Consultant indépendant |
