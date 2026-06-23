@@ -18,8 +18,8 @@
 
 **La Société** : **VJUS**, société de droit malgache, NIF **6018198778**,
 STAT **74908 11 2023 0 06077**, RCS **102071032469**, dont le siège est sis à
-Antananarivo, Madagascar Lot IIE 21 A ter, représentée par
-**Valérien Rakotosalama** en sa qualité de Gérant
+Antananarivo, Madagascar — Lot IIE 21 A ter, représentée par
+**Valérien Rakotosalama** en sa qualité de **Gérant**
 (ci-après « **la Société** » ou « **VJUS** »).
 
 **VJUS** exploite son activité sous le **nom commercial « Salverys »**. « Salverys »
@@ -98,8 +98,8 @@ délai.
 
 ## Article 5 — Non-sollicitation & non-détournement
 
-Pendant toute la durée de la mission et pendant **vingt-quatre (24) mois** `[durée à
-valider]` suivant son terme, le Consultant s'interdit, directement ou indirectement, pour
+Pendant toute la durée de la mission et pendant **vingt-quatre (24) mois**
+suivant son terme, le Consultant s'interdit, directement ou indirectement, pour
 son compte ou celui d'un tiers :
 
 - de **solliciter, démarcher ou détourner** les prospects, clients et **donneurs d'ordre**
@@ -151,9 +151,10 @@ professionnelles (B2B)**.
 
 Tout manquement aux obligations du présent engagement ouvre droit, pour la Société, à la
 **réparation de l'intégralité du préjudice** subi, sans préjudice de toute mesure
-conservatoire ou d'urgence. À titre de clause pénale, tout manquement caractérisé pourra
-donner lieu au versement d'une indemnité forfaitaire de `[montant à compléter avec un
-conseil local]`, sans préjudice de la réparation du préjudice complémentaire.
+conservatoire ou d'urgence. À titre de clause pénale, tout manquement caractérisé donnera
+lieu au versement d'une indemnité forfaitaire de **20 000 000 Ar (vingt millions
+d'ariary)**, sans préjudice de la réparation du préjudice complémentaire si celui-ci
+excède ce montant.
 
 ## Article 11 — Droit applicable & règlement des litiges
 
