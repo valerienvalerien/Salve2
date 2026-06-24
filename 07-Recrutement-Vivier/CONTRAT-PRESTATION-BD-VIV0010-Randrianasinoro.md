@@ -232,7 +232,7 @@ générale ne lui est imposée.
 du contrat, la Prestataire **s'interdit de prester, directement ou indirectement, pour un
 concurrent direct** de Salverys, c'est-à-dire tout acteur proposant des services
 équivalents sur les **mêmes niches** — **télésecrétariat médical, support applicatif N1
-SaaS, helpdesk IT N1 — à destination du marché français**.
+SaaS, helpdesk IT N1 — à destination des marchés français et canadien**.
 
 7.3. **Obligation de loyauté.** La Prestataire exécute sa mission de bonne foi, dans
 l'intérêt de la Société, et s'abstient de tout acte de nature à détourner des opportunités
@@ -242,9 +242,10 @@ commerciales de la Société à son profit ou au profit d'un tiers concurrent.
 Société est régie par le **NDA (Annexe 1, art. 5 — durée 24 mois)** et n'est pas reprise
 ici pour éviter toute redondance.
 
-7.5. Ces stipulations, limitées aux concurrents directs sur les niches et au marché
-français, sont **proportionnées** à la protection des intérêts légitimes de la Société et
-**ne privent pas** la Prestataire d'exercer son activité auprès d'autres clients.
+7.5. Ces stipulations, limitées aux concurrents directs sur les niches et aux marchés
+français et canadien, sont **proportionnées** à la protection des intérêts légitimes de
+la Société et **ne privent pas** la Prestataire d'exercer son activité auprès d'autres
+clients.
 
 ## Article 8 — Confidentialité, non-sollicitation et propriété intellectuelle (renvoi NDA)
 
