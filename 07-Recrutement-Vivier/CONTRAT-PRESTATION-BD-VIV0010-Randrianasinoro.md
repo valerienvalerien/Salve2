@@ -104,11 +104,20 @@ temps.
 
 2.2. À ce titre, la Prestataire réalise notamment les **activités** suivantes :
 - Ciblage et constitution de listes de prospects qualifiées ;
+- **Veille concurrentielle (benchmarking)** : analyse régulière des concurrents sur les
+  trois niches — positionnement, offres, **grilles tarifaires** et arguments — pour
+  nourrir le ciblage et le discours commercial ;
 - Branding de la marque Salverys et du personal branding de Valérien ;
 - **Prospection** (cold mailing via l'outil **Emelia**, et tout canal pertinent) ;
+- **Conception et optimisation des séquences** : rédaction et adaptation des objets,
+  messages, scripts d'appel et templates (cold mailing, LinkedIn), avec **tests A/B** et
+  ajustement selon les taux d'ouverture / réponse ;
 - Qualification des prospects et prise de rendez-vous ;
 - **Closing** (négociation et signature des donneurs d'ordre) ;
-- Suivi et mise à jour du **CRM**.
+- Suivi et mise à jour du **CRM** ;
+- **Reporting d'activité** : production d'un **reporting périodique** (volumes contactés,
+  taux de réponse, rendez-vous obtenus, état du pipeline) permettant à la Société de
+  suivre l'avancement de la mission.
 
 2.3. **Livrable de cadrage initial.** Au cours des **premières semaines** de la mission,
 la Prestataire remet un **document de cadrage** comprenant une **réflexion stratégique**
