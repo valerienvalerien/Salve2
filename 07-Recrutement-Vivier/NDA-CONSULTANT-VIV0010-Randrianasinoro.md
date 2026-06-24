@@ -28,8 +28,9 @@ juridique distincte** : le seul cocontractant au titre du présent engagement es
 **VJUS**.
 
 **Le Consultant** : **Vololoniaina Randrianasinoro**, consultant
-indépendant, demeurant à Tamatave, Madagascar `[adresse complète à compléter]`,
-courriel `randrianasinoro@gmail.com`, téléphone +261 32 07 042 29 / +261 34 28 533 24
+indépendant, demeurant **737 bis parcelle 13/74 Tanambao V, Toamasina 501
+(Madagascar)**, courriel `randrianasinoro@gmail.com`,
+téléphone +261 32 07 042 29 / +261 34 28 533 24
 (ci-après « **le Consultant** »).
 
 Ci-après désignés ensemble « les Parties ».
