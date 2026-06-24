@@ -220,6 +220,35 @@
     <p class="note"><b>Lecture</b> — ① &amp; ③ : prime <b>one-shot</b> au mois du contrat gagné. ② : <b>% récurrent</b> du MRR actif (monte avec le portefeuille). ④ : prime signature <b>+</b> résidu récurrent. « <span style="color:var(--rouge)">▴</span> » = valeur écrêtée par l'OTE (mode plafonné). 3 premiers mois en italique = préparation ≈ fixe seul.</p>
   </div>
 
+  <!-- PROJECTION 24 MOIS -->
+  <div class="card">
+    <h2>Projection 24 mois — jalons M3 → M24</h2>
+    <div class="trajrow" style="margin-bottom:12px">
+      <div class="fld" style="display:flex;align-items:center;gap:8px">
+        <label style="font-size:.85rem;font-weight:700">Rythme de signature</label>
+        <select id="scen24" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:8px">
+          <option value="prudent">Prudent (montée lente)</option>
+          <option value="median" selected>Médian (montée régulière)</option>
+          <option value="ambitieux">Ambitieux (montée rapide)</option>
+        </select>
+      </div>
+      <div class="fld"><label style="font-size:.85rem;font-weight:700">Churn annuel</label><input type="number" id="churn" value="0" step="5" min="0" max="60" style="width:64px;padding:6px 8px;border:1px solid #d1d5db;border-radius:8px;color:var(--bleu)"> %</div>
+      <div class="fld"><label style="font-size:.85rem;font-weight:700">ETP / donneur d'ordre</label><input type="number" id="etpdo" value="3" step="1" min="1" max="8" style="width:60px;padding:6px 8px;border:1px solid #d1d5db;border-radius:8px;color:var(--bleu)"></div>
+      <span class="rate-hint" style="margin-left:auto">Mode : <span id="projState" class="pill">plafonné</span></span>
+    </div>
+    <div style="overflow:auto">
+    <table id="ptbl">
+      <thead><tr>
+        <th>Jalon</th><th>ETP actifs</th><th>Donneurs d'ordre</th><th>MRR €/mois</th>
+        <th>① Sécurité</th><th>② Fermière</th><th>③ Chasseuse</th><th>④ Mixte</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="legend">Rému = <b>moyenne mensuelle du trimestre</b> se terminant au jalon (lisse les pics de primes one-shot). MRR = ETP actifs × <span id="mrruTxt">1 350</span> €. En <b>déplafonné</b> sa rému suit la croissance du portefeuille ; en <b>plafonné</b> elle butte sur l'OTE. Réglez le <b>rythme</b> et le <b>churn</b> ci-dessus. La courbe reprend l'affichage Mensuel/Cumulé et les modèles cochés plus haut.</p>
+    <div id="projBox" style="margin-top:10px"></div>
+  </div>
+
   <div class="warn">
     <b>Garde-fous</b> — (1) <b>Cohérence freelance</b> : vocabulaire d'<b>honoraires + commission de performance</b>, jamais « salaire/prime de salarié » → limite le risque de requalification (NDA art. 7).
     (2) <b>Repère interne</b> : fee freelance standard Salverys = <b>650 €/mois</b> (3,25 M Ar). Un fixe proche/au-dessus de ce repère se paie <b>avant tout résultat</b>.
@@ -236,6 +265,12 @@ const SCEN={
   prudent:  [0,0,0, 1,1,1, 1,1,1, 2,2,2],
   median:   [0,0,0, 1,1,2, 2,2,2, 3,2,3],
   ambitieux:[0,0,1, 2,2,3, 3,3,3, 4,4,4]
+};
+// trajectoires 24 mois (ETP signés/mois) pour la projection longue
+const SCEN24={
+  prudent:  [0,0,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,2, 1,1,2, 1,1,2],
+  median:   [0,0,0, 1,1,1, 1,1,2, 1,1,2, 1,2,1, 2,1,2, 1,2,1, 2,1,2],
+  ambitieux:[0,0,1, 2,2,2, 2,2,3, 2,2,3, 2,3,2, 3,2,3, 2,3,2, 3,2,3]
 };
 const COL=['#5B7F9E','#6F8770','#B89968','#8A7A9B'];
 const NAMES=['① Sécurité','② Fermière','③ Chasseuse','④ Mixte'];
@@ -318,6 +353,35 @@ function run(){
   }
   $('curveWhy').innerHTML=why;
 
+  // ---- PROJECTION 24 MOIS (jalons M3→M24) ----
+  const ramp24=SCEN24[$('scen24').value]||SCEN24.median;
+  const cMonth=Math.max(0,+$('churn').value||0)/100/12;   // churn mensuel
+  const etpdo=Math.max(1,+$('etpdo').value||3);            // ETP par donneur d'ordre
+  let active=0; const pser=[[],[],[],[]], pactive=[], pmrr=[];
+  for(let m=1;m<=24;m++){
+    const nc=ramp24[m-1]; active=active*(1-cMonth)+nc; const mrr=active*mrrUnit;
+    pactive.push(active); pmrr.push(mrr);
+    let raw=[ f[0]+nc*comm1, f[1]+taux2*mrr, f[2]+nc*comm3, f[3]+nc*os4+taux4*mrr ];
+    raw=raw.map(v=>capped?Math.min(v,oteRef):v);
+    for(let i=0;i<4;i++) pser[i].push(raw[i]);
+  }
+  const fmtU=v=>Number.isInteger(v)?v:v.toFixed(1);
+  const pj=$('ptbl').querySelector('tbody'); pj.innerHTML='';
+  [3,6,9,12,15,18,21,24].forEach(jm=>{
+    const a=pactive[jm-1], mrr=pmrr[jm-1];
+    const etpAct = unit==='client' ? a*etpc : a;       // unités → ETP réels
+    const dos = etpAct/etpdo;
+    const avg=[0,1,2,3].map(i=>{ let s=0; for(let k=jm-3;k<jm;k++) s+=pser[i][k]; return s/3; });
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>M${jm}</td><td>${fmtU(Math.round(etpAct*10)/10)}</td><td>${dos.toFixed(1)}</td><td>${fmtE(mrr)}</td>
+      <td class="c1">${fmtE(avg[0])}</td><td class="c2">${fmtE(avg[1])}</td><td class="c3">${fmtE(avg[2])}</td><td class="c4">${fmtE(avg[3])}</td>`;
+    pj.appendChild(tr);
+  });
+  $('mrruTxt').textContent=Math.round(mrrUnit).toLocaleString('fr-FR');
+  $('projState').textContent=capped?('plafonné à '+fmtE(oteRef)):'déplafonné';
+  $('projState').className='pill'+(capped?'':' on');
+  drawCurves(pser,vis,oteRef,capped,cumul,'projBox');
+
   // ---- BARRES coût 12 mois ----
   const ch=$('chart'); ch.innerHTML='';
   const maxY=Math.max(...sum,1);
@@ -341,7 +405,9 @@ function run(){
   });
 }
 
-function drawCurves(series,vis,oteRef,capped,cumul){
+function drawCurves(series,vis,oteRef,capped,cumul,box){
+  box=box||'curveBox';
+  const N=Math.max(...series.map(s=>s.length));
   const W=720,H=300,ml=52,mr=14,mt=14,mb=26;
   const pw=W-ml-mr, ph=H-mt-mb;
   // transformation cumulée si demandé
@@ -350,7 +416,7 @@ function drawCurves(series,vis,oteRef,capped,cumul){
   plot.forEach((s,i)=>{ if(vis[i]) s.forEach(v=>{if(v>max)max=v;}); });
   const step=cumul?2000:200;
   max=Math.ceil(max/step)*step||step;
-  const X=m=>ml+(m-1)/11*pw;
+  const X=m=>ml+(m-1)/(N-1)*pw;
   const Y=v=>mt+ph-(v/max)*ph;
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
   // gridlines + y labels
@@ -365,8 +431,10 @@ function drawCurves(series,vis,oteRef,capped,cumul){
     s+=`<line x1="${ml}" y1="${y}" x2="${W-mr}" y2="${y}" stroke="#B05C4A" stroke-dasharray="4 3" stroke-width="1"/>`;
     s+=`<text x="${W-mr}" y="${y-4}" text-anchor="end" font-size="10" fill="#B05C4A">OTE ${oteRef} €</text>`;
   }
-  // x labels
-  for(let m=1;m<=12;m++){
+  // x labels (1 sur 3 au-delà de 12 mois)
+  const lstep=N<=12?1:3;
+  for(let m=1;m<=N;m++){
+    if((m-1)%lstep!==0 && m!==N) continue;
     s+=`<text x="${X(m)}" y="${H-8}" text-anchor="middle" font-size="9" fill="#9ca3af">M${m}</text>`;
   }
   // polylines
@@ -377,7 +445,7 @@ function drawCurves(series,vis,oteRef,capped,cumul){
     serie.forEach((v,idx)=>{ s+=`<circle cx="${X(idx+1).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="2.4" fill="${COL[i]}"/>`; });
   });
   s+=`</svg>`;
-  $('curveBox').innerHTML=s;
+  $(box).innerHTML=s;
 }
 
 function fillPreset(){ const a=SCEN[$('scen').value]; for(let i=0;i<12;i++) $('mo'+(i+1)).value=a[i]; }
