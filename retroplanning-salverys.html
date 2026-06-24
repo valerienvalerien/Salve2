@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rétroplanning de lancement — Salverys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Georgia:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ─── Tokens (miroir charte Salverys) ─────────────────── */
+:root{
+  --bg:#F8F5F0; --bg-soft:#F6F2EA; --card:#FFFFFF;
+  --ink:#20303F; --text:#2A2620; --text-soft:#5C5448; --text-mute:#8A8275;
+  --line:#E7DFD1; --line-soft:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B;
+  --accent:#6F8770; --accent-tint:#EAF0EA;
+  --gold:#B89968; --gold-tint:#F5EEDF;
+  --danger:#B6604D;
+  /* couleurs chantiers */
+  --c-prospection:#6F8770; --c-equipe:#B89968; --c-closing:#2E3B4E;
+  --c-site:#5B7A99; --c-branding:#A8628C; --c-infra:#8A8275; --c-pilotage:#7A8A6F;
+  --radius:18px; --radius-sm:12px; --radius-pill:100px;
+  --shadow-sm:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+  --shadow-md:0 10px 28px rgba(32,48,63,.10),0 3px 8px rgba(32,48,63,.06);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.serif{font-family:'Georgia',serif}
+
+/* ─── Cover ──────────────────────────────────────────── */
+.cover{background:var(--primary-deep);color:#fff;padding:52px 22px 120px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(111,135,112,.28),transparent 68%);top:-220px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cover::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(184,153,104,.18),transparent 70%);bottom:-200px;right:-80px;pointer-events:none}
+.cover-logo{height:50px;width:auto;margin:0 auto 22px;display:block;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:7px 16px;border-radius:var(--radius-pill);position:relative}
+.cover h1{font-family:'Georgia',serif;font-size:clamp(30px,5.4vw,50px);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:20px 0 12px;position:relative}
+.cover h1 span{color:var(--accent)}
+.cover .sub{font-size:16px;color:rgba(255,255,255,.72);max-width:560px;margin:0 auto;position:relative}
+
+/* ─── Countdown ──────────────────────────────────────── */
+.countdown{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;position:relative}
+.cd{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:var(--radius);padding:16px 22px;min-width:150px;backdrop-filter:blur(6px)}
+.cd .lab{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.55);margin-bottom:6px}
+.cd .num{font-size:30px;font-weight:800;line-height:1;color:#fff}
+.cd .num b{color:var(--gold);font-size:30px}
+.cd .date{font-size:12px;color:rgba(255,255,255,.6);margin-top:5px}
+
+/* ─── Tabs ───────────────────────────────────────────── */
+.tabs-wrap{position:sticky;top:0;z-index:60;margin-top:-72px;padding:0 22px 0}
+.tabs{max-width:1080px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-pill);box-shadow:var(--shadow-md);padding:6px;display:flex;gap:4px}
+.tab-btn{flex:1;border:none;background:transparent;font-family:inherit;font-size:15px;font-weight:600;color:var(--text-soft);padding:13px 18px;border-radius:var(--radius-pill);cursor:pointer;transition:all .2s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px}
+.tab-btn:hover{color:var(--primary);background:var(--bg-soft)}
+.tab-btn.active{background:var(--primary);color:#fff;box-shadow:var(--shadow-sm)}
+.tab-btn .ic{font-size:18px}
+
+/* ─── Progress ───────────────────────────────────────── */
+.progress-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px 24px;margin:30px 0 8px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.progress-card .ring{flex-shrink:0}
+.progress-main{flex:1;min-width:240px}
+.progress-main .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:12px}
+.progress-main .msg{font-family:'Georgia',serif;font-size:19px;font-weight:600;color:var(--primary)}
+.progress-main .count{font-size:13px;color:var(--text-mute);font-weight:600;white-space:nowrap}
+.bar{height:14px;background:var(--line-soft);border-radius:var(--radius-pill);overflow:hidden;border:1px solid var(--line)}
+.bar > span{display:block;height:100%;width:0;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .6s var(--ease)}
+.reset-btn{background:transparent;border:1px solid var(--line);color:var(--text-mute);font-family:inherit;font-size:12px;font-weight:600;padding:8px 14px;border-radius:var(--radius-pill);cursor:pointer;transition:all .15s;white-space:nowrap}
+.reset-btn:hover{border-color:var(--danger);color:var(--danger)}
+
+/* ─── Panels ─────────────────────────────────────────── */
+.panel{display:none;animation:fade .35s var(--ease)}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ─── Section heading ────────────────────────────────── */
+.sec-h{display:flex;align-items:center;gap:11px;margin:38px 0 16px}
+.sec-h .ic{font-size:24px}
+.sec-h h2{font-family:'Georgia',serif;font-size:23px;font-weight:600;color:var(--primary);letter-spacing:-.01em}
+.sec-h .line{flex:1;height:1px;background:var(--line)}
+
+/* ─── Legend ─────────────────────────────────────────── */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--text-soft);background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:var(--radius-pill)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c)}
+
+/* ─── Week cards ─────────────────────────────────────── */
+.week{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:16px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.week:hover{box-shadow:var(--shadow-md)}
+.week.milestone{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--shadow-sm)}
+.week.target{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow-sm)}
+.week-head{display:flex;align-items:center;gap:16px;padding:18px 22px;cursor:pointer;user-select:none;background:linear-gradient(180deg,#fff,#fdfbf7)}
+.wk-badge{flex-shrink:0;width:54px;height:54px;border-radius:14px;background:var(--primary);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;line-height:1}
+.wk-badge small{font-size:9px;font-weight:600;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.wk-badge b{font-size:21px}
+.week.milestone .wk-badge{background:var(--gold)}
+.week.target .wk-badge{background:var(--accent)}
+.wk-meta{flex:1;min-width:0}
+.wk-meta .dates{font-size:12.5px;color:var(--text-mute);font-weight:600;margin-bottom:3px}
+.wk-meta .cap{font-size:15.5px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.wk-flag{flex-shrink:0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 11px;border-radius:var(--radius-pill)}
+.wk-flag.m{background:var(--gold-tint);color:#8a6d2f}
+.wk-flag.t{background:var(--accent-tint);color:#3f5b40}
+.wk-prog{flex-shrink:0;font-size:12px;font-weight:700;color:var(--text-mute);min-width:42px;text-align:right}
+.wk-chevron{flex-shrink:0;color:var(--text-mute);transition:transform .25s var(--ease);font-size:13px}
+.week.open .wk-chevron{transform:rotate(90deg)}
+.week-body{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.week.open .week-body{max-height:1400px}
+.tasks{padding:6px 22px 20px}
+
+/* ─── Task ───────────────────────────────────────────── */
+.task{display:flex;align-items:flex-start;gap:12px;padding:11px 12px;border-radius:var(--radius-sm);cursor:pointer;transition:background .15s;border:1px solid transparent}
+.task:hover{background:var(--bg-soft)}
+.task input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:21px;height:21px;border:2px solid var(--line);border-radius:7px;margin-top:1px;cursor:pointer;position:relative;transition:all .15s;background:#fff}
+.task input:checked{background:var(--accent);border-color:var(--accent)}
+.task input:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
+.task-txt{flex:1;font-size:14.5px;color:var(--text);transition:color .15s}
+.task input:checked ~ .task-txt{color:var(--text-mute);text-decoration:line-through;text-decoration-color:var(--line)}
+.task-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tg{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:var(--radius-pill);color:#fff}
+.tg.role{background:var(--bg-soft);color:var(--text-soft);border:1px solid var(--line)}
+
+/* ─── Callout / risks ────────────────────────────────── */
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--danger);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:14px}
+.callout h3{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.risk{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--line-soft);font-size:14px;color:var(--text-soft)}
+.risk:first-of-type{border-top:none}
+.risk b{color:var(--text)}
+.risk .n{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--danger);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* ─── Branding tab ───────────────────────────────────── */
+.lead{font-size:16px;color:var(--text-soft);background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c-branding);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:8px}
+.lead b{color:var(--primary)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px}
+.bcard h3{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.bcard h3 .ic{font-size:19px}
+.bcard p{font-size:14px;color:var(--text-soft);margin-bottom:8px}
+.bcard ul{list-style:none;margin-top:8px}
+.bcard li{font-size:14px;color:var(--text-soft);padding:6px 0 6px 22px;position:relative}
+.bcard li::before{content:'';position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--c-branding)}
+.bcard li b{color:var(--text)}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--line);margin-top:10px}
+.do-dont > div{padding:14px 16px}
+.do{background:var(--accent-tint)}.dont{background:#FBEEEA;border-left:1px solid var(--line)}
+.do h4,.dont h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.do h4{color:#3f5b40}.dont h4{color:#9c4734}
+.do-dont p{font-size:13px;margin-bottom:6px}
+
+/* ─── Pillars ────────────────────────────────────────── */
+.pillar{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-top:1px solid var(--line-soft)}
+.pillar:first-of-type{border-top:none}
+.pillar .pic{flex-shrink:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--accent-tint)}
+.pillar .pct{flex-shrink:0;font-size:13px;font-weight:800;color:var(--c-branding);background:#fff;border:1px solid var(--line);border-radius:var(--radius-pill);padding:4px 11px;align-self:center}
+.pillar .pbody h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.pillar .pbody p{font-size:13.5px;color:var(--text-soft);margin:0}
+
+/* ─── Table cadence ──────────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);font-size:13.5px}
+.tbl th{background:var(--primary);color:#fff;text-align:left;padding:13px 16px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.tbl td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--text-soft);vertical-align:top}
+.tbl tr:nth-child(even) td{background:#fdfbf7}
+.tbl td b{color:var(--text)}
+
+/* ─── Idea bank ──────────────────────────────────────── */
+.ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.idea{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px;font-size:13.5px;color:var(--text-soft);position:relative;padding-left:42px;transition:transform .15s,box-shadow .15s}
+.idea:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.idea .em{position:absolute;left:14px;top:13px;font-size:19px}
+.idea b{color:var(--text);display:block;margin-bottom:2px}
+.pill-pillar{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--c-branding);margin-top:6px}
+
+/* ─── Footer ─────────────────────────────────────────── */
+.foot{text-align:center;color:var(--text-mute);font-size:12.5px;margin-top:46px;padding-top:22px;border-top:1px solid var(--line)}
+.foot b{color:var(--text-soft)}
+
+/* ─── Toast ──────────────────────────────────────────── */
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(120px);background:var(--primary-deep);color:#fff;padding:15px 26px;border-radius:var(--radius-pill);font-weight:600;font-size:15px;box-shadow:var(--shadow-md);z-index:200;opacity:0;transition:all .4s var(--ease);display:flex;align-items:center;gap:10px}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media(max-width:640px){
+  .tab-btn{font-size:13px;padding:11px 10px}
+  .tab-btn .lab{display:none}
+  .week-head{flex-wrap:wrap;gap:12px}
+  .do-dont{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <img class="cover-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" />
+  <span class="kicker">⛰️ Plan de lancement · Salverys</span>
+  <h1 class="serif">Rétroplanning <span>de lancement</span></h1>
+  <p class="sub">8 semaines pour passer des documents prêts à la <b style="color:#fff">machine commerciale en régime</b> — IT-first, marque blanche d'abord.</p>
+  <div class="countdown">
+    <div class="cd"><div class="lab">🚩 Jalon — rampe lancée</div><div class="num"><b id="cd-jalon">–</b> j</div><div class="date">semaine du 4 août</div></div>
+    <div class="cd"><div class="lab">🎯 J0 — 1er contrat MB</div><div class="num"><b id="cd-j0">–</b> j</div><div class="date">semaine du 17 août</div></div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="retro"><span class="ic">🗓️</span><span class="lab">Rétroplanning</span></button>
+    <button class="tab-btn" data-tab="branding"><span class="ic">📣</span><span class="lab">Plan Branding</span></button>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- Progress (shared) -->
+  <div class="progress-card">
+    <svg class="ring" width="78" height="78" viewBox="0 0 78 78">
+      <circle cx="39" cy="39" r="33" fill="none" stroke="#F0EADE" stroke-width="10"/>
+      <circle id="ring-fg" cx="39" cy="39" r="33" fill="none" stroke="#6F8770" stroke-width="10" stroke-linecap="round" stroke-dasharray="207.3" stroke-dashoffset="207.3" transform="rotate(-90 39 39)" style="transition:stroke-dashoffset .6s cubic-bezier(.22,.61,.36,1)"/>
+      <text id="ring-txt" x="39" y="44" text-anchor="middle" font-size="18" font-weight="800" fill="#2E3B4E" font-family="Inter">0%</text>
+    </svg>
+    <div class="progress-main">
+      <div class="top">
+        <span class="msg" id="prog-msg">C'est parti 🚀</span>
+        <span class="count" id="prog-count">0 / 0 actions</span>
+      </div>
+      <div class="bar"><span id="bar-fill"></span></div>
+    </div>
+    <button class="reset-btn" id="reset">↺ Réinitialiser</button>
+  </div>
+
+  <!-- ════════ TAB RETRO ════════ -->
+  <section class="panel active" id="tab-retro">
+
+    <div class="sec-h"><span class="ic">🎯</span><h2>La cible</h2><span class="line"></span></div>
+    <div class="grid2">
+      <div class="bcard" style="border-left:4px solid var(--accent)">
+        <h3><span class="ic">🚩</span>Jalon — 6 semaines</h3>
+        <p><b>Semaine du 4 août.</b> Cold en volume IT-first, premiers RDV donneurs d'ordre (ESN/MSP, éditeurs SaaS), vivier qualifié, site live, LinkedIn gérant + Salverys actifs.</p>
+      </div>
+      <div class="bcard" style="border-left:4px solid var(--gold)">
+        <h3><span class="ic">🏁</span>J0 — 2 mois</h3>
+        <p><b>Semaine du 17 août.</b> Machine commerciale en régime + <b>1er contrat marque blanche signé</b>, équipe IT activée, infra déclenchée derrière le contrat.</p>
+      </div>
+    </div>
+
+    <div class="sec-h"><span class="ic">🧭</span><h2>Les 5 chantiers</h2><span class="line"></span></div>
+    <div class="legend">
+      <span class="chip"><span class="dot" style="--c:var(--c-prospection)"></span>Prospection</span>
+      <span class="chip"><span class="dot" style="--c:var(--c-equipe)"></span>Équipe / Vivier</span>
+      <span class="chip"><span class="dot" style="--c:var(--c-closing)"></span>Closing / Juridique</span>
+      <span class="chip"><span class="dot" style="--c:var(--c-site)"></span>Site</span>
+      <span class="chip"><span class="dot" style="--c:var(--c-branding)"></span>Branding</span>
+      <span class="chip"><span class="dot" style="--c:var(--c-infra)"></span>Infra</span>
+    </div>
+    <p style="font-size:13px;color:var(--text-mute);margin:10px 2px 0">Coche les actions au fil de l'eau — ta progression est sauvegardée sur cet appareil. Clique une semaine pour la déplier. <b style="color:var(--text-soft)">Rôles :</b> 👤 Direction (Valérien) · 💼 Business dev (Vololona).</p>
+
+    <div class="sec-h"><span class="ic">📆</span><h2>Semaine par semaine</h2><span class="line"></span></div>
+    <div id="weeks"></div>
+
+    <div class="sec-h"><span class="ic">⚠️</span><h2>Chemin critique &amp; risques</h2><span class="line"></span></div>
+    <div class="callout">
+      <h3>🔥 Les 6 points qui peuvent faire glisser la date</h3>
+      <div class="risk"><span class="n">1</span><div><b>Délivrabilité (le goulot).</b> Souscrire Emelia + renseigner les 2 domaines (<code>salverys-bpo.fr</code>, <code>salverys-groupe.fr</code>) dès la S0. Chauffe avant tout envoi — un envoi prématuré = spam (déjà vécu).</div></div>
+      <div class="risk"><span class="n">2</span><div><b>Manager IT.</b> Délai de recrutement le plus long → verrouiller le manager de la niche n°1 dès la S1.</div></div>
+      <div class="risk"><span class="n">3</span><div><b>Cadre juridique.</b> NDA Vololona signée en S0 ; contrat de prestation + DPA relus par un conseil local <b>avant la S5</b> (1ers devis).</div></div>
+      <div class="risk"><span class="n">4</span><div><b>Listes propres.</b> Bounces = blacklistage (récupération en semaines). Nettoyer chaque liste <b>avant</b> mise en séquence.</div></div>
+      <div class="risk"><span class="n">5</span><div><b>Branding fondateur.</b> Pas un « nice-to-have » en MB IT : un donneur d'ordre vérifie le gérant en ligne avant de sous-traiter. Démarrer dès la S0, effet cumulatif.</div></div>
+      <div class="risk"><span class="n">6</span><div><b>Dépendance BD.</b> Intégrer l'analyse de Vololona <b>sans bloquer</b> le chemin critique (Emelia, chauffe, manager IT) dessus.</div></div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB BRANDING ════════ -->
+  <section class="panel" id="tab-branding">
+
+    <div class="lead">📣 <b>Pourquoi ce plan existe :</b> en marque blanche IT, le donneur d'ordre (DSI d'éditeur SaaS, dirigeant d'ESN/MSP) <b>cherche le fondateur sur LinkedIn avant de confier son support</b>. Une présence crédible du gérant + de Salverys raccourcit le cycle de vente et ouvre un canal chaud parallèle au cold email. Objectif : <b>de l'inconnu au « j'ai déjà vu passer Salverys »</b> en 8 semaines.</div>
+
+    <div class="sec-h"><span class="ic">🧠</span><h2>0 · Pourquoi c'est stratégique, pas cosmétique</h2><span class="line"></span></div>
+    <div class="grid2">
+      <div class="bcard">
+        <h3><span class="ic">🔎</span>Ils te googlent avant de signer</h3>
+        <p>Tes cibles sous-traitent leur support <b>sous leur propre marque</b> : leurs clients croiront parler à <i>leur</i> équipe. C'est un risque de réputation énorme pour elles. Avant de signer, elles font une diligence minimale — elles cherchent <b>Salverys</b> et <b>toi, le gérant</b>. Aujourd'hui elles ne trouvent quasi rien → signal « petite structure opaque », friction avant même le RDV.</p>
+      </div>
+      <div class="bcard">
+        <h3><span class="ic">🧱</span>Le substitut de preuve le moins cher</h3>
+        <p>Au démarrage tu n'as <b>pas encore de cas clients</b> (ton facteur limitant). Un fondateur qui parle <b>process, SLA, QA, conformité</b> fait le travail de réassurance que des références feraient — en attendant d'en avoir. C'est de la preuve « empruntée », rapide et gratuite.</p>
+      </div>
+      <div class="bcard">
+        <h3><span class="ic">🔥</span>Un canal chaud parallèle au cold</h3>
+        <p>Le social selling LinkedIn touche <b>les mêmes décideurs</b> que le cold email, mais par une porte plus tiède : ils t'ont déjà vu publier avant que tu les contactes. Deux canaux qui se renforcent au lieu d'un seul.</p>
+      </div>
+      <div class="bcard">
+        <h3><span class="ic">📈</span>Effet cumulatif → démarrer en S0</h3>
+        <p>La réputation en ligne ne s'achète pas en une fois, elle <b>se capitalise</b> sur plusieurs semaines. Démarré en S0, au moment des 1ers RDV (S4-S5) un prospect qui te cherche trouve déjà 4-5 semaines de contenu cohérent. Démarré trop tard, l'effet arrive après le RDV. <b>Même logique que la chauffe email : on amorce tôt parce que le résultat est différé.</b></p>
+      </div>
+    </div>
+
+    <div class="sec-h"><span class="ic">🧑‍💼</span><h2>1 · Positionnement du gérant</h2><span class="line"></span></div>
+    <div class="grid2">
+      <div class="bcard">
+        <h3><span class="ic">🪪</span>Qui &amp; quel angle</h3>
+        <p><b>Valérien Rakotosalama</b> — Gérant de <b>VJUS</b>, fondateur de <b>Salverys</b>.</p>
+        <p style="background:var(--accent-tint);border-radius:10px;padding:12px 14px;font-style:italic;color:var(--text)">« Je monte à Antananarivo une équipe support N1 francophone obsédée par le process et la qualité — double écoute, reporting, SLA — pour les éditeurs SaaS et les ESN français qui veulent déléguer sans perdre en exigence. »</p>
+        <ul>
+          <li><b>Tonalité :</b> opérationnel, transparent, « build in public » du lancement.</li>
+          <li><b>Audience cible :</b> Head of Support / CTO / COO d'éditeurs SaaS FR · dirigeants ESN-MSP · responsables relation client.</li>
+        </ul>
+      </div>
+      <div class="bcard">
+        <h3><span class="ic">🧱</span>Preuves à brandir (et à éviter)</h3>
+        <ul>
+          <li>Process documentés · cadrage qualité (script, QA double écoute, reporting)</li>
+          <li>Pilote mesuré · SLA chiffré (≥ 90 % décroché)</li>
+          <li>Fuseau FR-compatible · français langue maternelle · −40 % de coût</li>
+          <li>Conformité RGPD (art. 46) · plan de continuité (énergie, double FAI) · zéro stockage local</li>
+        </ul>
+        <div class="do-dont">
+          <div class="do"><h4>✓ On dit</h4><p>« Direction qui repart de zéro, 10 personnes, process carrés. »</p><p>Build in public, chiffres réels.</p></div>
+          <div class="dont"><h4>✗ Interdit</h4><p>Survendre un chiffre intenable (rester sur <b>≥ 90 %</b> de décroché, jamais 95 %).</p><p>Citer un prospect/client sous NDA.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-h"><span class="ic">✍️</span><h2>2 · Ligne éditoriale — 4 piliers</h2><span class="line"></span></div>
+    <div class="bcard">
+      <div class="pillar">
+        <div class="pic">🏗️</div><div class="pct">40 %</div>
+        <div class="pbody"><h4>Coulisses du build (build in public)</h4><p>Monter un BPO qualité from scratch : décisions, vivier, salaires premium anti-turnover, doutes et victoires. C'est le pilier qui crée l'attachement et la confiance.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pic">🎧</div><div class="pct">30 %</div>
+        <div class="pbody"><h4>Expertise support N1 / helpdesk IT</h4><p>Bonnes pratiques : ITIL léger, SLA, QA double écoute, métriques (taux de décroché, FRT, CSAT, backlog). C'est le pilier qui prouve la compétence à l'acheteur IT.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pic">🛡️</div><div class="pct">20 %</div>
+        <div class="pbody"><h4>Offshore francophone démystifié</h4><p>Tuer les objections Madagascar : RGPD / clauses art. 46, continuité électrique, zéro stockage, turnover maîtrisé. Le pilier qui désamorce avant même le RDV.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pic">📈</div><div class="pct">10 %</div>
+        <div class="pbody"><h4>Preuve &amp; résultats</h4><p>Cas, chiffres, témoignages — au fil de l'eau dès les premiers contrats. Faible volume au début, monte en puissance après le 1er contrat MB.</p></div>
+      </div>
+    </div>
+
+    <div class="sec-h"><span class="ic">🔁</span><h2>3 · Cadence de posts</h2><span class="line"></span></div>
+    <table class="tbl">
+      <thead><tr><th>Phase</th><th>Rythme de publication</th><th>Engagement quotidien</th><th>Format</th></tr></thead>
+      <tbody>
+        <tr><td><b>Chauffe</b><br>S0 → S2</td><td><b>2 posts/sem.</b> (mar. + jeu.)</td><td>Commenter <b>5 posts/j</b> de la cible (social warmup, comme l'email)</td><td>Texte natif, 1 idée, hook fort en 1re ligne</td></tr>
+        <tr><td><b>Campagne</b><br>S3 → S8</td><td><b>3 posts/sem.</b> : 1 récit long + 2 courts (tip / opinion)</td><td>10-15 commentaires/j + DM doux aux RDV chauds</td><td>Carrousel occasionnel pour l'expertise · vidéo selfie pour le build</td></tr>
+      </tbody>
+    </table>
+    <div class="grid2" style="margin-top:14px">
+      <div class="bcard"><h3><span class="ic">⏰</span>Règles qui font la différence</h3><ul>
+        <li><b>Hook en 1re ligne</b> (l'algo coupe au-delà) — pas de lien en 1re ligne.</li>
+        <li><b>1 seule idée par post.</b> Une question en fin → force le commentaire.</li>
+        <li>Lien éventuel <b>en commentaire</b>, pas dans le corps.</li>
+        <li>Meilleurs créneaux FR : <b>mar.–jeu., 8h–9h ou 12h–13h</b>.</li>
+        <li>Répondre à <b>chaque</b> commentaire dans l'heure (booste la portée).</li>
+      </ul></div>
+      <div class="bcard"><h3><span class="ic">🤝</span>Rôles</h3><ul>
+        <li>👤 <b>Valérien</b> porte le compte fondateur (piliers Build + Expertise) — la voix qui convertit.</li>
+        <li>💼 <b>Vololona</b> : social selling (connexions ciblées décideurs ESN/éditeurs), amplification, 1ers brouillons.</li>
+        <li>La <b>page Salverys</b> reposte le perso + porte les annonces officielles.</li>
+      </ul></div>
+    </div>
+
+    <div class="sec-h"><span class="ic">💡</span><h2>4 · Banque de sujets IT</h2><span class="line"></span></div>
+    <div class="ideas">
+      <div class="idea"><span class="em">🎯</span><b>« Pourquoi on a refusé un client »</b>Le segment 1-5 ETP qu'on sert et celui qu'on évite.<span class="pill-pillar">Build</span></div>
+      <div class="idea"><span class="em">💸</span><b>Payer les agents 4,5× le marché local</b>Le calcul anti-turnover et ce que ça change pour le client.<span class="pill-pillar">Build</span></div>
+      <div class="idea"><span class="em">📞</span><b>Anatomie d'un bon ticket N1</b>Ce qui sépare un support qui rassure d'un support qui agace.<span class="pill-pillar">Expertise</span></div>
+      <div class="idea"><span class="em">📊</span><b>Les 4 métriques qu'un éditeur SaaS devrait exiger</b>Décroché, FRT, CSAT, taux de réescalade.<span class="pill-pillar">Expertise</span></div>
+      <div class="idea"><span class="em">🎧</span><b>La double écoute, concrètement</b>Comment on tient la qualité sans fliquer.<span class="pill-pillar">Expertise</span></div>
+      <div class="idea"><span class="em">🌍</span><b>« Madagascar et les coupures, parlons-en »</b>Le plan de continuité écrit, sans langue de bois.<span class="pill-pillar">Objections</span></div>
+      <div class="idea"><span class="em">🔒</span><b>RGPD &amp; offshore : ce que dit vraiment l'art. 46</b>Zéro stockage local, travail dans vos outils.<span class="pill-pillar">Objections</span></div>
+      <div class="idea"><span class="em">🆚</span><b>Marque blanche vs régie : que choisir ?</b>Pour une ESN qui veut déborder sans embaucher.<span class="pill-pillar">Expertise</span></div>
+      <div class="idea"><span class="em">🧪</span><b>Notre mini-test de recrutement N1</b>Le piège « outil » qui élimine les CV gonflés.<span class="pill-pillar">Build</span></div>
+      <div class="idea"><span class="em">⏱️</span><b>Le coût caché d'un ticket qui traîne</b>Pourquoi le N1 rapide protège la rétention SaaS.<span class="pill-pillar">Expertise</span></div>
+      <div class="idea"><span class="em">🤖</span><b>« Le niveau humain au-dessus de votre bot »</b>Là où l'IA cale, l'humain encadré reprend la main.<span class="pill-pillar">Objections</span></div>
+      <div class="idea"><span class="em">🚀</span><b>J-30 avant notre 1er contrat MB</b>Le rétroplanning en public — engager l'audience.<span class="pill-pillar">Build</span></div>
+    </div>
+
+    <div class="sec-h"><span class="ic">🏢</span><h2>5 · Page entreprise Salverys</h2><span class="line"></span></div>
+    <div class="bcard">
+      <p>Checklist de mise en place de la page LinkedIn (et cohérence avec <code>salverys.fr</code> + la charte). Coche au fur et à mesure — compte dans ta progression.</p>
+      <div class="tasks" id="branding-tasks" style="padding-left:0;padding-right:0"></div>
+    </div>
+
+    <div class="foot">Plan branding intégré au rétroplanning · chantier <b style="color:var(--c-branding)">Branding</b> · démarrage S0, effet cumulatif.</div>
+  </section>
+
+  <div class="foot">Source : <b>RETROPLANNING-LANCEMENT.md</b> · entité <b>VJUS</b> (nom commercial Salverys) · IT-first, marque blanche d'abord · mis à jour 2026-06-24.<br>Progression sauvegardée localement sur cet appareil (<code>salverys_retroplan_*</code>).</div>
+</main>
+
+<div id="toast"></div>
+
+<script>
+/* ─── Données du rétroplanning ───────────────────────── */
+const C={pro:'var(--c-prospection)',eq:'var(--c-equipe)',clo:'var(--c-closing)',site:'var(--c-site)',brand:'var(--c-branding)',infra:'var(--c-infra)',pil:'var(--c-pilotage)'};
+const TAG={pro:'Prospection',eq:'Équipe',clo:'Closing',site:'Site',brand:'Branding',infra:'Infra',pil:'Pilotage'};
+const weeks=[
+ {n:'S0',dates:'23 – 29 juin',cap:'Démarrer la machine',flag:null,tasks:[
+   {id:'s0a',c:'pil',r:'👤💼',t:'Faire signer la NDA à Vololona (prête, VJUS) ; cadrer périmètre + objectifs chiffrés ; accès CRM'},
+   {id:'s0c',c:'pro',r:'👤',t:'Souscrire l\'abonnement Emelia'},
+   {id:'s0d',c:'pro',r:'👤',t:'Renseigner les 2 domaines (salverys-bpo.fr + salverys-groupe.fr) dans Emelia + lancer sa chauffe (plafond bas)'},
+   {id:'s0e',c:'brand',r:'👤',t:'Optimiser le profil LinkedIn du gérant + créer/optimiser la page Salverys (positionnement qualité, IT-first)'},
+ ]},
+ {n:'S1',dates:'30 juin – 6 juil.',cap:'Listes, manager IT, site live',flag:null,tasks:[
+   {id:'s1f',c:'pil',r:'👤💼',t:'Intégrer l\'analyse de Vololona au plan (livrée en fin de S0)'},
+   {id:'s1a',c:'pro',r:'👤',t:'Warmup salverys-bpo.fr (S5, ~50 mails) ; chauffe Emelia qui monte'},
+   {id:'s1b',c:'pro',r:'💼',t:'Liste MB niche 1 (éditeurs SaaS FR — support N1) : nettoyée, dédoublonnée, dans le CRM'},
+   {id:'s1c',c:'eq',r:'👤',t:'Relancer les candidats vivier ⚠️ + verrouiller le manager IT (niche n°1, délai le plus long)'},
+   {id:'s1d',c:'site',r:'👤',t:'Déployer le site (Netlify) + vérifier salverys.fr opérationnel sur M365'},
+   {id:'s1e',c:'brand',r:'👤💼',t:'Démarrer la cadence de posts (fondateur, angle IT/qualité)'},
+ ]},
+ {n:'S2',dates:'7 – 13 juil.',cap:'2e niche, mini-tests, juridique',flag:null,tasks:[
+   {id:'s2a',c:'pro',r:'💼',t:'Liste MB niche 2 (ESN/MSP — helpdesk IT N1) ; médical en n°3'},
+   {id:'s2b',c:'eq',r:'👤💼',t:'Mini-tests aux candidats clés ; fiabiliser les notes A/B'},
+   {id:'s2c',c:'clo',r:'👤',t:'Relecture conseil local (contrat de prestation + DPA) ; confirmer mentions légales en ligne (VJUS)'},
+   {id:'s2d',c:'brand',r:'💼',t:'Social selling : connexions ciblées avec décideurs ESN/éditeurs'},
+ ]},
+ {n:'S3',dates:'14 – 20 juil.',cap:'1re campagne cold réelle (IT)',flag:'m',note:'Fin du warmup manuel (15/07)',tasks:[
+   {id:'s3a',c:'pro',r:'👤💼',t:'1re campagne cold réelle → niche 1 IT (éditeurs SaaS, support N1 MB), 20-30/j'},
+   {id:'s3b',c:'pro',r:'💼',t:'Séquences chargées dans Emelia (IT-N1-MB, puis télésec-MB)'},
+   {id:'s3c',c:'eq',r:'👤',t:'2 managers quasi-fermés (IT prioritaire) + 1ers agents IT identifiés'},
+ ]},
+ {n:'S4',dates:'21 – 27 juil.',cap:'Volume multi-boîtes, 1ers RDV',flag:null,tasks:[
+   {id:'s4a',c:'pro',r:'👤💼',t:'Volume multi-boîtes (4 adresses, 2 domaines) sur niches IT 1+2 ; relances activées'},
+   {id:'s4b',c:'eq',r:'👤💼',t:'Vivier pré-qualifié = 2 managers + ~4 agents (IT en tête) prêts à activer'},
+   {id:'s4c',c:'clo',r:'💼',t:'Répéter le pitch donneur d\'ordre IT + objections avant les RDV'},
+ ]},
+ {n:'S5',dates:'28 juil. – 3 août',cap:'3 niches, 1ers devis, infra cadrée',flag:null,tasks:[
+   {id:'s5a',c:'pro',r:'💼',t:'3 niches MB en campagne (IT 1+2, médical) ; pipeline stabilisé dans le CRM'},
+   {id:'s5b',c:'clo',r:'👤💼',t:'1ers RDV → propositions/devis envoyés à des donneurs d\'ordre IT'},
+   {id:'s5c',c:'infra',r:'👤',t:'Cadrer (devis, pas déployer) groupe électrogène + onduleurs + double FAI + postes'},
+ ]},
+ {n:'S6',dates:'4 – 10 août',cap:'🚩 Jalon : rampe lancée',flag:'m',tasks:[
+   {id:'s6a',c:'pro',r:'👤💼',t:'Cold en volume IT-first ; premiers RDV transformés en négociations'},
+   {id:'s6b',c:'pil',r:'👤💼',t:'Revue de pipeline : donneurs d\'ordre en négociation vs point mort (2-3 contrats) ?'},
+ ]},
+ {n:'7-8',dates:'11 – 23 août',cap:'🎯 Cible J0 : 1er contrat MB',flag:'t',tasks:[
+   {id:'s7a',c:'clo',r:'👤💼',t:'Signer le 1er contrat marque blanche (IT en priorité)'},
+   {id:'s7b',c:'infra',r:'👤',t:'Activer le manager IT + agents ; déclencher l\'infra (elle suit le contrat)'},
+   {id:'s7c',c:'pil',r:'👤💼',t:'Onboarding client + QA double-écoute dès le 1er jour de prod'},
+ ]},
+];
+const brandingTasks=[
+ {id:'bp1',c:'brand',t:'Nom, logo et bannière aux couleurs de la charte (positionnement IT/qualité en bannière)'},
+ {id:'bp2',c:'brand',t:'« À propos » : process documentés, qualité, IT-first — sans le claim interdit'},
+ {id:'bp3',c:'brand',t:'Lien vers salverys.fr + secteur (BPO / Outsourcing) + localisation Antananarivo'},
+ {id:'bp4',c:'brand',t:'Bouton CTA personnalisé + page reliée aux profils perso de l\'équipe'},
+ {id:'bp5',c:'brand',t:'Repartager les posts du compte fondateur + publier les annonces officielles'},
+];
+
+/* ─── Rendu ──────────────────────────────────────────── */
+function taskRow(t){
+  return `<label class="task"><input type="checkbox" id="${t.id}">
+    <span class="task-txt">${t.t}
+      <span class="task-tags">
+        <span class="tg" style="background:${C[t.c]}">${TAG[t.c]}</span>
+        ${t.r?`<span class="tg role">${t.r}</span>`:''}
+      </span></span></label>`;
+}
+const wEl=document.getElementById('weeks');
+weeks.forEach((w,i)=>{
+  const cls=w.flag==='m'?'milestone':w.flag==='t'?'target':'';
+  const flag=w.flag==='m'?'<span class="wk-flag m">Jalon</span>':w.flag==='t'?'<span class="wk-flag t">Cible J0</span>':'';
+  const open=i===0?'open':'';
+  const div=document.createElement('div');
+  div.className=`week ${cls} ${open}`;
+  div.innerHTML=`
+    <div class="week-head">
+      <div class="wk-badge"><small>Sem.</small><b>${w.n}</b></div>
+      <div class="wk-meta"><div class="dates">${w.dates}${w.note?' · <b style="color:var(--gold)">'+w.note+'</b>':''}</div><div class="cap">${w.cap}</div></div>
+      ${flag}
+      <span class="wk-prog" data-week="${w.n}">0/${w.tasks.length}</span>
+      <span class="wk-chevron">▶</span>
+    </div>
+    <div class="week-body"><div class="tasks">${w.tasks.map(taskRow).join('')}</div></div>`;
+  div.querySelector('.week-head').addEventListener('click',e=>{ if(e.target.closest('.task'))return; div.classList.toggle('open'); });
+  wEl.appendChild(div);
+});
+document.getElementById('branding-tasks').innerHTML=brandingTasks.map(taskRow).join('');
+
+/* ─── Persistance + progression ──────────────────────── */
+const KEY='salverys_retroplan_';
+const allBoxes=()=>[...document.querySelectorAll('.task input[type=checkbox]')];
+const msgs=[[0,'C\'est parti 🚀'],[15,'La machine démarre 🔧'],[35,'Ça prend forme 💪'],[55,'À mi-chemin, on tient le rythme 🏃'],[75,'Sprint final 🔥'],[95,'Plus que quelques actions… 🤏'],[100,'Lancement prêt ! 🎉']];
+let lastPct=-1;
+function refresh(){
+  const boxes=allBoxes(), done=boxes.filter(b=>b.checked).length, tot=boxes.length;
+  const pct=tot?Math.round(done/tot*100):0;
+  document.getElementById('bar-fill').style.width=pct+'%';
+  document.getElementById('prog-count').textContent=`${done} / ${tot} actions`;
+  const off=207.3*(1-pct/100);
+  document.getElementById('ring-fg').style.strokeDashoffset=off;
+  document.getElementById('ring-txt').textContent=pct+'%';
+  let m=msgs[0][1]; for(const[p,t]of msgs){if(pct>=p)m=t;}
+  document.getElementById('prog-msg').textContent=m;
+  // compteur par semaine
+  weeks.forEach(w=>{
+    const d=w.tasks.filter(t=>document.getElementById(t.id).checked).length;
+    const el=document.querySelector(`.wk-prog[data-week="${w.n}"]`);
+    if(el){el.textContent=`${d}/${w.tasks.length}`; el.style.color=d===w.tasks.length?'var(--accent)':'var(--text-mute)';}
+  });
+  if(pct===100&&lastPct!==100&&lastPct!==-1) toast('🎉 Bravo — toutes les actions sont cochées !');
+  lastPct=pct;
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
+allBoxes().forEach(b=>{
+  b.checked=localStorage.getItem(KEY+b.id)==='1';
+  b.addEventListener('change',()=>{localStorage.setItem(KEY+b.id,b.checked?'1':'0');refresh();});
+});
+document.getElementById('reset').addEventListener('click',()=>{
+  if(!confirm('Réinitialiser toute la progression cochée sur cet appareil ?'))return;
+  allBoxes().forEach(b=>{b.checked=false;localStorage.removeItem(KEY+b.id);});refresh();toast('Progression réinitialisée');
+});
+refresh();
+
+/* ─── Onglets ────────────────────────────────────────── */
+document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ─── Countdown ──────────────────────────────────────── */
+function daysTo(d){return Math.max(0,Math.ceil((new Date(d)-new Date())/(1000*60*60*24)));}
+document.getElementById('cd-jalon').textContent=daysTo('2026-08-04');
+document.getElementById('cd-j0').textContent=daysTo('2026-08-17');
+</script>
+</body>
+</html>
