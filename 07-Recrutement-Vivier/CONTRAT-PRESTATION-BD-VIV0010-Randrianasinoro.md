@@ -192,7 +192,9 @@ le cas échéant, la (les) commission(s) de performance due(s) au titre du mois.
 5.2. **Délai de paiement : à 15 jours fin de mois** (paiement intervenant dans les quinze
 jours suivant la fin du mois d'émission de la facture).
 
-5.3. **Moyen de paiement** : _[à préciser — virement / mobile money / autre : [______]]_.
+5.3. **Moyen de paiement** : le moyen de paiement retenu (virement bancaire, mobile money
+ou autre) ainsi que les coordonnées nécessaires au règlement sont **indiqués par la
+Prestataire sur chaque facture**. La Société effectue le paiement selon ces instructions.
 
 5.4. Chaque facture mentionne les éléments légaux requis (identité de la Prestataire,
 numéro d'identification, date, détail de la prestation).
