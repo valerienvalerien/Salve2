@@ -120,6 +120,14 @@ livrables).
 diligences d'un professionnel avisé pour développer le portefeuille de la Société, sans
 garantie de résultat chiffré.
 
+Toutefois, l'**absence de tout prospect en cours de négociation avancée ou de contrat
+signé** à l'issue de la **période initiale de trois (3) mois** (art. 6.1) constituera un
+motif légitime pour la Société de **ne pas reconduire le contrat**, sans que cette
+décision puisse être qualifiée de rupture fautive ni ouvrir droit à indemnité. La Société
+en informera la Prestataire par écrit au plus tard **quinze (15) jours avant le terme** de
+la période initiale ; en l'absence de notification dans ce délai, le contrat se reconduit
+dans les conditions de l'art. 6.2.
+
 ## Article 3 — Définition du « Contrat gagné » (déclencheur de la commission)
 
 3.1. Un **« Contrat gagné »** suppose la réunion **cumulative** des conditions suivantes :
