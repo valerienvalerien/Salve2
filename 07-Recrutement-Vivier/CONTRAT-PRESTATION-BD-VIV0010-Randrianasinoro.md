@@ -121,11 +121,17 @@ garantie de résultat chiffré.
 
 ## Article 3 — Définition du « Contrat gagné » (déclencheur de la commission)
 
-3.1. Un **« Contrat gagné »** s'entend, de manière cumulative :
-- d'un **donneur d'ordre (ou client) signé** ; **et**
-- dont le **premier mois de prestation a été effectivement ENCAISSÉ** par la Société
-  (paiement reçu), après le pilote / mois de lancement à **−50 %**, **et sans
-  résiliation** intervenue avant cet encaissement.
+3.1. Un **« Contrat gagné »** suppose la réunion **cumulative** des conditions suivantes :
+- un **donneur d'ordre (ou client) a signé** le contrat de prestation ;
+- la **facture du premier mois de prestation** (mois de lancement, facturé à **−50 %**) a
+  été **effectivement ENCAISSÉE** par la Société (paiement reçu sur son compte) ;
+- **aucune résiliation** n'est intervenue avant cet encaissement.
+
+La **seule signature ne suffit pas** : tant que le paiement du premier mois n'est pas
+encaissé, **aucune commission n'est due**. La facturation intervenant à terme échu et le
+paiement à 15 jours fin de mois (art. 5.2), **l'encaissement du premier mois — et donc la
+commission — interviennent au plus tôt le mois suivant la signature** (et non le mois de
+signature).
 
 3.2. **Unité de décompte : PAR DONNEUR D'ORDRE** (par client signé), **indépendamment du
 nombre d'ETP** ou de positions placés au titre de ce contrat. Un même donneur d'ordre
@@ -149,8 +155,9 @@ ariary), facturés mensuellement par la Prestataire.
 versée **une seule fois par Contrat gagné** au sens de l'article 3. Le nombre de
 commissions n'est **pas plafonné**.
 
-4.3. La commission est facturable au titre du mois civil au cours duquel les conditions du
-« Contrat gagné » (art. 3.1) sont **toutes** réunies (encaissement du 1er mois).
+4.3. La commission est facturable au titre du **mois civil au cours duquel l'encaissement
+du premier mois est constaté** (toutes les conditions de l'art. 3.1 étant réunies) ; elle
+ne peut donc **pas** être facturée au titre du mois de signature.
 
 4.4. **Devise et conversion.** Les montants sont **payés en ariary (Ar)**. Lorsqu'un
 montant est exprimé en euros (commission), la conversion s'effectue au taux de référence
