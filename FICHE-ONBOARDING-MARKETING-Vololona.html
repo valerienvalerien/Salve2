@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fiche d'onboarding marketing — Salverys · Vololona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Georgia:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ─── Reset & tokens (miroir charte Salverys) ─────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FFFFFF; --bg-soft:#F6F2EA; --paper:#F8F5F0;
+  --ink:#20303F; --text:#2A2620; --text-soft:#5C5448; --text-mute:#8A8275;
+  --line:#E7DFD1; --line-soft:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B;
+  --accent:#6F8770; --accent-soft:#C5D2C5; --accent-tint:#EAF0EA;
+  --gold:#B89968; --gold-soft:#D4B98A;
+  --danger:#B6604D; --danger-tint:#F6E7E2;
+  --ok:#6F8770;
+  --shadow-sm:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+  --shadow-md:0 10px 28px rgba(32,48,63,.10),0 3px 8px rgba(32,48,63,.06);
+  --radius:16px; --radius-lg:24px; --radius-pill:100px; --maxw:980px;
+}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ─── Cover ───────────────────────────────────────────── */
+.cover{background:var(--primary-deep);color:#fff;padding:72px 28px 60px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(111,135,112,.28),transparent 68%);top:-220px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cover-logo{height:50px;width:auto;margin:0 auto 28px}
+.cover .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft);margin-bottom:14px;position:relative;font-weight:600}
+.cover h1{font-family:'Georgia',serif;font-size:clamp(30px,5vw,46px);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:14px;position:relative}
+.cover h1 span{color:#8FA890}
+.cover p{font-size:16px;color:rgba(255,255,255,.72);position:relative;max-width:600px;margin:0 auto}
+.cover-meta{margin-top:34px;display:flex;justify-content:center;gap:34px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.85);position:relative}
+.cover-meta b{color:rgba(255,255,255,.5);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:600}
+
+/* ─── Nav ─────────────────────────────────────────────── */
+.sidenav{position:sticky;top:0;z-index:50;background:rgba(248,245,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:0 28px;overflow-x:auto}
+.sidenav-inner{max-width:var(--maxw);margin:0 auto;display:flex;gap:6px;white-space:nowrap}
+.sidenav a{padding:14px 14px;font-size:13px;font-weight:600;color:var(--text-soft);border-bottom:2px solid transparent}
+.sidenav a:hover{color:var(--primary)}
+
+/* ─── Sections ────────────────────────────────────────── */
+.phase{padding:54px 0 8px}
+.phase-tag{display:inline-flex;align-items:center;gap:8px;background:var(--accent-tint);color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-pill);margin-bottom:18px}
+.phase-tag.tech{background:#E9ECF1;color:var(--primary)}
+h2.phase-title{font-family:'Georgia',serif;font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.phase-sub{color:var(--text-soft);font-size:15px;margin-bottom:8px;max-width:680px}
+section[id]{scroll-margin-top:70px;padding:30px 0;border-top:1px solid var(--line-soft)}
+h3{font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px;display:flex;align-items:center;gap:10px}
+h3 .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--primary);color:#fff;font-size:13px;font-weight:700;flex:none}
+h4{font-size:15px;font-weight:700;color:var(--primary);margin:22px 0 8px}
+p{margin:0 0 12px;color:var(--text-soft)}
+p strong,li strong{color:var(--text)}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px;color:var(--text-soft)}
+
+/* ─── Cards ───────────────────────────────────────────── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px;box-shadow:var(--shadow-sm)}
+.card .ico{font-size:20px;margin-bottom:8px}
+.card b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.card span{font-size:13.5px;color:var(--text-soft)}
+
+/* ─── Tables ──────────────────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.tbl th{background:var(--bg-soft);text-align:left;padding:11px 14px;font-weight:700;color:var(--ink);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--line)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--line-soft);color:var(--text-soft);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--text)}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:var(--radius-pill);white-space:nowrap}
+.pill.ok{background:var(--accent-tint);color:var(--accent)}
+.pill.wait{background:#FBF1DD;color:var(--gold)}
+.pill.target{background:#E9ECF1;color:var(--primary)}
+
+/* ─── Callouts ────────────────────────────────────────── */
+.note{border-left:4px solid var(--accent);background:var(--accent-tint);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--text)}
+.note.gold{border-color:var(--gold);background:#FBF4E6}
+.note.warn{border-color:var(--danger);background:var(--danger-tint)}
+.note b{color:var(--ink)}
+.todo{border:1px dashed var(--gold);background:#FCF8EF;border-radius:var(--radius);padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--text-soft)}
+.todo b{color:var(--gold)}
+
+/* ─── Golden rules strip ──────────────────────────────── */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}
+.rule{background:var(--primary-deep);color:#fff;border-radius:var(--radius);padding:16px 18px}
+.rule b{display:block;color:#8FA890;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.rule span{font-size:13.5px;color:rgba(255,255,255,.82)}
+
+/* ─── Footer ──────────────────────────────────────────── */
+footer{background:var(--primary-deep);color:rgba(255,255,255,.6);text-align:center;padding:34px 28px;margin-top:50px;font-size:13px}
+footer b{color:#fff}
+
+@media print{
+  .sidenav{display:none}
+  body{background:#fff}
+  .card,.tbl,.note,.todo{box-shadow:none}
+  .rule,.cover,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:640px){.cover-meta{gap:20px}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<header class="cover">
+  <img class="cover-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" onerror="this.style.display='none'" />
+  <div class="kicker">Fiche d'onboarding · Marketing</div>
+  <h1>Notre environnement<br><span>outils &amp; marketing</span></h1>
+  <p>Tout ce qu'il faut savoir pour prendre en main le périmètre marketing de Salverys — sans avoir besoin d'un accès technique.</p>
+  <div class="cover-meta">
+    <div><b>Pour</b>Vololona<br>Consultante marketing</div>
+    <div><b>De</b>Direction Salverys</div>
+    <div><b>Date</b>22 juin 2026</div>
+  </div>
+</header>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="sidenav">
+  <div class="sidenav-inner">
+    <a href="#resume">① Résumé</a>
+    <a href="#qui">Qui nous sommes</a>
+    <a href="#niches">Niches &amp; GTM</a>
+    <a href="#stack-resume">Stack</a>
+    <a href="#regles">Règles d'or</a>
+    <a href="#tech">② Détail technique</a>
+    <a href="#outils">Outils</a>
+    <a href="#assets">Assets</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#prospection">Prospection</a>
+    <a href="#acces">Vos accès</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ═══════════════ PHASE 1 — RÉSUMÉ ═══════════════ -->
+<div class="phase" id="resume">
+  <span class="phase-tag">Phase 1 — Résumé</span>
+  <h2 class="phase-title">L'essentiel en 5 minutes</h2>
+  <p class="phase-sub">Une vue d'ensemble pour comprendre où l'on joue, comment on vend, et avec quels outils. Le détail outil par outil est en Phase&nbsp;2.</p>
+</div>
+
+<section id="qui">
+  <h3><span class="num">A</span> Qui nous sommes</h3>
+  <p><strong>Salverys</strong> est un BPO (centre de services externalisé) basé à <strong>Antananarivo (Madagascar)</strong> qui adresse des <strong>clients français</strong>. Direction expérimentée qui repart de zéro.</p>
+  <div class="cards">
+    <div class="card"><div class="ico">🇫🇷</div><b>Français langue maternelle</b><span>Nos agents parlent un français natif — argument de vente central côté FR.</span></div>
+    <div class="card"><div class="ico">🕐</div><b>Fuseau compatible</b><span>Même plage horaire que la France : couverture en temps réel.</span></div>
+    <div class="card"><div class="ico">💶</div><b>~−40 % de coût</b><span>Claim public conservateur vs un prestataire ou un poste interne en France.</span></div>
+    <div class="card"><div class="ico">📋</div><b>Process documentés</b><span>Cadrage qualité : script, double écoute, reporting, pilote mesuré.</span></div>
+  </div>
+  <div class="note">
+    <b>Modèle d'équipe :</b> démarrage <strong>100 % freelances</strong> (agents + 1 manager tous les 8 agents), payés très au-dessus du marché local pour viser <strong>zéro turnover</strong> ; montée en puissance au rythme des contrats signés. <strong>Côté marketing, nous sommes 2 aujourd'hui : la direction + toi (Vololona).</strong>
+  </div>
+</section>
+
+<section id="niches">
+  <h3><span class="num">B</span> Nos 3 niches &amp; la stratégie commerciale</h3>
+  <p>Toute la priorisation marketing (copy, prospection, chiffrage) suit cet ordre :</p>
+  <table class="tbl">
+    <tr><th>Priorité</th><th>Niche</th><th>Cible</th></tr>
+    <tr><td><b>n°1</b></td><td><b>Support N1 SaaS &amp; Helpdesk IT N1</b></td><td>Éditeurs SaaS français, ESN / MSP — <strong>priorité</strong>.</td></tr>
+    <tr><td><b>n°2</b></td><td><b>Télésecrétariat médical</b></td><td>Cabinets, centres &amp; chaînes médicales.</td></tr>
+    <tr><td><b>plus tard</b></td><td><b>Relation client de toutes sortes</b></td><td>Dans un futur non déterminé — élargissement à tous types de relation client.</td></tr>
+  </table>
+  <h4>GTM « marque blanche d'abord »</h4>
+  <p>L'objectif prioritaire est de démarrer en <strong>marque blanche</strong> : on est sous-traitant d'un <strong>donneur d'ordre déjà établi</strong> (télésecrétariats FR, prestataires support, ESN/MSP) qui revend notre capacité sous <em>son</em> nom. Avantage : <strong>coût d'acquisition ~nul</strong>, volume apporté. Le <strong>direct</strong> (client final) vient en 2e temps.</p>
+  <div class="note">
+    <b>Marque blanche partout :</b> nos équipes répondent <strong>sous le nom du client</strong> — « Salverys » n'apparaît jamais au bout de la ligne. C'est un avantage compétitif clé, pas une contrainte.
+  </div>
+</section>
+
+<section id="stack-resume">
+  <h3><span class="num">C</span> La stack outils en une ligne</h3>
+  <div class="cards">
+    <div class="card"><div class="ico">📧</div><b>Emelia</b><span>Cold mailing (prospection email). Outil retenu.</span></div>
+    <div class="card"><div class="ico">🌐</div><b>salverys.fr</b><span>Nom de domaine principal et site internet — hébergé sur <code>salverys.fr</code> (M365 pour l'email, site public).</span></div>
+    <div class="card"><div class="ico">✉️</div><b>Google Workspace + Microsoft 365</b><span>Email : M365 pour le quotidien/clients, Google Workspace pour les domaines de prospection (<code>@salverys-bpo.fr</code>, <code>@salverys-groupe.fr</code>).</span></div>
+    <div class="card"><div class="ico">🗂️</div><b>Airtable + Google Drive</b><span>Vivier de recrutement (candidats) et stockage des CV.</span></div>
+    <div class="card"><div class="ico">📇</div><b>HubSpot (à venir)</b><span>Remplacement du CRM maison provisoire (HTML). Migration à planifier — HubSpot retenu comme successeur.</span></div>
+    <div class="card"><div class="ico">📞</div><b>VoIP cloud</b><span>Téléphonie — préférence pour <strong>Cloudtalk forfait Essentiel</strong>, à confirmer.</span></div>
+    <div class="card"><div class="ico">💳</div><b>Facturation client</b><span>Virement sur compte pro malgache, ou Stripe — à trancher.</span></div>
+  </div>
+</section>
+
+<section id="regles">
+  <h3><span class="num">D</span> Les 4 règles d'or marketing</h3>
+  <div class="rules">
+    <div class="rule"><b>1 · Source de vérité prix</b><span>Tout prix vient de <strong>PRICING.md</strong>. En cas de divergence, ce fichier fait foi — on n'invente jamais un tarif.</span></div>
+    <div class="rule"><b>2 · SaaS-first</b><span>Avant de coder un outil maison, on se demande si un SaaS le fait déjà mieux et moins cher. Le réflexe par défaut : acheter, pas construire.</span></div>
+    <div class="rule"><b>3 · Marque blanche</b><span>On répond sous le nom du client. Toute grille de prix « marque blanche » est <strong>confidentielle</strong>, jamais publique.</span></div>
+    <div class="rule"><b>4 · Confidentialité</b><span>CRM, pricing interne, prévisionnel ne sont jamais publiés. Seuls le forfait médical et les fourchettes estimées sont visibles.</span></div>
+  </div>
+  <div class="note">
+    <b>Style de travail attendu :</b> toujours en <strong>français</strong>, <strong>direct et opérationnel</strong>, en partant des niches et stratégies déjà définies ci-dessus.
+  </div>
+</section>
+
+<!-- ═══════════════ PHASE 2 — TECHNIQUE ═══════════════ -->
+<div class="phase" id="tech">
+  <span class="phase-tag tech">Phase 2 — Détail technique</span>
+  <h2 class="phase-title">L'inventaire complet</h2>
+  <p class="phase-sub">Le détail outil par outil, asset par asset. À garder sous la main comme référence — pas à mémoriser d'un coup.</p>
+</div>
+
+<section id="outils">
+  <h3><span class="num">1</span> Les outils, un par un</h3>
+  <table class="tbl">
+    <tr><th>Outil</th><th>À quoi ça sert</th><th>Statut</th></tr>
+    <tr><td><b>Emelia</b></td><td>Cold mailing : envoi des séquences de prospection, mail-merge, suivi des réponses, warm-up intégré.</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>salverys.fr</b></td><td>Nom de domaine principal — abrite le <strong>site internet public</strong> et toutes les adresses email de marque officielles.</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>Microsoft 365</b></td><td>Email du quotidien et des clients, sur le domaine de marque <code>salverys.fr</code>.</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>Google Workspace</b></td><td>Sert de <strong>nom de domaine aux mails <code>@salverys-bpo.fr</code> et <code>@salverys-groupe.fr</code></strong> : email de <em>prospection</em>, sur des domaines secondaires séparés (pour protéger la réputation du domaine de marque <code>salverys.fr</code>).</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>Airtable</b></td><td>Vivier de recrutement : base des candidats (compétences, étape du pipeline, notes de qualification). Multi-éditeurs.</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>Google Drive</b></td><td>Stockage des CV des candidats (liens intégrés au vivier).</td><td><span class="pill ok">Actif</span></td></tr>
+    <tr><td><b>CRM maison → HubSpot</b></td><td>Fichier <code>CRM_Salverys.html</code> actuellement en usage : leads, décideurs vérifiés, scripts d'appel et réponses aux objections. Données stockées localement dans le navigateur. <strong>⚠️ Version provisoire à remplacer par HubSpot</strong> — migration à planifier.</td><td><span class="pill wait">Migration HubSpot</span></td></tr>
+    <tr><td><b>VoIP cloud — Cloudtalk</b></td><td>Téléphonie des agents. <strong>Préférence pour Cloudtalk forfait Essentiel</strong> — à creuser (déploiement, tarif, intégrations). Alternatives évaluées : Aircall, Ringover, 3CX. Pas de standard physique.</td><td><span class="pill wait">À confirmer</span></td></tr>
+    <tr><td><b>Doctolib / Maiia / Médistory / Cegedim</b></td><td>Logiciels d'agenda médical des clients, dans lesquels nos agents s'intègrent (côté télésecrétariat).</td><td><span class="pill target">Intégration</span></td></tr>
+    <tr><td><b>Facturation client</b></td><td>Deux options : <strong>virement sur un compte pro malgache</strong> directement, ou <strong>Stripe</strong>.</td><td><span class="pill wait">À trancher</span></td></tr>
+    <tr><td><b>Hébergement HDS (OVHcloud / Scaleway)</b></td><td>Hébergement des données de santé <em>si</em> l'option enregistrement d'appels est activée. Par défaut : zéro enregistrement.</td><td><span class="pill wait">Sur demande</span></td></tr>
+  </table>
+  <div class="note">
+    <b>Pourquoi deux messageries (M365 + Google Workspace) ?</b> On ne « brûle » jamais le domaine de marque <code>salverys.fr</code> avec de la prospection. Le quotidien/clients reste sur M365 ; la prospection part de domaines secondaires séparés (Google Workspace), chauffés pendant 3-4 semaines avant toute campagne. Deux écosystèmes = réputations isolées.
+  </div>
+</section>
+
+<section id="assets">
+  <h3><span class="num">2</span> Nos assets marketing</h3>
+  <p>Les supports déjà produits, que tu retrouveras et feras évoluer :</p>
+  <table class="tbl">
+    <tr><th>Asset</th><th>Rôle</th></tr>
+    <tr><td><b>Site / landing</b> <code>index.html</code></td><td>Page maître : héros, 3 niches, preuves de confiance, appels à l'action, contact.</td></tr>
+    <tr><td><b>3 simulateurs de prix</b></td><td>Médical (grille ferme 350/590/950 €), Support N1 et Helpdesk IT (estimation en fourchette, sans prix ferme).</td></tr>
+    <tr><td><b>Espaces client protégés</b></td><td>Pages par mot de passe (médical / support / helpdesk) où l'on présente les grilles « marque blanche » <strong>au cadrage uniquement</strong>.</td></tr>
+    <tr><td><b>CRM</b> <code>CRM_Salverys.html</code></td><td>Outil d'équipe : leads, décideurs, scripts. <strong>⚠️ Version provisoire, de loin à retravailler.</strong></td></tr>
+    <tr><td><b>Chartes graphiques</b></td><td>Palette (sauge + navy, doré en accent), typographies, composants — la cohérence visuelle de marque.</td></tr>
+    <tr><td><b>RAPPORT-PRIX</b> · <b>PRICING.md</b></td><td>La réflexion tarifaire détaillée et la grille de référence (source de vérité).</td></tr>
+    <tr><td><b>Séquences <code>OUTREACH-*</code></b></td><td>Les emails de prospection prêts à l'emploi, par niche.</td></tr>
+  </table>
+</section>
+
+<section id="pricing">
+  <h3><span class="num">3</span> Pricing &amp; offre (l'essentiel)</h3>
+  <div class="note warn"><b>Rappel :</b> <code>PRICING.md</code> est la <strong>source unique de vérité</strong>. Les chiffres ci-dessous sont un résumé — toute copy doit s'aligner sur ce fichier.</div>
+
+  <h4>Télésecrétariat médical — grille publique (ferme)</h4>
+  <table class="tbl">
+    <tr><th>Forfait</th><th>Volume inclus</th><th>Prix / mois</th></tr>
+    <tr><td><b>Essentiel</b></td><td>jusqu'à ~250 appels/mois</td><td><b>350 €</b></td></tr>
+    <tr><td><b>Confort</b></td><td>jusqu'à ~500 appels/mois</td><td><b>590 €</b></td></tr>
+    <tr><td><b>Intensif</b></td><td>jusqu'à ~900 appels/mois</td><td><b>950 €</b></td></tr>
+    <tr><td><b>Sur-mesure</b></td><td>&gt; 900 appels/mois</td><td>sur devis</td></tr>
+  </table>
+  <ul>
+    <li><b>Options d'amplitude</b> (cumulables) : samedi matin +90 € · soirée étendue +120 € · samedi complet +150 €.</li>
+    <li><b>Mise en service : 490 €</b> — affichée sur le devis, mais <strong>toujours offerte</strong> (affichage de valeur).</li>
+    <li><b>Offre de lancement : 1er mois à −50 %</b>, sans engagement (remplace l'ancien « essai gratuit »).</li>
+    <li><b>Deal « clients fondateurs »</b> : pour les 5 premiers logos, tarif dégressif −50/−30/−15 % sur 3 mois contre témoignage + mise en relation.</li>
+  </ul>
+
+  <h4>Support N1, Helpdesk IT, télésec MB — internes (jamais publics)</h4>
+  <div class="note warn"><b>Confidentiel :</b> ces grilles « marque blanche » sont l'input de marge du revendeur. Elles ne sont <strong>jamais affichées publiquement ni écrites en cold email</strong> — remises au cadrage, sous NDA. Détail complet dans <code>PRICING.md</code>.</div>
+  <ul>
+    <li><b>Affichage public — 3 paliers :</b> médical = grille ferme publique · Support/Helpdesk en direct = estimation en fourchette + « devis sous 24 h » · <strong>toute marque blanche = jamais public</strong>.</li>
+    <li><b>Modèles de tarification</b> (par préférence) : ETP par position &gt; à l'heure &gt; à l'interaction.</li>
+    <li><b>Engagement de décroché</b> ≥ 90 % en régime, sinon avoir de 20 % (plafonné à 1 mois sur 12).</li>
+  </ul>
+</section>
+
+<section id="prospection">
+  <h3><span class="num">4</span> Prospection &amp; canaux</h3>
+  <h4>Le playbook cold mailing</h4>
+  <p>Une <strong>séquence maître</strong> + des déclinaisons par niche : généralement <strong>5 emails</strong> (J1 / J3 / J7 / J14 / J21) entrecoupés d'<strong>appels téléphoniques</strong>, avec des scripts prêts dans le CRM.</p>
+  <table class="tbl">
+    <tr><th>Canal</th><th>Usage</th></tr>
+    <tr><td><b>Email cold</b></td><td>Cœur de la prospection B2B — via Emelia, depuis les domaines secondaires (Google Workspace).</td></tr>
+    <tr><td><b>WhatsApp</b></td><td>Bascule rapide après la 1ère réponse.</td></tr>
+    <tr><td><b>Appel téléphonique</b></td><td>Relances structurées (scripts par niche).</td></tr>
+    <tr><td><b>LinkedIn</b></td><td>Visite de profil + invitation, surtout sur Support/ESN et grandes structures.</td></tr>
+    <tr><td><b>Facebook</b></td><td>Sourcing du <em>recrutement</em> (groupes Madagascar) — pas de la prospection client.</td></tr>
+  </table>
+  <div class="note gold">
+    <b>Règle de délivrabilité :</b> on ne lance <strong>jamais</strong> une campagne avant la fin du <strong>warm-up (3-4 semaines)</strong> du domaine d'envoi. Envoyer trop tôt = spam direct et domaine grillé.
+  </div>
+</section>
+
+<section id="acces">
+  <h3><span class="num">5</span> Tes accès (sans GitHub)</h3>
+  <p>Une partie de la documentation vit dans un dépôt de code (GitHub) auquel tu <strong>n'as pas accès</strong> — et tu n'en as pas besoin. Voici comment on s'organise :</p>
+  <ul>
+    <li><b>Outils SaaS à t'ouvrir</b> : Airtable (vivier, en éditeur), Emelia (cold mailing), accès à la messagerie de marque.</li>
+    <li><b>Documents stratégiques</b> (PRICING, séquences, offre, chartes) : la direction te les partage en <strong>export (PDF ou Google Doc)</strong> — tu n'as pas à toucher au dépôt.</li>
+    <li><b>Cette fiche</b> est elle-même autonome : ouvre-la dans un navigateur, ou imprime-la en PDF (Ctrl/Cmd + P).</li>
+  </ul>
+  <div class="todo">
+    <b>À compléter par la direction :</b> liens et identifiants réels (Airtable, Emelia, messagerie, partage de documents). Non inclus ici pour des raisons de sécurité.
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p><b>Salverys</b> — Fiche d'onboarding marketing · Vololona</p>
+  <p>Document interne — ne pas diffuser à l'extérieur. Référence prix : <b>PRICING.md</b>.</p>
+</footer>
+
+</body>
+</html>

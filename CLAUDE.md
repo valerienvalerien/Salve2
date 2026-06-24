@@ -12,9 +12,13 @@ Direction expérimentée qui repart de zéro avec une équipe de **10 personnes*
 > reporting), pilote mesuré.
 
 ### Niches cibles (par priorité)
-1. **Télésecrétariat médical** (priorité absolue)
-2. Support applicatif N1 pour éditeurs SaaS français
-3. Helpdesk IT N1 distant
+> ⚠️ **Priorité revue (décision direction 2026-06-22) : l'IT devient la priorité n°1**,
+> avant le médical (qui passe n°2). Les bailleurs sortent du top 3 immédiat : élargis à
+> « relation client de toutes sortes », repoussés à un **futur non déterminé**.
+1. **Support applicatif N1 pour éditeurs SaaS français** (priorité absolue — IT)
+2. **Helpdesk IT N1 distant** (IT)
+3. Télésecrétariat médical
+4. *Relation client de toutes sortes* — dans un futur non déterminé
 
 ### Séquence de développement (toujours dans cet ordre)
 **Prospection → Équipe → Infrastructure**
@@ -57,8 +61,9 @@ définis dans **`PRICING.md`** — c'est la **source unique de vérité**. Toute
 (emails `OUTREACH-*`, CRM, simulateurs, `index.html`) doit s'aligner dessus ; en cas
 de divergence, `PRICING.md` fait foi. Réflexion détaillée : `RAPPORT-PRIX.html`.
 
-Rappels clés : priorités niches = **1) médical · 2) Support N1 SaaS & Helpdesk IT ·
-3) Bailleurs** ; offre de lancement = **1er mois à -50 %** (et non plus essai gratuit) ;
+Rappels clés : priorités niches = **1) Support N1 SaaS & Helpdesk IT (IT) · 2) médical ·
+3) relation client de toutes sortes (futur non déterminé)** ; offre de lancement = **1er mois
+à -50 %** (et non plus essai gratuit) ;
 modèles de tarification = **ETP par position > à l'heure > à l'interaction**.
 
 ## Règle d'arbitrage : SaaS-first avant tout code maison

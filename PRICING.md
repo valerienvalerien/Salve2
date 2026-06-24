@@ -4,7 +4,9 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-06-12 (rate card partenaire MB §3, télésec MB par créneau §1.b,
+> Dernière révision : 2026-06-22 (**priorité niches revue : IT n°1, médical n°2, relation
+> client de toutes sortes en futur non déterminé — labels §1/§3/§4 et récap §8**) ·
+> précédente 2026-06-12 (rate card partenaire MB §3, télésec MB par créneau §1.b,
 > add-ons amplitude + mise en service §1, pilote IT harmonisé) · précédente 2026-06-06
 > (ajout §7 « engagement de décroché ») · base 2026-05-30
 > Rapport de réflexion détaillé : `RAPPORT-PRIX.html`
@@ -33,7 +35,7 @@
 
 ---
 
-## 1. Médical — télésecrétariat (priorité 1) — **GRILLE PUBLIQUE**
+## 1. Médical — télésecrétariat (priorité 2) — **GRILLE PUBLIQUE**
 
 Facturation au **forfait mensuel** selon le volume d'appels. Dépassement = bascule
 au palier supérieur, **jamais de surfacturation à l'appel**.
@@ -117,7 +119,7 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 
 ---
 
-## 3. Support N1 SaaS & Helpdesk IT (priorité 2) — **INTERNE**
+## 3. Support N1 SaaS & Helpdesk IT (priorité 1) — **INTERNE**
 
 > Ne pas publier. Deux GTM : **en direct** (client final) ou **en marque blanche**
 > (sous-traitant d'un acteur établi). Modèle **ETP dédié** en marque blanche.
@@ -207,8 +209,11 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
 
 ---
 
-## 4. Bailleurs sociaux & grandes structures (priorité 3) — **INTERNE**
+## 4. Bailleurs sociaux & grandes structures — relation client de toutes sortes (futur non déterminé) — **INTERNE**
 
+> ⚠️ **Niche repoussée à un futur non déterminé (décision 2026-06-22)** : élargie à la
+> « relation client de toutes sortes », elle n'est plus une priorité de prospection active.
+> Grille conservée comme référence de chiffrage pour le jour où on l'activera.
 > Ne pas publier. Positionnement = **capacité d'appoint** (débordement du CRC), pas
 > remplacement. Toujours présenté en sur-devis. Deux GTM : direct ou marque blanche.
 
@@ -366,7 +371,8 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | Grille médical | « indicatifs à valider » | **prix fermes** (350/590/950 + sur-devis) |
 | Contrats helpdesk | « 12 à 36 mois » | **« dès 3 mois, puis 12 mois renouvelable »** |
 | Grilles bailleurs / SaaS-helpdesk | éparses en email | **centralisées ici (interne)** |
-| Priorités niches | Bailleurs n°2, SaaS/Helpdesk n°3 | **SaaS/Helpdesk n°2, Bailleurs n°3** |
+| Priorités niches (→2026-06-12) | Bailleurs n°2, SaaS/Helpdesk n°3 | SaaS/Helpdesk n°2, Bailleurs n°3 |
+| Priorités niches (2026-06-22) | médical n°1 · SaaS/Helpdesk n°2 · Bailleurs n°3 | **IT (Support N1 + Helpdesk) n°1 · médical n°2 · relation client de toutes sortes (futur non déterminé) n°3** |
 | Modèles de tarification | implicites | **ETP/position > à l'heure > à l'interaction** |
 | Go-to-market | direct uniquement | **direct + marque blanche (sous-traitance)** |
 | Affichage public | « hybride » (médical public, reste interne) | **3 paliers (§9)** : médical public ferme · support/helpdesk **direct = estimation** · **toute MB jamais publique** |
