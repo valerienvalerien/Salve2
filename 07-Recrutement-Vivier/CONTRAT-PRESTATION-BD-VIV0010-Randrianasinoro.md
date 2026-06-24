@@ -175,9 +175,11 @@ de prestation (premier mois à plein tarif) est encaissé** (toutes les conditio
 l'art. 3.1 étant réunies) ; elle ne peut être facturée **ni** au titre du mois de
 signature, **ni** au seul titre de l'encaissement du mois de lancement à −50 %.
 
-4.4. **Devise et conversion.** Les montants sont **payés en ariary (Ar)**. Lorsqu'un
-montant est exprimé en euros (commission), la conversion s'effectue au taux de référence
-interne **~5 000 Ar = 1 €** _(modalité de fixation du taux à préciser : [______])_.
+4.4. **Devise et conversion.** Tous les montants — honoraires fixes et commission de
+performance — sont **payés exclusivement en ariary (Ar)**. La commission est exprimée en
+euros à titre indicatif uniquement ; elle est **convertie en ariary au taux de change
+officiel EUR/MGA publié par la Banque Centrale de Madagascar (BCM) à la date d'émission
+de la facture** correspondante. Aucun paiement n'est effectué en euros.
 
 4.5. Les honoraires et commissions sont exprimés **hors taxes** le cas échéant ; la
 Prestataire fait son affaire de toute obligation déclarative ou fiscale lui incombant.
