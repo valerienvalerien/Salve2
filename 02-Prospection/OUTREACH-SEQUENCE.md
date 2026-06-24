@@ -7,11 +7,15 @@ l'envoi des séquences.
 
 **Outil d'envoi :** Emelia (mail-merge CSV)
 **Date :** 2026-06-02
-**Niches couvertes (ordre CLAUDE.md) :**
-1. **Télésecrétariat médical** — priorité absolue (séquence détaillée ci-dessous)
-2. **Support N1 — Éditeurs SaaS FR** — priorité 2 (séquence détaillée ci-dessous)
-2. **Helpdesk IT N1 — ESN & MSP** — priorité 2 (séquence dédiée : `OUTREACH-IT-N1-marque-blanche.md`)
-3. **Bailleurs sociaux & grandes structures** — priorité 3 (séquence détaillée ci-dessous)
+**Niches couvertes (ordre CLAUDE.md — priorité revue 2026-06-22 : IT n°1, médical n°2) :**
+1. **Support N1 — Éditeurs SaaS FR** — priorité n°1 (IT)
+2. **Helpdesk IT N1 — ESN & MSP** — priorité n°1 (IT) (séquence dédiée : `OUTREACH-IT-N1-marque-blanche.md`)
+3. **Télésecrétariat médical** — priorité n°2 (séquence détaillée ci-dessous)
+4. **Relation client de toutes sortes** (ex-bailleurs) — futur non déterminé (séquence détaillée ci-dessous, conservée pour référence)
+
+> ⚠️ Les séquences ci-dessous restent rédigées médical-first (antériorité). L'ordre de
+> **lancement opérationnel** doit suivre la nouvelle priorité (IT d'abord) — à arbitrer
+> avec la direction avant la prochaine campagne.
 
 ---
 
@@ -80,7 +84,7 @@ Communes à toutes les niches sauf mention contraire.
 
 ---
 
-# 1. Télésecrétariat médical (priorité ICP)
+# 1. Télésecrétariat médical (niche n°2 depuis 2026-06-22 — section conservée en tête par antériorité)
 
 **Segment cible**
 - **Priorité 1 :** chaînes / réseaux multi-sites (3+ centres) — dentaire,

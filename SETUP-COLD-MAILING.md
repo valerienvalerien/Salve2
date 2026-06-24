@@ -15,7 +15,7 @@ client en spam = perte directe.
 | Usage | Domaine | Hébergeur | Volume |
 |---|---|---|---|
 | **Daily / clients / contrats** | `salverys.fr` (marque) | **M365** | normal |
-| **Cold mailing** | 2-3 domaines secondaires | **GWS** | faible, plafonné, chauffé |
+| **Cold mailing** | domaines secondaires (`salverys-bpo.fr`, `salverys-groupe.fr`) | **GWS** | faible, plafonné, chauffé |
 
 - Les domaines cold **redirigent vers `salverys.fr`** (le prospect qui clique atterrit sur le vrai site).
 - Daily sur M365 / cold sur GWS = **deux écosystèmes séparés** → réputations isolées. ✅
@@ -23,8 +23,9 @@ client en spam = perte directe.
 ## 3. Hébergeur mail
 
 - **Daily → Microsoft 365** (choix retenu). Sur `salverys.fr`.
-- **Cold → Google Workspace (GWS)**. ~6 €/boîte/mois (Business Starter). Déjà en place sur
-  `salverys-bpo.fr`. GWS passe par les serveurs Google → pas de risque d'IP perso blacklistée.
+- **Cold → Google Workspace (GWS)**. ~6 €/boîte/mois (Business Starter). En place sur
+  `salverys-bpo.fr` **et `salverys-groupe.fr`**. GWS passe par les serveurs Google → pas de
+  risque d'IP perso blacklistée.
 - **Alternatives cold** (si besoin de scaler fort un jour) : infra dédiée type Maildoso /
   Mailreef (boîtes cold clés-en-main). **Pas nécessaire au démarrage** — GWS suffit.
 
@@ -34,8 +35,8 @@ client en spam = perte directe.
 Chaque adresse : ~20-40 mails/j **une fois chauffée**.
 
 **Lesquels (naming)** : des lookalikes proches de la marque mais **distincts** de `salverys.fr`.
-Ex. : `salverys-bpo.fr` (déjà pris), `salverys-bpo.com`, `getsalverys.fr`, `salverys-pro.fr`.
-Mélanger `.fr` (crédibilité marché FR) et `.com`.
+**En place : `salverys-bpo.fr` et `salverys-groupe.fr`.** Extensions possibles si scaling :
+`salverys-bpo.com`, `getsalverys.fr`, `salverys-pro.fr`. Mélanger `.fr` (crédibilité marché FR) et `.com`.
 
 **Où acheter (registrar)** :
 - **Cloudflare Registrar** — `.com` au prix coûtant (zéro marge) + **DNS gratuit et simple**

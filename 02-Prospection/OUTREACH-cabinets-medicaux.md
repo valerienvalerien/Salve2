@@ -1,4 +1,4 @@
-# Séquence Cold Email — Segment « Cabinets médicaux directs » (niche n°1)
+# Séquence Cold Email — Segment « Cabinets médicaux directs » (niche n°2)
 
 **Cible :** médecins libéraux, MSP, cabinets de groupe, centres de santé (France)
 **Émetteur :** Salverys — télésecrétariat médical (offre directe, marque propre)
@@ -304,6 +304,6 @@ Bonne continuation,
 
 ---
 
-*Généré via le skill `sales-outreach` (ai-sales-team-claude), adapté à la niche n°1
+*Généré via le skill `sales-outreach` (ai-sales-team-claude), adapté à la niche n°2
 (télésecrétariat médical, offre directe Salverys). Recadré 2026-06-06 sur l'angle
 résultat + engagement de décroché (cf. `OFFRE-MEDICAL.md`, `PRICING.md §7`).*
