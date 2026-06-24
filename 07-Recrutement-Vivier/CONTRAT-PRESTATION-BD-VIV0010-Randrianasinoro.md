@@ -204,9 +204,9 @@ numéro d'identification, date, détail de la prestation).
 6.1. **Période initiale** : le contrat est conclu pour une durée initiale de **trois (3)
 mois** à compter de sa signature (ou du [______]).
 
-6.2. **Reconduction** : à l'issue de la période initiale, le contrat se **reconduit**
-_[tacitement / par accord exprès — à préciser]_ pour des périodes successives, tant
-qu'aucune Partie ne l'a résilié.
+6.2. **Reconduction** : à l'issue de la période initiale, le contrat se **reconduit
+tacitement** pour des périodes successives d'un (1) mois, tant qu'aucune Partie ne l'a
+résilié dans les conditions de l'art. 6.3.
 
 6.3. **Préavis de résiliation** : chacune des Parties peut résilier le contrat, à tout
 moment après la période initiale, moyennant un **préavis d'un (1) mois** notifié par écrit
