@@ -34,6 +34,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .cover{background:var(--primary-deep);color:#fff;padding:52px 22px 120px;text-align:center;position:relative;overflow:hidden}
 .cover::before{content:'';position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(111,135,112,.28),transparent 68%);top:-220px;left:50%;transform:translateX(-50%);pointer-events:none}
 .cover::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(184,153,104,.18),transparent 70%);bottom:-200px;right:-80px;pointer-events:none}
+.cover-logo{height:50px;width:auto;margin:0 auto 22px;display:block;position:relative}
 .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:7px 16px;border-radius:var(--radius-pill);position:relative}
 .cover h1{font-family:'Georgia',serif;font-size:clamp(30px,5.4vw,50px);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:20px 0 12px;position:relative}
 .cover h1 span{color:var(--accent)}
@@ -188,7 +189,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 <body>
 
 <header class="cover">
-  <span class="kicker">⛰️ Plan de lancement · VJUS / Salverys</span>
+  <img class="cover-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" />
+  <span class="kicker">⛰️ Plan de lancement · Salverys</span>
   <h1 class="serif">Rétroplanning <span>de lancement</span></h1>
   <p class="sub">8 semaines pour passer des documents prêts à la <b style="color:#fff">machine commerciale en régime</b> — IT-first, marque blanche d'abord.</p>
   <div class="countdown">
