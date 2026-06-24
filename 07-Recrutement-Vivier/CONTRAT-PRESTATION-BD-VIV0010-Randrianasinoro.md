@@ -84,9 +84,11 @@ entre les Parties. Il ne saurait être interprété ou requalifié en contrat de
   des articles 7 (loyauté / non-concurrence limitée) et 8 (confidentialité /
   non-sollicitation via le NDA).
 
-1.4. Les directives de la Société se limitent à la **définition des objectifs, des cibles
-et du cadre qualité** (positionnement, niches, messages-clés, conformité). Le **choix des
-moyens** pour les atteindre relève de la seule Prestataire.
+1.4. La Société communique à la Prestataire les **objectifs commerciaux**, les **cibles
+prioritaires** et le **cadre qualité** de la marque (positionnement, niches, messages-clés,
+exigences de conformité), ainsi que tout retour utile au bon déroulement de la mission. La
+Prestataire **conserve la maîtrise de l'organisation de son travail** et du **choix des
+moyens et méthodes** pour atteindre ces objectifs.
 
 ## Article 2 — Mission et périmètre
 
