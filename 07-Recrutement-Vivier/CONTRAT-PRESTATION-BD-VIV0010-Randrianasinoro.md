@@ -24,29 +24,29 @@ en sa qualité de **Gérant**, dûment habilité.
 VJUS exploite l'activité commerciale sous le **nom commercial « Salverys »** (marque
 commerciale de VJUS, sans personnalité juridique distincte).
 
-Ci-après « **la Société** » ou « **VJUS** ».
+Ci-après dénommée « la Société » ou « VJUS ».
 
 **La Prestataire** : **Vololoniaina Randrianasinoro**, consultante indépendante en
 développement commercial (business development), demeurant **737 bis parcelle 13/74
-Tanambao V, Toamasina 501 (Madagascar)**, courriel **randrianasinoro@gmail.com**,
-téléphone **+261 32 07 042 29 / +261 34 28 533 24**.
+Tanambao V, Toamasina 501 (Madagascar)**, courriel : randrianasinoro@gmail.com,
+téléphone : +261 32 07 042 29 / +261 34 28 533 24.
 
-Agissant en qualité de **travailleur indépendant**, immatriculée _(NIF / STAT / numéro
-d'enregistrement à compléter : [______])_, déclarant exercer en son nom propre et assumer
+Agissant en qualité de **travailleur indépendant**, immatriculée (NIF / STAT / numéro
+d'enregistrement à compléter : [__________________________________________]), déclarant exercer en son nom propre et assumer
 seule ses obligations sociales et fiscales.
 
-Ci-après « **la Prestataire** ».
+Ci-après dénommée « la Prestataire ».
 
-Ensemble dénommées « **les Parties** », et individuellement « **une Partie** ».
+Ensemble dénommées « les Parties », et individuellement « une Partie ».
 
 ---
 
 ## Préambule
 
 La Société développe une activité de BPO basée à Antananarivo, commercialisée sous la
-marque **Salverys**, à destination de donneurs d'ordre et clients **français**, sur trois
+marque **Salverys**, à destination de donneurs d'ordre et clients français et canadien, sur trois
 niches : (1) télésecrétariat médical, (2) support applicatif N1 pour éditeurs SaaS,
-(3) helpdesk IT N1. Sa stratégie de mise sur le marché privilégie la **marque blanche**
+(3) et helpdesk IT N1. Sa stratégie de mise sur le marché privilégie la **marque blanche**
 (sous-traitance de donneurs d'ordre français) avant le direct.
 
 La Prestataire dispose d'une expérience confirmée en prospection B2B, qualification et
@@ -71,16 +71,16 @@ contrat **n'emporte aucun lien de subordination** ni aucune relation de travail 
 entre les Parties. Il ne saurait être interprété ou requalifié en contrat de travail.
 
 1.3. En conséquence, et de convention expresse entre les Parties :
-- la Prestataire **organise librement** son temps, ses méthodes et ses moyens pour
+- La Prestataire **organise librement** son temps, ses méthodes et ses moyens pour
   atteindre les objectifs convenus ; elle **n'est soumise à aucun horaire imposé** ni à
   aucune obligation de présence dans des locaux de la Société ;
-- la Prestataire **utilise ses propres moyens** matériels (poste de travail, connexion) ;
-  les outils mis à disposition par la Société (CRM, licences Emelia, etc.) le sont aux
+- La Prestataire **utilise ses propres moyens** matériels (poste de travail, connexion) ;
+  les outils mis à disposition par la Société (CRM, licences, etc.) le sont aux
   seules fins de la mission et restent la propriété de la Société ;
-- la Prestataire **facture** ses honoraires et **assume seule** l'intégralité de ses
+- La Prestataire **facture** ses honoraires et **assume seule** l'intégralité de ses
   charges, cotisations sociales et impôts liés à son activité indépendante. La Société
   n'opère aucune retenue à ce titre ;
-- la Prestataire **conserve la liberté** d'avoir d'autres clients, sous la seule réserve
+- La Prestataire **conserve la liberté** d'avoir d'autres clients, sous la seule réserve
   des articles 7 (loyauté / non-concurrence limitée) et 8 (confidentialité /
   non-sollicitation via le NDA).
 
@@ -94,20 +94,21 @@ moyens et méthodes** pour atteindre ces objectifs.
 
 2.1. La mission porte sur le **développement commercial B2B de Salverys**, en
 **marque blanche d'abord**, sur les trois niches, par ordre de priorité :
-1. **télésecrétariat médical** (priorité absolue) ;
-2. **support applicatif N1 pour éditeurs SaaS français** ;
-3. **helpdesk IT N1 distant**.
+1. **support applicatif N1 pour éditeurs SaaS français** ;
+2. **helpdesk IT N1 distant** ;
+3. **télésecrétariat médical**.
 
 La cible est constituée de **donneurs d'ordre français** (télésecrétariats médicaux,
 éditeurs / prestataires de support, ESN / MSP), le client final direct venant en second
 temps.
 
 2.2. À ce titre, la Prestataire réalise notamment les **activités** suivantes :
-- ciblage et constitution de listes de prospects qualifiées ;
-- **prospection** (cold mailing via l'outil **Emelia**, et tout canal pertinent) ;
-- qualification des prospects et prise de rendez-vous ;
-- **closing** (négociation et signature des donneurs d'ordre) ;
-- suivi et mise à jour du **CRM**.
+- Ciblage et constitution de listes de prospects qualifiées ;
+- Branding de la marque Salverys et du personal branding de Valérien ;
+- **Prospection** (cold mailing via l'outil **Emelia**, et tout canal pertinent) ;
+- Qualification des prospects et prise de rendez-vous ;
+- **Closing** (négociation et signature des donneurs d'ordre) ;
+- Suivi et mise à jour du **CRM**.
 
 2.3. **Livrable de cadrage initial.** Au cours des **premières semaines** de la mission,
 la Prestataire remet un **document de cadrage** comprenant une **réflexion stratégique**
