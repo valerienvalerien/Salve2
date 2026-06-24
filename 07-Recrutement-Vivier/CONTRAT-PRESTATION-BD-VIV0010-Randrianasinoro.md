@@ -123,15 +123,21 @@ garantie de résultat chiffré.
 
 3.1. Un **« Contrat gagné »** suppose la réunion **cumulative** des conditions suivantes :
 - un **donneur d'ordre (ou client) a signé** le contrat de prestation ;
-- la **facture du premier mois de prestation** (mois de lancement, facturé à **−50 %**) a
-  été **effectivement ENCAISSÉE** par la Société (paiement reçu sur son compte) ;
+- le **premier mois de prestation** (mois de lancement, facturé à **−50 %**) a été
+  **encaissé** par la Société ;
+- le **deuxième mois de prestation** (**premier mois à plein tarif**) a **également été
+  encaissé** par la Société (paiement reçu sur son compte) ;
 - **aucune résiliation** n'est intervenue avant cet encaissement.
 
-La **seule signature ne suffit pas** : tant que le paiement du premier mois n'est pas
-encaissé, **aucune commission n'est due**. La facturation intervenant à terme échu et le
-paiement à 15 jours fin de mois (art. 5.2), **l'encaissement du premier mois — et donc la
-commission — interviennent au plus tôt le mois suivant la signature** (et non le mois de
-signature).
+La **seule signature ne suffit pas**, ni même l'encaissement du seul mois de lancement à
+−50 % : la commission n'est due qu'une fois **confirmé que le client poursuit au-delà du
+pilote**, c'est-à-dire **après encaissement du premier mois à plein tarif (deuxième mois de
+prestation)**.
+
+**Exemple.** Signature le 10 mai → début de prestation le 1er juin → encaissement du 1er
+mois (−50 %) fin juin → encaissement du 2e mois (plein tarif) fin juillet → **commission
+due et payable en juillet** (à 15 jours fin de mois, art. 5.2). La prime n'est donc versée
+**ni au mois de signature, ni au seul mois de lancement**.
 
 3.2. **Unité de décompte : PAR DONNEUR D'ORDRE** (par client signé), **indépendamment du
 nombre d'ETP** ou de positions placés au titre de ce contrat. Un même donneur d'ordre
@@ -155,9 +161,10 @@ ariary), facturés mensuellement par la Prestataire.
 versée **une seule fois par Contrat gagné** au sens de l'article 3. Le nombre de
 commissions n'est **pas plafonné**.
 
-4.3. La commission est facturable au titre du **mois civil au cours duquel l'encaissement
-du premier mois est constaté** (toutes les conditions de l'art. 3.1 étant réunies) ; elle
-ne peut donc **pas** être facturée au titre du mois de signature.
+4.3. La commission est facturable au titre du **mois civil au cours duquel le deuxième mois
+de prestation (premier mois à plein tarif) est encaissé** (toutes les conditions de
+l'art. 3.1 étant réunies) ; elle ne peut être facturée **ni** au titre du mois de
+signature, **ni** au seul titre de l'encaissement du mois de lancement à −50 %.
 
 4.4. **Devise et conversion.** Les montants sont **payés en ariary (Ar)**. Lorsqu'un
 montant est exprimé en euros (commission), la conversion s'effectue au taux de référence
