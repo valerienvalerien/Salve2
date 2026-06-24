@@ -67,14 +67,15 @@ Légende rôles : **[D]** Direction (Valérien, gérant) · **[BD]** Business de
 
 ### Semaine 0 — 23-29 juin (en cours)
 - **Closing/Pilotage** : **faire signer la NDA à Vololona** (prête, VJUS) ; cadrer **périmètre +
-  objectifs chiffrés** (ex. nb RDV donneurs d'ordre/sem.) ; accès CRM. **Elle ajoute sa propre
-  analyse** → l'intégrer au plan en fin de semaine. [D+BD]
+  objectifs chiffrés** (ex. nb RDV donneurs d'ordre/sem.) ; accès CRM. **Elle prépare sa propre
+  analyse** (livrée en fin de S0). [D+BD]
 - **Prospection** : **souscrire l'abonnement Emelia** ; **renseigner les 2 domaines** (`salverys-bpo.fr`
   + `salverys-groupe.fr`) dans Emelia ; lancer **sa chauffe intégrée**, plafond bas. [D]
 - **Branding** : optimiser le **profil LinkedIn du gérant** + créer/optimiser la **page Salverys**
   (ligne de positionnement : process documentés, qualité, IT-first). [D]
 
 ### Semaine 1 — 30 juin-6 juil
+- **Pilotage** : **intégrer l'analyse de Vololona** au plan (livrée en fin de S0). [D+BD]
 - **Prospection** : warmup `salverys-bpo.fr` (S5, ~50 mails) ; chauffe Emelia des boîtes qui monte. [D]
 - **Prospection** : **liste MB niche 1 (éditeurs SaaS FR — support N1)** à partir de `03-Cibles-Prospects/`
   (ESN-TARGETS, analyses prospects) → nettoyée, dédoublonnée, dans le CRM. [BD]
