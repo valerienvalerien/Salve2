@@ -224,9 +224,10 @@ français, sont **proportionnées** à la protection des intérêts légitimes d
 intégralement régies par le **NDA-CONSULTANT-VIV0010-Randrianasinoro** (Annexe 1), que
 les Parties déclarent avoir signé et qui **demeure en vigueur**.
 
-8.2. Le NDA prévoit notamment une **clause pénale de 20 000 000 Ar** en cas de manquement,
-et confirme le **statut indépendant** de la Prestataire (art. 7 du NDA). Ces stipulations
-sont **réputées faire partie intégrante** du présent contrat et ne sont pas réécrites.
+8.2. Le NDA prévoit notamment une **clause pénale de 20 000 000 Ar** (art. 10 du NDA) en
+cas de manquement, et confirme le **statut indépendant** de la Prestataire (art. 7 du
+NDA). Ces stipulations sont **réputées faire partie intégrante** du présent contrat et ne
+sont pas réécrites.
 
 8.3. En cas de contradiction entre le présent contrat et le NDA sur les volets
 confidentialité, non-sollicitation ou propriété des livrables, **le NDA prévaut**.
@@ -236,8 +237,9 @@ confidentialité, non-sollicitation ou propriété des livrables, **le NDA prév
 9.1. Dans la mesure où la mission conduit la Prestataire à traiter des données à caractère
 personnel pour le compte de la Société (fichiers de prospection, contacts CRM), les
 Parties concluent, **si nécessaire**, un **accord de traitement de données (DPA)**
-conforme à la réglementation applicable (RGPD pour les données de prospects français), qui
-viendra compléter le présent contrat.
+conforme à la réglementation applicable (RGPD pour les données de prospects français) —
+modèle `04-Closing/MODELE-DPA-RGPD.md`, comme prévu à l'art. 9 du NDA — qui viendra
+compléter le présent contrat.
 
 9.2. La Prestataire s'engage à n'utiliser ces données que pour les besoins de la mission,
 à les sécuriser et à ne pas les conserver au-delà de ce qui est nécessaire, conformément
