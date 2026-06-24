@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rémunération Business Developer (Vololoniaina) — 4 modèles · OTE 1 000 €/mois</title>
+<style>
+  :root{
+    --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
+    --rouge:#B05C4A; --ok:#5E7F60;
+    --p1:#5B7F9E; --p2:#6F8770; --p3:#B89968; --p4:#8A7A9B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+  body{background:var(--creme);color:var(--bleu);padding:24px}
+  .wrap{max-width:1500px;margin:0 auto}
+  h1{font-size:1.5rem;margin-bottom:4px}
+  .sub{color:#6b7280;font-size:.9rem;margin-bottom:20px}
+  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08);margin-bottom:20px}
+  .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
+  .rate-bar{background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(46,59,78,.08)}
+  .rate-bar .fld{display:flex;align-items:center;gap:8px}
+  .rate-bar label{font-size:.85rem;font-weight:700;white-space:nowrap}
+  .rate-bar input,.rate-bar select{padding:6px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:.85rem;color:var(--bleu)}
+  .rate-bar input[type=number],.rate-bar input[type=text]{width:90px}
+  .rate-bar #ote{width:70px;font-weight:700;text-align:center}
+  .rate-hint{font-size:.72rem;color:#9ca3af}
+  .defbox{font-size:.8rem;color:#4b5563;background:#fbf8f1;border-left:4px solid var(--or);padding:10px 14px;border-radius:6px;margin-bottom:18px;line-height:1.55}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .pcard{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(46,59,78,.08);border-top:4px solid #ccc}
+  .pcard.p1{border-color:var(--p1)} .pcard.p2{border-color:var(--p2)}
+  .pcard.p3{border-color:var(--p3)} .pcard.p4{border-color:var(--p4)}
+  .pcard h3{font-size:.95rem;margin-bottom:2px}
+  .pcard .tag{font-size:.7rem;color:#9ca3af;display:block;margin-bottom:10px}
+  .pcard .fixrow{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:.8rem}
+  .pcard .fixrow input{width:64px;padding:4px 6px;border:1px solid #e5e7eb;border-radius:6px;font-size:.82rem}
+  .pcard .line{display:flex;justify-content:space-between;font-size:.8rem;padding:3px 0;border-bottom:1px solid #f0ede6;gap:8px}
+  .pcard .line b{color:var(--bleu);text-align:right}
+  .pcard .big{font-size:1.2rem;font-weight:700;margin-top:8px}
+  .pcard.p1 .big{color:var(--p1)} .pcard.p2 .big{color:var(--p2)}
+  .pcard.p3 .big{color:var(--p3)} .pcard.p4 .big{color:var(--p4)}
+  .pcard.unbounded .big::after{content:' ∞';}
+  .pcard .ar{font-size:.7rem;color:var(--or)}
+  /* courbes */
+  .toggles{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  .toggles label{display:flex;align-items:center;gap:6px;font-size:.82rem;cursor:pointer;font-weight:600}
+  .toggles .sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .toggles .s1{background:var(--p1)} .toggles .s2{background:var(--p2)}
+  .toggles .s3{background:var(--p3)} .toggles .s4{background:var(--p4)}
+  svg{width:100%;height:auto;display:block}
+  /* barres coût */
+  .chart{display:flex;align-items:flex-end;gap:18px;height:170px;padding:8px 0 0;border-bottom:2px solid var(--bleu);margin-top:8px}
+  .barwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .bar{width:60%;border-radius:4px 4px 0 0;position:relative;min-height:2px}
+  .bar.p1{background:var(--p1)} .bar.p2{background:var(--p2)}
+  .bar.p3{background:var(--p3)} .bar.p4{background:var(--p4)}
+  .bar .v{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:700;white-space:nowrap;padding-bottom:2px}
+  .barwrap .lbl{font-size:.72rem;color:#6b7280;margin-top:6px;text-align:center}
+  table{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:8px}
+  th,td{padding:5px 8px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
+  th{background:var(--bleu);color:var(--creme);position:sticky;top:0}
+  td:first-child,th:first-child{text-align:left}
+  .c1{background:rgba(91,127,158,.10)} .c2{background:rgba(111,135,112,.10)}
+  .c3{background:rgba(184,153,104,.12)} .c4{background:rgba(138,122,155,.12)}
+  td.cap{position:relative}
+  td.cap::after{content:'▴';font-size:.6rem;color:var(--rouge);margin-left:2px}
+  tr.prep td{color:#9ca3af;font-style:italic}
+  .note{font-size:.78rem;color:#6b7280;margin-top:8px;line-height:1.55}
+  .legend{font-size:.74rem;color:#6b7280;margin:6px 0 0}
+  .warn{font-size:.78rem;color:#7a4a3a;background:#f7efea;border-left:4px solid var(--rouge);padding:10px 14px;border-radius:6px;margin-top:14px;line-height:1.55}
+  .pill{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#eef;color:var(--bleu)}
+  .pill.on{background:var(--rouge);color:#fff}
+  .trajrow{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+  .months{display:flex;gap:5px;flex-wrap:wrap}
+  .months .mo{display:flex;flex-direction:column-reverse;align-items:center;gap:2px}
+  .months .mo span{font-size:.62rem;color:#9ca3af}
+  .months input{width:40px;padding:4px;text-align:center;border:1px solid #e5e7eb;border-radius:5px;font-size:.82rem;color:var(--bleu)}
+  .months .mo.prep input{background:#fbf8f1}
+  .vue{margin-left:auto;display:flex;gap:14px}
+  .vue label{font-weight:600;font-size:.82rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Rémunération — Business Developer (Vololoniaina)</h1>
+  <p class="sub">Interne · 4 profils comparés · <b>OTE 1 000 €/mois</b> (On-Target Earnings = rému totale à la cible) · freelance indépendante · aligné <b>FINANCE-PREVISIONNEL.md</b> &amp; <b>PRICING.md</b></p>
+
+  <div class="rate-bar">
+    <div class="fld"><label>Taux EUR→MGA</label><input type="number" id="rate" value="5000" step="50" min="3500" max="7000"><span class="rate-hint">Ar/€</span></div>
+    <div class="fld"><label>OTE cible</label><input type="text" id="ote" value="1000"><span class="rate-hint">€/mois · tapez <b>x</b> = <span id="capState" class="pill">plafonné</span></span></div>
+    <div class="fld"><label>Cible contrats/mois</label><input type="number" id="cible" value="1" step="1" min="1" max="6"><span class="rate-hint">(repère OTE · n'affecte pas les primes)</span></div>
+    <div class="fld"><label>Unité « contrat »</label>
+      <select id="unit">
+        <option value="etp" selected>ETP placé</option>
+        <option value="client">Client signé</option>
+      </select></div>
+    <div class="fld"><label>ETP / client</label><input type="number" id="etpc" value="3" step="0.5" min="1" max="10"><span class="rate-hint" id="etpcHint">(mode client)</span></div>
+    <div class="fld"><label>MRR / ETP</label><input type="number" id="prix" value="1350" step="50" min="500" max="3000"><span class="rate-hint">€/mois (MB ≈ 1 350)</span></div>
+    <div class="fld"><label>Portef. cible</label><input type="number" id="pf" value="7" step="1" min="3" max="20"><span class="rate-hint">unités actives (modèles 2 &amp; 4)</span></div>
+  </div>
+
+  <div class="defbox">
+    <b>Définition « contrat gagné » (vaut pour les 4 modèles)</b> — contrat signé <b>+ 1<sup>er</sup> mois encaissé</b> (pilote −50 % passé, sans résiliation). On ne paie pas une signature qui churne au mois 1.
+    <b>Unité</b> = <span id="uniteTxt">1 contrat = 1 ETP placé</span>.
+    <b>3 premiers mois</b> = préparation du lancement (livrables, retroplanning) → généralement <b>0 contrat encaissé</b> : la rému y est ≈ le fixe seul.
+    <br><b>À retenir</b> : à la cible (1 contrat/mois), les 4 modèles paient <b>≈ l'OTE 1 000 €</b> — c'est la définition de l'OTE. Ils diffèrent <b>au-dessus</b> (gros mois) et <b>en-dessous</b> (mois creux) : c'est leur <b>profil de risque</b>, pas un bug.
+  </div>
+
+  <!-- TRAJECTOIRE ÉDITABLE -->
+  <div class="card">
+    <h2>Trajectoire — contrats gagnés par mois (éditable)</h2>
+    <div class="trajrow">
+      <div class="fld" style="display:flex;align-items:center;gap:8px">
+        <label style="font-size:.85rem;font-weight:700">Preset</label>
+        <select id="scen" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:8px">
+          <option value="prudent">Prudent (montée lente)</option>
+          <option value="median" selected>Médian (montée régulière)</option>
+          <option value="ambitieux">Ambitieux (montée rapide)</option>
+        </select>
+      </div>
+      <div class="months" id="months">
+        <div class="mo prep"><input type="number" id="mo1" min="0" step="1" value="0"><span>M1</span></div>
+        <div class="mo prep"><input type="number" id="mo2" min="0" step="1" value="0"><span>M2</span></div>
+        <div class="mo prep"><input type="number" id="mo3" min="0" step="1" value="0"><span>M3</span></div>
+        <div class="mo"><input type="number" id="mo4" min="0" step="1" value="1"><span>M4</span></div>
+        <div class="mo"><input type="number" id="mo5" min="0" step="1" value="1"><span>M5</span></div>
+        <div class="mo"><input type="number" id="mo6" min="0" step="1" value="1"><span>M6</span></div>
+        <div class="mo"><input type="number" id="mo7" min="0" step="1" value="1"><span>M7</span></div>
+        <div class="mo"><input type="number" id="mo8" min="0" step="1" value="1"><span>M8</span></div>
+        <div class="mo"><input type="number" id="mo9" min="0" step="1" value="1"><span>M9</span></div>
+        <div class="mo"><input type="number" id="mo10" min="0" step="1" value="1"><span>M10</span></div>
+        <div class="mo"><input type="number" id="mo11" min="0" step="1" value="1"><span>M11</span></div>
+        <div class="mo"><input type="number" id="mo12" min="0" step="1" value="1"><span>M12</span></div>
+      </div>
+    </div>
+    <p class="legend">Choisir un <b>preset</b> remplit les cases ; ensuite <b>éditez n'importe quel mois</b> et tout se recalcule. Astuce : mettez <b>2</b> ou <b>3</b> sur un mois et regardez ① et ③ se séparer (et dépasser l'OTE si vous êtes en mode déplafonné <b>x</b>).</p>
+  </div>
+
+  <!-- 4 CARTES MODÈLES -->
+  <div class="kpis">
+    <div class="pcard p1" id="card1">
+      <h3>① Sécurité</h3><span class="tag">fixe dominant · idéale essai · rassure</span>
+      <div class="fixrow">Fixe <input type="number" id="f1" value="500" step="25" min="0"> €/mois</div>
+      <div class="fixrow">Prime <input type="number" id="com1" value="500" step="25" min="0"> €/contrat <span style="font-size:.68rem;color:#9ca3af">one-shot</span></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl1">—</b></div>
+      <div class="line"><span>Rému à M12 (trajectoire)</span><b id="m121">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q1">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y1">—</b></div>
+      <div class="big" id="ote1">—</div><div class="ar" id="ar1"></div>
+    </div>
+    <div class="pcard p2" id="card2">
+      <h3>② Fermière</h3><span class="tag">rémunère le maintien · récurrent</span>
+      <div class="fixrow">Fixe <input type="number" id="f2" value="450" step="25" min="0"> €/mois</div>
+      <div class="fixrow">% MRR <input type="number" id="tx2" value="5.8" step="0.1" min="0"> % <span style="font-size:.68rem;color:#9ca3af">actif portefeuille</span></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl2">—</b></div>
+      <div class="line"><span>Rému à M12 (trajectoire)</span><b id="m122">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q2">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y2">—</b></div>
+      <div class="big" id="ote2">—</div><div class="ar" id="ar2"></div>
+    </div>
+    <div class="pcard p3" id="card3">
+      <h3>③ Chasseuse</h3><span class="tag">gros upside · fixe bas · déplafonné</span>
+      <div class="fixrow">Fixe <input type="number" id="f3" value="400" step="25" min="0"> €/mois</div>
+      <div class="fixrow">Prime <input type="number" id="com3" value="600" step="25" min="0"> €/contrat <span style="font-size:.68rem;color:#9ca3af">one-shot</span></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl3">—</b></div>
+      <div class="line"><span>Rému à M12 (trajectoire)</span><b id="m123">—</b></div>
+      <div class="line"><span>Coût 3 premiers mois</span><b id="q3">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y3">—</b></div>
+      <div class="big" id="ote3">—</div><div class="ar" id="ar3"></div>
+    </div>
+    <div class="pcard p4" id="card4">
+      <h3>④ Mixte</h3><span class="tag">chasse + ferme · équilibre</span>
+      <div class="fixrow">Fixe <input type="number" id="f4" value="400" step="25" min="0"> €/mois</div>
+      <div class="fixrow">+ Prime signature <input type="number" id="os4" value="150" step="25" min="0"> €/contrat</div>
+      <div class="fixrow">+ % MRR <input type="number" id="tx4" value="4.8" step="0.1" min="0"> % <span style="font-size:.68rem;color:#9ca3af">actif</span></div>
+      <div class="line"><span>Plancher (0 contrat)</span><b id="pl4">—</b></div>
+      <div class="line"><span>Rému à M12 (trajectoire)</span><b id="m124">—</b></div>
+      <div class="line"><span>Coût 12 mois</span><b id="y4">—</b></div>
+      <div class="big" id="ote4">—</div><div class="ar" id="ar4"></div>
+    </div>
+  </div>
+
+  <!-- COURBES -->
+  <div class="card">
+    <h2>Courbes — rému mensuelle par modèle (12 mois)</h2>
+    <div class="toggles">
+      <label><input type="checkbox" class="serie" data-i="0" checked><span class="sw s1"></span>① Sécurité</label>
+      <label><input type="checkbox" class="serie" data-i="1" checked><span class="sw s2"></span>② Fermière</label>
+      <label><input type="checkbox" class="serie" data-i="2" checked><span class="sw s3"></span>③ Chasseuse</label>
+      <label><input type="checkbox" class="serie" data-i="3" checked><span class="sw s4"></span>④ Mixte</label>
+      <div class="vue">
+        <label><input type="radio" name="vue" value="mensuel" checked> Mensuel</label>
+        <label><input type="radio" name="vue" value="cumule"> Cumulé</label>
+      </div>
+    </div>
+    <div id="curveBox"></div>
+    <p class="legend"><b>Mensuel</b> = ce qu'elle touche chaque mois (prime one-shot = pics au mois de signature). <b>Cumulé</b> = total gagné depuis M1 (toujours croissant → idéal pour comparer « qui gagne le plus au total »). En <b>plafonné</b>, le mensuel bute sur la ligne OTE ; en <b>déplafonné</b> (<b>x</b>), il monte librement.</p>
+    <p class="note" id="curveWhy" style="background:#fbf8f1;border-left:4px solid var(--or);padding:8px 12px;border-radius:6px"></p>
+  </div>
+
+  <!-- BARRES COÛT 12 MOIS -->
+  <div class="card">
+    <h2>Coût total pour la boîte sur 12 mois (selon la trajectoire)</h2>
+    <div class="chart" id="chart"></div>
+    <p class="legend">Plus la trajectoire est lente, plus les modèles à <b>fixe bas (③④)</b> protègent la trésorerie.</p>
+  </div>
+
+  <!-- TABLE MENSUELLE -->
+  <div class="card">
+    <h2>Rému mensuelle de Vololoniaina, par modèle (12 mois)</h2>
+    <div style="max-height:460px;overflow:auto">
+    <table id="tbl">
+      <thead><tr>
+        <th>Mois</th><th>Contrats gagnés</th><th>Cumul actifs</th><th>MRR actif</th>
+        <th>① Sécurité</th><th>② Fermière</th><th>③ Chasseuse</th><th>④ Mixte</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="note"><b>Lecture</b> — ① &amp; ③ : prime <b>one-shot</b> au mois du contrat gagné. ② : <b>% récurrent</b> du MRR actif (monte avec le portefeuille). ④ : prime signature <b>+</b> résidu récurrent. « <span style="color:var(--rouge)">▴</span> » = valeur écrêtée par l'OTE (mode plafonné). 3 premiers mois en italique = préparation ≈ fixe seul.</p>
+  </div>
+
+  <!-- PROJECTION 24 MOIS -->
+  <div class="card">
+    <h2>Projection 24 mois — jalons M3 → M24</h2>
+    <div class="trajrow" style="margin-bottom:12px">
+      <div class="fld" style="display:flex;align-items:center;gap:8px">
+        <label style="font-size:.85rem;font-weight:700">Rythme de signature</label>
+        <select id="scen24" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:8px">
+          <option value="prudent">Prudent (montée lente)</option>
+          <option value="median" selected>Médian (montée régulière)</option>
+          <option value="ambitieux">Ambitieux (montée rapide)</option>
+        </select>
+      </div>
+      <div class="fld"><label style="font-size:.85rem;font-weight:700">Churn annuel</label><input type="number" id="churn" value="0" step="5" min="0" max="60" style="width:64px;padding:6px 8px;border:1px solid #d1d5db;border-radius:8px;color:var(--bleu)"> %</div>
+      <div class="fld"><label style="font-size:.85rem;font-weight:700">ETP / donneur d'ordre</label><input type="number" id="etpdo" value="3" step="1" min="1" max="8" style="width:60px;padding:6px 8px;border:1px solid #d1d5db;border-radius:8px;color:var(--bleu)"></div>
+      <span class="rate-hint" style="margin-left:auto">Mode : <span id="projState" class="pill">plafonné</span></span>
+    </div>
+    <div style="overflow:auto">
+    <table id="ptbl">
+      <thead><tr>
+        <th>Jalon</th><th>ETP actifs</th><th>Donneurs d'ordre</th><th>MRR €/mois</th>
+        <th>① Sécurité</th><th>② Fermière</th><th>③ Chasseuse</th><th>④ Mixte</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="legend">Rému = <b>moyenne mensuelle du trimestre</b> se terminant au jalon (lisse les pics de primes one-shot). MRR = ETP actifs × <span id="mrruTxt">1 350</span> €. En <b>déplafonné</b> sa rému suit la croissance du portefeuille ; en <b>plafonné</b> elle butte sur l'OTE. Réglez le <b>rythme</b> et le <b>churn</b> ci-dessus. La courbe reprend l'affichage Mensuel/Cumulé et les modèles cochés plus haut.</p>
+    <div id="projBox" style="margin-top:10px"></div>
+  </div>
+
+  <div class="warn">
+    <b>Garde-fous</b> — (1) <b>Cohérence freelance</b> : vocabulaire d'<b>honoraires + commission de performance</b>, jamais « salaire/prime de salarié » → limite le risque de requalification (NDA art. 7).
+    (2) <b>Repère interne</b> : fee freelance standard Salverys = <b>650 €/mois</b> (3,25 M Ar). Un fixe proche/au-dessus de ce repère se paie <b>avant tout résultat</b>.
+    (3) <b>Affordabilité</b> : la part variable n'est versée que sur de l'<b>encaissé réel</b> → autofinancée par la marge (~50 % en MB, <i>FINANCE §3</i>).
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
+const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
+
+const SCEN={
+  prudent:  [0,0,0, 1,1,1, 1,1,1, 2,2,2],
+  median:   [0,0,0, 1,1,2, 2,2,2, 3,2,3],
+  ambitieux:[0,0,1, 2,2,3, 3,3,3, 4,4,4]
+};
+// trajectoires 24 mois (ETP signés/mois) pour la projection longue
+const SCEN24={
+  prudent:  [0,0,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,2, 1,1,2, 1,1,2],
+  median:   [0,0,0, 1,1,1, 1,1,2, 1,1,2, 1,2,1, 2,1,2, 1,2,1, 2,1,2],
+  ambitieux:[0,0,1, 2,2,2, 2,2,3, 2,2,3, 2,3,2, 3,2,3, 2,3,2, 3,2,3]
+};
+const COL=['#5B7F9E','#6F8770','#B89968','#8A7A9B'];
+const NAMES=['① Sécurité','② Fermière','③ Chasseuse','④ Mixte'];
+
+function run(){
+  const rate=+$('rate').value, cible=+$('cible').value, prix=+$('prix').value, pf=+$('pf').value,
+        unit=$('unit').value, etpc=+$('etpc').value,
+        f=[+$('f1').value,+$('f2').value,+$('f3').value,+$('f4').value],
+        os4=+$('os4').value;
+  const ramp=[...Array(12)].map((_,i)=>Math.max(0,+$('mo'+(i+1)).value||0));
+
+  // OTE : nombre => plafonné ; "x" (ou non numérique) => déplafonné, calibrage sur 1000
+  const oteRaw=$('ote').value.trim().toLowerCase();
+  const capped=/^\d+(\.\d+)?$/.test(oteRaw);
+  const oteRef=capped?+oteRaw:1000;
+  $('capState').textContent=capped?'plafonné':'déplafonné';
+  $('capState').className='pill'+(capped?'':' on');
+
+  // unité : MRR par unité de contrat
+  const mrrUnit = unit==='client' ? prix*etpc : prix;
+  $('etpcHint').textContent = unit==='client' ? '(actif)' : '(mode client)';
+  $('etpc').disabled = unit!=='client';
+  $('uniteTxt').textContent = unit==='client'
+      ? `1 contrat = 1 client signé (≈ ${etpc} ETP, indépendamment du nombre exact)`
+      : '1 contrat = 1 ETP placé';
+
+  // paramètres variables EXPLICITES & éditables — découplés de la cible (jamais négatifs)
+  const comm1=Math.max(0,+$('com1').value||0);     // €/contrat one-shot
+  const taux2=Math.max(0,+$('tx2').value||0)/100;  // % MRR actif
+  const comm3=Math.max(0,+$('com3').value||0);     // €/contrat one-shot
+  const taux4=Math.max(0,+$('tx4').value||0)/100;  // % MRR actif (en plus de la prime signature)
+
+  const arEq=v=>`≈ ${((v*rate)/1e6).toFixed(2)} M Ar/mois`;
+  for(let i=0;i<4;i++) $('pl'+(i+1)).textContent=fmtE(f[i]);
+
+  // simulation 12 mois ; series[i] = rému mensuelle du modèle i
+  let cum=0; const series=[[],[],[],[]];
+  let sum=[0,0,0,0], s3=[0,0,0,0], rows=[];
+  for(let m=1;m<=12;m++){
+    const nc=ramp[m-1]; cum+=nc; const mrr=cum*mrrUnit;
+    let raw=[
+      f[0]+nc*comm1,
+      f[1]+taux2*mrr,
+      f[2]+nc*comm3,
+      f[3]+nc*os4+taux4*mrr
+    ];
+    const capArr=raw.map(v=>capped?Math.min(v,oteRef):v);
+    const wasCap=raw.map((v,i)=>capped && v>oteRef+0.5);
+    for(let i=0;i<4;i++){ series[i].push(capArr[i]); sum[i]+=capArr[i]; if(m<=3) s3[i]+=capArr[i]; }
+    rows.push({m,nc,cum,mrr,pay:capArr,wasCap,prep:m<=3});
+  }
+
+  // OTE affiché : modèles 1&3 = fixe + cible×comm ; 2 = fixe + taux×pf×mrrUnit ; 4 = fixe + cible×os4 + taux×pf×mrrUnit
+  const oteShown=[
+    f[0]+cible*comm1,
+    f[1]+taux2*pf*mrrUnit,
+    f[2]+cible*comm3,
+    f[3]+cible*os4+taux4*pf*mrrUnit
+  ];
+  for(let i=0;i<4;i++){
+    $('card'+(i+1)).classList.toggle('unbounded',!capped);
+    $('ote'+(i+1)).textContent = capped ? 'OTE '+fmtE(oteShown[i]) : 'Déplafonné';
+    $('ar'+(i+1)).textContent = capped ? arEq(oteShown[i]) : ('M12 : '+fmtE(series[i][11]));
+    $('m12'+(i+1)).textContent=fmtE(series[i][11]);
+    $('q'+(i+1)) && ($('q'+(i+1)).textContent=fmtE(s3[i]));
+    $('y'+(i+1)).textContent=fmtE(sum[i]);
+  }
+
+  // ---- COURBES (SVG) ----
+  const vis=[...document.querySelectorAll('.serie')].map(c=>c.checked);
+  const cumul=document.querySelector('input[name=vue]:checked').value==='cumule';
+  drawCurves(series,vis,oteRef,capped,cumul);
+
+  // explication dynamique
+  let why='<b>Comment lire les courbes ?</b> ';
+  if(capped){
+    why+=`Mode <b>plafonné</b> : chaque mois est écrêté à l'OTE (${fmtE(oteRef)}). Sur les <b>gros mois</b> (plusieurs contrats), les modèles à forte prime butent contre le plafond → la courbe s'aplatit à ${fmtE(oteRef)}. C'est <b>normal</b> : le plafonnement, c'est exactement ça. Tapez <b>x</b> dans « OTE cible » pour les laisser monter librement et voir leurs vrais profils.`;
+  } else {
+    why+=`Mode <b>déplafonné</b> : la rému monte avec l'activité du mois. ① (prime ${fmtE(comm1)}/contrat) et ③ (prime ${fmtE(comm3)}/contrat) font des <b>pics</b> les mois de signature — ③ monte plus fort dès qu'il y a 2+ contrats. ② et ④ (% du MRR) montent en <b>escalier</b> avec le portefeuille. Un mois à 0 contrat retombe au fixe (${fmtE(f[0])}/${fmtE(f[1])}/${fmtE(f[2])}/${fmtE(f[3])}).`;
+  }
+  $('curveWhy').innerHTML=why;
+
+  // ---- PROJECTION 24 MOIS (jalons M3→M24) ----
+  const ramp24=SCEN24[$('scen24').value]||SCEN24.median;
+  const cMonth=Math.max(0,+$('churn').value||0)/100/12;   // churn mensuel
+  const etpdo=Math.max(1,+$('etpdo').value||3);            // ETP par donneur d'ordre
+  let active=0; const pser=[[],[],[],[]], pactive=[], pmrr=[];
+  for(let m=1;m<=24;m++){
+    const nc=ramp24[m-1]; active=active*(1-cMonth)+nc; const mrr=active*mrrUnit;
+    pactive.push(active); pmrr.push(mrr);
+    let raw=[ f[0]+nc*comm1, f[1]+taux2*mrr, f[2]+nc*comm3, f[3]+nc*os4+taux4*mrr ];
+    raw=raw.map(v=>capped?Math.min(v,oteRef):v);
+    for(let i=0;i<4;i++) pser[i].push(raw[i]);
+  }
+  const fmtU=v=>Number.isInteger(v)?v:v.toFixed(1);
+  const pj=$('ptbl').querySelector('tbody'); pj.innerHTML='';
+  [3,6,9,12,15,18,21,24].forEach(jm=>{
+    const a=pactive[jm-1], mrr=pmrr[jm-1];
+    const etpAct = unit==='client' ? a*etpc : a;       // unités → ETP réels
+    const dos = etpAct/etpdo;
+    const avg=[0,1,2,3].map(i=>{ let s=0; for(let k=jm-3;k<jm;k++) s+=pser[i][k]; return s/3; });
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>M${jm}</td><td>${fmtU(Math.round(etpAct*10)/10)}</td><td>${dos.toFixed(1)}</td><td>${fmtE(mrr)}</td>
+      <td class="c1">${fmtE(avg[0])}</td><td class="c2">${fmtE(avg[1])}</td><td class="c3">${fmtE(avg[2])}</td><td class="c4">${fmtE(avg[3])}</td>`;
+    pj.appendChild(tr);
+  });
+  $('mrruTxt').textContent=Math.round(mrrUnit).toLocaleString('fr-FR');
+  $('projState').textContent=capped?('plafonné à '+fmtE(oteRef)):'déplafonné';
+  $('projState').className='pill'+(capped?'':' on');
+  drawCurves(pser,vis,oteRef,capped,cumul,'projBox');
+
+  // ---- BARRES coût 12 mois ----
+  const ch=$('chart'); ch.innerHTML='';
+  const maxY=Math.max(...sum,1);
+  sum.forEach((v,i)=>{
+    const w=document.createElement('div'); w.className='barwrap';
+    const b=document.createElement('div'); b.className='bar p'+(i+1);
+    b.style.height=Math.max(2, v/maxY*140)+'px';
+    b.innerHTML=`<span class="v">${fmtK(v)}</span>`;
+    const l=document.createElement('div'); l.className='lbl'; l.textContent=NAMES[i];
+    w.appendChild(b); w.appendChild(l); ch.appendChild(w);
+  });
+
+  // ---- TABLE ----
+  const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr'); if(r.prep) tr.className='prep';
+    const cell=(i,cls)=>`<td class="${cls}${r.wasCap[i]?' cap':''}">${fmtE(r.pay[i])}</td>`;
+    tr.innerHTML=`<td>M${r.m}</td><td>${r.nc||'–'}</td><td>${r.cum}</td><td>${fmtE(r.mrr)}</td>
+      ${cell(0,'c1')}${cell(1,'c2')}${cell(2,'c3')}${cell(3,'c4')}`;
+    tb.appendChild(tr);
+  });
+}
+
+function drawCurves(series,vis,oteRef,capped,cumul,box){
+  box=box||'curveBox';
+  const N=Math.max(...series.map(s=>s.length));
+  const W=720,H=300,ml=52,mr=14,mt=14,mb=26;
+  const pw=W-ml-mr, ph=H-mt-mb;
+  // transformation cumulée si demandé
+  const plot=series.map(s=>{ if(!cumul) return s.slice(); let acc=0; return s.map(v=>acc+=v); });
+  let max=1;
+  plot.forEach((s,i)=>{ if(vis[i]) s.forEach(v=>{if(v>max)max=v;}); });
+  const step=cumul?2000:200;
+  max=Math.ceil(max/step)*step||step;
+  const X=m=>ml+(m-1)/(N-1)*pw;
+  const Y=v=>mt+ph-(v/max)*ph;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  // gridlines + y labels
+  for(let g=0;g<=4;g++){
+    const val=max*g/4, y=Y(val);
+    s+=`<line x1="${ml}" y1="${y}" x2="${W-mr}" y2="${y}" stroke="#eee"/>`;
+    s+=`<text x="${ml-6}" y="${y+3}" text-anchor="end" font-size="10" fill="#9ca3af">${Math.round(val)} €</text>`;
+  }
+  // ligne OTE (seulement en vue mensuelle plafonnée)
+  if(!cumul && capped && oteRef<=max){
+    const y=Y(oteRef);
+    s+=`<line x1="${ml}" y1="${y}" x2="${W-mr}" y2="${y}" stroke="#B05C4A" stroke-dasharray="4 3" stroke-width="1"/>`;
+    s+=`<text x="${W-mr}" y="${y-4}" text-anchor="end" font-size="10" fill="#B05C4A">OTE ${oteRef} €</text>`;
+  }
+  // x labels (1 sur 3 au-delà de 12 mois)
+  const lstep=N<=12?1:3;
+  for(let m=1;m<=N;m++){
+    if((m-1)%lstep!==0 && m!==N) continue;
+    s+=`<text x="${X(m)}" y="${H-8}" text-anchor="middle" font-size="9" fill="#9ca3af">M${m}</text>`;
+  }
+  // polylines
+  plot.forEach((serie,i)=>{
+    if(!vis[i]) return;
+    const pts=serie.map((v,idx)=>`${X(idx+1).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+    s+=`<polyline points="${pts}" fill="none" stroke="${COL[i]}" stroke-width="2.4" stroke-linejoin="round"/>`;
+    serie.forEach((v,idx)=>{ s+=`<circle cx="${X(idx+1).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="2.4" fill="${COL[i]}"/>`; });
+  });
+  s+=`</svg>`;
+  $(box).innerHTML=s;
+}
+
+function fillPreset(){ const a=SCEN[$('scen').value]; for(let i=0;i<12;i++) $('mo'+(i+1)).value=a[i]; }
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',run));
+document.querySelectorAll('.serie').forEach(el=>el.addEventListener('change',run));
+document.querySelectorAll('input[name=vue]').forEach(el=>el.addEventListener('change',run));
+$('scen').addEventListener('change',()=>{ fillPreset(); run(); });
+run();
+</script>
+</body>
+</html>
