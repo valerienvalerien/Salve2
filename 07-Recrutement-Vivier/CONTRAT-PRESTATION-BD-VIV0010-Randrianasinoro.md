@@ -214,8 +214,8 @@ moment après la période initiale, moyennant un **préavis d'un (1) mois** noti
 conditions normales.
 
 6.4. **Résiliation pour manquement grave** : en cas de manquement grave d'une Partie non
-réparé **[__ jours]** après mise en demeure écrite restée sans effet, l'autre Partie peut
-résilier de plein droit, sans préjudice de tous dommages-intérêts.
+réparé **sept (7) jours** après mise en demeure écrite restée sans effet, l'autre Partie
+peut résilier de plein droit, sans préjudice de tous dommages-intérêts.
 
 6.5. **Effets de la fin du contrat** : la Prestataire restitue ou détruit, selon les
 instructions de la Société, les accès, données et matériels confiés, conformément au NDA
