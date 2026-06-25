@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salverys — CRM Prospection Canada</title>
+<style>
+:root{
+  --primary:#2563EB; --primary-dark:#1D4ED8;
+  --sidebar-bg:#0F172A; --sidebar-text:#94A3B8;
+  --bg:#F8FAFC; --surface:#FFFFFF; --border:#E2E8F0;
+  --text:#1E293B; --text-muted:#64748B;
+  --success:#10B981; --warning:#F59E0B; --danger:#EF4444;
+  --mb:#7C3AED; --direct:#0891B2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;}
+.app{display:flex;height:100vh;}
+
+/* Sidebar */
+.sidebar{width:230px;min-width:230px;background:var(--sidebar-bg);display:flex;flex-direction:column;}
+.sidebar-logo{padding:22px 18px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
+.sidebar-logo h1{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.3px;}
+.sidebar-logo span{font-size:11px;color:var(--sidebar-text);display:block;margin-top:2px;}
+.flag{font-size:13px;}
+.sidebar-nav{flex:1;padding:10px 8px;overflow-y:auto;}
+.nav-section{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);padding:14px 10px 4px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--sidebar-text);font-size:13.5px;font-weight:500;transition:all .12s;margin-bottom:1px;}
+.nav-item:hover{background:rgba(255,255,255,.06);color:#fff;}
+.nav-item.active{background:var(--primary);color:#fff;}
+.nav-item .ic{font-size:15px;width:18px;text-align:center;}
+.sidebar-foot{padding:12px 16px;border-top:1px solid rgba(255,255,255,.07);font-size:10.5px;color:rgba(255,255,255,.35);line-height:1.5;}
+
+/* Main */
+.main{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+.section{display:none;flex-direction:column;height:100%;overflow:hidden;}
+.section.active{display:flex;}
+.section-header{padding:20px 26px 16px;border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:14px;flex-wrap:wrap;}
+.section-header h2{font-size:19px;font-weight:700;}
+.section-header p{font-size:12.5px;color:var(--text-muted);margin-top:2px;}
+.section-body{flex:1;padding:22px 26px;overflow-y:auto;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;border:none;transition:all .12s;white-space:nowrap;}
+.btn-primary{background:var(--primary);color:#fff;}
+.btn-primary:hover{background:var(--primary-dark);}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--bg);}
+.btn-danger-soft{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
+.btn-sm{padding:5px 10px;font-size:12px;}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.stat-lbl{font-size:11.5px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;}
+.stat-val{font-size:28px;font-weight:800;margin-top:6px;}
+.stat-sub{font-size:11.5px;color:var(--text-muted);margin-top:2px;}
+
+.pipe-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:18px;}
+.pipe-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.pipe-card .v{font-size:22px;font-weight:800;}
+.pipe-card .l{font-size:10.5px;color:var(--text-muted);font-weight:600;margin-top:3px;}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.panel h3{font-size:13px;font-weight:700;margin-bottom:12px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:12.5px;}
+.bar-row .nm{width:130px;color:var(--text-muted);}
+.bar-track{flex:1;height:9px;background:var(--bg);border-radius:6px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:6px;background:var(--primary);}
+.bar-row .ct{width:28px;text-align:right;font-weight:700;}
+
+/* Filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.filter-sel,.filter-in{padding:7px 11px;border-radius:8px;border:1px solid var(--border);background:#fff;font-size:13px;color:var(--text);}
+.filter-in{min-width:200px;}
+
+/* Table */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{text-align:left;padding:11px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);background:#F1F5F9;border-bottom:1px solid var(--border);white-space:nowrap;position:sticky;top:0;}
+tbody td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+tbody tr:hover{background:#F8FAFC;}
+.cell-ent{font-weight:700;}
+.cell-sub{font-size:11.5px;color:var(--text-muted);margin-top:2px;}
+.cell-ent a{color:var(--primary);text-decoration:none;font-size:11.5px;font-weight:500;}
+.cell-ent a:hover{text-decoration:underline;}
+
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;}
+.tag-mb{background:#F3E8FF;color:var(--mb);}
+.tag-direct{background:#CFFAFE;color:var(--direct);}
+.tag-prov{background:#E0E7FF;color:#4338CA;}
+.score{display:inline-block;min-width:26px;text-align:center;padding:2px 6px;border-radius:6px;font-weight:800;font-size:12px;color:#fff;}
+
+.statut-sel{padding:5px 8px;border-radius:7px;border:1px solid var(--border);font-size:12px;font-weight:600;background:#fff;cursor:pointer;}
+.row-actions{display:flex;gap:6px;}
+.icon-btn{border:none;background:transparent;cursor:pointer;font-size:14px;padding:3px;border-radius:6px;}
+.icon-btn:hover{background:var(--bg);}
+
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted);}
+.empty .em{font-size:40px;margin-bottom:12px;}
+.empty h3{color:var(--text);font-size:16px;margin-bottom:6px;}
+
+/* Modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:50;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;}
+.modal-bg.open{display:flex;}
+.modal{background:#fff;border-radius:14px;width:100%;max-width:640px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.modal-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.modal-head h3{font-size:16px;font-weight:700;}
+.modal-body{padding:20px 22px;}
+.modal-foot{padding:14px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fld{display:flex;flex-direction:column;gap:5px;}
+.fld.full{grid-column:1/-1;}
+.fld label{font-size:12px;font-weight:600;color:var(--text-muted);}
+.fld input,.fld select,.fld textarea{padding:8px 11px;border-radius:8px;border:1px solid var(--border);font-size:13.5px;font-family:inherit;}
+.fld textarea{resize:vertical;min-height:60px;}
+.hint{font-size:11.5px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;}
+.close-x{cursor:pointer;font-size:20px;color:var(--text-muted);border:none;background:none;}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Salverys <span class="flag">🇨🇦</span></h1>
+      <span>CRM Prospection Canada</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Pilotage</div>
+      <div class="nav-item active" data-sec="dashboard"><span class="ic">📊</span> Tableau de bord</div>
+      <div class="nav-item" data-sec="leads"><span class="ic">📋</span> Prospects</div>
+      <div class="nav-section">Données</div>
+      <div class="nav-item" data-sec="import"><span class="ic">📥</span> Importer</div>
+      <div class="nav-item" data-sec="aide"><span class="ic">❔</span> Aide</div>
+    </nav>
+    <div class="sidebar-foot">
+      Marché test court/moyen terme.<br>Priorité&nbsp;: Québec → N.-Brunswick.<br>
+      Stockage local (<code>salverys_ca_</code>).
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section active">
+      <div class="section-header">
+        <div><h2>Tableau de bord</h2><p>Vue d'ensemble du pipeline de prospection Canada</p></div>
+        <button class="btn btn-primary" onclick="openForm()">+ Ajouter un prospect</button>
+      </div>
+      <div class="section-body">
+        <div class="stats-grid" id="stats-grid"></div>
+        <div class="pipe-grid" id="pipe-grid"></div>
+        <div class="split">
+          <div class="panel"><h3>Par type de cible</h3><div id="bars-type"></div></div>
+          <div class="panel"><h3>Par province</h3><div id="bars-prov"></div></div>
+        </div>
+        <div class="split">
+          <div class="panel"><h3>Par niche</h3><div id="bars-niche"></div></div>
+          <div class="panel"><h3>Top pertinence (≥ 8)</h3><div id="top-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leads -->
+    <section id="leads" class="section">
+      <div class="section-header">
+        <div><h2>Prospects</h2><p id="leads-count">0 prospect</p></div>
+        <div class="filters">
+          <input class="filter-in" id="f-search" placeholder="🔎 Rechercher…" oninput="renderLeads()">
+          <select class="filter-sel" id="f-prov" onchange="renderLeads()"><option value="">Toutes provinces</option></select>
+          <select class="filter-sel" id="f-type" onchange="renderLeads()"><option value="">Tous types</option><option>Marque blanche</option><option>Direct</option></select>
+          <select class="filter-sel" id="f-niche" onchange="renderLeads()"><option value="">Toutes niches</option></select>
+          <select class="filter-sel" id="f-statut" onchange="renderLeads()"><option value="">Tous statuts</option></select>
+          <button class="btn btn-ghost btn-sm" onclick="exportCSV()">⬇ Export CSV</button>
+          <button class="btn btn-primary btn-sm" onclick="openForm()">+ Ajouter</button>
+        </div>
+      </div>
+      <div class="section-body">
+        <div id="leads-area"></div>
+      </div>
+    </section>
+
+    <!-- Import -->
+    <section id="import" class="section">
+      <div class="section-header"><div><h2>Importer des prospects</h2><p>Colle le tableau produit par le prompt de recherche</p></div></div>
+      <div class="section-body">
+        <div class="panel" style="max-width:880px;">
+          <p class="hint">
+            Colle ci-dessous le tableau renvoyé par l'IA (format Markdown <code>| … |</code>, CSV <code>;</code>/<code>,</code>, ou colonnes séparées par tabulation).<br>
+            Ordre des colonnes attendu&nbsp;:<br>
+            <b>Entreprise · Site web · Province · Secteur · Effectif est. · CA est. · Type (Marque blanche/Direct) · Pertinence (1-10) · Signal d'achat · Justification</b><br>
+            Les lignes d'en-tête et de séparation (<code>---</code>) sont ignorées automatiquement.
+          </p>
+          <textarea id="import-text" style="width:100%;min-height:220px;padding:12px;border-radius:8px;border:1px solid var(--border);font-family:ui-monospace,Menlo,monospace;font-size:12.5px;" placeholder="| Entreprise | Site web | Province | Secteur | Effectif est. | CA est. | Type de cible | Pertinence | Signal d'achat | Justification |"></textarea>
+          <div style="display:flex;gap:10px;margin-top:14px;align-items:center;">
+            <button class="btn btn-primary" onclick="doImport(false)">📥 Importer</button>
+            <button class="btn btn-ghost" onclick="doImport(true)">🔄 Remplacer tout</button>
+            <span id="import-msg" style="font-size:12.5px;color:var(--text-muted);"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aide -->
+    <section id="aide" class="section">
+      <div class="section-header"><div><h2>Aide</h2><p>Comment utiliser ce CRM Canada</p></div></div>
+      <div class="section-body">
+        <div class="panel" style="max-width:820px;line-height:1.7;font-size:13.5px;">
+          <h3>Workflow conseillé</h3>
+          <ol style="margin:10px 0 16px 18px;">
+            <li>Lance le prompt <code>02-Prospection/PROMPT-RECHERCHE-PROSPECTS-IT-Canada.md</code> (A = marque blanche, B = direct).</li>
+            <li>Demande à l'IA le résultat <b>au format CSV ou tableau Markdown</b>.</li>
+            <li>Onglet <b>Importer</b> → colle le tableau → <b>Importer</b>.</li>
+            <li>Onglet <b>Prospects</b> → enrichis chaque ligne (décideur, email) et fais avancer le statut.</li>
+            <li>Branche les prospects qualifiés sur la séquence <code>OUTREACH-IT-N1-marque-blanche.md</code>.</li>
+          </ol>
+          <h3>Notes</h3>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Stockage <b>local au navigateur</b> (localStorage, préfixe <code>salverys_ca_</code>) — distinct du CRM France.</li>
+            <li>Aucune donnée n'est envoyée en ligne. Pense à <b>Export CSV</b> pour sauvegarder/partager.</li>
+            <li>Priorité géographique&nbsp;: <b>Québec → Nouveau-Brunswick → reste du Canada</b> francophone/bilingue.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Modal form -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Ajouter un prospect</h3>
+      <button class="close-x" onclick="closeForm()">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="m-id">
+      <div class="form-grid">
+        <div class="fld full"><label>Entreprise *</label><input id="m-entreprise" placeholder="Nom de l'entreprise"></div>
+        <div class="fld"><label>Site web</label><input id="m-site" placeholder="https://…"></div>
+        <div class="fld"><label>Province</label><select id="m-prov"><option>Québec</option><option>Nouveau-Brunswick</option><option>Ontario</option><option>Autre</option></select></div>
+        <div class="fld"><label>Secteur</label><input id="m-secteur" placeholder="Ex. ESN, MSP, SaaS, santé…"></div>
+        <div class="fld"><label>Type de cible</label><select id="m-type"><option>Marque blanche</option><option>Direct</option></select></div>
+        <div class="fld"><label>Niche</label><select id="m-niche"><option>Support N1 SaaS</option><option>Helpdesk IT</option><option>Support applicatif</option><option>Non précisé</option></select></div>
+        <div class="fld"><label>Pertinence (1-10)</label><input id="m-pertinence" type="number" min="1" max="10" placeholder="1-10"></div>
+        <div class="fld"><label>Effectif estimé</label><input id="m-effectif" placeholder="Ex. 20-500"></div>
+        <div class="fld"><label>CA estimé</label><input id="m-ca" placeholder="Ex. 5 M$ CAD (est.)"></div>
+        <div class="fld"><label>Statut</label><select id="m-statut"></select></div>
+        <div class="fld"><label>Décideur — nom</label><input id="m-dec-nom" placeholder="Prénom Nom"></div>
+        <div class="fld"><label>Décideur — titre</label><input id="m-dec-titre" placeholder="Ex. Directeur des services managés"></div>
+        <div class="fld"><label>Décideur — email</label><input id="m-dec-email" placeholder="email pro"></div>
+        <div class="fld"><label>Décideur — LinkedIn</label><input id="m-dec-linkedin" placeholder="URL LinkedIn"></div>
+        <div class="fld full"><label>Signal d'achat</label><textarea id="m-signal" placeholder="Élément récent et concret (levée, recrutement support, croissance…)"></textarea></div>
+        <div class="fld full"><label>Justification</label><textarea id="m-justif" placeholder="Pourquoi ce prospect a besoin du service"></textarea></div>
+        <div class="fld full"><label>Prochaine action</label><input id="m-action" placeholder="Ex. Trouver email + envoyer séquence A"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeForm()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveForm()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const LS_KEY='salverys_ca_leads_v1';
+const STATUTS=['À contacter','Contacté','Relancé','RDV','Qualifié','Gagné','Perdu'];
+const STATUT_COLORS={'À contacter':'#64748B','Contacté':'#2563EB','Relancé':'#F59E0B','RDV':'#8B5CF6','Qualifié':'#0891B2','Gagné':'#10B981','Perdu':'#EF4444'};
+const NICHES=['Support N1 SaaS','Helpdesk IT','Support applicatif','Non précisé'];
+
+function load(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'[]');}catch(e){return [];}}
+function save(arr){localStorage.setItem(LS_KEY,JSON.stringify(arr));}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+let LEADS=load();
+
+/* ── Navigation ── */
+document.querySelectorAll('.nav-item').forEach(it=>{
+  it.onclick=()=>{
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    it.classList.add('active');
+    document.getElementById(it.dataset.sec).classList.add('active');
+    if(it.dataset.sec==='dashboard')renderDash();
+    if(it.dataset.sec==='leads')renderLeads();
+  };
+});
+
+/* ── Helpers ── */
+function scoreColor(n){n=+n||0;if(n>=8)return '#10B981';if(n>=6)return '#2563EB';if(n>=4)return '#F59E0B';return '#94A3B8';}
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function typeTag(t){return t==='Marque blanche'?'<span class="tag tag-mb">Marque blanche</span>':t==='Direct'?'<span class="tag tag-direct">Direct</span>':esc(t);}
+
+/* ── Dashboard ── */
+function renderDash(){
+  const total=LEADS.length;
+  const mb=LEADS.filter(l=>l.type==='Marque blanche').length;
+  const dir=LEADS.filter(l=>l.type==='Direct').length;
+  const qc=LEADS.filter(l=>l.province==='Québec').length;
+  const nb=LEADS.filter(l=>l.province==='Nouveau-Brunswick').length;
+  const gagnes=LEADS.filter(l=>l.statut==='Gagné').length;
+  document.getElementById('stats-grid').innerHTML=`
+    <div class="stat-card"><div class="stat-lbl">Prospects</div><div class="stat-val">${total}</div><div class="stat-sub">${qc} QC · ${nb} N.-B.</div></div>
+    <div class="stat-card"><div class="stat-lbl">Marque blanche</div><div class="stat-val" style="color:var(--mb)">${mb}</div><div class="stat-sub">partenaires revendeurs</div></div>
+    <div class="stat-card"><div class="stat-lbl">Direct</div><div class="stat-val" style="color:var(--direct)">${dir}</div><div class="stat-sub">clients finaux</div></div>
+    <div class="stat-card"><div class="stat-lbl">Gagnés</div><div class="stat-val" style="color:var(--success)">${gagnes}</div><div class="stat-sub">contrats signés</div></div>`;
+  document.getElementById('pipe-grid').innerHTML=STATUTS.map(s=>{
+    const n=LEADS.filter(l=>l.statut===s).length;
+    return `<div class="pipe-card"><div class="v" style="color:${STATUT_COLORS[s]}">${n}</div><div class="l">${s}</div></div>`;
+  }).join('');
+  bars('bars-type',[['Marque blanche',mb,'var(--mb)'],['Direct',dir,'var(--direct)']],total);
+  const provs={};LEADS.forEach(l=>{const p=l.province||'—';provs[p]=(provs[p]||0)+1;});
+  bars('bars-prov',Object.entries(provs).sort((a,b)=>b[1]-a[1]).map(([k,v])=>[k,v,'var(--primary)']),total);
+  const niches={};LEADS.forEach(l=>{const p=l.niche||'—';niches[p]=(niches[p]||0)+1;});
+  bars('bars-niche',Object.entries(niches).sort((a,b)=>b[1]-a[1]).map(([k,v])=>[k,v,'#0EA5E9']),total);
+  const top=LEADS.filter(l=>(+l.pertinence||0)>=8).sort((a,b)=>(+b.pertinence)-(+a.pertinence)).slice(0,8);
+  document.getElementById('top-list').innerHTML=top.length?top.map(l=>
+    `<div class="bar-row"><span class="score" style="background:${scoreColor(l.pertinence)}">${esc(l.pertinence)}</span><span style="flex:1">${esc(l.entreprise)}</span>${typeTag(l.type)}</div>`
+  ).join(''):'<div style="color:var(--text-muted);font-size:12.5px">Aucun prospect à pertinence ≥ 8 pour l\'instant.</div>';
+}
+function bars(id,rows,total){
+  const el=document.getElementById(id);
+  if(!rows.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12.5px">—</div>';return;}
+  const max=Math.max(...rows.map(r=>r[1]),1);
+  el.innerHTML=rows.map(([nm,ct,col])=>`
+    <div class="bar-row"><span class="nm">${esc(nm)}</span><div class="bar-track"><div class="bar-fill" style="width:${ct/max*100}%;background:${col}"></div></div><span class="ct">${ct}</span></div>`).join('');
+}
+
+/* ── Leads table ── */
+function fillFilters(){
+  const provs=[...new Set(LEADS.map(l=>l.province).filter(Boolean))].sort();
+  const fp=document.getElementById('f-prov');const cur=fp.value;
+  fp.innerHTML='<option value="">Toutes provinces</option>'+provs.map(p=>`<option ${p===cur?'selected':''}>${esc(p)}</option>`).join('');
+  const fn=document.getElementById('f-niche');const curn=fn.value;
+  fn.innerHTML='<option value="">Toutes niches</option>'+NICHES.map(p=>`<option ${p===curn?'selected':''}>${esc(p)}</option>`).join('');
+  const fs=document.getElementById('f-statut');const curs=fs.value;
+  fs.innerHTML='<option value="">Tous statuts</option>'+STATUTS.map(p=>`<option ${p===curs?'selected':''}>${esc(p)}</option>`).join('');
+}
+function renderLeads(){
+  fillFilters();
+  const q=(document.getElementById('f-search').value||'').toLowerCase();
+  const fp=document.getElementById('f-prov').value;
+  const ft=document.getElementById('f-type').value;
+  const fn=document.getElementById('f-niche').value;
+  const fst=document.getElementById('f-statut').value;
+  let rows=LEADS.filter(l=>{
+    if(fp&&l.province!==fp)return false;
+    if(ft&&l.type!==ft)return false;
+    if(fn&&l.niche!==fn)return false;
+    if(fst&&l.statut!==fst)return false;
+    if(q){const blob=(l.entreprise+' '+l.secteur+' '+(l.decideur&&l.decideur.nom||'')+' '+l.signal+' '+l.justif).toLowerCase();if(!blob.includes(q))return false;}
+    return true;
+  });
+  rows.sort((a,b)=>(+b.pertinence||0)-(+a.pertinence||0));
+  document.getElementById('leads-count').textContent=rows.length+' prospect'+(rows.length>1?'s':'')+(rows.length!==LEADS.length?` (sur ${LEADS.length})`:'');
+  const area=document.getElementById('leads-area');
+  if(!LEADS.length){
+    area.innerHTML=`<div class="empty"><div class="em">🇨🇦</div><h3>Aucun prospect pour l'instant</h3>
+      <p>Importe le résultat du prompt de recherche, ou ajoute un prospect manuellement.</p>
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:center">
+        <button class="btn btn-primary" onclick="openForm()">+ Ajouter un prospect</button>
+        <button class="btn btn-ghost" onclick="document.querySelector('[data-sec=import]').click()">📥 Importer un tableau</button>
+      </div></div>`;return;
+  }
+  if(!rows.length){area.innerHTML='<div class="empty"><div class="em">🔍</div><h3>Aucun résultat</h3><p>Ajuste les filtres.</p></div>';return;}
+  area.innerHTML=`<div class="table-wrap"><table><thead><tr>
+    <th>Entreprise</th><th>Province</th><th>Secteur</th><th>Type</th><th>Niche</th><th>Eff.</th><th>Pert.</th><th>Décideur</th><th>Statut</th><th>Prochaine action</th><th></th>
+    </tr></thead><tbody>${rows.map(l=>{
+      const dec=l.decideur||{};
+      return `<tr>
+        <td class="cell-ent">${esc(l.entreprise)}${l.site?`<div><a href="${esc(l.site)}" target="_blank" rel="noopener">${esc(l.site.replace(/^https?:\/\//,''))}</a></div>`:''}${l.signal?`<div class="cell-sub" title="${esc(l.signal)}">🔔 ${esc(l.signal.slice(0,60))}${l.signal.length>60?'…':''}</div>`:''}</td>
+        <td><span class="tag tag-prov">${esc(l.province||'—')}</span></td>
+        <td>${esc(l.secteur||'')}</td>
+        <td>${typeTag(l.type)}</td>
+        <td style="font-size:12px">${esc(l.niche||'')}</td>
+        <td>${esc(l.effectif||'')}</td>
+        <td><span class="score" style="background:${scoreColor(l.pertinence)}">${esc(l.pertinence||'—')}</span></td>
+        <td>${dec.nom?`<div style="font-weight:600">${esc(dec.nom)}</div><div class="cell-sub">${esc(dec.titre||'')}</div>${dec.email?`<div class="cell-sub">${esc(dec.email)}</div>`:''}`:'<span style="color:var(--text-muted)">—</span>'}</td>
+        <td><select class="statut-sel" style="color:${STATUT_COLORS[l.statut]||''}" onchange="setStatut('${l.id}',this.value)">${STATUTS.map(s=>`<option ${s===l.statut?'selected':''}>${s}</option>`).join('')}</select></td>
+        <td style="font-size:12px;max-width:170px">${esc(l.action||'')}</td>
+        <td><div class="row-actions"><button class="icon-btn" title="Éditer" onclick="openForm('${l.id}')">✏️</button><button class="icon-btn" title="Supprimer" onclick="delLead('${l.id}')">🗑️</button></div></td>
+      </tr>`;}).join('')}</tbody></table></div>`;
+}
+function setStatut(id,v){const l=LEADS.find(x=>x.id===id);if(l){l.statut=v;save(LEADS);renderLeads();}}
+function delLead(id){const l=LEADS.find(x=>x.id===id);if(l&&confirm('Supprimer « '+l.entreprise+' » ?')){LEADS=LEADS.filter(x=>x.id!==id);save(LEADS);renderLeads();}}
+
+/* ── Form ── */
+function fillStatutSelect(){document.getElementById('m-statut').innerHTML=STATUTS.map(s=>`<option>${s}</option>`).join('');}
+function openForm(id){
+  fillStatutSelect();
+  const m=document.getElementById('modal');
+  if(id){
+    const l=LEADS.find(x=>x.id===id);if(!l)return;const d=l.decideur||{};
+    document.getElementById('modal-title').textContent='Éditer le prospect';
+    document.getElementById('m-id').value=l.id;
+    document.getElementById('m-entreprise').value=l.entreprise||'';
+    document.getElementById('m-site').value=l.site||'';
+    setSel('m-prov',l.province);document.getElementById('m-secteur').value=l.secteur||'';
+    setSel('m-type',l.type);setSel('m-niche',l.niche);
+    document.getElementById('m-pertinence').value=l.pertinence||'';
+    document.getElementById('m-effectif').value=l.effectif||'';
+    document.getElementById('m-ca').value=l.ca||'';
+    setSel('m-statut',l.statut);
+    document.getElementById('m-dec-nom').value=d.nom||'';
+    document.getElementById('m-dec-titre').value=d.titre||'';
+    document.getElementById('m-dec-email').value=d.email||'';
+    document.getElementById('m-dec-linkedin').value=d.linkedin||'';
+    document.getElementById('m-signal').value=l.signal||'';
+    document.getElementById('m-justif').value=l.justif||'';
+    document.getElementById('m-action').value=l.action||'';
+  }else{
+    document.getElementById('modal-title').textContent='Ajouter un prospect';
+    ['m-id','m-entreprise','m-site','m-secteur','m-pertinence','m-effectif','m-ca','m-dec-nom','m-dec-titre','m-dec-email','m-dec-linkedin','m-signal','m-justif','m-action'].forEach(i=>document.getElementById(i).value='');
+    setSel('m-prov','Québec');setSel('m-type','Marque blanche');setSel('m-niche','Support N1 SaaS');setSel('m-statut','À contacter');
+  }
+  m.classList.add('open');
+}
+function setSel(id,v){const el=document.getElementById(id);if(!el)return;if(v==null){el.selectedIndex=0;return;}let found=false;[...el.options].forEach(o=>{if(o.value===v||o.text===v){el.value=o.value;found=true;}});if(!found)el.selectedIndex=0;}
+function closeForm(){document.getElementById('modal').classList.remove('open');}
+function saveForm(){
+  const ent=document.getElementById('m-entreprise').value.trim();
+  if(!ent){alert('Le nom de l\'entreprise est obligatoire.');return;}
+  const id=document.getElementById('m-id').value;
+  const obj={
+    entreprise:ent,
+    site:document.getElementById('m-site').value.trim(),
+    province:document.getElementById('m-prov').value,
+    secteur:document.getElementById('m-secteur').value.trim(),
+    type:document.getElementById('m-type').value,
+    niche:document.getElementById('m-niche').value,
+    pertinence:document.getElementById('m-pertinence').value.trim(),
+    effectif:document.getElementById('m-effectif').value.trim(),
+    ca:document.getElementById('m-ca').value.trim(),
+    statut:document.getElementById('m-statut').value,
+    decideur:{
+      nom:document.getElementById('m-dec-nom').value.trim(),
+      titre:document.getElementById('m-dec-titre').value.trim(),
+      email:document.getElementById('m-dec-email').value.trim(),
+      linkedin:document.getElementById('m-dec-linkedin').value.trim()
+    },
+    signal:document.getElementById('m-signal').value.trim(),
+    justif:document.getElementById('m-justif').value.trim(),
+    action:document.getElementById('m-action').value.trim()
+  };
+  if(id){const l=LEADS.find(x=>x.id===id);Object.assign(l,obj);}
+  else{obj.id=uid();LEADS.unshift(obj);}
+  save(LEADS);closeForm();renderLeads();
+}
+
+/* ── Import ── */
+function splitCells(line){
+  if(line.includes('|'))return line.replace(/^\s*\|/,'').replace(/\|\s*$/,'').split('|').map(s=>s.trim());
+  if(line.includes('\t'))return line.split('\t').map(s=>s.trim());
+  if(line.includes(';'))return line.split(';').map(s=>s.trim());
+  return line.split(',').map(s=>s.trim());
+}
+function doImport(replace){
+  const txt=document.getElementById('import-text').value;
+  const msg=document.getElementById('import-msg');
+  const lines=txt.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  let added=0;const out=[];
+  lines.forEach(line=>{
+    if(/^[\s|:+-]+$/.test(line))return; // separator row ---
+    const c=splitCells(line);
+    if(c.length<2)return;
+    const first=(c[0]||'').toLowerCase();
+    if(first==='entreprise'||first.startsWith('entreprise '))return; // header
+    const type=/marque/i.test(c[6]||'')?'Marque blanche':/direct/i.test(c[6]||'')?'Direct':(c[6]||'');
+    out.push({
+      id:uid(),
+      entreprise:c[0]||'',
+      site:c[1]||'',
+      province:c[2]||'',
+      secteur:c[3]||'',
+      effectif:c[4]||'',
+      ca:c[5]||'',
+      type:type,
+      pertinence:(c[7]||'').replace(/[^0-9.]/g,''),
+      signal:c[8]||'',
+      justif:c[9]||'',
+      niche:'Non précisé',
+      statut:'À contacter',
+      decideur:{nom:'',titre:'',email:'',linkedin:''},
+      action:''
+    });
+    added++;
+  });
+  if(!added){msg.textContent='Aucune ligne valide détectée. Vérifie le format.';msg.style.color='var(--danger)';return;}
+  LEADS=replace?out:out.concat(LEADS);
+  save(LEADS);
+  msg.textContent=`✅ ${added} prospect(s) importé(s)${replace?' (remplacement)':''}.`;msg.style.color='var(--success)';
+  document.getElementById('import-text').value='';
+}
+
+/* ── Export ── */
+function exportCSV(){
+  const head=['Entreprise','Site web','Province','Secteur','Effectif est.','CA est.','Type de cible','Pertinence','Niche','Statut','Décideur nom','Décideur titre','Décideur email','Décideur LinkedIn','Signal d\'achat','Justification','Prochaine action'];
+  const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
+  const rows=LEADS.map(l=>{const d=l.decideur||{};return [l.entreprise,l.site,l.province,l.secteur,l.effectif,l.ca,l.type,l.pertinence,l.niche,l.statut,d.nom,d.titre,d.email,d.linkedin,l.signal,l.justif,l.action].map(q).join(';');});
+  const csv=head.map(q).join(';')+'\n'+rows.join('\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='salverys-prospects-canada-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+/* ── Init ── */
+renderDash();
+</script>
+</body>
+</html>

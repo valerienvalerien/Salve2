@@ -1,5 +1,9 @@
 # Prompts de recherche de prospects IT — Canada (priorité Québec & Nouveau-Brunswick)
 
+> **Cadrage marché** : le Canada est un **marché secondaire de test, mais à vrai objectif
+> court/moyen terme**. La **France reste la cible principale** (cf. `CLAUDE.md`). Au sein du
+> Canada, priorité géographique : **Québec → Nouveau-Brunswick → reste francophone/bilingue**.
+
 **Objet** : faire générer, par une IA dotée de recherche web, deux listes de 50 prospects
 qualifiés pour les niches IT de Salverys (support applicatif N1 + helpdesk IT N1, réalisés en
 offshore depuis Antananarivo).
