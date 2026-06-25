@@ -131,6 +131,9 @@ tbody tr:hover{background:#F8FAFC;}
       <div class="nav-section">Pilotage</div>
       <div class="nav-item active" data-sec="dashboard"><span class="ic">📊</span> Tableau de bord</div>
       <div class="nav-item" data-sec="leads"><span class="ic">📋</span> Prospects</div>
+      <div class="nav-section">Veille &amp; stratégie</div>
+      <div class="nav-item" data-sec="veille"><span class="ic">📡</span> Veille concurrents</div>
+      <div class="nav-item" data-sec="sherweb"><span class="ic">🎯</span> Sherweb (canal)</div>
       <div class="nav-section">Données</div>
       <div class="nav-item" data-sec="import"><span class="ic">📥</span> Importer</div>
       <div class="nav-item" data-sec="aide"><span class="ic">❔</span> Aide</div>
@@ -223,6 +226,117 @@ tbody tr:hover{background:#F8FAFC;}
             <li>Aucune donnée n'est envoyée en ligne. Pense à <b>Export CSV</b> pour sauvegarder/partager.</li>
             <li>Priorité géographique&nbsp;: <b>Québec → Nouveau-Brunswick → reste du Canada</b> francophone/bilingue.</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veille concurrents -->
+    <section id="veille" class="section">
+      <div class="section-header">
+        <div><h2>Veille concurrents</h2><p>Benchmark — NON prospects. Acteurs qui vendent déjà du support N1 en marque blanche (concurrents directs).</p></div>
+      </div>
+      <div class="section-body">
+        <div class="panel" style="margin-bottom:16px;line-height:1.6;font-size:13px;">
+          <p class="hint" style="margin-bottom:0;">
+            ⚠️ <b>Ce ne sont PAS des cibles d'outreach</b> : on ne vend pas du support marque blanche à un vendeur de support marque blanche.
+            Cet onglet sert de <b>repère concurrentiel</b> (modèle, langues, tarification, positionnement) pour affûter le pitch et la grille de prix Salverys.<br>
+            <b>Différenciateur transversal Salverys</b> : français <b>langue maternelle native</b> (ces acteurs nord-américains sont anglais-first, le FR y est rarement natif), <b>fuseau compatible France/Europe</b>, <b>coût ~40 % inférieur</b>, process documentés (script, double écoute, reporting).
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Concurrent</th><th>Localisation</th><th>Modèle</th><th>Langues</th><th>Tarification</th><th>Ce qu'on retient</th><th>Angle Salverys</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td class="cell-ent">GMS Live Expert<div><a href="https://www.gmsliveexpert.com" target="_blank" rel="noopener">gmsliveexpert.com</a></div><div class="cell-sub">Global Mentoring Solutions</div></td>
+                <td><span class="tag tag-prov">Ontario</span></td>
+                <td>Helpdesk + NOC 24/7 en marque blanche pour MSP (numéro dédié, chat brandé, pods de 10-12 techs)</td>
+                <td>Anglais (FR non natif / non mis en avant)</td>
+                <td>Par utilisateur / serveur / poste / réseau</td>
+                <td>20+ ans, 100k+ utilisateurs, intégrations Autotask/ConnectWise/Kaseya/Zendesk. <b>⚠️ Racheté par Sherweb</b> (cf. onglet Sherweb).</td>
+                <td>FR langue maternelle vs EN-first ; fuseau FR/Europe ; ~40 % moins cher.</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">Mission Control NOC &amp; HelpDesk<div><a href="https://www.missioncontrolnoc.com" target="_blank" rel="noopener">missioncontrolnoc.com</a></div></td>
+                <td><span class="tag tag-prov">Ontario</span></td>
+                <td>Helpdesk + NOC + Dispatch 24/7 marque blanche pour MSP</td>
+                <td>Anglais</td>
+                <td>Par device ou au temps ; sans contrat, sans minimum ; résiliation 90 j</td>
+                <td>Positionnement « no lock-in / no onboarding fee », intégrations N-able. Souplesse contractuelle = argument fort.</td>
+                <td>FR natif + Europe + prix ; matcher la souplesse (pilote sans engagement).</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">SupportSave<div><a href="https://www.supportsave.com" target="_blank" rel="noopener">supportsave.com</a></div></td>
+                <td><span class="tag tag-prov">Canada / offshore</span></td>
+                <td>Support technique externalisé 24/7 (BPO)</td>
+                <td><b>Bilingue EN/FR</b> (offshore — natif non précisé)</td>
+                <td>Non publique (sur devis)</td>
+                <td><b>Concurrent le plus frontal sur l'angle FR</b> : se présente déjà comme bilingue FR/EN pour clients canadiens et européens.</td>
+                <td>Français <b>langue maternelle</b> (Madagascar francophone) vs centre offshore généraliste ; qualité (double écoute), proximité culturelle FR.</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">Sherweb — services marque blanche<div><a href="https://www.sherweb.com/services" target="_blank" rel="noopener">sherweb.com/services</a></div></td>
+                <td><span class="tag tag-prov">Québec</span></td>
+                <td>Helpdesk / NOC / MDR marque blanche pour ses ~8 000 partenaires MSP</td>
+                <td>Bilingue EN/FR (échelle nord-américaine)</td>
+                <td>Intégré à son programme partenaires (marges fixées par le partenaire)</td>
+                <td><b>Devient concurrent</b> via GMS + offre support marque blanche. Mais aussi <b>canal</b> → onglet dédié.</td>
+                <td>Niche FR/Europe native qu'ils couvrent mal ; cf. stratégie onglet Sherweb.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:14px;">
+          À noter : <b>Innovatia</b> (Nouveau-Brunswick, externalisation de support technique) figure dans le pipeline comme prospect marque blanche,
+          mais reste aussi un concurrent partiel — l'angle d'entrée est sa <b>faible capacité francophone native</b> (sous-traitance de son débordement FR).
+        </p>
+      </div>
+    </section>
+
+    <!-- Sherweb (canal stratégique) -->
+    <section id="sherweb" class="section">
+      <div class="section-header">
+        <div><h2>Sherweb — compte stratégique / canal</h2><p>Hors pipeline immédiat (&gt; 500 employés). Suivi long terme, double nature canal + concurrent.</p></div>
+      </div>
+      <div class="section-body">
+        <div class="split">
+          <div class="panel">
+            <h3>Carte d'identité</h3>
+            <div class="bar-row"><span class="nm">Site</span><span style="flex:1"><a href="https://www.sherweb.com" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;">sherweb.com</a></span></div>
+            <div class="bar-row"><span class="nm">Siège</span><span style="flex:1">Sherbrooke / Montréal (Québec)</span></div>
+            <div class="bar-row"><span class="nm">Effectif</span><span style="flex:1">1 000 – 5 000 (est.)</span></div>
+            <div class="bar-row"><span class="nm">Activité</span><span style="flex:1">Distributeur cloud Microsoft + plateforme MSP</span></div>
+            <div class="bar-row"><span class="nm">Réseau</span><span style="flex:1">≈ 8 000 partenaires MSP (Canada, US, IE, UK)</span></div>
+            <div class="bar-row"><span class="nm">Statut</span><span style="flex:1"><span class="tag" style="background:#FEF3C7;color:#B45309;">Veille — pas d'outreach direct CT</span></span></div>
+          </div>
+          <div class="panel">
+            <h3>⚠️ Double nature</h3>
+            <p style="font-size:13px;line-height:1.6;">
+              <b style="color:var(--mb);">Canal</b> — ses ~8 000 MSP partenaires forment un <b>vivier de cibles marque blanche</b> directement adressables.<br><br>
+              <b style="color:var(--danger);">Concurrent</b> — Sherweb a racheté <b>GMS Live Expert</b> et propose désormais helpdesk / NOC / MDR <b>marque blanche</b> à ses partenaires. Il occupe donc déjà une partie de notre terrain.
+            </p>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:4px;">
+          <h3>Pourquoi hors pipeline immédiat</h3>
+          <ul style="margin:8px 0 0 18px;font-size:13px;line-height:1.7;">
+            <li>Effectif &gt; 500 : achats structurés, revue sécurité fournisseur, MSA, références exigées — mauvais ratio effort/closing pour un premier contrat.</li>
+            <li>Tension concurrentielle : leur offre support marque blanche recoupe la nôtre.</li>
+            <li>Cycle de décision long, peu compatible avec un démarrage à 10 personnes.</li>
+          </ul>
+        </div>
+        <div class="panel" style="margin-top:14px;">
+          <h3>Angles long terme à surveiller</h3>
+          <ol style="margin:8px 0 0 18px;font-size:13px;line-height:1.7;">
+            <li><b>Fournisseur de capacité francophone native</b> dans son écosystème, là où GMS est anglais-first — la niche FR/Europe qu'ils couvrent mal.</li>
+            <li><b>Prospecter SON réseau</b> (les ~8 000 MSP partenaires) plutôt que Sherweb lui-même : cibles directes marque blanche, déjà cloud-matures.</li>
+            <li><b>Veille tarifaire/positionnement</b> (programme CSP, portail self-service, services marque blanche) pour calibrer la grille Salverys.</li>
+          </ol>
+          <p class="hint" style="margin-top:12px;">
+            <b>Prochaine action :</b> ne pas démarcher Sherweb en direct à court terme. Cartographier <b>10-15 partenaires MSP francophones</b> de son réseau (Québec/Europe) comme cibles directes du pipeline, et reverser ce qui mérite dans l'onglet Prospects.
+          </p>
         </div>
       </div>
     </section>
