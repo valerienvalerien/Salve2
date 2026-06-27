@@ -718,15 +718,68 @@ function exportCSV(){
     ["Intega IT","https://www.intega.ca","Ontario","MSSP / MSP","≈40 (est.)","4–6 M$ CAD (est.)","Helpdesk IT",5,"Directeur des services gérés","","Fournisseur de services de sécurité gérés (MSSP) en Ontario.","Focalisé sécurité : N1 utilisateur de premier niveau externalisé pour décharger les analystes."]
   ];
   const ACTION="Identifier le décideur sur LinkedIn + lancer séquence A (marque blanche)";
-  LEADS=S.map((r,i)=>({
-    id:'ca'+String(i+1).padStart(3,'0'),
-    entreprise:r[0], site:r[1], province:r[2], secteur:r[3],
-    effectif:r[4], ca:r[5], niche:r[6], pertinence:r[7],
-    type:'Marque blanche', statut:'À contacter',
-    decideur:{nom:r[9]||'', titre:r[8], email:'', linkedin:''},
-    signal:r[10], justif:r[11],
-    action:r[9] ? ("Trouver l'email pro de "+r[9].replace(/\s*\(.*\)/,'')+" + lancer séquence A (marque blanche)") : ACTION
-  }));
+  /* Enrichissement décideurs (recherche web 2026). LinkedIn = profil PERSONNEL
+     vérifié uniquement ; les pages entreprise et notes vont dans « action ».
+     Peut aussi corriger site/secteur/effectif/pertinence et compléter le signal. */
+  const ENRICH={
+    "S3 Technologies":{nom:"Vincent (cofondateur)",titre:"VP Opérations",action:"Joindre Vincent (VP Opérations) via la page entreprise (linkedin.com/company/s3-technologies-inc) — nom complet à confirmer + séquence A"},
+    "Groupe Access":{nom:"Habib Malik",titre:"CEO (MSP Corp / ex-Groupe Access)",linkedin:"https://ca.linkedin.com/in/habib-malik-46691887"},
+    "MS Solutions":{nom:"Maxime Dion",titre:"Président",linkedin:"https://www.linkedin.com/in/maxdion/"},
+    "Victrix":{nom:"Dominic Lajoie",titre:"Chef de la direction (CEO)",linkedin:"https://www.linkedin.com/in/dominiclajoie/"},
+    "NOVIPRO":{nom:"David Chamandy",titre:"Président-directeur général",linkedin:"https://www.linkedin.com/in/david-chamandy/"},
+    "ESI Technologies":{nom:"Greg Rokos",titre:"Président & CEO",linkedin:"https://ca.linkedin.com/in/greg-rokos-7151139"},
+    "Solutions informatiques Inso":{nom:"Naji Chalhoub",titre:"Président",linkedin:"https://www.linkedin.com/in/naji-chalhoub-1b392789/"},
+    "Groupe COSIOR":{nom:"Mario Parent",titre:"Président-fondateur",linkedin:"https://www.linkedin.com/in/marioparent/"},
+    "Genatec":{nom:"Naji Nader",titre:"Président & fondateur",action:"Trouver le LinkedIn/email de Naji Nader (président-fondateur) + séquence A"},
+    "Solulan":{nom:"André Boutin",titre:"Président",linkedin:"https://ca.linkedin.com/in/andr%C3%A9-boutin-solulan"},
+    "Groupe SL":{nom:"Gabriel Latour",titre:"Cofondateur (avec Stéphane Lortie)",action:"Trouver le LinkedIn/email de Gabriel Latour / Stéphane Lortie (cofondateurs) + séquence A"},
+    "MicroAge Québec–Trois-Rivières":{nom:"Dany Roy",titre:"Président-DG (MicroAge Québec)",action:"Trouver le LinkedIn/email de Dany Roy (ou Phil Palmieri, Trois-Rivières) + séquence A"},
+    "6tem TI":{nom:"Frederick Forget",titre:"Direction 6tem TI (à confirmer)",linkedin:"https://ca.linkedin.com/in/frederick-forget"},
+    "Vooban":{nom:"Kevin Moore",titre:"Fondateur, président & CEO",linkedin:"https://ca.linkedin.com/in/kevinmooreqc"},
+    "Libéo":{nom:"Jean-François Rousseau",titre:"Fondateur",action:"Trouver le LinkedIn/email de J-F Rousseau (fondateur) — viser aussi Dir. opérations + séquence A"},
+    "ACCEO Solutions":{nom:"Gilles Létourneau",titre:"Chef de la direction",action:"Trouver le LinkedIn/email de Gilles Létourneau (CEO) — viser le Resp. support produit + séquence A"},
+    "Poka":{nom:"Alexandre Leclerc",titre:"Cofondateur & CEO",site:"https://www.poka.io",action:"Viser le Directeur du support client (groupe IFS) ; A. Leclerc cofondateur+CEO — LinkedIn/email à trouver + séquence A"},
+    "Nmedia":{nom:"Louis-Philippe Baril",titre:"Président",effectif:"≈120",action:"Joindre Louis-Philippe Baril (président) via linkedin.com/company/nmedia-solutions + séquence A"},
+    "IXmedia":{nom:"Carl Frédéric De Celles",titre:"Président-fondateur",secteur:"Agence numérique / web (fusion → « iX »)",pertinence:4,signalAdd:"⚠ Agence web/UX, n'exploite pas de helpdesk — fit marque blanche faible.",action:"Fit faible (agence web, pas de support N1) — déprioriser"},
+    "Mariner Partners":{nom:"Curtis Howe",titre:"CEO & cofondateur",action:"Bio confirmée : marinerpartners.com/about/bios/curtis-howe — trouver LinkedIn/email (format c…@marinerpartners.com) + séquence A"},
+    "Innovatia Technical Services":{action:"Identifier le Dir. opérations/livraison via linkedin.com/company/innovatia + séquence A (angle : capacité francophone native)"},
+    "T4G":{action:"⚠ T4G intégré à MNP Digital — confirmer l'entité et l'interlocuteur (Dir. opérations) avant tout outreach"},
+    "Interactive Computer Systems (ICS)":{nom:"Anil Virmani",titre:"Président",action:"Joindre Anil Virmani (président) via linkedin.com/company/interactive-computer-systems-ltd + séquence A"},
+    "Convergence Networks":{nom:"Chris Remy",titre:"CEO (Mike Maddox, Président)",action:"Joindre Chris Remy (CEO) / Mike Maddox (Président) via linkedin.com/company/convergence-networks + séquence A"},
+    "F12.net":{nom:"Alex Webb",titre:"Fondateur & CEO",linkedin:"https://ca.linkedin.com/in/f12-alex-webb"},
+    "SVS MSP":{nom:"Eugene Lupario",titre:"Président (SVS Group)",linkedin:"https://www.linkedin.com/in/eugene-lupario-3394338/"},
+    "Davidson Violette (DVAI)":{effectif:"≈16",pertinence:5,signalAdd:"⚠ ~16 employés (sous le seuil de 20).",action:"Petite structure — viser le dirigeant via LinkedIn ; service desk bilingue = angle. Priorité faible"},
+    "Intega IT":{nom:"Ernie (nom complet à confirmer)",titre:"Président",signalAdd:"Fuelled Networks a fusionné avec Intega (déc. 2025).",action:"Confirmer le nom complet du président « Ernie » via LinkedIn + séquence A (Intega + Fuelled fusionnés)"},
+    "Fuelled Networks":{pertinence:3,signalAdd:"⚠ Fusionné avec Intega IT (déc. 2025).",action:"DOUBLON — fusionné avec Intega IT (déc. 2025) : écarter ou fusionner la fiche"},
+    "Resitek":{site:"https://resitek.com",action:"Identifier le dirigeant (réf. « Danny ») via linkedin.com/company/resitek + séquence A"},
+    "SoftFlow":{action:"Entreprise familiale — joindre le dirigeant via linkedin.com/company/softflowcanada + séquence A"},
+    "UNNO":{action:"Identifier le dirigeant via linkedin.com/company/unno + séquence A"},
+    "OKTO Solutions":{action:"Identifier le dirigeant via oktosolutions.ca (page équipe) + LinkedIn + séquence A"},
+    "Connextek":{nom:"Pierre Dessureault",titre:"Président",linkedin:"https://www.linkedin.com/in/pierredessureault/"},
+    "UBQT":{nom:"Alexandre Léveillé",titre:"Dirigeant UBQT (à confirmer)",linkedin:"https://www.linkedin.com/in/alexandreleveilleubqt/"},
+    "Adaptive Office Solutions":{nom:"Brett Gallant",titre:"Fondateur & Directeur",linkedin:"https://ca.linkedin.com/in/brett-gallant-97805726"},
+    "Eosium":{action:"Identifier le dirigeant via eosium.ca + LinkedIn + séquence A"}
+  };
+  LEADS=S.map((r,i)=>{
+    const e=ENRICH[r[0]]||{};
+    const nom=(e.nom!==undefined)?e.nom:(r[9]||'');
+    const titre=(e.titre!==undefined)?e.titre:r[8];
+    const linkedin=e.linkedin||'';
+    const email=e.email||'';
+    let action;
+    if(e.action) action=e.action;
+    else if(linkedin||email) action="Contacter "+(nom||"le décideur")+" (LinkedIn) + lancer séquence A (marque blanche)";
+    else if(nom) action="Trouver l'email pro de "+nom.replace(/\s*\(.*\)/,'')+" + lancer séquence A (marque blanche)";
+    else action=ACTION;
+    return {
+      id:'ca'+String(i+1).padStart(3,'0'),
+      entreprise:r[0], site:e.site||r[1], province:r[2], secteur:e.secteur||r[3],
+      effectif:e.effectif||r[4], ca:r[5], niche:r[6], pertinence:e.pertinence||r[7],
+      type:'Marque blanche', statut:'À contacter',
+      decideur:{nom, titre, email, linkedin},
+      signal:e.signalAdd?(r[10]+' '+e.signalAdd):r[10], justif:r[11], action
+    };
+  });
   save(LEADS);
 })();
 
