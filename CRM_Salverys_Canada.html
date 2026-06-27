@@ -117,6 +117,51 @@ tbody tr:hover{background:#F8FAFC;}
 .fld textarea{resize:vertical;min-height:60px;}
 .hint{font-size:11.5px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;}
 .close-x{cursor:pointer;font-size:20px;color:var(--text-muted);border:none;background:none;}
+
+/* ── Responsive mobile/tablette ── */
+@media (max-width:820px){
+  body{height:auto;min-height:100vh;overflow-y:auto;overflow-x:hidden;}
+  .app{flex-direction:column;height:auto;min-height:100vh;}
+  /* Sidebar → en-tête en haut, onglets qui passent à la ligne (pas de scroll
+     horizontal : sur tactile, le scroll avalait les taps sur les onglets). */
+  .sidebar{width:100%;min-width:0;flex-direction:column;position:sticky;top:0;z-index:40;}
+  .sidebar-logo{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);border-right:none;}
+  .sidebar-logo h1{font-size:15px;}
+  .sidebar-logo span{display:none;}
+  .sidebar-nav{display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;gap:6px;padding:8px;overflow:visible;}
+  .nav-section{display:none;}
+  .nav-item{flex:1 1 auto;justify-content:center;white-space:nowrap;margin-bottom:0;padding:10px 12px;font-size:13px;touch-action:manipulation;}
+  .sidebar-foot{display:none;}
+  /* Contenu : on libère la hauteur et le scroll */
+  .main{height:auto;overflow:visible;}
+  .section{height:auto;overflow:visible;}
+  .section-header{padding:14px 16px 12px;}
+  .section-header h2{font-size:17px;}
+  .section-body{flex:none;overflow:visible;padding:16px 14px;}
+  /* Grilles qui débordaient */
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .pipe-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .split{grid-template-columns:1fr;}
+  .stat-val{font-size:24px;}
+  /* Filtres prospects en pleine largeur */
+  .filters{width:100%;gap:8px;}
+  .filter-in{min-width:0;width:100%;flex:1 1 100%;}
+  .filter-sel{flex:1 1 45%;min-width:0;}
+  .filters .btn{flex:1 1 45%;justify-content:center;}
+  /* Tables : scroll horizontal interne plutôt que de casser la page */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{font-size:12px;min-width:640px;}
+  thead th,tbody td{padding:9px 10px;}
+  /* Modal et formulaire sur une colonne */
+  .modal-bg{padding:16px 8px;}
+  .form-grid{grid-template-columns:1fr;}
+  .bar-row .nm{width:96px;}
+}
+@media (max-width:480px){
+  .stats-grid{grid-template-columns:1fr;}
+  .pipe-grid{grid-template-columns:repeat(2,1fr);}
+  .sidebar-logo{padding:10px 12px;}
+}
 </style>
 </head>
 <body>
@@ -131,6 +176,9 @@ tbody tr:hover{background:#F8FAFC;}
       <div class="nav-section">Pilotage</div>
       <div class="nav-item active" data-sec="dashboard"><span class="ic">📊</span> Tableau de bord</div>
       <div class="nav-item" data-sec="leads"><span class="ic">📋</span> Prospects</div>
+      <div class="nav-section">Veille &amp; stratégie</div>
+      <div class="nav-item" data-sec="veille"><span class="ic">📡</span> Veille concurrents</div>
+      <div class="nav-item" data-sec="sherweb"><span class="ic">🎯</span> Sherweb (canal)</div>
       <div class="nav-section">Données</div>
       <div class="nav-item" data-sec="import"><span class="ic">📥</span> Importer</div>
       <div class="nav-item" data-sec="aide"><span class="ic">❔</span> Aide</div>
@@ -223,6 +271,117 @@ tbody tr:hover{background:#F8FAFC;}
             <li>Aucune donnée n'est envoyée en ligne. Pense à <b>Export CSV</b> pour sauvegarder/partager.</li>
             <li>Priorité géographique&nbsp;: <b>Québec → Nouveau-Brunswick → reste du Canada</b> francophone/bilingue.</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veille concurrents -->
+    <section id="veille" class="section">
+      <div class="section-header">
+        <div><h2>Veille concurrents</h2><p>Benchmark — NON prospects. Acteurs qui vendent déjà du support N1 en marque blanche (concurrents directs).</p></div>
+      </div>
+      <div class="section-body">
+        <div class="panel" style="margin-bottom:16px;line-height:1.6;font-size:13px;">
+          <p class="hint" style="margin-bottom:0;">
+            ⚠️ <b>Ce ne sont PAS des cibles d'outreach</b> : on ne vend pas du support marque blanche à un vendeur de support marque blanche.
+            Cet onglet sert de <b>repère concurrentiel</b> (modèle, langues, tarification, positionnement) pour affûter le pitch et la grille de prix Salverys.<br>
+            <b>Différenciateur transversal Salverys</b> : français <b>langue maternelle native</b> (ces acteurs nord-américains sont anglais-first, le FR y est rarement natif), <b>fuseau compatible France/Europe</b>, <b>coût ~40 % inférieur</b>, process documentés (script, double écoute, reporting).
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Concurrent</th><th>Localisation</th><th>Modèle</th><th>Langues</th><th>Tarification</th><th>Ce qu'on retient</th><th>Angle Salverys</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td class="cell-ent">GMS Live Expert<div><a href="https://www.gmsliveexpert.com" target="_blank" rel="noopener">gmsliveexpert.com</a></div><div class="cell-sub">Global Mentoring Solutions</div></td>
+                <td><span class="tag tag-prov">Ontario</span></td>
+                <td>Helpdesk + NOC 24/7 en marque blanche pour MSP (numéro dédié, chat brandé, pods de 10-12 techs)</td>
+                <td>Anglais (FR non natif / non mis en avant)</td>
+                <td>Par utilisateur / serveur / poste / réseau</td>
+                <td>20+ ans, 100k+ utilisateurs, intégrations Autotask/ConnectWise/Kaseya/Zendesk. <b>⚠️ Racheté par Sherweb</b> (cf. onglet Sherweb).</td>
+                <td>FR langue maternelle vs EN-first ; fuseau FR/Europe ; ~40 % moins cher.</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">Mission Control NOC &amp; HelpDesk<div><a href="https://www.missioncontrolnoc.com" target="_blank" rel="noopener">missioncontrolnoc.com</a></div></td>
+                <td><span class="tag tag-prov">Ontario</span></td>
+                <td>Helpdesk + NOC + Dispatch 24/7 marque blanche pour MSP</td>
+                <td>Anglais</td>
+                <td>Par device ou au temps ; sans contrat, sans minimum ; résiliation 90 j</td>
+                <td>Positionnement « no lock-in / no onboarding fee », intégrations N-able. Souplesse contractuelle = argument fort.</td>
+                <td>FR natif + Europe + prix ; matcher la souplesse (pilote sans engagement).</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">SupportSave<div><a href="https://www.supportsave.com" target="_blank" rel="noopener">supportsave.com</a></div></td>
+                <td><span class="tag tag-prov">Canada / offshore</span></td>
+                <td>Support technique externalisé 24/7 (BPO)</td>
+                <td><b>Bilingue EN/FR</b> (offshore — natif non précisé)</td>
+                <td>Non publique (sur devis)</td>
+                <td><b>Concurrent le plus frontal sur l'angle FR</b> : se présente déjà comme bilingue FR/EN pour clients canadiens et européens.</td>
+                <td>Français <b>langue maternelle</b> (Madagascar francophone) vs centre offshore généraliste ; qualité (double écoute), proximité culturelle FR.</td>
+              </tr>
+              <tr>
+                <td class="cell-ent">Sherweb — services marque blanche<div><a href="https://www.sherweb.com/services" target="_blank" rel="noopener">sherweb.com/services</a></div></td>
+                <td><span class="tag tag-prov">Québec</span></td>
+                <td>Helpdesk / NOC / MDR marque blanche pour ses ~8 000 partenaires MSP</td>
+                <td>Bilingue EN/FR (échelle nord-américaine)</td>
+                <td>Intégré à son programme partenaires (marges fixées par le partenaire)</td>
+                <td><b>Devient concurrent</b> via GMS + offre support marque blanche. Mais aussi <b>canal</b> → onglet dédié.</td>
+                <td>Niche FR/Europe native qu'ils couvrent mal ; cf. stratégie onglet Sherweb.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:14px;">
+          À noter : <b>Innovatia</b> (Nouveau-Brunswick, externalisation de support technique) figure dans le pipeline comme prospect marque blanche,
+          mais reste aussi un concurrent partiel — l'angle d'entrée est sa <b>faible capacité francophone native</b> (sous-traitance de son débordement FR).
+        </p>
+      </div>
+    </section>
+
+    <!-- Sherweb (canal stratégique) -->
+    <section id="sherweb" class="section">
+      <div class="section-header">
+        <div><h2>Sherweb — compte stratégique / canal</h2><p>Hors pipeline immédiat (&gt; 500 employés). Suivi long terme, double nature canal + concurrent.</p></div>
+      </div>
+      <div class="section-body">
+        <div class="split">
+          <div class="panel">
+            <h3>Carte d'identité</h3>
+            <div class="bar-row"><span class="nm">Site</span><span style="flex:1"><a href="https://www.sherweb.com" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;">sherweb.com</a></span></div>
+            <div class="bar-row"><span class="nm">Siège</span><span style="flex:1">Sherbrooke / Montréal (Québec)</span></div>
+            <div class="bar-row"><span class="nm">Effectif</span><span style="flex:1">1 000 – 5 000 (est.)</span></div>
+            <div class="bar-row"><span class="nm">Activité</span><span style="flex:1">Distributeur cloud Microsoft + plateforme MSP</span></div>
+            <div class="bar-row"><span class="nm">Réseau</span><span style="flex:1">≈ 8 000 partenaires MSP (Canada, US, IE, UK)</span></div>
+            <div class="bar-row"><span class="nm">Statut</span><span style="flex:1"><span class="tag" style="background:#FEF3C7;color:#B45309;">Veille — pas d'outreach direct CT</span></span></div>
+          </div>
+          <div class="panel">
+            <h3>⚠️ Double nature</h3>
+            <p style="font-size:13px;line-height:1.6;">
+              <b style="color:var(--mb);">Canal</b> — ses ~8 000 MSP partenaires forment un <b>vivier de cibles marque blanche</b> directement adressables.<br><br>
+              <b style="color:var(--danger);">Concurrent</b> — Sherweb a racheté <b>GMS Live Expert</b> et propose désormais helpdesk / NOC / MDR <b>marque blanche</b> à ses partenaires. Il occupe donc déjà une partie de notre terrain.
+            </p>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:4px;">
+          <h3>Pourquoi hors pipeline immédiat</h3>
+          <ul style="margin:8px 0 0 18px;font-size:13px;line-height:1.7;">
+            <li>Effectif &gt; 500 : achats structurés, revue sécurité fournisseur, MSA, références exigées — mauvais ratio effort/closing pour un premier contrat.</li>
+            <li>Tension concurrentielle : leur offre support marque blanche recoupe la nôtre.</li>
+            <li>Cycle de décision long, peu compatible avec un démarrage à 10 personnes.</li>
+          </ul>
+        </div>
+        <div class="panel" style="margin-top:14px;">
+          <h3>Angles long terme à surveiller</h3>
+          <ol style="margin:8px 0 0 18px;font-size:13px;line-height:1.7;">
+            <li><b>Fournisseur de capacité francophone native</b> dans son écosystème, là où GMS est anglais-first — la niche FR/Europe qu'ils couvrent mal.</li>
+            <li><b>Prospecter SON réseau</b> (les ~8 000 MSP partenaires) plutôt que Sherweb lui-même : cibles directes marque blanche, déjà cloud-matures.</li>
+            <li><b>Veille tarifaire/positionnement</b> (programme CSP, portail self-service, services marque blanche) pour calibrer la grille Salverys.</li>
+          </ol>
+          <p class="hint" style="margin-top:12px;">
+            <b>Prochaine action :</b> ne pas démarcher Sherweb en direct à court terme. Cartographier <b>10-15 partenaires MSP francophones</b> de son réseau (Québec/Europe) comme cibles directes du pipeline, et reverser ce qui mérite dans l'onglet Prospects.
+          </p>
         </div>
       </div>
     </section>
@@ -505,6 +664,71 @@ function exportCSV(){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='salverys-prospects-canada-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
+
+/* ── SEED — partenaires marque blanche Canada (recherche Salverys, 2026-06) ──
+   Source : recherche web 2026 (sites actifs vérifiés). Effectifs/CA marqués « (est.) »
+   = estimation à partir d'indices publics (ancienneté, multi-sites, profils LinkedIn).
+   Décideur = rôle cible à viser ; le nom nominatif reste à confirmer sur LinkedIn
+   (action par défaut) sauf mention explicite. seedIfEmpty ne tourne que si le
+   stockage local est vide → n'écrase jamais un travail déjà saisi. */
+(function seedIfEmpty(){
+  if(LEADS.length>0) return;
+  // [entreprise, site, province, secteur, effectif, ca, niche, pertinence, decTitre, decNom, signal, justif]
+  const S=[
+    // ── QUÉBEC (priorité 1) ──
+    ["S3 Technologies","https://www.s3tech.ca","Québec","MSP / services TI gérés","≈110","15–20 M$ CAD (est.)","Helpdesk IT",9,"VP Opérations","Vincent (cofondateur)","110 employés, équipe cybersécurité interne, l'un des plus grands MSP indépendants au Canada — croissance continue depuis 2003.","MSP indépendant en forte croissance : un service desk N1 francophone en marque blanche absorbe les pics et étend la couverture horaire sans recruter."],
+    ["Groupe Access","https://groupeaccess.ca","Québec","MSP / infogérance (MSP Corp)","≈400 (est.)","40–60 M$ CAD (est.)","Helpdesk IT",9,"CEO (MSP Corp / ex-Groupe Access)","Habib Malik","Fusion avec MSP Corp (acquisition >100 M$ par Alfar/Walter Capital, 2023), 400+ experts TI, plateforme pancanadienne en consolidation (QC, Est ontarien, Maritimes).","Plateforme MSP en consolidation rapide par acquisitions : besoin de capacité N1 bilingue scalable pour homogénéiser le support des entités acquises."],
+    ["Victrix","https://www.victrix.ca","Québec","Conseil TI / services gérés","≈300 (est.)","35–50 M$ CAD (est.)","Helpdesk IT",8,"Chef de la direction (CEO)","Dominic Lajoie","Un des plus grands cabinets TI du Québec, membre du groupe français Alan Allman Associates — croissance soutenue (public + privé).","Appartenance à un groupe français (fuseau et culture FR) + services gérés en expansion : sous-traitance N1 francophone parfaitement alignée."],
+    ["NOVIPRO","https://www.novipro.com","Québec","Intégrateur TI / infogérance","≈250 (est.)","100 M$ CAD+ (est.)","Helpdesk IT",8,"Direction (groupe repreneur, 2023)","David Chamandy","Recrutements TI actifs (offres multiples Indeed), groupe NOVIPRO multi-marques (infra, cloud, ERP).","Intégrateur infra/ERP avec services managés : support utilisateur N1 francophone en débordement sur déploiements."],
+    ["ESI Technologies","https://www.esitechnologies.com","Québec","Intégrateur / infogérance","201–500","25–40 M$ CAD (est.)","Helpdesk IT",8,"Président & CEO","Greg Rokos","~30 ans, croissance par acquisitions (≈12 sociétés intégrées), expansion internationale, équipe 201–500.","Portefeuille infogérance en croissance externe : N1 francophone externalisé pour absorber l'intégration des acquisitions."],
+    ["MS Solutions","https://mssolutions.ca","Québec","MSP / services TI gérés","≈100 (est.)","12–18 M$ CAD (est.)","Helpdesk IT",9,"Président","Maxime Dion","Bureaux Montréal, Québec, Boisbriand ET Paris (France) — présence FR déjà établie.","Déjà implanté en France : besoin natif d'un support francophone sur fuseau FR — cas d'usage marque blanche idéal."],
+    ["Solutions informatiques Inso","https://www.inso.ca","Québec","MSP","≈80 (est.)","10–15 M$ CAD (est.)","Helpdesk IT",8,"Président","Naji Chalhoub","Multi-sites (Montréal, Québec, Saguenay, Sherbrooke), dessert PME et écoles, croissance régionale.","Centre de services multi-régions : débordement helpdesk N1 francophone pour suivre la croissance."],
+    ["Groupe COSIOR","https://groupecosior.com","Québec","Helpdesk / centre d'appels TI","≈50 (est.)","6–10 M$ CAD (est.)","Helpdesk IT",8,"Directeur des opérations","","Exploite un centre d'appels helpdesk dédié (Montréal/Québec).","Opère déjà un helpdesk : débordement et couverture après-heures francophone en marque blanche, sans recruter."],
+    ["Genatec","https://www.genatec.com","Québec","MSP","≈40 (est.)","5–8 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","MSP bilingue Montréal, services TI gérés et cloud.","Helpdesk N1 francophone en débordement pour un MSP bilingue déjà établi."],
+    ["Solulan","https://solulan.com","Québec","MSP","≈50 (est.)","6–9 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","Partenaire TI depuis 1999 (Laval), croissance clientèle QC/Canada.","N1 francophone externalisé pour absorber la croissance d'un MSP établi."],
+    ["Groupe SL","https://www.groupesl.com","Québec","MSP","≈50 (est.)","6–9 M$ CAD (est.)","Helpdesk IT",7,"Directeur des services gérés","","MSP positionné sur le co-géré : support technique + cybersécurité + stratégie.","Modèle co-géré : N1 sous-traité pour libérer les techniciens sur les tâches à valeur."],
+    ["MicroAge Québec–Trois-Rivières","https://microage.ca/quebec-trois-rivieres","Québec","MSP (réseau)","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",7,"Propriétaire / Directeur de centre","","Réseau national MicroAge (41 centres) gérant la TI de 400+ entreprises.","Modèle de réseau franchisé : besoin de support N1 standardisé et scalable, mutualisable."],
+    ["6tem TI","https://6temti.ca","Québec","MSP","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","Multi-régions (Québec, Sherbrooke, Beauce, Trois-Rivières), surveillance 24/7.","Couverture 24/7 multi-régions : N1 francophone en débordement pour tenir la promesse de service."],
+    ["UNNO","https://www.unno.ca","Québec","MSP","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","Promet un « département TI externalisé 24/7 » (Centre-du-Québec).","Promesse 24/7 : besoin réel de couverture horaire et de débordement N1 francophone."],
+    ["Resitek","https://resitek.ca","Québec","MSP","≈40 (est.)","5–8 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","200+ entreprises soutenues, 22 ans, SLA de réponse 15 min, surveillance 24/7.","SLA serré + 24/7 : débordement N1 pour tenir les temps de réponse aux heures de pointe."],
+    ["SoftFlow","https://softflow.ca","Québec","MSP","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",6,"Directeur des opérations","","MSP montréalais établi depuis 1987.","N1 francophone externalisé pour un MSP de longue date cherchant à élargir sa couverture."],
+    ["Connextek","https://connextek.ca","Québec","MSP","≈25 (est.)","2–4 M$ CAD (est.)","Helpdesk IT",6,"Directeur des opérations / CEO","","MSP Grand Montréal (Laval, Longueuil, Rive-Sud, Basses-Laurentides), croissance géographique.","Expansion géographique : N1 francophone pour soutenir la montée en charge."],
+    ["UBQT","https://www.ubqt.ca","Québec","MSP","≈25 (est.)","2–4 M$ CAD (est.)","Helpdesk IT",6,"CEO / Directeur des opérations","","Infogérance MSP Montréal.","Débordement helpdesk N1 francophone pour un MSP en développement."],
+    ["Eosium","https://www.eosium.ca","Québec","MSP","≈20 (est.)","2–3 M$ CAD (est.)","Helpdesk IT",6,"CEO / fondateur","","Services TI gérés pour PME, startups et entrepreneurs (Montréal, Laval).","Structure jeune en croissance : N1 sous-traité pour scaler sans alourdir la masse salariale."],
+    ["OKTO Solutions","https://www.oktosolutions.ca","Québec","MSP","≈20 (est.)","2–3 M$ CAD (est.)","Helpdesk IT",6,"CEO / fondateur","","Infogérance PME (support, cybersécurité, Microsoft 365), région de Québec.","Petit MSP : externaliser le N1 récurrent (support, M365) pour se concentrer sur la cybersécurité."],
+    ["ACCEO Solutions","https://www.acceo.com","Québec","Éditeur de logiciels","≈400 (est.)","50–80 M$ CAD (est.)","Support N1 SaaS",6,"Directeur du support / Responsable support produit","","Éditeur multi-produits (commerce, finance, secteur public), large base installée.","Volume de support produit élevé : N1 applicatif francophone en marque blanche pour désengorger le support de niveau supérieur."],
+    ["Poka","https://www.poka.com","Québec","Éditeur SaaS industriel","≈200 (est.)","30–50 M$ CAD (est.)","Support N1 SaaS",6,"Directeur du support client","","SaaS manufacturier (groupe IFS), croissance internationale, clients multilingues.","Base SaaS multilingue en expansion : support N1 francophone/bilingue externalisé sur fuseau FR."],
+    ["Vooban","https://vooban.com","Québec","Éditeur logiciel / IA","≈225","20–30 M$ CAD (est.)","Support applicatif",7,"Directeur des opérations / livraison","","225 personnes, forte croissance IA, bureaux Québec / Montréal / Toronto.","Solutions logicielles livrées en volume : support applicatif N1 francophone à externaliser pour libérer les équipes produit."],
+    ["Libéo","https://libeo.com","Québec","Éditeur / agence logiciel","≈60","6–9 M$ CAD (est.)","Support applicatif",7,"Directeur des opérations","","25 ans, 60+ employés (Québec/Montréal), développement sur mesure + hébergement.","Applications hébergées pour ses clients : support applicatif N1 francophone à sous-traiter."],
+    ["Nmedia","https://nmedia.ca","Québec","Éditeur logiciel / agence","≈40 (est.)","4–6 M$ CAD (est.)","Support applicatif",6,"Directeur des opérations","","Agence/éditeur de Trois-Rivières, solutions web et logicielles sur mesure.","Support applicatif N1 sur ses applications livrées et hébergées."],
+    ["IXmedia","https://www.ixmedia.com","Québec","Hébergement / infogérance / dev","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",6,"Directeur des opérations","","Hébergement infonuagique + développement + infogérance (Québec).","Clients hébergés et infogérés : support N1 francophone en débordement."],
+    // ── NOUVEAU-BRUNSWICK (priorité 2) ──
+    ["Mariner Partners","https://marinerpartners.com","Nouveau-Brunswick","Services TI / logiciel","≈350 (est.)","40–60 M$ CAD (est.)","Helpdesk IT",8,"CEO & cofondateur","Curtis Howe","Un des 3 plus gros employeurs TI de Saint John (Mariner + Innovatia + T4G = 1000+ emplois cumulés).","Services managés bilingues (FR/EN) sur fuseau Atlantique compatible Europe : N1 francophone natif en débordement."],
+    ["Innovatia Technical Services","https://www.innovatia.net","Nouveau-Brunswick","Externalisation de support technique","≈450","50–70 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations / livraison","","450+ employés, 20+ ans d'externalisation de support technique (Saint John).","Outsourceur de support déjà en place : la capacité francophone native FR-compatible est l'angle qu'il n'a pas en propre — sous-traitance de son débordement FR."],
+    ["T4G","https://www.t4g.com","Nouveau-Brunswick","Conseil / développement TI & data","≈200 (est.)","25–40 M$ CAD (est.)","Support applicatif",7,"Directeur des opérations","","Une des 3 sociétés TI majeures de Saint John, projets data et logiciels.","Projets logiciels livrés : support applicatif N1 bilingue pour les solutions déployées chez ses clients."],
+    ["Interactive Computer Systems (ICS)","https://ics.nb.ca","Nouveau-Brunswick","MSP","≈40 (est.)","4–6 M$ CAD (est.)","Helpdesk IT",7,"Directeur des opérations","","Fredericton depuis 1977, services gérés établis.","Helpdesk N1 bilingue en débordement pour un MSP établi en région bilingue."],
+    ["Adaptive Office Solutions","https://www.adaptiveoffice.ca","Nouveau-Brunswick","MSP","≈25 (est.)","2–4 M$ CAD (est.)","Helpdesk IT",6,"CEO / Directeur des opérations","","Services TI gérés pour PME du Nouveau-Brunswick.","Support N1 bilingue en débordement pour un MSP régional."],
+    // ── RESTE DU CANADA francophone/bilingue (priorité 3) ──
+    ["Convergence Networks","https://convergencenetworks.com","Ontario","MSP","≈400 (est.)","40–60 M$ CAD (est.)","Helpdesk IT",6,"Directeur des services gérés","","Croissance agressive par fusions/acquisitions, support TI à Ottawa et Toronto.","Volume de helpdesk élevé post-fusions sur un marché bilingue (Ottawa) : débordement N1 bilingue."],
+    ["F12.net","https://f12.net","Autre","MSP national","≈350 (est.)","40–60 M$ CAD (est.)","Helpdesk IT",6,"Directeur des services gérés","","MSP national (bureaux à Moncton, Ottawa…), clients gouvernement et entreprise, croissance soutenue.","Couverture nationale avec bureaux NB/Ottawa bilingues : N1 francophone en renfort sur les comptes FR."],
+    ["SVS MSP","https://svsmsp.ca","Ontario","MSP","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",6,"Directeur des opérations","","MSP d'Ottawa avec help desk bilingue annoncé.","Help desk déjà positionné bilingue : sous-traitance N1 français native en débordement."],
+    ["Davidson Violette (DVAI)","https://www.dvai.ca","Ontario","MSP","≈30 (est.)","3–5 M$ CAD (est.)","Helpdesk IT",6,"Directeur des opérations","","Service desk bilingue (FR/EN) local annoncé, Ottawa.","Promesse bilingue : capacité francophone native en renfort pour tenir le SLA FR."],
+    ["NeoLore Networks","https://neolore.com","Ontario","MSP","≈25 (est.)","2–4 M$ CAD (est.)","Helpdesk IT",5,"CEO / Directeur des opérations","","MSP d'Ottawa, services gérés PME.","Débordement N1 bilingue sur un marché bilingue (Ottawa)."],
+    ["Fuelled Networks","https://www.fuellednetworks.com","Ontario","MSP","≈25 (est.)","2–4 M$ CAD (est.)","Helpdesk IT",5,"CEO / Directeur des opérations","","IT outsourcing pour Ottawa et l'Est ontarien.","Région bilingue : N1 français en débordement."],
+    ["Intega IT","https://www.intega.ca","Ontario","MSSP / MSP","≈40 (est.)","4–6 M$ CAD (est.)","Helpdesk IT",5,"Directeur des services gérés","","Fournisseur de services de sécurité gérés (MSSP) en Ontario.","Focalisé sécurité : N1 utilisateur de premier niveau externalisé pour décharger les analystes."]
+  ];
+  const ACTION="Identifier le décideur sur LinkedIn + lancer séquence A (marque blanche)";
+  LEADS=S.map((r,i)=>({
+    id:'ca'+String(i+1).padStart(3,'0'),
+    entreprise:r[0], site:r[1], province:r[2], secteur:r[3],
+    effectif:r[4], ca:r[5], niche:r[6], pertinence:r[7],
+    type:'Marque blanche', statut:'À contacter',
+    decideur:{nom:r[9]||'', titre:r[8], email:'', linkedin:''},
+    signal:r[10], justif:r[11],
+    action:r[9] ? ("Trouver l'email pro de "+r[9].replace(/\s*\(.*\)/,'')+" + lancer séquence A (marque blanche)") : ACTION
+  }));
+  save(LEADS);
+})();
 
 /* ── Init ── */
 renderDash();
