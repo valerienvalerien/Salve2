@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prospects Apollo — Éditeurs SaaS FR (COO / Support) · Salverys</title>
+<style>
+  :root{
+    --navy:#013C58; --navy2:#2E3B4E; --green:#6F8770; --cream:#F6F2EA;
+    --gold:#F0B429; --line:#E7DFD1; --txt:#222C3B; --muted:#8A8275;
+    --green-bg:#EAF0EA; --gold-bg:#FCEEC9; --red:#B6604D; --red-bg:#F7E9E5; --blue-bg:#E0F0F8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--cream);color:var(--txt);font-size:14px;line-height:1.4}
+  header{background:var(--navy);color:#fff;padding:22px 28px}
+  header h1{margin:0 0 4px;font-size:20px;font-weight:700}
+  header .sub{font-size:13px;opacity:.85}
+  header a{color:var(--gold);text-decoration:none;word-break:break-all}
+  .wrap{padding:20px 28px 60px;max-width:1280px;margin:0 auto}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;min-width:120px}
+  .stat .n{font-size:24px;font-weight:700;color:var(--navy)}
+  .stat .l{font-size:12px;color:var(--muted)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;margin:6px 0 18px;color:var(--navy2)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .d-green{background:var(--green)} .d-gold{background:var(--gold)} .d-red{background:var(--red)}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
+        border-radius:10px;overflow:hidden}
+  thead th{background:var(--navy2);color:#fff;text-align:left;padding:10px 12px;font-size:12px;
+           font-weight:600;text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0}
+  tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:#FBF8F2}
+  .grp td{background:var(--navy);color:#fff;font-weight:700;font-size:12px;text-transform:uppercase;
+          letter-spacing:.6px;padding:8px 12px}
+  .name{font-weight:700;color:var(--navy)}
+  .title{color:var(--muted);font-size:12.5px}
+  .co{font-weight:600}
+  .tags{color:var(--muted);font-size:12px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+  .p-green{background:var(--green-bg);color:#3d5740} .p-gold{background:var(--gold-bg);color:#8a6d00}
+  .p-red{background:var(--red-bg);color:#8a3a2a}
+  .eff{font-weight:600}
+  .email{font-size:12px}
+  .email a{color:var(--green);text-decoration:none}
+  .locked{color:var(--muted);font-style:italic;font-size:12px}
+  .note{font-size:11.5px;color:var(--navy2)}
+  .flag{color:var(--red);font-weight:600}
+  footer{font-size:12px;color:var(--muted);padding:0 28px 40px;max-width:1280px;margin:0 auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>Prospects Apollo — Éditeurs SaaS français · COO &amp; Responsables Support</h1>
+  <div class="sub">Recherche n°1 (IT marque blanche · Support N1) — réorganisée par pertinence Salverys · 30 contacts (sur 400)<br>
+  Source :
+  <a href="https://app.apollo.io/#/people?sortAscending=false&sortByField=recommendations_score&page=1&organizationNumEmployeesRanges[]=11%2C500&marketSegments[]=saas&organizationIndustryTagIds[]=5567cd4e7369643b70010000&contactEmailStatusV2[]=verified&organizationLocations[]=france&personTitles[]=head%20of%20support&personTitles[]=customer%20support%20manager&personTitles[]=chief%20operating%20officer&recommendationConfigId=score">
+  app.apollo.io — SaaS · FR · 11-500 · COO/Head of Support/Customer Support Manager · email vérifié</a></div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">30</div><div class="l">contacts affichés</div></div>
+    <div class="stat"><div class="n" style="color:var(--green)">14</div><div class="l">🟢 priorité haute</div></div>
+    <div class="stat"><div class="n" style="color:var(--gold)">11</div><div class="l">🟡 à creuser</div></div>
+    <div class="stat"><div class="n" style="color:var(--red)">5</div><div class="l">🔴 hors France</div></div>
+    <div class="stat"><div class="n">25</div><div class="l">basés en France</div></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="dot d-green"></span><b>Priorité haute</b> — France + effectif 50-300 (volume de tickets réel, douleur de staffing N1)</span>
+    <span><span class="dot d-gold"></span><b>À creuser</b> — France mais &lt;50 (peut être trop tôt pour placer un ETP)</span>
+    <span><span class="dot d-red"></span><b>Hors cible géo</b> — siège hors France (à écarter sauf clientèle FR confirmée)</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:90px">Pertinence</th>
+        <th>Contact</th>
+        <th>Entreprise</th>
+        <th>Localisation</th>
+        <th style="width:70px">Effectif</th>
+        <th>Secteur / mots-clés</th>
+        <th>Email</th>
+        <th>Note interlocuteur / signal</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr class="grp"><td colspan="8">🟢 Priorité haute — France · 50-300 salariés</td></tr>
+
+      <tr>
+        <td><span class="pill p-green">🟢 9/10</span></td>
+        <td><div class="name">Antoine Chauvelon</div><div class="title">Customer Support Manager</div></td>
+        <td><div class="co">Resilience Care</div></td>
+        <td>Biarritz, France</td><td class="eff">220</td>
+        <td class="tags">Computer Software · software development · santé/cyber</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Interlocuteur idéal : <b>responsable support direct</b>, pas un C-level à convaincre. Effectif fort = vrai volume N1.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 8/10</span></td>
+        <td><div class="name">Gautier Martin</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">QUICKSIGN</div></td>
+        <td>France</td><td class="eff">150</td>
+        <td class="tags">Computer Software · saas · banque</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS signature électronique secteur banque = support exigeant + SLA. Bon profil MB.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 8/10</span></td>
+        <td><div class="name">Pierre Guillot</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Systancia</div></td>
+        <td>Mulhouse, France</td><td class="eff">150</td>
+        <td class="tags">Computer Software · mssp · cybersécurité</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Éditeur cyber/MSSP : support N1 sensible. Angle 24/7 + fuseau Tana.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 8/10</span></td>
+        <td><div class="name">Fangcun Zhou</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">EcoMundo</div></td>
+        <td>France</td><td class="eff">150</td>
+        <td class="tags">Computer Software · réglementaire/chimie</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS métier réglementaire = support applicatif récurrent.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 8/10</span></td>
+        <td><div class="name">Raphaelle Guigui</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">IWD Retail Software</div></td>
+        <td>Paris, France</td><td class="eff">140</td>
+        <td class="tags">Computer Software · retail · elearning</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS retail international : multi-clients = files de tickets.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 7/10</span></td>
+        <td><div class="name">Christophe Masson</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">PeopleSpheres</div></td>
+        <td>Montpellier, France</td><td class="eff">100</td>
+        <td class="tags">Computer Software · HR core · core RH</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS RH : support utilisateur quotidien. Bonne taille pour 1-2 ETP MB.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 7/10</span></td>
+        <td><div class="name">Xavier Masia</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Jalios</div></td>
+        <td>Paris, France</td><td class="eff">96</td>
+        <td class="tags">Computer Software · collaboration · intranet</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Plateforme collaborative B2B = N1 applicatif. Cible MB solide.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 7/10</span></td>
+        <td><div class="name">Henri Merlin</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">TSplus Group</div></td>
+        <td>Boulogne-Billancourt, France</td><td class="eff">79</td>
+        <td class="tags">Computer Software · web portal · remote access</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Éditeur infra/remote : support technique international, forte volumétrie.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 7/10</span></td>
+        <td><div class="name">Xavier Branche</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Season</div></td>
+        <td>Lyon, France</td><td class="eff">69</td>
+        <td class="tags">Computer Software · HEDA · Salesforce</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Bonne taille. Qualifier le volume de tickets au 1er échange.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 7/10</span></td>
+        <td><div class="name">Oscar Castellana</div><div class="title">Chief Operating Officer (COO)</div></td>
+        <td><div class="co">Axeptio</div></td>
+        <td>Montpellier, France</td><td class="eff">60</td>
+        <td class="tags">Computer Software · conformité RGPD</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS RGPD/consent : croissance + base clients large = support qui déborde.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 6/10</span></td>
+        <td><div class="name">Benjamin Kasprzak</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Meelo</div></td>
+        <td>Rouvroy, France</td><td class="eff">51</td>
+        <td class="tags">Computer Software · fraude/scoring</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Pile au seuil 50. SaaS fintech = SLA support attendu.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 6/10</span></td>
+        <td><div class="name">David Trudeau-Hamidi</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Isograd</div></td>
+        <td>Canada <span class="flag">(siège hors FR)</span></td><td class="eff">69</td>
+        <td class="tags">Computer Software · e-learning/testing</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Éditeur FR à l'origine (Isograd/TOSA), entité Canada. Vérifier clientèle FR → sinon rétrograder.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 6/10</span></td>
+        <td><div class="name">Aurelie Brunel</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Quartier Latin Global (QuantifiCare)</div></td>
+        <td>Nice, France</td><td class="eff">26</td>
+        <td class="tags">Computer Software · biotechnology research</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Imagerie médicale SaaS : support applicatif spécialisé. Volume à qualifier.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-green">🟢 6/10</span></td>
+        <td><div class="name">Delphine Abry</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Ordoclic</div></td>
+        <td>Lyon, France</td><td class="eff">14</td>
+        <td class="tags">Computer Software · e-prescription · <b>santé</b></td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS santé/officines : croise niche médicale n°2. Petit effectif mais fort enjeu support patient/pharma.</td>
+      </tr>
+
+      <tr class="grp"><td colspan="8">🟡 À creuser — France · &lt;50 salariés (qualifier le volume avant)</td></tr>
+
+      <tr>
+        <td><span class="pill p-gold">🟡 5/10</span></td>
+        <td><div class="name">Celine Soissons</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Shiptify</div></td>
+        <td>Nantes, France</td><td class="eff">40</td>
+        <td class="tags">Computer Software · supply chain</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">SaaS logistique : support B2B. Proche du seuil, à prioriser dans les 🟡.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 5/10</span></td>
+        <td><div class="name">Eric Fabbri</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">SaaSOffice</div></td>
+        <td>Valbonne, France</td><td class="eff">36</td>
+        <td class="tags">Computer Software · contrôle d'accès</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Nom « SaaSOffice » = positionnement support pur. À qualifier.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 5/10</span></td>
+        <td><div class="name">Isabelle Patouillaud</div><div class="title">Chief Operations Officer (COO)</div></td>
+        <td><div class="co">Ask for the moon</div></td>
+        <td>Paris, France</td><td class="eff">27</td>
+        <td class="tags">Computer Software · intelligence collective</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Volume support à confirmer.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 4/10</span></td>
+        <td><div class="name">Fabrice Jutteau</div><div class="title">Chief Operation Officer</div></td>
+        <td><div class="co">Zozio</div></td>
+        <td>Paris, France</td><td class="eff">21</td>
+        <td class="tags">Computer Software · industrie 4.0</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">IoT industriel : support technique mais petite équipe.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 4/10</span></td>
+        <td><div class="name">Arnaud Guillet</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Deemea</div></td>
+        <td>Paris, France</td><td class="eff">20</td>
+        <td class="tags">Computer Software · research services</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">À qualifier (volume probablement faible).</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 4/10</span></td>
+        <td><div class="name">Louis-Vincent Allain</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">ORCOSTRA</div></td>
+        <td>Paris, France</td><td class="eff">19</td>
+        <td class="tags">Computer Software · manufacturing</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Petit effectif.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 4/10</span></td>
+        <td><div class="name">Fabien Monsallier</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">OSKEY</div></td>
+        <td>Levallois-Perret, France</td><td class="eff">19</td>
+        <td class="tags">Computer Software · mobile applications</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Petit effectif.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 4/10</span></td>
+        <td><div class="name">Charles Cousyn</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Reecall</div></td>
+        <td>Paris, France</td><td class="eff">18</td>
+        <td class="tags">Computer Software · software development</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">⚠️ Relation client/voice AI : potentiel <b>concurrent/partenaire</b> plutôt que client. À cadrer.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 3/10</span></td>
+        <td><div class="name">Marc Cornuejols</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Renewr</div></td>
+        <td>Montpellier, France</td><td class="eff">14</td>
+        <td class="tags">Computer Software · patent renewals</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Trop petit a priori.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 3/10</span></td>
+        <td><div class="name">Antoine Dhersin</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Open Lake Technology</div></td>
+        <td>Rennes, France</td><td class="eff">14</td>
+        <td class="tags">Computer Software</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Trop petit a priori.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 3/10</span></td>
+        <td><div class="name">Gary Jehan</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">ViaSay (ex Mindsay)</div></td>
+        <td>Paris, France</td><td class="eff">12</td>
+        <td class="tags">Computer Software · workflows · bots</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">⚠️ Bots/automatisation support : possible <b>concurrent</b>. Petit effectif.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-gold">🟡 ?/10</span></td>
+        <td><div class="name">Philippe Perche</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">blgCloud</div> <span class="tags">(ERP SaaS)</span></td>
+        <td>Compiègne, France</td><td class="eff"><span class="flag">N/A</span></td>
+        <td class="tags">ERP SaaS Cloud</td>
+        <td class="email"><a href="mailto:philippe.perche@blgcloud.com">philippe.perche@blgcloud.com</a></td>
+        <td class="note">✅ <b>Seul email déjà visible.</b> ERP = support applicatif récurrent. Effectif manquant → vérifier la taille avant d'investir (ERP « Possible Fit »).</td>
+      </tr>
+
+      <tr class="grp"><td colspan="8">🔴 Hors cible géographique — siège hors France (écarter sauf clientèle FR confirmée)</td></tr>
+
+      <tr>
+        <td><span class="pill p-red">🔴 2/10</span></td>
+        <td><div class="name">Giovanni Sorcinelli</div><div class="title">COO Italy</div></td>
+        <td><div class="co">triPica</div></td>
+        <td><span class="flag">Italie</span></td><td class="eff">77</td>
+        <td class="tags">Computer Software · utilities</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Hors France. Clientèle non garantie francophone.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-red">🔴 2/10</span></td>
+        <td><div class="name">George Stathopoulos</div><div class="title">Head of Support</div></td>
+        <td><div class="co">WP Media</div></td>
+        <td><span class="flag">Grèce</span></td><td class="eff">51</td>
+        <td class="tags">Computer Software · WordPress/perf</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Bon titre mais hors FR, support anglophone.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-red">🔴 1/10</span></td>
+        <td><div class="name">Philippe Collin</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Fruggr</div></td>
+        <td><span class="flag">New York, USA</span></td><td class="eff">48</td>
+        <td class="tags">Computer Software · green IT</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Origine FR possible (Digital4Better) mais entité US. Vérifier si support FR.</td>
+      </tr>
+      <tr>
+        <td><span class="pill p-red">🔴 1/10</span></td>
+        <td><div class="name">Pedro Daire Letelier</div><div class="title">Chief Operating Officer</div></td>
+        <td><div class="co">Deep Talk</div></td>
+        <td><span class="flag">Chili</span></td><td class="eff">16</td>
+        <td class="tags">Computer Software · software development</td>
+        <td class="locked">à débloquer (Apollo)</td>
+        <td class="note">Hors France, non francophone.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <b>Méthode de tri :</b> aligné sur <code>03-Cibles-Prospects/IDEAL-CUSTOMER-PROFILE.md</code> (cible 1.a — éditeurs SaaS, support N1, marque blanche).
+  Pertinence = France (priorité) × effectif (volume de tickets réel, sweet spot 50-300) × interlocuteur opérationnel.
+  Les Customer Support Manager / Head of Support sont les <b>meilleurs interlocuteurs</b> (propriétaire du sujet) ; les COO conviennent en &lt;100 pers.<br>
+  <b>Étape suivante :</b> débloquer les emails vérifiés dans Apollo → import CRM (<code>CRM_Salverys.html</code>) → séquence <code>02-Prospection/OUTREACH-IT-N1-marque-blanche.md</code> via Emelia.
+  ⚠️ Reecall &amp; ViaSay sont des acteurs voice-AI/bots support : à traiter comme concurrents/partenaires potentiels, pas comme clients par défaut.
+</footer>
+</body>
+</html>
