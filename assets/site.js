@@ -215,6 +215,11 @@
     const CFG = Object.assign({
       baseDirect: 2100, frBench: 3200,
     }, window.SIM_CONFIG || {});
+    // Noms de forfaits affichés dans la reco : défaut SaaS, surchargeable par page.
+    const RECO = Object.assign(
+      { starter: 'Support Starter', pro: 'Support Pro', scale: 'Centre N1 Scale' },
+      CFG.recoNames || {}
+    );
     const PROD = 0.85, FR_PEN = 1.35, BAND = 0.05; // ±5 % autour de l'estimation
     const st = {
       posts: 1, hours: 35,
@@ -255,9 +260,9 @@
       const recoEl = $('recommendation');
       if (recoEl) {
         let reco;
-        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>Support Starter</strong> — idéal pour démarrer.';
-        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.schedule > 1.0)) reco = 'Forfait <strong>Centre N1 Scale</strong> — couverture étendue + backup.';
-        else reco = 'Forfait <strong>Support Pro</strong> — meilleur rapport coût / disponibilité.';
+        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>' + RECO.starter + '</strong> — idéal pour démarrer.';
+        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.schedule > 1.0)) reco = 'Forfait <strong>' + RECO.scale + '</strong> — couverture étendue + backup.';
+        else reco = 'Forfait <strong>' + RECO.pro + '</strong> — meilleur rapport coût / disponibilité.';
         recoEl.innerHTML = reco;
       }
       pop($('price-monthly'));

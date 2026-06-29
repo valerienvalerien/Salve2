@@ -346,7 +346,10 @@
   // Config simulateur : Support N1 SaaS éditeurs (PRICING.md §3, médiane direct).
   // Estimation publique sur base DIRECTE uniquement — le tarif marque blanche
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
-  window.SIM_CONFIG = { baseDirect: 2300, frBench: 3646 };
+  window.SIM_CONFIG = {
+    baseDirect: 2300, frBench: 3646,
+    recoNames: { starter: 'Support Starter', pro: 'Support Pro', scale: 'Centre N1 Scale' }
+  };
 </script>
 <script src="assets/site.js"></script>
 

@@ -134,21 +134,24 @@
       <!-- RÉSULTATS -->
       <div class="results-card reveal d1">
         <div class="result-primary">
-          <div class="result-label">Estimation mensuelle</div>
+          <div class="result-label">Tarif mensuel estimé</div>
           <div><span class="result-price" id="price-monthly">2 250 – 2 750</span><span class="result-price-unit">€/mois</span></div>
           <div class="result-strikethrough">
-            Coût chargé équivalent en France : <span class="old" id="price-fr-hourly">21 €/h</span> · <span class="old" id="price-fr">3 200 €/mois</span>
+            Référence marché France (coût chargé) : <span id="price-fr">3 200 €/mois</span>
           </div>
           <div class="savings-badge" id="savings-badge">Économie : 45 %</div>
         </div>
 
         <div class="result-grid">
           <div class="result-stat"><div class="result-stat-label">Heures / mois</div><div class="result-stat-value" id="hours-monthly">152 h</div></div>
-          <div class="result-stat"><div class="result-stat-label">Tarif horaire affiché</div><div class="result-stat-value" id="hourly-displayed">11,7 €</div></div>
-          <div class="result-stat"><div class="result-stat-label">Tarif horaire productif</div><div class="result-stat-value accent" id="hourly-productive">13,7 €</div></div>
-          <div class="result-stat"><div class="result-stat-label">Économie annuelle</div><div class="result-stat-value accent" id="annual-savings">17 100 €</div></div>
+          <div class="result-stat"><div class="result-stat-label">Équivalent horaire</div><div class="result-stat-value" id="hourly-equivalent">14,8 €</div></div>
+          <div class="result-stat featured-saving"><div class="result-stat-label">Économie annuelle estimée</div><div class="result-stat-value accent" id="annual-savings">17 100 €</div></div>
         </div>
 
+        <div class="recommendation">
+          <div class="recommendation-label">★ Recommandé pour vous</div>
+          <div class="recommendation-text" id="recommendation">Forfait <strong>Helpdesk Pro</strong> — meilleur rapport coût / disponibilité.</div>
+        </div>
         <a href="mailto:contact@salverys.fr?subject=Devis%20helpdesk%20IT%20N1%20sous%2024h" class="btn btn-helpdesk" data-devis style="width:100%;justify-content:center;margin-top:14px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
         <div class="disclaimer">Estimation indicative · devis précis sous 24 h · contrat dès 3 mois.</div>
       </div>
@@ -352,7 +355,10 @@
   // Config simulateur : Helpdesk IT N1 (PRICING.md §3, médiane direct).
   // Estimation publique sur base DIRECTE uniquement — le tarif marque blanche
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
-  window.SIM_CONFIG = { baseDirect: 2500, frBench: 3200 };
+  window.SIM_CONFIG = {
+    baseDirect: 2500, frBench: 3200,
+    recoNames: { starter: 'Helpdesk Starter', pro: 'Helpdesk Pro', scale: 'Helpdesk Scale' }
+  };
 </script>
 <script src="assets/site.js"></script>
 
