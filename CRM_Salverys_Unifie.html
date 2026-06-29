@@ -3081,6 +3081,13 @@ tbody tr:hover{background:#F8FAFC;}
 .tag-direct{background:#CFFAFE;color:var(--direct);}
 .tag-prov{background:#E0E7FF;color:#4338CA;}
 .score{display:inline-block;min-width:26px;text-align:center;padding:2px 6px;border-radius:6px;font-weight:800;font-size:12px;color:#fff;}
+.pills{display:flex;flex-direction:column;gap:4px;}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;width:fit-content;}
+.pill-ok{background:#DCFCE7;color:#15803D;}
+.pill-no{background:#F1F5F9;color:#94A3B8;}
+.pill a{color:inherit;text-decoration:none;}
+.pill a:hover{text-decoration:underline;}
+.pill .more{opacity:.7;font-weight:600;}
 
 .statut-sel{padding:5px 8px;border-radius:7px;border:1px solid var(--border);font-size:12px;font-weight:600;background:#fff;cursor:pointer;}
 .row-actions{display:flex;gap:6px;}
@@ -3401,7 +3408,8 @@ tbody tr:hover{background:#F8FAFC;}
         <div class="fld"><label>Statut</label><select id="m-statut"></select></div>
         <div class="fld"><label>Décideur — nom</label><input id="m-dec-nom" placeholder="Prénom Nom"></div>
         <div class="fld"><label>Décideur — titre</label><input id="m-dec-titre" placeholder="Ex. Directeur des services managés"></div>
-        <div class="fld"><label>Décideur — email</label><input id="m-dec-email" placeholder="email pro"></div>
+        <div class="fld"><label>Décideur — email(s)</label><input id="m-dec-email" placeholder="plusieurs séparés par ;"></div>
+        <div class="fld"><label>Décideur — téléphone(s)</label><input id="m-dec-tel" placeholder="plusieurs séparés par ;"></div>
         <div class="fld"><label>Décideur — LinkedIn</label><input id="m-dec-linkedin" placeholder="URL LinkedIn"></div>
         <div class="fld full"><label>Signal d'achat</label><textarea id="m-signal" placeholder="Élément récent et concret (levée, recrutement support, croissance…)"></textarea></div>
         <div class="fld full"><label>Justification</label><textarea id="m-justif" placeholder="Pourquoi ce prospect a besoin du service"></textarea></div>
@@ -3442,6 +3450,21 @@ document.querySelectorAll('.nav-item').forEach(it=>{
 function scoreColor(n){n=+n||0;if(n>=8)return '#10B981';if(n>=6)return '#2563EB';if(n>=4)return '#F59E0B';return '#94A3B8';}
 function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function typeTag(t){return t==='Marque blanche'?'<span class="tag tag-mb">Marque blanche</span>':t==='Direct'?'<span class="tag tag-direct">Direct</span>':esc(t);}
+/* Découpe une chaîne en plusieurs contacts (séparateurs ; , espace, retour ligne) */
+function splitVals(s){return (s==null?'':String(s)).split(/[;,\n]+/).map(x=>x.trim()).filter(Boolean);}
+/* Pastille « contact » : vert si ≥1 (avec compte + liste en infobulle), gris « — » si aucun */
+function contactPill(kind,vals){
+  const ic=kind==='mail'?'✉️':'📞';
+  if(!vals.length) return `<span class="pill pill-no" title="Aucun ${kind==='mail'?'email':'téléphone'}">${ic} —</span>`;
+  const list=vals.join(', ');
+  const label=vals.length===1?'1':vals.length+'';
+  const word=kind==='mail'?(vals.length>1?'emails':'email'):(vals.length>1?'numéros':'numéro');
+  return `<span class="pill pill-ok" title="${esc(list)}">${ic} ${label}<span class="more"> ${word}</span></span>`;
+}
+function contactCell(dec){
+  const emails=splitVals(dec.email), tels=splitVals(dec.tel);
+  return `<div class="pills">${contactPill('mail',emails)}${contactPill('tel',tels)}</div>`;
+}
 
 /* ── Dashboard ── */
 function renderDash(){
@@ -3516,7 +3539,7 @@ function renderLeads(){
   }
   if(!rows.length){area.innerHTML='<div class="empty"><div class="em">🔍</div><h3>Aucun résultat</h3><p>Ajuste les filtres.</p></div>';return;}
   area.innerHTML=`<div class="table-wrap"><table><thead><tr>
-    <th>Entreprise</th><th>Province</th><th>Secteur</th><th>Type</th><th>Niche</th><th>Eff.</th><th>Pert.</th><th>Décideur</th><th>Statut</th><th>Prochaine action</th><th></th>
+    <th>Entreprise</th><th>Province</th><th>Secteur</th><th>Type</th><th>Niche</th><th>Eff.</th><th>Pert.</th><th>Décideur</th><th>Contacts</th><th>Statut</th><th>Prochaine action</th><th></th>
     </tr></thead><tbody>${rows.map(l=>{
       const dec=l.decideur||{};
       return `<tr>
@@ -3527,7 +3550,8 @@ function renderLeads(){
         <td style="font-size:12px">${esc(l.niche||'')}</td>
         <td>${esc(l.effectif||'')}</td>
         <td><span class="score" style="background:${scoreColor(l.pertinence)}">${esc(l.pertinence||'—')}</span></td>
-        <td>${dec.nom?`<div style="font-weight:600">${esc(dec.nom)}</div><div class="cell-sub">${esc(dec.titre||'')}</div>${dec.email?`<div class="cell-sub">${esc(dec.email)}</div>`:''}`:'<span style="color:var(--text-muted)">—</span>'}</td>
+        <td>${dec.nom?`<div style="font-weight:600">${esc(dec.nom)}</div><div class="cell-sub">${esc(dec.titre||'')}</div>${dec.linkedin?`<div class="cell-sub"><a href="${esc(dec.linkedin)}" target="_blank" rel="noopener">in/ LinkedIn</a></div>`:''}`:'<span style="color:var(--text-muted)">—</span>'}</td>
+        <td>${contactCell(dec)}</td>
         <td><select class="statut-sel" style="color:${STATUT_COLORS[l.statut]||''}" onchange="setStatut('${l.id}',this.value)">${STATUTS.map(s=>`<option ${s===l.statut?'selected':''}>${s}</option>`).join('')}</select></td>
         <td style="font-size:12px;max-width:170px">${esc(l.action||'')}</td>
         <td><div class="row-actions"><button class="icon-btn" title="Éditer" onclick="openForm('${l.id}')">✏️</button><button class="icon-btn" title="Supprimer" onclick="delLead('${l.id}')">🗑️</button></div></td>
@@ -3556,13 +3580,14 @@ function openForm(id){
     document.getElementById('m-dec-nom').value=d.nom||'';
     document.getElementById('m-dec-titre').value=d.titre||'';
     document.getElementById('m-dec-email').value=d.email||'';
+    document.getElementById('m-dec-tel').value=d.tel||'';
     document.getElementById('m-dec-linkedin').value=d.linkedin||'';
     document.getElementById('m-signal').value=l.signal||'';
     document.getElementById('m-justif').value=l.justif||'';
     document.getElementById('m-action').value=l.action||'';
   }else{
     document.getElementById('modal-title').textContent='Ajouter un prospect';
-    ['m-id','m-entreprise','m-site','m-secteur','m-pertinence','m-effectif','m-ca','m-dec-nom','m-dec-titre','m-dec-email','m-dec-linkedin','m-signal','m-justif','m-action'].forEach(i=>document.getElementById(i).value='');
+    ['m-id','m-entreprise','m-site','m-secteur','m-pertinence','m-effectif','m-ca','m-dec-nom','m-dec-titre','m-dec-email','m-dec-tel','m-dec-linkedin','m-signal','m-justif','m-action'].forEach(i=>document.getElementById(i).value='');
     setSel('m-prov','Québec');setSel('m-type','Marque blanche');setSel('m-niche','Support N1 SaaS');setSel('m-statut','À contacter');
   }
   m.classList.add('open');
@@ -3588,6 +3613,7 @@ function saveForm(){
       nom:document.getElementById('m-dec-nom').value.trim(),
       titre:document.getElementById('m-dec-titre').value.trim(),
       email:document.getElementById('m-dec-email').value.trim(),
+      tel:document.getElementById('m-dec-tel').value.trim(),
       linkedin:document.getElementById('m-dec-linkedin').value.trim()
     },
     signal:document.getElementById('m-signal').value.trim(),
@@ -3646,9 +3672,9 @@ function doImport(replace){
 
 /* ── Export ── */
 function exportCSV(){
-  const head=['Entreprise','Site web','Province','Secteur','Effectif est.','CA est.','Type de cible','Pertinence','Niche','Statut','Décideur nom','Décideur titre','Décideur email','Décideur LinkedIn','Signal d\'achat','Justification','Prochaine action'];
+  const head=['Entreprise','Site web','Province','Secteur','Effectif est.','CA est.','Type de cible','Pertinence','Niche','Statut','Décideur nom','Décideur titre','Décideur email','Décideur téléphone','Décideur LinkedIn','Signal d\'achat','Justification','Prochaine action'];
   const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
-  const rows=LEADS.map(l=>{const d=l.decideur||{};return [l.entreprise,l.site,l.province,l.secteur,l.effectif,l.ca,l.type,l.pertinence,l.niche,l.statut,d.nom,d.titre,d.email,d.linkedin,l.signal,l.justif,l.action].map(q).join(';');});
+  const rows=LEADS.map(l=>{const d=l.decideur||{};return [l.entreprise,l.site,l.province,l.secteur,l.effectif,l.ca,l.type,l.pertinence,l.niche,l.statut,d.nom,d.titre,d.email,d.tel,d.linkedin,l.signal,l.justif,l.action].map(q).join(';');});
   const csv=head.map(q).join(';')+'\n'+rows.join('\n');
   const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
@@ -3766,7 +3792,7 @@ function exportCSV(){
       entreprise:r[0], site:e.site||r[1], province:r[2], secteur:e.secteur||r[3],
       effectif:e.effectif||r[4], ca:r[5], niche:r[6], pertinence:e.pertinence||r[7],
       type:'Marque blanche', statut:'À contacter',
-      decideur:{nom, titre, email, linkedin},
+      decideur:{nom, titre, email, tel:e.tel||'', linkedin},
       signal:e.signalAdd?(r[10]+' '+e.signalAdd):r[10], justif:r[11], action
     };
   });
