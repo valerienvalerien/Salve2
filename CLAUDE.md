@@ -3,7 +3,7 @@
 ## Contexte activité
 
 BPO basé à Antananarivo (Madagascar) ciblant des clients **français**.
-Direction expérimentée qui repart de zéro avec une équipe de **10 personnes**.
+Direction expérimentée qui repart de zéro.
 
 > ⚠️ **Claim interdit (décision 2026-06-12)** : « direction issue d'une structure de
 > 1 000 collaborateurs » était une consigne de persona initiale, **pas la réalité**.

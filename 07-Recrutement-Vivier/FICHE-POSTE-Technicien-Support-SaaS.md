@@ -31,7 +31,7 @@ son ton, ses outils et ses procédures.
 
 Notre différence : **français langue maternelle**, **fuseau horaire compatible avec
 la France**, et un **cadrage qualité documenté** (scripts, double écoute, reporting).
-La direction repart avec une équipe resserrée de 10 personnes, un objectif de
+La direction repart avec une équipe resserrée, un objectif de
 **zéro turnover**, et des process écrits dès le premier jour.
 
 ---

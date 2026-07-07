@@ -15,7 +15,7 @@ Helpline / Everience est un **prospect C — 58/100** : l'opportunité est réel
 
 Le groupe (4 000 collaborateurs, CA ~300 M€, objectif 500 M€ à 5 ans) est en expansion agressive, mais sa stratégie offshore est fondamentalement différente de ce que Salverys peut proposer aujourd'hui : **Everience n'externalise pas à des tiers — il crée ses propres filiales**. Tunis (480 agents, depuis 2010), Bangalore (avril 2025, 40 agents), Mexique, Romania — à chaque nouveau besoin géographique, Everience ouvre une entité propre. Madagascar est un blanc dans leur carte, mais ils combleraient ce blanc en créant Everience Madagascar, pas en sous-traitant à Salverys.
 
-Le second frein décisif est la **taille asymétrique** : un groupe à 50% de clients CAC 40 n'homologue pas un sous-traitant de 10 personnes sans certifications, sans track record documenté, sans audit RGPD. Le processus de qualification fournisseur durerait 6 à 12 mois — pour un résultat incertain.
+Le second frein décisif est la **taille asymétrique** : un groupe à 50% de clients CAC 40 n'homologue pas un sous-traitant en phase d'amorçage sans certifications, sans track record documenté, sans audit RGPD. Le processus de qualification fournisseur durerait 6 à 12 mois — pour un résultat incertain.
 
 **Ce n'est pas la bonne cible pour Salverys aujourd'hui. C'est la bonne cible dans 18-24 mois**, quand Salverys aura des références IT N1 publiables, 30-50 agents, et idéalement une certification ISO 27001.
 
