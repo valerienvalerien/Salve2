@@ -243,7 +243,7 @@ appels décrochés en français, sans recruter », le -40 % restant dans le corp
 
 Grille 350/590/950 € cohérente partout (simulateur, one-pager, outreach médical) · offre
 « 1er mois -50 % » propagée · tier Priority correctement renommé · marque Salverys propre
-(Nesvalo/Vinlo limités au localStorage) · simulateurs publics sans fuite MB · benchmarks
+(anciens noms limités aux clés localStorage internes) · simulateurs publics sans fuite MB · benchmarks
 RH révisés utilisés partout · « forfait » (jamais « abonnement ») respecté côté client.
 
 ---

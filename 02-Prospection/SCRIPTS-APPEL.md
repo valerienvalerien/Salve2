@@ -339,9 +339,9 @@
 
 ## Garde-fous (rappel `CLAUDE.md`)
 
-- **Marque** : « Salverys » uniquement. Jamais Nesvalo / Vinlo.
+- **Marque** : « Salverys » uniquement.
 - **Médical** : on dit **forfait**, jamais « abonnement ».
-- **Aucun claim** « direction issue d'une structure de 1 000 collaborateurs ».
+- **Aucun claim de persona survendu** (ni taille d'entreprise inventée, ni storytelling « direction expérimentée »).
 - **Conformité médicale** (`CONFORMITE-HDS-RGPD.md §2`) : **par défaut, zéro
   enregistrement des appels patients** — la preuve qualité se fait en double écoute /
   appel test. L'enregistrement existe en **option sur demande** (stack/HDS du client).

@@ -1,0 +1,42 @@
+name: Déploiement OVH
+
+# Publie le site public de Salverys sur l'hébergement OVH (salverys.fr).
+# Ne déploie QUE le dossier _site généré par tools/build-site.sh :
+# le CRM, la trésorerie, les .md stratégiques et tools/ ne quittent jamais le repo privé.
+#
+# Déclenchement : à chaque push sur main + lancement manuel possible.
+# Identifiants FTP : stockés en secrets GitHub (jamais dans le code).
+#   FTP_SERVER   → l'hôte FTP OVH (ex. ftp.cluster0XX.hosting.ovh.net)
+#   FTP_USERNAME → identifiant FTP OVH
+#   FTP_PASSWORD → mot de passe FTP OVH
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Construire le site public (_site)
+        run: bash tools/build-site.sh
+
+      - name: Déployer _site sur OVH par FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Contenu à envoyer (le slash final est obligatoire)
+          local-dir: ./_site/
+          # Racine web OVH : le contenu servi doit aller dans www/.
+          # Si ton utilisateur FTP est déjà limité au dossier www, mets ./ à la place.
+          server-dir: ./www/

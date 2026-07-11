@@ -69,14 +69,14 @@ Prestation de services **B2B** d'une société **malgache** (hors UE) vers des c
 
 ## Hébergement du site
 
-_(à compléter — ex. hébergeur, raison sociale, adresse. Si déploiement Netlify : indiquer
-Netlify, Inc. + adresse.)_
+_(à compléter et à faire valider.)_ Hébergeur : **OVHcloud** (OVH SAS, 2 rue Kellermann,
+59100 Roubaix, France — [ovhcloud.com](https://www.ovhcloud.com)).
 
 ## Rappels de cohérence
 
 - Tarifs : `PRICING.md` reste la source de vérité tarifaire.
 - Conformité données de santé : `CONFORMITE-HDS-RGPD.md`.
-- Marque : « Salverys » uniquement côté public ; jamais Nesvalo / Vinlo.
+- Marque : « Salverys » uniquement côté public ; jamais d'ancien nom de marque.
 
 ---
 

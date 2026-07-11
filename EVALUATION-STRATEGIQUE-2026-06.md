@@ -39,7 +39,7 @@ Le secteur : 230+ entreprises, 40 000+ emplois, croissance >15 %/an. Trois étag
 
 ### 1.2 Où est le trou — et pourquoi Salverys est dessus
 
-**Le créneau inoccupé : « qualité de direction ex-1000 collaborateurs, taille d'atelier ».**
+**Le créneau inoccupé : « process de grand plateau, taille d'atelier ».**
 Personne à Madagascar ne combine : (a) ciblage 1-5 ETP exigeants, (b) process documentés
 (backup +1 agent, QA, reporting), (c) engagement de service chiffré (90 % décroché, avoir
 20 %), (d) conformité packagée. La stratégie actuelle (promesse-résultat, réassurance en
@@ -243,7 +243,7 @@ appels décrochés en français, sans recruter », le -40 % restant dans le corp
 
 Grille 350/590/950 € cohérente partout (simulateur, one-pager, outreach médical) · offre
 « 1er mois -50 % » propagée · tier Priority correctement renommé · marque Salverys propre
-(Nesvalo/Vinlo limités au localStorage) · simulateurs publics sans fuite MB · benchmarks
+(anciens noms limités aux clés localStorage internes) · simulateurs publics sans fuite MB · benchmarks
 RH révisés utilisés partout · « forfait » (jamais « abonnement ») respecté côté client.
 
 ---

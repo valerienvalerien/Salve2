@@ -43,8 +43,8 @@ Si ce type de mission t'intéresse, mets un commentaire ou MP pour discuter
 - **RGPD / transparence** : l'angle « je note les profils pour recontacter » est annoncé dès
   le post → cohérent avec le screening.
 - **Marque** : à ce stade le post ne cite pas Salverys (sourcing anonyme). Si tu nommes
-  l'entreprise en MP, c'est **Salverys** uniquement (jamais Nesvalo/Vinlo), et **interdiction**
-  du claim « direction issue d'une structure de 1 000 collaborateurs ».
+  l'entreprise en MP, c'est **Salverys** uniquement, et **interdiction** de tout claim de
+  persona survendu (taille d'entreprise inventée ou storytelling « direction expérimentée »).
 
 > 💡 **IT = priorité n°1, médical = n°2** (`CLAUDE.md`, révisé 2026-06-22). Ce post cible
 > l'IT (freelances N1). Une déclinaison **télésecrétariat médical** (+ une boîte à phrases
