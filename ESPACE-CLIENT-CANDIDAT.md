@@ -58,14 +58,18 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 ## 2. Espace candidat (`espace-candidat.html` + `suivi-candidature.html`)
 
 ### Dépôt de candidature
-- Formulaire **par email pré-rempli** : à l'envoi, le client mail du candidat s'ouvre
-  avec sa candidature et son **code candidat** déjà remplis, destinataire
-  contact@salverys.fr. Aucun backend requis (hébergement statique OVH), honeypot
-  anti-spam conservé. Pas d'upload de fichier : le CV est demandé en **lien**
+- **Deux modes, déjà câblés** dans `espace-candidat.html` (constante
+  `FORMSPREE_ENDPOINT` en tête de script) :
+  - **Vide (par défaut)** → **email pré-rempli** : à l'envoi, le client mail du candidat
+    s'ouvre avec sa candidature et son **code candidat** déjà remplis, destinataire
+    contact@salverys.fr. Aucun backend requis (hébergement statique OVH).
+  - **Renseignée** → **capture automatique Formspree** (vraie réception sans dépendre du
+    client mail du candidat) ; en cas d'échec réseau, repli automatique sur l'email.
+- **Activer Formspree** : créer un formulaire sur [formspree.io](https://formspree.io)
+  (destinataire contact@salverys.fr), copier l'URL fournie
+  (`https://formspree.io/f/<ID>`) dans `FORMSPREE_ENDPOINT`, committer, pousser.
+- Honeypot anti-spam conservé. Pas d'upload de fichier : le CV est demandé en **lien**
   (Drive/Dropbox).
-- **Upgrade possible (SaaS)** si on veut une vraie capture sans dépendre du client mail
-  du candidat : **Formspree** — remplacer l'`action` du `<form>` par
-  `action="https://formspree.io/f/<ID>"` et poster en `fetch`. Non nécessaire au démarrage.
 
 ### Code candidat & suivi
 - Chaque dépôt génère un code **SLV-XXXXX** (affiché au candidat + inclus dans la
