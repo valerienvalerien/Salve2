@@ -34,7 +34,7 @@ et `CONFORMITE-HDS-RGPD.md`.
 > **20 % d'avoir**, **1er mois à −50 %**, pilote support/IT **200-400 tickets**, « dès 3 mois
 > puis 12 mois », forfaits 350/590/950). Respecte les garde-fous `CLAUDE.md` : marque
 > **Salverys** uniquement, **« forfait »** jamais « abonnement » côté médical, **aucun claim
-> « 1 000 collaborateurs »**, **zéro enregistrement** d'appel patient (`CONFORMITE-HDS-RGPD.md
+> de persona survendu**, **zéro enregistrement** d'appel patient (`CONFORMITE-HDS-RGPD.md
 > §2`), prix MB jamais en clair côté public. Commit + push sur la branche de travail. Pas de
 > PR sauf demande.
 

@@ -3,13 +3,14 @@
 ## Contexte activité
 
 BPO basé à Antananarivo (Madagascar) ciblant des clients **français**.
-Direction expérimentée qui repart de zéro avec une équipe de **10 personnes**.
+Équipe de **10 personnes**.
 
-> ⚠️ **Claim interdit (décision 2026-06-12)** : « direction issue d'une structure de
-> 1 000 collaborateurs » était une consigne de persona initiale, **pas la réalité**.
-> Ne plus jamais l'utiliser dans aucun livrable, email, page ou support. Mettre en
-> avant à la place : process documentés, cadrage qualité (script, double écoute,
-> reporting), pilote mesuré.
+> ⚠️ **Claims de persona interdits (décisions 2026-06-12 et 2026-07-11)** : ne jamais
+> utiliser ni « direction issue d'une structure de 1 000 collaborateurs », ni le
+> narratif « direction expérimentée qui repart de zéro ». C'étaient des consignes de
+> persona, **pas un positionnement à afficher**. Ne plus les employer dans aucun
+> livrable, email, page ou support. Mettre en avant à la place : process documentés,
+> cadrage qualité (script, double écoute, reporting), pilote mesuré.
 
 ### Niches cibles (par priorité)
 > ⚠️ **Priorité revue (décision direction 2026-06-22) : l'IT devient la priorité n°1**,
@@ -43,13 +44,14 @@ y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. 
 ## Marque
 
 **Nom commercial retenu : Salverys** (temporaire mais à utiliser partout pour
-l'instant). Remplace les anciens noms **Nesvalo** et **Vinlo**, qui ne doivent
-plus apparaître dans aucun livrable, séquence, CRM ou support client.
+l'instant). Les **anciens noms de marque** ne doivent plus apparaître dans aucun
+livrable, séquence, CRM ou support client.
 
-> Note technique : depuis le 2026-05-29, les clés `localStorage` du CRM
-> (`CRM_Salverys.html`) sont préfixées `salverys_`. L'ancien stockage `vinlo_`/
-> `nesvalo_` a été abandonné ; les CRM ouverts après cette date repartent du
-> seed (180 leads + décideurs vérifiés sont définis dans le code).
+> Note technique : les clés `localStorage` du CRM (`CRM_Salverys.html`) sont
+> préfixées `salverys_`. Quelques clés techniques internes conservent un préfixe
+> historique (les renommer effacerait les données déjà saisies) — plomberie de
+> stockage invisible côté client, pas de la marque. Les CRM ouverts depuis le
+> 2026-05-29 repartent du seed (180 leads + décideurs vérifiés définis dans le code).
 
 ## Outils retenus
 - **Cold mailing : Emelia** (outil de prospection email retenu)

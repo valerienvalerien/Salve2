@@ -18,7 +18,7 @@ des marques autonomes.
 
 **Écarté (Option B) :** créer deux sous-marques indépendantes (« Salverys
 Médical » / « Salverys IT ») avec sites, logos et supports séparés. Prématuré et
-plus cher à gérer au stade actuel (équipe de 10, on repart de zéro).
+plus cher à gérer au stade actuel (équipe de 10).
 
 ---
 
@@ -157,15 +157,11 @@ Tout **texte posé sur un aplat d'accent** (sauge, doré) s'écrit en
 ## 6. Naming — règles fermes
 
 - **Salverys** partout, sur tous les livrables et tous les canaux.
-- Les anciens noms **Nesvalo** et **Vinlo** ne doivent apparaître dans aucun
-  livrable, séquence, CRM ou support client.
-- **Exception technique (interne, invisible client)** : dans `CRM_Salverys.html`,
-  les clés `localStorage` préfixées `vinlo_` restent inchangées pour ne pas
-  effacer les données déjà saisies. C'est de la plomberie de stockage, pas de la
-  marque.
-- À noter (cf. §7) : une clé `nesvalo_custom_templates_v1` subsiste dans le CRM.
-  Même logique que les clés `vinlo_` (renommer effacerait les modèles enregistrés),
-  mais à tracer ici car elle porte l'ancien nom.
+- Les **anciens noms de marque** ne doivent apparaître dans aucun livrable,
+  séquence, CRM ou support client.
+- **Exception technique (interne, invisible client)** : certaines clés
+  `localStorage` du CRM conservent un préfixe historique pour ne pas effacer les
+  données déjà saisies. C'est de la plomberie de stockage, pas de la marque.
 
 ---
 
@@ -175,7 +171,7 @@ Tout **texte posé sur un aplat d'accent** (sauge, doré) s'écrit en
 
 - [x] Site (`index.html`, simulateurs) en marque **Salverys**.
 - [x] CRM (`CRM_Salverys.html`) en marque **Salverys** côté affichage.
-- [x] Aucun **Nesvalo/Vinlo** visible côté client (uniquement clés `localStorage`).
+- [x] Aucun **ancien nom de marque** visible côté client (uniquement clés `localStorage` internes).
 - [x] **Charte couleur cohérente** : thème par défaut = sauge (principal),
       `.theme-it` = navy + doré (secondaire). Conforme à la décision révisée,
       aucun renversement à coder.
@@ -187,8 +183,8 @@ Tout **texte posé sur un aplat d'accent** (sauge, doré) s'écrit en
       formes courtes par contexte sur les simulateurs).
 - [ ] **Appliquer le lockup hors-site** : signature Emelia, cartes de visite,
       en-tête des propositions (blocs prêts à copier au §4).
-- [ ] *(optionnel, interne)* tracer / planifier le sort de la clé
-      `nesvalo_custom_templates_v1` dans le CRM.
+- [ ] *(optionnel, interne)* planifier à terme la migration des clés `localStorage`
+      à préfixe historique dans le CRM.
 
 > Règle CLAUDE.md rappelée : **SaaS-first**. Cette stratégie ne nécessite aucun
 > développement maison — c'est un cadrage de marque. Toute mise en œuvre visuelle
