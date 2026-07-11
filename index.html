@@ -5,561 +5,836 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Salverys — Votre support et vos appels pris en charge en français, sans recruter</title>
 <meta name="description" content="Salverys gère votre support applicatif / helpdesk IT et décroche vos appels sous votre marque, en français et en anglais, aux mêmes horaires que vous — environ 40 % de moins qu'une équipe interne en France." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="preconnect" href="https://images.unsplash.com" />
 <style>
 /* ================================================================
-   Salverys — Proposition de refonte « éditoriale »
-   Direction artistique inspirée de 108.supply / People Work™ :
-   grille stricte, filets fins, typographie surdimensionnée,
-   micro-labels, sections numérotées, footer à wordmark géant.
-   Charte conservée : greige / bleu profond / sauge / or
-   + couleurs métiers (sauge médical, jaune IT, corail helpdesk).
+   Salverys — refonte « Understory »
+   Imitation fidèle du template : fond crème, vert forêt profond,
+   CTA chartreuse, pastels (lavande / bleu / vert pâle / bordeaux),
+   titres condensés en capitales, cartes très arrondies.
    ================================================================ */
 :root {
-  --bg: #F6F2EA;           /* greige chaud — fond de page */
-  --bg-card: #FFFFFF;
-  --bg-deep: #2E3B4E;      /* bleu profond */
-  --bg-deeper: #222C3B;
-  --ink: #20303F;
-  --text: #2A2620;
-  --text-soft: #5C5448;
-  --text-mute: #8A8275;
-  --line: #E7DFD1;
-  --line-strong: #D8CEBB;
+  --cream: #EFEBE0;
+  --cream-soft: #F4F1E8;
+  --forest: #17352A;
+  --forest-deep: #0F241C;
+  --chartreuse: #DDF247;
+  --chartreuse-dark: #C8E02E;
+  --lavender: #C7C1EE;
+  --skyblue: #BCD7F1;
+  --paleGreen: #C4DCC0;
+  --maroon: #4A1D1A;
+  --maroon-deep: #3A1512;
+  --sticky: #F2E85C;
+  --ink: #17352A;
+  --ink-soft: #3E5248;
+  --ink-mute: #6B7A70;
+  --line: #DDD6C6;
+  --white: #FFFFFF;
 
-  --primary: #2E3B4E;
-  --sauge: #6F8770;
-  --sauge-tint: #EAF0EA;
-  --gold: #B89968;
-  --it: #FCE27C;           /* jaune pastel — Support N1 SaaS */
-  --it-ink: #013C58;
-  --helpdesk: #E06B52;     /* corail — Helpdesk IT */
-  --helpdesk-tint: #FDEEE9;
-
-  --radius: 14px;
-  --radius-lg: 22px;
-  --radius-pill: 100px;
-  --maxw: 1280px;
-  --pad: clamp(20px, 4vw, 56px);
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --pill: 100px;
+  --maxw: 1240px;
+  --pad: clamp(18px, 3.6vw, 48px);
   --ease: cubic-bezier(.22,.61,.36,1);
 
-  --serif: 'Georgia', 'Times New Roman', serif;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --display: 'Anton', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--body);
+  background: var(--cream);
+  color: var(--ink);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
-
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 
-/* ---------- micro-label (signature 108) ---------- */
-.mlabel {
-  display: flex; align-items: baseline; gap: 14px;
-  font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--text-mute);
+h1, h2, .display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .005em;
+  line-height: .96;
+  color: var(--forest);
 }
-.mlabel .idx { color: var(--sauge); font-weight: 800; }
-.mlabel .rule { flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+.tagchip {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: 6px 14px; border-radius: var(--pill);
+  border: 1px solid var(--forest); color: var(--forest); margin-bottom: 22px;
+}
+.tagchip.on-dark { border-color: var(--chartreuse); color: var(--chartreuse); }
+
+/* ---------- boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: var(--pill);
+  font-size: 14px; font-weight: 700; cursor: pointer; border: 0;
+  transition: transform .16s var(--ease), filter .2s, background .2s;
+  white-space: nowrap; font-family: var(--body);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-lime { background: var(--chartreuse); color: var(--forest); }
+.btn-lime:hover { filter: brightness(1.04); }
+.btn-forest { background: var(--forest); color: #fff; }
+.btn-forest:hover { background: var(--forest-deep); }
+.btn-white { background: #fff; color: var(--forest); }
+.btn-outline { background: transparent; color: var(--forest); border: 1.5px solid var(--forest); }
+.btn-outline:hover { background: var(--forest); color: #fff; }
+.btn .arr { font-weight: 800; }
+
+/* ================= TOPBAR ================= */
+.topbar {
+  background: var(--forest); color: rgba(255,255,255,.85);
+  font-size: 12px; font-weight: 600; text-align: center; padding: 8px 14px;
+}
+.topbar b { color: var(--chartreuse); }
 
 /* ================= NAV ================= */
 .nav {
-  position: sticky; top: 0; z-index: 60;
-  background: rgba(246,242,234,.82);
-  backdrop-filter: saturate(160%) blur(12px);
-  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  position: sticky; top: 0; z-index: 80;
+  background: rgba(239,235,224,.9);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.nav-inner { display: flex; align-items: center; gap: 28px; height: 72px; }
-.brand-logo { display: block; height: 38px; width: auto; aspect-ratio: 765 / 195; }
-.nav-links { display: flex; gap: 26px; margin-left: auto; align-items: center; }
-.nav-links a { font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--text-soft); padding: 8px 0; position: relative; }
-.nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:2px; height:1.5px; background: var(--sauge); transition: right .25s var(--ease); }
-.nav-links a:hover, .nav-links a.active { color: var(--ink); }
-.nav-links a:hover::after, .nav-links a.active::after { right: 0; }
-.nav-cta {
-  background: var(--ink); color: #fff; padding: 11px 22px; border-radius: var(--radius-pill);
-  font-size: 13px; font-weight: 700; white-space: nowrap;
-  transition: background .2s, transform .15s;
+.nav-inner { display: flex; align-items: center; gap: 26px; height: 66px; }
+.brand {
+  font-family: var(--display); font-size: 22px; letter-spacing: .02em;
+  text-transform: uppercase; color: var(--forest);
 }
-.nav-cta:hover { background: var(--sauge); transform: translateY(-1px); }
-.nav-burger { display: none; background: none; border: 0; font-size: 26px; color: var(--ink); cursor: pointer; margin-left: auto; }
-@media (max-width: 900px) {
-  .nav-links {
-    position: fixed; inset: 72px 0 auto 0; flex-direction: column; gap: 0; align-items: stretch;
-    background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px var(--pad) 20px;
-    transform: translateY(-130%); transition: transform .3s var(--ease); margin-left: 0;
-  }
-  .nav-links.open { transform: translateY(0); }
-  .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .nav-links a::after { content: none; }
-  .nav-links .nav-cta { margin-top: 12px; text-align: center; border-bottom: 0; color: #fff; }
+.nav-links { display: flex; gap: 22px; align-items: center; margin-left: 8px; }
+.nav-links a { font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
+.nav-links a:hover { color: var(--forest); }
+.nav-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.nav-login { font-size: 13.5px; font-weight: 700; color: var(--forest); padding: 10px 14px; }
+.nav-cta { padding: 11px 20px; font-size: 13px; }
+.nav-burger { display: none; background: none; border: 0; font-size: 26px; color: var(--forest); cursor: pointer; margin-left: auto; }
+@media (max-width: 960px) {
+  .nav-links, .nav-right { display: none; }
   .nav-burger { display: block; }
 }
+.nav-mobile {
+  position: fixed; inset: 66px 0 auto 0; z-index: 79; background: var(--cream);
+  border-bottom: 1px solid var(--line); padding: 10px var(--pad) 22px;
+  display: none; flex-direction: column;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 600; color: var(--forest); }
+.nav-mobile .btn { margin-top: 14px; justify-content: center; border-bottom: 0; }
+@media (min-width: 961px) { .nav-mobile { display: none !important; } }
 
 /* ================= HERO ================= */
-.hero { padding: clamp(48px, 7vw, 96px) 0 0; }
-.hero-toprow { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(44px, 7.6vw, 108px);
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -.03em;
-  color: var(--ink);
-  max-width: 18ch;
-}
-.hero h1 em { font-style: italic; color: var(--sauge); }
-.hero-sub {
-  display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: end;
-  margin-top: clamp(28px, 4vw, 52px); padding-bottom: clamp(32px, 4vw, 56px);
-}
-@media (max-width: 880px) { .hero-sub { grid-template-columns: 1fr; gap: 28px; } }
-.hero-lead { font-size: clamp(16px, 1.4vw, 19px); color: var(--text-soft); max-width: 52ch; }
-.hero-lead b { color: var(--ink); }
-.hero-ctas { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
-@media (max-width: 880px) { .hero-ctas { flex-direction: row; flex-wrap: wrap; } }
+.hero { padding: clamp(36px, 5vw, 64px) 0 0; }
+.hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 40px; align-items: end; margin-bottom: 34px; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; gap: 22px; } }
+.hero h1 { font-size: clamp(42px, 6.4vw, 88px); max-width: 14ch; }
+.hero h1 .hl { background: linear-gradient(transparent 62%, var(--chartreuse) 62%); }
+.hero-side p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 18px; max-width: 34ch; }
+.hero-side .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
 
-.btn {
-  display: inline-flex; align-items: center; justify-content: space-between; gap: 14px;
-  padding: 15px 22px; border-radius: var(--radius-pill);
-  font-size: 14px; font-weight: 700; cursor: pointer; border: 1px solid transparent;
-  transition: transform .18s var(--ease), box-shadow .2s, background .2s, color .2s;
+.hero-media { position: relative; border-radius: var(--radius-xl); overflow: hidden; background: linear-gradient(160deg, #2c4a3c, #17352A); aspect-ratio: 21/9; }
+@media (max-width: 720px) { .hero-media { aspect-ratio: 3/4; } }
+.hero-media > img { width: 100%; height: 100%; object-fit: cover; }
+.hero-shot {
+  position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
+  width: min(560px, 82%); background: #fff; border-radius: 18px 18px 0 0;
+  box-shadow: 0 30px 80px rgba(15,36,28,.45); padding: 16px 18px 20px;
 }
-.btn .arr { transition: transform .22s var(--ease); }
-.btn:hover .arr { transform: translateX(4px); }
-.btn:hover { transform: translateY(-2px); }
-.btn-it { background: var(--it); color: var(--it-ink); }
-.btn-helpdesk { background: var(--helpdesk); color: #fff; }
-.btn-med { background: var(--sauge); color: #fff; }
-.btn-dark { background: var(--ink); color: #fff; }
-.btn-outline { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.btn-outline:hover { border-color: var(--ink); }
+.hero-shot .hs-bar { display: flex; gap: 5px; margin-bottom: 12px; }
+.hero-shot .hs-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.hs-row { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; background: var(--cream-soft); margin-bottom: 7px; }
+.hs-row:last-child { margin-bottom: 0; }
+.hs-dot { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--forest); }
+.hs-txt { min-width: 0; }
+.hs-txt b { display: block; font-size: 12px; color: var(--forest); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hs-txt span { font-size: 11px; color: var(--ink-mute); }
+.hs-tag { margin-left: auto; font-size: 10px; font-weight: 800; padding: 4px 9px; border-radius: var(--pill); flex-shrink: 0; }
+.badge-ok { background: var(--paleGreen); color: var(--forest); }
+.badge-new { background: var(--lavender); color: var(--forest); }
+.badge-wait { background: var(--sticky); color: var(--forest); }
+.hero-float {
+  position: absolute; background: #fff; border-radius: 14px; padding: 12px 15px;
+  box-shadow: 0 18px 50px rgba(15,36,28,.35); font-size: 12px; max-width: 170px;
+}
+.hero-float b { display: block; font-family: var(--display); font-size: 22px; letter-spacing: .01em; color: var(--forest); }
+.hf1 { left: clamp(10px,3vw,34px); top: clamp(10px,3vw,34px); }
+.hf2 { right: clamp(10px,3vw,34px); bottom: clamp(14px,4vw,44px); }
+@media (max-width: 720px) { .hero-shot { width: 92%; } .hf2 { display: none; } }
 
-/* rangée de « preuves » sous le hero, séparée par filets */
-.hero-proof { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); }
-.hero-proof > div { padding: 20px 24px 20px 0; font-size: 13.5px; color: var(--text-mute); border-right: 1px solid var(--line); }
-.hero-proof > div:last-child { border-right: 0; }
-.hero-proof b { display: block; color: var(--ink); font-size: 14.5px; margin-bottom: 2px; }
-@media (max-width: 720px) {
-  .hero-proof { grid-template-columns: 1fr; }
-  .hero-proof > div { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 0; }
-  .hero-proof > div:last-child { border-bottom: 0; }
-}
+/* ================= LOGO STRIP ================= */
+.logostrip { padding: 26px 0 8px; }
+.logostrip-inner { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.logostrip .lead { font-size: 12px; font-weight: 600; color: var(--ink-mute); max-width: 150px; line-height: 1.4; }
+.logostrip .logos { display: flex; gap: clamp(18px, 3.4vw, 44px); align-items: center; flex-wrap: wrap; flex: 1; justify-content: space-between; }
+.logostrip .logos span { font-family: var(--display); font-size: 17px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); opacity: .75; }
 
-/* grande image hero pleine largeur */
-.hero-media { position: relative; margin-top: 0; }
-.hero-media .ph {
-  aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden;
-  background: linear-gradient(135deg, var(--primary), var(--sauge));
-}
-@media (max-width: 720px) { .hero-media .ph { aspect-ratio: 4/3; } }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; }
-.hero-chip {
-  position: absolute; background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
-  border-radius: var(--radius); padding: 14px 18px; box-shadow: 0 14px 40px rgba(32,48,63,.18);
-}
-.hero-chip .n { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.05; }
-.hero-chip .l { font-size: 12px; color: var(--text-soft); max-width: 150px; }
-.hc1 { left: clamp(12px,3vw,36px); bottom: clamp(12px,3vw,36px); }
-.hc2 { right: clamp(12px,3vw,36px); top: clamp(12px,3vw,36px); }
+/* ================= STATEMENT ================= */
+.statement { padding: clamp(70px, 9vw, 130px) 0; }
+.statement-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; }
+@media (max-width: 840px) { .statement-grid { grid-template-columns: 1fr; gap: 24px; } }
+.statement h2 { font-size: clamp(34px, 4.6vw, 62px); max-width: 16ch; }
+.statement h2 .strike { position: relative; white-space: nowrap; }
+.statement h2 .strike::after { content:""; position:absolute; left:-2%; right:-2%; top:52%; height:.09em; background: var(--maroon); transform: rotate(-2deg); }
+.statement-body p { font-size: 16px; color: var(--ink-soft); margin-bottom: 16px; max-width: 50ch; }
+.statement-body p b { color: var(--forest); }
+.statement-body .punch { font-family: var(--display); text-transform: uppercase; font-size: 20px; color: var(--forest); }
 
-/* ================= MARQUEE ================= */
-.marquee { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 16px 0; margin-top: clamp(40px, 6vw, 72px); background: var(--bg); }
-.marquee-track { display: flex; gap: 0; white-space: nowrap; width: max-content; animation: scrollx 32s linear infinite; }
-.mq-item { display: inline-flex; align-items: center; gap: 22px; padding: 0 22px; font-family: var(--serif); font-size: 17px; color: var(--text-soft); letter-spacing: .01em; }
-.mq-item::after { content: "✳"; font-size: 12px; color: var(--gold); }
-.mq-lead { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-mute); }
-@keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* ================= IMPACT (barres pastel) ================= */
+.impact { padding-bottom: clamp(70px, 9vw, 120px); }
+.impact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: end; }
+@media (max-width: 840px) { .impact-grid { grid-template-columns: 1fr; } }
+.impact h2 { font-size: clamp(36px, 4.6vw, 60px); }
+.impact-bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; }
+.ibar { border-radius: var(--radius-lg); padding: 20px 18px; display: flex; flex-direction: column; justify-content: flex-start; }
+.ibar .big { font-family: var(--display); font-size: clamp(30px, 3.6vw, 52px); text-transform: uppercase; color: var(--forest); line-height: 1; margin-bottom: 10px; }
+.ibar p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+.ibar.lav { background: var(--lavender); min-height: 180px; }
+.ibar.sky { background: var(--skyblue); min-height: 240px; }
+.ibar.grn { background: var(--paleGreen); min-height: 310px; }
+@media (max-width: 560px) { .ibar.lav{min-height:140px} .ibar.sky{min-height:180px} .ibar.grn{min-height:220px} }
 
-/* ================= SECTIONS ================= */
-.section { padding: clamp(64px, 8vw, 120px) 0 0; }
-.section-inner { padding-bottom: clamp(64px, 8vw, 120px); }
-.sec-head { margin-top: 26px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; margin-bottom: clamp(36px, 5vw, 64px); }
-@media (max-width: 880px) { .sec-head { grid-template-columns: 1fr; gap: 16px; } }
-.sec-head h2 {
-  font-family: var(--serif); font-weight: 500; letter-spacing: -.02em;
-  font-size: clamp(32px, 4.6vw, 60px); line-height: 1.04; color: var(--ink);
-}
-.sec-head h2 em { font-style: italic; color: var(--sauge); }
-.sec-head p { font-size: 16px; color: var(--text-soft); max-width: 46ch; }
+/* ================= BANDE VERTE PRODUIT ================= */
+.greenband { background: var(--forest); color: #fff; border-radius: var(--radius-xl); margin: 0 auto; max-width: calc(100% - 16px); padding: clamp(40px, 6vw, 80px) 0; }
+@media (min-width: 1272px) { .greenband { max-width: calc(var(--maxw) + 16px); } }
+.greenband h2 { color: #fff; font-size: clamp(34px, 4.8vw, 64px); max-width: 18ch; margin-bottom: 26px; }
+.greenband h2 em { font-style: normal; color: var(--chartreuse); }
+.gb-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 38px; }
+.gb-tab { padding: 10px 18px; border-radius: var(--pill); border: 1px solid rgba(255,255,255,.3); font-size: 13px; font-weight: 700; color: rgba(255,255,255,.8); cursor: pointer; background: transparent; transition: all .2s; font-family: var(--body); }
+.gb-tab.active, .gb-tab:hover { background: var(--chartreuse); border-color: var(--chartreuse); color: var(--forest); }
+.gb-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+@media (max-width: 840px) { .gb-grid { grid-template-columns: 1fr; } }
+.gb-copy h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(22px, 2.6vw, 34px); line-height: 1; color: #fff; margin-bottom: 16px; }
+.gb-copy p { font-size: 14.5px; color: rgba(255,255,255,.75); margin-bottom: 22px; max-width: 46ch; }
+.gb-list { list-style: none; margin-bottom: 26px; }
+.gb-list li { display: flex; gap: 11px; padding: 9px 0; font-size: 14.5px; color: rgba(255,255,255,.9); border-bottom: 1px solid rgba(255,255,255,.12); }
+.gb-list li::before { content: "✓"; color: var(--chartreuse); font-weight: 800; flex-shrink: 0; }
+.gb-visual { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-lg); padding: 18px; }
+.gb-shot { background: #fff; border-radius: 14px; padding: 16px; color: var(--ink); }
+.gb-shot .hs-bar { display: flex; gap: 5px; margin-bottom: 12px; }
+.gb-shot .hs-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
 
-/* ================= STATS ================= */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
-.stat { padding: clamp(24px, 3vw, 44px) 24px clamp(24px, 3vw, 44px) 0; border-right: 1px solid var(--line); }
-.stat:last-child { border-right: 0; }
-.stat .num { font-family: var(--serif); font-size: clamp(44px, 5.6vw, 84px); font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -.03em; }
-.stat .num .suf { font-size: .45em; color: var(--text-mute); letter-spacing: 0; }
-.stat .lab { margin-top: 12px; font-size: 13.5px; color: var(--text-soft); max-width: 22ch; }
-@media (max-width: 880px) {
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stat { border-bottom: 1px solid var(--line); }
-  .stat:nth-child(even) { border-right: 0; padding-left: 24px; }
-  .stat:nth-child(n+3) { border-bottom: 0; }
+/* ================= MÉTIERS CARROUSEL ================= */
+.types { padding: clamp(70px, 9vw, 120px) 0 0; text-align: center; }
+.types h2 { font-size: clamp(32px, 4.4vw, 56px); margin-bottom: 34px; }
+.types-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 960px) { .types-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .types-row { grid-template-columns: 1fr; } }
+.tcard { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3/4; display: block; }
+.tcard .bgfall { position: absolute; inset: 0; }
+.tcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.tcard:hover img { transform: scale(1.05); }
+.tcard::after { content:""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(15,36,28,.75)); }
+.tcard .tlab {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2;
+  font-family: var(--display); text-transform: uppercase; font-size: 19px; line-height: 1.05;
+  color: #fff; text-align: left;
 }
-@media (max-width: 480px) {
-  .stats { grid-template-columns: 1fr; }
-  .stat { border-right: 0 !important; border-bottom: 1px solid var(--line) !important; padding-left: 0 !important; }
-  .stat:last-child { border-bottom: 0 !important; }
-}
+.tcard .tsub { position: absolute; left: 14px; bottom: 66px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--chartreuse); text-align: left; }
+.tcard .tgo { position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--forest); display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.tcard.soon { pointer-events: none; }
+.tcard.soon::after { background: rgba(15,36,28,.55); }
 
-/* ================= MÉTIERS — liste éditoriale ================= */
-.svc-list { border-top: 1px solid var(--line); }
-.svc {
-  display: grid; grid-template-columns: 72px 1.05fr 1fr auto; gap: clamp(16px, 3vw, 44px);
-  align-items: center; padding: clamp(26px, 3.4vw, 44px) 0;
-  border-bottom: 1px solid var(--line); position: relative;
-  transition: background .25s var(--ease);
+/* ================= 3 ÉTAPES ================= */
+.steps { padding: clamp(70px, 9vw, 120px) 0 0; text-align: center; }
+.steps h2 { font-size: clamp(32px, 4.4vw, 56px); margin-bottom: 38px; }
+.step-card {
+  border-radius: var(--radius-xl); padding: clamp(26px, 4vw, 48px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px);
+  align-items: center; text-align: left; margin-bottom: 16px;
 }
-.svc:hover { background: rgba(255,255,255,.65); }
-.svc-idx { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--text-mute); }
-.svc-title { display: flex; flex-direction: column; gap: 10px; }
-.svc-title h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3vw, 40px); letter-spacing: -.02em; line-height: 1.08; color: var(--ink); }
-.svc-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.svc-tag { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 5px 11px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); color: var(--text-soft); background: transparent; }
-.svc-tag.fill-it { background: var(--it); border-color: var(--it); color: var(--it-ink); }
-.svc-tag.fill-hd { background: var(--helpdesk); border-color: var(--helpdesk); color: #fff; }
-.svc-tag.fill-med { background: var(--sauge); border-color: var(--sauge); color: #fff; }
-.svc-desc { font-size: 14.5px; color: var(--text-soft); max-width: 46ch; }
-.svc-go {
-  width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--line-strong);
-  display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--ink);
-  transition: background .22s, color .22s, border-color .22s, transform .22s var(--ease);
-}
-.svc:hover .svc-go { transform: rotate(-45deg); }
-.svc.is-it:hover .svc-go { background: var(--it); border-color: var(--it); color: var(--it-ink); }
-.svc.is-hd:hover .svc-go { background: var(--helpdesk); border-color: var(--helpdesk); color: #fff; }
-.svc.is-med:hover .svc-go { background: var(--sauge); border-color: var(--sauge); color: #fff; }
-@media (max-width: 880px) {
-  .svc { grid-template-columns: 1fr auto; grid-template-areas: "idx go" "title go" "desc go"; row-gap: 10px; }
-  .svc-idx { grid-area: idx; } .svc-title { grid-area: title; } .svc-desc { grid-area: desc; } .svc-go { grid-area: go; align-self: center; }
-}
+@media (max-width: 780px) { .step-card { grid-template-columns: 1fr; } }
+.step-card.lav { background: var(--lavender); }
+.step-card.mar { background: var(--maroon); color: #fff; }
+.step-card.grn { background: var(--paleGreen); }
+.step-num { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding: 6px 14px; border-radius: var(--pill); background: rgba(255,255,255,.6); color: var(--forest); }
+.step-card.mar .step-num { background: rgba(255,255,255,.15); color: var(--chartreuse); }
+.step-card h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(24px, 3vw, 38px); line-height: 1; color: var(--forest); margin-bottom: 14px; }
+.step-card.mar h3 { color: #fff; }
+.step-card > div > p { font-size: 14.5px; color: var(--ink-soft); max-width: 44ch; }
+.step-card.mar > div > p { color: rgba(255,255,255,.8); }
+.step-visual { background: #fff; border-radius: var(--radius-lg); padding: 18px; box-shadow: 0 20px 50px rgba(15,36,28,.15); color: var(--ink); }
+.step-visual .line { height: 10px; border-radius: 6px; background: var(--cream); margin-bottom: 10px; }
+.step-visual .line.w60 { width: 60%; } .step-visual .line.w80 { width: 80%; } .step-visual .line.w40 { width: 40%; }
+.step-visual .chip-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.step-visual .chip { font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: var(--pill); }
+.step-visual .price { font-family: var(--display); font-size: 38px; color: var(--forest); line-height: 1; }
+.step-visual .price small { font-size: 15px; color: var(--ink-mute); font-family: var(--body); }
+.step-visual .old { text-decoration: line-through; color: var(--ink-mute); font-size: 15px; margin-right: 8px; font-family: var(--body); }
+.step-visual .sv-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-mute); margin-bottom: 10px; }
 
-/* ================= POURQUOI — features éditoriales ================= */
-.feat { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(36px, 5vw, 64px) 0; border-top: 1px solid var(--line); }
-.feat:first-of-type { border-top: 0; }
-.feat.flip .feat-media { order: 2; }
-@media (max-width: 880px) { .feat { grid-template-columns: 1fr; } .feat.flip .feat-media { order: 0; } }
-.feat-media .ph { aspect-ratio: 5/4; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--primary), var(--sauge)); }
-.feat-media img { width: 100%; height: 100%; object-fit: cover; }
-.feat-body .mlabel { margin-bottom: 18px; }
-.feat-body h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 3.2vw, 42px); letter-spacing: -.02em; line-height: 1.08; color: var(--ink); margin-bottom: 16px; }
-.feat-body > p { color: var(--text-soft); font-size: 15.5px; margin-bottom: 20px; max-width: 52ch; }
-.tick { list-style: none; border-top: 1px solid var(--line); }
-.tick li { display: flex; gap: 12px; padding: 12px 0; font-size: 14.5px; color: var(--text); border-bottom: 1px solid var(--line); }
-.tick li::before { content: "✓"; color: var(--sauge); font-weight: 800; flex-shrink: 0; }
-
-/* ================= INCLUS — grille à filets ================= */
-.inc-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-@media (max-width: 960px) { .inc-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px) { .inc-grid { grid-template-columns: 1fr; } }
-.inc {
-  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: clamp(22px, 2.6vw, 34px); background: transparent; transition: background .25s;
+/* ================= ESSAI ================= */
+.try { padding: clamp(70px, 9vw, 120px) 0 0; }
+.try-card {
+  position: relative; border-radius: var(--radius-xl); overflow: hidden;
+  min-height: 420px; display: flex; align-items: flex-end;
+  background: linear-gradient(150deg, #35543f, #17352A);
 }
-.inc:hover { background: rgba(255,255,255,.65); }
-.inc .inc-idx { font-size: 11px; font-weight: 800; letter-spacing: .14em; color: var(--gold); margin-bottom: 14px; }
-.inc h4 { font-size: 15.5px; color: var(--ink); margin-bottom: 8px; font-weight: 700; }
-.inc p { font-size: 13.5px; color: var(--text-soft); }
-
-/* ================= APPROCHE — 4 colonnes numérotées ================= */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
-@media (max-width: 880px) { .steps { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
-.step { padding: clamp(24px, 3vw, 40px) 24px clamp(24px, 3vw, 40px) 0; border-right: 1px solid var(--line); }
-.step:last-child { border-right: 0; }
-@media (max-width: 880px) { .step:nth-child(2) { border-right: 0; } .step { border-bottom: 1px solid var(--line); padding-left: 12px; } .step:nth-child(n+3) { border-bottom: 0; } }
-.step .sn { font-family: var(--serif); font-size: clamp(34px, 3.4vw, 52px); color: var(--line-strong); font-weight: 500; line-height: 1; margin-bottom: 18px; }
-.step h4 { font-size: 16px; color: var(--ink); margin-bottom: 8px; }
-.step h4 .accent { color: var(--sauge); }
-.step p { font-size: 13.5px; color: var(--text-soft); max-width: 26ch; }
-
-/* ================= CTA BAND ================= */
-.cta-band { background: var(--bg-deep); color: #fff; margin-top: clamp(64px, 8vw, 120px); padding: clamp(72px, 9vw, 130px) 0; }
-.cta-band .mlabel { color: rgba(255,255,255,.55); }
-.cta-band .mlabel .idx { color: var(--it); }
-.cta-band .mlabel .rule { background: rgba(255,255,255,.18); }
-.cta-band h2 {
-  font-family: var(--serif); font-weight: 500; letter-spacing: -.03em;
-  font-size: clamp(40px, 6.4vw, 92px); line-height: 1.02; margin: 26px 0 22px; max-width: 16ch;
+.try-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.try-card::after { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(15,36,28,.6), transparent 65%); }
+.try-inner { position: relative; z-index: 2; padding: clamp(24px, 4vw, 48px); max-width: 460px; }
+.try-inner h2 { color: #fff; font-size: clamp(30px, 3.8vw, 48px); margin-bottom: 14px; }
+.try-inner p { color: rgba(255,255,255,.85); font-size: 14.5px; margin-bottom: 20px; }
+.try-note {
+  position: absolute; z-index: 2; right: clamp(20px, 5vw, 70px); top: clamp(20px, 5vw, 60px);
+  background: var(--sticky); color: var(--forest); padding: 18px 20px; width: 210px;
+  border-radius: 6px; transform: rotate(3deg);
+  box-shadow: 0 18px 40px rgba(15,36,28,.3);
+  font-weight: 700; font-size: 13.5px; line-height: 1.4;
 }
-.cta-band h2 em { font-style: italic; color: var(--it); }
-.cta-band p { font-size: 17px; color: rgba(255,255,255,.75); max-width: 46ch; margin-bottom: 34px; }
-.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn-light { background: #fff; color: var(--ink); }
-.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
-.btn-ghost:hover { border-color: #fff; }
+.try-note b { font-family: var(--display); text-transform: uppercase; display: block; font-size: 24px; margin-bottom: 4px; font-weight: 400; }
+@media (max-width: 640px) { .try-note { display: none; } }
+
+.try-feats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
+@media (max-width: 900px) { .try-feats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .try-feats { grid-template-columns: 1fr; } }
+.tf { border-top: 2px solid var(--forest); padding-top: 14px; }
+.tf b { display: block; font-size: 14px; color: var(--forest); margin-bottom: 6px; }
+.tf p { font-size: 12.5px; color: var(--ink-soft); }
+
+/* ================= ROI / CALCUL ================= */
+.roi { padding: clamp(70px, 9vw, 120px) 0 0; text-align: center; }
+.roi h2 { font-size: clamp(32px, 4.4vw, 56px); margin-bottom: 34px; }
+.roi-grid { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 14px; align-items: stretch; }
+@media (max-width: 880px) { .roi-grid { grid-template-columns: 1fr; } }
+.roi-card { background: #fff; border-radius: var(--radius-lg); padding: 24px; text-align: left; }
+.roi-card h4 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-mute); margin-bottom: 12px; }
+.roi-card .bignum { font-family: var(--display); font-size: clamp(34px, 4vw, 54px); text-transform: uppercase; color: var(--forest); line-height: 1; }
+.roi-card p { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+.roi-chart svg { width: 100%; height: auto; display: block; }
+.roi-note { font-size: 12.5px; color: var(--ink-mute); margin-top: 18px; }
+
+/* ================= CAPTURE / DEVIS ================= */
+.capture { padding: clamp(70px, 9vw, 120px) 0 0; }
+.capture-card { background: var(--maroon); color: #fff; border-radius: var(--radius-xl); padding: clamp(30px, 5vw, 64px); display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+@media (max-width: 840px) { .capture-card { grid-template-columns: 1fr; } }
+.capture-card h2 { color: #fff; font-size: clamp(30px, 4vw, 52px); margin-bottom: 14px; }
+.capture-card h2 em { font-style: normal; color: var(--chartreuse); }
+.capture-card p { color: rgba(255,255,255,.8); font-size: 14.5px; max-width: 44ch; }
+.capture-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.capture-form input {
+  flex: 1; min-width: 200px; padding: 15px 20px; border-radius: var(--pill);
+  border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.08);
+  color: #fff; font-size: 14px; font-family: var(--body); outline: none;
+}
+.capture-form input::placeholder { color: rgba(255,255,255,.5); }
+.capture-form input:focus { border-color: var(--chartreuse); }
+.capture-legal { font-size: 11.5px; color: rgba(255,255,255,.45); margin-top: 12px; }
+.capture-legal a { text-decoration: underline; }
+
+/* ================= QUOTE ================= */
+.quote { padding: clamp(70px, 9vw, 120px) 0 0; }
+.quote-card { background: var(--maroon-deep); color: #fff; border-radius: var(--radius-xl); padding: clamp(30px, 5vw, 64px); display: grid; grid-template-columns: .55fr 1.45fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+@media (max-width: 780px) { .quote-card { grid-template-columns: 1fr; } }
+.quote-photo { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/5; background: linear-gradient(150deg, #6b3d33, #3A1512); }
+.quote-photo img { width: 100%; height: 100%; object-fit: cover; }
+.quote-body blockquote { font-family: var(--display); text-transform: uppercase; font-size: clamp(20px, 2.6vw, 34px); line-height: 1.15; color: #fff; margin-bottom: 20px; }
+.quote-body blockquote em { font-style: normal; color: var(--chartreuse); }
+.quote-body cite { font-style: normal; font-size: 13.5px; color: rgba(255,255,255,.7); }
+.quote-body cite b { color: #fff; display: block; }
+
+/* ================= INTÉGRATIONS ================= */
+.integr { padding: clamp(70px, 9vw, 120px) 0 0; text-align: center; }
+.integr h2 { font-size: clamp(30px, 4.2vw, 52px); margin-bottom: 14px; }
+.integr .sub { font-size: 14.5px; color: var(--ink-soft); max-width: 52ch; margin: 0 auto 34px; }
+.integr-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.icircle {
+  width: 84px; height: 84px; border-radius: 50%; background: #fff;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: 11px; font-weight: 800; color: var(--forest); padding: 8px;
+  box-shadow: 0 6px 18px rgba(15,36,28,.08); line-height: 1.15;
+  transition: transform .2s var(--ease);
+}
+.icircle:hover { transform: translateY(-4px); }
+.icircle.center { background: var(--forest); color: var(--chartreuse); font-family: var(--display); font-size: 12px; letter-spacing: .04em; }
+
+/* ================= READY ================= */
+.ready { padding: clamp(70px, 9vw, 120px) 0 0; }
+.ready-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; }
+@media (max-width: 840px) { .ready-grid { grid-template-columns: 1fr; } }
+.ready-photo { border-radius: var(--radius-xl); overflow: hidden; min-height: 340px; background: linear-gradient(150deg, #35543f, #17352A); position: relative; }
+.ready-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ready-card { background: var(--skyblue); border-radius: var(--radius-xl); padding: clamp(26px, 4vw, 48px); }
+.ready-card h2 { font-size: clamp(28px, 3.6vw, 46px); margin-bottom: 18px; }
+.ready-list { list-style: none; margin-bottom: 26px; }
+.ready-list li { display: flex; gap: 11px; padding: 8px 0; font-size: 14.5px; color: var(--forest); font-weight: 500; }
+.ready-list li::before { content: "✓"; font-weight: 800; color: var(--forest); flex-shrink: 0; }
+.ready-card .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ================= FAQ ================= */
+.faq { padding: clamp(70px, 9vw, 120px) 0 clamp(70px, 9vw, 120px); }
+.faq h2 { font-size: clamp(30px, 4.2vw, 52px); text-align: center; margin-bottom: 38px; }
+.faq-list { max-width: 780px; margin: 0 auto; }
+.faq-item { background: #fff; border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 18px 22px; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--body); font-size: 15px; font-weight: 700; color: var(--forest);
+}
+.faq-q .ic { width: 28px; height: 28px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; transition: transform .25s var(--ease), background .2s; }
+.faq-item.open .ic { transform: rotate(45deg); background: var(--chartreuse); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); }
+.faq-a p { padding: 0 22px 20px; font-size: 14px; color: var(--ink-soft); max-width: 62ch; }
 
 /* ================= FOOTER ================= */
-.footer { background: var(--bg-deeper); color: rgba(255,255,255,.7); padding: clamp(52px, 6vw, 80px) 0 0; }
-.footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 44px; }
-.footer-brand p { max-width: 300px; margin-top: 14px; font-size: 14px; }
-.footer-brand .brand-logo { height: 34px; }
-.footer-cols { display: flex; gap: clamp(32px, 5vw, 72px); flex-wrap: wrap; }
-.footer-col h5 { color: #fff; font-size: 11.5px; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px; }
-.footer-col a { display: block; font-size: 14px; padding: 5px 0; transition: color .15s; }
-.footer-col a:hover { color: var(--it); }
-.footer-meta { border-top: 1px solid rgba(255,255,255,.12); padding: 20px 0; font-size: 12.5px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: rgba(255,255,255,.5); }
-.footer-word {
-  font-family: var(--serif); font-weight: 500; letter-spacing: -.04em;
-  font-size: clamp(72px, 16.5vw, 250px); line-height: .9; color: rgba(255,255,255,.1);
-  text-align: center; user-select: none; padding: 10px 0 0; overflow: hidden; white-space: nowrap;
-}
-.footer-word .dot { color: var(--sauge); }
+.footer { background: var(--forest); color: rgba(255,255,255,.75); border-radius: var(--radius-xl) var(--radius-xl) 0 0; padding: clamp(40px, 5vw, 64px) 0 0; margin-top: 8px; }
+.footer-promos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: clamp(40px, 5vw, 64px); }
+@media (max-width: 840px) { .footer-promos { grid-template-columns: 1fr; } }
+.fpromo { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 16/9; display: block; background: linear-gradient(150deg, #2c4a3c, #0F241C); }
+.fpromo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+.fpromo::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 30%, rgba(15,36,28,.85)); }
+.fpromo .fp-lab { position: absolute; z-index: 2; left: 16px; bottom: 14px; right: 16px; font-family: var(--display); text-transform: uppercase; font-size: 18px; line-height: 1.05; color: #fff; }
+.fpromo .fp-tag { position: absolute; z-index: 2; left: 16px; top: 14px; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--chartreuse); }
+.footer-word { font-family: var(--display); text-transform: uppercase; font-size: clamp(60px, 14vw, 210px); line-height: .95; color: #fff; letter-spacing: .01em; margin-bottom: clamp(26px, 4vw, 48px); }
+.footer-cols { display: flex; gap: clamp(28px, 5vw, 72px); flex-wrap: wrap; justify-content: space-between; padding-bottom: 44px; }
+.footer-about { max-width: 300px; font-size: 13.5px; }
+.footer-col h5 { color: #fff; font-size: 11.5px; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 14px; padding: 4px 0; transition: color .15s; }
+.footer-col a:hover { color: var(--chartreuse); }
+.footer-meta { border-top: 1px solid rgba(255,255,255,.14); padding: 18px 0; font-size: 12px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; color: rgba(255,255,255,.5); }
+.footer-lime { height: 12px; background: var(--chartreuse); }
 
 /* ================= REVEAL ================= */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: .08s; }
 .reveal.d2 { transition-delay: .16s; }
-.reveal.d3 { transition-delay: .24s; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .marquee-track { animation: none; }
   html { scroll-behavior: auto; }
 }
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
+<div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+
 <!-- NAV -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys.svg" alt="Salverys" /></a>
-    <nav class="nav-links" id="navLinks">
-      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+    <a class="brand" href="index.html">Salverys</a>
+    <nav class="nav-links">
+      <a href="simulateur-informatique.html">Support Applicatif</a>
       <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
       <a href="simulateur-salverys.html">Télésecrétariat médical</a>
       <a href="espace-candidat.html">Nous rejoindre</a>
-      <a href="#contact" class="nav-cta">Contactez-nous</a>
     </nav>
+    <div class="nav-right">
+      <a class="nav-login" href="espace-client.html">Espace client</a>
+      <a class="btn btn-lime nav-cta" href="#contact">Contactez-nous</a>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu">☰</button>
   </div>
 </header>
+<nav class="nav-mobile" id="navMobile">
+  <a href="simulateur-informatique.html">Support Applicatif</a>
+  <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
+  <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+  <a href="espace-candidat.html">Nous rejoindre</a>
+  <a href="espace-client.html">Espace client</a>
+  <a class="btn btn-lime" href="#contact">Contactez-nous</a>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-toprow reveal">
-      <div class="mlabel"><span class="idx">(BPO&nbsp;Francophone)</span><span>Antananarivo → France</span></div>
-      <div class="mlabel"><span>FR&nbsp;&amp;&nbsp;EN · 8h–20h · Sans engagement</span></div>
-    </div>
-    <h1 class="reveal">Plus de capacité, <em>sans recruter</em>.</h1>
-    <div class="hero-sub">
-      <p class="hero-lead reveal d1">Salverys prend en charge vos clients et patients sous votre identité, <b>en français et en anglais</b>. Développez votre activité sans les coûts et les contraintes d'une équipe interne. <b>Vous activez le service. Nous gérons le reste.</b></p>
-      <div class="hero-ctas reveal d2">
-        <a href="simulateur-informatique.html" class="btn btn-it">Support N1 SaaS <span class="arr">→</span></a>
-        <a href="simulateur-helpdesk-it.html" class="btn btn-helpdesk">Helpdesk IT N1 <span class="arr">→</span></a>
-        <a href="simulateur-salverys.html" class="btn btn-med">Télésecrétariat médical <span class="arr">→</span></a>
+    <div class="hero-grid">
+      <h1 class="reveal">Enfin une meilleure façon de gérer <span class="hl">votre&nbsp;support</span> et vos appels</h1>
+      <div class="hero-side reveal d1">
+        <p>Salverys prend en charge vos clients et patients sous votre identité, en français et en anglais. Vous activez le service, nous gérons le reste.</p>
+        <div class="ctas">
+          <a href="#contact" class="btn btn-forest">Contactez-nous</a>
+          <a href="#metiers" class="btn btn-lime">Simuler mon forfait <span class="arr">→</span></a>
+        </div>
       </div>
     </div>
-    <div class="hero-proof reveal">
-      <div><b>FR &amp; EN</b> Français langue maternelle, anglais professionnel</div>
-      <div><b>8h – 20h</b> Standard ouvert aux mêmes horaires que vous</div>
-      <div><b>Sans engagement</b> Résiliable à tout moment, forfait clair</div>
-    </div>
-    <div class="hero-media reveal d1">
-      <div class="ph">
-        <img loading="eager" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=70"
-             alt="Équipe support francophone au travail" />
+    <div class="hero-media reveal">
+      <img loading="eager" decoding="async" onerror="this.style.display='none'"
+           src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=70"
+           alt="Équipe support francophone au travail" />
+      <div class="hero-float hf1"><b>−40 %</b> vs un prestataire en France</div>
+      <div class="hero-float hf2"><b>8h–20h</b> jamais de répondeur</div>
+      <div class="hero-shot" aria-hidden="true">
+        <div class="hs-bar"><i></i><i></i><i></i></div>
+        <div class="hs-row">
+          <span class="hs-dot" style="background:var(--paleGreen)">✓</span>
+          <span class="hs-txt"><b>Ticket #4521 — connexion impossible</b><span>Résolu en 11 min · escalade N2 évitée</span></span>
+          <span class="hs-tag badge-ok">Résolu</span>
+        </div>
+        <div class="hs-row">
+          <span class="hs-dot" style="background:var(--lavender)">☏</span>
+          <span class="hs-txt"><b>Appel entrant — cabinet médical</b><span>RDV pris sur Doctolib · 42 s d'attente</span></span>
+          <span class="hs-tag badge-new">Décroché</span>
+        </div>
+        <div class="hs-row">
+          <span class="hs-dot" style="background:var(--skyblue)">✉</span>
+          <span class="hs-txt"><b>Chat — utilisateur SaaS (EN)</b><span>Réponse en 38 s · satisfaction 5/5</span></span>
+          <span class="hs-tag badge-wait">En cours</span>
+        </div>
       </div>
-      <div class="hero-chip hc1"><div class="n">−40 %</div><div class="l">de coût vs un prestataire en France</div></div>
-      <div class="hero-chip hc2"><div class="n">8h–20h</div><div class="l">jamais de répondeur</div></div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE OUTILS -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="mq-item mq-lead">Compatible avec vos outils</span>
-    <span class="mq-item">Zendesk</span>
-    <span class="mq-item">Jira Service Management</span>
-    <span class="mq-item">Freshdesk</span>
-    <span class="mq-item">GLPI</span>
-    <span class="mq-item">Intercom</span>
-    <span class="mq-item">Doctolib</span>
-    <span class="mq-item">Maiia</span>
-    <span class="mq-item">Ubicentrex</span>
-    <span class="mq-item mq-lead">Compatible avec vos outils</span>
-    <span class="mq-item">Zendesk</span>
-    <span class="mq-item">Jira Service Management</span>
-    <span class="mq-item">Freshdesk</span>
-    <span class="mq-item">GLPI</span>
-    <span class="mq-item">Intercom</span>
-    <span class="mq-item">Doctolib</span>
-    <span class="mq-item">Maiia</span>
-    <span class="mq-item">Ubicentrex</span>
-  </div>
-</div>
-
-<!-- STATS -->
-<section class="section" id="stats">
-  <div class="wrap section-inner">
-    <div class="mlabel reveal"><span class="idx">(01)</span><span>En chiffres</span><span class="rule"></span></div>
-    <div class="sec-head reveal">
-      <h2>Le bon calcul, <em>mesuré</em>.</h2>
-      <p>Un service supervisé et fiable, à une fraction du prix d'une embauche ou d'un prestataire en France.</p>
+<!-- LOGO STRIP -->
+<section class="logostrip">
+  <div class="wrap logostrip-inner reveal">
+    <span class="lead">Compatible avec les outils que vous utilisez déjà</span>
+    <div class="logos">
+      <span>Zendesk</span><span>Jira</span><span>Freshdesk</span><span>GLPI</span><span>Intercom</span><span>Doctolib</span><span>Maiia</span>
     </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="num" data-to="40" data-pre="−" data-suf=" %">−0&nbsp;%</div><div class="lab">de coût vs un prestataire hexagonal</div></div>
-      <div class="stat reveal d1"><div class="num" data-to="100" data-suf=" %">0&nbsp;%</div><div class="lab">d'agents francophones</div></div>
-      <div class="stat reveal d2"><div class="num" data-to="50" data-pre="−" data-suf=" %">−0&nbsp;%</div><div class="lab">le 1er mois, sans engagement</div></div>
-      <div class="stat reveal d3"><div class="num" data-to="3" data-suf=" sem.">0&nbsp;sem.</div><div class="lab">pour être pleinement opérationnel</div></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap statement-grid">
+    <h2 class="reveal">Le standard et les tickets volent du temps à votre vrai métier</h2>
+    <div class="statement-body reveal d1">
+      <p>Un cabinet qui laisse sonner, un éditeur qui laisse traîner ses tickets : c'est du chiffre d'affaires qui part ailleurs. Et recruter, former, encadrer une équipe support en interne coûte cher — en argent comme en énergie.</p>
+      <p>Pendant que vous gérez les appels et les files d'attente, <b>votre vrai travail attend</b> : soigner, développer votre produit, faire tourner votre entreprise.</p>
+      <p class="punch">Il y a plus simple.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact">
+  <div class="wrap impact-grid">
+    <h2 class="reveal">L'impact<br />Salverys</h2>
+    <div class="impact-bars">
+      <div class="ibar lav reveal"><div class="big">−50 %</div><p>sur votre 1er mois, sans engagement — vous testez en conditions réelles</p></div>
+      <div class="ibar sky reveal d1"><div class="big">−40 %</div><p>de coût par rapport à une embauche ou un prestataire en France</p></div>
+      <div class="ibar grn reveal d2"><div class="big">100 %</div><p>d'agents francophones, aux horaires de la France (8h–20h)</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDE VERTE -->
+<section class="greenband" id="produit">
+  <div class="wrap">
+    <span class="tagchip on-dark reveal">Nos services</span>
+    <h2 class="reveal">Le support externalisé pour ceux qui détestent <em>recruter</em></h2>
+    <div class="gb-tabs reveal" role="tablist">
+      <button class="gb-tab active" data-panel="saas">Support N1 SaaS</button>
+      <button class="gb-tab" data-panel="helpdesk">Helpdesk IT N1</button>
+      <button class="gb-tab" data-panel="medical">Télésecrétariat médical</button>
+    </div>
+    <div class="gb-grid">
+      <div class="gb-copy reveal">
+        <div class="gb-panel" data-name="saas">
+          <h3>Travaillez sans la surcharge</h3>
+          <p>Support fonctionnel N1 pour vos utilisateurs : tickets, chat, téléphone. Escalade cadrée vers vos équipes produit, en français et en anglais.</p>
+          <ul class="gb-list">
+            <li>Agents formés à votre produit et à vos process</li>
+            <li>SLA de première réponse mesuré et partagé</li>
+            <li>Vous gardez la main sur vos files et vos priorités</li>
+          </ul>
+          <a href="simulateur-informatique.html" class="btn btn-lime">Simuler mon équipe <span class="arr">→</span></a>
+        </div>
+        <div class="gb-panel" data-name="helpdesk" hidden>
+          <h3>Un helpdesk qui décroche</h3>
+          <p>Helpdesk IT N1 distant pour entreprises, DSI, ESN et MSP : agents francophones dédiés, escalade N2 cadrée vers vos équipes.</p>
+          <ul class="gb-list">
+            <li>Prise en charge tickets &amp; téléphone (ITIL)</li>
+            <li>KPI partagés : décroché, résolution N1, satisfaction</li>
+            <li>Backup par compte : pas de jour d'arrêt</li>
+          </ul>
+          <a href="simulateur-helpdesk-it.html" class="btn btn-lime">Simuler mon équipe <span class="arr">→</span></a>
+        </div>
+        <div class="gb-panel" data-name="medical" hidden>
+          <h3>Votre standard, toujours décroché</h3>
+          <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical. Dès 350 €/mois.</p>
+          <ul class="gb-list">
+            <li>≥ 90 % d'appels décrochés en régime, sinon 20 % d'avoir</li>
+            <li>Doctolib, Maiia, Médistory : intégration faite par nous</li>
+            <li>Secret médical et RGPD cadrés dès le 1er échange</li>
+          </ul>
+          <a href="simulateur-salverys.html" class="btn btn-lime">Simuler mon forfait <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="gb-visual reveal d1" aria-hidden="true">
+        <div class="gb-shot">
+          <div class="hs-bar"><i></i><i></i><i></i></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--paleGreen)">SA</span><span class="hs-txt"><b>File Support — 12 tickets ouverts</b><span>Temps de 1re réponse moyen : 9 min</span></span><span class="hs-tag badge-ok">SLA tenu</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--lavender)">HD</span><span class="hs-txt"><b>Standard IT — 3 appels en cours</b><span>Taux de décroché aujourd'hui : 97 %</span></span><span class="hs-tag badge-new">En ligne</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--skyblue)">MD</span><span class="hs-txt"><b>Agenda praticien — 14 RDV pris</b><span>Dernier appel décroché en 28 s</span></span><span class="hs-tag badge-wait">Actif</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--sticky)">KPI</span><span class="hs-txt"><b>Reporting mensuel envoyé</b><span>Décroché · 1re réponse · SLA tickets</span></span><span class="hs-tag badge-ok">Envoyé</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MÉTIERS -->
-<section class="section" id="metiers" style="padding-top:0">
-  <div class="wrap section-inner">
-    <div class="mlabel reveal"><span class="idx">(02)</span><span>Nos métiers</span><span class="rule"></span></div>
-    <div class="sec-head reveal">
-      <h2>Trois savoir-faire, <em>un même standard</em>.</h2>
-      <p>Chaque métier a son simulateur de tarif : bougez les curseurs, le forfait s'affiche en direct.</p>
-    </div>
-    <div class="svc-list">
-
-      <a class="svc is-it reveal" href="simulateur-informatique.html">
-        <span class="svc-idx">/ 01</span>
-        <div class="svc-title">
-          <h3>Support Applicatif &amp; Métier</h3>
-          <div class="svc-tags"><span class="svc-tag fill-it">Priorité</span><span class="svc-tag">SaaS</span><span class="svc-tag">Tickets · Chat · Tél.</span></div>
-        </div>
-        <p class="svc-desc">Support fonctionnel pour vos utilisateurs : tickets, chat, téléphone, escalade cadrée vers vos équipes produit. Externalisé, réactif et francophone.</p>
-        <span class="svc-go">→</span>
-      </a>
-
-      <a class="svc is-hd reveal d1" href="simulateur-helpdesk-it.html">
-        <span class="svc-idx">/ 02</span>
-        <div class="svc-title">
-          <h3>Helpdesk IT N1 externalisé</h3>
-          <div class="svc-tags"><span class="svc-tag fill-hd">Support utilisateurs</span><span class="svc-tag">Ticketing</span><span class="svc-tag">DSI · ESN · MSP</span></div>
-        </div>
-        <p class="svc-desc">Helpdesk IT N1 pour entreprises et DSI : agents francophones dédiés, escalade N2 cadrée vers vos équipes, KPI partagés.</p>
-        <span class="svc-go">→</span>
-      </a>
-
-      <a class="svc is-med reveal d2" href="simulateur-salverys.html">
-        <span class="svc-idx">/ 03</span>
-        <div class="svc-title">
-          <h3>Télésecrétariat médical</h3>
-          <div class="svc-tags"><span class="svc-tag fill-med">Dès 350 €/mois</span><span class="svc-tag">Agendas</span><span class="svc-tag">Secret médical</span></div>
-        </div>
-        <p class="svc-desc">Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical.</p>
-        <span class="svc-go">→</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI -->
-<section class="section" id="avantages" style="padding-top:0">
-  <div class="wrap section-inner">
-    <div class="mlabel reveal"><span class="idx">(03)</span><span>Pourquoi Salverys</span><span class="rule"></span></div>
-
-    <div class="feat">
-      <div class="feat-media reveal">
-        <div class="ph">
-          <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=70"
-               alt="Équipe collaborative" />
-        </div>
-      </div>
-      <div class="feat-body reveal d1">
-        <div class="mlabel"><span class="idx">/ A</span><span>L'avantage francophone</span></div>
-        <h3>Des équipes francophones, aux mêmes horaires que vous.</h3>
-        <p>Madagascar partage les heures ouvrées de la France et le français y est parlé couramment. Vos utilisateurs, clients et patients sont pris en charge dans un français clair, en temps réel.</p>
-        <ul class="tick">
-          <li>Tickets et appels traités en direct de 8h à 20h, jamais de file qui traîne</li>
-          <li>Aucune barrière de langue ni décalage horaire</li>
-          <li>Agents support formés à vos outils et à vos process (ITIL), télésecrétaires formées au secret médical</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="feat flip">
-      <div class="feat-media reveal">
-        <div class="ph">
-          <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1000&q=70"
-               alt="Bureau Salverys" />
-        </div>
-      </div>
-      <div class="feat-body reveal d1">
-        <div class="mlabel"><span class="idx">/ B</span><span>Le bon calcul</span></div>
-        <h3>Environ 40 % moins cher, sans rogner sur la qualité.</h3>
-        <p>Une direction expérimentée et une structure de coûts optimisée : vous obtenez un service supervisé et fiable, à une fraction du prix d'une embauche ou d'un prestataire en France.</p>
-        <ul class="tick">
-          <li>Forfait mensuel clair, jamais de facturation à l'acte</li>
-          <li>Continuité de service : équipe et backup, pas de jour d'arrêt</li>
-          <li>Reporting et supervision qualité inclus</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- INCLUS -->
-<section class="section" id="confiance" style="padding-top:0">
-  <div class="wrap section-inner">
-    <div class="mlabel reveal"><span class="idx">(04)</span><span>Confidentialité &amp; service inclus</span><span class="rule"></span></div>
-    <div class="sec-head reveal">
-      <h2>Ce qui est compris, <em>sans supplément</em>.</h2>
-      <p>La confidentialité de vos données — patients, utilisateurs, clients — est notre première exigence, et tout le reste est déjà dans le forfait.</p>
-    </div>
-    <div class="inc-grid">
-      <div class="inc reveal"><div class="inc-idx">+ 01</div><h4>Sécurité &amp; secret professionnel</h4><p>Agents sous comptes nommés et accès tracés ; télésecrétaires formées au secret médical.</p></div>
-      <div class="inc reveal d1"><div class="inc-idx">+ 02</div><h4>RGPD — sous-traitant (art. 28)</h4><p>Transfert encadré (clauses art. 46) : cadre légal clair, présenté dès le 1er échange.</p></div>
-      <div class="inc reveal d2"><div class="inc-idx">+ 03</div><h4>Comptes nommés, zéro download</h4><p>Les données restent chez votre hébergeur ou votre SaaS, jamais sur le poste de l'agent.</p></div>
-      <div class="inc reveal"><div class="inc-idx">+ 04</div><h4>Intégration faite par nous</h4><p>Vos outils support (Zendesk, Jira, GLPI…) comme métier (Doctolib, Maiia, Médistory) : vous ne touchez à rien.</p></div>
-      <div class="inc reveal d1"><div class="inc-idx">+ 05</div><h4>Continuité garantie</h4><p>Un agent de backup par compte, agents en double connexion (fibre + 4G) et hub de repli alimenté : votre standard ne tombe pas.</p></div>
-      <div class="inc reveal d2"><div class="inc-idx">+ 06</div><h4>Reporting mensuel</h4><p>Taux de décroché, délai de première réponse, SLA tickets : vous mesurez, vous ne croyez pas sur parole.</p></div>
-      <div class="inc reveal"><div class="inc-idx">+ 07</div><h4>Engagement de service</h4><p>En régime, ≥ 90 % d'appels décrochés (médical) ou SLA de première réponse tenu (support), sinon 20 % d'avoir le mois suivant.</p></div>
-      <div class="inc reveal d1"><div class="inc-idx">+ 08</div><h4>Forfait mensuel, jamais à l'acte</h4><p>Et vous gardez la main sur vos files et vos priorités.</p></div>
-      <div class="inc reveal d2"><div class="inc-idx">+ 09</div><h4>Plan de continuité écrit</h4><p>Groupe électrogène, onduleurs, procédures de repli documentées et testées.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- APPROCHE -->
-<section class="section" id="approche" style="padding-top:0">
-  <div class="wrap section-inner">
-    <div class="mlabel reveal"><span class="idx">(05)</span><span>Notre approche</span><span class="rule"></span></div>
-    <div class="sec-head reveal">
-      <h2>On démarre petit, <em>on grandit avec vous</em>.</h2>
-      <p>Au forfait, jamais à l'acte. Vous montez de palier seulement quand votre volume le justifie.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="sn">01</div><h4>Échange &amp; cadrage</h4><p>15 minutes pour comprendre votre besoin et vos outils.</p></div>
-      <div class="step reveal d1"><div class="sn">02</div><h4>1er mois <span class="accent">à −50 %</span></h4><p>Service en conditions réelles, à demi-tarif et sans engagement.</p></div>
-      <div class="step reveal d2"><div class="sn">03</div><h4>Forfait adapté</h4><p>On cale le forfait sur votre volume réel, paliers clairs.</p></div>
-      <div class="step reveal d3"><div class="sn">04</div><h4>Montée en charge</h4><p>Le forfait évolue avec vous, sans friction.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-band" id="contact">
+<section class="types" id="metiers">
   <div class="wrap">
-    <div class="mlabel reveal"><span class="idx">(06)</span><span>Contact</span><span class="rule"></span></div>
-    <h2 class="reveal">Parlons de votre <em>besoin</em>.</h2>
-    <p class="reveal d1">15 minutes pour cadrer votre projet et démarrer avec un 1er mois à −50 %, sans engagement.</p>
-    <div class="cta-actions reveal d2">
-      <a href="mailto:contact@salverys.fr" class="btn btn-light">Contactez-nous <span class="arr">→</span></a>
-      <a href="#metiers" class="btn btn-ghost">Simuler mon forfait <span class="arr">→</span></a>
+    <h2 class="reveal">Qu'externalisez-vous ?</h2>
+    <div class="types-row">
+      <a class="tcard reveal" href="simulateur-informatique.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#3b5a48,#17352A)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=70" alt="Support applicatif SaaS" />
+        <span class="tgo">→</span><span class="tsub">Priorité · SaaS</span><span class="tlab">Support Applicatif &amp; Métier</span>
+      </a>
+      <a class="tcard reveal d1" href="simulateur-helpdesk-it.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#4A1D1A,#2b100e)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=640&q=70" alt="Helpdesk IT" />
+        <span class="tgo">→</span><span class="tsub">DSI · ESN · MSP</span><span class="tlab">Helpdesk IT N1 externalisé</span>
+      </a>
+      <a class="tcard reveal d2" href="simulateur-salverys.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#57536e,#2f2c44)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=640&q=70" alt="Télésecrétariat médical" />
+        <span class="tgo">→</span><span class="tsub">Dès 350 €/mois</span><span class="tlab">Télésecrétariat médical</span>
+      </a>
+      <span class="tcard soon reveal d2">
+        <span class="bgfall" style="background:linear-gradient(160deg,#42604f,#17352A)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=640&q=70" alt="Relation client" />
+        <span class="tsub">Bientôt</span><span class="tlab">Relation client, toutes sortes</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ÉTAPES -->
+<section class="steps" id="etapes">
+  <div class="wrap">
+    <span class="tagchip reveal">Comment ça marche</span>
+    <h2 class="reveal">Plus de capacité en trois étapes</h2>
+
+    <div class="step-card lav reveal">
+      <div>
+        <span class="step-num">Étape 1</span>
+        <h3>On cadre votre besoin</h3>
+        <p>15 minutes pour comprendre votre activité, vos volumes et vos outils. Nous configurons tout : Zendesk, Jira, GLPI, Doctolib, Maiia… vous ne touchez à rien.</p>
+      </div>
+      <div class="step-visual">
+        <div class="line w80"></div><div class="line w60"></div><div class="line w40"></div>
+        <div class="chip-row">
+          <span class="chip" style="background:var(--cream)">☎ Appels</span>
+          <span class="chip" style="background:var(--cream)">🎟 Tickets</span>
+          <span class="chip" style="background:var(--chartreuse)">✓ Outils connectés</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card mar reveal">
+      <div>
+        <span class="step-num">Étape 2</span>
+        <h3>1er mois à −50 %</h3>
+        <p>Le service tourne en conditions réelles, à demi-tarif et sans engagement. Vous jugez sur pièces : décroché, délais de réponse, qualité du français.</p>
+      </div>
+      <div class="step-visual">
+        <div class="sv-label">Votre 1er mois</div>
+        <div class="price"><span class="old">700 €</span>350 €<small> /mois</small></div>
+        <div class="chip-row">
+          <span class="chip" style="background:var(--chartreuse)">−50 %</span>
+          <span class="chip" style="background:var(--cream)">Sans engagement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card grn reveal">
+      <div>
+        <span class="step-num">Étape 3</span>
+        <h3>On grandit avec vous</h3>
+        <p>Forfait calé sur votre volume réel, paliers clairs, jamais de facturation à l'acte. Vous montez de palier seulement quand votre activité le justifie.</p>
+      </div>
+      <div class="step-visual">
+        <div class="sv-label">Reporting mensuel</div>
+        <div class="line w80"></div><div class="line w60"></div>
+        <div class="chip-row">
+          <span class="chip" style="background:var(--cream)">Décroché 97 %</span>
+          <span class="chip" style="background:var(--cream)">SLA tenu</span>
+          <span class="chip" style="background:var(--chartreuse)">↗ Palier ajusté</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESSAI -->
+<section class="try">
+  <div class="wrap">
+    <div class="try-card reveal">
+      <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+           src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=70"
+           alt="Équipe Salverys" />
+      <div class="try-note"><b>−50 %</b>sur votre 1er mois, sans engagement, résiliable à tout moment</div>
+      <div class="try-inner">
+        <h2>Essayez Salverys sans risque</h2>
+        <p>Vous jugez le service en conditions réelles sur votre propre activité — pas sur une plaquette commerciale.</p>
+        <a href="#contact" class="btn btn-lime">Démarrer l'essai <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="try-feats">
+      <div class="tf reveal"><b>RGPD cadré</b><p>Sous-traitant art. 28, transfert encadré (clauses art. 46), présenté dès le 1er échange.</p></div>
+      <div class="tf reveal d1"><b>Zéro download</b><p>Comptes nommés, accès tracés : vos données restent chez votre hébergeur ou votre SaaS.</p></div>
+      <div class="tf reveal"><b>Continuité garantie</b><p>Backup par compte, double connexion fibre + 4G, hub de repli alimenté.</p></div>
+      <div class="tf reveal d1"><b>Engagement de service</b><p>≥ 90 % d'appels décrochés ou SLA tenu, sinon 20 % d'avoir le mois suivant.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="roi">
+  <div class="wrap">
+    <h2 class="reveal">Le bon calcul, tout simplement</h2>
+    <div class="roi-grid">
+      <div class="roi-card reveal">
+        <h4>Une embauche en France</h4>
+        <div class="bignum">Recruter</div>
+        <p>Salaire chargé, recrutement, formation, encadrement, turnover, absences : le vrai coût d'un poste support interne dépasse largement la fiche de paie.</p>
+      </div>
+      <div class="roi-card roi-chart reveal d1">
+        <h4>Coût mensuel comparé, à périmètre égal</h4>
+        <svg viewBox="0 0 340 150" role="img" aria-label="Comparaison de coût : France vs Salverys">
+          <line x1="10" y1="130" x2="330" y2="130" stroke="#DDD6C6" stroke-width="1"/>
+          <rect x="40" y="30" width="90" height="100" rx="8" fill="#C7C1EE"/>
+          <rect x="200" y="70" width="90" height="60" rx="8" fill="#DDF247"/>
+          <text x="85" y="22" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#17352A">France</text>
+          <text x="245" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#17352A">Salverys</text>
+          <text x="85" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#17352A">100 %</text>
+          <text x="245" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#17352A">~60 %</text>
+        </svg>
+        <p>Mêmes horaires, même langue — supervision et reporting inclus.</p>
+      </div>
+      <div class="roi-card reveal d2">
+        <h4>Avec Salverys</h4>
+        <div class="bignum">−40 %</div>
+        <p>environ, au forfait mensuel clair — jamais de facturation à l'acte, backup et supervision inclus.</p>
+      </div>
+    </div>
+    <p class="roi-note">Montants indicatifs — chiffrez votre cas précis avec les simulateurs, ou demandez un devis.</p>
+  </div>
+</section>
+
+<!-- CAPTURE -->
+<section class="capture" id="contact">
+  <div class="wrap">
+    <div class="capture-card reveal">
+      <div>
+        <h2>Un devis en <em>30 secondes</em></h2>
+        <p>Laissez votre email professionnel : nous revenons vers vous sous 24 h ouvrées avec un chiffrage et un créneau de 15 minutes.</p>
+      </div>
+      <div>
+        <form class="capture-form" onsubmit="return salverysMailto(this)">
+          <input type="email" name="email" placeholder="votre@email-pro.fr" required />
+          <button type="submit" class="btn btn-lime">Recevoir mon devis <span class="arr">→</span></button>
+        </form>
+        <p class="capture-legal">Ou directement : <a href="mailto:contact@salverys.fr">contact@salverys.fr</a> — aucune newsletter, juste votre devis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <div class="wrap">
+    <div class="quote-card reveal">
+      <div class="quote-photo">
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=640&q=70"
+             alt="Direction Salverys" />
+      </div>
+      <div class="quote-body">
+        <blockquote>« Notre engagement : un service que l'on mesure — décroché, délais, SLA — <em>pas un service que l'on croit sur parole</em>. »</blockquote>
+        <cite><b>La direction Salverys</b>Antananarivo, Madagascar</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTÉGRATIONS -->
+<section class="integr">
+  <div class="wrap">
+    <h2 class="reveal">Fonctionne avec vos outils actuels</h2>
+    <p class="sub reveal">Nous travaillons directement dans vos outils support et métier — l'intégration est faite par nous, vous ne changez rien à votre organisation.</p>
+    <div class="integr-row reveal d1">
+      <span class="icircle">Zendesk</span>
+      <span class="icircle">Jira SM</span>
+      <span class="icircle">Freshdesk</span>
+      <span class="icircle">GLPI</span>
+      <span class="icircle center">Salverys</span>
+      <span class="icircle">Intercom</span>
+      <span class="icircle">Doctolib</span>
+      <span class="icircle">Maiia</span>
+      <span class="icircle">Ubicentrex</span>
+    </div>
+  </div>
+</section>
+
+<!-- READY -->
+<section class="ready">
+  <div class="wrap ready-grid">
+    <div class="ready-photo reveal">
+      <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+           src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=70"
+           alt="Bureau Salverys" />
+    </div>
+    <div class="ready-card reveal d1">
+      <h2>Prêt à récupérer votre temps ?</h2>
+      <ul class="ready-list">
+        <li>Opérationnel en 3 semaines environ</li>
+        <li>1er mois à −50 %, sans engagement</li>
+        <li>Français langue maternelle, anglais professionnel</li>
+        <li>Forfait mensuel clair, jamais à l'acte</li>
+      </ul>
+      <div class="ctas">
+        <a href="mailto:contact@salverys.fr" class="btn btn-forest">Contactez-nous</a>
+        <a href="#metiers" class="btn btn-white">Simuler mon forfait <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="reveal">Là pour aider</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">Où est basée l'équipe, et quelle langue parle-t-elle ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>À Antananarivo, Madagascar — mêmes heures ouvrées que la France. Le français y est parlé couramment ; nos agents prennent aussi en charge l'anglais professionnel.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Comment gérez-vous le RGPD et la confidentialité ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Salverys intervient comme sous-traitant (art. 28 RGPD) avec un transfert encadré par clauses contractuelles (art. 46). Les agents travaillent sous comptes nommés, avec accès tracés, et vos données restent chez votre hébergeur ou votre SaaS — jamais sur le poste de l'agent. Les télésecrétaires sont formées au secret médical.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Y a-t-il un engagement de durée ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Non. Le service est sans engagement, résiliable à tout moment, et le 1er mois est à −50 % pour tester en conditions réelles.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Comment est facturé le service ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Au forfait mensuel, par paliers clairs calés sur votre volume — jamais de facturation à l'acte. Le télésecrétariat médical démarre dès 350 €/mois. Chaque métier a son simulateur pour chiffrer votre cas en direct.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Que se passe-t-il si un agent est absent ou si la connexion tombe ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Chaque compte a un agent de backup. Les agents disposent d'une double connexion (fibre + 4G) et d'un hub de repli alimenté (groupe électrogène, onduleurs). Le plan de continuité est écrit et remis au client.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Comment mesurez-vous la qualité ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Reporting mensuel : taux de décroché, délai de première réponse, SLA tickets. En régime, nous nous engageons sur ≥ 90 % d'appels décrochés (médical) ou un SLA de première réponse tenu (support) — sinon 20 % d'avoir le mois suivant.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">En combien de temps peut-on démarrer ?<span class="ic">+</span></button>
+        <div class="faq-a"><p>Comptez environ 3 semaines entre le premier échange et une équipe pleinement opérationnelle : cadrage, connexion à vos outils, formation à vos process, puis démarrage.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -567,70 +842,87 @@ img { display: block; max-width: 100%; }
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" /></a>
-        <p>Externalisation francophone : support IT &amp; télésecrétariat médical, depuis Antananarivo vers la France.</p>
+    <div class="footer-promos">
+      <a class="fpromo" href="espace-candidat.html">
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=60" alt="Rejoindre Salverys" />
+        <span class="fp-tag">Recrutement</span><span class="fp-lab">Nous rejoindre — freelances FR</span>
+      </a>
+      <a class="fpromo" href="espace-client.html">
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=60" alt="Espace client" />
+        <span class="fp-tag">Clients</span><span class="fp-lab">Espace client — reporting &amp; suivi</span>
+      </a>
+      <a class="fpromo" href="#metiers">
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=60" alt="Simulateurs de tarif" />
+        <span class="fp-tag">Tarifs</span><span class="fp-lab">Simulez votre forfait en direct</span>
+      </a>
+    </div>
+    <div class="footer-word" aria-hidden="true">Salverys</div>
+    <div class="footer-cols">
+      <p class="footer-about">Externalisation francophone : support IT &amp; télésecrétariat médical, depuis Antananarivo vers la France.</p>
+      <div class="footer-col">
+        <h5>Métiers</h5>
+        <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+        <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
+        <a href="simulateur-salverys.html">Télésecrétariat médical</a>
       </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h5>Métiers</h5>
-          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
-          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
-          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
-          <a href="#contact">Contactez-nous</a>
-        </div>
-        <div class="footer-col">
-          <h5>Salverys</h5>
-          <a href="espace-candidat.html">Nous rejoindre</a>
-          <a href="suivi-candidature.html">Suivre ma candidature</a>
-          <a href="espace-client.html">Espace client</a>
-        </div>
+      <div class="footer-col">
+        <h5>Salverys</h5>
+        <a href="espace-candidat.html">Nous rejoindre</a>
+        <a href="suivi-candidature.html">Suivre ma candidature</a>
+        <a href="espace-client.html">Espace client</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
+        <a href="#contact">Demander un devis</a>
       </div>
     </div>
     <div class="footer-meta">
       <span>© Salverys — Antananarivo → France</span>
       <span>Montants indicatifs · devis personnalisé sur demande</span>
     </div>
-    <div class="footer-word" aria-hidden="true">Salverys<span class="dot">.</span></div>
   </div>
+  <div class="footer-lime"></div>
 </footer>
 
 <script>
 // Burger
 const burger = document.getElementById('navBurger');
-const links = document.getElementById('navLinks');
-burger.addEventListener('click', () => links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+const mobile = document.getElementById('navMobile');
+burger.addEventListener('click', () => mobile.classList.toggle('open'));
+mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobile.classList.remove('open')));
 
 // Reveal on scroll
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: .12 });
+}, { threshold: .1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Count-up stats
-const fmt = (el, v) => {
-  el.textContent = (el.dataset.pre || '') + v + (el.dataset.suf || '');
-};
-const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target, to = parseInt(el.dataset.to, 10), t0 = performance.now(), dur = 1200;
-    const tick = now => {
-      const p = Math.min((now - t0) / dur, 1);
-      fmt(el, Math.round(to * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-    cio.unobserve(el);
+// Onglets bande verte
+document.querySelectorAll('.gb-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.gb-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.gb-panel').forEach(p => p.hidden = p.dataset.name !== tab.dataset.panel);
   });
-}, { threshold: .5 });
-document.querySelectorAll('.stat .num[data-to]').forEach(el => cio.observe(el));
+});
+
+// FAQ accordéon
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement, a = item.querySelector('.faq-a'), open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = '0'; });
+    if (!open) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+  });
+});
+
+// Formulaire devis → mailto pré-rempli
+function salverysMailto(form) {
+  const email = form.email.value;
+  location.href = 'mailto:contact@salverys.fr?subject=' + encodeURIComponent('Demande de devis Salverys') +
+    '&body=' + encodeURIComponent('Bonjour,\n\nJe souhaite recevoir un devis. Vous pouvez me recontacter sur : ' + email + '\n\nMerci.');
+  return false;
+}
 </script>
 </body>
 </html>
