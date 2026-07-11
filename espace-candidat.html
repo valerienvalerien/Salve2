@@ -54,8 +54,7 @@
     <li>Statut freelance, contrat de prestation clair</li>
   </ul>
 
-  <form class="cd-form" id="cd-form" name="candidature" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="candidature" />
+  <form class="cd-form" id="cd-form" name="candidature">
     <input type="hidden" name="code_candidat" id="cd-code-field" />
     <p class="cd-hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
 
@@ -102,9 +101,10 @@
   </div>
 
   <div class="cd-fallback" id="cd-fallback" hidden>
-    L'envoi automatique n'a pas abouti (site hors ligne ou formulaire non activé).
-    <a id="cd-mailto" href="#">Envoyer votre candidature par email</a> — votre code candidat
-    y est déjà inclus.
+    Votre logiciel de messagerie s'ouvre avec votre candidature déjà rédigée — cliquez sur
+    <b>Envoyer</b> pour la transmettre à contact@salverys.fr. S'il ne s'ouvre pas,
+    <a id="cd-mailto" href="#">cliquez ici pour l'ouvrir</a> — votre code candidat y est
+    déjà inclus.
   </div>
 </div>
 
@@ -164,38 +164,23 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (form.elements['bot-field'].value) return; // honeypot
-    var btn = $('cd-submit');
-    btn.disabled = true; btn.textContent = 'Envoi…';
-    var body = new URLSearchParams(new FormData(form)).toString();
-    /* Netlify Forms : POST vers la page elle-même, encodé en formulaire. */
-    fetch(location.pathname, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
-    }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      success();
-    }).catch(function () {
-      /* Repli : email pré-rempli (avant mise en ligne Netlify, ou si Forms inactif). */
-      var f = form.elements;
-      var subject = 'Candidature ' + f.poste.value + ' — ' + f.prenom.value + ' ' + f.nom.value + ' [' + code + ']';
-      var lines = ['Code candidat : ' + code, 'Poste : ' + f.poste.value,
-        'Nom : ' + f.prenom.value + ' ' + f.nom.value, 'Email : ' + f.email.value,
-        'WhatsApp : ' + f.whatsapp.value, 'CV : ' + f.cv_lien.value, '',
-        'Expérience :', f.experience.value, '', 'Message :', f.message.value];
-      $('cd-mailto').href = 'mailto:contact@salverys.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
-      $('cd-fallback').hidden = false;
-      btn.disabled = false; btn.textContent = 'Envoyer ma candidature';
-      $('cd-code-display').textContent = code;
-      $('cd-success').hidden = false;
-    });
-  });
-
-  function success() {
-    form.hidden = true;
+    /* Soumission par email pré-rempli vers contact@salverys.fr : aucun backend requis,
+       le code candidat est inclus pour le rapprochement.
+       TODO : pour une réception automatique, brancher un backend de formulaire
+       (ex. Formspree) — mettre action="https://formspree.io/f/<ID>" + un POST fetch ici. */
+    var f = form.elements;
+    var subject = 'Candidature ' + f.poste.value + ' — ' + f.prenom.value + ' ' + f.nom.value + ' [' + code + ']';
+    var lines = ['Code candidat : ' + code, 'Poste : ' + f.poste.value,
+      'Nom : ' + f.prenom.value + ' ' + f.nom.value, 'Email : ' + f.email.value,
+      'WhatsApp : ' + f.whatsapp.value, 'CV : ' + f.cv_lien.value, '',
+      'Expérience :', f.experience.value, '', 'Message :', f.message.value];
+    var mailto = 'mailto:contact@salverys.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    $('cd-mailto').href = mailto;
     $('cd-code-display').textContent = code;
+    $('cd-fallback').hidden = false;
     $('cd-success').hidden = false;
-  }
+    window.location.href = mailto; // ouvre le client email du candidat
+  });
 })();
 </script>
 </body>

@@ -1,0 +1,11 @@
+# Hébergement OVH (Apache). Ce fichier est copié dans _site/ par tools/build-site.sh
+# et déployé à la racine web ; il n'a d'effet que sur les pages publiées.
+
+# Les espaces partenaires ne doivent être ni indexés ni mis en cache par des
+# intermédiaires (les pages portent déjà <meta robots noindex>, ceci ajoute l'en-tête HTTP).
+<IfModule mod_headers.c>
+  <FilesMatch "^espace-client.*\.html$">
+    Header set X-Robots-Tag "noindex, nofollow"
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+</IfModule>

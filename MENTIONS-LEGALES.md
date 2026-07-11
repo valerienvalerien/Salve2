@@ -69,8 +69,14 @@ Prestation de services **B2B** d'une société **malgache** (hors UE) vers des c
 
 ## Hébergement du site
 
-_(à compléter — ex. hébergeur, raison sociale, adresse. Si déploiement Netlify : indiquer
-Netlify, Inc. + adresse.)_
+Le site `salverys.fr` est hébergé par **OVH** :
+
+| Champ | Valeur |
+|---|---|
+| Hébergeur | **OVH SAS** |
+| Siège social | 2 rue Kellermann, 59100 Roubaix, France |
+| Téléphone | 1007 (depuis la France) |
+| Site | https://www.ovhcloud.com |
 
 ## Rappels de cohérence
 

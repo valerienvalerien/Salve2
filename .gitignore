@@ -1,2 +1,2 @@
-# Sortie de build Netlify (générée par tools/build-site.sh)
+# Sortie de build du site (générée par tools/build-site.sh, à téléverser sur l'hébergeur)
 _site/

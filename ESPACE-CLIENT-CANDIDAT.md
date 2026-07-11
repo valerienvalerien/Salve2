@@ -2,7 +2,8 @@
 
 > Créé le 2026-06-12. Couvre : l'**espace client** (page chiffrée des prix marque
 > blanche), l'**espace candidat** (dépôt + suivi de candidature), et le **déploiement
-> Netlify** qui garantit que rien d'interne n'est servi. Chiffres : `PRICING.md` fait foi.
+> OVH** (via `tools/build-site.sh`) qui garantit que rien d'interne n'est servi.
+> Chiffres : `PRICING.md` fait foi.
 
 ---
 
@@ -48,7 +49,7 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 - Les `tools/espace-contenu-*.html` sont les **sources en clair** : elles sont dans le
   dépôt (comme `PRICING.md`, qui expose déjà ces prix). **Tant que le dépôt GitHub est
   public, les prix MB fuient par le dépôt, pas par le site.** → **Passer le dépôt en
-  privé dès que le site est branché sur Netlify** (déjà prévu).
+  privé dès la mise en ligne du site** (déjà prévu).
 - Le site servi, lui, est propre : `tools/build-site.sh` ne copie dans `_site/` que les
   pages publiques + `assets/` — ni .md, ni `tools/`, ni CRM, ni trésorerie.
 
@@ -57,16 +58,15 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 ## 2. Espace candidat (`espace-candidat.html` + `suivi-candidature.html`)
 
 ### Dépôt de candidature
-- Formulaire **Netlify Forms** (`name="candidature"`, honeypot anti-spam). À activer :
-  au premier deploy, vérifier dans Netlify → **Forms** que « candidature » est détecté ;
-  configurer la **notification email** vers contact@salverys.fr (Forms → Notifications).
-- Tier gratuit : **100 soumissions/mois** (largement assez). Pas d'upload de fichier :
-  le CV est demandé en **lien** (Drive/Dropbox).
-- **Repli automatique** : si le POST échoue (site pas encore sur Netlify, Forms
-  inactif), le candidat reçoit un lien **email pré-rempli** vers contact@salverys.fr —
-  aucune candidature perdue.
-- Alternative si on quitte Netlify : Formspree — remplacer l'attribut du `<form>` par
-  `action="https://formspree.io/f/<ID>"` et retirer `data-netlify`.
+- Soumission par **email pré-rempli** : au clic sur « Envoyer ma candidature », le client
+  email du candidat s'ouvre avec tous les champs (code candidat inclus) vers
+  contact@salverys.fr. Aucun backend requis, aucune candidature perdue. Honeypot
+  anti-spam (`bot-field`) vérifié côté navigateur.
+- Pas d'upload de fichier : le CV est demandé en **lien** (Drive/Dropbox).
+- **Réception automatique (optionnel, plus tard)** : brancher un backend de formulaire
+  compatible OVH — ex. **Formspree** : mettre `action="https://formspree.io/f/<ID>"` sur
+  le `<form>` et remplacer l'ouverture du `mailto:` par un `POST fetch` (voir le TODO dans
+  le `<script>` de `espace-candidat.html`).
 
 ### Code candidat & suivi
 - Chaque dépôt génère un code **SLV-XXXXX** (affiché au candidat + inclus dans la
@@ -74,7 +74,8 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 - Le suivi lit `assets/candidatures-statuts.json` : mapping `code → statut` parmi
   `recue · entretien · test · acceptee · refusee`. **Tout code absent = « reçue »**
   (donc rien à faire pour les nouveaux dépôts).
-- **Mise à jour d'un statut** : éditer le JSON, committer, pousser (Netlify redéploie).
+- **Mise à jour d'un statut** : éditer le JSON, committer, pousser, puis re-téléverser le
+  build sur OVH.
   ```json
   { "SLV-7K2MQ": "entretien" }
   ```
@@ -83,19 +84,22 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 
 ---
 
-## 3. Déploiement Netlify
+## 3. Déploiement OVH
 
-- `netlify.toml` : build = `bash tools/build-site.sh`, publish = `_site/`.
+- Build local : `bash tools/build-site.sh` → génère `_site/` (à téléverser sur l'espace
+  web OVH, ex. via FTP/SFTP ou `rsync` vers le dossier `www/`).
 - Pages servies : index, 3 simulateurs, espace-client, espace-candidat,
-  suivi-candidature + `assets/`. **Tout le reste est exclu** (le script échoue si un .md
-  ou `tools/` se retrouve dans `_site/`).
-- En-têtes : `espace-client.html` servi en `noindex` + `Cache-Control: no-store`.
+  suivi-candidature + `assets/` + `.htaccess`. **Tout le reste est exclu** (le script
+  échoue si un .md ou `tools/` se retrouve dans `_site/`).
+- En-têtes : le `.htaccess` (copié dans `_site/`) sert les `espace-client*.html` en
+  `X-Robots-Tag: noindex` + `Cache-Control: no-store` (les pages portent déjà la balise
+  `<meta robots noindex>`).
 - Test local du build : `bash tools/build-site.sh && python3 -m http.server -d _site`.
 
 ## 4. Checklist mise en ligne
-1. ☐ Brancher le dépôt sur Netlify (build auto via `netlify.toml`).
+1. ☐ Vérifier que `salverys.fr` (DNS OVH) sert bien le contenu de `_site/` en HTTPS.
 2. ☐ **Passer le dépôt GitHub en privé.**
-3. ☐ Activer la notification email Netlify Forms → contact@salverys.fr.
+3. ☐ Tester un dépôt de candidature : le client email s'ouvre bien pré-rempli vers
+   contact@salverys.fr (code candidat inclus).
 4. ☐ Tester les 3 espaces partenaires en HTTPS, chacun avec son mot de passe.
-5. ☐ Faire un dépôt de candidature test + vérifier la réception + le suivi.
-6. ☐ Retirer `SLV-DEMO1` de `assets/candidatures-statuts.json`.
+5. ☐ Retirer `SLV-DEMO1` de `assets/candidatures-statuts.json`.
