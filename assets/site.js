@@ -431,4 +431,55 @@
       }
     });
   }());
+
+  /* ========================================================
+     FORMULAIRE CONTACT (accueil) — Formspree AJAX
+     ======================================================== */
+  (function () {
+    const form = document.getElementById('form-contact');
+    if (!form) return;
+    const okEl = document.getElementById('contact-success');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+      try {
+        const r = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (r.ok) {
+          form.style.display = 'none';
+          okEl.style.display = 'block';
+        } else {
+          throw new Error(r.status);
+        }
+      } catch (_) {
+        btn.disabled = false;
+        btn.innerHTML = 'Réessayer <span class="arrow">→</span>';
+      }
+    });
+  }());
+
+  /* ---------- FAQ : un seul volet ouvert à la fois ---------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) faqItems.forEach(other => { if (other !== item) other.open = false; });
+    });
+  });
+
+  /* ---------- Horloges Antananarivo / Paris (carte méthode) ---------- */
+  const clocks = document.querySelectorAll('.route-time[data-tz]');
+  if (clocks.length) {
+    const renderClocks = () => clocks.forEach(el => {
+      try {
+        el.textContent = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: el.dataset.tz }).format(new Date());
+      } catch (_) { el.textContent = ''; }
+    });
+    renderClocks();
+    setInterval(renderClocks, 30000);
+  }
 })();
