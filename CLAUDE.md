@@ -34,7 +34,8 @@ y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
 - Français langue maternelle
-- Coût ~40 % inférieur à un prestataire hexagonal
+- Coût **40 à 60 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
+  (benchmark différencié par métier dans `PRICING.md §3/§5` : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
 
 ## Marque
 

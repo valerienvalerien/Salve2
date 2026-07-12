@@ -126,4 +126,4 @@ avec du volume peu rentable.
   mes données ». Le levier est le **risque**, pas le prix.
 - **Promettre un % de décroché sans les conditions de défense** (§2) : on s'expose à un
   remède qu'on ne maîtrise pas.
-- **Mettre « −40 % » en titre** : c'est notre logique de coût, pas la douleur du client.
+- **Mettre « −40 à −60 % » en titre** : c'est notre logique de coût, pas la douleur du client.
