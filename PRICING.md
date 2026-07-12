@@ -4,7 +4,9 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-06-22 (**priorité niches revue : IT n°1, médical n°2, relation
+> Dernière révision : 2026-07-12 (**benchmark coût à battre différencié par métier §3 :
+> télésecrétaire 33-42 k€/an · support IT N1 38-50 k€/an, argumentaire « coût complet »**) ·
+> précédente 2026-06-22 (**priorité niches revue : IT n°1, médical n°2, relation
 > client de toutes sortes en futur non déterminé — labels §1/§3/§4 et récap §8**) ·
 > précédente 2026-06-12 (rate card partenaire MB §3, télésec MB par créneau §1.b,
 > add-ons amplitude + mise en service §1, pilote IT harmonisé) · précédente 2026-06-06
@@ -165,8 +167,34 @@ où le dégressif **achète du volume** au lieu d'être concédé en négociatio
 
 - **À l'heure** : ~12-15 €/h (direct) · ~8-11 €/h (marque blanche).
 - **À l'interaction** : ~2,5-4 €/ticket N1 (direct) · ~1,8-2,8 € (marque blanche).
-- **Benchmark interne (coût à battre côté client)** : un CDI FR chargé = ~38-46 k€/an,
-  soit **~3 200-3 800 €/mois** (cf. §5). Notre ETP **direct** vise **-40 % minimum**.
+- **Benchmark interne (coût à battre côté client) — différencié par métier (révisé
+  2026-07-12)**. L'ancienne valeur unique (~38-46 k€/an appliquée aux deux métiers) est
+  abandonnée : les prix ne sont pas les mêmes pour les deux métiers, un benchmark par
+  poste est plus crédible.
+
+  **Télésecrétaire médicale (CDI)** — salaire brut : 23 à 30 k€/an selon l'expérience et
+  la région. Coût employeur total (charges patronales + congés + mutuelle + absences +
+  gestion RH) : **33 à 42 k€/an**, soit environ **2 750 à 3 500 €/mois**. Si le client
+  passe par une société spécialisée de télésecrétariat médical en France, le coût réel
+  est souvent bien supérieur (marge du prestataire incluse).
+
+  **Technicien support IT N1 (CDI)** — salaire brut : 26 à 34 k€/an. Coût employeur
+  complet : **38 à 50 k€/an**, soit environ **3 200 à 4 200 €/mois**. Dans les grandes
+  ESN d'Île-de-France, le coût dépasse facilement 50 k€/an une fois intégrés : congés,
+  management, formation, turnover, matériel, licences, locaux.
+
+  **Présentation retenue pour Salverys :**
+
+  | Poste | Coût complet interne France | Objectif Salverys |
+  |---|---|---|
+  | Télésecrétaire médicale | **33-42 k€/an** (~2 750-3 500 €/mois) | **≈ -40 % à -60 %** |
+  | Support IT N1 | **38-50 k€/an** (~3 200-4 200 €/mois) | **≈ -40 % à -60 %** |
+
+  **Le vrai concurrent n'est pas le seul coût salarial mais le coût complet d'un ETP
+  interne**, que les décideurs comparent réellement : salaire + charges, congés et
+  absences, recrutement, formation, supervision, matériel, licences, locaux, risque de
+  turnover. Dans l'argumentaire commercial BPO, c'est ce **coût complet** qu'on met en
+  avant — il reflète le véritable coût d'un recrutement interne.
 - **Durée de contrat (révisée)** : engagement initial **3 mois**, puis **12 mois
   renouvelable** ; 24-36 mois réservés aux grands comptes avec dégressif.
   ⚠️ La copy dit « contrats 12 à 36 mois » → reformuler en « dès 3 mois, puis 12 mois ».
