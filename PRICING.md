@@ -25,8 +25,9 @@
     l'input de marge du revendeur. Bailleurs → interne (§4).
 - **Forfait, pas à l'appel** côté client (prévisibilité). Le « à l'appel » ne sert
   qu'en référence interne de coût.
-- **-40 %** = claim public **conservateur et défendable** (cf. §5). L'économie réelle
-  vs un ETP interne plein est supérieure, mais on annonce -40 % pour rester crédible.
+- **-40 à -60 %** = fourchette publique **défendable** (cf. §5), calée sur le **coût
+  complet** d'un ETP interne (pas le seul salaire chargé). Le plancher -40 % reste le
+  claim conservateur ; -60 % correspond au haut de la fourchette de coût complet interne.
 - **Marque blanche systématique** : l'équipe répond sous le nom du client. Deux
   go-to-market chiffrés : **en direct** (client final) ou **en marque blanche** comme
   sous-traitant d'un acteur déjà établi (ESN, prestataire BPO) — qui prend une marge de
@@ -274,8 +275,16 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
 
 | Poste | Ancienne copy | **Nouveau repère** | Base de calcul |
 |---|---|---|---|
-| Secrétaire médicale (interne) | 35-45 k€/an | **33 à 40 k€/an** | ~1 925 €/brut/mois ⇒ ~32,8 k€ coût employeur + poste/formation/turnover |
-| Téléconseiller CDI (CRC) | 48-55 k€/an | **38 à 46 k€/an** | ~21 900 €/brut/an ⇒ ~31 k€ coût employeur + encadrement + turnover ~25 %/an |
+| Télésecrétaire médicale (interne) | 35-45 k€/an | **33 à 42 k€/an** (~2 750-3 500 €/mois) | brut 23-30 k€/an ⇒ coût employeur total (charges + congés + mutuelle + absences + gestion RH) |
+| Technicien support IT N1 (interne) | — | **38 à 50 k€/an** (~3 200-4 200 €/mois) | brut 26-34 k€/an ⇒ coût employeur complet ; ESN Île-de-France facilement > 50 k€ (management, formation, turnover, matériel, licences, locaux) |
+| Téléconseiller CDI (CRC — relation client) | 48-55 k€/an | **38 à 46 k€/an** | ~21 900 €/brut/an ⇒ ~31 k€ coût employeur + encadrement + turnover ~25 %/an |
+
+> **Benchmark différencié par métier (décision 2026-07-12)** : une valeur unique appliquée
+> aux deux métiers prioritaires n'était pas crédible. On distingue désormais télésecrétaire
+> (33-42 k€) et support IT N1 (38-50 k€). Le vrai concurrent n'est pas le seul coût
+> salarial mais le **coût complet d'un ETP interne** (salaire + charges, congés/absences,
+> recrutement, formation, supervision, matériel, licences, locaux, turnover) — c'est ce
+> coût complet qu'on met en avant dans l'argumentaire BPO.
 
 - Délai de recrutement conservé : **60 à 90 jours**.
 - Turnover CRC conservé : **~25 %/an**.
@@ -283,10 +292,12 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
   300-900 €/mois ; salaires Indeed/Talent.com/HelloWork ; modèles BPO (per-seat/FTE,
   per-minute, per-ticket).
 
-**Calcul du -40 % (défendable)** : un forfait Confort (590 €/mois ≈ 7,1 k€/an) face à
-une secrétaire interne (~33-40 k€/an) représente une économie bien supérieure à 40 %.
-On annonce **-40 %** parce que le client compare souvent à un **mi-temps** ou à un
-**appoint**, pas à un ETP plein — c'est le scénario où -40 % est exact et incontestable.
+**Calcul du -40 à -60 % (défendable)** : un forfait Confort (590 €/mois ≈ 7,1 k€/an) face à
+une secrétaire interne en coût complet (~33-42 k€/an) représente une économie bien
+supérieure à 40 %. On annonce le **plancher -40 %** parce que le client compare parfois à un
+**mi-temps** ou à un **appoint** (scénario où -40 % est exact et incontestable) ; face au
+**coût complet d'un ETP plein**, l'économie monte vers **-60 %** — d'où la fourchette
+affichée -40 à -60 %.
 
 ---
 
@@ -394,8 +405,9 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 |---|---|---|
 | Essai | « 15 jours gratuit » / « 7 jours » (incohérent) | **« 1er mois à -50 % »** (repli : 7j offerts cadrés) |
 | Amorçage | — | **Deal « clients fondateurs »** : 5 logos, dégressif −50/−30/−15 % sur 3 mois, engagement réciproque + témoignage 60 j + référral |
-| Secrétaire médicale (benchmark) | 35-45 k€/an | **33-40 k€/an** |
-| Téléconseiller CDI (benchmark) | 48-55 k€/an | **38-46 k€/an** |
+| Benchmark coût à battre (2026-07-12) | valeur unique 38-46 k€/an (2 métiers) | **différencié : télésecrétaire 33-42 k€/an (~2 750-3 500 €/mois) · support IT N1 38-50 k€/an (~3 200-4 200 €/mois)** ; argument « coût complet ETP » |
+| Claim économie public | « -40 % » | **« -40 à -60 % » vs coût complet interne** |
+| Téléconseiller CDI (CRC, benchmark relation client) | 48-55 k€/an | **38-46 k€/an** |
 | Grille médical | « indicatifs à valider » | **prix fermes** (350/590/950 + sur-devis) |
 | Contrats helpdesk | « 12 à 36 mois » | **« dès 3 mois, puis 12 mois renouvelable »** |
 | Grilles bailleurs / SaaS-helpdesk | éparses en email | **centralisées ici (interne)** |
