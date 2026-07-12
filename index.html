@@ -265,18 +265,25 @@
       </div>
       <div class="feat-media reveal d1">
         <div class="route-card">
-          <div class="route-city">
-            <span class="route-flag" aria-hidden="true">🇲🇬</span>
-            <div class="route-city-txt"><b>Antananarivo</b><span>vos équipes Salverys</span></div>
-            <span class="route-time" data-tz="Indian/Antananarivo">--:--</span>
+          <img class="route-map" src="assets/img/carte-monde.svg" alt="Carte : Antananarivo relie Paris et Montréal" loading="lazy" decoding="async" />
+          <div class="route-cities">
+            <div class="route-city">
+              <span class="route-flag" aria-hidden="true">🇲🇬</span>
+              <div class="route-city-txt"><b>Antananarivo</b><span>vos équipes Salverys</span></div>
+              <span class="route-time" data-tz="Indian/Antananarivo">--:--</span>
+            </div>
+            <div class="route-city">
+              <span class="route-flag" aria-hidden="true">🇫🇷</span>
+              <div class="route-city-txt"><b>Paris</b><span>vos clients et patients</span></div>
+              <span class="route-time" data-tz="Europe/Paris">--:--</span>
+            </div>
+            <div class="route-city">
+              <span class="route-flag" aria-hidden="true">🇨🇦</span>
+              <div class="route-city-txt"><b>Montréal</b><span>vos clients francophones</span></div>
+              <span class="route-time" data-tz="America/Toronto">--:--</span>
+            </div>
           </div>
-          <div class="route-link" aria-hidden="true"><span class="route-dash"></span><span class="route-label">même journée de travail</span><span class="route-dash"></span></div>
-          <div class="route-city">
-            <span class="route-flag" aria-hidden="true">🇫🇷</span>
-            <div class="route-city-txt"><b>Paris</b><span>vos clients et patients</span></div>
-            <span class="route-time" data-tz="Europe/Paris">--:--</span>
-          </div>
-          <p class="route-foot">1 à 2 h de décalage seulement : vos plages 8h–20h sont couvertes en direct, en heure française.</p>
+          <p class="route-foot">Paris à 1–2 h de décalage : vos plages 8h–20h couvertes en direct, en heure française. Montréal servie en français sur la matinée nord-américaine.</p>
         </div>
       </div>
     </div>
@@ -386,7 +393,7 @@
       </details>
       <details class="faq-item">
         <summary>Où sont vos équipes, et à quels horaires ?</summary>
-        <div class="faq-body"><p>À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement.</p></div>
+        <div class="faq-body"><p>À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement. Nous servons aussi le Canada francophone (Montréal) sur la matinée nord-américaine.</p></div>
       </details>
       <details class="faq-item">
         <summary>Où sont hébergées les données ?</summary>
@@ -524,7 +531,7 @@
   "email": "contact@salverys.fr",
   "description": "BPO francophone basé à Antananarivo : support applicatif N1, helpdesk IT N1 et télésecrétariat médical en marque blanche pour des clients professionnels français.",
   "address": { "@type": "PostalAddress", "addressLocality": "Antananarivo", "addressCountry": "MG" },
-  "areaServed": "FR"
+  "areaServed": ["FR", "CA"]
 }
 </script>
 <script type="application/ld+json">
@@ -534,7 +541,7 @@
   "mainEntity": [
     { "@type": "Question", "name": "Comment démarre-t-on ?", "acceptedAnswer": { "@type": "Answer", "text": "Un échange de 15 minutes pour cadrer votre besoin et vos outils, puis un 1er mois à -50 %, sans engagement : le service tourne en conditions réelles et vous jugez sur les chiffres. Comptez environ 3 semaines pour être pleinement opérationnel." } },
     { "@type": "Question", "name": "Travaillez-vous en marque blanche ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, systématiquement : l'équipe répond sous votre identité, avec votre ton et dans vos outils, comme une extension de votre structure. C'est valable pour les cabinets et entreprises en direct comme pour les donneurs d'ordre qui nous confient leur production." } },
-    { "@type": "Question", "name": "Où sont vos équipes, et à quels horaires ?", "acceptedAnswer": { "@type": "Answer", "text": "À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement." } },
+    { "@type": "Question", "name": "Où sont vos équipes, et à quels horaires ?", "acceptedAnswer": { "@type": "Answer", "text": "À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement. Nous servons aussi le Canada francophone (Montréal) sur la matinée nord-américaine." } },
     { "@type": "Question", "name": "Où sont hébergées les données ?", "acceptedAnswer": { "@type": "Answer", "text": "Chez vous : nos agents travaillent sous comptes nommés directement dans vos outils, sans jamais télécharger vos données sur leur poste. Le cadre RGPD est posé dès le premier échange : contrat de sous-traitance (art. 28) et transfert encadré par les clauses de l'art. 46." } },
     { "@type": "Question", "name": "Avec quels outils travaillez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Les vôtres. Côté support : Zendesk, Jira Service Management, Freshdesk, GLPI, Intercom… Côté médical : Doctolib, Maiia, Ubicentrex… L'intégration est faite par nous : vous ne touchez à rien." } },
     { "@type": "Question", "name": "Combien ça coûte ?", "acceptedAnswer": { "@type": "Answer", "text": "Un forfait mensuel clair, jamais de facturation à l'acte — environ 40 % de moins qu'une prestation équivalente en France. Le télésecrétariat médical démarre à 350 €/mois (grille publique) ; pour le support applicatif et le helpdesk IT, le simulateur donne une estimation et le devis ferme arrive sous 24 h." } },

@@ -621,18 +621,17 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .feat-col-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 32px; }
 .section.soft .feat-col-card { background: var(--bg); border: 1px solid var(--line); }
 
-/* ================= MÉTHODE : carte Antananarivo ↔ Paris ================= */
-.route-card { background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 34px 30px; box-shadow: var(--shadow-lg); }
-.route-city { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 18px 20px; }
-.route-flag { font-size: 30px; line-height: 1; }
+/* ================= MÉTHODE : carte du monde Antananarivo · Paris · Montréal ================= */
+.route-card { background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 26px 26px 24px; box-shadow: var(--shadow-lg); }
+.route-map { width: 100%; height: auto; margin-bottom: 18px; }
+.route-cities { display: flex; flex-direction: column; gap: 10px; }
+.route-city { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 12px 18px; }
+.route-flag { font-size: 24px; line-height: 1; }
 .route-city-txt { flex: 1; display: flex; flex-direction: column; }
-.route-city-txt b { font-size: 18px; letter-spacing: -.01em; }
-.route-city-txt span { font-size: 13px; color: rgba(255,255,255,.65); }
-.route-time { font-family: 'Georgia', serif; font-size: 26px; font-weight: 700; color: var(--accent-soft); font-variant-numeric: tabular-nums; }
-.route-link { display: flex; align-items: center; gap: 12px; padding: 14px 6px; }
-.route-dash { flex: 1; height: 0; border-top: 2px dashed rgba(255,255,255,.28); }
-.route-label { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-soft); white-space: nowrap; }
-.route-foot { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,.72); text-align: center; }
+.route-city-txt b { font-size: 16px; letter-spacing: -.01em; }
+.route-city-txt span { font-size: 12.5px; color: rgba(255,255,255,.65); }
+.route-time { font-family: 'Georgia', serif; font-size: 22px; font-weight: 700; color: var(--accent-soft); font-variant-numeric: tabular-nums; }
+.route-foot { margin-top: 16px; font-size: 13.5px; color: rgba(255,255,255,.72); text-align: center; }
 
 /* ================= ENGAGEMENTS ================= */
 .section.deep .kicker { color: var(--accent-soft); }
