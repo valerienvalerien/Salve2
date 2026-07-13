@@ -37,6 +37,24 @@
 
 ---
 
+## Enrichissement contacts (2026-07-13 #2) — décideurs vérifiés
+
+| ID CRM | Société | Décideur vérifié | Rôle dans l'approche | Contact |
+|--------|---------|------------------|----------------------|---------|
+| l210 | Sellsy | **Victor Douek** (Président depuis 01/2024) | Décideur — ⚠️ gouvernance mouvementée oct. 2025, vérifier l'organigramme | — |
+| l212 | Axonaut | **Nicolas Ricard** (Cofondateur & CEO) · CTO : Nicolas Michel | Contact direct (structure compacte) — 🔥 CA 10 M€ 2025 (+43 %), 12 000 clients | — |
+| l213 | Yousign | **Luc Pallavidino** (CEO cofondateur) | Sponsor — viser d'abord le Head of Customer Care | — |
+| l215 | Pennylane | **Arthur Waller** (Cofondateur & CEO, ~115 M€ ARR) | Sponsor — viser le Head of Support | — |
+| l218 | Lucca | **Gilles Satgé** (CEO fondateur) | Sponsor — viser le Head of Support | — |
+| l219 | Sarbacane | **Mathieu Tarnus** (CEO Groupe Positive) | Décideur | 03 28 32 80 40 · mathieu.tarnus@sarbacane.com (confiance moyenne) |
+| l220 | Libeo | **Pierre Dutaret** (CEO cofondateur) | Décideur | pierre@libeo.io (revendiqué public — FF News, à vérifier) |
+
+Restent à sourcer : EBP, Septeo, Agicap (CEO non confirmé), Orisha — décideur support opérationnel via LinkedIn.
+
+Score Axonaut relevé 58→62 (signal de croissance vérifié : +43 % de CA en 2025 en restant autofinancé).
+
+---
+
 ## Prochaines étapes
 
 1. **Qualifier avant tout envoi** : identifier nominativement le décideur (LinkedIn) + trouver le déclencheur (`{{trigger_recrutement}}` obligatoire, cf. `OUTREACH-IT-N1-marque-blanche.md`).
