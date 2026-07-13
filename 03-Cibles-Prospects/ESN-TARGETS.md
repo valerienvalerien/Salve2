@@ -95,7 +95,36 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 
 1. **Lancer `/sales-prospect`** sur les cibles après validation (voir PROSPECT-ANALYSIS pour Metaline, Oxxodata, Tenexa, Cyllene, Kincy, Izencia)
 2. **Identifier les décideurs nominatifs** selon la règle de cadrage ci-dessus (fondateur pour les petites, Directeur Delivery / DG Ops pour les moyennes/grandes)
-3. **Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`
+3. ~~**Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`~~ ✅ **Fait le 2026-07-13** :
+   les P2/P3 restantes (ComputerLand, IT Partner, Alteo, Nowteam, OCI, Itak-IT, BlueBearsIT,
+   Next2i, Edeal IT, VDI Telecom, Acti-One, ES Protect, Value IT) sont dans le CRM en leads
+   `l196`-`l208` (Hardis exclu — trop grand, cf. §disqualification). Les P1 y étaient déjà (`l181`-`l195`).
+
+### Enrichissement contacts (2026-07-13 #2) — dirigeants & coordonnées vérifiés
+
+| Société | Décideur vérifié | Tél | Email | Source |
+|---------|-----------------|-----|-------|--------|
+| ComputerLand | à identifier (registres ambigus) | 01 46 99 42 99 | contact@computerland.fr | computerland.fr |
+| IT Partner | **Abdénour Ainséba** (Président) | — | — (LinkedIn-first) | annuaire-entreprises |
+| Nowteam | DG agence à identifier | 04 28 29 50 90 | — | nowteam.net |
+| OCI | à identifier | 09 69 39 40 60 | — | oci.fr |
+| Itak-IT | **Alex Kong** (dirigeant cofondateur) | 01 84 23 30 10 | contact@itak-it.com | pappers |
+| BlueBearsIT | **Eric Charpentier** (Président-Fondateur) | — | — (LinkedIn-first) | pappers |
+| Next2i | **Rachid Sourhou** (Président) | 01 48 49 98 00 | — | pappers |
+| Edeal IT | **Laurent Cognet** (Président) | — | — | pappers |
+| VDI Telecom | **Thierry Brejon** (Président) | 04 72 71 66 99 | vdi@vditelecom.fr | pappers |
+| Acti-One | **Jérôme Niochet** (dirigeant) | 04 78 02 79 40 | — | acti-one.fr |
+| Value IT | **Jeremy Orlowski** (dirigeant) | 09 70 24 01 80 | contact@value-info.fr | value-info.fr |
+
+**⚠️ Requalifications (2026-07-13) :**
+- **Alteo** : c'est une **agence web** (création de sites + hébergement infogéré), pas un MSP
+  helpdesk — score CRM abaissé 55→30, priorité basse.
+- **ES Protect** : 🚫 **disqualifié** — esprotect.fr est un **média/guide** (comparateur
+  assurance/cyber), pas un prestataire IT. L'article « service informatique PME » était éditorial.
+- **Edeal IT** : effectif réel **3-5 pers** (pappers), pas 20-50 — micro-structure, score 42→38.
+- **Nowteam** : appartient au **groupe NowBrains**, même groupe que NowServiceDesk (CRM `l190`,
+  score 80) → une seule approche groupe, l190 reste la porte d'entrée.
+- **Value IT** : siège réel **Saint-Étienne (42)**, pas Saint-Priest.
 4. **Lancer campagne Emelia** avec séquence OUTREACH-IT-N1-marque-blanche.md
 
 ---
