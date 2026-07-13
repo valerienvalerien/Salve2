@@ -95,7 +95,10 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 
 1. **Lancer `/sales-prospect`** sur les cibles après validation (voir PROSPECT-ANALYSIS pour Metaline, Oxxodata, Tenexa, Cyllene, Kincy, Izencia)
 2. **Identifier les décideurs nominatifs** selon la règle de cadrage ci-dessus (fondateur pour les petites, Directeur Delivery / DG Ops pour les moyennes/grandes)
-3. **Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`
+3. ~~**Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`~~ ✅ **Fait le 2026-07-13** :
+   les P2/P3 restantes (ComputerLand, IT Partner, Alteo, Nowteam, OCI, Itak-IT, BlueBearsIT,
+   Next2i, Edeal IT, VDI Telecom, Acti-One, ES Protect, Value IT) sont dans le CRM en leads
+   `l196`-`l208` (Hardis exclu — trop grand, cf. §disqualification). Les P1 y étaient déjà (`l181`-`l195`).
 4. **Lancer campagne Emelia** avec séquence OUTREACH-IT-N1-marque-blanche.md
 
 ---
