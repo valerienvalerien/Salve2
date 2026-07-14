@@ -131,3 +131,32 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 
 *Source : recherches web + annuaires entreprises France (societe.com, pappers.fr, LinkedIn)*
 *À enrichir avec données LinkedIn nominatives avant envoi*
+
+---
+
+## Vague 3 (2026-07-13 #3) — nouvelles cibles régionales + marque blanche
+
+Intégrées au CRM en leads `l221`-`l232` (niche `helpdesk-it-esn`). Objectif : couvrir
+les régions absentes de la vague 2 (très lyonnaise) + les acteurs qui vendent déjà
+du service managé en marque blanche.
+
+| ID CRM | Société | Ville/Région | Profil | Score | Décideur |
+|--------|---------|--------------|--------|-------|----------|
+| l221 | **Actual Systèmes** | à qualifier | ⚡ VEND du MSP en marque blanche aux ESN — profil Oxxodata : proposer d'être la couche humaine N1 derrière leur offre (1 deal = tout leur portefeuille) | **68** | à identifier |
+| l222 | **Infiny Link** | Bièvres (91) | MSP IDF 24/7 + SLA, fondé 2005 | 58 | **Emmanuel Bonnefond & Oscar Almecija** (cofondateurs) |
+| l223 | ActuelBuro | Sud-Ouest (Bordeaux/Dax/Mont-de-Marsan/Toulouse) | Infogérance 24/7 multi-agences | 52 | à identifier |
+| l224 | Quietic | Nantes | MSP proactif TPE/PME + cyber | 48 | à identifier |
+| l227 | CLEV'IT | Lille | MSP co-managé (modèle idéal pour insertion N1 MB) | 48 | à identifier |
+| l225 | MaDSI | Nantes | MSP PME/TPE | 45 | à identifier |
+| l226 | Comète Informatique | Rennes | Infogérance + parc PME | 45 | à identifier |
+| l228 | UltraNova | Strasbourg | Infogérance PME/ETI | 45 | à identifier |
+| l229 | Acteis | Bordeaux | Maintenance + infogérance PME | 45 | à identifier |
+| l230 | IT Systèmes | à qualifier | MSP supervision + support | 40 | à identifier |
+| l231 | My-MSP | AURA | Services managés PME | 40 | à identifier |
+| l232 | IPE | à qualifier | MSP infogérance | 40 | à identifier |
+
+**Écarté :** Everping (everping.eu) = plateforme SaaS de monitoring, pas un MSP opérant du helpdesk.
+
+*Sources vague 3 : actualsystemes.com, infinylink.fr + annuaire-entreprises (SIREN 484710611),
+actuelburo.fr, quietic.fr, clevit.fr, madsi.fr, comete-informatique.com, ultranova.fr,
+acteis-so.fr, itsystemes.fr, my-msp.com, ipe.fr — recherches web 2026-07-13.*
