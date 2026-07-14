@@ -160,3 +160,30 @@ du service managé en marque blanche.
 *Sources vague 3 : actualsystemes.com, infinylink.fr + annuaire-entreprises (SIREN 484710611),
 actuelburo.fr, quietic.fr, clevit.fr, madsi.fr, comete-informatique.com, ultranova.fr,
 acteis-so.fr, itsystemes.fr, my-msp.com, ipe.fr — recherches web 2026-07-13.*
+
+---
+
+## Vague 4 (2026-07-13 #4) — ESN uniquement, acheteuses de N1 en marque blanche
+
+Intégrées au CRM en leads `l236`-`l242` (niche `helpdesk-it-esn`).
+
+| ID CRM | Société | Ville | Profil / Signal | Score | Décideur |
+|--------|---------|-------|-----------------|-------|----------|
+| l236 | **Constellation** | Saint-Cloud (92) | 🔥 ~500 pers, 100 M€+ proforma, levée 70 M€ (Qualium/CDC), acquisitions en série (Clariteam, Group DIS) = tension delivery | **62** | Dir. Delivery / DG Ops à identifier (ex-dirigeants Clariteam = portes d'entrée) |
+| l237 | Log'in Line | à qualifier | Infogérance startups/scale-ups, n°1 classement 2026 | 55 | à identifier |
+| l238 | Enix | Paris (à confirmer) | Infogérance plateformes web critiques → astreintes 24/7 | 50 | à identifier |
+| l239 | NeoOne | à qualifier | Positionné marque blanche MSP — qualifier : opérateur (→ profil Oxxodata) ou cabinet (→ prescripteur) | 50 | à identifier |
+| l241 | **Naitways** | Boulogne-Billancourt (92) | Cloud + hébergement infogéré, 15,8 M€, PE Andera. ⚠️ discours « 100 % français » à cadrer | 50 | **Jeremy Spy & Nguyen Minh Hoa** (cofondateurs) |
+| l240 | ACI Technology | Bois-Colombes (92) | Infogérance ISO 20000-1/27001 → cadre ITSM propre | 48 | à identifier |
+| l242 | EzWay Technology | à qualifier | Infogérance PME en développement commercial | 38 | à identifier |
+
+**Écartés vague 4 :**
+- **A3COM** (a3com.fr, Paris, 35+ ans) : pas une ESN — centre d'appels/télésecrétariat 24/7
+  (médical, paramédical, juridique + hotline). **Piste à réétudier en `telesec-mb`**
+  (profil donneur d'ordre télésec, comme IPContact/Callmed). Tél standard : 01 45 14 75 00.
+- **M-KIS** : positionnement « infogérance souveraine » frontal = anti-offshore par nature.
+- **Claranet, Inetum, Scalian, Capgemini** : trop grands + offshore existant.
+
+*Sources vague 4 : ChannelNews (Constellation/Clariteam), Distributique, constellation.fr,
+loginline.com, acitechnology.eu, pappers (Naitways SIREN 508823614), anderapartners.com,
+neoone.expert — recherches web 2026-07-13.*
