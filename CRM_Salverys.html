@@ -887,6 +887,15 @@ const MB_IT_LEADS_V4 = [
 {"id":"l247","nom":"Groupe Asten","structure":"Groupe Asten (Asten Lab)","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":48,"notes":"MB | Brest / Le Relecq-Kerhuon (29) | ESN bretonne fondée 1995 par Jean-Christophe Cagnard : cloud, cyber, lab, retail — 140 salariés, 17,5 M€ CA (2024) | ⚠️ Vigilance : se positionne « architecte de la souveraineté numérique » → cadrer comme Naitways (marque et données restent FR, seule la voix est à Tana) | Décideur : Jean-Christophe Cagnard (fondateur) — taille 100-200 : viser aussi le resp. exploitation/services | Source : bretagne-economique.com + societe.com (SIREN 441614443) [Session 2026-07-13 #5]","decideur":{"statut":"trouvé","nom":"Jean-Christophe Cagnard","titre":"Fondateur","linkedin":"","emailPro":"","anciennete":"Fondateur Groupe Asten (Brest, 1995), 140 pers, 17,5 M€ (2024)","signauxAchat":"Croissance + partenariat éditeur Kerhis (2026) = nouveaux volumes support | Vigilance discours souveraineté","sourceUrl":"https://www.bretagne-economique.com/portraits/groupe-asten-architecte-de-la-souverainete-numerique-sassocie-a-lediteur-kerhis/"}}
 ];
 
+// ─── LEADS MARQUE BLANCHE IT — VAGUE 6 FR (2026-07-13 #6) ─────
+// 2 ESN IDF supplémentaires. Écartés : Skuria (souverain « zéro GAFAM » frontal),
+// Experteam (filiale groupe Neurones — politique groupe), Groupe Hisi (a rejoint
+// Constellation → renforce l236, cf. ESN-TARGETS.md).
+const MB_IT_LEADS_V5 = [
+{"id":"l248","nom":"Axido","structure":"Axido (groupe Proxiteam)","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":50,"notes":"MB | Paris / IDF | Infogérance PME 20+ ans : support ILLIMITÉ, supervision temps réel, maintenance proactive — clients Bercy/Opéra/Sentier | Angle : le support illimité forfaitaire = marge rongée par chaque ticket → un N1 MB à coût fixe inférieur protège la marge | BU infogérance du groupe Proxiteam | Décideur : dirigeant / Dir. BU infogérance à identifier | Source : axido.fr + proxiteam.fr [Session 2026-07-13 #6]"},
+{"id":"l249","nom":"Leader System","structure":"Leader System","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":45,"notes":"MB | Île-de-France | Infogérance PME depuis 1993 (30+ ans) | Angle : acteur historique IDF, N1 MB en débordement | Décideur : dirigeant à identifier | Source : leader-system.fr — à qualifier (taille, signal RH) [Session 2026-07-13 #6]"}
+];
+
 // ─── SEED DATA ────────────────────────────────────────────────
 (function seedIfEmpty() {
     const d = load();
@@ -896,6 +905,7 @@ const MB_IT_LEADS_V4 = [
     d.leads = d.leads.concat(MB_IT_LEADS_V2);
     d.leads = d.leads.concat(MB_IT_LEADS_V3);
     d.leads = d.leads.concat(MB_IT_LEADS_V4);
+    d.leads = d.leads.concat(MB_IT_LEADS_V5);
     // ── Enrichissement scoring v4 ──────────────────────────────
     // Format: [id, score, operateur, multisite, praticiens, specialiteFlux, desertMedical, accessibiliteNegative, doctolibSansRDV, secretariatInterneLimite]
     var _E=[
@@ -2017,6 +2027,26 @@ const MB_IT_LEADS_V4 = [
     });
     if (changed) save(d);
     localStorage.setItem('salverys_leads_mb_it_v','5');
+})();
+
+// ─── MIGRATION LEADS MB IT v6 ─────────────────────────────────
+// v6 (2026-07-13 #6) : vague 6 FR — insertion (insert-only) des 2 leads
+//   MB_IT_LEADS_V5 (l248-l249) dans les stockages existants.
+(function migrateLeadsMbIt_v6() {
+    var v6 = parseInt(localStorage.getItem('salverys_leads_mb_it_v') || '0', 10);
+    if (v6 >= 6) return;
+    var d = load();
+    if (!d.leads || d.leads.length === 0) { localStorage.setItem('salverys_leads_mb_it_v','6'); return; }
+    var changed = false;
+    MB_IT_LEADS_V5.forEach(function(nl) {
+        if (d.leads.some(function(x){ return x.id === nl.id; })) return;
+        var copy = JSON.parse(JSON.stringify(nl));
+        if (!copy.decideur) copy.decideur = {statut:'',nom:'',titre:'',linkedin:'',emailPro:'',anciennete:'',signauxAchat:'',sourceUrl:''};
+        d.leads.push(copy);
+        changed = true;
+    });
+    if (changed) save(d);
+    localStorage.setItem('salverys_leads_mb_it_v','6');
 })();
 
 // ─── NAVIGATION ───────────────────────────────────────────────

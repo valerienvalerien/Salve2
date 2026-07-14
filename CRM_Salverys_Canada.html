@@ -809,6 +809,23 @@ function exportCSV(){
   save(LEADS);
 })();
 
+/* ── Vague 2 (2026-07-13) : 6 nouveaux MSP/intégrateurs francophones.
+   Insert-only idempotent par id : fonctionne sur stockage vide (après seed)
+   ET sur stockage existant, sans jamais écraser un travail saisi. */
+(function addWave2(){
+  const W=[
+  {id:'ca039',entreprise:'Vertisoft',site:'https://www.vertisoftpme.com',province:'Québec',secteur:'MSP / services TI gérés + cloud + VoIP',effectif:'≈100-150 (est.)',ca:'12-20 M$ CAD (est.)',niche:'Helpdesk IT',pertinence:8,type:'Marque blanche',statut:'À contacter',decideur:{nom:'Donald French',titre:'Président-fondateur',email:'',tel:'',linkedin:''},signal:'Multi-sites Boucherville/Sherbrooke/Victoriaville, 20+ ans ; recrute un Directeur centre de données (Victoriaville) = croissance infra.',justif:'MSP multi-régions en croissance : N1 francophone MB pour absorber les pics et étendre la couverture sans recruter.',action:'Confirmer le LinkedIn de Donald French (Président-fondateur) + séquence A (marque blanche)'},
+  {id:'ca040',entreprise:'Kezber',site:'https://www.kezber.com',province:'Québec',secteur:'Services TI / MSP + développement',effectif:'≈80-120 (est.)',ca:'10-15 M$ CAD (est.)',niche:'Helpdesk IT',pertinence:8,type:'Marque blanche',statut:'À contacter',decideur:{nom:'Alan Kezber',titre:'Président-directeur général (fondateur)',email:'',tel:'',linkedin:''},signal:'Expansion : nouveaux locaux à Magog (Estrie), création d\'emplois annoncée, 20+ ans d\'expérience.',justif:'Croissance régionale assumée : le N1 MB francophone évite de staffer chaque nouveau contrat.',action:'Joindre Alan Kezber via kezber.com/en/about-us/our-team + séquence A (marque blanche)'},
+  {id:'ca041',entreprise:'Present',site:'https://www.present.ca',province:'Québec',secteur:'MSP / services gérés + cyber + M365',effectif:'≈50-100 (est.)',ca:'8-15 M$ CAD (est.)',niche:'Helpdesk IT',pertinence:7,type:'Marque blanche',statut:'À contacter',decideur:{nom:'',titre:'Président / VP Opérations',email:'',tel:'',linkedin:''},signal:'35 ans en affaires (Montréal), offre services gérés + cybersécurité + cloud pour PME.',justif:'MSP montréalais établi : débordement N1 francophone MB naturel.',action:'Identifier le décideur sur LinkedIn (linkedin.com/company/present-ca) + séquence A (marque blanche)'},
+  {id:'ca042',entreprise:'Micrologic',site:'https://micrologic.ca',province:'Québec',secteur:'Services TI gérés / cloud souverain',effectif:'≈350',ca:'50 M$ CAD+ (est.)',niche:'Helpdesk IT',pertinence:7,type:'Marque blanche',statut:'À contacter',decideur:{nom:'Stéphane Garneau',titre:'Président (sponsor — viser le Dir. services gérés)',email:'',tel:'',linkedin:''},signal:'~40 ans, 350+ experts, top 300 entreprises QC 2024, PDG de l\'année AQT/Les Affaires 2022.',justif:'Grande structure : viser le Dir. services gérés/exploitation, Garneau en sponsor. ⚠ Positionnement « cloud souverain » — cadrer : données au Canada, seule la voix est offshore francophone.',action:'Identifier le Dir. services gérés sur LinkedIn (Garneau = sponsor) + séquence A adaptée souveraineté'},
+  {id:'ca043',entreprise:'ITI (ex-Informatique ProContact)',site:'https://www.iti.ca',province:'Québec',secteur:'Intégrateur / services gérés',effectif:'≈300-500 (est.)',ca:'60-100 M$ CAD (est.)',niche:'Helpdesk IT',pertinence:7,type:'Marque blanche',statut:'À contacter',decideur:{nom:'',titre:'Dir. services gérés / VP Opérations',email:'',tel:'',linkedin:''},signal:'30+ ans (ex-ProContact, rebaptisé ITI), présence Québec + Montréal, position forte auprès des directions TI de la province.',justif:'Intégrateur majeur : le débordement N1 francophone MB complète leur centre de services.',action:'Identifier le Dir. services gérés sur LinkedIn (linkedin.com/company/informatique-procontact) + séquence A'},
+  {id:'ca044',entreprise:'Natrix Technologies',site:'https://natrix.info',province:'Québec',secteur:'MSP PME',effectif:'≈30-60 (est.)',ca:'4-8 M$ CAD (est.)',niche:'Helpdesk IT',pertinence:6,type:'Marque blanche',statut:'À contacter',decideur:{nom:'',titre:'Président-fondateur',email:'',tel:'',linkedin:''},signal:'25+ ans d\'expertise locale (Montréal), positionné MSP PME.',justif:'MSP compact : décision rapide du fondateur, N1 MB en débordement.',action:'Identifier le fondateur sur LinkedIn + séquence A (marque blanche)'}
+  ];
+  let changed=false;
+  W.forEach(nl=>{ if(!LEADS.some(x=>x.id===nl.id)){ LEADS.push(nl); changed=true; } });
+  if(changed) save(LEADS);
+})();
+
 /* ── Init ── */
 renderDash();
 </script>

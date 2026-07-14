@@ -205,3 +205,32 @@ Intégrées au CRM en leads `l243`-`l247` (niche `helpdesk-it-esn`).
 *Sources vague 5 : pappers (Quodagis IT 799363783, Ozitem 347758559), societe.com
 (Asten 441614443, Hexanet 487555682), ChannelNews, bretagne-economique.com,
 quodagis.fr, antemeta.fr, hexanet.fr — recherches web 2026-07-13.*
+
+---
+
+## Vague 6 (2026-07-13 #6) — France + extension CANADA
+
+### France (leads `l248`-`l249`)
+| ID CRM | Société | Ville | Profil | Score |
+|--------|---------|-------|--------|-------|
+| l248 | Axido (groupe Proxiteam) | Paris/IDF | Infogérance PME 20+ ans, support ILLIMITÉ (angle : protéger leur marge forfaitaire avec un N1 MB à coût fixe) | 50 |
+| l249 | Leader System | IDF | Infogérance PME depuis 1993 | 45 |
+
+**Écartés :** Skuria (souverain « zéro GAFAM » frontal), Experteam (filiale groupe Neurones).
+**Info stratégique :** le **Groupe Hisi** (cloud managé PME/ETI, fondateur Thierry Petit Perrin)
+a **rejoint Constellation** → renforce la cible l236 (le groupe consolide activement :
+Clariteam + Group DIS + Hisi) ; Hisi = porte d'entrée possible côté cloud managé.
+
+### Canada (leads `ca039`-`ca044` du CRM Canada)
+| ID | Société | Profil / Signal | Pertinence | Décideur |
+|----|---------|-----------------|------------|----------|
+| ca039 | **Vertisoft** | MSP multi-sites (Boucherville/Sherbrooke/Victoriaville), recrute un Dir. centre de données | 8 | **Donald French** (Président-fondateur) |
+| ca040 | **Kezber** | Services TI Estrie, expansion Magog + créations d'emplois | 8 | **Alan Kezber** (PDG fondateur) |
+| ca041 | Present | MSP Montréal, 35 ans, services gérés + cyber + M365 | 7 | à identifier |
+| ca042 | Micrologic | ~350 experts, top 300 QC — ⚠ « cloud souverain » à cadrer ; **Stéphane Garneau** (Président) en sponsor | 7 | Dir. services gérés à identifier |
+| ca043 | ITI (ex-ProContact) | Intégrateur majeur QC/MTL, 30+ ans | 7 | Dir. services gérés à identifier |
+| ca044 | Natrix Technologies | MSP PME Montréal, 25+ ans | 6 | à identifier |
+
+*Sources vague 6 : axido.fr, proxiteam.fr, leader-system.fr, easyteam.fr + capitem.fr (Hisi→Constellation),
+vertisoftpme.com, kezber.com, magazinemci.com, present.ca, micrologic.ca, directioninformatique.com
+(ProContact→ITI), natrix.info — recherches web 2026-07-13.*
