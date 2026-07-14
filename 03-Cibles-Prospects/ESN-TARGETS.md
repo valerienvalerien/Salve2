@@ -187,3 +187,21 @@ Intégrées au CRM en leads `l236`-`l242` (niche `helpdesk-it-esn`).
 *Sources vague 4 : ChannelNews (Constellation/Clariteam), Distributique, constellation.fr,
 loginline.com, acitechnology.eu, pappers (Naitways SIREN 508823614), anderapartners.com,
 neoone.expert — recherches web 2026-07-13.*
+
+---
+
+## Vague 5 (2026-07-13 #5) — ESN uniquement (suite)
+
+Intégrées au CRM en leads `l243`-`l247` (niche `helpdesk-it-esn`).
+
+| ID CRM | Société | Ville | Profil / Signal | Score | Décideur |
+|--------|---------|-------|-----------------|-------|----------|
+| l243 | **Quodagis** | Nanterre + centre de services **Aurillac** | 🔥 Groupe ITSM dont le cœur de métier est le SERVICE DESK (nearshore FR Aurillac) → angle débordement + extension horaire, même logique nearshore | **62** | **Roland Mor** (Président) + Eric Schirmann (fondateur) |
+| l244 | **Ozitem** | Levallois-Perret (92) | Cloud + services managés, 250-499 pers, 37 ans | 55 | **François Espieux** (PDG, sponsor) — viser le Dir. Delivery |
+| l245 | AntemetA | IDF (à confirmer) | Cloud privé managé + infogérance 24/7 (BaaS/DRaaS, K8s) | 52 | à identifier |
+| l246 | Hexanet | Reims (51) | Opérateur régional cloud/télécom/infogérance, datacenters propres | 50 | à identifier |
+| l247 | Groupe Asten | Brest (29) | 140 pers, 17,5 M€ (2024). ⚠️ discours souveraineté à cadrer | 48 | **Jean-Christophe Cagnard** (fondateur) |
+
+*Sources vague 5 : pappers (Quodagis IT 799363783, Ozitem 347758559), societe.com
+(Asten 441614443, Hexanet 487555682), ChannelNews, bretagne-economique.com,
+quodagis.fr, antemeta.fr, hexanet.fr — recherches web 2026-07-13.*

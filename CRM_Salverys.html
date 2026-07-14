@@ -873,6 +873,20 @@ const MB_IT_LEADS_V3 = [
 {"id":"l242","nom":"EzWay Technology","structure":"EzWay Technology","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":38,"notes":"MB | France (ville à qualifier) | Infogérance PME (guides tarifs/SLA actifs = acquisition SEO en cours → structure en développement commercial) | Décideur : dirigeant à identifier | À qualifier : taille et réalité opérationnelle [Session 2026-07-13 #4]"}
 ];
 
+// ─── LEADS MARQUE BLANCHE IT — VAGUE 5 : ESN UNIQUEMENT (2026-07-13 #5) ─
+// 5 ESN/MSP supplémentaires vérifiées (pappers/societe.com/presse) : Quodagis
+// (groupe ITSM avec centre de services Aurillac — spécialiste service desk),
+// Ozitem (250-499 pers Levallois), AntemetA (cloud managé 24/7), Hexanet (Reims),
+// Groupe Asten (Brest — vigilance souveraineté).
+// Consommé par seedIfEmpty ET migrateLeadsMbIt_v5 (insert-only).
+const MB_IT_LEADS_V4 = [
+{"id":"l243","nom":"Quodagis","structure":"Groupe Quodagis (Quodagis Managed Services, ex-Eodesk)","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":62,"notes":"MB | Nanterre (92) + centre de services AURILLAC (15) | Groupe ESN spécialiste ITSM / Enterprise Service Management + services managés cyber | 🔥 Cœur de métier = SERVICE DESK (publient « Service Desk : faire ou faire-faire ») avec centre de services nearshore FR à Aurillac | Angle : débordement + extension horaire (soir/7h-9h/week-end) de leur centre Aurillac — même logique nearshore, coût inférieur | Décideurs : Roland Mor (Président) + Eric Schirmann (fondateur, associé-dirigeant) — groupe structuré → viser aussi le Dir. du centre de services | Source : pappers + ChannelNews + quodagis.fr [Session 2026-07-13 #5]","decideur":{"statut":"trouvé","nom":"Roland Mor","titre":"Président (Eric Schirmann, fondateur associé-dirigeant, en n°2)","linkedin":"","emailPro":"","anciennete":"Président groupe Quodagis (Quodagis IT, SIREN 799363783)","signauxAchat":"Centre de services Aurillac = modèle nearshore assumé → ouverts à l'argument coût/couverture horaire ; croissance groupe (ChannelNews) ; cœur de métier service desk = compréhension immédiate de l'offre","sourceUrl":"https://www.pappers.fr/entreprise/quodagis-it-799363783"}},
+{"id":"l244","nom":"Ozitem","structure":"Groupe Ozitem","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":55,"notes":"MB | Levallois-Perret (92) | Cloud + services managés + infogérance, SA de 37 ans, 250-499 salariés (2023), capital 1,14 M€ | Taille moyenne → viser le Directeur Delivery / Resp. centre de services, François Espieux (PDG) et Stéphane Fontaine (DGA) en sponsors | Angle : soupape N1 marque blanche sur les contrats d'infogérance TPE/PME qu'ils promeuvent | Source : pappers (SIREN 347758559) + societe.com [Session 2026-07-13 #5]","decideur":{"statut":"trouvé","nom":"François Espieux","titre":"PDG (sponsor — viser le Dir. Delivery en premier)","linkedin":"","emailPro":"","anciennete":"Président du CA et DG Ozitem (Levallois-Perret, 250-499 pers)","signauxAchat":"Infogérance TPE/PME en promotion active (blog) = volume N1 en croissance ; DGA Stéphane Fontaine = 2e entrée","sourceUrl":"https://www.pappers.fr/entreprise/ozitem-347758559"}},
+{"id":"l245","nom":"AntemetA","structure":"AntemetA","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":52,"notes":"MB | IDF (ville à confirmer) | Acteur FR de référence cloud privé/hybride managé : IaaS, BaaS/DRaaS, Kubernetes + INFOGÉRANCE 24/7 | Angle : le 24/7 contractuel = astreintes nuit/matin coûteuses → N1 MB UTC+3 filtre et n'escalade que le vrai P1 | Décideur : Dir. Opérations / Delivery à identifier | Source : antemeta.fr + cloudtango [Session 2026-07-13 #5]"},
+{"id":"l246","nom":"Hexanet","structure":"Hexanet","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":50,"notes":"MB | Reims (51) — siège historique + agences | Opérateur IT régional depuis 1997 : cloud, télécom, téléphonie, hébergement (datacenters propres), infogérance/services managés | Angle : Grand Est peu couvert + opérateur multi-services = support mutualisé sous tension | Décideur : dirigeant / Dir. services managés à identifier | Source : hexanet.fr + societe.com (SIREN 487555682) [Session 2026-07-13 #5]"},
+{"id":"l247","nom":"Groupe Asten","structure":"Groupe Asten (Asten Lab)","niche":"helpdesk-it-esn","canal":"LinkedIn","statut":"nouveau","dateContact":"","email":"","tel":"","score":48,"notes":"MB | Brest / Le Relecq-Kerhuon (29) | ESN bretonne fondée 1995 par Jean-Christophe Cagnard : cloud, cyber, lab, retail — 140 salariés, 17,5 M€ CA (2024) | ⚠️ Vigilance : se positionne « architecte de la souveraineté numérique » → cadrer comme Naitways (marque et données restent FR, seule la voix est à Tana) | Décideur : Jean-Christophe Cagnard (fondateur) — taille 100-200 : viser aussi le resp. exploitation/services | Source : bretagne-economique.com + societe.com (SIREN 441614443) [Session 2026-07-13 #5]","decideur":{"statut":"trouvé","nom":"Jean-Christophe Cagnard","titre":"Fondateur","linkedin":"","emailPro":"","anciennete":"Fondateur Groupe Asten (Brest, 1995), 140 pers, 17,5 M€ (2024)","signauxAchat":"Croissance + partenariat éditeur Kerhis (2026) = nouveaux volumes support | Vigilance discours souveraineté","sourceUrl":"https://www.bretagne-economique.com/portraits/groupe-asten-architecte-de-la-souverainete-numerique-sassocie-a-lediteur-kerhis/"}}
+];
+
 // ─── SEED DATA ────────────────────────────────────────────────
 (function seedIfEmpty() {
     const d = load();
@@ -881,6 +895,7 @@ const MB_IT_LEADS_V3 = [
     d.leads = d.leads.concat(MB_IT_LEADS_V1);
     d.leads = d.leads.concat(MB_IT_LEADS_V2);
     d.leads = d.leads.concat(MB_IT_LEADS_V3);
+    d.leads = d.leads.concat(MB_IT_LEADS_V4);
     // ── Enrichissement scoring v4 ──────────────────────────────
     // Format: [id, score, operateur, multisite, praticiens, specialiteFlux, desertMedical, accessibiliteNegative, doctolibSansRDV, secretariatInterneLimite]
     var _E=[
@@ -1982,6 +1997,26 @@ const MB_IT_LEADS_V3 = [
     });
     if (changed) save(d);
     localStorage.setItem('salverys_leads_mb_it_v','4');
+})();
+
+// ─── MIGRATION LEADS MB IT v5 ─────────────────────────────────
+// v5 (2026-07-13 #5) : vague 5 « ESN uniquement » — insertion (insert-only)
+//   des 5 leads MB_IT_LEADS_V4 (l243-l247) dans les stockages existants.
+(function migrateLeadsMbIt_v5() {
+    var v5 = parseInt(localStorage.getItem('salverys_leads_mb_it_v') || '0', 10);
+    if (v5 >= 5) return;
+    var d = load();
+    if (!d.leads || d.leads.length === 0) { localStorage.setItem('salverys_leads_mb_it_v','5'); return; }
+    var changed = false;
+    MB_IT_LEADS_V4.forEach(function(nl) {
+        if (d.leads.some(function(x){ return x.id === nl.id; })) return;
+        var copy = JSON.parse(JSON.stringify(nl));
+        if (!copy.decideur) copy.decideur = {statut:'',nom:'',titre:'',linkedin:'',emailPro:'',anciennete:'',signauxAchat:'',sourceUrl:''};
+        d.leads.push(copy);
+        changed = true;
+    });
+    if (changed) save(d);
+    localStorage.setItem('salverys_leads_mb_it_v','5');
 })();
 
 // ─── NAVIGATION ───────────────────────────────────────────────
