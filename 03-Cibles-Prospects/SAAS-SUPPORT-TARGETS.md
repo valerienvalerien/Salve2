@@ -51,6 +51,17 @@
 
 Restent à sourcer : EBP, Septeo, Agicap (CEO non confirmé), Orisha — décideur support opérationnel via LinkedIn.
 
+## Vague 3 (2026-07-13 #3) — SaaS « équipes terrain » (fort volume N1)
+
+| ID CRM | Société | Profil | Score | Signal |
+|--------|---------|--------|-------|--------|
+| l233 | **Skello** | Planification RH terrain (resto, retail, santé) — Paris + hub Lille | **62** | 🔥 50 M€+ ARR, rentable 2025, 30 000 clients, 700 000 utilisateurs/jour, levée 200 M€ (Bridgepoint), hub Lille 50→100 recrutements. ⚠️ Capacité à internaliser — qualifier make-or-buy tôt |
+| l234 | **Combo** (ex-Snapshift) | Gestion RH TPE-PME terrain | 55 | Acquisition Arhia = intègre la paie → support critique, volume en hausse structurelle |
+| l235 | **Zenchef** | Suite resto (réservation, menu, paiement à table) | 52 | Restaurateurs = N1 en horaires décalés (soir/WE) → angle créneaux étendus UTC+3 |
+
+Le point commun : utilisateurs **terrain** (pas des informaticiens) → tickets N1 simples,
+répétitifs, scriptables — le profil parfait pour un ETP marque blanche Salverys.
+
 Score Axonaut relevé 58→62 (signal de croissance vérifié : +43 % de CA en 2025 en restant autofinancé).
 
 ---
