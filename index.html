@@ -21,10 +21,16 @@
 <meta name="twitter:description" content="Support applicatif, helpdesk IT et télésecrétariat médical sous votre marque, en français — environ 40 % de moins qu'une équipe interne en France." />
 <meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
 <!-- analytics : à activer (SaaS-first — recommandé : Plausible ou GA4, pas de code maison) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
 <link rel="preconnect" href="https://images.unsplash.com" />
 <link rel="stylesheet" href="assets/site.css" />
 </head>
-<body>
+<body class="home">
+
+<!-- TOPBAR -->
+<div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
 
 <!-- NAV -->
 <header class="nav">
@@ -130,66 +136,101 @@
       </div>
     </div>
   </div>
-  <a class="scroll-next" href="#metiers" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+  <a class="scroll-next" href="#services" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- MÉTIERS -->
+<!-- FENÊTRE VERTE — SERVICES -->
+<section class="greenband reveal" id="services">
+  <div class="container">
+    <span class="tagchip on-dark">Nos services</span>
+    <h2>Le support externalisé pour ceux qui détestent <em>recruter</em></h2>
+    <div class="gb-tabs" role="tablist">
+      <button class="gb-tab active" data-panel="saas">Support N1 SaaS</button>
+      <button class="gb-tab" data-panel="helpdesk">Helpdesk IT N1</button>
+      <button class="gb-tab" data-panel="medical">Télésecrétariat médical</button>
+    </div>
+    <div class="gb-grid">
+      <div class="gb-copy">
+        <div class="gb-panel" data-name="saas">
+          <h3>Travaillez sans la surcharge</h3>
+          <p>Support fonctionnel N1 pour vos utilisateurs : tickets, chat, téléphone. Escalade cadrée vers vos équipes produit, en français et en anglais.</p>
+          <ul class="gb-list">
+            <li>Agents formés à votre produit et à vos process</li>
+            <li>SLA de première réponse mesuré et partagé</li>
+            <li>Vous gardez la main sur vos files et vos priorités</li>
+          </ul>
+          <a href="simulateur-informatique.html" class="btn btn-it">Simuler mon équipe <span class="arrow">→</span></a>
+        </div>
+        <div class="gb-panel" data-name="helpdesk" hidden>
+          <h3>Un helpdesk qui décroche</h3>
+          <p>Helpdesk IT N1 distant pour entreprises, DSI, ESN et MSP : agents francophones dédiés, escalade N2 cadrée vers vos équipes.</p>
+          <ul class="gb-list">
+            <li>Prise en charge tickets &amp; téléphone (ITIL)</li>
+            <li>KPI partagés : décroché, résolution N1, satisfaction</li>
+            <li>Backup par compte : pas de jour d'arrêt</li>
+          </ul>
+          <a href="simulateur-helpdesk-it.html" class="btn btn-helpdesk">Simuler mon équipe <span class="arrow">→</span></a>
+        </div>
+        <div class="gb-panel" data-name="medical" hidden>
+          <h3>Votre standard, toujours décroché</h3>
+          <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical. Dès 350 €/mois.</p>
+          <ul class="gb-list">
+            <li>≥ 90 % d'appels décrochés en régime, sinon 20 % d'avoir</li>
+            <li>Doctolib, Maiia, Médistory : intégration faite par nous</li>
+            <li>Secret médical et RGPD cadrés dès le 1er échange</li>
+          </ul>
+          <a href="simulateur-salverys.html" class="btn btn-primary">Simuler mon forfait <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="gb-visual" aria-hidden="true">
+        <div class="gb-shot">
+          <div class="hs-bar"><i></i><i></i><i></i></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--accent-tint)">SA</span><span class="hs-txt"><b>File Support — 12 tickets ouverts</b><span>Temps de 1re réponse moyen : 9 min</span></span><span class="hs-tag badge-ok">SLA tenu</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--gold-tint)">HD</span><span class="hs-txt"><b>Standard IT — 3 appels en cours</b><span>Taux de décroché aujourd'hui : 97 %</span></span><span class="hs-tag badge-wait">En ligne</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:#E3E8EF">MD</span><span class="hs-txt"><b>Agenda praticien — 14 RDV pris</b><span>Dernier appel décroché en 28 s</span></span><span class="hs-tag badge-ok">Actif</span></div>
+          <div class="hs-row"><span class="hs-dot" style="background:var(--bg-soft)">KPI</span><span class="hs-txt"><b>Reporting mensuel envoyé</b><span>Décroché · 1re réponse · SLA tickets</span></span><span class="hs-tag badge-new">Envoyé</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QU'EXTERNALISEZ-VOUS ? -->
 <section class="section" id="metiers">
   <div class="container">
     <div class="section-head reveal">
       <div class="kicker">Nos métiers</div>
-      <h2>Trois savoir-faire, un même standard</h2>
+      <h2>Qu'externalisez-vous&nbsp;?</h2>
       <p>Chaque métier a son simulateur de tarif : bougez les curseurs, le forfait s'affiche en direct.</p>
-      <div class="hero-actions ctas-metiers">
-        <a class="btn btn-primary" href="simulateur-informatique.html">Simuler — Support Applicatif</a>
-        <a class="btn btn-helpdesk" href="simulateur-helpdesk-it.html">Simuler — Helpdesk IT</a>
-        <a class="btn btn-it" href="simulateur-salverys.html">Simuler — Télésecrétariat</a>
-      </div>
     </div>
-    <div class="cards-3">
-
-      <a class="ncard it reveal" href="simulateur-informatique.html">
-        <div class="photo-wrap">
-          <span class="ncard-tag">Priorité</span>
-          <img class="photo" loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=70"
-               alt="Support applicatif" />
-        </div>
-        <div class="ncard-body" style="text-align:center">
-          <h3>Support Applicatif &amp; Métier</h3>
-          <p>Support fonctionnel pour vos utilisateurs : tickets, chat, téléphone, escalade cadrée vers vos équipes produit. Externalisé, réactif et francophone.</p>
-          <span class="ncard-link">Simuler mon équipe</span>
-        </div>
+    <div class="types-row">
+      <a class="tcard reveal" href="simulateur-informatique.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#3b5a48,#263A2E)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=70" alt="Support applicatif SaaS" />
+        <span class="tgo">→</span>
+        <span class="tcard-txt"><span class="tsub">Priorité · Éditeurs SaaS</span><span class="tlab">Support Applicatif &amp; Métier</span></span>
       </a>
-
-      <a class="ncard helpdesk reveal d1" href="simulateur-helpdesk-it.html">
-        <div class="photo-wrap">
-          <span class="ncard-tag">Support utilisateurs · Ticketing</span>
-          <img class="photo" loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=70"
-               alt="Helpdesk IT" />
-        </div>
-        <div class="ncard-body">
-          <h3>Helpdesk IT N1 externalisé</h3>
-          <p>Helpdesk IT N1 externalisé pour entreprises et DSI : agents francophones dédiés, escalade N2 cadrée vers vos équipes, KPI partagés.</p>
-          <span class="ncard-link">Simuler mon équipe</span>
-        </div>
+      <a class="tcard reveal d1" href="simulateur-helpdesk-it.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#51443a,#2E2820)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=640&q=70" alt="Helpdesk IT" />
+        <span class="tgo">→</span>
+        <span class="tcard-txt"><span class="tsub">DSI · ESN · MSP</span><span class="tlab">Helpdesk IT N1 externalisé</span></span>
       </a>
-
-      <a class="ncard med reveal d2" href="simulateur-salverys.html">
-        <div class="photo-wrap">
-          <span class="ncard-tag">Télésecrétariat médical</span>
-          <img class="photo" loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=70"
-               alt="Cabinet médical" />
-        </div>
-        <div class="ncard-body">
-          <h3>Télésecrétariat médical</h3>
-          <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical. Dès 350 €/mois.</p>
-          <span class="ncard-link">Simuler mon forfait</span>
-        </div>
+      <a class="tcard reveal d2" href="simulateur-salverys.html">
+        <span class="bgfall" style="background:linear-gradient(160deg,#4a5a6e,#2E3B4E)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+             src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=640&q=70" alt="Cabinet médical" />
+        <span class="tgo">→</span>
+        <span class="tcard-txt"><span class="tsub">Dès 350 €/mois</span><span class="tlab">Télésecrétariat médical</span></span>
       </a>
-
+      <span class="tcard soon reveal d3">
+        <span class="bgfall" style="background:linear-gradient(160deg,#42604f,#263A2E)"></span>
+        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
+             src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=640&q=70" alt="Relation client" />
+        <span class="tcard-txt"><span class="tsub">Bientôt</span><span class="tlab">Relation client, toutes sortes</span></span>
+      </span>
     </div>
   </div>
   <a class="scroll-next" href="#avantages" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -356,20 +397,64 @@
   <a class="scroll-next" href="#approche" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- APPROCHE -->
+<!-- APPROCHE — 3 ÉTAPES -->
 <section class="section" id="approche">
   <div class="container">
     <div class="section-head reveal">
-      <div class="kicker">Notre approche</div>
-      <h2>On démarre petit, on grandit avec vous</h2>
+      <div class="kicker">Comment ça marche</div>
+      <h2>Plus de capacité en trois étapes</h2>
       <p>Au forfait, jamais à l'acte. Vous montez de palier seulement quand votre volume le justifie.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal"><div class="sn">1</div><h4>Échange &amp; cadrage</h4><p>15 minutes pour comprendre votre besoin et vos outils.</p></div>
-      <div class="step reveal d1"><div class="sn">2</div><h4>1er mois à -50 %</h4><p>Service en conditions réelles, à demi-tarif et sans engagement.</p></div>
-      <div class="step reveal d2"><div class="sn">3</div><h4>Forfait adapté</h4><p>On cale le forfait sur votre volume réel, paliers clairs.</p></div>
-      <div class="step reveal d3"><div class="sn">4</div><h4>Montée en charge</h4><p>Le forfait évolue avec vous, sans friction.</p></div>
+
+    <div class="step-card sauge reveal">
+      <div>
+        <span class="step-num">Étape 1</span>
+        <h3>On cadre votre besoin</h3>
+        <p>15 minutes pour comprendre votre activité, vos volumes et vos outils. Nous configurons tout : Zendesk, Jira, GLPI, Doctolib, Maiia… vous ne touchez à rien.</p>
+      </div>
+      <div class="step-visual">
+        <div class="line w80"></div><div class="line w60"></div><div class="line w40"></div>
+        <div class="chip-row">
+          <span class="chip">☎ Appels</span>
+          <span class="chip">🎟 Tickets</span>
+          <span class="chip on">✓ Outils connectés</span>
+        </div>
+      </div>
     </div>
+
+    <div class="step-card deep reveal">
+      <div>
+        <span class="step-num">Étape 2</span>
+        <h3>1er mois à −50 %</h3>
+        <p>Le service tourne en conditions réelles, à demi-tarif et sans engagement. Vous jugez sur pièces : décroché, délais de réponse, qualité du français.</p>
+      </div>
+      <div class="step-visual">
+        <div class="sv-label">Votre 1er mois — ex. forfait médical Essentiel</div>
+        <div class="price"><span class="old">350 €</span>175 €<small> /mois</small></div>
+        <div class="chip-row">
+          <span class="chip on">−50 %</span>
+          <span class="chip">Sans engagement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card gold reveal">
+      <div>
+        <span class="step-num">Étape 3</span>
+        <h3>On grandit avec vous</h3>
+        <p>Forfait calé sur votre volume réel, paliers clairs, jamais de facturation à l'acte. Vous montez de palier seulement quand votre activité le justifie.</p>
+      </div>
+      <div class="step-visual">
+        <div class="sv-label">Reporting mensuel</div>
+        <div class="line w80"></div><div class="line w60"></div>
+        <div class="chip-row">
+          <span class="chip">Décroché 97 %</span>
+          <span class="chip">SLA tenu</span>
+          <span class="chip on">↗ Palier ajusté</span>
+        </div>
+      </div>
+    </div>
+
   </div>
   <a class="scroll-next" href="#faq" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
@@ -519,6 +604,7 @@
     </div>
   </div>
 </footer>
+<div class="footer-gold" aria-hidden="true"></div>
 
 <script type="application/ld+json">
 {

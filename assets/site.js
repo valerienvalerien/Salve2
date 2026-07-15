@@ -463,6 +463,15 @@
     });
   }());
 
+  /* ---------- Onglets fenêtre verte services (accueil) ---------- */
+  document.querySelectorAll('.gb-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gb-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.gb-panel').forEach(p => { p.hidden = p.dataset.name !== tab.dataset.panel; });
+    });
+  });
+
   /* ---------- FAQ : un seul volet ouvert à la fois ---------- */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
