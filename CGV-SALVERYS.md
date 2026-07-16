@@ -368,16 +368,7 @@ Toute réclamation du Client doit être notifiée au Prestataire, par écrit, da
 délai de trente (30) jours à compter de la survenance du fait générateur, sous peine
 de forclusion.
 
-## Article 17 — Assurance
-
-Le Prestataire déclare avoir souscrit, auprès d'une compagnie notoirement solvable,
-une police d'assurance couvrant sa responsabilité civile professionnelle au titre
-des Prestations, et s'engage à la maintenir en vigueur pendant toute la durée du
-contrat. Une attestation est remise au Client sur demande.
-*(`[À COMPLÉTER : assureur, n° de police, plafonds]` — si la police n'est pas encore
-souscrite, retirer cet article ou le rédiger au conditionnel avant signature.)*
-
-## Article 18 — Force majeure
+## Article 17 — Force majeure
 
 Aucune Partie ne peut être tenue responsable d'un manquement à ses obligations
 résultant d'un événement échappant à son contrôle raisonnable, qui ne pouvait être
@@ -390,7 +381,7 @@ meilleurs efforts pour en limiter les effets. Si l'empêchement se prolonge au-d
 de soixante (60) jours, chaque Partie peut résilier le contrat de plein droit, sans
 indemnité.
 
-## Article 19 — Sous-traitance et cession
+## Article 18 — Sous-traitance et cession
 
 Le Prestataire peut librement recourir à des sous-traitants pour l'exécution de tout
 ou partie des Prestations, sous réserve du respect de l'article 13 s'agissant des
@@ -400,14 +391,14 @@ l'accord écrit préalable de l'autre, sauf cession à une entité qu'elle contr
 dans le cadre d'une transmission de son fonds ou de son activité, notifiée à l'autre
 Partie.
 
-## Article 20 — Indépendance des Parties
+## Article 19 — Indépendance des Parties
 
 Les Parties sont des cocontractants indépendants. Le contrat ne crée entre elles
 aucune société, aucun mandat, aucune relation d'agence ni aucun lien de
 subordination. Chaque Partie demeure seule responsable de ses intervenants, de ses
 charges sociales et fiscales et de la conduite de son activité.
 
-## Article 21 — Dispositions diverses
+## Article 20 — Dispositions diverses
 
 Si une stipulation des CGV est déclarée nulle ou inapplicable, les autres
 stipulations conservent leur pleine force. Le fait pour une Partie de ne pas se
@@ -417,7 +408,7 @@ annexes, constituent l'intégralité de l'accord des Parties et remplacent tout 
 antérieur ayant le même objet. Le Prestataire peut faire évoluer les présentes CGV ;
 la version applicable à une commande est celle en vigueur à la date de sa formation.
 
-## Article 22 — Droit applicable et règlement des litiges
+## Article 21 — Droit applicable et règlement des litiges
 
 Les présentes CGV et tout contrat conclu sur leur fondement sont régis par le
 **droit malgache**.
@@ -455,17 +446,17 @@ et la clause de règlement des litiges.*
 | # | Article | Changement | Source de vérité |
 |---|---|---|---|
 | 1 | Préambule | « VJUS Madagascar, entreprise individuelle… » → **société VJUS** (décision direction 2026-07-16) + NIF/STAT/RCS renseignés (forme exacte — ex. SARL — à préciser) | `MENTIONS-LEGALES.md` |
-| 2 | Art. 22 (ex-20) | Droit français + Tribunal des activités économiques de Paris → **droit malgache + médiation 30 j + tribunaux d'Antananarivo** (gabarit 1) ; renvoi arbitrage CCI/Maurice pour contrats-cadres MB | `MENTIONS-LEGALES.md` |
+| 2 | Art. 21 (ex-20) | Droit français + Tribunal des activités économiques de Paris → **droit malgache + médiation 30 j + tribunaux d'Antananarivo** (gabarit 1) ; renvoi arbitrage CCI/Maurice pour contrats-cadres MB | `MENTIONS-LEGALES.md` |
 | 3 | Art. 7 | Références L. 441-10 / D. 441-5 C. com. supprimées → pénalités **contractuelles** (mêmes montants : BCE +10 pts, 40 €/facture) | cohérence droit malgache |
-| 4 | Art. 18 (ex-16) | Référence art. 1218 C. civ. supprimée → **définition contractuelle** de la force majeure | cohérence droit malgache |
+| 4 | Art. 17 (ex-16) | Référence art. 1218 C. civ. supprimée → **définition contractuelle** de la force majeure | cohérence droit malgache |
 | 5 | Art. 6 | « Offre de bienvenue -50 % » **retirée des CGV** → remises exclusivement aux Conditions Particulières | `PRICING.md §7` (offre pilotable, non due aux partenaires MB) |
 | 6 | Art. 6 | Ajout **fiscalité** : facturation sans TVA (hors UE), autoliquidation client (à valider comptable) | `MENTIONS-LEGALES.md` |
 | 7 | Art. 6 | Ajout **bascule de palier** (jamais de surfacturation unitaire) | `PRICING.md §1` |
 | 8 | Art. 7 | Facturation **à terme échu conservée** (paiement d'avance écarté — friction funnel, décision direction 2026-07-16) ; ajout : frais bancaires internationaux à charge du Client | décision direction |
 | 9 | Art. 9 | Préavis convenance 2 mois → **30 jours fin de mois** + **période pilote résiliable sans préavis** | `PRICING.md §7` (« sans engagement ») |
-| 10 | Art. 4 / 11 / 20 | « personnel »/« salarié » → **intervenants (salariés ou indépendants)** ; indemnité art. 11 assise sur rémunération **ou honoraires** | modèle 100 % freelances (`CLAUDE.md`) |
+| 10 | Art. 4 / 11 / 19 | « personnel »/« salarié » → **intervenants (salariés ou indépendants)** ; indemnité art. 11 assise sur rémunération **ou honoraires** | modèle 100 % freelances (`CLAUDE.md`) |
 | 11 | Art. 4 | Ajout **remèdes SLA = avoir exclusif, plafonné aux CP**, jamais de cash ni de D&I | `PRICING.md §7` (engagement de décroché : avoir 20 %, max 1 mois/12) |
 | 12 | Art. 13 | Ajout **zéro hébergement / zéro stockage local** des données de santé, **zéro enregistrement par défaut** ; ajout loi malgache n° 2014-038 | `CONFORMITE-HDS-RGPD.md §2` |
 | 13 | Art. 15 | **Nouveau** : référence commerciale (autorisée en direct sauf opposition, exclue en MB) | preuve sociale clients fondateurs (`PRICING.md §7`) |
-| 14 | Art. 17 | **Nouveau** : assurance RC professionnelle (à compléter ou retirer avant signature) | due diligence donneurs d'ordre |
+| 14 | — | Article assurance RC pro envisagé puis **retiré** (pas de police souscrite à ce jour — décision direction 2026-07-16) ; à réintroduire le jour où une RC pro est souscrite (attendu en due diligence par les donneurs d'ordre MB) | décision direction |
 | 15 | Art. 3 | Mention mise en service **sans facturation** (« 490 € — offerte » reste un affichage devis, pas une clause) | `PRICING.md §1.c` |
