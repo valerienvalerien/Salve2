@@ -16,7 +16,7 @@
 | **Intitulé** | Responsable Qualité & Formatrice — Télésecrétariat médical |
 | **Entreprise** | Salverys — BPO à Antananarivo, clients France & Canada |
 | **Statut** | **Freelance** (contrat de prestation + NDA, modèles internes) |
-| **Rémunération** | **3 250 000 Ar/mois (650 €)** — ~4,5× le marché local, objectif zéro turnover |
+| **Rémunération** | **3 000 000 Ar/mois (600 €)** — ~2× le marché local, objectif zéro turnover |
 | **Localisation** | 100 % remote, basée à Madagascar (Antananarivo de préférence) |
 | **Équipe encadrée** | 2 à 4 télésecrétaires médicales au démarrage, montée à 8+ agents au fil des contrats |
 | **Rattachement** | Direction Salverys (Valérien) |
@@ -136,9 +136,7 @@ anti-turnover assumé).
 
 ## 7. Notes internes (ne pas publier)
 
-- **Marque** : à l'annonce publique, nommer **Salverys** uniquement (jamais
-  Nesvalo/Vinlo) ; **interdiction** du claim « direction issue d'une structure de 1 000
-  collaborateurs ».
+- **Marque** : à l'annonce publique, nommer **Salverys** uniquement 
 - Le sourcing FB reste anonyme au stade du post (`OUTREACH-Post-Groupes-FB.md`) ; cette
   fiche sert à partir du MP/appel.
 - Piste vivier existante : profil viv0008 (`VIVIER-A-ECRIRE.md` / `VIVIER-EXPORT.md`) —
