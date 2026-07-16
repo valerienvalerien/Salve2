@@ -16,7 +16,7 @@
 | **Intitulé** | Responsable Qualité & Formatrice — Télésecrétariat médical |
 | **Entreprise** | Salverys — BPO à Antananarivo, clients France & Canada |
 | **Statut** | **Freelance** (contrat de prestation + NDA, modèles internes) |
-| **Rémunération** | **3 000 000 Ar/mois (600 €)** — ~2× le marché local, objectif zéro turnover |
+| **Rémunération** | **600 € fixe/mois (hors loyer)** — ~2× le marché local, objectif zéro turnover |
 | **Localisation** | 100 % remote, basée à Madagascar (Antananarivo de préférence) |
 | **Équipe encadrée** | 2 à 4 télésecrétaires médicales au démarrage, montée à 8+ agents au fil des contrats |
 | **Rattachement** | Direction Salverys (Valérien) |
@@ -109,7 +109,7 @@ anti-turnover assumé).
 
 ## 5. Ce que Salverys offre
 
-- **3 000 000 Ar/mois (600 €)** en freelance — ~2× la rémunération de marché des
+- **600 € fixe/mois en freelance, hors loyer** — ~2× la rémunération de marché des
   profils expérimentés à Madagascar, versés dès le démarrage de la mission.
 - Un **rôle fondateur** : 1 des 2 postes de management de la structure (1 médical,
   1 IT), avec la construction des process qualité et de l'équipe médicale.
@@ -142,9 +142,8 @@ anti-turnover assumé).
 - Piste vivier existante : profil viv0008 (`VIVIER-A-ECRIRE.md` / `VIVIER-EXPORT.md`) —
   télésecrétariat médical récent + 8 ans de management service client télécom → à
   relancer en priorité sur ce poste.
-- Rémunération et modèle d'équipe : à recaler sur la source de vérité
-  `FINANCE-PREVISIONNEL.md` (v2) / `CLAUDE.md` (qui affichent 3 250 000 Ar / 650 € pour
-  les managers) — l'écart avec le 600 € retenu ici est à trancher par la direction.
-  Le médical est la **niche n°2** (IT n°1 depuis le 2026-06-22) : le
+- Rémunération : **600 € fixe/mois, hors loyer** — décision direction pour ce poste
+  (spécifique, distincte du 650 € des managers affiché dans `FINANCE-PREVISIONNEL.md` /
+  `CLAUDE.md`). Le médical est la **niche n°2** (IT n°1 depuis le 2026-06-22) : le
   démarrage effectif de l'équipe médicale suit la séquence **Prospection → Équipe →
   Infrastructure** (recruter au rythme des contrats signés).
