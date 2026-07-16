@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fiche de poste — Responsable Qualité & Formatrice · Télésecrétariat médical — Salverys</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-soft:#F6F2EA; --primary:#2E3B4E; --primary-deep:#222C3B;
+    --ink:#20303F; --text:#2A2620; --text-soft:#5C5448; --text-mute:#8A8275;
+    --line:#E7DFD1; --line-soft:#F0EADE; --accent:#6F8770; --accent-soft:#C5D2C5;
+    --accent-tint:#EAF0EA; --gold:#B89968; --gold-soft:#D4B98A;
+    --shadow-sm:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+    --shadow-md:0 10px 28px rgba(32,48,63,.10),0 3px 8px rgba(32,48,63,.06);
+    --shadow-lg:0 24px 60px rgba(32,48,63,.16),0 8px 20px rgba(32,48,63,.08);
+    --radius:16px; --radius-lg:26px; --maxw:960px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text); background:var(--bg-soft); line-height:1.62; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{color:var(--ink); line-height:1.2; letter-spacing:-.01em}
+  a{color:var(--accent)}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
+
+  /* ---------- Barre outils (non imprimée) ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:20; background:rgba(46,59,78,.96); backdrop-filter:blur(8px);
+    color:#fff; padding:10px 22px; display:flex; align-items:center; gap:14px; justify-content:space-between;
+  }
+  .toolbar .t-left{display:flex; align-items:center; gap:10px; font-size:13px; opacity:.9}
+  .toolbar button{
+    font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:0; border-radius:100px;
+    padding:8px 16px; background:var(--gold); color:var(--primary-deep); transition:transform .15s var(--ease),filter .15s;
+  }
+  .toolbar button:hover{filter:brightness(1.06); transform:translateY(-1px)}
+
+  /* ---------- Bannière LinkedIn ---------- */
+  .banner-label{max-width:var(--maxw); margin:26px auto 8px; padding:0 22px; color:var(--text-mute); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700}
+  .banner-frame{max-width:var(--maxw); margin:0 auto 6px; padding:0 22px}
+  /* Ratio LinkedIn cover 1584x396 = 4:1 */
+  .li-banner{
+    position:relative; width:100%; aspect-ratio:1584/396; border-radius:var(--radius-lg); overflow:hidden;
+    background:
+      radial-gradient(1100px 380px at 82% -30%, rgba(111,135,112,.55), transparent 60%),
+      radial-gradient(700px 300px at 8% 130%, rgba(184,153,104,.35), transparent 60%),
+      linear-gradient(120deg,#2E3B4E 0%,#222C3B 60%,#1a2431 100%);
+    box-shadow:var(--shadow-lg); color:#fff; display:flex; align-items:center;
+  }
+  .li-banner .li-inner{padding:clamp(18px,3.4vw,46px); width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .li-banner .li-copy{max-width:74%}
+  .li-eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:clamp(11px,1.35vw,15px); font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:clamp(6px,1vw,12px)
+  }
+  .li-eyebrow::before{content:""; width:26px; height:2px; background:var(--gold-soft); display:inline-block}
+  .li-title{font-size:clamp(19px,3.5vw,44px); font-weight:800; color:#fff; margin:0 0 clamp(6px,1.1vw,14px); letter-spacing:-.02em; line-height:1.08}
+  .li-sub{font-size:clamp(11px,1.6vw,19px); color:rgba(255,255,255,.82); margin:0; font-weight:500}
+  .li-tags{margin-top:clamp(8px,1.4vw,18px); display:flex; flex-wrap:wrap; gap:clamp(6px,.9vw,12px)}
+  .li-tag{
+    font-size:clamp(10px,1.25vw,14px); font-weight:600; padding:clamp(4px,.6vw,8px) clamp(9px,1.2vw,16px);
+    border-radius:100px; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(4px)
+  }
+  .li-logo{flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-end; gap:10px}
+  .li-logo img{width:clamp(120px,15vw,210px); height:auto; display:block}
+  .li-logo .li-loc{font-size:clamp(9px,1.05vw,13px); color:rgba(255,255,255,.6); letter-spacing:.05em}
+  .banner-hint{max-width:var(--maxw); margin:0 auto; padding:4px 22px 0; color:var(--text-mute); font-size:12px}
+
+  /* ---------- En-tête fiche ---------- */
+  .sheet{background:var(--bg); margin:26px auto 60px; max-width:var(--maxw); border-radius:var(--radius-lg); box-shadow:var(--shadow-md); overflow:hidden}
+  .sheet-head{
+    padding:40px clamp(24px,4vw,54px) 34px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fbf8f2,#ffffff)
+  }
+  .sheet-head .brand{display:flex; align-items:center; gap:12px; margin-bottom:22px}
+  .sheet-head .brand img{height:34px; width:auto}
+  .kicker{color:var(--accent); font-weight:700; font-size:13px; letter-spacing:.1em; text-transform:uppercase; margin:0 0 8px}
+  .sheet-head h1{font-size:clamp(26px,4.2vw,40px); margin:0 0 10px; font-weight:800}
+  .sheet-head .lede{color:var(--text-soft); font-size:clamp(15px,2vw,18px); max-width:64ch; margin:0}
+
+  /* ---------- Carte "L'essentiel" ---------- */
+  .facts{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0;
+    margin:0; border-top:1px solid var(--line-soft)
+  }
+  .fact{padding:18px clamp(24px,4vw,54px); border-bottom:1px solid var(--line-soft); border-right:1px solid var(--line-soft)}
+  .fact .k{font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--text-mute); font-weight:700; margin-bottom:4px}
+  .fact .v{font-size:15.5px; color:var(--ink); font-weight:600}
+  .fact .v strong{color:var(--accent)}
+
+  /* ---------- Corps ---------- */
+  .body{padding:14px clamp(24px,4vw,54px) 46px}
+  .body section{padding:26px 0; border-bottom:1px solid var(--line-soft)}
+  .body section:last-child{border-bottom:0}
+  .body h2{font-size:22px; margin:0 0 6px; display:flex; align-items:center; gap:12px}
+  .body h2 .num{
+    flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:var(--accent-tint); color:var(--accent);
+    display:grid; place-items:center; font-size:15px; font-weight:800
+  }
+  .body h2 .pct{margin-left:auto; font-size:13px; font-weight:700; color:var(--gold); background:#fbf3e4; padding:3px 12px; border-radius:100px}
+  .body p{margin:.5em 0}
+  .body ul{margin:.4em 0 .2em; padding-left:0; list-style:none}
+  .body ul li{position:relative; padding-left:26px; margin:.42em 0}
+  .body ul li::before{content:""; position:absolute; left:6px; top:.62em; width:7px; height:7px; border-radius:50%; background:var(--accent)}
+  .body ul li.ko::before{background:var(--gold); box-shadow:0 0 0 3px #fbf3e4}
+  .lead-in{color:var(--text-soft); font-size:14.5px; margin:2px 0 12px}
+
+  .sub{font-weight:700; color:var(--ink); margin:16px 0 4px; font-size:15.5px}
+  .subtle{color:var(--text-mute)}
+
+  /* Colonnes profil */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:8px}
+  .card{background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px}
+  .card h3{font-size:14px; letter-spacing:.05em; text-transform:uppercase; margin:0 0 8px; color:var(--primary)}
+  .card.hi{background:var(--accent-tint); border-color:var(--accent-soft)}
+  .card.gold{background:#fbf3e4; border-color:var(--gold-soft)}
+
+  /* Étapes recrutement */
+  .steps{counter-reset:st; display:grid; gap:10px; margin-top:8px}
+  .step{display:flex; gap:14px; align-items:flex-start; background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px}
+  .step::before{counter-increment:st; content:counter(st); flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:var(--primary); color:#fff; font-weight:800; font-size:14px; display:grid; place-items:center}
+  .step .s-t{font-weight:700; color:var(--ink)}
+  .step .s-d{color:var(--text-soft); font-size:14px}
+
+  /* Note interne */
+  .note{background:#fbf6ee; border:1px dashed var(--gold-soft); border-radius:var(--radius); padding:18px 20px; margin-top:8px}
+  .note h2{font-size:16px; color:var(--gold)}
+  .note h2 .num{background:#f4e6cd; color:var(--gold)}
+  .note ul li::before{background:var(--gold)}
+
+  footer{max-width:var(--maxw); margin:0 auto 50px; padding:0 22px; color:var(--text-mute); font-size:12.5px; text-align:center}
+
+  @media (max-width:680px){
+    .cols{grid-template-columns:1fr}
+    .li-banner .li-copy{max-width:100%}
+    .li-logo{display:none}
+  }
+
+  /* ---------- Impression ---------- */
+  @media print{
+    .toolbar,.banner-label,.banner-frame,.banner-hint{display:none !important}
+    body{background:#fff}
+    .sheet{box-shadow:none; margin:0; border-radius:0; max-width:none}
+    .fact,.body section{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="t-left">Fiche de poste · usage interne + base d'annonce LinkedIn</div>
+    <button onclick="window.print()">Imprimer / Exporter en PDF</button>
+  </div>
+
+  <!-- ============ BANNIÈRE LINKEDIN ============ -->
+  <div class="banner-label">Bannière LinkedIn — format 1584 × 396 px (capture d'écran de la zone ci-dessous)</div>
+  <div class="banner-frame">
+    <div class="li-banner">
+      <div class="li-inner">
+        <div class="li-copy">
+          <span class="li-eyebrow">Salverys recrute</span>
+          <h2 class="li-title">Responsable Qualité &amp; Formatrice<br>Télésecrétariat médical</h2>
+          <p class="li-sub">Formez, cadrez, faites progresser une équipe de télésecrétaires médicales au service de cabinets français.</p>
+          <div class="li-tags">
+            <span class="li-tag">Freelance · 100 % remote</span>
+            <span class="li-tag">650 €/mois</span>
+            <span class="li-tag">Antananarivo · Madagascar</span>
+            <span class="li-tag">Objectif zéro turnover</span>
+          </div>
+        </div>
+        <div class="li-logo">
+          <img src="assets/logo-salverys-blanc.svg" alt="Salverys" />
+          <span class="li-loc">salverys.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="banner-hint">Astuce : pour obtenir l'image, faites une capture de la bannière ci-dessus (ou zoomez à 100 %). Le reste de la page est la fiche de poste complète, imprimable en PDF via le bouton en haut.</p>
+
+  <!-- ============ FICHE DE POSTE ============ -->
+  <article class="sheet">
+    <header class="sheet-head">
+      <div class="brand"><img src="assets/logo-salverys.svg" alt="Salverys" /></div>
+      <p class="kicker">Fiche de poste — Niche télésecrétariat médical</p>
+      <h1>Responsable Qualité &amp; Formatrice des télésecrétaires médicales</h1>
+      <p class="lede">La garante de la promesse client : « plus aucun appel patient qui sonne dans le vide ». Elle forme les télésecrétaires, arme la grille qualité, réalise les doubles écoutes et fait progresser l'équipe — logique de coaching, pas de flicage.</p>
+    </header>
+
+    <!-- L'essentiel -->
+    <div class="facts">
+      <div class="fact"><div class="k">Entreprise</div><div class="v">Salverys — BPO Antananarivo · clients FR &amp; CA</div></div>
+      <div class="fact"><div class="k">Statut</div><div class="v">Freelance (prestation + NDA)</div></div>
+      <div class="fact"><div class="k">Rémunération</div><div class="v"><strong>3 250 000 Ar/mois (650 €)</strong></div></div>
+      <div class="fact"><div class="k">Localisation</div><div class="v">100 % remote · Madagascar</div></div>
+      <div class="fact"><div class="k">Équipe encadrée</div><div class="v">2 à 4 télésecrétaires → 8+ agents</div></div>
+      <div class="fact"><div class="k">Plage de service</div><div class="v">8h – 20h heure France (lun–sam)</div></div>
+    </div>
+
+    <div class="body">
+
+      <section>
+        <h2><span class="num">1</span> Contexte du poste</h2>
+        <p>Salverys démarre son activité de <strong>télésecrétariat médical</strong> pour des cabinets et télésecrétariats <strong>français</strong> (marque blanche d'abord, direct ensuite). La promesse client : décroché sous le nom du cabinet, 8h–20h, avec un <strong>engagement de décroché ≥ 90 %</strong> et un cadrage qualité documenté <em>avant le premier appel</em> — grille QA, double écoute, reporting, escalades.</p>
+        <p>La Responsable Qualité &amp; Formatrice est la personne qui <strong>tient cette promesse au quotidien</strong>. C'est aussi un des deux postes de management de la structure (1 médical, 1 IT), levier central du modèle « zéro turnover ».</p>
+      </section>
+
+      <section>
+        <h2><span class="num">2</span> Missions</h2>
+
+        <h3 class="sub">2.1 &nbsp;Qualité <span class="pct" style="font-weight:700;color:var(--gold)">≈ 40 %</span></h3>
+        <p class="lead-in">Piloter le process QA interne (grille + double écoute).</p>
+        <ul>
+          <li class="ko"><strong>Armer la grille QA médicale</strong> pour chaque nouveau compte avant le 1<sup>er</sup> appel (critères KO : exactitude de la saisie agenda, secret médical/RGPD).</li>
+          <li>Réaliser les <strong>doubles écoutes</strong> : ≥ 5 écoutes/agent la 1<sup>re</sup> semaine d'onboarding, ≥ 2 écoutes/agent/semaine en régime, systématiques après fiche rouge ou réclamation.</li>
+          <li><strong>Restituer sous 48 h</strong> (2 points forts + 1-2 axes concrets), déclencher et suivre les plans d'action (vert ≥ 85 % · orange 70-84 % · rouge &lt; 70 % ou KO).</li>
+          <li>Alimenter le <strong>reporting mensuel client</strong> (décroché, délai de réponse) avec la direction.</li>
+          <li>Tenir le <strong>KPI engagé</strong> : ≥ 90 % de décroché sur 8h–20h en régime.</li>
+        </ul>
+
+        <h3 class="sub">2.2 &nbsp;Formation <span class="pct" style="font-weight:700;color:var(--gold)">≈ 30 %</span></h3>
+        <p class="lead-in">Faire monter les télésecrétaires en compétence.</p>
+        <ul>
+          <li>Construire et animer l'<strong>onboarding</strong> : scripts et consignes du cabinet, accueil sous le nom du cabinet, qualification urgence vs RDV, clôture.</li>
+          <li>Former aux <strong>agendas clients</strong> (Doctolib, Maiia, Médistory, Cegedim, Ubicentrex) et aux règles de sécurité (comptes nommés, MFA, zéro téléchargement).</li>
+          <li>Ancrer les réflexes <strong>secret médical &amp; RGPD</strong> (pas d'enregistrement, pas d'info hors besoin).</li>
+          <li>Assurer la <strong>formation continue</strong> à partir des doubles écoutes (axes récurrents → sessions ciblées).</li>
+        </ul>
+
+        <h3 class="sub">2.3 &nbsp;Management de proximité &amp; escalades <span class="pct" style="font-weight:700;color:var(--gold)">≈ 20 %</span></h3>
+        <ul>
+          <li>Encadrer l'équipe : plannings sur la plage 8h–20h FR, backup +1 agent par compte, gestion des absences.</li>
+          <li>Être le <strong>niveau 2 d'escalade</strong> (cas complexe, réclamation, doute RGPD) et appliquer la chaîne d'escalade figée au cadrage.</li>
+          <li>Porter la posture anti-turnover : feedback régulier, valorisation, montée en compétence.</li>
+        </ul>
+
+        <h3 class="sub">2.4 &nbsp;Cadrage des comptes &amp; recrutement <span class="pct" style="font-weight:700;color:var(--gold)">≈ 10 %</span></h3>
+        <ul>
+          <li>Participer à l'<strong>onboarding client</strong> (phase 1) : instancier grille, cadence d'écoute et escalades avant J1.</li>
+          <li>Participer au <strong>recrutement</strong> des télésecrétaires : passation du mini-test, avis sur les profils du vivier.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">3</span> Profil recherché</h2>
+        <div class="cols">
+          <div class="card hi">
+            <h3>Indispensable</h3>
+            <ul>
+              <li>Expérience en <strong>télésecrétariat / secrétariat médical</strong> (agenda, RDV, urgences, relation patient).</li>
+              <li>Expérience d'<strong>encadrement ou de formation</strong> d'une équipe relation client à distance.</li>
+              <li><strong>Français C1 minimum</strong> à l'oral et à l'écrit.</li>
+              <li>Rigueur documentaire : grille de notation, plan d'action, reporting chiffré.</li>
+              <li>Freelance, 100 % remote, dispo sur la plage France.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Fortement apprécié</h3>
+            <ul>
+              <li>Pratique d'un agenda médical FR (Doctolib, Maiia, Médistory…).</li>
+              <li>Culture <strong>secret médical / RGPD</strong> déjà installée.</li>
+              <li>Expérience centre de contact / BPO avec double écoute et scorecards.</li>
+              <li>Pédagogie « coaching » : faire progresser sans sanctionner.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="subtle" style="margin-top:14px"><strong>Posture attendue :</strong> exigeante sur la qualité, bienveillante avec les personnes ; autonome (la direction cadre, la responsable fait tourner).</p>
+      </section>
+
+      <section>
+        <h2><span class="num">4</span> Ce que Salverys offre</h2>
+        <ul>
+          <li><strong>650 €/mois en freelance</strong> — ~4,5× la rémunération de marché des profils expérimentés à Madagascar, dès le démarrage de la mission.</li>
+          <li>Un <strong>rôle fondateur</strong> : construction des process qualité et de l'équipe médicale.</li>
+          <li>Des <strong>process déjà écrits</strong> (grille QA, double écoute, onboarding, reporting) : on exécute et on améliore, on n'improvise pas.</li>
+          <li>100 % remote, <strong>outillage fourni</strong> (téléphonie, ticketing, accès agendas clients).</li>
+          <li>Montée de périmètre au rythme des contrats (4 → 8+ agents).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">5</span> Process de recrutement</h2>
+        <div class="steps">
+          <div class="step"><div><div class="s-t">Candidature / MP</div><div class="s-d">CV ou parcours + disponibilité / préavis.</div></div></div>
+          <div class="step"><div><div class="s-t">Appel de screening (15–20 min)</div><div class="s-d">Parcours, expérience médicale, niveau de français à l'oral.</div></div></div>
+          <div class="step"><div><div class="s-t">Mini-test de qualification</div><div class="s-d">Mises en situation télésecrétariat.</div></div></div>
+          <div class="step"><div><div class="s-t">Oral managérial</div><div class="s-d">Cas pratiques : restitution d'une double écoute, gestion d'une fiche rouge, engagement de durée.</div></div></div>
+          <div class="step"><div><div class="s-t">Signature</div><div class="s-d">Contrat de prestation freelance + NDA.</div></div></div>
+        </div>
+      </section>
+
+      <div class="note">
+        <h2><span class="num">i</span> Notes internes — ne pas publier</h2>
+        <ul>
+          <li><strong>Marque :</strong> nommer <strong>Salverys</strong> uniquement (jamais Nesvalo/Vinlo) ; interdiction du claim « direction issue d'une structure de 1 000 collaborateurs ».</li>
+          <li>Sourcing FB anonyme au stade du post ; cette fiche sert à partir du MP/appel.</li>
+          <li>Piste vivier prioritaire : <strong>viv0008</strong> (télésecrétariat médical récent + 8 ans de management service client télécom).</li>
+          <li>Le médical est la <strong>niche n°2</strong> (IT n°1 depuis le 2026-06-22) : recruter au rythme des contrats signés (séquence Prospection → Équipe → Infrastructure).</li>
+        </ul>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>Salverys — document interne · rémunération &amp; modèle d'équipe : source de vérité <code>FINANCE-PREVISIONNEL.md</code> (v2) &amp; <code>CLAUDE.md</code>.</footer>
+
+</body>
+</html>
