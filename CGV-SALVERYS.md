@@ -28,7 +28,7 @@ Version 1.1 — applicable à compter du [DATE]
 
 Les présentes Conditions Générales de Vente (les « CGV ») sont conclues entre :
 
-**VJUS**, société de droit malgache [FORME JURIDIQUE À COMPLÉTER — cf. `MENTIONS-LEGALES.md`],
+**VJUS**, société de droit malgache [FORME EXACTE À PRÉCISER — ex. SARL],
 immatriculée sous le NIF **6018198778**, STAT **74908 11 2023 0 06077**, RCS
 **102071032469** (Antananarivo), dont le siège social est situé à Antananarivo,
 Madagascar [ADRESSE COMPLÈTE À COMPLÉTER], représentée par [REPRÉSENTANT LÉGAL À
@@ -182,11 +182,8 @@ sans pénalité, avant l'entrée en vigueur du nouveau tarif.
 
 ## Article 7 — Facturation et paiement
 
-**Termes de facturation.** Les Prestations au forfait mensuel sont facturées
-**d'avance, en début de mois civil** (terme à échoir). Les composantes facturées à
-l'usage (à l'heure, à l'interaction, débordements convenus) sont facturées
-mensuellement **à terme échu**. Les factures sont adressées au Client par voie
-électronique.
+Les Prestations sont facturées mensuellement, **à terme échu**, en fin de mois
+civil. Les factures sont adressées au Client par voie électronique.
 
 Les factures sont payables par virement bancaire, en euros, sur le compte indiqué
 par le Prestataire, dans un délai de trente (30) jours à compter de la date
@@ -457,14 +454,14 @@ et la clause de règlement des litiges.*
 
 | # | Article | Changement | Source de vérité |
 |---|---|---|---|
-| 1 | Préambule | « VJUS Madagascar, entreprise individuelle… » → **société VJUS** + NIF/STAT/RCS renseignés (forme juridique laissée à compléter) | `MENTIONS-LEGALES.md` |
+| 1 | Préambule | « VJUS Madagascar, entreprise individuelle… » → **société VJUS** (décision direction 2026-07-16) + NIF/STAT/RCS renseignés (forme exacte — ex. SARL — à préciser) | `MENTIONS-LEGALES.md` |
 | 2 | Art. 22 (ex-20) | Droit français + Tribunal des activités économiques de Paris → **droit malgache + médiation 30 j + tribunaux d'Antananarivo** (gabarit 1) ; renvoi arbitrage CCI/Maurice pour contrats-cadres MB | `MENTIONS-LEGALES.md` |
 | 3 | Art. 7 | Références L. 441-10 / D. 441-5 C. com. supprimées → pénalités **contractuelles** (mêmes montants : BCE +10 pts, 40 €/facture) | cohérence droit malgache |
 | 4 | Art. 18 (ex-16) | Référence art. 1218 C. civ. supprimée → **définition contractuelle** de la force majeure | cohérence droit malgache |
 | 5 | Art. 6 | « Offre de bienvenue -50 % » **retirée des CGV** → remises exclusivement aux Conditions Particulières | `PRICING.md §7` (offre pilotable, non due aux partenaires MB) |
 | 6 | Art. 6 | Ajout **fiscalité** : facturation sans TVA (hors UE), autoliquidation client (à valider comptable) | `MENTIONS-LEGALES.md` |
 | 7 | Art. 6 | Ajout **bascule de palier** (jamais de surfacturation unitaire) | `PRICING.md §1` |
-| 8 | Art. 7 | Forfaits facturés **d'avance** (terme à échoir), usage à terme échu ; frais bancaires internationaux à charge du Client | trésorerie (`FINANCE-PREVISIONNEL.md`) |
+| 8 | Art. 7 | Facturation **à terme échu conservée** (paiement d'avance écarté — friction funnel, décision direction 2026-07-16) ; ajout : frais bancaires internationaux à charge du Client | décision direction |
 | 9 | Art. 9 | Préavis convenance 2 mois → **30 jours fin de mois** + **période pilote résiliable sans préavis** | `PRICING.md §7` (« sans engagement ») |
 | 10 | Art. 4 / 11 / 20 | « personnel »/« salarié » → **intervenants (salariés ou indépendants)** ; indemnité art. 11 assise sur rémunération **ou honoraires** | modèle 100 % freelances (`CLAUDE.md`) |
 | 11 | Art. 4 | Ajout **remèdes SLA = avoir exclusif, plafonné aux CP**, jamais de cash ni de D&I | `PRICING.md §7` (engagement de décroché : avoir 20 %, max 1 mois/12) |
