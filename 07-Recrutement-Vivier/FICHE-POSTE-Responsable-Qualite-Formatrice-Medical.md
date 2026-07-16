@@ -109,7 +109,7 @@ anti-turnover assumé).
 
 ## 5. Ce que Salverys offre
 
-- **3 250 000 Ar/mois (650 €)** en freelance — ~4,5× la rémunération de marché des
+- **3 000 000 Ar/mois (600 €)** en freelance — ~2× la rémunération de marché des
   profils expérimentés à Madagascar, versés dès le démarrage de la mission.
 - Un **rôle fondateur** : 1 des 2 postes de management de la structure (1 médical,
   1 IT), avec la construction des process qualité et de l'équipe médicale.
@@ -142,7 +142,9 @@ anti-turnover assumé).
 - Piste vivier existante : profil viv0008 (`VIVIER-A-ECRIRE.md` / `VIVIER-EXPORT.md`) —
   télésecrétariat médical récent + 8 ans de management service client télécom → à
   relancer en priorité sur ce poste.
-- Rémunération et modèle d'équipe : source de vérité `FINANCE-PREVISIONNEL.md` (v2) et
-  `CLAUDE.md`. Le médical est la **niche n°2** (IT n°1 depuis le 2026-06-22) : le
+- Rémunération et modèle d'équipe : à recaler sur la source de vérité
+  `FINANCE-PREVISIONNEL.md` (v2) / `CLAUDE.md` (qui affichent 3 250 000 Ar / 650 € pour
+  les managers) — l'écart avec le 600 € retenu ici est à trancher par la direction.
+  Le médical est la **niche n°2** (IT n°1 depuis le 2026-06-22) : le
   démarrage effectif de l'équipe médicale suit la séquence **Prospection → Équipe →
   Infrastructure** (recruter au rythme des contrats signés).
