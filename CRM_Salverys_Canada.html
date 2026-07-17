@@ -748,11 +748,11 @@ function exportCSV(){
      vérifié uniquement ; les pages entreprise et notes vont dans « action ».
      Peut aussi corriger site/secteur/effectif/pertinence et compléter le signal. */
   const ENRICH={
-    "S3 Technologies":{nom:"Vincent (cofondateur)",titre:"VP Opérations",action:"Joindre Vincent (VP Opérations) via la page entreprise (linkedin.com/company/s3-technologies-inc) — nom complet à confirmer + séquence A"},
-    "Groupe Access":{nom:"Habib Malik",titre:"CEO (MSP Corp / ex-Groupe Access)",linkedin:"https://ca.linkedin.com/in/habib-malik-46691887"},
-    "MS Solutions":{nom:"Maxime Dion",titre:"Président",linkedin:"https://www.linkedin.com/in/maxdion/"},
-    "Victrix":{nom:"Dominic Lajoie",titre:"Chef de la direction (CEO)",linkedin:"https://www.linkedin.com/in/dominiclajoie/"},
-    "NOVIPRO":{nom:"David Chamandy",titre:"Président-directeur général",linkedin:"https://www.linkedin.com/in/david-chamandy/"},
+    "S3 Technologies":{nom:"Vincent (cofondateur)",titre:"VP Opérations",email:"sales@s3tech.ca",tel:"514 284-6262",action:"Joindre Vincent (VP Opérations) via la page entreprise (linkedin.com/company/s3-technologies-inc) — nom complet à confirmer + séquence A"},
+    "Groupe Access":{nom:"Habib Malik",titre:"CEO (MSP Corp / ex-Groupe Access)",email:"info@groupeaccess.ca",tel:"514 288-6000",linkedin:"https://ca.linkedin.com/in/habib-malik-46691887"},
+    "MS Solutions":{nom:"Maxime Dion",titre:"Président",email:"info@mssolutions.ca",tel:"418 877-3365",linkedin:"https://www.linkedin.com/in/maxdion/"},
+    "Victrix":{nom:"Dominic Lajoie",titre:"Chef de la direction (CEO)",email:"contact@victrix.ca",tel:"418 780-8181",linkedin:"https://www.linkedin.com/in/dominiclajoie/"},
+    "NOVIPRO":{nom:"David Chamandy",titre:"Président-directeur général",email:"info@novipro.com",tel:"1 866 726-5353",linkedin:"https://www.linkedin.com/in/david-chamandy/"},
     "ESI Technologies":{nom:"Greg Rokos",titre:"Président & CEO",linkedin:"https://ca.linkedin.com/in/greg-rokos-7151139"},
     "Solutions informatiques Inso":{nom:"Naji Chalhoub",titre:"Président",linkedin:"https://www.linkedin.com/in/naji-chalhoub-1b392789/"},
     "Groupe COSIOR":{nom:"Mario Parent",titre:"Président-fondateur",linkedin:"https://www.linkedin.com/in/marioparent/"},
@@ -823,6 +823,27 @@ function exportCSV(){
   ];
   let changed=false;
   W.forEach(nl=>{ if(!LEADS.some(x=>x.id===nl.id)){ LEADS.push(nl); changed=true; } });
+  if(changed) save(LEADS);
+})();
+
+/* ── Enrichissement coordonnées (2026-07-17) : tél standard + email vérifiés
+   (sites officiels) sur les 5 cibles pertinence ≥ 8 déjà en base. Fill-only :
+   ne remplit que les champs vides du décideur, n'écrase jamais une saisie. */
+(function addContacts3(){
+  const C={
+    'S3 Technologies':{email:'sales@s3tech.ca',tel:'514 284-6262'},
+    'Groupe Access':{email:'info@groupeaccess.ca',tel:'514 288-6000'},
+    'Victrix':{email:'contact@victrix.ca',tel:'418 780-8181'},
+    'NOVIPRO':{email:'info@novipro.com',tel:'1 866 726-5353'},
+    'MS Solutions':{email:'info@mssolutions.ca',tel:'418 877-3365'}
+  };
+  let changed=false;
+  LEADS.forEach(l=>{
+    const c=C[l.entreprise]; if(!c) return;
+    if(!l.decideur) l.decideur={nom:'',titre:'',email:'',tel:'',linkedin:''};
+    if(c.email&&!l.decideur.email){ l.decideur.email=c.email; changed=true; }
+    if(c.tel&&!l.decideur.tel){ l.decideur.tel=c.tel; changed=true; }
+  });
   if(changed) save(LEADS);
 })();
 
