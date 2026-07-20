@@ -147,55 +147,53 @@
 <!-- FENÊTRE VERTE — SERVICES -->
 <section class="greenband reveal" id="services">
   <div class="container">
-    <span class="tagchip on-dark">Nos services</span>
-    <h2>Trois savoir-faire, <em>un même standard</em></h2>
-    <div class="gb-tabs" role="tablist">
-      <button class="gb-tab tab-saas active" data-panel="saas">Support N1 SaaS</button>
-      <button class="gb-tab tab-helpdesk" data-panel="helpdesk">Helpdesk IT N1</button>
-      <button class="gb-tab tab-medical" data-panel="medical">Télésecrétariat médical</button>
+    <div class="gbv1-head">
+      <div>
+        <span class="tagchip on-dark">Nos services</span>
+        <h2>Trois savoir-faire, <em>un même standard</em></h2>
+      </div>
+      <p class="gbv1-intro">Trois équipes, une même exigence : scripts documentés, double écoute qualité et reporting mensuel chiffré.</p>
     </div>
-    <div class="gb-grid">
-      <div class="gb-copy">
-        <div class="gb-panel" data-name="saas">
-          <h3>Travaillez sans la surcharge</h3>
-          <p>Support fonctionnel N1 pour vos utilisateurs : tickets, chat, téléphone. Escalade cadrée vers vos équipes produit, en français et en anglais.</p>
-          <ul class="gb-list">
-            <li>Agents formés à votre produit et à vos process</li>
-            <li>SLA de première réponse mesuré et partagé</li>
-            <li>Vous gardez la main sur vos files et vos priorités</li>
-          </ul>
-          <a href="simulateur-informatique.html" class="btn btn-it">Simuler mon équipe <span class="arrow">→</span></a>
-        </div>
-        <div class="gb-panel" data-name="helpdesk" hidden>
-          <h3>Un helpdesk qui décroche</h3>
-          <p>Helpdesk IT N1 distant pour entreprises, DSI, ESN et MSP : agents francophones dédiés, escalade N2 cadrée vers vos équipes.</p>
-          <ul class="gb-list">
-            <li>Prise en charge tickets &amp; téléphone (ITIL)</li>
-            <li>KPI partagés : décroché, résolution N1, satisfaction</li>
-            <li>Backup par compte : pas de jour d'arrêt</li>
-          </ul>
-          <a href="simulateur-helpdesk-it.html" class="btn btn-helpdesk">Simuler mon équipe <span class="arrow">→</span></a>
-        </div>
-        <div class="gb-panel" data-name="medical" hidden>
-          <h3>Votre standard, toujours décroché</h3>
-          <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical. Dès 350 €/mois.</p>
-          <ul class="gb-list">
-            <li>≥ 90 % d'appels décrochés en régime, sinon 20 % d'avoir</li>
-            <li>Doctolib, Maiia, Médistory : intégration faite par nous</li>
-            <li>Secret médical et RGPD cadrés dès le 1er échange</li>
-          </ul>
-          <a href="simulateur-salverys.html" class="btn btn-primary">Simuler mon forfait <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div class="gb-visual" aria-hidden="true">
-        <div class="gb-shot">
-          <div class="hs-bar"><i></i><i></i><i></i></div>
-          <div class="hs-row"><span class="hs-dot" style="background:var(--accent-tint)">SA</span><span class="hs-txt"><b>File Support — 12 tickets ouverts</b><span>Temps de 1re réponse moyen : 9 min</span></span><span class="hs-tag badge-ok">SLA tenu</span></div>
-          <div class="hs-row"><span class="hs-dot" style="background:var(--gold-tint)">HD</span><span class="hs-txt"><b>Standard IT — 3 appels en cours</b><span>Taux de décroché aujourd'hui : 97 %</span></span><span class="hs-tag badge-wait">En ligne</span></div>
-          <div class="hs-row"><span class="hs-dot" style="background:#E3E8EF">MD</span><span class="hs-txt"><b>Agenda praticien — 14 RDV pris</b><span>Dernier appel décroché en 28 s</span></span><span class="hs-tag badge-ok">Actif</span></div>
-          <div class="hs-row"><span class="hs-dot" style="background:var(--bg-soft)">KPI</span><span class="hs-txt"><b>Reporting mensuel envoyé</b><span>Décroché · 1re réponse · SLA tickets</span></span><span class="hs-tag badge-new">Envoyé</span></div>
-        </div>
-      </div>
+    <div class="gbv1-grid">
+      <a class="svc-card svc-saas" href="simulateur-informatique.html">
+        <span class="svc-kick">Éditeurs SaaS · Priorité</span>
+        <h3>Support N1 SaaS</h3>
+        <p>Tickets, chat, téléphone — escalade cadrée vers vos équipes produit, en français et en anglais.</p>
+        <ul class="svc-list">
+          <li>Agents formés à votre produit et à vos process</li>
+          <li>SLA de 1re réponse mesuré et partagé</li>
+          <li>Vous gardez la main sur vos files</li>
+        </ul>
+        <span class="svc-link">Simuler mon équipe <span class="arrow">→</span></span>
+      </a>
+      <a class="svc-card svc-helpdesk" href="simulateur-helpdesk-it.html">
+        <span class="svc-kick">DSI · ESN · MSP</span>
+        <h3>Helpdesk IT N1</h3>
+        <p>Helpdesk distant pour entreprises et DSI : agents dédiés, escalade N2 cadrée vers vos équipes.</p>
+        <ul class="svc-list">
+          <li>Prise en charge tickets &amp; téléphone (ITIL)</li>
+          <li>KPI partagés : décroché, résolution N1</li>
+          <li>Backup par compte, pas de jour d'arrêt</li>
+        </ul>
+        <span class="svc-link">Simuler mon équipe <span class="arrow">→</span></span>
+      </a>
+      <a class="svc-card svc-medical" href="simulateur-salverys.html">
+        <span class="svc-kick">Cabinets · dès 350 €/mois</span>
+        <h3>Télésecrétariat médical</h3>
+        <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical.</p>
+        <ul class="svc-list">
+          <li>≥ 90 % d'appels décrochés, sinon 20 % d'avoir</li>
+          <li>Doctolib, Maiia, Médistory : intégrés par nous</li>
+          <li>Secret médical et RGPD cadrés dès le 1er échange</li>
+        </ul>
+        <span class="svc-link">Simuler mon forfait <span class="arrow">→</span></span>
+      </a>
+    </div>
+    <div class="gbv1-kpis" aria-hidden="true">
+      <span class="kpi"><b>9 min</b> 1re réponse moyenne</span>
+      <span class="kpi"><b>97 %</b> de décroché aujourd'hui</span>
+      <span class="kpi"><b>14</b> RDV pris ce matin</span>
+      <span class="kpi"><b>SLA</b> reporting mensuel envoyé</span>
     </div>
   </div>
 </section>
