@@ -868,3 +868,19 @@ body.home { background: var(--sage-bg); }
 .home #engagements .commit-grid > .commit-card:nth-child(2)::before { background: #E06B52; }
 .home #engagements .commit-grid > .commit-card:nth-child(3)::before { background: #F0B429; }
 .home #engagements .commit-grid > .commit-card:nth-child(4)::before { background: #8FB08F; }
+
+/* ---------- Bandeau logos partenaires (pastilles) ---------- */
+.mq-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border-radius: var(--radius-pill);
+  padding: 9px 18px; font-size: 14px; font-weight: 700;
+  white-space: nowrap; color: #2A2620;
+  box-shadow: 0 2px 10px rgba(0,0,0,.10);
+}
+.mq-ic { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+.mq-zendesk { color: #03363D; }
+.mq-jira { color: #0052CC; }
+.mq-intercom { color: #1F5AE0; }
+.mq-doctolib { color: #0596DE; }
+.mq-freshdesk { color: #12945B; }
+.mq-glpi, .mq-maiia, .mq-ubicentrex { color: #3A3A3A; }
