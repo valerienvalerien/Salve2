@@ -727,6 +727,7 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .home .section.soft .feat-col-card { background: #fff; border: 0; }
 
 /* ---------- Titres display condensés ---------- */
+.home .hero h1,
 .home .section-head h2,
 .home .contact-copy h2 {
   font-family: var(--font-display);
@@ -735,13 +736,7 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
   letter-spacing: .006em;
   line-height: .98;
 }
-/* Hero : titre fort mais PAS en capitales condensées */
-.home .hero h1 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 800; text-transform: none;
-  letter-spacing: -.022em; line-height: 1.04;
-  font-size: clamp(40px, 5.6vw, 68px);
-}
+.home .hero h1 { font-size: clamp(42px, 6vw, 74px); }
 .home .section-head h2 { font-size: clamp(30px, 4.4vw, 52px); }
 .home .contact-copy h2 { font-size: clamp(30px, 4vw, 48px); }
 .home .feat-body h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .008em; line-height: 1.02; font-size: clamp(22px, 2.6vw, 30px); }
