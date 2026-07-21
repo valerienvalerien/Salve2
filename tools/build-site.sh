@@ -16,12 +16,13 @@ PUBLIC_PAGES=(
   espace-client-helpdesk.html
   espace-candidat.html
   suivi-candidature.html
+  mentions-legales.html
 )
 
 rm -rf _site
 mkdir -p _site/assets
 cp "${PUBLIC_PAGES[@]}" _site/
-cp assets/* _site/assets/
+cp -r assets/. _site/assets/
 
 echo "✓ _site construit : $(ls _site | wc -l) entrées."
 if ls _site/*.md >/dev/null 2>&1 || [ -d _site/tools ]; then

@@ -177,6 +177,7 @@ img { display: block; max-width: 100%; }
 .hero p.lead { font-size: 19px; color: var(--text-soft); max-width: 540px; margin-bottom: 30px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .ctas-metiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 720px; margin: 0 auto; }
+.section-head .ctas-metiers { margin-top: 26px; }
 .ctas-metiers .btn { justify-content: center; width: 100%; box-sizing: border-box; }
 @media (max-width: 640px) { .ctas-metiers { grid-template-columns: 1fr; } }
 .hero-trust { margin-top: 30px; display: flex; gap: 26px; flex-wrap: wrap; font-size: 13.5px; color: var(--text-mute); }
@@ -239,9 +240,10 @@ img { display: block; max-width: 100%; }
 .theme-it .feat-body h3 { font-family: 'Inter', sans-serif; font-weight: 800; }
 .feat-body p { color: var(--text-soft); font-size: 16px; margin-bottom: 18px; }
 .tick { list-style: none; }
-.tick li { display: flex; gap: 11px; padding: 7px 0; font-size: 15px; color: var(--text); }
-.tick li::before { content: "✓"; color: var(--accent); font-weight: 800; flex-shrink: 0; }
-.theme-it .tick li::before { color: var(--primary); background: var(--accent); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+.tick li { position: relative; padding: 7px 0 7px 28px; font-size: 15px; color: var(--text); }
+.tick li::before { content: "✓"; position: absolute; left: 0; top: 7px; color: var(--accent); font-weight: 800; }
+.theme-it .tick li::before { position: absolute; left: 0; top: 8px; color: var(--primary); background: var(--accent); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+.tick li b { font-weight: 700; }
 
 /* ================= MÉTIERS / CARDS ================= */
 .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
@@ -619,6 +621,69 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 
 /* ===== Colonnes de contenu (2 feat-body sans image) ===== */
 .feat-col-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 32px; }
+.section.soft .feat-col-card { background: var(--bg); border: 1px solid var(--line); }
+
+/* ================= MÉTHODE : carte du monde Antananarivo · Paris · Montréal ================= */
+.route-card { background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 26px 26px 24px; box-shadow: var(--shadow-lg); }
+.route-map { width: 100%; height: auto; margin-bottom: 18px; }
+.route-cities { display: flex; flex-direction: column; gap: 10px; }
+.route-city { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 12px 18px; }
+.route-flag { font-size: 24px; line-height: 1; }
+.route-city-txt { flex: 1; display: flex; flex-direction: column; }
+.route-city-txt b { font-size: 16px; letter-spacing: -.01em; }
+.route-city-txt span { font-size: 12.5px; color: rgba(255,255,255,.65); }
+.route-time { font-family: 'Georgia', serif; font-size: 22px; font-weight: 700; color: var(--accent-soft); font-variant-numeric: tabular-nums; }
+.route-foot { margin-top: 16px; font-size: 13.5px; color: rgba(255,255,255,.72); text-align: center; }
+
+/* ================= ENGAGEMENTS ================= */
+.section.deep .kicker { color: var(--accent-soft); }
+.commit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 980px) { .commit-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .commit-grid { grid-template-columns: 1fr; } }
+.commit-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-lg); padding: 30px 26px; }
+.commit-num { font-family: 'Georgia', serif; font-size: 46px; font-weight: 700; line-height: 1; letter-spacing: -.02em; color: var(--accent-soft); margin-bottom: 14px; }
+.commit-card h4 { font-size: 16px; color: #fff; margin-bottom: 10px; }
+.commit-card p { font-size: 14px; color: rgba(255,255,255,.72); }
+
+/* ================= FAQ ================= */
+.faq-list { max-width: 760px; margin: 0 auto; }
+.faq-item { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 19px 22px; font-size: 16px; font-weight: 700; color: var(--primary); transition: background .15s; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: ""; margin-left: auto; width: 10px; height: 10px; flex-shrink: 0; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); transition: transform .25s var(--ease); }
+.faq-item[open] summary::after { transform: rotate(225deg); }
+.faq-item summary:hover { background: var(--bg-soft); }
+.faq-item .faq-body { padding: 0 22px 20px; }
+.faq-item .faq-body p { font-size: 15px; color: var(--text-soft); }
+.txt-link { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.txt-link:hover { color: var(--primary); }
+
+/* ================= PAGE LÉGALE ================= */
+.legal-prose { max-width: 760px; }
+.legal-prose h1 { font-family: 'Georgia', serif; font-size: clamp(32px, 4.4vw, 46px); font-weight: 600; color: var(--primary); letter-spacing: -.01em; margin-bottom: 26px; }
+.legal-prose h2 { font-family: 'Georgia', serif; font-size: 23px; font-weight: 600; color: var(--primary); margin: 40px 0 12px; }
+.legal-prose p { font-size: 15.5px; color: var(--text-soft); margin-bottom: 12px; }
+.legal-prose p b { color: var(--text); }
+.legal-table { width: 100%; border-collapse: collapse; margin: 10px 0 6px; }
+.legal-table th, .legal-table td { text-align: left; padding: 11px 14px; border: 1px solid var(--line); font-size: 14.5px; }
+.legal-table th { width: 34%; background: var(--bg-soft); color: var(--primary); font-weight: 700; }
+.legal-table td { color: var(--text-soft); }
+
+/* ================= CONTACT (bande deep + formulaire) ================= */
+.contact-band { position: relative; overflow: hidden; }
+.contact-band .hero-bg-blob { opacity: .5; }
+.contact-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+@media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; gap: 36px; } }
+.contact-copy h2 { font-family: 'Georgia', serif; font-size: clamp(30px, 4vw, 44px); font-weight: 600; color: #fff; margin: 0 0 16px; }
+.contact-copy h2 .hl { color: var(--accent-soft); background: none; padding: 0; }
+.contact-copy p { font-size: 17px; color: rgba(255,255,255,.78); margin-bottom: 22px; max-width: 460px; }
+.contact-copy .tick li { color: rgba(255,255,255,.85); }
+.contact-copy .tick li::before { color: var(--accent-soft); }
+.contact-copy .txt-link { color: var(--accent-soft); }
+.contact-copy .txt-link:hover { color: #fff; }
+.contact-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 30px; box-shadow: var(--shadow-lg); }
+.form-field textarea { width: 100%; padding: .625rem .875rem; border: 1.5px solid var(--line); border-radius: .625rem; font-size: .95rem; font-family: inherit; color: var(--ink); background: #fff; box-sizing: border-box; transition: border-color .2s; resize: vertical; min-height: 96px; }
+.form-field textarea:focus { outline: none; border-color: var(--accent); }
 
 /* ===== Helpdesk : btn-helpdesk en rose (override du bleu global) ===== */
 .theme-helpdesk .btn-helpdesk { background: linear-gradient(120deg, #E06B52 0%, #E06B52 42%, #EA8B7A 50%, #E06B52 58%, #E06B52 100%); box-shadow: 0 6px 20px -8px rgba(224,107,82,.55), var(--shadow-md); }
@@ -627,3 +692,197 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 /* ===== Helpdesk : tier zones rose ===== */
 .theme-helpdesk .tz-confort { background: #E06B52; }
 .theme-helpdesk .tc-confort { background: #FDEEE9; color: #E06B52; }
+
+/* ================================================================
+   ACCUEIL V2 — reprise maquette « redesign » recolorée charte
+   (topbar globale + restyle scopé body.home : fond sauge, titres
+   display condensés, fenêtre verte à onglets, cartes métiers photo,
+   3 étapes colorées, FAQ arrondie)
+   ================================================================ */
+:root {
+  --green-deep: #263A2E;      /* vert sauge profond — « fenêtre verte » */
+  --green-deeper: #1C2C22;
+  --sage-bg: #EDF1E9;         /* fond de page teinté sauge */
+  --sage-bg-soft: #E5EBE0;    /* sections alternées */
+  --gold-tint: #F3E6D0;
+  --font-display: 'Anton', 'Arial Narrow', 'Helvetica Neue', Impact, sans-serif;
+}
+
+/* ---------- Topbar d'annonce (toutes pages) ---------- */
+.topbar { background: var(--bg-deep); color: rgba(255,255,255,.88); font-size: 12.5px; font-weight: 600; text-align: center; padding: 8px 16px; letter-spacing: .01em; }
+.topbar b { color: var(--accent-soft); }
+.home .topbar { background: var(--green-deep); }
+.home .topbar b { color: #FCE27C; }
+
+/* ---------- Fond & nav ---------- */
+/* Dégradé horizontal : blanc à gauche, vert sauge à droite (le vert n'apparaît que dans le dernier quart) */
+body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 76%, #A9C6A6 100%); background-attachment: fixed; }
+.home .nav { background: rgba(255,255,255,.80); }
+.home .section.soft { background: transparent; }
+.home .section.deep, .home .marquee, .home .route-card, .home .contact-band { background: var(--green-deep); }
+.home .footer { background: var(--green-deeper); }
+.home .footer-gold { height: 12px; background: var(--gold-soft); }
+.home .scroll-next { background: #fff; }
+.home .faq-item, .home .feat-col-card, .home .float-card, .home .contact-card, .home .step-visual { background: #fff; }
+.home .section.soft .feat-col-card { background: #fff; border: 0; }
+
+/* ---------- Titres display condensés ---------- */
+.home .hero h1,
+.home .section-head h2,
+.home .contact-copy h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .006em;
+  line-height: .98;
+}
+.home .hero h1 { font-size: clamp(42px, 6vw, 74px); }
+.home .section-head h2 { font-size: clamp(30px, 4.4vw, 52px); }
+.home .contact-copy h2 { font-size: clamp(30px, 4vw, 48px); }
+.home .feat-body h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .008em; line-height: 1.02; font-size: clamp(22px, 2.6vw, 30px); }
+.home .stat .num, .home .float-card .fc-num, .home .commit-num { font-family: var(--font-display); font-weight: 400; letter-spacing: .01em; }
+.home .hero h1 .hl {
+  color: inherit; background: linear-gradient(transparent 62%, var(--accent-soft) 62%);
+  padding: 0 2px; border-radius: 0; line-height: inherit; display: inline; white-space: normal;
+}
+.home .contact-copy h2 .hl { color: var(--accent-soft); background: none; }
+
+/* ---------- Tagchip ---------- */
+.tagchip { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--primary); color: var(--primary); margin-bottom: 20px; }
+.tagchip.on-dark { border-color: var(--accent-soft); color: var(--accent-soft); }
+
+/* ---------- Fenêtre verte services (greenband) ---------- */
+.greenband { background: var(--green-deep); color: #fff; border-radius: var(--radius-lg); margin: 0 auto; max-width: calc(100% - 16px); padding: clamp(44px, 6vw, 78px) 0; }
+@media (min-width: 1228px) { .greenband { max-width: calc(var(--maxw) + 16px); } }
+.greenband h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .006em; line-height: .98; color: #fff; font-size: clamp(32px, 4.8vw, 60px); max-width: 18ch; margin-bottom: 26px; }
+.greenband h2 em { font-style: normal; color: var(--accent-soft); }
+.gbv1-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: end; margin-bottom: 34px; }
+.gbv1-head h2 { margin-bottom: 0; }
+.gbv1-intro { font-size: 15px; color: rgba(255,255,255,.75); max-width: 40ch; justify-self: end; padding-bottom: 8px; }
+.gbv1-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
+/* Cartes « pastels vifs » (esprit chaleureux/dynamique) : une couleur de marque par métier */
+.svc-card { position: relative; display: block; border: 0; border-radius: 20px; padding: 28px 24px 24px; overflow: hidden; box-shadow: 0 18px 44px -18px rgba(0,0,0,.5); transition: transform .22s var(--ease), box-shadow .25s; }
+.svc-card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 28px 56px -18px rgba(0,0,0,.55); }
+.svc-saas { background: linear-gradient(170deg, #FDEFAF, #FCE27C); }
+.svc-helpdesk { background: linear-gradient(170deg, #F8C9B8, #F0937D); }
+.svc-medical { background: linear-gradient(170deg, #DCE8DC, #C5D2C5); }
+.svc-kick { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; padding: 5px 12px; border-radius: var(--radius-pill); background: var(--green-deep); color: #fff; }
+.svc-card h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: .01em; color: #263A2E; margin-bottom: 12px; }
+.svc-card > p { font-size: 13.5px; margin-bottom: 16px; min-height: 3em; }
+.svc-list { list-style: none; margin: 0 0 20px; padding: 0; }
+.svc-list li { position: relative; padding: 6px 0 6px 22px; font-size: 13.5px; }
+.svc-list li::before { content: "✓"; position: absolute; left: 0; top: 6px; font-weight: 800; color: var(--green-deep); }
+.svc-saas > p, .svc-saas .svc-list li { color: #4A3B0C; }
+.svc-helpdesk > p, .svc-helpdesk .svc-list li { color: #5A2317; }
+.svc-medical > p, .svc-medical .svc-list li { color: #34473A; }
+.svc-link { font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; color: var(--green-deep); }
+.svc-link .arrow { transition: transform .22s var(--ease); }
+.svc-card:hover .svc-link .arrow { transform: translateX(4px); }
+.gbv1-kpis { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #D4B98A, #EAD9BD); border: 0; border-radius: var(--radius-pill); padding: 15px 28px; box-shadow: 0 14px 34px -16px rgba(0,0,0,.45); }
+.gbv1-kpis .kpi { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; color: #5A4526; }
+.gbv1-kpis .kpi b { font-family: var(--font-display); font-weight: 400; font-size: 22px; color: #263A2E; letter-spacing: .01em; }
+@media (max-width: 900px) {
+  .gbv1-head { grid-template-columns: 1fr; gap: 14px; }
+  .gbv1-intro { justify-self: start; padding-bottom: 0; }
+  .gbv1-grid { grid-template-columns: 1fr; }
+  .gbv1-kpis { border-radius: var(--radius); justify-content: flex-start; }
+}
+
+/* ---------- Qu'externalisez-vous ? (cartes photo) ---------- */
+.types-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 960px) { .types-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .types-row { grid-template-columns: 1fr; } }
+.tcard { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3/4; display: block; }
+.tcard .bgfall { position: absolute; inset: 0; }
+.tcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.tcard:hover img { transform: scale(1.05); }
+.tcard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(28,44,34,.82)); }
+.tcard-txt { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2; text-align: left; }
+.tcard-txt .tsub { display: block; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 6px; }
+.tcard-txt .tlab { display: block; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.05; letter-spacing: .01em; color: #fff; }
+.tcard .tgo { position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.94); color: var(--green-deep); display: flex; align-items: center; justify-content: center; font-weight: 800; transition: transform .25s var(--ease); }
+.tcard:hover .tgo { transform: translateX(3px); }
+.tcard.soon { pointer-events: none; }
+.tcard.soon img { filter: grayscale(.4); opacity: .8; }
+.tcard.soon::after { background: rgba(28,44,34,.6); }
+
+/* ---------- 3 étapes colorées ---------- */
+.stepcards { counter-reset: none; }
+.step-card { border-radius: var(--radius-lg); padding: clamp(26px, 4vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px); align-items: center; text-align: left; margin-bottom: 16px; }
+@media (max-width: 780px) { .step-card { grid-template-columns: 1fr; } }
+.step-card.blue { background: #CFE0EC; }
+.step-card.yellow { background: #FBE7A8; }
+.step-card.rose { background: #F6D8CF; }
+.step-num { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding: 6px 14px; border-radius: var(--radius-pill); color: #fff; }
+.step-card.blue .step-num { background: #1A5F7A; }
+.step-card.yellow .step-num { background: #C99A17; }
+.step-card.rose .step-num { background: #E06B52; }
+.step-card h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(24px, 3vw, 38px); line-height: 1; letter-spacing: .008em; color: var(--green-deep); margin-bottom: 14px; }
+.step-card.blue h3 { color: #123E50; }
+.step-card.rose h3 { color: #7A2E20; }
+.step-card > div > p { font-size: 14.5px; color: var(--text-soft); max-width: 44ch; }
+.step-visual { background: #fff; border-radius: var(--radius); padding: 20px; box-shadow: 0 20px 50px rgba(28,44,34,.16); color: var(--text); }
+.step-visual .line { height: 10px; border-radius: 6px; background: var(--sage-bg-soft); margin-bottom: 10px; }
+.step-visual .line.w60 { width: 60%; } .step-visual .line.w80 { width: 80%; } .step-visual .line.w40 { width: 40%; }
+.step-visual .chip-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.step-visual .chip { font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--sage-bg-soft); color: var(--primary); }
+.step-visual .chip.on { background: var(--accent-soft); color: var(--green-deep); }
+.step-visual .price { font-family: var(--font-display); font-weight: 400; font-size: 40px; color: var(--green-deep); line-height: 1; letter-spacing: .01em; }
+.step-visual .price small { font-size: 15px; color: var(--text-mute); font-family: 'Inter', sans-serif; }
+.step-visual .old { text-decoration: line-through; color: var(--text-mute); font-size: 16px; margin-right: 8px; font-family: 'Inter', sans-serif; font-weight: 600; }
+.step-visual .sv-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--text-mute); margin-bottom: 10px; }
+
+/* ---------- FAQ restylée (accueil) ---------- */
+.home .faq-item { border: 0; border-radius: 18px; box-shadow: var(--shadow-sm); }
+.home .faq-item summary { padding: 19px 22px; }
+.home .faq-item summary::after {
+  content: "+"; width: 28px; height: 28px; border: 0; border-radius: 50%;
+  background: var(--sage-bg); color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 800; line-height: 1;
+  transform: none; transition: transform .25s var(--ease), background .2s;
+}
+.home .faq-item[open] summary::after { transform: rotate(45deg); background: var(--accent-soft); color: var(--green-deep); }
+.home .faq-item summary:hover { background: var(--sage-bg); }
+
+/* ================================================================
+   ACCUEIL v4 — engagements plus dynamiques (orange + accents charte)
+   ================================================================ */
+.home #engagements .commit-num { color: #EE8B4C; }        /* chiffres orange */
+.home #engagements .commit-card {
+  position: relative; overflow: hidden;
+  transition: transform .2s var(--ease), background .2s, border-color .2s;
+}
+.home #engagements .commit-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+}
+.home #engagements .commit-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.22);
+}
+/* barre d'accent colorée par carte (bleu · corail · jaune · sauge de la charte) */
+.home #engagements .commit-grid > .commit-card:nth-child(1)::before { background: #4F9BC0; }
+.home #engagements .commit-grid > .commit-card:nth-child(2)::before { background: #E06B52; }
+.home #engagements .commit-grid > .commit-card:nth-child(3)::before { background: #F0B429; }
+.home #engagements .commit-grid > .commit-card:nth-child(4)::before { background: #8FB08F; }
+
+/* ---------- Bandeau logos partenaires (pastilles) ---------- */
+.mq-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border-radius: var(--radius-pill);
+  padding: 9px 18px; font-size: 14px; font-weight: 700;
+  white-space: nowrap; color: #2A2620;
+  box-shadow: 0 2px 10px rgba(0,0,0,.10);
+}
+.mq-ic { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+.mq-zendesk { color: #03363D; }
+.mq-jira { color: #0052CC; }
+.mq-intercom { color: #1F5AE0; }
+.mq-doctolib { color: #0596DE; }
+.mq-freshdesk { color: #12945B; }
+.mq-glpi, .mq-maiia, .mq-ubicentrex { color: #3A3A3A; }
+
+/* ---------- Drapeaux SVG inline (remplacent les emoji, rendu universel) ---------- */
+.flag { height: .85em; width: auto; display: inline-block; vertical-align: -.12em; border-radius: 2px; margin: 0 .1em; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
+.route-flag .flag { height: 20px; border-radius: 3px; margin: 0; }
