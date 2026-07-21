@@ -23,6 +23,30 @@
     img.addEventListener('error', () => { img.style.display = 'none'; });
   });
 
+  /* ---------- Float CTA simulateurs (accueil) ---------- */
+  const floatCta = document.getElementById('floatCta');
+  if (floatCta) {
+    const toggle = document.getElementById('floatCtaToggle');
+    const close = () => { floatCta.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); };
+    toggle.addEventListener('click', () => {
+      const willOpen = !floatCta.classList.contains('open');
+      floatCta.classList.toggle('open', willOpen);
+      toggle.setAttribute('aria-expanded', String(willOpen));
+    });
+    document.addEventListener('click', e => { if (!floatCta.contains(e.target)) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+    const heroEl = document.querySelector('.hero');
+    if (heroEl && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        floatCta.classList.toggle('visible', !entry.isIntersecting);
+      }, { rootMargin: '-10% 0px 0px 0px' });
+      io.observe(heroEl);
+    } else {
+      floatCta.classList.add('visible');
+    }
+  }
+
   /* ---------- Compteurs animés ---------- */
   function animateCounter(el) {
     const to = parseFloat(el.dataset.to);
