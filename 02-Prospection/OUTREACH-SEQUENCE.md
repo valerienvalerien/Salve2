@@ -420,7 +420,7 @@ d'étranglement n°1 de la croissance. »
 
 Bonjour {{firstName}},
 
-Un repère qui revient chez les éditeurs SaaS qu'on accompagne : un Customer Support Specialist FR en interne, en coût complet (salaire chargé + onboarding produit 4-6 semaines + outils + turnover ~18 mois), tourne autour de 38-46 k€ par an équivalent temps plein. Et c'est 60 à 90 jours de recrutement, à refaire à chaque rotation.
+Un repère qui revient chez les éditeurs SaaS qu'on accompagne : un Customer Support Specialist FR en interne, en coût complet (salaire chargé + onboarding produit 4-6 semaines + outils + turnover ~18 mois), tourne autour de 38-50 k€ par an équivalent temps plein — et facilement au-delà en ESN d'Île-de-France une fois intégrés management, formation, matériel et locaux. Et c'est 60 à 90 jours de recrutement, à refaire à chaque rotation.
 
 Pas de demande aujourd'hui — juste un repère utile si {{structure}} arbitre entre internalisation et externalisation pour 2026.
 
@@ -552,7 +552,7 @@ Bonne continuation à vous et à l'équipe.
 | Objection | Réponse courte |
 |---|---|
 | « Nos users vont sentir que c'est externalisé » | Équipe française d'origine, sous votre nom, vos macros, vos process. Le user voit votre marque — Salverys n'apparaît jamais. |
-| « C'est combien ? » | Selon configuration (volume, amplitude, canaux) — devis sous 24 h après un premier cadrage. Repère : environ -40 % d'un CDI N1 FR chargé (38-46 k€/an). |
+| « C'est combien ? » | Selon configuration (volume, amplitude, canaux) — devis sous 24 h après un premier cadrage. Repère : -40 à -60 % du coût complet d'un CDI support N1 FR (38-50 k€/an). |
 | « Nos tickets sont trop techniques pour du N1 externalisé » | C'est exactement le périmètre cadré : N1 sur catégories simples, escalade automatique vers votre N2 sur le reste. Vous gardez la complexité. |
 | « On a déjà un Customer Support Manager » | Pas pour le remplacer — pour absorber le N1 répétitif et lui rendre du temps sur la qualité, l'onboarding, la voice of customer. |
 | « Et la formation à notre produit ? » | Onboarding 5-10 jours sur votre base de connaissance + macros. Backup agent inclus pour absorber le turnover de votre côté **et** du nôtre. |

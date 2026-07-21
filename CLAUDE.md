@@ -2,19 +2,15 @@
 
 ## Contexte activité
 
-BPO basé à Antananarivo (Madagascar) ciblant des clients **français**.
+BPO basé à Antananarivo (Madagascar) ciblant des clients **français et canadiens**.
 Direction expérimentée qui repart de zéro avec une équipe de **10 personnes**.
 
-> ⚠️ **Claim interdit (décision 2026-06-12)** : « direction issue d'une structure de
-> 1 000 collaborateurs » était une consigne de persona initiale, **pas la réalité**.
-> Ne plus jamais l'utiliser dans aucun livrable, email, page ou support. Mettre en
-> avant à la place : process documentés, cadrage qualité (script, double écoute,
+>Mettre en avant à la place : process documentés, cadrage qualité (script, double écoute,
 > reporting), pilote mesuré.
 
 ### Niches cibles (par priorité)
 > ⚠️ **Priorité revue (décision direction 2026-06-22) : l'IT devient la priorité n°1**,
-> avant le médical (qui passe n°2). Les bailleurs sortent du top 3 immédiat : élargis à
-> « relation client de toutes sortes », repoussés à un **futur non déterminé**.
+> avant le médical (qui passe n°2). 
 1. **Support applicatif N1 pour éditeurs SaaS français** (priorité absolue — IT)
 2. **Helpdesk IT N1 distant** (IT)
 3. Télésecrétariat médical
@@ -38,13 +34,12 @@ y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
 - Français langue maternelle
-- Coût ~40 % inférieur à un prestataire hexagonal
+- Coût **40 à 60 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
+  (benchmark différencié par métier dans `PRICING.md §3/§5` : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
 
 ## Marque
 
-**Nom commercial retenu : Salverys** (temporaire mais à utiliser partout pour
-l'instant). Remplace les anciens noms **Nesvalo** et **Vinlo**, qui ne doivent
-plus apparaître dans aucun livrable, séquence, CRM ou support client.
+**Nom commercial retenu : Salverys** 
 
 > Note technique : depuis le 2026-05-29, les clés `localStorage` du CRM
 > (`CRM_Salverys.html`) sont préfixées `salverys_`. L'ancien stockage `vinlo_`/

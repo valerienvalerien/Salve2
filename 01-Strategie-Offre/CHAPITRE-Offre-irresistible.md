@@ -9,9 +9,9 @@
 
 ## 1. Le diagnostic (recul de départ)
 
-L'offre initiale menait par **« −40 % »**. Quatre faiblesses identifiées :
+L'offre initiale menait par **« −40 à −60 % »**. Quatre faiblesses identifiées :
 
-1. **Logique de vendeur, pas douleur du client.** « −40 % » = notre coût, pas ce que le
+1. **Logique de vendeur, pas douleur du client.** « −40 à −60 % » = notre coût, pas ce que le
    client veut (ne plus perdre de patients/clients, ne rien gérer).
 2. **Le prix est l'axe le plus faible** : toujours comparable donc **résistible**. En
    santé, « moins cher + offshore inconnu » déclenche la peur, pas l'envie.
@@ -44,7 +44,7 @@ Quatre leviers, **dans l'ordre d'impact pour Salverys** (pas de preuve + capacit
 
 ### 3.1 Promesse-résultat (≠ prix)
 Le titre devient le **résultat** (« plus aucun appel qui sonne dans le vide / vos appels
-décrochés sans embaucher »). Le « −40 % » passe en **conséquence**, jamais en titre.
+décrochés sans embaucher »). Le « −40 à −60 % » passe en **conséquence**, jamais en titre.
 
 ### 3.2 Réassurance en deux temps (la pièce maîtresse)
 Deux peurs distinctes, deux réponses :
@@ -103,5 +103,5 @@ jours » (irréaliste = mensonger).
 - **Ne pas baisser le prix sous le plancher** (santé : « trop pas cher » = suspect).
 - **Toujours adosser l'engagement à un KPI + conditions de défense** (sinon remède
   non maîtrisé).
-- **Ne pas mettre « −40 % » en titre** (logique de coût ≠ douleur client).
+- **Ne pas mettre « −40 à −60 % » en titre** (logique de coût ≠ douleur client).
 - **Ne jamais inventer de référence client** tant que le 1er pilote n'est pas signé.

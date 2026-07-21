@@ -95,10 +95,142 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 
 1. **Lancer `/sales-prospect`** sur les cibles après validation (voir PROSPECT-ANALYSIS pour Metaline, Oxxodata, Tenexa, Cyllene, Kincy, Izencia)
 2. **Identifier les décideurs nominatifs** selon la règle de cadrage ci-dessus (fondateur pour les petites, Directeur Delivery / DG Ops pour les moyennes/grandes)
-3. **Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`
+3. ~~**Intégrer dans CRM_Salverys.html** sous niche `helpdesk-it-esn`~~ ✅ **Fait le 2026-07-13** :
+   les P2/P3 restantes (ComputerLand, IT Partner, Alteo, Nowteam, OCI, Itak-IT, BlueBearsIT,
+   Next2i, Edeal IT, VDI Telecom, Acti-One, ES Protect, Value IT) sont dans le CRM en leads
+   `l196`-`l208` (Hardis exclu — trop grand, cf. §disqualification). Les P1 y étaient déjà (`l181`-`l195`).
+
+### Enrichissement contacts (2026-07-13 #2) — dirigeants & coordonnées vérifiés
+
+| Société | Décideur vérifié | Tél | Email | Source |
+|---------|-----------------|-----|-------|--------|
+| ComputerLand | à identifier (registres ambigus) | 01 46 99 42 99 | contact@computerland.fr | computerland.fr |
+| IT Partner | **Abdénour Ainséba** (Président) | — | — (LinkedIn-first) | annuaire-entreprises |
+| Nowteam | DG agence à identifier | 04 28 29 50 90 | — | nowteam.net |
+| OCI | à identifier | 09 69 39 40 60 | — | oci.fr |
+| Itak-IT | **Alex Kong** (dirigeant cofondateur) | 01 84 23 30 10 | contact@itak-it.com | pappers |
+| BlueBearsIT | **Eric Charpentier** (Président-Fondateur) | — | — (LinkedIn-first) | pappers |
+| Next2i | **Rachid Sourhou** (Président) | 01 48 49 98 00 | — | pappers |
+| Edeal IT | **Laurent Cognet** (Président) | — | — | pappers |
+| VDI Telecom | **Thierry Brejon** (Président) | 04 72 71 66 99 | vdi@vditelecom.fr | pappers |
+| Acti-One | **Jérôme Niochet** (dirigeant) | 04 78 02 79 40 | — | acti-one.fr |
+| Value IT | **Jeremy Orlowski** (dirigeant) | 09 70 24 01 80 | contact@value-info.fr | value-info.fr |
+
+**⚠️ Requalifications (2026-07-13) :**
+- **Alteo** : c'est une **agence web** (création de sites + hébergement infogéré), pas un MSP
+  helpdesk — score CRM abaissé 55→30, priorité basse.
+- **ES Protect** : 🚫 **disqualifié** — esprotect.fr est un **média/guide** (comparateur
+  assurance/cyber), pas un prestataire IT. L'article « service informatique PME » était éditorial.
+- **Edeal IT** : effectif réel **3-5 pers** (pappers), pas 20-50 — micro-structure, score 42→38.
+- **Nowteam** : appartient au **groupe NowBrains**, même groupe que NowServiceDesk (CRM `l190`,
+  score 80) → une seule approche groupe, l190 reste la porte d'entrée.
+- **Value IT** : siège réel **Saint-Étienne (42)**, pas Saint-Priest.
 4. **Lancer campagne Emelia** avec séquence OUTREACH-IT-N1-marque-blanche.md
 
 ---
 
 *Source : recherches web + annuaires entreprises France (societe.com, pappers.fr, LinkedIn)*
 *À enrichir avec données LinkedIn nominatives avant envoi*
+
+---
+
+## Vague 3 (2026-07-13 #3) — nouvelles cibles régionales + marque blanche
+
+Intégrées au CRM en leads `l221`-`l232` (niche `helpdesk-it-esn`). Objectif : couvrir
+les régions absentes de la vague 2 (très lyonnaise) + les acteurs qui vendent déjà
+du service managé en marque blanche.
+
+| ID CRM | Société | Ville/Région | Profil | Score | Décideur |
+|--------|---------|--------------|--------|-------|----------|
+| l221 | **Actual Systèmes** | à qualifier | ⚡ VEND du MSP en marque blanche aux ESN — profil Oxxodata : proposer d'être la couche humaine N1 derrière leur offre (1 deal = tout leur portefeuille) | **68** | à identifier |
+| l222 | **Infiny Link** | Bièvres (91) | MSP IDF 24/7 + SLA, fondé 2005 | 58 | **Emmanuel Bonnefond & Oscar Almecija** (cofondateurs) |
+| l223 | ActuelBuro | Sud-Ouest (Bordeaux/Dax/Mont-de-Marsan/Toulouse) | Infogérance 24/7 multi-agences | 52 | à identifier |
+| l224 | Quietic | Nantes | MSP proactif TPE/PME + cyber | 48 | à identifier |
+| l227 | CLEV'IT | Lille | MSP co-managé (modèle idéal pour insertion N1 MB) | 48 | à identifier |
+| l225 | MaDSI | Nantes | MSP PME/TPE | 45 | à identifier |
+| l226 | Comète Informatique | Rennes | Infogérance + parc PME | 45 | à identifier |
+| l228 | UltraNova | Strasbourg | Infogérance PME/ETI | 45 | à identifier |
+| l229 | Acteis | Bordeaux | Maintenance + infogérance PME | 45 | à identifier |
+| l230 | IT Systèmes | à qualifier | MSP supervision + support | 40 | à identifier |
+| l231 | My-MSP | AURA | Services managés PME | 40 | à identifier |
+| l232 | IPE | à qualifier | MSP infogérance | 40 | à identifier |
+
+**Écarté :** Everping (everping.eu) = plateforme SaaS de monitoring, pas un MSP opérant du helpdesk.
+
+*Sources vague 3 : actualsystemes.com, infinylink.fr + annuaire-entreprises (SIREN 484710611),
+actuelburo.fr, quietic.fr, clevit.fr, madsi.fr, comete-informatique.com, ultranova.fr,
+acteis-so.fr, itsystemes.fr, my-msp.com, ipe.fr — recherches web 2026-07-13.*
+
+---
+
+## Vague 4 (2026-07-13 #4) — ESN uniquement, acheteuses de N1 en marque blanche
+
+Intégrées au CRM en leads `l236`-`l242` (niche `helpdesk-it-esn`).
+
+| ID CRM | Société | Ville | Profil / Signal | Score | Décideur |
+|--------|---------|-------|-----------------|-------|----------|
+| l236 | **Constellation** | Saint-Cloud (92) | 🔥 ~500 pers, 100 M€+ proforma, levée 70 M€ (Qualium/CDC), acquisitions en série (Clariteam, Group DIS) = tension delivery | **62** | Dir. Delivery / DG Ops à identifier (ex-dirigeants Clariteam = portes d'entrée) |
+| l237 | Log'in Line | à qualifier | Infogérance startups/scale-ups, n°1 classement 2026 | 55 | à identifier |
+| l238 | Enix | Paris (à confirmer) | Infogérance plateformes web critiques → astreintes 24/7 | 50 | à identifier |
+| l239 | NeoOne | à qualifier | Positionné marque blanche MSP — qualifier : opérateur (→ profil Oxxodata) ou cabinet (→ prescripteur) | 50 | à identifier |
+| l241 | **Naitways** | Boulogne-Billancourt (92) | Cloud + hébergement infogéré, 15,8 M€, PE Andera. ⚠️ discours « 100 % français » à cadrer | 50 | **Jeremy Spy & Nguyen Minh Hoa** (cofondateurs) |
+| l240 | ACI Technology | Bois-Colombes (92) | Infogérance ISO 20000-1/27001 → cadre ITSM propre | 48 | à identifier |
+| l242 | EzWay Technology | à qualifier | Infogérance PME en développement commercial | 38 | à identifier |
+
+**Écartés vague 4 :**
+- **A3COM** (a3com.fr, Paris, 35+ ans) : pas une ESN — centre d'appels/télésecrétariat 24/7
+  (médical, paramédical, juridique + hotline). **Piste à réétudier en `telesec-mb`**
+  (profil donneur d'ordre télésec, comme IPContact/Callmed). Tél standard : 01 45 14 75 00.
+- **M-KIS** : positionnement « infogérance souveraine » frontal = anti-offshore par nature.
+- **Claranet, Inetum, Scalian, Capgemini** : trop grands + offshore existant.
+
+*Sources vague 4 : ChannelNews (Constellation/Clariteam), Distributique, constellation.fr,
+loginline.com, acitechnology.eu, pappers (Naitways SIREN 508823614), anderapartners.com,
+neoone.expert — recherches web 2026-07-13.*
+
+---
+
+## Vague 5 (2026-07-13 #5) — ESN uniquement (suite)
+
+Intégrées au CRM en leads `l243`-`l247` (niche `helpdesk-it-esn`).
+
+| ID CRM | Société | Ville | Profil / Signal | Score | Décideur |
+|--------|---------|-------|-----------------|-------|----------|
+| l243 | **Quodagis** | Nanterre + centre de services **Aurillac** | 🔥 Groupe ITSM dont le cœur de métier est le SERVICE DESK (nearshore FR Aurillac) → angle débordement + extension horaire, même logique nearshore | **62** | **Roland Mor** (Président) + Eric Schirmann (fondateur) |
+| l244 | **Ozitem** | Levallois-Perret (92) | Cloud + services managés, 250-499 pers, 37 ans | 55 | **François Espieux** (PDG, sponsor) — viser le Dir. Delivery |
+| l245 | AntemetA | IDF (à confirmer) | Cloud privé managé + infogérance 24/7 (BaaS/DRaaS, K8s) | 52 | à identifier |
+| l246 | Hexanet | Reims (51) | Opérateur régional cloud/télécom/infogérance, datacenters propres | 50 | à identifier |
+| l247 | Groupe Asten | Brest (29) | 140 pers, 17,5 M€ (2024). ⚠️ discours souveraineté à cadrer | 48 | **Jean-Christophe Cagnard** (fondateur) |
+
+*Sources vague 5 : pappers (Quodagis IT 799363783, Ozitem 347758559), societe.com
+(Asten 441614443, Hexanet 487555682), ChannelNews, bretagne-economique.com,
+quodagis.fr, antemeta.fr, hexanet.fr — recherches web 2026-07-13.*
+
+---
+
+## Vague 6 (2026-07-13 #6) — France + extension CANADA
+
+### France (leads `l248`-`l249`)
+| ID CRM | Société | Ville | Profil | Score |
+|--------|---------|-------|--------|-------|
+| l248 | Axido (groupe Proxiteam) | Paris/IDF | Infogérance PME 20+ ans, support ILLIMITÉ (angle : protéger leur marge forfaitaire avec un N1 MB à coût fixe) | 50 |
+| l249 | Leader System | IDF | Infogérance PME depuis 1993 | 45 |
+
+**Écartés :** Skuria (souverain « zéro GAFAM » frontal), Experteam (filiale groupe Neurones).
+**Info stratégique :** le **Groupe Hisi** (cloud managé PME/ETI, fondateur Thierry Petit Perrin)
+a **rejoint Constellation** → renforce la cible l236 (le groupe consolide activement :
+Clariteam + Group DIS + Hisi) ; Hisi = porte d'entrée possible côté cloud managé.
+
+### Canada (leads `ca039`-`ca044` du CRM Canada)
+| ID | Société | Profil / Signal | Pertinence | Décideur |
+|----|---------|-----------------|------------|----------|
+| ca039 | **Vertisoft** | MSP multi-sites (Boucherville/Sherbrooke/Victoriaville), recrute un Dir. centre de données | 8 | **Donald French** (Président-fondateur) |
+| ca040 | **Kezber** | Services TI Estrie, expansion Magog + créations d'emplois | 8 | **Alan Kezber** (PDG fondateur) |
+| ca041 | Present | MSP Montréal, 35 ans, services gérés + cyber + M365 | 7 | à identifier |
+| ca042 | Micrologic | ~350 experts, top 300 QC — ⚠ « cloud souverain » à cadrer ; **Stéphane Garneau** (Président) en sponsor | 7 | Dir. services gérés à identifier |
+| ca043 | ITI (ex-ProContact) | Intégrateur majeur QC/MTL, 30+ ans | 7 | Dir. services gérés à identifier |
+| ca044 | Natrix Technologies | MSP PME Montréal, 25+ ans | 6 | à identifier |
+
+*Sources vague 6 : axido.fr, proxiteam.fr, leader-system.fr, easyteam.fr + capitem.fr (Hisi→Constellation),
+vertisoftpme.com, kezber.com, magazinemci.com, present.ca, micrologic.ca, directioninformatique.com
+(ProContact→ITI), natrix.info — recherches web 2026-07-13.*

@@ -113,7 +113,7 @@
       else { custom = true; name = 'Sur-mesure'; base = 950 + Math.ceil((st.calls - 900) / 100) * MARGINAL_PER_100; }
       const addons = addonsTotal();
       const price = base + addons;
-      const INTERNAL_SECRETARY = 2200; // secrétaire interne au cabinet, charges comprises (cf. comparatif)
+      const INTERNAL_SECRETARY = 2750; // secrétaire interne au cabinet, coût complet — bas de fourchette 2 750-3 500 €/mois (cf. PRICING.md §3)
       const perDay = Math.round(st.calls / WORKDAYS_PER_MONTH);
 
       $('price-monthly').textContent = (custom ? '≈ ' : '') + euro(price);
@@ -126,7 +126,7 @@
       $('savings-monthly').textContent = euro(Math.max(savings, 0)) + ' €';
       const cmp = $('compare-line'), badge = $('savings-badge');
       if (savings > 0) {
-        cmp.innerHTML = 'Une secrétaire au cabinet : <span class="old">2 200 €+/mois</span> charges comprises';
+        cmp.innerHTML = 'Une secrétaire au cabinet : <span class="old">2 750 €+/mois</span> en coût complet';
         badge.textContent = '−' + Math.round((savings / INTERNAL_SECRETARY) * 100) + ' % vs une secrétaire interne';
       } else {
         cmp.textContent = 'Forfait tout compris, sans surprise.';
@@ -204,7 +204,7 @@
      SIMULATEUR IT  (présent si #posts existe)
      Config externe via window.SIM_CONFIG :
        baseDirect : tarif ETP/mois 35h en direct (cf. PRICING.md §3)
-       frBench    : coût mensuel CDI FR chargé (référence comparaison)
+       frBench    : coût complet mensuel d'un CDI FR (référence comparaison, cf. PRICING.md §3)
      Estimation publique = base DIRECTE uniquement. Le tarif marque blanche
      (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
      ======================================================== */
@@ -213,7 +213,7 @@
     // Le tarif marque blanche (sous-traitance) n'est JAMAIS exposé ici : il révélerait
     // la marge du revendeur (cf. PRICING.md §0 / RAPPORT-PRIX.html §9). Réservé au devis.
     const CFG = Object.assign({
-      baseDirect: 2100, frBench: 3200,
+      baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
     const PROD = 0.85, FR_PEN = 1.35, BAND = 0.05; // ±5 % autour de l'estimation
     const st = {

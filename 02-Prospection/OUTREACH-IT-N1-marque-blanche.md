@@ -113,7 +113,7 @@ Pour un recrutement en CDI France, il faut 60 à 90 jours. Pour un pilote avec n
 
 Bonjour {{firstName}},
 
-Repère rapide : un technicien helpdesk N1 en CDI France, en coût complet (salaire + charges + formation + turnover), tourne autour de 36 à 44 k€/an équivalent temps plein. Et le recrutement prend 2 à 3 mois sur un marché tendu.
+Repère rapide : un technicien helpdesk N1 en CDI France, en coût complet (salaire + charges + congés/absences + formation + supervision + matériel + turnover), tourne autour de 38 à 50 k€/an équivalent temps plein — et facilement au-delà en ESN d'Île-de-France. Et le recrutement prend 2 à 3 mois sur un marché tendu.
 
 Chez Salverys, un ETP N1 dédié en marque blanche revient à une fraction de ce coût complet — assez pour préserver votre marge de revente. Pas de charges, pas de turnover, pilote activable en 3 semaines. Chiffrage exact en 15 min selon volume et amplitude.
 

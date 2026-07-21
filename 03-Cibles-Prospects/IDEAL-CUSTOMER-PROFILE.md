@@ -33,7 +33,7 @@ plusieurs ETP d'un coup. Le **direct** (cabinets, chaînes, bailleurs) vient en 
 plus à staffer le N1.
 
 **Sa douleur :** files de tickets qui s'allongent, recrutement support 2-3 mois,
-coût complet CDI 36-44 k€/an, churn client lié au support lent.
+coût complet CDI 38-50 k€/an, churn client lié au support lent.
 
 **Pourquoi Salverys :** ETP N1 dédié en marque blanche, leurs outils et leurs scripts,
 SLA de première réponse contractuel (avoir 20 % en deçà), rate card dégressive 1/3/5+ ETP

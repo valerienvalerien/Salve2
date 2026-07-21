@@ -174,7 +174,8 @@ contre lui.
   positionnée**. Un donneur d'ordre (ESN, plateau) connaît les prix malgaches ; on est
   négociable mais crédible.
 - **Direct Salverys (1 900-2 800 €)** : au-dessus du corridor malgache, mais le benchmark
-  du client final est le CDI FR chargé (3 200-3 800 €/mois) → le « -40 % » tient.
+  du client final est le coût complet d'un support IT N1 en CDI FR (3 200-4 200 €/mois) →
+  le « -40 à -60 % » tient.
   **Risque** : un éditeur SaaS qui a déjà benchmarké Madagascar verra l'écart. Défense =
   même logique que §2.3 (encadrement, backup, SLA contractuel, conformité) + le tier
   Priority pour monter en gamme. **Ne pas publier de prix ferme** (la règle des 3 paliers
