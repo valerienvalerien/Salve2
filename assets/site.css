@@ -715,9 +715,10 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .home .topbar b { color: #FCE27C; }
 
 /* ---------- Fond & nav ---------- */
-body.home { background: var(--sage-bg); }
-.home .nav { background: rgba(237,241,233,.86); }
-.home .section.soft { background: var(--sage-bg-soft); }
+/* Dégradé horizontal : blanc à gauche, vert sauge à droite (le vert n'apparaît que dans le dernier quart) */
+body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 76%, #A9C6A6 100%); background-attachment: fixed; }
+.home .nav { background: rgba(255,255,255,.80); }
+.home .section.soft { background: transparent; }
 .home .section.deep, .home .marquee, .home .route-card, .home .contact-band { background: var(--green-deep); }
 .home .footer { background: var(--green-deeper); }
 .home .footer-gold { height: 12px; background: var(--gold-soft); }
