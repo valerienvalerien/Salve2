@@ -3,566 +3,744 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Salverys — Votre support et vos appels pris en charge en français, sans recruter</title>
-<meta name="description" content="Salverys gère votre support applicatif / helpdesk IT et décroche vos appels sous votre marque, en français et en anglais, aux mêmes horaires que vous — 40 à 60 % de moins que le coût complet d'une équipe interne en France." />
-<link rel="canonical" href="https://salverys.fr/" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Salverys" />
-<meta property="og:locale" content="fr_FR" />
-<meta property="og:url" content="https://salverys.fr/" />
-<meta property="og:title" content="Salverys — Votre support et vos appels pris en charge en français, sans recruter" />
-<meta property="og:description" content="Support applicatif, helpdesk IT et télésecrétariat médical sous votre marque, en français — 40 à 60 % de moins que le coût complet d'une équipe interne en France." />
-<meta property="og:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Salverys — Votre support et vos appels pris en charge en français, sans recruter" />
-<meta name="twitter:description" content="Support applicatif, helpdesk IT et télésecrétariat médical sous votre marque, en français — 40 à 60 % de moins que le coût complet d'une équipe interne en France." />
-<meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<!-- analytics : à activer (SaaS-first — recommandé : Plausible ou GA4, pas de code maison) -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
-<link rel="preconnect" href="https://images.unsplash.com" />
-<link rel="stylesheet" href="assets/site.css" />
-</head>
-<body class="home">
+<title>Salverys — L'externalisation francophone, à l'heure de Paris</title>
+<meta name="description" content="Support applicatif N1, helpdesk IT et télésecrétariat médical en marque blanche, en français natif, aux mêmes horaires que vous — depuis Antananarivo. 40 à 60 % de moins que le coût complet d'une équipe interne en France." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312212B'/%3E%3Ctext x='30' y='45' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23F4EFE6' text-anchor='middle'%3ES%3C/text%3E%3Ccircle cx='47' cy='41' r='4.5' fill='%23C7A66B'/%3E%3C/svg%3E" />
+<style>
+/* =========================================================================
+   SALVERYS — édition premium (fork design)
+   Direction : « le méridien » — nocturne encre + parchemin chaud + or discret.
+   Display = Georgia (serif de marque) · Corps = system-ui · Données = mono.
+   ========================================================================= */
 
-<!-- TOPBAR -->
-<div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+/* ---------- Tokens : thème clair (défaut) ---------- */
+:root{
+  --ink:#12212B;            /* nocturne, near-black à biais teal */
+  --ink-2:#0C181F;
+  --slate:#2E3B4E;          /* primaire de marque */
+  --parchment:#F4EFE6;      /* parchemin chaud */
+  --paper:#FBF8F2;          /* fond le plus clair */
+  --gold:#C7A66B;           /* accent unique, discret */
+  --gold-bright:#E3C486;
+  --sage:#6F8770;           /* signal secondaire */
+  --sage-soft:#9BB09C;
+
+  --bg:var(--paper);
+  --bg-band:var(--parchment);
+  --bg-deep:var(--ink);
+  --surface:#FFFFFF;
+  --surface-2:#F6F1E8;
+  --fg:#1C2630;             /* texte, gris à biais slate */
+  --fg-soft:#55606B;
+  --fg-mute:#8A8478;
+  --hair:#E4DBCB;          /* filet, biais parchemin */
+  --hair-strong:#D3C7B2;
+  --on-ink:#ECE6DA;
+  --on-ink-soft:#A7ABA6;
+  --on-ink-mute:#6E7A78;
+
+  --accent:var(--gold);
+  --accent-ink:var(--ink);
+
+  --maxw:1240px;
+  --gutter:clamp(20px,5vw,64px);
+  --rail:78px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  --step--1:clamp(.78rem,.75rem + .1vw,.84rem);
+  --step-0:clamp(1rem,.97rem + .18vw,1.12rem);
+  --step-1:clamp(1.2rem,1.1rem + .5vw,1.5rem);
+  --step-2:clamp(1.6rem,1.3rem + 1.4vw,2.4rem);
+  --step-3:clamp(2.3rem,1.7rem + 3vw,4rem);
+  --step-4:clamp(3rem,2rem + 5.4vw,6.6rem);
+  --step-5:clamp(3.6rem,2rem + 8vw,9rem);
+
+  --serif:Georgia,'Times New Roman',Times,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular','Menlo','Consolas',monospace;
+}
+
+/* ---------- Tokens : thème sombre ---------- */
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:var(--ink);
+    --bg-band:var(--ink-2);
+    --bg-deep:#09131A;
+    --surface:#182734;
+    --surface-2:#13212C;
+    --fg:#E9E3D6;
+    --fg-soft:#AEB4B2;
+    --fg-mute:#7C8481;
+    --hair:#26333D;
+    --hair-strong:#33424D;
+    --on-ink:#ECE6DA;
+    --on-ink-soft:#A7ABA6;
+    --on-ink-mute:#6E7A78;
+    --accent:var(--gold-bright);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:var(--ink); --bg-band:var(--ink-2); --bg-deep:#09131A;
+  --surface:#182734; --surface-2:#13212C;
+  --fg:#E9E3D6; --fg-soft:#AEB4B2; --fg-mute:#7C8481;
+  --hair:#26333D; --hair-strong:#33424D; --accent:var(--gold-bright);
+}
+:root[data-theme="light"]{
+  --bg:var(--paper); --bg-band:var(--parchment); --bg-deep:var(--ink);
+  --surface:#FFFFFF; --surface-2:#F6F1E8;
+  --fg:#1C2630; --fg-soft:#55606B; --fg-mute:#8A8478;
+  --hair:#E4DBCB; --hair-strong:#D3C7B2; --accent:var(--gold);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.62;
+  font-size:var(--step-0);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  transition:background .4s var(--ease),color .4s var(--ease);
+}
+/* grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme:dark){body::before{mix-blend-mode:screen;opacity:.03}}
+:root[data-theme="dark"] body::before{mix-blend-mode:screen;opacity:.03}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.serif{font-family:var(--serif)}
+
+/* eyebrow / label */
+.eyebrow{
+  font-family:var(--mono);font-size:var(--step--1);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--fg-mute);display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);display:inline-block}
+.eyebrow.on-ink{color:var(--on-ink-soft)}
+
+/* ============ SCROLL PROGRESS ============ */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--gold),var(--sage));z-index:120}
+
+/* ============ INDEX RAIL (desktop) ============ */
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:40;
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:26px 0;pointer-events:none;mix-blend-mode:difference}
+.rail-mono{writing-mode:vertical-rl;font-family:var(--mono);font-size:11px;letter-spacing:.34em;
+  text-transform:uppercase;color:#8f8f8f}
+.rail-dots{display:flex;flex-direction:column;gap:14px;pointer-events:auto}
+.rail-dot{width:7px;height:7px;border-radius:50%;background:#7b7b7b;opacity:.5;transition:.3s var(--ease)}
+.rail-dot.on{opacity:1;background:#fff;transform:scale(1.35)}
+@media (max-width:1080px){.rail{display:none}}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;
+  transition:background .35s var(--ease),border-color .35s,backdrop-filter .35s}
+.nav-inner{display:flex;align-items:center;gap:28px;height:76px;
+  max-width:var(--maxw);margin-inline:auto;padding-inline:max(var(--gutter),var(--rail))}
+.nav.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid var(--hair)}
+.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--serif);
+  font-size:23px;font-weight:700;letter-spacing:-.01em;color:var(--fg)}
+.brand .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;margin-left:3px;transform:translateY(-1px)}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--fg-soft);position:relative;padding:6px 0;letter-spacing:.01em}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:inline-flex;align-items:center;gap:.6em;font-size:14px;font-weight:600;
+  color:var(--ink);background:var(--gold);padding:11px 20px;border-radius:100px;
+  transition:transform .2s var(--ease),box-shadow .3s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px var(--gold)}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--hair-strong);
+  background:transparent;color:var(--fg-soft);cursor:pointer;display:grid;place-items:center;
+  transition:.25s var(--ease)}
+.theme-toggle:hover{color:var(--fg);border-color:var(--gold)}
+.burger{display:none;background:none;border:0;color:var(--fg);cursor:pointer;padding:6px}
+@media (max-width:860px){
+  .nav-links{position:fixed;inset:76px 0 auto 0;flex-direction:column;gap:0;align-items:stretch;
+    background:var(--bg);border-bottom:1px solid var(--hair);padding:8px var(--gutter) 22px;
+    transform:translateY(-140%);transition:transform .4s var(--ease);margin-left:0}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:15px 0;border-bottom:1px solid var(--hair);font-size:16px}
+  .nav-links .nav-cta{margin-top:14px;justify-content:center;color:var(--ink)}
+  .nav-links .nav-cta::after{display:none}
+  .burger{display:inline-flex}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--ink);color:var(--on-ink);overflow:hidden;
+  padding:clamp(120px,17vh,190px) 0 clamp(64px,9vh,110px)}
+.hero-aura{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 78% 8%,rgba(199,166,107,.18),transparent 60%),
+    radial-gradient(50% 60% at 12% 100%,rgba(111,135,112,.16),transparent 62%),
+    linear-gradient(180deg,#0d1a22,#12212B 55%,#0e1a22)}
+.hero .wrap{position:relative;z-index:2;padding-inline:max(var(--gutter),var(--rail))}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+
+.hero-tag{display:inline-flex;align-items:center;gap:.7em;margin-bottom:30px}
+.hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--sage-soft);
+  box-shadow:0 0 0 0 rgba(155,176,156,.5);animation:pulse 2.4s infinite}
+.hero-tag span{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-soft)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(155,176,156,.5)}70%{box-shadow:0 0 0 12px rgba(155,176,156,0)}100%{box-shadow:0 0 0 0 rgba(155,176,156,0)}}
+
+.hero h1{font-family:var(--serif);font-weight:600;font-size:var(--step-4);line-height:1.02;
+  letter-spacing:-.025em;color:#fff;text-wrap:balance;margin-bottom:26px}
+.hero h1 em{font-style:italic;color:var(--gold-bright)}
+.hero h1 .u{position:relative;white-space:nowrap}
+.hero h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.09em;
+  background:var(--gold);transform:scaleX(0);transform-origin:0;animation:draw 1s .7s var(--ease-out) forwards}
+@keyframes draw{to{transform:scaleX(1)}}
+.hero-lead{font-size:var(--step-1);color:var(--on-ink);max-width:30ch;margin-bottom:38px;line-height:1.42;font-weight:300}
+.hero-lead b{font-weight:600;color:#fff}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:.7em;font-size:15px;font-weight:600;
+  padding:15px 26px;border-radius:100px;cursor:pointer;border:1px solid transparent;
+  transition:transform .2s var(--ease),box-shadow .3s,background .3s,color .3s}
+.btn .arw{transition:transform .3s var(--ease)}
+.btn:hover .arw{transform:translateX(5px)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 14px 30px -16px var(--gold)}
+.btn-gold:hover{transform:translateY(-2px);background:var(--gold-bright);box-shadow:0 20px 40px -16px var(--gold)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(236,230,218,.32)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold-bright);transform:translateY(-2px)}
+.hero-trust{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:13.5px;color:var(--on-ink-soft)}
+.hero-trust b{color:var(--on-ink);font-weight:600}
+.hero-trust span{display:inline-flex;align-items:center;gap:.5em}
+.hero-trust span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ---- Meridian panel ---- */
+.meridian{position:relative;border:1px solid rgba(236,230,218,.14);border-radius:22px;
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
+  backdrop-filter:blur(2px);padding:26px 24px 22px;overflow:hidden}
+.meridian-cap{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.meridian-cap .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-ink-soft)}
+.meridian svg{width:100%;height:auto;display:block}
+.arc{fill:none;stroke:rgba(236,230,218,.22);stroke-width:1.2;stroke-dasharray:3 5}
+.arc-live{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:1000;stroke-dashoffset:1000;animation:trace 3s 1s var(--ease-out) forwards}
+@keyframes trace{to{stroke-dashoffset:0}}
+.node{fill:#0d1a22;stroke:var(--gold);stroke-width:1.5}
+.node-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;fill:var(--on-ink)}
+.spark{fill:var(--gold-bright)}
+.clocks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;border-top:1px solid rgba(236,230,218,.12);padding-top:16px}
+.clock{display:flex;flex-direction:column;gap:2px}
+.clock .city{font-size:12px;color:var(--on-ink-soft)}
+.clock .t{font-family:var(--mono);font-size:19px;color:#fff;letter-spacing:.02em}
+.clock .flag{font-size:11px;color:var(--on-ink-mute)}
+.clock.mid{border-inline:1px solid rgba(236,230,218,.12);padding-inline:10px}
+
+/* ============ TICKER ============ */
+.ticker{background:var(--slate);color:var(--on-ink);border-block:1px solid rgba(236,230,218,.1);overflow:hidden}
+:root[data-theme="dark"] .ticker,@media(prefers-color-scheme:dark){}
+.ticker-row{display:flex;gap:0;white-space:nowrap;animation:slide 34s linear infinite}
+@media(prefers-reduced-motion:reduce){.ticker-row{animation:none;flex-wrap:wrap;white-space:normal}}
+.ticker:hover .ticker-row{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:.6em;padding:15px 30px;font-size:13px;
+  font-family:var(--mono);letter-spacing:.06em;color:var(--on-ink-soft);border-right:1px solid rgba(236,230,218,.09)}
+.ticker-item b{color:var(--gold-bright);font-weight:400}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+.section{padding:clamp(72px,11vh,140px) 0;position:relative}
+.section .wrap{padding-inline:max(var(--gutter),var(--rail))}
+.band{background:var(--bg-band)}
+.deep{background:var(--ink);color:var(--on-ink)}
+.deep .eyebrow{color:var(--on-ink-soft)}
+.sec-head{max-width:60ch;margin-bottom:clamp(40px,6vh,72px)}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:var(--step-3);line-height:1.06;
+  letter-spacing:-.02em;margin:18px 0 0;text-wrap:balance;color:var(--fg)}
+.deep .sec-head h2{color:#fff}
+.sec-head h2 em{font-style:italic;color:var(--sage)}
+.deep .sec-head h2 em{color:var(--gold-bright)}
+.sec-head p{margin-top:18px;color:var(--fg-soft);font-size:var(--step-1);font-weight:300;max-width:52ch}
+.deep .sec-head p{color:var(--on-ink)}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);
+  border:1px solid var(--hair);border-radius:18px;overflow:hidden}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg);padding:34px 26px;display:flex;flex-direction:column;gap:8px}
+.band .stat{background:var(--bg-band)}
+.stat .n{font-family:var(--serif);font-size:var(--step-3);line-height:1;color:var(--fg);letter-spacing:-.02em}
+.stat .n .mono{font-family:var(--mono);font-size:.5em;color:var(--gold);vertical-align:.35em;margin-right:.1em}
+.stat .l{font-size:14px;color:var(--fg-soft);max-width:22ch}
+
+/* ============ SERVICES BENTO ============ */
+.bento{display:grid;grid-template-columns:1.4fr 1fr;grid-auto-rows:1fr;gap:16px}
+@media(max-width:860px){.bento{grid-template-columns:1fr}}
+.svc{position:relative;background:var(--surface);border:1px solid var(--hair);border-radius:20px;
+  padding:32px;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;
+  transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+.svc::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;
+  background:radial-gradient(120% 90% at 100% 0,var(--svc,var(--sage)),transparent 60%)}
+.svc:hover{transform:translateY(-4px);border-color:var(--hair-strong);box-shadow:0 30px 60px -34px rgba(18,33,43,.4)}
+.svc:hover::before{opacity:.1}
+.svc.feature{grid-row:span 2}
+.svc-kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--svc,var(--sage));display:inline-flex;align-items:center;gap:.5em;margin-bottom:auto}
+.svc-ico{width:44px;height:44px;color:var(--svc,var(--sage));margin-bottom:20px}
+.svc h3{font-family:var(--serif);font-size:var(--step-2);font-weight:500;letter-spacing:-.015em;margin:22px 0 10px;color:var(--fg)}
+.svc p{color:var(--fg-soft);font-size:15.5px;margin-bottom:18px}
+.svc ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.svc li{position:relative;padding-left:24px;font-size:14.5px;color:var(--fg-soft)}
+.svc li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:2px;background:var(--svc,var(--sage))}
+.svc-go{margin-top:auto;display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:14.5px;color:var(--fg)}
+.svc-go .arw{color:var(--svc,var(--sage));transition:transform .3s var(--ease)}
+.svc:hover .svc-go .arw{transform:translateX(5px)}
+.svc-saas{--svc:#B79246}
+.svc-help{--svc:#C56B4E}
+.svc-med{--svc:#6F8770}
+
+/* ============ COST COMPARISON ============ */
+.calc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,64px);align-items:center}
+@media(max-width:860px){.calc{grid-template-columns:1fr}}
+.calc-body h3{font-family:var(--serif);font-size:var(--step-2);font-weight:500;line-height:1.12;letter-spacing:-.015em;margin-bottom:16px;color:var(--fg)}
+.calc-body p{color:var(--fg-soft);margin-bottom:20px}
+.calc-body ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.calc-body li{position:relative;padding-left:26px;color:var(--fg-soft);font-size:15px}
+.calc-body li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--sage)}
+.chart{background:var(--surface);border:1px solid var(--hair);border-radius:20px;padding:30px}
+.chart-cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-mute);margin-bottom:26px}
+.bar-row{margin-bottom:26px}
+.bar-row:last-child{margin-bottom:0}
+.bar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+.bar-name{font-size:14px;color:var(--fg);font-weight:600}
+.bar-val{font-family:var(--mono);font-size:14px;color:var(--fg-soft)}
+.bar-track{height:14px;border-radius:100px;background:var(--surface-2);overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.3s var(--ease-out)}
+.bar-fill.full{background:repeating-linear-gradient(45deg,var(--slate),var(--slate) 7px,#3a495c 7px,#3a495c 14px)}
+.bar-fill.slv{background:linear-gradient(90deg,var(--gold),var(--sage))}
+.bar-sub{font-family:var(--mono);font-size:11px;color:var(--fg-mute);margin-top:7px}
+.chart-foot{margin-top:26px;padding-top:20px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--fg-mute)}
+
+/* ============ PROCESS ============ */
+.steps{display:grid;gap:0;border-top:1px solid var(--hair)}
+.step{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,56px);align-items:start;
+  padding:clamp(30px,5vh,52px) 0;border-bottom:1px solid var(--hair)}
+@media(max-width:720px){.step{grid-template-columns:auto 1fr;gap:20px}.step-media{display:none}}
+.step-n{font-family:var(--mono);font-size:14px;color:var(--gold);padding-top:6px}
+.step-c h3{font-family:var(--serif);font-size:var(--step-2);font-weight:500;letter-spacing:-.015em;margin-bottom:10px;color:var(--fg)}
+.deep .step-c h3{color:#fff}
+.step-c p{color:var(--fg-soft);max-width:52ch}
+.deep .step-c p{color:var(--on-ink)}
+.step-media{min-width:190px;padding-top:4px}
+.mini{background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:14px 16px;font-family:var(--mono);font-size:12px}
+.deep .mini{background:rgba(255,255,255,.05);border-color:rgba(236,230,218,.14);color:var(--on-ink)}
+.mini .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;color:var(--fg-soft)}
+.deep .mini .row{color:var(--on-ink-soft)}
+.mini .row b{color:var(--gold);font-weight:400}
+.mini .price{font-size:22px;color:var(--fg);margin:4px 0}
+.deep .mini .price{color:#fff}
+.mini .price s{color:var(--fg-mute);font-size:14px;margin-right:8px}
+
+/* ============ COMMITMENTS ============ */
+.commit{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:900px){.commit{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.commit{grid-template-columns:1fr}}
+.cc{border:1px solid rgba(236,230,218,.16);border-radius:18px;padding:28px 24px;
+  background:linear-gradient(165deg,rgba(255,255,255,.04),transparent);transition:.4s var(--ease)}
+.cc:hover{border-color:var(--gold);transform:translateY(-3px)}
+.cc .n{font-family:var(--serif);font-size:clamp(2.6rem,6vw,3.6rem);line-height:1;color:var(--gold-bright);letter-spacing:-.02em}
+.cc h4{font-size:16px;font-weight:600;color:#fff;margin:14px 0 8px}
+.cc p{font-size:14px;color:var(--on-ink-soft)}
+
+/* ============ FAQ ============ */
+.faq{border-top:1px solid var(--hair);max-width:900px}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;
+  align-items:center;gap:20px;font-family:var(--serif);font-size:var(--step-1);font-weight:500;color:var(--fg)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{position:relative;width:20px;height:20px;flex:0 0 auto}
+.faq summary .pm::before,.faq summary .pm::after{content:"";position:absolute;background:var(--gold);transition:transform .3s var(--ease)}
+.faq summary .pm::before{top:9px;left:0;width:20px;height:2px}
+.faq summary .pm::after{left:9px;top:0;width:2px;height:20px}
+.faq details[open] summary .pm::after{transform:scaleY(0)}
+.faq .a{padding:0 40px 24px 0;color:var(--fg-soft);max-width:70ch;
+  animation:fade .4s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.txt-link{color:var(--sage);border-bottom:1px solid currentColor;font-weight:500}
+.deep .txt-link{color:var(--gold-bright)}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px)}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.contact-copy h2 .u{color:var(--gold-bright)}
+.contact-copy ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.contact-copy li{position:relative;padding-left:26px;color:var(--on-ink)}
+.contact-copy li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+.form{background:var(--surface);border:1px solid var(--hair);border-radius:20px;padding:clamp(24px,4vw,34px)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.form-row{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.field label{font-size:13px;font-weight:600;color:var(--fg-soft)}
+.field input,.field select,.field textarea{font-family:var(--sans);font-size:15px;color:var(--fg);
+  background:var(--bg);border:1px solid var(--hair-strong);border-radius:12px;padding:13px 15px;transition:border-color .25s,box-shadow .25s}
+.field textarea{resize:vertical;min-height:96px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.form .btn-gold{width:100%;justify-content:center;margin-top:6px}
+.form-legal{font-size:12px;color:var(--fg-mute);margin-top:12px;text-align:center}
+.form-ok{display:none;text-align:center;padding:30px 10px}
+.form-ok .tick{width:56px;height:56px;border-radius:50%;background:var(--sage);color:#fff;display:grid;place-items:center;font-size:26px;margin:0 auto 16px}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--ink-2);color:var(--on-ink);padding:70px 0 30px}
+.footer-top{display:grid;grid-template-columns:1.4fr 2fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(236,230,218,.12)}
+@media(max-width:760px){.footer-top{grid-template-columns:1fr;gap:30px}}
+.footer .brand{color:#fff;font-size:26px}
+.footer-desc{color:var(--on-ink-soft);font-size:14px;max-width:34ch;margin-top:14px}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:520px){.footer-cols{grid-template-columns:1fr 1fr}}
+.footer-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-mute);margin-bottom:14px}
+.footer-col a{display:block;font-size:14px;color:var(--on-ink-soft);padding:5px 0;transition:color .2s}
+.footer-col a:hover{color:var(--gold-bright)}
+.footer-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:26px;
+  font-size:12.5px;color:var(--on-ink-mute);font-family:var(--mono)}
+.footer-rule{height:3px;background:linear-gradient(90deg,var(--gold),var(--sage),var(--slate))}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}
+  .hero h1 .u::after,.arc-live{animation:none;stroke-dashoffset:0;transform:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<!-- INDEX RAIL -->
+<aside class="rail" aria-hidden="true">
+  <span class="rail-mono">Salverys — MG → FR/CA</span>
+  <div class="rail-dots" id="railDots"></div>
+  <span class="rail-mono">Éd. premium</span>
+</aside>
 
 <!-- NAV -->
-<header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys.svg" alt="Salverys" /></a>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Accueil</a>
-      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
-      <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
-      <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Salverys<span class="dot"></span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#calcul">Le calcul</a>
+      <a href="#methode">Méthode</a>
       <a href="#faq">FAQ</a>
-      <a href="espace-candidat.html" class="nav-rejoin">Nous rejoindre</a>
-      <a href="#contact" class="nav-cta">Contactez-nous</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a href="#contact" class="nav-cta">Prendre 15 min <span class="arw">→</span></a>
     </nav>
-    <a href="#contact" class="nav-cta">Contactez-nous</a>
-    <a href="espace-candidat.html" class="nav-rejoin-standalone">Nous rejoindre</a>
-    <button class="nav-burger" aria-label="Menu">☰</button>
+    <button class="burger" id="burger" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <span class="hero-bg-blob b1"></span>
-  <span class="hero-bg-blob b2"></span>
-  <div class="container hero-grid">
-    <div class="hero-copy reveal">
-      <span class="eyebrow"><span class="pulse"></span> BPO francophone · Antananarivo&nbsp;<img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /> → France</span>
-      <h1>Augmentez votre capacité. <span class="hl">Sans recruter.</span></h1>
-      <p class="lead">Bénéficiez de la flexibilité d'une équipe dédiée, le stress RH en moins.<br /><b>Vous activez le service. Nous gérons le reste.</b></p>
-      <div class="hero-actions">
-        <a href="simulateur-informatique.html" class="btn btn-primary">Support N1 SaaS</a>
-        <a href="simulateur-helpdesk-it.html" class="btn btn-helpdesk">Helpdesk IT N1</a>
-        <a href="simulateur-salverys.html" class="btn btn-it">Télésecrétariat médical</a>
+<section class="hero" id="top">
+  <div class="hero-aura"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-tag"><span class="pulse"></span><span>BPO francophone · Antananarivo → Paris · Montréal</span></div>
+        <h1>Augmentez votre capacité.<br><em>Sans</em> <span class="u">recruter.</span></h1>
+        <p class="hero-lead">Support applicatif, helpdesk IT et télésecrétariat médical <b>sous votre marque</b>, en français natif, aux mêmes horaires que vous. Vous activez le service — nous gérons le reste.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-gold">Cadrer mon besoin <span class="arw">→</span></a>
+          <a href="#services" class="btn btn-line">Voir les trois métiers</a>
+        </div>
+        <div class="hero-trust">
+          <span><b>FR &amp; EN</b> · français natif</span>
+          <span>Standard <b>8h – 20h</b>, heure de Paris</span>
+          <span><b>Sans engagement</b></span>
+        </div>
       </div>
-      <div class="hero-trust">
-        <span><b>FR &amp; EN</b> · français natif</span>
-        <span>Standard ouvert <b>de 8h à 20h</b></span>
-        <span><b>Sans engagement</b>, résiliable à tout moment</span>
-      </div>
-    </div>
-    <div class="hero-visual reveal d1">
-      <div class="photo-wrap">
-        <img class="photo" loading="eager" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1100&q=70"
-             alt="Équipe support francophone au travail" />
-      </div>
-      <div class="float-card fc1">
-        <div class="fc-num">−40 à −60 %</div>
-        <div class="fc-lab">vs le coût complet d'un poste interne en France</div>
-      </div>
-      <div class="float-card fc2">
-        <div class="fc-num">8h–20h</div>
-        <div class="fc-lab">aux mêmes horaires que vous, jamais de répondeur</div>
+
+      <!-- Signature : le méridien -->
+      <div class="meridian" aria-label="Fuseau partagé entre Antananarivo, Paris et Montréal">
+        <div class="meridian-cap">
+          <span class="lbl">Fuseau partagé — en direct</span>
+          <span class="lbl" style="color:var(--gold)">● live</span>
+        </div>
+        <svg viewBox="0 0 460 210" role="img" aria-hidden="true">
+          <path class="arc" d="M40 165 C 150 40, 320 40, 420 120"/>
+          <path class="arc-live" d="M40 165 C 150 40, 320 40, 420 120"/>
+          <!-- Antananarivo -->
+          <circle class="node" cx="420" cy="120" r="6"/>
+          <text class="node-lbl" x="404" y="142" text-anchor="middle">TNR</text>
+          <!-- Paris -->
+          <circle class="node" cx="150" cy="70" r="5"/>
+          <text class="node-lbl" x="150" y="58" text-anchor="middle">PAR</text>
+          <!-- Montréal -->
+          <circle class="node" cx="40" cy="165" r="5"/>
+          <text class="node-lbl" x="52" y="183" text-anchor="middle">YUL</text>
+          <circle class="spark" id="spark" cx="40" cy="165" r="3.4"/>
+        </svg>
+        <div class="clocks">
+          <div class="clock">
+            <span class="city">Antananarivo</span>
+            <span class="t" data-tz="Indian/Antananarivo">--:--</span>
+            <span class="flag mono">MG · vos équipes</span>
+          </div>
+          <div class="clock mid">
+            <span class="city">Paris</span>
+            <span class="t" data-tz="Europe/Paris">--:--</span>
+            <span class="flag mono">FR · vos clients</span>
+          </div>
+          <div class="clock">
+            <span class="city">Montréal</span>
+            <span class="t" data-tz="America/Toronto">--:--</span>
+            <span class="flag mono">CA · francophone</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <a class="scroll-next" href="#stats" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- MARQUEE : bandeau logos partenaires -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="ic-zendesk" viewBox="0 0 24 24"><path d="M12.914 2.904V16.29L24 2.905H12.914zM0 2.906C0 5.966 2.483 8.45 5.543 8.45s5.542-2.484 5.543-5.544H0zm11.086 4.807L0 21.096h11.086V7.713zm7.37 7.84c-3.063 0-5.542 2.48-5.542 5.543H24c0-3.06-2.48-5.543-5.543-5.543z"/></symbol>
-  <symbol id="ic-jira" viewBox="0 0 24 24"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></symbol>
-  <symbol id="ic-intercom" viewBox="0 0 24 24"><path d="M21 0H3C1.343 0 0 1.343 0 3v18c0 1.658 1.343 3 3 3h18c1.658 0 3-1.342 3-3V3c0-1.657-1.342-3-3-3zm-5.801 4.399c0-.44.36-.8.802-.8.44 0 .8.36.8.8v10.688c0 .442-.36.801-.8.801-.443 0-.802-.359-.802-.801V4.399zM11.2 3.994c0-.44.357-.799.8-.799s.8.359.8.799v11.602c0 .44-.357.8-.8.8s-.8-.36-.8-.8V3.994zm-4 .405c0-.44.359-.8.799-.8.443 0 .802.36.802.8v10.688c0 .442-.36.801-.802.801-.44 0-.799-.359-.799-.801V4.399zM3.199 6c0-.442.36-.8.802-.8.44 0 .799.358.799.8v7.195c0 .441-.359.8-.799.8-.443 0-.802-.36-.802-.8V6zM20.52 18.202c-.123.105-3.086 2.593-8.52 2.593-5.433 0-8.397-2.486-8.521-2.593-.335-.288-.375-.792-.086-1.128.285-.334.79-.375 1.125-.09.047.041 2.693 2.211 7.481 2.211 4.848 0 7.456-2.186 7.479-2.207.334-.289.839-.25 1.128.086.289.336.25.84-.086 1.128zm.281-5.007c0 .441-.36.8-.801.8-.441 0-.801-.36-.801-.8V6c0-.442.361-.8.801-.8.441 0 .801.357.801.8v7.195z"/></symbol>
-</svg>
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-lead">Compatible avec vos outils</span>
-    <span class="mq-chip mq-zendesk"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-zendesk"/></svg>Zendesk</span>
-    <span class="mq-chip mq-jira"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-jira"/></svg>Jira Service Management</span>
-    <span class="mq-chip mq-freshdesk">Freshdesk</span>
-    <span class="mq-chip mq-glpi">GLPI</span>
-    <span class="mq-chip mq-intercom"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-intercom"/></svg>Intercom</span>
-    <span class="mq-chip mq-doctolib">Doctolib</span>
-    <span class="mq-chip mq-maiia">Maiia</span>
-    <span class="mq-chip mq-ubicentrex">Ubicentrex</span>
-    <span class="marquee-lead">Compatible avec vos outils</span>
-    <span class="mq-chip mq-zendesk"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-zendesk"/></svg>Zendesk</span>
-    <span class="mq-chip mq-jira"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-jira"/></svg>Jira Service Management</span>
-    <span class="mq-chip mq-freshdesk">Freshdesk</span>
-    <span class="mq-chip mq-glpi">GLPI</span>
-    <span class="mq-chip mq-intercom"><svg class="mq-ic" viewBox="0 0 24 24"><use href="#ic-intercom"/></svg>Intercom</span>
-    <span class="mq-chip mq-doctolib">Doctolib</span>
-    <span class="mq-chip mq-maiia">Maiia</span>
-    <span class="mq-chip mq-ubicentrex">Ubicentrex</span>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-row" id="ticker">
+    <span class="ticker-item">Compatible avec vos outils</span>
+    <span class="ticker-item"><b>Zendesk</b></span>
+    <span class="ticker-item"><b>Jira Service Management</b></span>
+    <span class="ticker-item"><b>Freshdesk</b></span>
+    <span class="ticker-item"><b>GLPI</b></span>
+    <span class="ticker-item"><b>Intercom</b></span>
+    <span class="ticker-item"><b>Doctolib</b></span>
+    <span class="ticker-item"><b>Maiia</b></span>
+    <span class="ticker-item"><b>Ubicentrex</b></span>
+    <span class="ticker-item"><b>Médistory</b></span>
   </div>
 </div>
 
 <!-- STATS -->
-<section class="section soft" id="stats">
-  <div class="container">
+<section class="section band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">01 — En chiffres</span>
+      <h2>La discipline d'un grand centre, <em>à taille humaine</em>.</h2>
+    </div>
     <div class="stats">
-      <div class="stat reveal">
-        <div class="num" data-to="40" data-pre="−" data-suf=" %">−0 %</div>
-        <div class="lab">de coût vs un prestataire hexagonal</div>
-      </div>
-      <div class="stat reveal d1">
-        <div class="num" data-to="100" data-suf=" %">0 %</div>
-        <div class="lab">d'agents francophones</div>
-      </div>
-      <div class="stat reveal d2">
-        <div class="num" data-to="50" data-pre="−" data-suf=" %">−0 %</div>
-        <div class="lab">le 1er mois, sans engagement</div>
-      </div>
-      <div class="stat reveal d3">
-        <div class="num" data-to="3" data-suf=" sem.">0 sem.</div>
-        <div class="lab">pour être pleinement opérationnel</div>
-      </div>
+      <div class="stat reveal"><span class="n"><span class="mono">−</span><span class="count" data-to="40">0</span> %</span><span class="l">de coût vs un poste interne complet en France</span></div>
+      <div class="stat reveal d1"><span class="n"><span class="count" data-to="100">0</span> %</span><span class="l">d'agents francophones, français natif</span></div>
+      <div class="stat reveal d2"><span class="n"><span class="mono">−</span><span class="count" data-to="50">0</span> %</span><span class="l">le 1er mois, en conditions réelles</span></div>
+      <div class="stat reveal d3"><span class="n"><span class="count" data-to="3">0</span> sem.</span><span class="l">pour être pleinement opérationnel</span></div>
     </div>
   </div>
-  <a class="scroll-next" href="#services" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- FENÊTRE VERTE — SERVICES -->
-<section class="greenband reveal" id="services">
-  <div class="container">
-    <div class="gbv1-head">
-      <div>
-        <span class="tagchip on-dark">Nos services</span>
-        <h2>Trois savoir-faire, <em>un même standard</em></h2>
-      </div>
-      <p class="gbv1-intro">Trois équipes, une même exigence : scripts documentés, double écoute qualité et reporting mensuel chiffré.</p>
+<!-- SERVICES BENTO -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">02 — Nos métiers</span>
+      <h2>Trois savoir-faire, <em>un même standard</em>.</h2>
+      <p>Scripts documentés, double écoute qualité et reporting mensuel chiffré — la même exigence sur les trois lignes de service.</p>
     </div>
-    <div class="gbv1-grid">
-      <a class="svc-card svc-saas" href="simulateur-informatique.html">
-        <span class="svc-kick">Éditeurs SaaS · Priorité</span>
-        <h3>Support N1 SaaS</h3>
-        <p>Tickets, chat, téléphone — escalade cadrée vers vos équipes produit, en français et en anglais.</p>
-        <ul class="svc-list">
+    <div class="bento">
+      <a class="svc svc-saas feature reveal" href="#contact" style="--svc:#B79246">
+        <span class="svc-kick">Priorité · Éditeurs SaaS</span>
+        <svg class="svc-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="6" y="9" width="36" height="24" rx="3"/><path d="M6 27h36M16 39h16M20 33v6M28 33v6"/><path d="M15 15l4 3-4 3M23 21h6"/></svg>
+        <h3>Support applicatif N1</h3>
+        <p>Tickets, chat et téléphone pour vos utilisateurs — escalade cadrée vers vos équipes produit, en français et en anglais.</p>
+        <ul>
           <li>Agents formés à votre produit et à vos process</li>
-          <li>SLA de 1re réponse mesuré et partagé</li>
-          <li>Vous gardez la main sur vos files</li>
+          <li>SLA de première réponse mesuré et partagé</li>
+          <li>Vous gardez la main sur vos files et vos priorités</li>
         </ul>
-        <span class="svc-link">Simuler mon équipe <span class="arrow">→</span></span>
+        <span class="svc-go">Cadrer une équipe dédiée <span class="arw">→</span></span>
       </a>
-      <a class="svc-card svc-helpdesk" href="simulateur-helpdesk-it.html">
+      <a class="svc svc-help reveal d1" href="#contact" style="--svc:#C56B4E">
         <span class="svc-kick">DSI · ESN · MSP</span>
+        <svg class="svc-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 26a12 12 0 0124 0"/><rect x="8" y="26" width="7" height="12" rx="2"/><rect x="33" y="26" width="7" height="12" rx="2"/><path d="M36 38v2a4 4 0 01-4 4h-6"/></svg>
         <h3>Helpdesk IT N1</h3>
-        <p>Helpdesk distant pour entreprises et DSI : agents dédiés, escalade N2 cadrée vers vos équipes.</p>
-        <ul class="svc-list">
-          <li>Prise en charge tickets &amp; téléphone (ITIL)</li>
-          <li>KPI partagés : décroché, résolution N1</li>
-          <li>Backup par compte, pas de jour d'arrêt</li>
+        <p>Helpdesk distant pour DSI et entreprises : agents dédiés, escalade N2 cadrée (ITIL).</p>
+        <ul>
+          <li>Tickets &amp; téléphone, KPI partagés</li>
+          <li>Backup dédié par compte</li>
         </ul>
-        <span class="svc-link">Simuler mon équipe <span class="arrow">→</span></span>
+        <span class="svc-go">Simuler mon helpdesk <span class="arw">→</span></span>
       </a>
-      <a class="svc-card svc-medical" href="simulateur-salverys.html">
+      <a class="svc svc-med reveal d2" href="#contact" style="--svc:#6F8770">
         <span class="svc-kick">Cabinets · dès 350 €/mois</span>
+        <svg class="svc-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M24 42s-15-8.5-15-20a8 8 0 0115-3 8 8 0 0115 3c0 4-1.8 7.5-4 10"/><path d="M20 26h3l2-5 3 9 2-4h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Télésecrétariat médical</h3>
-        <p>Prise d'appels et gestion d'agendas pour praticiens, par des télésecrétaires formées au secret médical.</p>
-        <ul class="svc-list">
+        <p>Prise d'appels et gestion d'agendas, par des télésecrétaires formées au secret médical.</p>
+        <ul>
           <li>≥ 90 % d'appels décrochés, sinon 20 % d'avoir</li>
-          <li>Doctolib, Maiia, Médistory : intégrés par nous</li>
-          <li>Secret médical et RGPD cadrés dès le 1er échange</li>
+          <li>Doctolib, Maiia, Médistory intégrés par nous</li>
         </ul>
-        <span class="svc-link">Simuler mon forfait <span class="arrow">→</span></span>
+        <span class="svc-go">Simuler mon forfait <span class="arw">→</span></span>
       </a>
-    </div>
-    <div class="gbv1-kpis">
-      <span class="kpi"><b>≥ 90 %</b> décrochés — engagement en régime</span>
-      <span class="kpi"><b>20 %</b> d'avoir automatique si non tenu</span>
-      <span class="kpi"><b>8h–20h</b> couverts en direct, heure FR&nbsp;<img class="flag" src="assets/img/flag-fr.svg" alt="France" loading="lazy" decoding="async" /> &amp; CA&nbsp;<img class="flag" src="assets/img/flag-ca.svg" alt="Canada" loading="lazy" decoding="async" /></span>
-      <span class="kpi"><b>1 backup</b> dédié par compte</span>
     </div>
   </div>
 </section>
 
-<!-- QU'EXTERNALISEZ-VOUS ? -->
-<section class="section" id="metiers">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Nos métiers</div>
-      <h2>Qu'externalisez-vous&nbsp;?</h2>
-      <p>Chaque métier a son simulateur de tarif : bougez les curseurs, le forfait s'affiche en direct.</p>
+<!-- COST COMPARISON -->
+<section class="section band" id="calcul">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">03 — Le bon calcul</span>
+      <h2>40 à 60 % moins cher que le coût <em>complet</em> d'un poste interne.</h2>
+      <p>Un recrutement ne coûte pas que le salaire chargé. C'est le coût complet que Salverys remplace — par un service supervisé, à une fraction du prix.</p>
     </div>
-    <div class="types-row">
-      <a class="tcard reveal" href="simulateur-informatique.html">
-        <span class="bgfall" style="background:linear-gradient(160deg,#3b5a48,#263A2E)"></span>
-        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=70" alt="Support applicatif SaaS" />
-        <span class="tgo">→</span>
-        <span class="tcard-txt"><span class="tsub">Priorité · Éditeurs SaaS</span><span class="tlab">Support Applicatif &amp; Métier</span></span>
-      </a>
-      <a class="tcard reveal d1" href="simulateur-helpdesk-it.html">
-        <span class="bgfall" style="background:linear-gradient(160deg,#51443a,#2E2820)"></span>
-        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=640&q=70" alt="Helpdesk IT" />
-        <span class="tgo">→</span>
-        <span class="tcard-txt"><span class="tsub">DSI · ESN · MSP</span><span class="tlab">Helpdesk IT N1 externalisé</span></span>
-      </a>
-      <a class="tcard reveal d2" href="simulateur-salverys.html">
-        <span class="bgfall" style="background:linear-gradient(160deg,#4a5a6e,#2E3B4E)"></span>
-        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=640&q=70" alt="Cabinet médical" />
-        <span class="tgo">→</span>
-        <span class="tcard-txt"><span class="tsub">Dès 350 €/mois</span><span class="tlab">Télésecrétariat médical</span></span>
-      </a>
-      <span class="tcard soon reveal d3">
-        <span class="bgfall" style="background:linear-gradient(160deg,#42604f,#263A2E)"></span>
-        <img loading="lazy" decoding="async" onerror="this.style.display='none'"
-             src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=640&q=70" alt="Relation client" />
-        <span class="tcard-txt"><span class="tsub">Bientôt</span><span class="tlab">Relation client, toutes sortes</span></span>
-      </span>
-    </div>
-  </div>
-  <a class="scroll-next" href="#avantages" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
-
-<!-- FEATURES ZIGZAG -->
-<section class="section soft" id="avantages">
-  <div class="container">
-
-    <div class="feature">
-      <div class="feat-media reveal">
-        <div class="photo-wrap">
-          <img class="photo" loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=70"
-               alt="Équipe collaborative" />
-        </div>
-      </div>
-      <div class="feat-body reveal d1">
-        <div class="kicker">L'avantage francophone</div>
-        <h3>Des équipes francophones, aux mêmes horaires que vous</h3>
-        <p>Madagascar&nbsp;<img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /> partage les heures ouvrées de la France et le français y est parlé couramment. Vos utilisateurs, clients et patients sont pris en charge dans un français clair, en temps réel.</p>
-        <ul class="tick">
-          <li>Tickets et appels traités en direct de 8h à 20h, jamais de file qui traîne</li>
-          <li>Aucune barrière de langue ni décalage horaire</li>
-          <li>Agents support formés à vos outils et à vos process (ITIL), télésecrétaires formées au secret médical</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="feature flip">
-      <div class="feat-media reveal">
-        <div class="photo-wrap">
-          <img class="photo" loading="lazy" decoding="async" onerror="this.style.display='none'"
-               src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1000&q=70"
-               alt="Bureau Salverys" />
-        </div>
-      </div>
-      <div class="feat-body reveal d1">
-        <div class="kicker">Le bon calcul</div>
-        <h3>40 à 60 % moins cher que le coût complet d'un poste interne, sans rogner sur la qualité</h3>
-        <p>Un recrutement interne ne coûte pas que le salaire chargé : congés et absences, recrutement, formation, supervision, matériel, licences, locaux, risque de turnover. C'est ce coût complet que Salverys remplace — par un service supervisé et fiable, à une fraction de ce prix.</p>
-        <ul class="tick">
-          <li>Forfait mensuel clair, jamais de facturation à l'acte</li>
-          <li>Continuité de service : équipe et backup, pas de jour d'arrêt</li>
+    <div class="calc">
+      <div class="calc-body reveal">
+        <h3>Ce que vous ne payez plus</h3>
+        <p>Congés et absences, recrutement, formation, supervision, matériel, licences, locaux, risque de turnover. Un forfait mensuel clair, jamais à l'acte.</p>
+        <ul>
+          <li>Continuité de service : équipe + backup, pas de jour d'arrêt</li>
           <li>Reporting et supervision qualité inclus</li>
+          <li>Vous montez de palier quand votre volume le justifie</li>
         </ul>
       </div>
+      <div class="chart reveal d1" id="chart">
+        <div class="chart-cap">Coût annuel — support N1, base indicative</div>
+        <div class="bar-row">
+          <div class="bar-top"><span class="bar-name">Poste interne (coût complet)</span><span class="bar-val">≈ 44 000 €</span></div>
+          <div class="bar-track"><div class="bar-fill full" data-w="100"></div></div>
+          <div class="bar-sub">salaire chargé + RH + formation + matériel + locaux</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span class="bar-name">Salverys — forfait dédié</span><span class="bar-val" style="color:var(--sage)">≈ 21 000 €</span></div>
+          <div class="bar-track"><div class="bar-fill slv" data-w="48"></div></div>
+          <div class="bar-sub">tout compris · supervision + reporting + backup</div>
+        </div>
+        <div class="chart-foot">Montants indicatifs, hors offre de lancement. Le devis ferme arrive sous 24 h ouvrées après un cadrage de 15 minutes.</div>
+      </div>
     </div>
-
   </div>
-  <a class="scroll-next" href="#methode" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- MÉTHODE / QUI SOMMES-NOUS -->
+<!-- METHODE / PROCESS -->
 <section class="section" id="methode">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Qui sommes-nous</div>
-      <h2>Une équipe resserrée, une méthode écrite</h2>
-      <p>Salverys est un centre de services fondé à Antananarivo&nbsp;<img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /> par une direction expérimentée du BPO. Pas d'usine à plateaux : une équipe senior, des process documentés et un pilote mesuré avant tout engagement.</p>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">04 — Comment ça marche</span>
+      <h2>Plus de capacité en <em>trois étapes</em>.</h2>
+      <p>Rien n'est laissé à l'improvisation : un cadrage écrit au départ, un reporting chiffré chaque mois.</p>
     </div>
-    <div class="feature">
-      <div class="feat-body reveal">
-        <div class="kicker">Notre méthode</div>
-        <h3>Rien n'est laissé à l'improvisation</h3>
-        <p>Chaque compte démarre par un cadrage écrit et chaque mois se termine par un reporting chiffré. La discipline des grands centres de contact, à taille humaine.</p>
-        <ul class="tick">
-          <li><b>Scripts et procédures documentés</b> avant le premier appel, validés avec vous.</li>
-          <li><b>Double écoute qualité</b> — chaque agent est réécouté et coaché par son manager métier.</li>
-          <li><b>Reporting mensuel chiffré</b> — taux de décroché, délai de première réponse, SLA tickets.</li>
-          <li><b>Pilote mesuré</b> — le 1er mois sert à prouver, chiffres à l'appui, pas à promettre.</li>
-        </ul>
-      </div>
-      <div class="feat-media reveal d1">
-        <div class="route-card">
-          <img class="route-map" src="assets/img/carte-monde.svg" alt="Carte : Antananarivo relie Paris et Montréal" loading="lazy" decoding="async" />
-          <div class="route-cities">
-            <div class="route-city">
-              <span class="route-flag" aria-hidden="true"><img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /></span>
-              <div class="route-city-txt"><b>Antananarivo</b><span>vos équipes Salverys</span></div>
-              <span class="route-time" data-tz="Indian/Antananarivo">--:--</span>
-            </div>
-            <div class="route-city">
-              <span class="route-flag" aria-hidden="true"><img class="flag" src="assets/img/flag-fr.svg" alt="France" loading="lazy" decoding="async" /></span>
-              <div class="route-city-txt"><b>Paris</b><span>vos clients et patients</span></div>
-              <span class="route-time" data-tz="Europe/Paris">--:--</span>
-            </div>
-            <div class="route-city">
-              <span class="route-flag" aria-hidden="true"><img class="flag" src="assets/img/flag-ca.svg" alt="Canada" loading="lazy" decoding="async" /></span>
-              <div class="route-city-txt"><b>Montréal</b><span>vos clients francophones</span></div>
-              <span class="route-time" data-tz="America/Toronto">--:--</span>
-            </div>
-          </div>
-          <p class="route-foot">Paris à 1–2 h de décalage : vos plages 8h–20h couvertes en direct, en heure française. Montréal aussi, en français toute la journée — nous adaptons nos plages à votre fuseau.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-n">01</span>
+        <div class="step-c">
+          <h3>On cadre votre besoin</h3>
+          <p>15 minutes pour comprendre votre activité, vos volumes et vos outils. Nous configurons tout — Zendesk, Jira, GLPI, Doctolib, Maiia — vous ne touchez à rien.</p>
         </div>
+        <div class="step-media"><div class="mini"><div class="row"><span>Appels</span><b>✓ prêt</b></div><div class="row"><span>Tickets</span><b>✓ prêt</b></div><div class="row"><span>Outils connectés</span><b>✓ 4/4</b></div></div></div>
+      </div>
+      <div class="step reveal">
+        <span class="step-n">02</span>
+        <div class="step-c">
+          <h3>1er mois à −50 %, en conditions réelles</h3>
+          <p>Le service tourne à demi-tarif et sans engagement. Vous jugez sur pièces : décroché, délais de réponse, qualité du français.</p>
+        </div>
+        <div class="step-media"><div class="mini"><div class="row"><span>Forfait Essentiel</span></div><div class="price"><s>350 €</s>175 €<span style="font-size:13px;color:var(--fg-mute)"> /mois</span></div><div class="row"><span>Sans engagement</span><b>✓</b></div></div></div>
+      </div>
+      <div class="step reveal">
+        <span class="step-n">03</span>
+        <div class="step-c">
+          <h3>On grandit avec vous</h3>
+          <p>Forfait calé sur votre volume réel, paliers clairs, jamais de facturation à l'acte. Reporting mensuel : vous mesurez, vous ne croyez pas sur parole.</p>
+        </div>
+        <div class="step-media"><div class="mini"><div class="row"><span>Décroché</span><b>97 %</b></div><div class="row"><span>SLA 1re réponse</span><b>tenu</b></div><div class="row"><span>Palier</span><b>↗ ajusté</b></div></div></div>
       </div>
     </div>
   </div>
-  <a class="scroll-next" href="#confiance" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- VALUE STACK / CONFIANCE -->
-<section class="section soft" id="confiance">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Confidentialité &amp; service inclus</div>
-      <h2>Ce qui est compris, sans supplément</h2>
-      <p>La confidentialité de vos données — patients, utilisateurs, clients — est notre première exigence, et tout le reste est déjà dans le forfait.</p>
-    </div>
-    <div class="feature">
-      <div class="feat-body feat-col-card reveal">
-        <ul class="tick">
-          <li><b>Sécurité &amp; secret professionnel</b> — agents sous comptes nommés et accès tracés ; télésecrétaires formées au secret médical.</li>
-          <li><b>RGPD — sous-traitant (art. 28)</b>, transfert encadré (clauses art. 46) : cadre légal clair, présenté dès le 1er échange.</li>
-          <li><b>Comptes nommés, zéro download</b> — les données restent chez votre hébergeur ou votre SaaS, jamais sur le poste de l'agent.</li>
-          <li><b>Intégration faite par nous</b> — vos outils support (Zendesk, Jira, GLPI…) comme métier (Doctolib, Maiia, Médistory) : vous ne touchez à rien.</li>
-        </ul>
-      </div>
-      <div class="feat-body feat-col-card reveal d1">
-        <ul class="tick">
-          <li><b>Continuité garantie</b> — un agent de backup par compte, pas de jour d'arrêt.</li>
-          <li><b>Plan de continuité écrit</b> — agents en double connexion (fibre + 4G) et hub de repli alimenté (groupe électrogène, onduleurs) : votre standard ne tombe pas.</li>
-          <li><b>Reporting mensuel</b> — taux de décroché, délai de première réponse, SLA tickets : vous mesurez, vous ne croyez pas sur parole.</li>
-          <li><b>Engagement de service</b> — en régime, ≥ 90 % d'appels décrochés (médical) ou SLA de première réponse tenu (support), sinon 20 % d'avoir le mois suivant.</li>
-          <li><b>Forfait mensuel</b>, jamais à l'acte — et vous gardez la main sur vos files et vos priorités.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <a class="scroll-next" href="#engagements" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
-
-<!-- ENGAGEMENTS / IMPACT -->
+<!-- COMMITMENTS -->
 <section class="section deep" id="engagements">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Nos engagements</div>
-      <h2>Des équipes qui restent, un service qui ne se dégrade pas</h2>
-      <p>Le turnover est la plaie des centres de contact : agents interchangeables, qualité en dents de scie. Nous avons pris le problème à l'envers.</p>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-ink">05 — Nos engagements</span>
+      <h2>Des équipes qui restent, un service qui <em>ne se dégrade pas</em>.</h2>
+      <p>Le turnover est la plaie des centres de contact. Nous avons pris le problème à l'envers.</p>
     </div>
-    <div class="commit-grid">
-      <div class="commit-card reveal">
-        <div class="commit-num">× 4,5</div>
-        <h4>le salaire du marché local</h4>
-        <p>Nos agents sont rémunérés environ 4,5 fois la moyenne du secteur à Antananarivo. Des professionnels qui choisissent de rester, pas une main-d'œuvre de passage.</p>
-      </div>
-      <div class="commit-card reveal d1">
-        <div class="commit-num">0</div>
-        <h4>turnover visé</h4>
-        <p>L'agent qui apprend vos outils, votre ton et vos patients reste sur votre compte. Votre interlocuteur ne change pas tous les trois mois.</p>
-      </div>
-      <div class="commit-card reveal d2">
-        <div class="commit-num">2</div>
-        <h4>managers métier dédiés</h4>
-        <p>Un manager IT et un manager médical encadrent les équipes, assurent la double écoute et portent le reporting qualité de chaque compte.</p>
-      </div>
-      <div class="commit-card reveal d3">
-        <div class="commit-num">20 %</div>
-        <h4>d'avoir si l'engagement n'est pas tenu</h4>
-        <p>En régime, si le taux de décroché ou le SLA convenu n'est pas atteint sur un mois, un avoir de 20 % s'applique automatiquement le mois suivant.</p>
-      </div>
+    <div class="commit">
+      <div class="cc reveal"><div class="n">×4,5</div><h4>le salaire du marché local</h4><p>Des professionnels qui choisissent de rester, pas une main-d'œuvre de passage.</p></div>
+      <div class="cc reveal d1"><div class="n">0</div><h4>turnover visé</h4><p>L'agent qui apprend vos outils et votre ton reste sur votre compte.</p></div>
+      <div class="cc reveal d2"><div class="n">2</div><h4>managers métier dédiés</h4><p>Un manager IT, un manager médical : double écoute et reporting qualité.</p></div>
+      <div class="cc reveal d3"><div class="n">20 %</div><h4>d'avoir si l'engagement n'est pas tenu</h4><p>Décroché ou SLA non atteint sur un mois : avoir automatique le mois suivant.</p></div>
     </div>
   </div>
-  <a class="scroll-next" href="#approche" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
-
-<!-- APPROCHE — 3 ÉTAPES -->
-<section class="section" id="approche">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Comment ça marche</div>
-      <h2>Plus de capacité en trois étapes</h2>
-      <p>Au forfait, jamais à l'acte. Vous montez de palier seulement quand votre volume le justifie.</p>
-    </div>
-
-    <div class="step-card blue reveal">
-      <div>
-        <span class="step-num">Étape 1</span>
-        <h3>On cadre votre besoin</h3>
-        <p>15 minutes pour comprendre votre activité, vos volumes et vos outils. Nous configurons tout : Zendesk, Jira, GLPI, Doctolib, Maiia… vous ne touchez à rien.</p>
-      </div>
-      <div class="step-visual">
-        <div class="line w80"></div><div class="line w60"></div><div class="line w40"></div>
-        <div class="chip-row">
-          <span class="chip">☎ Appels</span>
-          <span class="chip">🎟 Tickets</span>
-          <span class="chip on">✓ Outils connectés</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-card yellow reveal">
-      <div>
-        <span class="step-num">Étape 2</span>
-        <h3>1er mois à −50 %</h3>
-        <p>Le service tourne en conditions réelles, à demi-tarif et sans engagement. Vous jugez sur pièces : décroché, délais de réponse, qualité du français.</p>
-      </div>
-      <div class="step-visual">
-        <div class="sv-label">Votre 1er mois — ex. forfait médical Essentiel</div>
-        <div class="price"><span class="old">350 €</span>175 €<small> /mois</small></div>
-        <div class="chip-row">
-          <span class="chip on">−50 %</span>
-          <span class="chip">Sans engagement</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-card rose reveal">
-      <div>
-        <span class="step-num">Étape 3</span>
-        <h3>On grandit avec vous</h3>
-        <p>Forfait calé sur votre volume réel, paliers clairs, jamais de facturation à l'acte. Vous montez de palier seulement quand votre activité le justifie.</p>
-      </div>
-      <div class="step-visual">
-        <div class="sv-label">Reporting mensuel</div>
-        <div class="line w80"></div><div class="line w60"></div>
-        <div class="chip-row">
-          <span class="chip">Décroché 97 %</span>
-          <span class="chip">SLA tenu</span>
-          <span class="chip on">↗ Palier ajusté</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <a class="scroll-next" href="#faq" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
 <!-- FAQ -->
-<section class="section soft" id="faq">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">FAQ</div>
-      <h2>Les questions qu'on nous pose</h2>
+<section class="section band" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">06 — FAQ</span>
+      <h2>Les questions qu'on nous pose.</h2>
       <p>Et pour tout le reste, 15 minutes suffisent : <a class="txt-link" href="#contact">contactez-nous</a>.</p>
     </div>
-    <div class="faq-list reveal">
-      <details class="faq-item">
-        <summary>Comment démarre-t-on ?</summary>
-        <div class="faq-body"><p>Un échange de 15 minutes pour cadrer votre besoin et vos outils, puis un 1er mois à -50 %, sans engagement : le service tourne en conditions réelles et vous jugez sur les chiffres. Comptez environ 3 semaines pour être pleinement opérationnel.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Travaillez-vous en marque blanche ?</summary>
-        <div class="faq-body"><p>Oui, systématiquement : l'équipe répond sous votre identité, avec votre ton et dans vos outils, comme une extension de votre structure. C'est valable pour les cabinets et entreprises en direct comme pour les donneurs d'ordre qui nous confient leur production.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Où sont vos équipes, et à quels horaires ?</summary>
-        <div class="faq-body"><p>À Antananarivo (Madagascar&nbsp;<img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" />), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement. Nous servons aussi le Canada francophone (Montréal) sur la matinée nord-américaine.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Où sont hébergées les données ?</summary>
-        <div class="faq-body"><p>Chez vous : nos agents travaillent sous comptes nommés directement dans vos outils, sans jamais télécharger vos données sur leur poste. Le cadre RGPD est posé dès le premier échange : contrat de sous-traitance (art. 28) et transfert encadré par les clauses de l'art. 46.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Avec quels outils travaillez-vous ?</summary>
-        <div class="faq-body"><p>Les vôtres. Côté support : Zendesk, Jira Service Management, Freshdesk, GLPI, Intercom… Côté médical : Doctolib, Maiia, Ubicentrex… L'intégration est faite par nous : vous ne touchez à rien.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Combien ça coûte ?</summary>
-        <div class="faq-body"><p>Un forfait mensuel clair, jamais de facturation à l'acte — environ 40 % de moins qu'une prestation équivalente en France. Le télésecrétariat médical démarre à 350 €/mois (grille publique) ; pour le support applicatif et le helpdesk IT, le simulateur donne une estimation et le devis ferme arrive sous 24 h.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Et si la qualité n'est pas au rendez-vous ?</summary>
-        <div class="faq-body"><p>En régime, nous nous engageons sur un objectif mesuré (≥ 90 % d'appels décrochés en médical, SLA de première réponse en support). S'il n'est pas atteint sur un mois, un avoir de 20 % s'applique automatiquement le mois suivant. Et le contrat reste sans engagement, résiliable à tout moment.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Qui est derrière Salverys ?</summary>
-        <div class="faq-body"><p>Salverys est la marque commerciale de VJUS, société basée à Antananarivo, fondée par une direction expérimentée du BPO. Une équipe volontairement resserrée et senior — voir aussi nos <a class="txt-link" href="mentions-legales.html">mentions légales</a>.</p></div>
-      </details>
+    <div class="faq reveal">
+      <details open><summary>Travaillez-vous en marque blanche ?<span class="pm"></span></summary><div class="a">Oui, systématiquement : l'équipe répond sous votre identité, avec votre ton et dans vos outils, comme une extension de votre structure. Valable pour les cabinets et entreprises en direct comme pour les donneurs d'ordre qui nous confient leur production.</div></details>
+      <details><summary>Où sont vos équipes, et à quels horaires ?<span class="pm"></span></summary><div class="a">À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles selon le forfait. Le français y est parlé nativement. Nous servons aussi le Canada francophone (Montréal).</div></details>
+      <details><summary>Où sont hébergées les données ?<span class="pm"></span></summary><div class="a">Chez vous : nos agents travaillent sous comptes nommés directement dans vos outils, sans jamais télécharger vos données sur leur poste. Le cadre RGPD est posé dès le premier échange — contrat de sous-traitance (art. 28) et transfert encadré (clauses art. 46).</div></details>
+      <details><summary>Combien ça coûte ?<span class="pm"></span></summary><div class="a">Un forfait mensuel clair, jamais à l'acte — environ 40 % de moins qu'une prestation équivalente en France. Le télésecrétariat médical démarre à 350 €/mois ; pour le support et le helpdesk IT, le devis ferme arrive sous 24 h ouvrées.</div></details>
+      <details><summary>Et si la qualité n'est pas au rendez-vous ?<span class="pm"></span></summary><div class="a">En régime, nous nous engageons sur un objectif mesuré (≥ 90 % d'appels décrochés en médical, SLA de première réponse en support). S'il n'est pas atteint sur un mois, un avoir de 20 % s'applique automatiquement le mois suivant. Le contrat reste sans engagement.</div></details>
+      <details><summary>Qui est derrière Salverys ?<span class="pm"></span></summary><div class="a">Salverys est la marque commerciale de VJUS, société basée à Antananarivo, fondée par une direction expérimentée du BPO. Une équipe volontairement resserrée et senior.</div></details>
     </div>
   </div>
-  <a class="scroll-next" href="#contact" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
 <!-- CONTACT -->
-<section class="section deep contact-band" id="contact">
-  <span class="hero-bg-blob b1"></span>
-  <div class="container contact-grid">
-    <div class="contact-copy reveal">
-      <div class="kicker">Contact</div>
-      <h2>Parlons de votre <span class="hl">besoin</span>.</h2>
-      <p>Décrivez votre contexte en deux lignes : nous revenons vers vous sous 24 h ouvrées avec un créneau de 15 minutes pour cadrer votre projet.</p>
-      <ul class="tick">
-        <li>Réponse garantie sous 24 h ouvrées</li>
-        <li>1er mois à -50 %, sans engagement</li>
-        <li>Vous préférez l'email ? <a class="txt-link" href="mailto:contact@salverys.fr">contact@salverys.fr</a></li>
-      </ul>
-    </div>
-    <div class="contact-card reveal d1">
-      <form id="form-contact" action="https://formspree.io/f/xjgdkblp" method="POST">
-        <input type="hidden" name="_subject" value="Contact site — accueil" />
-        <input type="hidden" name="source" value="index-contact" />
-        <div class="form-row">
-          <div class="form-field">
-            <label for="c-nom">Nom *</label>
-            <input type="text" id="c-nom" name="nom" required placeholder="Dupont" autocomplete="family-name" />
+<section class="section deep" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <span class="eyebrow on-ink">07 — Contact</span>
+        <h2 class="sec-head" style="margin:0"><span style="font-family:var(--serif);font-weight:500;font-size:var(--step-3);line-height:1.06;letter-spacing:-.02em;color:#fff;display:block;margin-top:18px">Parlons de votre <span class="u">besoin</span>.</span></h2>
+        <p style="color:var(--on-ink);font-size:var(--step-1);font-weight:300;max-width:44ch;margin-top:18px">Décrivez votre contexte en deux lignes : nous revenons sous 24 h ouvrées avec un créneau de 15 minutes pour cadrer votre projet.</p>
+        <ul>
+          <li>Réponse garantie sous 24 h ouvrées</li>
+          <li>1er mois à −50 %, sans engagement</li>
+          <li>Par email ? <a class="txt-link" href="mailto:contact@salverys.fr">contact@salverys.fr</a></li>
+        </ul>
+      </div>
+      <div class="reveal d1">
+        <form class="form" id="form" action="https://formspree.io/f/xjgdkblp" method="POST">
+          <input type="hidden" name="_subject" value="Contact site premium — accueil" />
+          <input type="hidden" name="source" value="premium-contact" />
+          <div class="form-row">
+            <div class="field"><label for="nom">Nom *</label><input id="nom" name="nom" required placeholder="Dupont" autocomplete="family-name" /></div>
+            <div class="field"><label for="soc">Société / cabinet</label><input id="soc" name="societe" placeholder="Votre structure" autocomplete="organization" /></div>
           </div>
-          <div class="form-field">
-            <label for="c-societe">Société / cabinet</label>
-            <input type="text" id="c-societe" name="societe" placeholder="Votre structure" autocomplete="organization" />
+          <div class="field"><label for="email">Email professionnel *</label><input id="email" type="email" name="email" required placeholder="vous@societe.fr" autocomplete="email" /></div>
+          <div class="field"><label for="seg">Votre besoin</label>
+            <select id="seg" name="segment">
+              <option value="saas">Support applicatif N1 SaaS</option>
+              <option value="helpdesk">Helpdesk IT N1</option>
+              <option value="medical">Télésecrétariat médical</option>
+              <option value="autre">Autre / je ne sais pas encore</option>
+            </select>
           </div>
+          <div class="field"><label for="msg">Votre message</label><textarea id="msg" name="message" placeholder="Votre contexte, vos volumes, vos outils…"></textarea></div>
+          <button type="submit" class="btn btn-gold">Envoyer ma demande <span class="arw">→</span></button>
+          <p class="form-legal">Données utilisées uniquement pour répondre à votre demande.</p>
+        </form>
+        <div class="form-ok" id="formOk">
+          <div class="tick">✓</div>
+          <p style="color:#fff;font-size:18px;font-weight:600">Message envoyé.</p>
+          <p style="color:var(--on-ink-soft);margin-top:6px">Réponse sous 24 h ouvrées — <a class="txt-link" href="mailto:contact@salverys.fr">contact@salverys.fr</a></p>
         </div>
-        <div class="form-field">
-          <label for="c-email">Email professionnel *</label>
-          <input type="email" id="c-email" name="email" required placeholder="vous@societe.fr" autocomplete="email" />
-        </div>
-        <div class="form-field">
-          <label for="c-segment">Votre besoin</label>
-          <select id="c-segment" name="segment">
-            <option value="saas">Support applicatif N1 SaaS</option>
-            <option value="helpdesk">Helpdesk IT N1</option>
-            <option value="medical">Télésecrétariat médical</option>
-            <option value="autre">Autre / je ne sais pas encore</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="c-message">Votre message</label>
-          <textarea id="c-message" name="message" rows="4" placeholder="Votre contexte, vos volumes, vos outils…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
-          Envoyer ma demande <span class="arrow">→</span>
-        </button>
-        <p class="form-legal">Données utilisées uniquement pour répondre à votre demande.</p>
-      </form>
-      <div id="contact-success" class="form-success" style="display:none">
-        <div class="form-success-icon">✓</div>
-        <p>Message envoyé !</p>
-        <p class="form-success-sub">Nous revenons vers vous sous 24 h ouvrées.<br>
-        En attendant : <a href="mailto:contact@salverys.fr">contact@salverys.fr</a></p>
       </div>
     </div>
   </div>
@@ -570,75 +748,105 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
+  <div class="wrap">
     <div class="footer-top">
       <div>
-        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" /></a>
-        <p class="brand-desc">Support IT &amp; Applicatif <span class="sep">·</span> Télésecrétariat Médical</p>
-        <p style="max-width:280px;margin-top:12px;font-size:14px;">Externalisation francophone : support IT &amp; télésecrétariat médical, depuis Antananarivo vers la France.</p>
+        <a class="brand" href="#top">Salverys<span class="dot"></span></a>
+        <p class="footer-desc">Externalisation francophone : support IT &amp; applicatif, télésecrétariat médical — d'Antananarivo vers la France et le Canada.</p>
       </div>
       <div class="footer-cols">
-        <div class="footer-col">
-          <h5>Métiers</h5>
-          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
-          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
-          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
-          <a href="#contact">Contactez-nous</a>
-        </div>
-        <div class="footer-col">
-          <h5>Salverys</h5>
-          <a href="#methode">Qui sommes-nous</a>
-          <a href="#engagements">Nos engagements</a>
-          <a href="#faq">FAQ</a>
-          <a href="espace-candidat.html">Nous rejoindre</a>
-          <a href="suivi-candidature.html">Suivre ma candidature</a>
-          <a href="espace-client.html">Espace client</a>
-          <a href="mentions-legales.html">Mentions légales</a>
-        </div>
+        <div class="footer-col"><h5>Métiers</h5><a href="#services">Support applicatif N1</a><a href="#services">Helpdesk IT N1</a><a href="#services">Télésecrétariat médical</a></div>
+        <div class="footer-col"><h5>Salverys</h5><a href="#methode">Méthode</a><a href="#engagements">Engagements</a><a href="#faq">FAQ</a></div>
+        <div class="footer-col"><h5>Contact</h5><a href="mailto:contact@salverys.fr">contact@salverys.fr</a><a href="#contact">Prendre 15 min</a></div>
       </div>
     </div>
     <div class="footer-meta">
-      <span>© Salverys — Antananarivo <img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /> → France</span>
+      <span>© Salverys — VJUS · Antananarivo (MG) → FR / CA</span>
       <span>Montants indicatifs · devis personnalisé sur demande</span>
     </div>
   </div>
 </footer>
-<div class="footer-gold" aria-hidden="true"></div>
+<div class="footer-rule" aria-hidden="true"></div>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Salverys",
-  "legalName": "VJUS",
-  "url": "https://salverys.fr/",
-  "logo": "https://salverys.fr/assets/logo-salverys.png",
-  "email": "contact@salverys.fr",
-  "description": "BPO francophone basé à Antananarivo : support applicatif N1, helpdesk IT N1 et télésecrétariat médical en marque blanche pour des clients professionnels français.",
-  "address": { "@type": "PostalAddress", "addressLocality": "Antananarivo", "addressCountry": "MG" },
-  "areaServed": ["FR", "CA"]
-}
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  /* ---- theme toggle ---- */
+  var root=document.documentElement, tt=document.getElementById("themeToggle");
+  try{var saved=localStorage.getItem("slv_theme");if(saved)root.setAttribute("data-theme",saved);}catch(e){}
+  tt.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    if(!cur)cur=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+    var next=cur==="dark"?"light":"dark";
+    root.setAttribute("data-theme",next);
+    try{localStorage.setItem("slv_theme",next);}catch(e){}
+  });
+
+  /* ---- nav scroll + progress ---- */
+  var nav=document.getElementById("nav"), prog=document.getElementById("progress");
+  function onScroll(){
+    nav.classList.toggle("scrolled",window.scrollY>24);
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.transform="scaleX("+(h>0?window.scrollY/h:0)+")";
+  }
+  onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+  /* ---- burger ---- */
+  var b=document.getElementById("burger"), nl=document.getElementById("navLinks");
+  b.addEventListener("click",function(){nl.classList.toggle("open");});
+  nl.addEventListener("click",function(e){if(e.target.tagName==="A")nl.classList.remove("open");});
+
+  /* ---- clocks ---- */
+  function fmt(tz){try{return new Intl.DateTimeFormat("fr-FR",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:tz}).format(new Date());}catch(e){return"--:--";}}
+  function tick(){document.querySelectorAll(".t[data-tz]").forEach(function(el){el.textContent=fmt(el.getAttribute("data-tz"));});}
+  tick();setInterval(tick,15000);
+
+  /* ---- reveal ---- */
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.14});
+  document.querySelectorAll(".reveal").forEach(function(el){reduce?el.classList.add("in"):io.observe(el);});
+
+  /* ---- count up ---- */
+  var cio=new IntersectionObserver(function(es){es.forEach(function(en){
+    if(!en.isIntersecting)return;var el=en.target,to=+el.getAttribute("data-to");cio.unobserve(el);
+    if(reduce){el.textContent=to;return;}
+    var s=null;(function step(t){s=s||t;var p=Math.min((t-s)/1100,1);el.textContent=Math.round((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(step);})(performance.now());
+  });},{threshold:.6});
+  document.querySelectorAll(".count").forEach(function(el){cio.observe(el);});
+
+  /* ---- bars ---- */
+  var bio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){
+    en.target.querySelectorAll(".bar-fill").forEach(function(f){f.style.width=f.getAttribute("data-w")+"%";});bio.unobserve(en.target);}});},{threshold:.4});
+  var chart=document.getElementById("chart");if(chart)bio.observe(chart);
+
+  /* ---- meridian spark travels the arc ---- */
+  var spark=document.getElementById("spark"), path=document.querySelector(".arc-live");
+  if(spark&&path&&!reduce){
+    var len=path.getTotalLength(), start=null, dur=5200;
+    function move(t){start=start||t;var p=((t-start)%dur)/dur;var pt=path.getPointAtLength(p*len);
+      spark.setAttribute("cx",pt.x);spark.setAttribute("cy",pt.y);requestAnimationFrame(move);}
+    requestAnimationFrame(move);
+  }
+
+  /* ---- rail dots ---- */
+  var secs=["#services","#calcul","#methode","#engagements","#faq","#contact"];
+  var rd=document.getElementById("railDots");
+  secs.forEach(function(id,i){var d=document.createElement("a");d.className="rail-dot";d.href=id;d.setAttribute("aria-label","Section "+(i+1));rd.appendChild(d);});
+  var dots=rd.querySelectorAll(".rail-dot");
+  var rio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){
+    var i=secs.indexOf("#"+en.target.id);dots.forEach(function(d,j){d.classList.toggle("on",j===i);});}});},{threshold:.5});
+  secs.forEach(function(id){var el=document.querySelector(id);if(el)rio.observe(el);});
+
+  /* ---- form (progressive enhancement) ---- */
+  var form=document.getElementById("form"), ok=document.getElementById("formOk");
+  if(form){form.addEventListener("submit",function(e){
+    e.preventDefault();
+    fetch(form.action,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}})
+      .then(function(r){if(r.ok){form.style.display="none";ok.style.display="block";}else{form.submit();}})
+      .catch(function(){form.submit();});
+  });}
+})();
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Comment démarre-t-on ?", "acceptedAnswer": { "@type": "Answer", "text": "Un échange de 15 minutes pour cadrer votre besoin et vos outils, puis un 1er mois à -50 %, sans engagement : le service tourne en conditions réelles et vous jugez sur les chiffres. Comptez environ 3 semaines pour être pleinement opérationnel." } },
-    { "@type": "Question", "name": "Travaillez-vous en marque blanche ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, systématiquement : l'équipe répond sous votre identité, avec votre ton et dans vos outils, comme une extension de votre structure. C'est valable pour les cabinets et entreprises en direct comme pour les donneurs d'ordre qui nous confient leur production." } },
-    { "@type": "Question", "name": "Où sont vos équipes, et à quels horaires ?", "acceptedAnswer": { "@type": "Answer", "text": "À Antananarivo (Madagascar), à 1–2 h de décalage de Paris : vos plages 8h–20h en heure française sont couvertes en direct, du lundi au vendredi, avec des extensions possibles (samedi, soirée) selon le forfait. Le français y est parlé nativement. Nous servons aussi le Canada francophone (Montréal) sur la matinée nord-américaine." } },
-    { "@type": "Question", "name": "Où sont hébergées les données ?", "acceptedAnswer": { "@type": "Answer", "text": "Chez vous : nos agents travaillent sous comptes nommés directement dans vos outils, sans jamais télécharger vos données sur leur poste. Le cadre RGPD est posé dès le premier échange : contrat de sous-traitance (art. 28) et transfert encadré par les clauses de l'art. 46." } },
-    { "@type": "Question", "name": "Avec quels outils travaillez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Les vôtres. Côté support : Zendesk, Jira Service Management, Freshdesk, GLPI, Intercom… Côté médical : Doctolib, Maiia, Ubicentrex… L'intégration est faite par nous : vous ne touchez à rien." } },
-    { "@type": "Question", "name": "Combien ça coûte ?", "acceptedAnswer": { "@type": "Answer", "text": "Un forfait mensuel clair, jamais de facturation à l'acte — environ 40 % de moins qu'une prestation équivalente en France. Le télésecrétariat médical démarre à 350 €/mois (grille publique) ; pour le support applicatif et le helpdesk IT, le simulateur donne une estimation et le devis ferme arrive sous 24 h." } },
-    { "@type": "Question", "name": "Et si la qualité n'est pas au rendez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "En régime, nous nous engageons sur un objectif mesuré (≥ 90 % d'appels décrochés en médical, SLA de première réponse en support). S'il n'est pas atteint sur un mois, un avoir de 20 % s'applique automatiquement le mois suivant. Et le contrat reste sans engagement, résiliable à tout moment." } },
-    { "@type": "Question", "name": "Qui est derrière Salverys ?", "acceptedAnswer": { "@type": "Answer", "text": "Salverys est la marque commerciale de VJUS, société basée à Antananarivo, fondée par une direction expérimentée du BPO. Une équipe volontairement resserrée et senior." } }
-  ]
-}
-</script>
-<script src="assets/site.js"></script>
 </body>
 </html>
