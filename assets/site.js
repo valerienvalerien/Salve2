@@ -36,15 +36,8 @@
     document.addEventListener('click', e => { if (!floatCta.contains(e.target)) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-    const heroEl = document.querySelector('.hero');
-    if (heroEl && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver(([entry]) => {
-        floatCta.classList.toggle('visible', !entry.isIntersecting);
-      }, { rootMargin: '-10% 0px 0px 0px' });
-      io.observe(heroEl);
-    } else {
-      floatCta.classList.add('visible');
-    }
+    /* Visible dès la première page, sans avoir à scroller. */
+    requestAnimationFrame(() => floatCta.classList.add('visible'));
   }
 
   /* ---------- Compteurs animés ---------- */
