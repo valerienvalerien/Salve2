@@ -806,6 +806,32 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .tcard.soon img { filter: grayscale(.4); opacity: .8; }
 .tcard.soon::after { background: rgba(28,44,34,.6); }
 
+/* ---------- Accordéon d'images au survol (desktop) ----------
+   Au repos les cartes se partagent la largeur ; au survol (ou focus clavier)
+   la carte s'élargit et révèle son CTA (sous-titre + flèche). Le libellé reste
+   visible pour l'orientation. Sous 961px on garde la grille (pas de survol tactile). */
+@media (min-width: 961px) {
+  .types-row { display: flex; gap: 14px; height: 460px; }
+  .tcard {
+    flex: 1 1 0%; min-width: 0; height: 100%; aspect-ratio: auto;
+    transition: flex-grow .55s var(--ease); will-change: flex-grow;
+  }
+  .tcard:hover, .tcard:focus-visible { flex-grow: 4.2; }
+  /* CTA masqué au repos, révélé au survol/focus */
+  .tcard .tsub { opacity: 0; transform: translateY(6px); transition: opacity .4s var(--ease) .06s, transform .4s var(--ease) .06s; }
+  .tcard .tgo  { opacity: 0; transform: scale(.7); transition: opacity .35s var(--ease), transform .3s var(--ease); }
+  .tcard:hover .tsub, .tcard:focus-visible .tsub { opacity: 1; transform: none; }
+  .tcard:hover .tgo,  .tcard:focus-visible .tgo  { opacity: 1; transform: none; }
+  /* Le libellé grossit légèrement quand la carte s'ouvre */
+  .tcard .tlab { font-size: 17px; transition: font-size .4s var(--ease); }
+  .tcard:hover .tlab, .tcard:focus-visible .tlab { font-size: 22px; }
+  /* La carte « Bientôt » ne s'ouvre pas : on garde son sous-titre visible */
+  .tcard.soon .tsub { opacity: 1; transform: none; }
+}
+@media (min-width: 961px) and (prefers-reduced-motion: reduce) {
+  .tcard, .tcard .tsub, .tcard .tgo, .tcard .tlab { transition: none; }
+}
+
 /* ---------- 3 étapes colorées ---------- */
 .stepcards { counter-reset: none; }
 .step-card { border-radius: var(--radius-lg); padding: clamp(26px, 4vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px); align-items: center; text-align: left; margin-bottom: 16px; }
