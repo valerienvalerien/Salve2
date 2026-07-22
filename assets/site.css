@@ -921,14 +921,20 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 }
 .float-cta.visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .float-cta-toggle {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center;
   background: var(--green-deep); color: #fff; border: 0; cursor: pointer;
   padding: 15px 22px; border-radius: var(--radius-pill);
   font-family: inherit; font-size: 14.5px; font-weight: 800;
-  box-shadow: var(--shadow-lg); transition: transform .2s var(--ease), background .2s;
-  animation: fcBob 2.6s var(--ease) infinite, fcPulse 2.6s var(--ease) infinite;
+  box-shadow: var(--shadow-lg);
+  transition: transform .25s var(--ease), background .2s, box-shadow .25s var(--ease);
+  animation: fcPulse 2.6s var(--ease) infinite; /* halo seulement (box-shadow) */
 }
-/* Petit balancement + halo pour attirer l'œil, même sans survol. */
+/* Couche interne : porte le balancement (transform), séparé du lift de survol. */
+.float-cta-toggle-inner {
+  display: inline-flex; align-items: center; gap: 10px;
+  animation: fcBob 2.6s var(--ease) infinite;
+}
+/* Balancement + halo pour attirer l'œil, même sans survol. */
 @keyframes fcBob {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
@@ -937,10 +943,19 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
   0%, 100% { box-shadow: var(--shadow-lg), 0 0 0 0 rgba(38, 58, 46, 0); }
   50%      { box-shadow: var(--shadow-lg), 0 0 0 8px rgba(38, 58, 46, .10); }
 }
-/* Au survol ou menu ouvert, on fige l'animation et on garde le comportement classique. */
+/* Au survol / menu ouvert : le balancement se pose en douceur vers 0. */
+.float-cta-toggle:hover .float-cta-toggle-inner,
+.float-cta.open .float-cta-toggle-inner {
+  animation: none; transition: transform .3s var(--ease); transform: translateY(0);
+}
+/* On stoppe le halo pulsé et on le fige en anneau statique. */
 .float-cta-toggle:hover,
-.float-cta.open .float-cta-toggle { animation: none; }
-.float-cta-toggle:hover { background: var(--green-deeper); transform: translateY(-2px); }
+.float-cta.open .float-cta-toggle {
+  animation: none; box-shadow: var(--shadow-lg), 0 0 0 6px rgba(38, 58, 46, .10);
+}
+/* Survol : le bouton monte et se pose à une position de repos constante. */
+.float-cta-toggle:hover { background: var(--green-deeper); transform: translateY(-3px); }
+.float-cta.open .float-cta-toggle { transform: translateY(0); }
 .float-cta-toggle-icon { display: inline-block; transition: transform .25s var(--ease); }
 .float-cta.open .float-cta-toggle-icon { transform: rotate(90deg); }
 .float-cta-menu {
@@ -975,6 +990,6 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
   .float-cta-menu { width: calc(100vw - 32px); max-width: 280px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .float-cta-toggle { animation: none; }
+  .float-cta-toggle, .float-cta-toggle-inner { animation: none; }
   .float-cta-link { transition-duration: .01ms; }
 }
