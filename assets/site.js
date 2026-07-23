@@ -27,24 +27,21 @@
   const floatCta = document.getElementById('floatCta');
   if (floatCta) {
     const toggle = document.getElementById('floatCtaToggle');
+    let closeTimer;
+    const open = () => { clearTimeout(closeTimer); floatCta.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); };
     const close = () => { floatCta.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); };
-    toggle.addEventListener('click', () => {
-      const willOpen = !floatCta.classList.contains('open');
-      floatCta.classList.toggle('open', willOpen);
-      toggle.setAttribute('aria-expanded', String(willOpen));
-    });
+    /* Clic : bascule — indispensable au tactile et au clavier (Entrée/Espace). */
+    toggle.addEventListener('click', () => (floatCta.classList.contains('open') ? close() : open()));
     document.addEventListener('click', e => { if (!floatCta.contains(e.target)) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-
-    const heroEl = document.querySelector('.hero');
-    if (heroEl && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver(([entry]) => {
-        floatCta.classList.toggle('visible', !entry.isIntersecting);
-      }, { rootMargin: '-10% 0px 0px 0px' });
-      io.observe(heroEl);
-    } else {
-      floatCta.classList.add('visible');
+    /* Ouverture au survol sur les appareils qui le gèrent (souris). */
+    if (window.matchMedia('(hover: hover)').matches) {
+      floatCta.addEventListener('mouseenter', open);
+      floatCta.addEventListener('mouseleave', () => { closeTimer = setTimeout(close, 140); });
     }
+
+    /* Visible dès la première page, sans avoir à scroller. */
+    requestAnimationFrame(() => floatCta.classList.add('visible'));
   }
 
   /* ---------- Compteurs animés ---------- */
