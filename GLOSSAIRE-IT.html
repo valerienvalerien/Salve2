@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salverys — Glossaire IT & Support</title>
+<title>Salverys — Glossaire IT &amp; Support (repo complet)</title>
 <style>
   :root{
     --navy:#2E3B4E; --navy2:#222C3B; --deep:#013C58; --deep2:#012C42;
@@ -20,9 +20,9 @@
   header.top{background:linear-gradient(135deg,var(--navy),var(--deep));color:#fff;
     padding:34px 26px 28px;box-shadow:var(--shadow)}
   header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px}
-  header.top .sub{opacity:.85;font-size:14px;max-width:760px}
+  header.top .sub{opacity:.85;font-size:14px;max-width:780px}
   header.top .meta{margin-top:14px;font-size:12.5px;opacity:.7}
-  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
 
   .toolbar{position:sticky;top:0;z-index:20;background:var(--cream);
     padding:16px 0 12px;border-bottom:1px solid var(--line)}
@@ -54,16 +54,17 @@
   .term .src{margin-top:8px;font-size:11.5px;color:var(--bronze);display:flex;gap:6px;flex-wrap:wrap}
   .term .src span{background:var(--cream2);padding:1px 8px;border-radius:6px;color:var(--muted)}
 
+  .b-bpo{background:var(--brick)}
   .b-support{background:var(--sage)}
-  .b-cloud{background:var(--deep)}
-  .b-org{background:var(--brick)}
-  .b-conformite{background:#8a4b7a}
-  .b-finance{background:var(--bronze)}
   .b-outils{background:#3f7d4e}
-  .b-autre{background:#7a8a9a}
+  .b-cloud{background:var(--deep)}
+  .b-conformite{background:#8a4b7a}
+  .b-org{background:#4a5a72}
+  .b-finance{background:var(--bronze)}
+  .b-growth{background:#a86b2e}
 
   .noresult{display:none;padding:40px;text-align:center;color:var(--muted)}
-  .foot{max-width:980px;margin:30px auto 0;padding:16px 20px;font-size:12px;color:var(--muted);
+  .foot{max-width:1000px;margin:30px auto 0;padding:16px 20px;font-size:12px;color:var(--muted);
     border-top:1px solid var(--line)}
   @media(max-width:640px){
     header.top h1{font-size:21px}
@@ -80,11 +81,12 @@
 <header class="top">
   <div class="wrap">
     <h1>Salverys — Glossaire IT &amp; Support</h1>
-    <div class="sub">Tous les acronymes et concepts propres au monde IT / support / helpdesk
-    référencés dans les scripts d'appel, la base de prospection et les fiches d'analyse de
-    prospects Salverys.</div>
-    <div class="meta">Sources : <code>SCRIPTS-ET-CLIENTS.html</code> ·
-    <code>PROSPECT-ANALYSIS-Izencia.md</code>. Généré le 2026-07-23.</div>
+    <div class="sub">Tous les acronymes et concepts propres au monde IT / BPO / support client
+    référencés dans l'ensemble du repo Salverys : scripts d'appel, base de prospection, fiches
+    d'analyse de prospects, CRM, conformité, finance et prospection commerciale.</div>
+    <div class="meta">Sources : l'intégralité du repo (<code>*.md</code>, <code>*.html</code> —
+    scripts, CRM, dossiers <code>01-</code> à <code>07-</code>). 68 termes, 8 catégories.
+    Généré le 2026-07-23.</div>
   </div>
 </header>
 
@@ -95,32 +97,82 @@
   </div>
   <div class="filters" id="filters">
     <button class="active" data-cat="all">Tout</button>
-    <button data-cat="support">🎧 Support &amp; niveaux</button>
+    <button data-cat="bpo">🏭 BPO &amp; modèle</button>
+    <button data-cat="support">🎧 Support &amp; centre d'appels</button>
     <button data-cat="outils">🛠️ Outils &amp; plateformes</button>
     <button data-cat="cloud">☁️ Cloud &amp; infra</button>
-    <button data-cat="org">🏢 Organisations &amp; métiers</button>
     <button data-cat="conformite">🔒 Conformité &amp; sécurité</button>
+    <button data-cat="org">🏢 Organisations &amp; métiers</button>
     <button data-cat="finance">💰 Finance &amp; business</button>
-    <button data-cat="autre">🌍 Autres</button>
+    <button data-cat="growth">📧 Prospection &amp; growth</button>
   </div>
 </div>
 
 <main class="wrap">
 
-<section class="catgroup" data-cat="support">
-<h2 class="sec">🎧 Support &amp; niveaux de service</h2>
-<p class="sec-note">Le vocabulaire du helpdesk et du support client, omniprésent dans les scripts et les fiches prospects.</p>
+<!-- ============ 1. BPO & MODÈLE ============ -->
+<section class="catgroup" data-cat="bpo">
+<h2 class="sec">🏭 BPO &amp; modèle d'activité</h2>
+<p class="sec-note">Le vocabulaire de fond : ce qu'est Salverys et comment son modèle économique fonctionne.</p>
 
-<div class="term" data-cat="support">
-  <div class="row"><span class="acr">N1 / N2 / N3</span><span class="expansion">Niveau 1, 2, 3 (support)</span><span class="badge b-support">Support</span></div>
-  <p class="def">Échelons de traitement d'un incident ou d'une demande. <strong>N1</strong> = premier contact, diagnostic rapide, résolution des cas simples et répétitifs (mot de passe, accès, FAQ). <strong>N2</strong> = investigation technique plus poussée quand le N1 ne suffit pas. <strong>N3</strong> = expertise pointue (souvent l'équipe produit/dev). Salverys se positionne exclusivement sur le N1, le niveau le plus volumineux et le plus facile à externaliser.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">BPO</span><span class="expansion">Business Process Outsourcing — externalisation de processus métier</span><span class="badge b-bpo">BPO</span></div>
+  <p class="def">Modèle où une entreprise confie à un prestataire externe la réalisation d'un processus métier entier (support client, télésecrétariat, helpdesk…) plutôt que de l'internaliser. C'est la catégorie d'activité de Salverys elle-même — un BPO basé à Antananarivo ciblant des clients français et canadiens.</p>
+  <div class="src"><span>CLAUDE.md</span></div>
 </div>
 
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Marque blanche (MB)</span><span class="expansion">White label</span><span class="badge b-bpo">Stratégie</span></div>
+  <p class="def">Modèle où le prestataire (Salverys) opère un service qui reste visible sous la marque du donneur d'ordre : le client final ne voit jamais Salverys. Stratégie GTM prioritaire de l'entreprise sur ses 3 niches, avant le direct (client final).</p>
+  <div class="src"><span>CLAUDE.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Donneur d'ordre</span><span class="expansion">Client intermédiaire qui sous-traite en marque blanche</span><span class="badge b-bpo">Stratégie</span></div>
+  <p class="def">Entreprise qui vend un service sous sa propre marque à ses clients finaux, mais en sous-traite tout ou partie de la production à Salverys (télésecrétariats FR, ESN/MSP, éditeurs SaaS). C'est l'interlocuteur central du modèle marque-blanche-first : on ne vend pas au client final, on vend au donneur d'ordre.</p>
+  <div class="src"><span>03-Cibles-Prospects/*.md</span><span>CRM_Salverys.html</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Nearshore / Offshore</span><span class="expansion">Délocalisation proche / lointaine</span><span class="badge b-bpo">Concept</span></div>
+  <p class="def"><strong>Offshore</strong> : production délocalisée dans un pays éloigné à coût de main-d'œuvre inférieur (le modèle de Salverys, Madagascar). <strong>Nearshore</strong> : délocalisation dans un pays proche géographiquement et culturellement (ex. un centre de services en France métropolitaine pour un siège parisien). La distinction sert à qualifier la concurrence et à répondre à l'objection de confiance sur l'éloignement.</p>
+  <div class="src"><span>03-Cibles-Prospects/ESN-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Follow-the-sun</span><span class="expansion">Couverture continue par relais de fuseaux horaires</span><span class="badge b-bpo">Concept</span></div>
+  <p class="def">Organisation du support où plusieurs équipes réparties sur des fuseaux horaires différents se relaient pour couvrir 24h/24 sans astreinte de nuit locale. Kincy opère déjà un modèle Papeete (UTC-10) ; Salverys (UTC+3) peut compléter sur le créneau matin France que Papeete ne couvre pas.</p>
+  <div class="src"><span>03-Cibles-Prospects/ESN-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Make-or-buy</span><span class="expansion">Décision interne vs. externalisation</span><span class="badge b-bpo">Concept</span></div>
+  <p class="def">Arbitrage stratégique d'une entreprise entre construire une capacité en interne (« make ») ou l'acheter à un prestataire externe (« buy »). Qualifier ce choix dès le premier échange évite de perdre du temps sur un prospect en hypercroissance qui va internaliser (risque cité pour Skello, Pennylane…).</p>
+  <div class="src"><span>03-Cibles-Prospects/ESN-TARGETS.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">Callbot / IA hybride</span><span class="expansion">Agent conversationnel automatisé + niveau humain</span><span class="badge b-bpo">Positionnement</span></div>
+  <p class="def">Robot conversationnel (souvent vocal) qui prend en charge les demandes simples (prise de RDV Doctolib…). Positionnement Salverys : « hybride assumé » — ne pas combattre le bot, opérer le niveau humain au-dessus de ce qu'il ne sait pas faire (urgences, patients âgés, débordement), intégré aux mêmes outils.</p>
+  <div class="src"><span>NARRATIF-HYBRIDE-CALLBOT.md</span></div>
+</div>
+
+<div class="term" data-cat="bpo">
+  <div class="row"><span class="acr">UTC+3</span><span class="expansion">Fuseau horaire de Madagascar</span><span class="badge b-bpo">Contexte</span></div>
+  <p class="def">Madagascar est en avance de 3 heures sur UTC — donc en général 1 à 2h d'avance sur la France selon la saison. Argument récurrent : la journée de travail malgache couvre naturellement les créneaux tôt le matin ou tard en soirée en France, sans supplément nuit.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>CLAUDE.md</span></div>
+</div>
+</section>
+
+<!-- ============ 2. SUPPORT & CENTRE D'APPELS ============ -->
+<section class="catgroup" data-cat="support">
+<h2 class="sec">🎧 Support, centre d'appels &amp; niveaux de service</h2>
+<p class="sec-note">Le vocabulaire du helpdesk, du télésecrétariat et du pilotage opérationnel des plateaux.</p>
+
 <div class="term" data-cat="support">
-  <div class="row"><span class="acr">VIP</span><span class="expansion">Support VIP / prioritaire</span><span class="badge b-support">Support</span></div>
-  <p class="def">Ligne de support réservée aux comptes stratégiques ou aux utilisateurs à enjeu élevé, traitée avec un SLA plus court que le support standard. Chez Izencia, une des 4 lignes de techniciens mis à disposition (aux côtés de N1/N2/N3).</p>
-  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
+  <div class="row"><span class="acr">N1 / N2 / N3 / VIP</span><span class="expansion">Niveaux de support</span><span class="badge b-support">Support</span></div>
+  <p class="def">Échelons de traitement d'un incident ou d'une demande. <strong>N1</strong> = premier contact, diagnostic rapide, cas simples et répétitifs. <strong>N2</strong> = investigation technique plus poussée. <strong>N3</strong> = expertise pointue (souvent l'équipe produit/dev). <strong>VIP</strong> = ligne réservée aux comptes stratégiques, SLA plus court. Salverys se positionne exclusivement sur le N1, le niveau le plus volumineux et le plus facile à externaliser.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
 </div>
 
 <div class="term" data-cat="support">
@@ -137,13 +189,7 @@
 
 <div class="term" data-cat="support">
   <div class="row"><span class="acr">CSAT</span><span class="expansion">Customer Satisfaction Score — score de satisfaction client</span><span class="badge b-support">Support</span></div>
-  <p class="def">Indicateur de satisfaction recueilli après résolution d'un ticket (souvent une note ou un pourcentage de réponses positives). Utilisé avec le FRT et le taux de résolution comme reporting hebdomadaire promis aux clients support N1.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="support">
-  <div class="row"><span class="acr">Ticket</span><span class="expansion">Demande ou incident enregistré dans un outil de support</span><span class="badge b-support">Support</span></div>
-  <p class="def">Unité de travail du support : une demande client crée un ticket, suivi jusqu'à sa résolution. Le volume de tickets par semaine/mois est la donnée de dimensionnement de base d'un contrat support N1.</p>
+  <p class="def">Indicateur de satisfaction recueilli après résolution d'un ticket. Utilisé avec le FRT et le taux de résolution comme reporting hebdomadaire promis aux clients support N1.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
 </div>
 
@@ -154,12 +200,97 @@
 </div>
 
 <div class="term" data-cat="support">
-  <div class="row"><span class="acr">ITIL</span><span class="expansion">Information Technology Infrastructure Library</span><span class="badge b-support">Support</span></div>
-  <p class="def">Référentiel de bonnes pratiques pour la gestion des services informatiques (gestion des incidents, des changements, des problèmes…). Une certification ITIL (Foundation, Intermediate) sur les profils est un critère de réassurance fréquent côté DSI et ESN — Salverys s'engage sur un ratio contractuel de certifiés par plateau.</p>
+  <div class="row"><span class="acr">Ticket</span><span class="expansion">Demande ou incident enregistré dans un outil de support</span><span class="badge b-support">Support</span></div>
+  <p class="def">Unité de travail du support : une demande client crée un ticket, suivi jusqu'à sa résolution. Le volume de tickets par semaine/mois est la donnée de dimensionnement de base d'un contrat support N1.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">ITIL</span><span class="expansion">Information Technology Infrastructure Library</span><span class="badge b-support">Support</span></div>
+  <p class="def">Référentiel de bonnes pratiques pour la gestion des services informatiques (incidents, changements, problèmes…). Une certification ITIL (Foundation, Intermediate) sur les profils est un critère de réassurance fréquent côté DSI et ESN — Salverys s'engage sur un ratio contractuel de certifiés par plateau.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">ITSM</span><span class="expansion">IT Service Management — gestion des services IT</span><span class="badge b-support">Support</span></div>
+  <p class="def">Discipline et ensemble d'outils qui organisent la fourniture des services informatiques (tickets, incidents, changements, catalogue de services). ITIL en est le référentiel de bonnes pratiques ; les outils ServiceNow, JIRA Service Desk, ManageEngine ou GLPI en sont l'implémentation logicielle.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">NOC</span><span class="expansion">Network Operations Center — centre d'exploitation réseau</span><span class="badge b-support">Support</span></div>
+  <p class="def">Équipe et plateau technique qui surveillent en continu l'état d'une infrastructure réseau/serveurs et interviennent en cas d'alerte. Cité comme service proposé en marque blanche par certains MSP cibles (aux côtés du helpdesk et du MDR).</p>
+  <div class="src"><span>CRM_Salverys.html</span><span>CRM_Salverys_Unifie.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">MDR</span><span class="expansion">Managed Detection and Response — détection et réponse managées</span><span class="badge b-support">Support</span></div>
+  <p class="def">Service de cybersécurité géré par un tiers qui surveille en continu les menaces et déclenche une réponse à incident. Cité comme brique de l'offre marque blanche de certains MSP (aux côtés du helpdesk et du NOC).</p>
+  <div class="src"><span>CRM_Salverys.html</span><span>CRM_Salverys_Unifie.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">MSSP</span><span class="expansion">Managed Security Service Provider — prestataire de services de sécurité managés</span><span class="badge b-support">Support</span></div>
+  <p class="def">MSP spécialisé dans la sécurité informatique (supervision, détection, réponse à incident) plutôt que l'infogérance généraliste. Segment mentionné dans la cartographie des partenaires potentiels IT Canada.</p>
+  <div class="src"><span>CRM_Salverys_Canada.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">ACD</span><span class="expansion">Automatic Call Distribution — distribution automatique d'appels</span><span class="badge b-support">Support</span></div>
+  <p class="def">Système téléphonique qui route automatiquement les appels entrants vers l'agent disponible selon des règles définies (file d'attente, compétence, priorité). Souvent l'outil ACD est imposé par le donneur d'ordre : les agents Salverys s'y connectent depuis l'instance du client plutôt que d'utiliser leur propre VoIP.</p>
+  <div class="src"><span>tresorerie-salverys.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">VoIP</span><span class="expansion">Voice over IP — téléphonie sur internet</span><span class="badge b-support">Support</span></div>
+  <p class="def">Technologie qui transporte la voix sur un réseau internet plutôt qu'une ligne téléphonique classique. Solution utilisée par Salverys (ex. CloudTalk) pour ses lignes dédiées, sauf quand le client impose son propre ACD.</p>
+  <div class="src"><span>tresorerie-salverys.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">WFM / Erlang</span><span class="expansion">Workforce Management — planification des effectifs par formule d'Erlang</span><span class="badge b-support">Support</span></div>
+  <p class="def">Méthode de dimensionnement d'un centre d'appels qui calcule l'effectif minimal nécessaire pour absorber un volume d'appels donné avec un niveau de service cible (formule d'Erlang C). Salverys applique un « plancher Erlang » : un minimum de 2 freelances dès le premier cabinet client, même à faible volume.</p>
+  <div class="src"><span>05-Process-Delivery/*.md</span><span>tresorerie-salverys.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Plateau</span><span class="expansion">Équipe opérationnelle dédiée ou mutualisée</span><span class="badge b-support">Concept</span></div>
+  <p class="def">Ensemble d'agents/techniciens affectés à un client ou à un pool de clients. Un plateau peut être <strong>dédié</strong> (agents nominatifs sur un seul client) ou <strong>mutualisé</strong> (plusieurs clients partagent un pool avec backup croisé) selon le volume et le budget.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>tresorerie-salverys.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Astreinte</span><span class="expansion">Disponibilité hors horaires normaux</span><span class="badge b-support">Concept</span></div>
+  <p class="def">Obligation pour un agent d'être joignable et de pouvoir intervenir en dehors des horaires standards (nuit, week-end) sans être physiquement posté. Coût généralement élevé en France — argument coût comparé (TCO) face à un ETP Salverys en couverture continue.</p>
+  <div class="src"><span>03-Cibles-Prospects/PROSPECT-ANALYSIS-Cyllene.md</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Décroché</span><span class="expansion">Taux d'appels effectivement pris en charge</span><span class="badge b-support">KPI</span></div>
+  <p class="def">Pourcentage d'appels entrants réellement pris par un agent (par opposition aux appels perdus, en répondeur ou raccrochés en attente). SLA central du télésecrétariat médical : Salverys s'engage sur un taux de décroché ≥ 90 % sur le mois, avec un avoir de 20 % si le seuil n'est pas tenu.</p>
+  <div class="src"><span>02-Prospection/SCRIPTS-APPEL.md</span><span>PRICING.md</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Double écoute</span><span class="expansion">Contrôle qualité par écoute en parallèle</span><span class="badge b-support">Concept</span></div>
+  <p class="def">Méthode de contrôle qualité où un superviseur écoute un appel en temps réel (double ligne) sans intervenir, pour évaluer la prestation de l'agent. Alternative à l'enregistrement des appels — recommandée en particulier sur le médical où l'enregistrement patient est proscrit par défaut (RGPD/HDS).</p>
+  <div class="src"><span>05-Process-Delivery/PROCESS-QA-DOUBLE-ECOUTE.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Débordement</span><span class="expansion">Surcroît d'appels/tickets au-delà de la capacité interne</span><span class="badge b-support">Concept</span></div>
+  <p class="def">Volume d'appels ou de tickets qu'une équipe interne ne peut pas absorber (pic d'activité, horaires étendus, nuit, week-end). C'est le cas d'usage central de Salverys en marque blanche : ne pas remplacer l'équipe existante, absorber uniquement ce qu'elle ne couvre pas.</p>
+  <div class="src"><span>03-Cibles-Prospects/*.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Pilote</span><span class="expansion">Période d'essai mesurée avant engagement</span><span class="badge b-support">Concept</span></div>
+  <p class="def">Phase initiale limitée en volume et en durée (ex. 200-400 tickets, 1er mois à -50 %) permettant au client de mesurer la qualité du service avant de s'engager sur un contrat plus large. Argument de réassurance central face à une mauvaise expérience offshore passée.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>PRICING.md</span></div>
 </div>
 </section>
 
+<!-- ============ 3. OUTILS & PLATEFORMES ============ -->
 <section class="catgroup" data-cat="outils">
 <h2 class="sec">🛠️ Outils &amp; plateformes</h2>
 <p class="sec-note">Logiciels métiers cités pour situer la maîrise technique attendue des agents Salverys.</p>
@@ -175,11 +306,30 @@
   <p class="def">Logiciels de ticketing utilisés côté DSI et ESN pour le helpdesk IT interne (par opposition aux outils orientés SaaS externe comme Zendesk). Cités dans la phase de qualification du script helpdesk IT N1 pour identifier l'environnement technique du prospect.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
 </div>
+
+<div class="term" data-cat="outils">
+  <div class="row"><span class="acr">SIRH</span><span class="expansion">Système d'Information des Ressources Humaines</span><span class="badge b-outils">Outil</span></div>
+  <p class="def">Logiciel qui gère les processus RH d'une entreprise (paie, congés, notes de frais). Les éditeurs de SIRH (ex. Lucca) ont des pics de support calés sur les cycles de paie — un signal d'achat exploitable pour du support N1 en marque blanche.</p>
+  <div class="src"><span>03-Cibles-Prospects/SAAS-SUPPORT-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="outils">
+  <div class="row"><span class="acr">ERP</span><span class="expansion">Enterprise Resource Planning — progiciel de gestion intégré</span><span class="badge b-outils">Outil</span></div>
+  <p class="def">Logiciel qui centralise la gestion des grandes fonctions d'une entreprise (compta, facturation, stocks, RH…) dans un système unique. Cité pour des éditeurs SaaS cibles (ex. Axonaut, « ERP/CRM TPE ») dont le volume de support suit la croissance du nombre de clients.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="outils">
+  <div class="row"><span class="acr">CRM</span><span class="expansion">Customer Relationship Management — gestion de la relation client</span><span class="badge b-outils">Outil</span></div>
+  <p class="def">Logiciel qui centralise le suivi des prospects et clients (contacts, historique, statut, score). Terme à double sens ici : c'est aussi le nom de l'outil interne de Salverys (<code>CRM_Salverys.html</code>) qui héberge toute la base de prospection.</p>
+  <div class="src"><span>CRM_Salverys.html</span><span>CRM_Salverys_Unifie.html</span></div>
+</div>
 </section>
 
+<!-- ============ 4. CLOUD & INFRA ============ -->
 <section class="catgroup" data-cat="cloud">
 <h2 class="sec">☁️ Cloud &amp; infrastructure</h2>
-<p class="sec-note">Modèles techniques rencontrés chez les MSP/ESN cibles, à connaître pour comprendre leur offre.</p>
+<p class="sec-note">Modèles techniques rencontrés chez les MSP/ESN et éditeurs SaaS cibles.</p>
 
 <div class="term" data-cat="cloud">
   <div class="row"><span class="acr">SaaS</span><span class="expansion">Software as a Service</span><span class="badge b-cloud">Cloud</span></div>
@@ -212,61 +362,51 @@
 </div>
 </section>
 
-<section class="catgroup" data-cat="org">
-<h2 class="sec">🏢 Organisations &amp; métiers IT</h2>
-<p class="sec-note">Structures et fonctions rencontrées côté prospects — savoir qui décide quoi.</p>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">ESN</span><span class="expansion">Entreprise de Services du Numérique (ex-SSII)</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Société de prestation de services informatiques pour d'autres entreprises (développement, infogérance, mise à disposition de techniciens…). Izencia, Cyllene, Metaline, Tenexa sont des ESN cibles pour un partenariat de sous-traitance N1 en marque blanche.</p>
-  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">DSI</span><span class="expansion">Direction des Systèmes d'Information (ou Directeur/Directrice)</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Service (ou personne) responsable de l'informatique interne d'une entreprise. Client final type du helpdesk IT N1 : soit en direct, soit via une ESN qui sous-traite le N1 auprès de Salverys.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">CTO</span><span class="expansion">Chief Technology Officer — directeur technique</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Dirigeant responsable de la stratégie technique et produit. Décideur ou co-décideur à impliquer sur les deals support N1 SaaS quand le Head of Support seul ne suffit pas à valider — d'où le one-pager « spécial CTO » axé archi/sécurité.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">COO</span><span class="expansion">Chief Operating Officer — directeur des opérations</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Dirigeant responsable des opérations quotidiennes. Cyril Mesquida, COO du groupe Everience (Helpline), est le décideur cible identifié pour ce compte.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">Head of CS / Head of Support</span><span class="expansion">Responsable Customer Success / Support</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Fonction qui pilote l'équipe support ou succès client dans un éditeur SaaS. Interlocuteur cible prioritaire pour la niche support N1 SaaS (avant le CEO, sauf structure de moins de 50 personnes).</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-
-<div class="term" data-cat="org">
-  <div class="row"><span class="acr">Lead tech</span><span class="expansion">Technicien(ne) référent(e) / responsable technique</span><span class="badge b-org">Organisation</span></div>
-  <p class="def">Membre technique senior de l'équipe produit, impliqué dans la validation d'une approche de support externalisé lors du 2ᵉ rendez-vous — raccourcit le cycle de décision interne.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
-</div>
-</section>
-
+<!-- ============ 5. CONFORMITÉ & SÉCURITÉ ============ -->
 <section class="catgroup" data-cat="conformite">
 <h2 class="sec">🔒 Conformité &amp; sécurité</h2>
-<p class="sec-note">Cadres réglementaires et normes qui reviennent en garde-fou ou en objection dans les échanges commerciaux.</p>
+<p class="sec-note">Cadres réglementaires, normes et briques techniques de sécurité qui reviennent en garde-fou ou en objection.</p>
 
 <div class="term" data-cat="conformite">
   <div class="row"><span class="acr">RGPD</span><span class="expansion">Règlement Général sur la Protection des Données</span><span class="badge b-conformite">Conformité</span></div>
   <p class="def">Réglementation européenne encadrant le traitement des données personnelles. Argument central face à l'objection « Madagascar c'est trop loin » : données hébergées en UE, conformité documentée. Également invoqué pour justifier l'absence d'enregistrement par défaut des appels patients.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>01-Strategie-Offre/CONFORMITE-HDS-RGPD.md</span></div>
 </div>
 
 <div class="term" data-cat="conformite">
   <div class="row"><span class="acr">HDS</span><span class="expansion">Hébergeur de Données de Santé</span><span class="badge b-conformite">Conformité</span></div>
-  <p class="def">Certification obligatoire en France pour tout hébergeur de données de santé à caractère personnel. Référencé via le document <code>CONFORMITE-HDS-RGPD.md</code> : l'option d'enregistrement des appels patients, si elle existe, doit reposer sur la stack/le HDS du client — jamais improvisée par l'agent.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+  <p class="def">Certification obligatoire en France pour tout hébergeur de données de santé à caractère personnel. Elle porte sur l'<strong>hébergement</strong>, pas sur la téléphonie : l'option d'enregistrement des appels patients, si elle existe, doit reposer sur la stack/le HDS du client — jamais improvisée par l'agent Salverys.</p>
+  <div class="src"><span>01-Strategie-Offre/CONFORMITE-HDS-RGPD.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">DPA</span><span class="expansion">Data Processing Agreement — accord de traitement des données</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Contrat encadrant le rôle de sous-traitant de données personnelles (obligation de l'article 28 du RGPD). Chaque freelance Salverys signe un DPA, même si aucune donnée patient ne transite par son poste.</p>
+  <div class="src"><span>04-Closing/MODELE-DPA-RGPD.md</span><span>01-Strategie-Offre/CONFORMITE-HDS-RGPD.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">NDA</span><span class="expansion">Non-Disclosure Agreement — accord de confidentialité</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Contrat qui engage les parties à ne pas divulguer les informations échangées (souvent signé avant une phase de qualification approfondie ou un partenariat marque blanche).</p>
+  <div class="src"><span>MODELE-NDA-CONFIDENTIALITE.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">AIPD</span><span class="expansion">Analyse d'Impact relative à la Protection des Données (DPIA en anglais)</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Étude obligatoire sous RGPD quand un traitement de données présente un risque élevé pour les personnes concernées (ex. données de santé). À évaluer dès qu'un enregistrement d'appels patients est envisagé, aux côtés du registre article 30 et du DPA article 28.</p>
+  <div class="src"><span>01-Strategie-Offre/CONFORMITE-HDS-RGPD.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">EEE</span><span class="expansion">Espace Économique Européen</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Zone regroupant l'UE plus l'Islande, le Liechtenstein et la Norvège. Le référentiel HDS (mai 2024) exige un hébergement en EEE — Madagascar, hors UE/EEE, ne peut donc héberger de données de santé : seule la production (voix, saisie) peut y avoir lieu.</p>
+  <div class="src"><span>01-Strategie-Offre/CONFORMITE-HDS-RGPD.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">CGV / CGU</span><span class="expansion">Conditions Générales de Vente / d'Utilisation</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Documents contractuels standards qui encadrent respectivement la vente d'un service (CGV) et l'usage d'un outil ou site (CGU).</p>
+  <div class="src"><span>MENTIONS-LEGALES.md</span></div>
 </div>
 
 <div class="term" data-cat="conformite">
@@ -280,15 +420,112 @@
   <p class="def">Norme internationale de référence pour la sécurité des systèmes d'information (gestion des risques, protection des données). Citée aux côtés de l'ISO 20000-1 pour ACI Technology.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
 </div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">AES-256-GCM</span><span class="expansion">Advanced Encryption Standard — chiffrement symétrique</span><span class="badge b-conformite">Sécurité</span></div>
+  <p class="def">Algorithme de chiffrement symétrique (clé de 256 bits, mode GCM qui garantit aussi l'intégrité des données) utilisé pour chiffrer un contenu sensible côté navigateur. Employé dans l'espace candidat Salverys pour chiffrer un « coffre-fort » de données avant stockage local.</p>
+  <div class="src"><span>tools/espace-candidat (outil interne)</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">PBKDF2 / SHA-256</span><span class="expansion">Fonctions de dérivation et de hachage cryptographiques</span><span class="badge b-conformite">Sécurité</span></div>
+  <p class="def"><strong>PBKDF2</strong> dérive une clé de chiffrement robuste à partir d'un mot de passe (en répétant une fonction de hachage pour ralentir les attaques par force brute). <strong>SHA-256</strong> est la fonction de hachage utilisée. Combinés ici avec AES-256-GCM pour chiffrer les données d'un espace candidat.</p>
+  <div class="src"><span>tools/espace-candidat (outil interne)</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">MFA</span><span class="expansion">Multi-Factor Authentication — authentification multi-facteurs</span><span class="badge b-conformite">Sécurité</span></div>
+  <p class="def">Mécanisme de connexion qui exige au moins deux preuves d'identité (mot de passe + code envoyé sur un appareil, par exemple). Standard de sécurité de base attendu par les DSI clientes sur les accès aux outils partagés.</p>
+  <div class="src"><span>07-Recrutement-Vivier/*.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">TLS</span><span class="expansion">Transport Layer Security — chiffrement des échanges réseau</span><span class="badge b-conformite">Sécurité</span></div>
+  <p class="def">Protocole qui chiffre les communications entre un client et un serveur (le « S » de HTTPS). Garantit que les données échangées (formulaires, appels API) ne peuvent pas être interceptées en clair.</p>
+  <div class="src"><span>02-Prospection/SETUP-COLD-MAILING.md</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">SOC 2</span><span class="expansion">Service Organization Control 2 — norme d'audit de sécurité américaine</span><span class="badge b-conformite">Sécurité</span></div>
+  <p class="def">Certification qui atteste qu'un prestataire de service cloud applique des contrôles rigoureux sur la sécurité, la disponibilité et la confidentialité des données. Référence de crédibilité fréquemment demandée par des éditeurs SaaS avant de confier leur support.</p>
+  <div class="src"><span>03-Cibles-Prospects/SAAS-SUPPORT-TARGETS.md</span></div>
+</div>
 </section>
 
+<!-- ============ 6. ORGANISATIONS & MÉTIERS ============ -->
+<section class="catgroup" data-cat="org">
+<h2 class="sec">🏢 Organisations, statuts &amp; métiers</h2>
+<p class="sec-note">Structures, fonctions et statuts juridiques rencontrés côté prospects — savoir qui décide quoi.</p>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">ESN</span><span class="expansion">Entreprise de Services du Numérique (ex-SSII)</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Société de prestation de services informatiques pour d'autres entreprises (développement, infogérance, mise à disposition de techniciens…). Izencia, Cyllene, Metaline, Tenexa sont des ESN cibles pour un partenariat de sous-traitance N1 en marque blanche.</p>
+  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span><span>03-Cibles-Prospects/ESN-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">DSI</span><span class="expansion">Direction des Systèmes d'Information (ou Directeur/Directrice)</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Service (ou personne) responsable de l'informatique interne d'une entreprise. Client final type du helpdesk IT N1 : soit en direct, soit via une ESN qui sous-traite le N1 auprès de Salverys.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">CEO / CTO / COO</span><span class="expansion">Chief Executive/Technology/Operating Officer</span><span class="badge b-org">Organisation</span></div>
+  <p class="def"><strong>CEO</strong> : dirigeant général. <strong>CTO</strong> : directeur technique, décideur ou co-décideur sur les deals support N1 SaaS quand le Head of Support seul ne suffit pas — d'où le one-pager « spécial CTO » axé archi/sécurité. <strong>COO</strong> : directeur des opérations (ex. Cyril Mesquida, COO d'Everience/Helpline, décideur cible identifié).</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">PDG / DG / DGA</span><span class="expansion">Président-Directeur Général / Directeur Général / Directeur Général Adjoint</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Titres de dirigeants français. La règle de cadrage Salverys : viser le PDG/fondateur en direct sur les micro/petites structures (&lt; 100 pers.), mais viser le DG Opérations ou le Directeur Delivery — pas le PDG — sur les structures moyennes/grandes, où le président devient un sponsor stratégique mobilisé plus tard.</p>
+  <div class="src"><span>03-Cibles-Prospects/ESN-TARGETS.md</span><span>03-Cibles-Prospects/TELESEC-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">VP</span><span class="expansion">Vice President</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Titre anglo-saxon de dirigeant intermédiaire (ex. VP Opérations, VP Product), rencontré surtout dans les structures scale-up ou nord-américaines de la cartographie des décideurs.</p>
+  <div class="src"><span>03-Cibles-Prospects/DECISION-MAKERS-Helpline-Everience.md</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">Head of CS / Head of Support</span><span class="expansion">Responsable Customer Success / Support</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Fonction qui pilote l'équipe support ou succès client dans un éditeur SaaS. Interlocuteur cible prioritaire pour la niche support N1 SaaS (avant le CEO, sauf structure de moins de 50 personnes).</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">Lead tech</span><span class="expansion">Technicien(ne) référent(e) / responsable technique</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Membre technique senior de l'équipe produit, impliqué dans la validation d'une approche de support externalisé lors du 2ᵉ rendez-vous — raccourcit le cycle de décision interne.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">SDR</span><span class="expansion">Sales Development Representative — commercial(e) chargé(e) de la prospection</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Profil commercial spécialisé dans la qualification de leads et la prise de rendez-vous, en amont du closing. Compétence recherchée dans le vivier de recrutement Salverys pour le poste de Business Developer.</p>
+  <div class="src"><span>07-Recrutement-Vivier/VIVIER-EXPORT.md</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">SARL / SAS / SELARL</span><span class="expansion">Formes juridiques de sociétés françaises</span><span class="badge b-org">Statut</span></div>
+  <p class="def">Statuts juridiques d'entreprise en France. <strong>SARL</strong> : société à responsabilité limitée. <strong>SAS</strong> : société par actions simplifiée, la plus courante pour les startups. <strong>SELARL</strong> : SARL réservée aux professions libérales réglementées (ex. cabinets médicaux, juridiques).</p>
+  <div class="src"><span>03-Cibles-Prospects/*.md</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">SIREN / SIRET / RCS / SIRENE</span><span class="expansion">Identifiants légaux d'entreprise en France</span><span class="badge b-org">Statut</span></div>
+  <p class="def">Numéros d'identification officiels d'une société. <strong>SIREN</strong> (9 chiffres) identifie l'entreprise ; <strong>SIRET</strong> (14 chiffres) identifie un établissement précis ; <strong>RCS</strong> = Registre du Commerce et des Sociétés où elle est immatriculée ; <strong>SIRENE</strong> = la base de données publique (INSEE) qui centralise ces identifiants. Utilisés systématiquement pour vérifier et sourcer les fiches prospects.</p>
+  <div class="src"><span>03-Cibles-Prospects/*.md</span><span>MENTIONS-LEGALES.md</span></div>
+</div>
+</section>
+
+<!-- ============ 7. FINANCE & BUSINESS ============ -->
 <section class="catgroup" data-cat="finance">
 <h2 class="sec">💰 Finance &amp; business</h2>
 <p class="sec-note">Vocabulaire économique nécessaire pour lire un score de prospect ou dimensionner une offre.</p>
 
 <div class="term" data-cat="finance">
   <div class="row"><span class="acr">ETP</span><span class="expansion">Équivalent Temps Plein</span><span class="badge b-finance">Business</span></div>
-  <p class="def">Unité de mesure d'un poste de travail à temps plein, utilisée pour chiffrer un contrat de prestation (« 1 ETP sur 3 mois »). C'est l'unité de facturation privilégiée par Salverys (ETP par position > à l'heure > à l'interaction).</p>
+  <p class="def">Unité de mesure d'un poste de travail à temps plein, utilisée pour chiffrer un contrat de prestation (« 1 ETP sur 3 mois »). C'est l'unité de facturation privilégiée par Salverys (ETP par position &gt; à l'heure &gt; à l'interaction).</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>CLAUDE.md</span></div>
 </div>
 
@@ -311,14 +548,32 @@
 </div>
 
 <div class="term" data-cat="finance">
+  <div class="row"><span class="acr">TCO</span><span class="expansion">Total Cost of Ownership — coût total de possession</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Coût complet d'une solution sur sa durée de vie (pas seulement le prix affiché) : salaire chargé, astreinte, encadrement, turnover… Argument utilisé face au DGA Finances d'un prospect (Cyllene) pour comparer le coût réel d'une astreinte nuit France vs un ETP Salverys.</p>
+  <div class="src"><span>03-Cibles-Prospects/PROSPECT-ANALYSIS-Cyllene.md</span></div>
+</div>
+
+<div class="term" data-cat="finance">
   <div class="row"><span class="acr">PE</span><span class="expansion">Private Equity — fonds d'investissement en capital</span><span class="badge b-finance">Business</span></div>
   <p class="def">Fonds qui investit au capital d'entreprises non cotées (souvent avec objectif de croissance rentable et de revente à moyen terme). Un actionnariat PE (LFPI chez Metaline, Andera chez Naitways) est un signal de pression sur la rentabilité, favorable à une offre de coût maîtrisé sans capex.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
 </div>
 
 <div class="term" data-cat="finance">
+  <div class="row"><span class="acr">BIMBO</span><span class="expansion">Buy-In Management Buy-Out — reprise mixte dirigeants internes + investisseur externe</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Opération de transmission d'entreprise où l'équipe dirigeante en place s'associe à un investisseur externe pour racheter la société. Signal de croissance financée identifié chez Thelem (transmission BIMBO avec A Plus Finance).</p>
+  <div class="src"><span>03-Cibles-Prospects/TELESEC-TARGETS.md</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">OTE</span><span class="expansion">On-Target Earnings — rémunération totale si objectifs atteints</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Rémunération globale d'un poste commercial en cas d'atteinte des objectifs (fixe + variable). Utilisé pour comparer la grille de rémunération du Business Developer Salverys (OTE ~1 000 €/mois) aux standards du marché.</p>
+  <div class="src"><span>remuneration-vololoniaina.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
   <div class="row"><span class="acr">AO</span><span class="expansion">Appel d'Offres</span><span class="badge b-finance">Business</span></div>
-  <p class="def">Procédure de mise en concurrence formelle (souvent dans le secteur public) pour attribuer un marché. Une réponse à un AO nécessite en général un porteur établi — Salverys y répond en sous-traitance d'une ESN partenaire.</p>
+  <p class="def">Procédure de mise en concurrence formelle (souvent dans le secteur public, via BOAMP/UGAP) pour attribuer un marché. Une réponse à un AO nécessite en général un porteur établi — Salverys y répond en sous-traitance d'une ESN partenaire.</p>
   <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
 </div>
 
@@ -341,32 +596,57 @@
 </div>
 </section>
 
-<section class="catgroup" data-cat="autre">
-<h2 class="sec">🌍 Autres notions utiles</h2>
-<p class="sec-note">Notions transverses, géographiques ou méthodologiques.</p>
+<!-- ============ 8. PROSPECTION & GROWTH ============ -->
+<section class="catgroup" data-cat="growth">
+<h2 class="sec">📧 Prospection &amp; growth</h2>
+<p class="sec-note">Méthodes et sigles de la prospection commerciale et du cold emailing.</p>
 
-<div class="term" data-cat="autre">
-  <div class="row"><span class="acr">UTC+3</span><span class="expansion">Fuseau horaire de Madagascar</span><span class="badge b-autre">Contexte</span></div>
-  <p class="def">Madagascar est en avance de 3 heures sur UTC — donc en général 1 à 2h d'avance sur la France selon la saison. Argument récurrent : la journée de travail malgache couvre naturellement les créneaux tôt le matin ou tard en soirée en France, sans supplément nuit.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">GTM</span><span class="expansion">Go-To-Market — stratégie de mise sur le marché</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Plan qui définit comment une entreprise atteint ses clients (canaux, séquence, priorités). Décision direction : GTM « marque blanche d'abord » sur les 3 niches, le direct venant en second temps.</p>
+  <div class="src"><span>CLAUDE.md</span><span>02-Prospection/*.md</span></div>
 </div>
 
-<div class="term" data-cat="autre">
-  <div class="row"><span class="acr">Follow-the-sun</span><span class="expansion">Modèle de couverture continue par relais de fuseaux horaires</span><span class="badge b-autre">Contexte</span></div>
-  <p class="def">Organisation du support où plusieurs équipes réparties sur des fuseaux horaires différents se relaient pour couvrir 24h/24 sans astreinte de nuit locale. Kincy opère déjà un modèle Papeete (UTC-10) ; Salverys (UTC+3) peut compléter sur le créneau matin France que Papeete ne couvre pas.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">ICP</span><span class="expansion">Ideal Customer Profile — profil client idéal</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Description type du client qui tire le plus de valeur d'une offre et convertit le mieux, utilisée pour prioriser la prospection. Document dédié dans le repo qui cadre qui contacter selon la niche et la taille de structure.</p>
+  <div class="src"><span>03-Cibles-Prospects/IDEAL-CUSTOMER-PROFILE.md</span></div>
 </div>
 
-<div class="term" data-cat="autre">
-  <div class="row"><span class="acr">Marque blanche (MB)</span><span class="expansion">White label</span><span class="badge b-autre">Stratégie</span></div>
-  <p class="def">Modèle où le prestataire (Salverys) opère un service qui reste visible sous la marque du donneur d'ordre : le client final ne voit jamais Salverys. Stratégie GTM prioritaire de l'entreprise sur ses 3 niches avant le direct.</p>
-  <div class="src"><span>CLAUDE.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">BANT</span><span class="expansion">Budget, Authority, Need, Timing — cadre de qualification de lead</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Méthode de qualification d'un prospect selon 4 critères : a-t-il le budget, le pouvoir de décision, un besoin réel, et un calendrier compatible ? Utilisée avec MEDDIC dans le moteur de qualification des leads Salverys.</p>
+  <div class="src"><span>.claude/skills/sales-qualify/SKILL.md</span></div>
 </div>
 
-<div class="term" data-cat="autre">
-  <div class="row"><span class="acr">Make-or-buy</span><span class="expansion">Décision interne vs. externalisation</span><span class="badge b-autre">Stratégie</span></div>
-  <p class="def">Arbitrage stratégique d'une entreprise entre construire une capacité en interne (« make ») ou l'acheter à un prestataire externe (« buy »). Qualifier ce choix dès le premier échange évite de perdre du temps sur un prospect qui va internaliser.</p>
-  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">MEDDIC</span><span class="expansion">Metrics, Economic buyer, Decision criteria, Decision process, Identify pain, Champion</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Méthode de qualification plus poussée que BANT, orientée vente complexe B2B : identifier les métriques de succès, l'acheteur économique réel, les critères et le process de décision, la douleur précise et un champion interne.</p>
+  <div class="src"><span>.claude/skills/sales-qualify/SKILL.md</span></div>
+</div>
+
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">CTA</span><span class="expansion">Call To Action — appel à l'action</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Phrase finale d'un email ou d'un script qui pousse le destinataire vers une action précise (répondre à une question, choisir un créneau). Règle Salverys : toujours une question simple, jamais un lien de type Calendly sur les premiers emails.</p>
+  <div class="src"><span>03-Cibles-Prospects/TELESEC-TARGETS.md</span><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
+</div>
+
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">Cold email / cold mailing</span><span class="expansion">Prospection par email à froid</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Envoi d'emails à des prospects qui n'ont jamais interagi avec l'entreprise. Emelia est l'outil retenu par Salverys pour cette prospection ; des règles strictes encadrent le format (moins de 100 mots, zéro lien, zéro emoji sur les 3 premiers emails).</p>
+  <div class="src"><span>SETUP-COLD-MAILING.md</span><span>02-Prospection/OUTREACH-SEQUENCE.md</span></div>
+</div>
+
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">Chauffe (email warm-up)</span><span class="expansion">Préchauffage d'un domaine/boîte email</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Phase où une adresse ou un domaine email envoie progressivement plus de messages à des destinataires engagés, pour construire une réputation d'expéditeur avant une campagne de cold mailing à grande échelle. Envoyer trop tôt (avant la fin de la chauffe) expose au spam direct.</p>
+  <div class="src"><span>06-Warmup-Email/*.md</span><span>planningchauffesalverys.html</span></div>
+</div>
+
+<div class="term" data-cat="growth">
+  <div class="row"><span class="acr">SPF / DKIM / DMARC</span><span class="expansion">Protocoles d'authentification email</span><span class="badge b-growth">Growth</span></div>
+  <p class="def">Trois enregistrements DNS qui prouvent qu'un email envoyé au nom d'un domaine est légitime et n'a pas été altéré, réduisant le risque d'atterrir en spam. Configuration technique préalable indispensable avant toute campagne de cold mailing Salverys.</p>
+  <div class="src"><span>SETUP-COLD-MAILING.md</span></div>
 </div>
 </section>
 
@@ -374,9 +654,9 @@
 </main>
 
 <div class="foot">
-  Glossaire consolidé Salverys — usage interne équipe commerciale. Termes extraits de
-  <code>SCRIPTS-ET-CLIENTS.html</code> et <code>PROSPECT-ANALYSIS-Izencia.html</code>.
-  À enrichir au fil des nouvelles fiches prospects et scripts.
+  Glossaire consolidé Salverys — usage interne équipe commerciale. Termes extraits de l'ensemble
+  du repo (scripts d'appel, CRM, fiches prospects, conformité, finance, prospection). À enrichir
+  au fil des nouveaux documents.
 </div>
 
 <script>
