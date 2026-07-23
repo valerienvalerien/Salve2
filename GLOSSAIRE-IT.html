@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salverys — Glossaire IT & Support</title>
+<style>
+  :root{
+    --navy:#2E3B4E; --navy2:#222C3B; --deep:#013C58; --deep2:#012C42;
+    --sage:#6F8770; --sage-l:#EAF0EA; --cream:#F6F2EA; --cream2:#E7DFD1;
+    --gold:#F0B429; --gold-l:#FCEEC9; --bronze:#B89968; --brick:#B6604D;
+    --ink:#2A2620; --muted:#5C5448; --line:#e2dccf;
+    --shadow:0 2px 10px rgba(46,59,78,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    color:var(--ink);background:var(--cream);line-height:1.55;font-size:15px}
+  a{color:var(--deep)}
+  header.top{background:linear-gradient(135deg,var(--navy),var(--deep));color:#fff;
+    padding:34px 26px 28px;box-shadow:var(--shadow)}
+  header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px}
+  header.top .sub{opacity:.85;font-size:14px;max-width:760px}
+  header.top .meta{margin-top:14px;font-size:12.5px;opacity:.7}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+  .toolbar{position:sticky;top:0;z-index:20;background:var(--cream);
+    padding:16px 0 12px;border-bottom:1px solid var(--line)}
+  .search{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .search input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:10px;
+    font-size:14px;background:#fff}
+  .search .hint{font-size:12px;color:var(--muted);white-space:nowrap}
+  .filters{display:flex;flex-wrap:wrap;gap:6px}
+  .filters button{background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--navy);cursor:pointer}
+  .filters button:hover{background:var(--sage-l)}
+  .filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .count{font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+  main{padding:24px 0 60px}
+  h2.sec{font-size:19px;color:var(--deep);margin:34px 0 4px;border-left:5px solid var(--gold);
+    padding-left:12px;display:flex;align-items:center;gap:10px}
+  .sec-note{font-size:13px;color:var(--muted);margin:0 0 16px;padding-left:17px}
+  section.catgroup{scroll-margin-top:130px}
+
+  .term{background:#fff;border:1px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);margin:0 0 12px;padding:14px 18px}
+  .term .row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .term .acr{font-weight:800;color:var(--deep);font-size:15.5px}
+  .term .expansion{font-size:12.5px;color:var(--muted);font-style:italic}
+  .term .badge{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;
+    text-transform:uppercase;letter-spacing:.03em}
+  .term .def{font-size:13.8px;color:var(--ink);margin:0}
+  .term .src{margin-top:8px;font-size:11.5px;color:var(--bronze);display:flex;gap:6px;flex-wrap:wrap}
+  .term .src span{background:var(--cream2);padding:1px 8px;border-radius:6px;color:var(--muted)}
+
+  .b-support{background:var(--sage)}
+  .b-cloud{background:var(--deep)}
+  .b-org{background:var(--brick)}
+  .b-conformite{background:#8a4b7a}
+  .b-finance{background:var(--bronze)}
+  .b-outils{background:#3f7d4e}
+  .b-autre{background:#7a8a9a}
+
+  .noresult{display:none;padding:40px;text-align:center;color:var(--muted)}
+  .foot{max-width:980px;margin:30px auto 0;padding:16px 20px;font-size:12px;color:var(--muted);
+    border-top:1px solid var(--line)}
+  @media(max-width:640px){
+    header.top h1{font-size:21px}
+    .filters{gap:5px}
+    .filters button{padding:5px 10px;font-size:11.5px}
+  }
+  @media print{
+    .toolbar{position:static}
+    .term{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Salverys — Glossaire IT &amp; Support</h1>
+    <div class="sub">Tous les acronymes et concepts propres au monde IT / support / helpdesk
+    référencés dans les scripts d'appel, la base de prospection et les fiches d'analyse de
+    prospects Salverys.</div>
+    <div class="meta">Sources : <code>SCRIPTS-ET-CLIENTS.html</code> ·
+    <code>PROSPECT-ANALYSIS-Izencia.md</code>. Généré le 2026-07-23.</div>
+  </div>
+</header>
+
+<div class="wrap toolbar">
+  <div class="search">
+    <input type="text" id="q" placeholder="🔎 Rechercher un sigle, un mot, une définition…">
+    <span class="hint" id="count"></span>
+  </div>
+  <div class="filters" id="filters">
+    <button class="active" data-cat="all">Tout</button>
+    <button data-cat="support">🎧 Support &amp; niveaux</button>
+    <button data-cat="outils">🛠️ Outils &amp; plateformes</button>
+    <button data-cat="cloud">☁️ Cloud &amp; infra</button>
+    <button data-cat="org">🏢 Organisations &amp; métiers</button>
+    <button data-cat="conformite">🔒 Conformité &amp; sécurité</button>
+    <button data-cat="finance">💰 Finance &amp; business</button>
+    <button data-cat="autre">🌍 Autres</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section class="catgroup" data-cat="support">
+<h2 class="sec">🎧 Support &amp; niveaux de service</h2>
+<p class="sec-note">Le vocabulaire du helpdesk et du support client, omniprésent dans les scripts et les fiches prospects.</p>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">N1 / N2 / N3</span><span class="expansion">Niveau 1, 2, 3 (support)</span><span class="badge b-support">Support</span></div>
+  <p class="def">Échelons de traitement d'un incident ou d'une demande. <strong>N1</strong> = premier contact, diagnostic rapide, résolution des cas simples et répétitifs (mot de passe, accès, FAQ). <strong>N2</strong> = investigation technique plus poussée quand le N1 ne suffit pas. <strong>N3</strong> = expertise pointue (souvent l'équipe produit/dev). Salverys se positionne exclusivement sur le N1, le niveau le plus volumineux et le plus facile à externaliser.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">VIP</span><span class="expansion">Support VIP / prioritaire</span><span class="badge b-support">Support</span></div>
+  <p class="def">Ligne de support réservée aux comptes stratégiques ou aux utilisateurs à enjeu élevé, traitée avec un SLA plus court que le support standard. Chez Izencia, une des 4 lignes de techniciens mis à disposition (aux côtés de N1/N2/N3).</p>
+  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">SLA</span><span class="expansion">Service Level Agreement — engagement de niveau de service</span><span class="badge b-support">Support</span></div>
+  <p class="def">Engagement contractuel chiffré sur la qualité du service : délai de première réponse, taux de décroché, taux de résolution, disponibilité. C'est l'un des deux chiffres clés (avec le volume) pour dimensionner une offre helpdesk — et le point sur lequel Salverys engage un avoir de 20 % si le seuil n'est pas tenu.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">FRT</span><span class="expansion">First Response Time — délai de première réponse</span><span class="badge b-support">Support</span></div>
+  <p class="def">Temps écoulé entre la création d'un ticket et la première réponse humaine. KPI central du support N1 SaaS : on distingue le FRT « réaliste » constaté du FRT « objectif SLA » annoncé — l'écart entre les deux révèle souvent la tension capacitaire du prospect.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">CSAT</span><span class="expansion">Customer Satisfaction Score — score de satisfaction client</span><span class="badge b-support">Support</span></div>
+  <p class="def">Indicateur de satisfaction recueilli après résolution d'un ticket (souvent une note ou un pourcentage de réponses positives). Utilisé avec le FRT et le taux de résolution comme reporting hebdomadaire promis aux clients support N1.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">Ticket</span><span class="expansion">Demande ou incident enregistré dans un outil de support</span><span class="badge b-support">Support</span></div>
+  <p class="def">Unité de travail du support : une demande client crée un ticket, suivi jusqu'à sa résolution. Le volume de tickets par semaine/mois est la donnée de dimensionnement de base d'un contrat support N1.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">KPI</span><span class="expansion">Key Performance Indicator — indicateur clé de performance</span><span class="badge b-support">Support</span></div>
+  <p class="def">Métrique chiffrée utilisée pour piloter et prouver la qualité du service (FRT, CSAT, taux de résolution, taux de décroché…). Salverys documente ses KPI chaque semaine comme argument de réassurance face à une mauvaise expérience offshore passée.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="support">
+  <div class="row"><span class="acr">ITIL</span><span class="expansion">Information Technology Infrastructure Library</span><span class="badge b-support">Support</span></div>
+  <p class="def">Référentiel de bonnes pratiques pour la gestion des services informatiques (gestion des incidents, des changements, des problèmes…). Une certification ITIL (Foundation, Intermediate) sur les profils est un critère de réassurance fréquent côté DSI et ESN — Salverys s'engage sur un ratio contractuel de certifiés par plateau.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="outils">
+<h2 class="sec">🛠️ Outils &amp; plateformes</h2>
+<p class="sec-note">Logiciels métiers cités pour situer la maîrise technique attendue des agents Salverys.</p>
+
+<div class="term" data-cat="outils">
+  <div class="row"><span class="acr">Zendesk / Freshdesk / Intercom</span><span class="expansion">Logiciels de support client (helpdesk SaaS)</span><span class="badge b-outils">Outil</span></div>
+  <p class="def">Plateformes de gestion de tickets utilisées par les éditeurs SaaS pour organiser leur support N1/N2. Savoir s'y adapter en quelques jours fait partie de l'argumentaire de vente Salverys pour rassurer sur la montée en compétence rapide des agents.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="outils">
+  <div class="row"><span class="acr">ServiceNow / JIRA Service Desk / ManageEngine / GLPI</span><span class="expansion">Outils ITSM (gestion des services IT)</span><span class="badge b-outils">Outil</span></div>
+  <p class="def">Logiciels de ticketing utilisés côté DSI et ESN pour le helpdesk IT interne (par opposition aux outils orientés SaaS externe comme Zendesk). Cités dans la phase de qualification du script helpdesk IT N1 pour identifier l'environnement technique du prospect.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="cloud">
+<h2 class="sec">☁️ Cloud &amp; infrastructure</h2>
+<p class="sec-note">Modèles techniques rencontrés chez les MSP/ESN cibles, à connaître pour comprendre leur offre.</p>
+
+<div class="term" data-cat="cloud">
+  <div class="row"><span class="acr">SaaS</span><span class="expansion">Software as a Service</span><span class="badge b-cloud">Cloud</span></div>
+  <p class="def">Modèle où le logiciel est vendu par abonnement et hébergé par l'éditeur (pas d'installation côté client). Les éditeurs SaaS français (Sellsy, Axonaut, Yousign…) forment l'une des 3 niches cibles de Salverys pour le support N1 en marque blanche.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="cloud">
+  <div class="row"><span class="acr">MSP</span><span class="expansion">Managed Service Provider — prestataire de services managés</span><span class="badge b-cloud">Cloud</span></div>
+  <p class="def">Entreprise qui gère à distance et de façon proactive l'infrastructure IT de ses clients (serveurs, postes, réseau, sécurité), souvent en marque blanche pour des PME/ETI sans DSI interne. Cible principale de la niche « Helpdesk IT N1 — ESN/MSP FR » de Salverys.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="cloud">
+  <div class="row"><span class="acr">BaaS</span><span class="expansion">Backup as a Service — sauvegarde en tant que service</span><span class="badge b-cloud">Cloud</span></div>
+  <p class="def">Service cloud de sauvegarde des données géré par un tiers, facturé à l'usage. Cité comme composante de l'offre cloud managé d'AntemetA.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="cloud">
+  <div class="row"><span class="acr">DRaaS</span><span class="expansion">Disaster Recovery as a Service — reprise après sinistre en tant que service</span><span class="badge b-cloud">Cloud</span></div>
+  <p class="def">Service cloud qui permet de relancer rapidement l'infrastructure d'un client après un incident majeur (panne, cyberattaque). Cité aux côtés du BaaS dans l'offre cloud privé managé d'AntemetA.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="cloud">
+  <div class="row"><span class="acr">K8s</span><span class="expansion">Kubernetes</span><span class="badge b-cloud">Cloud</span></div>
+  <p class="def">Système open-source d'orchestration de conteneurs, standard pour déployer et faire évoluer des applications cloud à grande échelle. Cité comme brique technique de l'offre cloud privé managé d'AntemetA.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="org">
+<h2 class="sec">🏢 Organisations &amp; métiers IT</h2>
+<p class="sec-note">Structures et fonctions rencontrées côté prospects — savoir qui décide quoi.</p>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">ESN</span><span class="expansion">Entreprise de Services du Numérique (ex-SSII)</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Société de prestation de services informatiques pour d'autres entreprises (développement, infogérance, mise à disposition de techniciens…). Izencia, Cyllene, Metaline, Tenexa sont des ESN cibles pour un partenariat de sous-traitance N1 en marque blanche.</p>
+  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">DSI</span><span class="expansion">Direction des Systèmes d'Information (ou Directeur/Directrice)</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Service (ou personne) responsable de l'informatique interne d'une entreprise. Client final type du helpdesk IT N1 : soit en direct, soit via une ESN qui sous-traite le N1 auprès de Salverys.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">CTO</span><span class="expansion">Chief Technology Officer — directeur technique</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Dirigeant responsable de la stratégie technique et produit. Décideur ou co-décideur à impliquer sur les deals support N1 SaaS quand le Head of Support seul ne suffit pas à valider — d'où le one-pager « spécial CTO » axé archi/sécurité.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">COO</span><span class="expansion">Chief Operating Officer — directeur des opérations</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Dirigeant responsable des opérations quotidiennes. Cyril Mesquida, COO du groupe Everience (Helpline), est le décideur cible identifié pour ce compte.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">Head of CS / Head of Support</span><span class="expansion">Responsable Customer Success / Support</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Fonction qui pilote l'équipe support ou succès client dans un éditeur SaaS. Interlocuteur cible prioritaire pour la niche support N1 SaaS (avant le CEO, sauf structure de moins de 50 personnes).</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="org">
+  <div class="row"><span class="acr">Lead tech</span><span class="expansion">Technicien(ne) référent(e) / responsable technique</span><span class="badge b-org">Organisation</span></div>
+  <p class="def">Membre technique senior de l'équipe produit, impliqué dans la validation d'une approche de support externalisé lors du 2ᵉ rendez-vous — raccourcit le cycle de décision interne.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="conformite">
+<h2 class="sec">🔒 Conformité &amp; sécurité</h2>
+<p class="sec-note">Cadres réglementaires et normes qui reviennent en garde-fou ou en objection dans les échanges commerciaux.</p>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">RGPD</span><span class="expansion">Règlement Général sur la Protection des Données</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Réglementation européenne encadrant le traitement des données personnelles. Argument central face à l'objection « Madagascar c'est trop loin » : données hébergées en UE, conformité documentée. Également invoqué pour justifier l'absence d'enregistrement par défaut des appels patients.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">HDS</span><span class="expansion">Hébergeur de Données de Santé</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Certification obligatoire en France pour tout hébergeur de données de santé à caractère personnel. Référencé via le document <code>CONFORMITE-HDS-RGPD.md</code> : l'option d'enregistrement des appels patients, si elle existe, doit reposer sur la stack/le HDS du client — jamais improvisée par l'agent.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">ISO 20000-1</span><span class="expansion">Norme de management des services IT</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Norme internationale qui certifie la maturité des processus de gestion des services informatiques (équivalent ITIL formalisé en norme certifiable). Citée pour ACI Technology comme signe d'un cadre ITSM structuré.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="conformite">
+  <div class="row"><span class="acr">ISO 27001</span><span class="expansion">Norme de management de la sécurité de l'information</span><span class="badge b-conformite">Conformité</span></div>
+  <p class="def">Norme internationale de référence pour la sécurité des systèmes d'information (gestion des risques, protection des données). Citée aux côtés de l'ISO 20000-1 pour ACI Technology.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="finance">
+<h2 class="sec">💰 Finance &amp; business</h2>
+<p class="sec-note">Vocabulaire économique nécessaire pour lire un score de prospect ou dimensionner une offre.</p>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">ETP</span><span class="expansion">Équivalent Temps Plein</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Unité de mesure d'un poste de travail à temps plein, utilisée pour chiffrer un contrat de prestation (« 1 ETP sur 3 mois »). C'est l'unité de facturation privilégiée par Salverys (ETP par position > à l'heure > à l'interaction).</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span><span>CLAUDE.md</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">CA</span><span class="expansion">Chiffre d'Affaires</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Total des ventes réalisées par une entreprise sur une période, indicateur de taille utilisé pour qualifier et prioriser un prospect (ex. Izencia : 7,3 M€ de CA en 2023).</p>
+  <div class="src"><span>PROSPECT-ANALYSIS-Izencia.html</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">ARR</span><span class="expansion">Annual Recurring Revenue — revenu récurrent annuel</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Chiffre d'affaires récurrent généré sur un an, indicateur clé pour évaluer la taille et la santé financière d'un éditeur SaaS (ex. Skello 50 M€+ ARR, Pennylane ~115 M€ ARR).</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">ROI</span><span class="expansion">Return On Investment — retour sur investissement</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Rapport entre le gain généré par une action et son coût. Argument central du pilote « 1er mois à -50 % » : le client mesure lui-même le ROI avant de s'engager.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">PE</span><span class="expansion">Private Equity — fonds d'investissement en capital</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Fonds qui investit au capital d'entreprises non cotées (souvent avec objectif de croissance rentable et de revente à moyen terme). Un actionnariat PE (LFPI chez Metaline, Andera chez Naitways) est un signal de pression sur la rentabilité, favorable à une offre de coût maîtrisé sans capex.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">AO</span><span class="expansion">Appel d'Offres</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Procédure de mise en concurrence formelle (souvent dans le secteur public) pour attribuer un marché. Une réponse à un AO nécessite en général un porteur établi — Salverys y répond en sous-traitance d'une ESN partenaire.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">TPE / PME / ETI</span><span class="expansion">Très Petite / Petite et Moyenne / Entreprise de Taille Intermédiaire</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Catégories réglementaires françaises de taille d'entreprise par effectif et chiffre d'affaires (TPE &lt; 10 salariés, PME &lt; 250, ETI &lt; 5 000). Sert à qualifier le profil des prospects et le volume de tickets attendu.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">CAC 40</span><span class="expansion">Indice boursier des 40 plus grandes capitalisations françaises</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Utilisé ici comme raccourci pour désigner les très grandes entreprises françaises cotées, clientes finales d'Helpline (50 % de sa clientèle) — signal de solidité et de volume du donneur d'ordre.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="finance">
+  <div class="row"><span class="acr">CDI</span><span class="expansion">Contrat à Durée Indéterminée</span><span class="badge b-finance">Business</span></div>
+  <p class="def">Contrat de travail sans limite de durée en droit français. Point de comparaison coût constant dans le pitch : « ~40 % de coût en moins qu'un CDI en France, sans charges RH côté Salverys ».</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<section class="catgroup" data-cat="autre">
+<h2 class="sec">🌍 Autres notions utiles</h2>
+<p class="sec-note">Notions transverses, géographiques ou méthodologiques.</p>
+
+<div class="term" data-cat="autre">
+  <div class="row"><span class="acr">UTC+3</span><span class="expansion">Fuseau horaire de Madagascar</span><span class="badge b-autre">Contexte</span></div>
+  <p class="def">Madagascar est en avance de 3 heures sur UTC — donc en général 1 à 2h d'avance sur la France selon la saison. Argument récurrent : la journée de travail malgache couvre naturellement les créneaux tôt le matin ou tard en soirée en France, sans supplément nuit.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="autre">
+  <div class="row"><span class="acr">Follow-the-sun</span><span class="expansion">Modèle de couverture continue par relais de fuseaux horaires</span><span class="badge b-autre">Contexte</span></div>
+  <p class="def">Organisation du support où plusieurs équipes réparties sur des fuseaux horaires différents se relaient pour couvrir 24h/24 sans astreinte de nuit locale. Kincy opère déjà un modèle Papeete (UTC-10) ; Salverys (UTC+3) peut compléter sur le créneau matin France que Papeete ne couvre pas.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="autre">
+  <div class="row"><span class="acr">Marque blanche (MB)</span><span class="expansion">White label</span><span class="badge b-autre">Stratégie</span></div>
+  <p class="def">Modèle où le prestataire (Salverys) opère un service qui reste visible sous la marque du donneur d'ordre : le client final ne voit jamais Salverys. Stratégie GTM prioritaire de l'entreprise sur ses 3 niches avant le direct.</p>
+  <div class="src"><span>CLAUDE.md</span><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+
+<div class="term" data-cat="autre">
+  <div class="row"><span class="acr">Make-or-buy</span><span class="expansion">Décision interne vs. externalisation</span><span class="badge b-autre">Stratégie</span></div>
+  <p class="def">Arbitrage stratégique d'une entreprise entre construire une capacité en interne (« make ») ou l'acheter à un prestataire externe (« buy »). Qualifier ce choix dès le premier échange évite de perdre du temps sur un prospect qui va internaliser.</p>
+  <div class="src"><span>SCRIPTS-ET-CLIENTS.html</span></div>
+</div>
+</section>
+
+<div class="noresult" id="noResult">Aucun terme ne correspond à la recherche.</div>
+</main>
+
+<div class="foot">
+  Glossaire consolidé Salverys — usage interne équipe commerciale. Termes extraits de
+  <code>SCRIPTS-ET-CLIENTS.html</code> et <code>PROSPECT-ANALYSIS-Izencia.html</code>.
+  À enrichir au fil des nouvelles fiches prospects et scripts.
+</div>
+
+<script>
+  const q = document.getElementById('q');
+  const filters = document.querySelectorAll('#filters button');
+  const terms = document.querySelectorAll('.term');
+  const groups = document.querySelectorAll('.catgroup');
+  const noResult = document.getElementById('noResult');
+  const count = document.getElementById('count');
+  let activeCat = 'all';
+
+  function apply(){
+    const query = q.value.toLowerCase().trim();
+    let visible = 0;
+    terms.forEach(t=>{
+      const matchCat = activeCat==='all' || t.dataset.cat===activeCat;
+      const matchQuery = !query || t.textContent.toLowerCase().includes(query);
+      const show = matchCat && matchQuery;
+      t.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    groups.forEach(g=>{
+      const any = [...g.querySelectorAll('.term')].some(t=>t.style.display!=='none');
+      g.style.display = any ? '' : 'none';
+    });
+    noResult.style.display = visible ? 'none' : 'block';
+    count.textContent = (query || activeCat!=='all') ? visible+' terme(s)' : '';
+  }
+
+  q.addEventListener('input', apply);
+  filters.forEach(b=>b.addEventListener('click', ()=>{
+    filters.forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    activeCat = b.dataset.cat;
+    apply();
+  }));
+</script>
+</body>
+</html>
