@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salverys — Scripts d'appel & Base clients/prospects</title>
+<style>
+  :root{
+    --navy:#2E3B4E; --navy2:#222C3B; --deep:#013C58; --deep2:#012C42;
+    --sage:#6F8770; --sage-l:#EAF0EA; --cream:#F6F2EA; --cream2:#E7DFD1;
+    --gold:#F0B429; --gold-l:#FCEEC9; --bronze:#B89968; --brick:#B6604D;
+    --ink:#2A2620; --muted:#5C5448; --line:#e2dccf;
+    --shadow:0 2px 10px rgba(46,59,78,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    color:var(--ink);background:var(--cream);line-height:1.55;font-size:15px}
+  a{color:var(--deep)}
+  header.top{background:linear-gradient(135deg,var(--navy),var(--deep));color:#fff;
+    padding:34px 26px 28px;box-shadow:var(--shadow)}
+  header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px}
+  header.top .sub{opacity:.85;font-size:14px;max-width:760px}
+  header.top .meta{margin-top:14px;font-size:12.5px;opacity:.7}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  nav.tabs{position:sticky;top:0;z-index:20;background:var(--navy2);
+    display:flex;flex-wrap:wrap;gap:2px;padding:0 12px;box-shadow:var(--shadow)}
+  nav.tabs button{background:none;border:none;color:#cfd6df;font-size:13.5px;
+    font-weight:600;padding:13px 16px;cursor:pointer;border-bottom:3px solid transparent}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--gold)}
+  main{padding:26px 0 60px}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .search{margin:0 0 22px;display:flex;align-items:center;gap:10px}
+  .search input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:10px;
+    font-size:14px;background:#fff}
+  .search .hint{font-size:12px;color:var(--muted)}
+
+  h2.sec{font-size:20px;color:var(--deep);margin:30px 0 4px;border-left:5px solid var(--gold);
+    padding-left:12px}
+  .sec-note{font-size:13px;color:var(--muted);margin:0 0 18px;padding-left:17px}
+
+  /* --- Steps stepper --- */
+  .stepper{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+  .stepper .chip{background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--navy)}
+  .stepper .chip b{color:var(--sage)}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden}
+  .card > .head{padding:12px 18px;background:var(--sage-l);border-bottom:1px solid var(--line);
+    font-weight:700;color:var(--deep);display:flex;align-items:center;gap:9px;font-size:15px}
+  .card > .head .k{font-size:11px;font-family:ui-monospace,Menlo,monospace;color:var(--muted);
+    font-weight:500;background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .card > .body{padding:16px 18px}
+
+  .step{border-top:1px dashed var(--line)}
+  .step:first-child{border-top:none}
+  .step .lbl{font-weight:700;color:var(--navy);font-size:13.5px;margin:0 0 8px;
+    display:flex;align-items:center;gap:8px}
+  .step .lbl .num{background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+  blockquote.script{margin:0;padding:12px 15px;background:var(--cream);border-left:4px solid var(--sage);
+    border-radius:0 8px 8px 0;font-size:14px;white-space:pre-line}
+  .tip{font-size:13px;margin:9px 0 0;padding:8px 12px;border-radius:8px}
+  .tip.g{background:var(--gold-l);border:1px solid #ecd9a0}
+  .tip.r{background:#fbe9e5;border:1px solid #e6c2b8}
+
+  details.obj{border:1px solid var(--line);border-radius:10px;margin:9px 0;background:#fff}
+  details.obj summary{cursor:pointer;padding:11px 14px;font-weight:600;color:var(--brick);
+    font-size:13.5px;list-style:none}
+  details.obj summary::-webkit-details-marker{display:none}
+  details.obj summary::before{content:"▸ ";color:var(--gold)}
+  details.obj[open] summary::before{content:"▾ "}
+  details.obj .ans{padding:0 15px 13px;font-size:13.5px}
+  details.obj .ans .branch{margin-top:8px;padding-left:14px;border-left:2px solid var(--sage-l)}
+  details.obj .ans .branch div{margin:4px 0;font-size:13px;color:var(--muted)}
+
+  .guard{background:#fff8ef;border:1px solid #ecd9a0;border-radius:10px;padding:12px 15px;
+    font-size:12.5px;color:var(--muted);margin:8px 0 0}
+
+  /* --- Clients table --- */
+  .niche-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:26px 0 4px}
+  .niche-head h3{font-size:17px;color:var(--navy);margin:0}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;color:#fff}
+  .badge.it{background:var(--deep)}
+  .badge.saas{background:var(--sage)}
+  .badge.med{background:var(--brick)}
+  .cnt{font-size:12px;color:var(--muted)}
+  table.leads{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;
+    overflow:hidden;box-shadow:var(--shadow);margin:10px 0 8px;font-size:13px}
+  table.leads th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-size:12px;
+    font-weight:600;position:sticky;top:44px}
+  table.leads td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+  table.leads tr:hover td{background:var(--sage-l)}
+  table.leads .co{font-weight:700;color:var(--deep)}
+  .score{font-weight:700;padding:2px 8px;border-radius:20px;font-size:12px;color:#fff;white-space:nowrap}
+  .s5{background:#3f7d4e}.s4{background:#6F8770}.s3{background:var(--bronze)}
+  .s2{background:#a99}.s1{background:#bbb}
+  .stars{color:var(--gold);letter-spacing:1px}
+  .tag{display:inline-block;font-size:11px;background:var(--cream2);color:var(--muted);
+    padding:1px 7px;border-radius:6px;margin:1px 2px 1px 0}
+  .foot{max-width:1080px;margin:30px auto 0;padding:16px 20px;font-size:12px;color:var(--muted);
+    border-top:1px solid var(--line)}
+  .noresult{display:none;padding:30px;text-align:center;color:var(--muted)}
+  @media print{
+    nav.tabs{display:none} .panel{display:block!important} .search{display:none}
+    header.top{background:var(--navy)} body{font-size:12px}
+    .card,table.leads{box-shadow:none}
+  }
+  @media(max-width:640px){
+    table.leads{font-size:12px} table.leads th,table.leads td{padding:7px 8px}
+    header.top h1{font-size:21px}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Salverys — Scripts d'appel &amp; Base clients / prospects</h1>
+    <div class="sub">Document opérationnel unique : tous les scripts de cold calling par niche
+    (télésecrétariat médical, support N1 SaaS, helpdesk IT N1) et l'ensemble des prospects
+    référencés dans la base de prospection.</div>
+    <div class="meta">Sources : <code>02-Prospection/SCRIPTS-APPEL.md</code> ·
+    <code>03-Cibles-Prospects/*.md</code> (CRM Salverys). Prix &amp; SLA : <code>PRICING.md</code> ·
+    Conformité médicale : <code>CONFORMITE-HDS-RGPD.md</code>. Généré le 2026-07-23.</div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:2px;padding:0">
+    <button class="active" data-tab="scripts">📞 Scripts d'appel</button>
+    <button data-tab="clients">🏢 Clients / Prospects</button>
+    <button data-tab="objections">🛡️ Objections</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- =============== SCRIPTS =============== -->
+  <section class="panel active" id="scripts">
+    <div class="search">
+      <input type="text" id="qScripts" placeholder="🔎 Rechercher dans les scripts (mot-clé, niche…)">
+      <span class="hint">Impression : Ctrl/⌘+P</span>
+    </div>
+
+    <div class="stepper">
+      <span class="chip"><b>1.</b> 👋 Ouverture — 15 premières sec.</span>
+      <span class="chip"><b>2.</b> 🔍 Qualification — besoin réel</span>
+      <span class="chip"><b>3.</b> 🎯 Pitch valeur — 30 sec.</span>
+      <span class="chip"><b>4.</b> 🛡️ Objections — arbre de réponses</span>
+      <span class="chip"><b>5.</b> 🤝 Closing — engagement</span>
+    </div>
+
+    <!-- MÉDICAL -->
+    <h2 class="sec">1 · Télésecrétariat médical <span class="badge med" style="font-size:11px;vertical-align:middle">Priorité n°2</span></h2>
+    <p class="sec-note">Cabinets médicaux FR. On dit toujours « forfait » (jamais « abonnement »). Clé CRM : <code>CALL_SCRIPTS.telemed</code></p>
+
+    <div class="card srch">
+      <div class="head">📞 Script télésecrétariat médical <span class="k">telemed</span></div>
+      <div class="body">
+        <div class="step">
+          <div class="lbl"><span class="num">1</span>👋 Ouverture</div>
+          <blockquote class="script">Bonjour, {prenom} ? Je m'appelle Valérien, je suis directeur chez Salverys, on travaille avec des cabinets médicaux comme le vôtre sur la gestion des appels patients.
+
+Vous avez 2 minutes ? Je vous appelle parce qu'on aide les cabinets à ne plus rater d'appels pendant les consultations — je voulais vous demander : ça vous parle, ou c'est déjà résolu chez vous ?</blockquote>
+          <p class="tip g">💡 Ne dis JAMAIS « je sais que vous êtes occupé ». Affirme la valeur en 1 phrase, puis demande la permission de continuer.</p>
+          <p class="tip r">⛔ Ne pitche pas. La 1re phrase doit être courte et ouvrir une question.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">2</span>🔍 Qualification</div>
+          <blockquote class="script">Concrètement chez {structure} :
+• Combien d'appels patients par jour environ ?
+• Sur ces appels, combien finissent en répondeur ou sans réponse pendant les consultations ?
+• Vous utilisez Doctolib, Maiia, Médistory… ?
+• La secrétaire qui gère les appels aujourd'hui, c'est en interne, en libéral, ou personne ?</blockquote>
+          <p class="tip g">💡 Pose UNE question à la fois. Reformule : « Si je comprends bien, vous perdez environ X appels par jour, c'est ça ? »</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">3</span>🎯 Pitch valeur</div>
+          <blockquote class="script">Ce qu'on propose c'est simple : une télésecrétaire médicale francophone dédiée à {structure}, formée à votre logiciel, qui prend vos appels de 8h à 20h, sans congés, sans arrêt maladie.
+
+La différence avec une secrétaire classique : on est à Madagascar, donc le tarif est environ 40 % inférieur à un prestataire en France — sans perte de qualité, le français est langue maternelle ici.
+
+Forfait à partir de 350€/mois, 1er mois à -50 % pour qu'on prouve la valeur avant que vous vous engagiez. Et une fois en régime, on s'engage sur le décroché : sous 90 % d'appels pris sur un mois, vous avez 20 % d'avoir le mois suivant.</blockquote>
+          <p class="tip g">💡 Termine TOUJOURS par une question fermée : « Cet ordre de grandeur vous semble cohérent par rapport à ce que vous payez aujourd'hui ? »</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">4</span>🛡️ Objections</div>
+          <p style="margin:0;font-size:13.5px">→ Voir l'onglet <a href="#" data-goto="objections">🛡️ Objections</a> (arbre <code>OBJECTIONS_TELEMED</code>).</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">5</span>🤝 Closing</div>
+          <blockquote class="script">Très bien {prenom}. Je vous propose qu'on fasse les choses dans l'ordre :
+Étape 1 — je vous envoie aujourd'hui un mémo de 2 pages : ce qu'on fait exactement, prix, conditions, contrat type.
+Étape 2 — on se reparle jeudi à 14h ou vendredi à 11h pour décider de lancer l'offre 1er mois à -50 %. Lequel des deux vous arrange ?</blockquote>
+          <p class="tip g">💡 Donne TOUJOURS deux options fermées de RDV. Jamais « quand êtes-vous dispo ? ».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPPORT N1 -->
+    <h2 class="sec">2 · Support N1 SaaS <span class="badge it" style="font-size:11px;vertical-align:middle">Priorité n°1 — IT</span></h2>
+    <p class="sec-note">Support applicatif N1 pour éditeurs SaaS français. Clé CRM : <code>CALL_SCRIPTS.support-n1</code></p>
+
+    <div class="card srch">
+      <div class="head">📞 Script support N1 SaaS <span class="k">support-n1</span></div>
+      <div class="body">
+        <div class="step">
+          <div class="lbl"><span class="num">1</span>👋 Ouverture</div>
+          <blockquote class="script">Bonjour {prenom}, Valérien de Salverys. Je m'occupe d'équipes support N1 pour des éditeurs SaaS français — on est basés à Madagascar mais l'équipe est francophone native.
+
+Vous avez 2 minutes ? Je vous appelle parce que je vois que {structure} grandit côté produit — et c'est en général là que la file d'attente sur le N1 explose. C'est encore gérable chez vous, ou ça commence à tirer ?</blockquote>
+          <p class="tip g">💡 Pour les SaaS, mentionne la croissance produit comme déclencheur de pain — signal qui résonne avec les Heads of CS.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">2</span>🔍 Qualification</div>
+          <blockquote class="script">Pour me caler sur votre réalité :
+• Combien de tickets N1 par semaine en ce moment ?
+• Quel est votre First Response Time moyen — réaliste, pas l'objectif SLA ?
+• Vous êtes sur Zendesk, Freshdesk, Intercom ?
+• L'équipe N1, c'est en CDI interne, freelances, autre prestataire ?
+• Quelle est la prochaine étape qui vous bloque — plus de tickets, plus de langues, horaires étendus ?</blockquote>
+          <p class="tip g">💡 Note le KPI exact (FRT, CSAT) — tu t'en serviras pour chiffrer le ROI au pitch.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">3</span>🎯 Pitch valeur</div>
+          <blockquote class="script">Ce qu'on fait : une équipe N1 dédiée à {structure}, sur vos outils (Zendesk/Freshdesk/Intercom), formée à votre produit en 2 semaines, KPI documentés chaque semaine — FRT, CSAT, taux de résolution.
+
+Le levier économique : ~40 % de coût en moins qu'un CDI en France, sans charges RH côté Salverys, démarrage en 2 semaines.
+
+On commence par un 1er mois à -50 % — vous comparez nos KPI aux vôtres avant de signer. Et on engage le service : si le SLA de première réponse convenu n'est pas tenu sur un mois, 20 % d'avoir le mois suivant.
+
+Ça correspond au type de scaling que vous cherchez ?</blockquote>
+          <p class="tip g">💡 Toujours chiffrer le pilote : « 1er mois à -50 %, périmètre 200-400 tickets, demi-tarif. »</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">4</span>🛡️ Objections</div>
+          <p style="margin:0;font-size:13.5px">→ Voir l'onglet <a href="#" data-goto="objections">🛡️ Objections</a> (arbre <code>OBJECTIONS_SUPPORT</code>).</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">5</span>🤝 Closing</div>
+          <blockquote class="script">OK {prenom}. Mon process habituel :
+1. Je vous envoie un one-pager + 2 références anonymisées.
+2. On bloque mardi 11h ou mercredi 15h une visio de 30 min avec un de vos lead techs pour qu'ils valident l'approche.
+3. Si OK on lance le pilote (1er mois à -50 %) lundi suivant.
+Mardi 11h ou mercredi 15h ?</blockquote>
+          <p class="tip g">💡 Implique le lead tech dans le 2e RDV — ça raccourcit le cycle de validation interne.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELPDESK IT -->
+    <h2 class="sec">3 · Helpdesk IT N1 <span class="badge it" style="font-size:11px;vertical-align:middle">Priorité n°1 — IT</span></h2>
+    <p class="sec-note">Helpdesk IT N1 distant pour DSI et ESN françaises. Clé CRM : <code>CALL_SCRIPTS.helpdesk-n1</code></p>
+
+    <div class="card srch">
+      <div class="head">📞 Script helpdesk IT N1 <span class="k">helpdesk-n1</span></div>
+      <div class="body">
+        <div class="step">
+          <div class="lbl"><span class="num">1</span>👋 Ouverture</div>
+          <blockquote class="script">Bonjour {prenom}, Valérien de Salverys. On opère des plateaux helpdesk IT N1 distants pour des DSI et ESN françaises depuis Madagascar.
+
+Vous avez 3 minutes ? Je vous appelle parce que sur une structure comme {structure}, le N1 c'est en général le poste où on a le plus de mal à tenir les SLA tout en gardant les coûts sous contrôle. Vous êtes plutôt où sur ce sujet aujourd'hui ?</blockquote>
+          <p class="tip g">💡 Les DSI parlent SLA, ticket volume, et CSAT. Adopte leur vocabulaire dès la 1re phrase.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">2</span>🔍 Qualification</div>
+          <blockquote class="script">Pour bien comprendre votre setup :
+• Combien de postes utilisateurs à supporter ?
+• Combien de tickets N1 par mois ?
+• Quel est votre SLA contractuel sur la prise en charge N1 ?
+• Vous êtes sur ServiceNow, JIRA Service Desk, ManageEngine, GLPI ?
+• Le N1 est fait en interne, infogéré, ou mix ?
+• Vous avez un référentiel ITIL en place ?</blockquote>
+          <p class="tip g">💡 Le SLA et le volume sont les 2 chiffres clés pour dimensionner ton offre. Note-les noir sur blanc.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">3</span>🎯 Pitch valeur</div>
+          <blockquote class="script">On opère du helpdesk IT N1 distant 100% francophone :
+• Profils ITIL, formés à vos outils (ServiceNow, JIRA Service Desk, ManageEngine)
+• SLA documenté et signé dans le contrat — non tenu sur un mois, 20 % d'avoir
+• Contrats dès 3 mois, puis 12 mois renouvelable, dimensionnement progressif
+• ~40 % de coût en moins qu'un prestataire hexagonal — sans perte de qualité de service
+• Plateaux dédiés ou mutualisés selon vos besoins
+On peut démarrer petit, par exemple 1 ETP sur 3 mois, et monter en charge si le ROI est là.
+Ça rentre dans vos critères budgétaires actuels ?</blockquote>
+          <p class="tip g">💡 Pour les grandes DSI, mentionne « contrat dès 3 mois puis 12 mois » tôt — ça rassure sur la sécurité du prestataire.</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">4</span>🛡️ Objections</div>
+          <p style="margin:0;font-size:13.5px">→ Voir l'onglet <a href="#" data-goto="objections">🛡️ Objections</a> (arbre <code>OBJECTIONS_HELPDESK</code>).</p>
+        </div>
+        <div class="step">
+          <div class="lbl"><span class="num">5</span>🤝 Closing</div>
+          <blockquote class="script">Parfait {prenom}. Voici comment je vous propose qu'on avance :
+1. Je vous envoie demain un dossier complet : références, modèle de SLA, grille tarifaire.
+2. On fait un atelier de cadrage de 1h avec votre responsable support — jeudi prochain ou mardi de la semaine d'après.
+3. Si on s'aligne, je vous remets une proposition chiffrée sous 5 jours.
+Jeudi prochain ou mardi 10 ?</blockquote>
+          <p class="tip g">💡 Pour les contrats long-terme, propose un atelier d'1h plutôt qu'un appel — plus engageant, signale le sérieux.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="guard">
+      <strong>🔒 Garde-fous (rappel CLAUDE.md / CONFORMITE-HDS-RGPD.md)</strong><br>
+      • Marque : « Salverys » uniquement. Jamais Nesvalo / Vinlo.<br>
+      • Médical : on dit <strong>forfait</strong>, jamais « abonnement ».<br>
+      • Aucun claim « direction issue d'une structure de 1 000 collaborateurs ».<br>
+      • Conformité médicale : par défaut, <strong>zéro enregistrement des appels patients</strong> — la preuve qualité se fait en double écoute / appel test. L'enregistrement est une option sur demande (stack / HDS du client), à ne pas improviser → escalade direction.<br>
+      • Tarifs marque blanche : jamais en clair côté public. Forfaits médical standard publics : 350 / 590 / 950 €.
+    </div>
+  </section>
+
+  <!-- =============== CLIENTS =============== -->
+  <section class="panel" id="clients">
+    <div class="search">
+      <input type="text" id="qClients" placeholder="🔎 Filtrer par société, ville, décideur, secteur…">
+      <span class="hint" id="clientCount"></span>
+    </div>
+    <p class="sec-note" style="padding-left:0">
+      Base de prospection Salverys (aucun contrat signé à ce stade — <em>démarrage from scratch</em>).
+      Stratégie <strong>marque blanche d'abord</strong>. Décideurs et coordonnées : voir fiches
+      <code>DECISION-MAKERS-*</code> et <code>PROSPECT-ANALYSIS-*</code>. Score = potentiel sur 5 (⭐) ou /100 (CRM).
+    </p>
+
+    <!-- MÉDICAL -->
+    <div class="niche-head">
+      <h3>Télésecrétariat médical</h3><span class="badge med">Médical</span>
+      <span class="cnt">13 cibles — partenariats de débordement en marque blanche</span>
+    </div>
+    <table class="leads">
+      <thead><tr><th>Société</th><th>Ville / SIREN</th><th>Décideur</th><th>Signal / Angle</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td class="co">Callmed</td><td>Quincy-sous-Sénart (91)<br><span class="tag">808056550</span></td><td>David Laurent Alcalay <span class="tag">gérant</span></td><td>1M+ appels/an, équipe restreinte → tension permanente. Angle : « qui prend le relais la nuit et le week-end ? »</td><td><span class="score s5">77</span> <span class="stars">★★★★★</span></td></tr>
+        <tr><td class="co">Thelem</td><td>Tassin-la-Demi-Lune (69)<br><span class="tag">333633790</span></td><td>François Buchet + Véronique Traverse</td><td>Recrutement massif (75+ annonces), leader historique ~3 000 clients. Cycle long assumé.</td><td><span class="score s4">76</span> <span class="stars">★★★★☆</span></td></tr>
+        <tr><td class="co">Vocallz</td><td>Chalon-sur-Saône (71)<br><span class="tag">881435424</span></td><td>Vanessa Rodière <span class="tag">présidente</span></td><td>Amplitude 59h/sem → trou nuits/dimanches/fériés explicite. Décision rapide.</td><td><span class="score s4">72</span> <span class="stars">★★★★☆</span></td></tr>
+        <tr><td class="co">IPContact Group</td><td>—</td><td>à identifier</td><td>Groupe multi-marques (Espace Langues, A3COM, Webphone) = volume agrégé. ~50-100 agents.</td><td><span class="score s4">★★★★☆</span></td></tr>
+        <tr><td class="co">Sereneva</td><td>—</td><td>à identifier</td><td>Médical + juridique, recrutement Doctolib visible. ~20-40 agents.</td><td><span class="score s3">★★★☆☆</span></td></tr>
+        <tr><td class="co">Médisecrétel</td><td>National</td><td>à identifier</td><td>Pure-play médical depuis 2001. ~10-20 agents.</td><td><span class="score s3">★★★☆☆</span></td></tr>
+        <tr><td class="co">Mediphone</td><td>—</td><td>à identifier</td><td>100% médical, amplitude affichée limitée. ~10-20 agents.</td><td><span class="score s3">★★★☆☆</span></td></tr>
+        <tr><td class="co">Belenos</td><td>Multi-sites</td><td>à identifier</td><td>Santé + collectivités. ~30-50 agents.</td><td><span class="score s3">★★★☆☆</span></td></tr>
+      </tbody>
+    </table>
+    <p class="sec-note" style="padding-left:0;margin-top:0">Concurrence offshore déjà active (Serenity Center, Nosycom, Téléservices…) — corridor 0,50-1 €/appel. Différenciation : engagement décroché chiffré, continuité électrique, RGPD art. 46.</p>
+
+    <!-- SUPPORT N1 SAAS -->
+    <div class="niche-head">
+      <h3>Support N1 — Éditeurs SaaS FR</h3><span class="badge saas">SaaS</span>
+      <span class="cnt">Leads CRM l209-l220 + l233-l235 — ETP N1 dédié en marque blanche</span>
+    </div>
+    <table class="leads">
+      <thead><tr><th>Société</th><th>Ville</th><th>Décideur cible</th><th>Profil / Signal</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td class="co">Helpline <span class="tag">groupe Everience</span></td><td>Nanterre / IDF</td><td>Cyril Mesquida (COO)</td><td>Donneur d'ordres service desk IT ~2 500 pers, 200+ clients dont 50 % CAC 40. Fiche dédiée.</td><td><span class="score s5">72</span></td></tr>
+        <tr><td class="co">Skello</td><td>Paris + hub Lille</td><td>Head of Support</td><td>50 M€+ ARR, 30 000 clients, 700k users/j, levée 200 M€. ⚠️ capacité à internaliser.</td><td><span class="score s5">62</span></td></tr>
+        <tr><td class="co">Axonaut</td><td>Toulouse (31)</td><td>Nicolas Ricard (CEO)</td><td>ERP/CRM TPE, 12 000 clients, CA 10 M€ (+43 %) autofinancé. Structure compacte.</td><td><span class="score s4">62</span></td></tr>
+        <tr><td class="co">Sellsy</td><td>La Rochelle (17)</td><td>Victor Douek (Président)</td><td>CRM + facturation PME, gros volume TPE/PME. ⚠️ gouvernance mouvementée.</td><td><span class="score s4">60</span></td></tr>
+        <tr><td class="co">EBP Informatique</td><td>Rambouillet (78)</td><td>Dir. Relation Client</td><td>Gestion/compta/paie TPE-PME, gros volume tel + pics saisonniers.</td><td><span class="score s4">58</span></td></tr>
+        <tr><td class="co">Yousign</td><td>Caen (14)</td><td>Head of Customer Care <span class="tag">sponsor : Luc Pallavidino</span></td><td>Signature électronique, base self-serve = N1 récurrent.</td><td><span class="score s4">55</span></td></tr>
+        <tr><td class="co">Septeo</td><td>Montpellier (34)</td><td>Dir. Support Groupe</td><td>Groupe éditeurs verticaux ~3 000 pers. Cycle long.</td><td><span class="score s4">55</span></td></tr>
+        <tr><td class="co">Combo <span class="tag">ex-Snapshift</span></td><td>Paris</td><td>à identifier</td><td>RH TPE-PME terrain. Acquisition Arhia (paie) → support critique, volume en hausse.</td><td><span class="score s4">55</span></td></tr>
+        <tr><td class="co">Pennylane</td><td>Paris</td><td>Head of Support <span class="tag">sponsor : Arthur Waller</span></td><td>Compta hypercroissance (~115 M€ ARR). ⚠️ risque d'internalisation.</td><td><span class="score s3">52</span></td></tr>
+        <tr><td class="co">Agicap</td><td>Lyon (69)</td><td>Head of CS/Support</td><td>SaaS trésorerie PME/ETI.</td><td><span class="score s3">52</span></td></tr>
+        <tr><td class="co">Zenchef</td><td>—</td><td>à identifier</td><td>Suite resto — N1 en horaires décalés (soir/WE) → angle créneaux étendus UTC+3.</td><td><span class="score s3">52</span></td></tr>
+        <tr><td class="co">Orisha</td><td>Paris</td><td>Dir. Support / Ops</td><td>Groupe éditeurs verticaux, croissance par acquisitions.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Lucca</td><td>Paris</td><td>Head of Support <span class="tag">sponsor : Gilles Satgé</span></td><td>SIRH PME/ETI, pics calés sur cycles paie.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Sarbacane <span class="tag">Groupe Positive</span></td><td>Hem (59)</td><td>Mathieu Tarnus (CEO)</td><td>Emailing/marketing, support FR = différenciateur revendiqué.</td><td><span class="score s2">48</span></td></tr>
+        <tr><td class="co">Libeo</td><td>Paris</td><td>Pierre Dutaret (CEO)</td><td>Paiement fournisseurs B2B.</td><td><span class="score s2">45</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- HELPDESK IT ESN -->
+    <div class="niche-head">
+      <h3>Helpdesk IT N1 — ESN / MSP FR</h3><span class="badge it">IT</span>
+      <span class="cnt">Leads CRM l181-l249 — sous-traitance débordement N1 en marque blanche</span>
+    </div>
+    <table class="leads">
+      <thead><tr><th>Société</th><th>Ville</th><th>Effectifs</th><th>Décideur cible</th><th>Signal / Angle</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td class="co">Oxxodata</td><td>Meyzieu (69)</td><td>~2-10</td><td>Hichem Boulahbel (Président)</td><td>⚡ Vend déjà de l'infogérance en marque blanche → être le sous-traitant humain derrière.</td><td><span class="score s5">★★★★★</span></td></tr>
+        <tr><td class="co">Metaline</td><td>Nanterre (92)</td><td>~150-250</td><td>Alexandre Sebban (DG Ops)</td><td>⚡ 75+ offres techs actives, +44 % croissance, PE LFPI. Meilleure cible (78/100).</td><td><span class="score s5">★★★★★</span></td></tr>
+        <tr><td class="co">Infodis IT <span class="tag">Tenexa</span></td><td>Roissy (95)</td><td>~1 000</td><td>Eric Forestier (DG)</td><td>18 offres helpdesk actives, « made in France » = pas d'offshore interne. Cycle long.</td><td><span class="score s4">★★★★☆</span></td></tr>
+        <tr><td class="co">Cyllene</td><td>Nanterre (92)</td><td>~450</td><td>Dir. Delivery (à identifier)</td><td>Services managés 24/7. Angle : UTC+3 couvre 6h-8h sans supplément nuit.</td><td><span class="score s4">★★★★☆</span></td></tr>
+        <tr><td class="co">Kincy</td><td>Paris / Marseille / Papeete</td><td>~65</td><td>Karim Sani (Président)</td><td>30 techs, follow-the-sun Papeete. Angle : complément créneau matin FR 7h-9h.</td><td><span class="score s4">★★★★☆</span></td></tr>
+        <tr><td class="co">Quodagis</td><td>Nanterre + Aurillac</td><td>—</td><td>Roland Mor (Président)</td><td>Groupe ITSM, cœur = service desk nearshore FR. Débordement + extension horaire.</td><td><span class="score s4">62</span></td></tr>
+        <tr><td class="co">Constellation</td><td>Saint-Cloud (92)</td><td>~500</td><td>Dir. Delivery (à identifier)</td><td>🔥 100 M€+ proforma, levée 70 M€, acquisitions en série = tension delivery.</td><td><span class="score s4">62</span></td></tr>
+        <tr><td class="co">Infiny Link</td><td>Bièvres (91)</td><td>—</td><td>Bonnefond &amp; Almecija</td><td>MSP IDF 24/7 + SLA, fondé 2005.</td><td><span class="score s3">58</span></td></tr>
+        <tr><td class="co">Ozitem</td><td>Levallois (92)</td><td>250-499</td><td>François Espieux (PDG, sponsor)</td><td>Cloud + services managés, 37 ans. Viser le Dir. Delivery.</td><td><span class="score s3">55</span></td></tr>
+        <tr><td class="co">Log'in Line</td><td>—</td><td>—</td><td>à identifier</td><td>Infogérance startups/scale-ups, n°1 classement 2026.</td><td><span class="score s3">55</span></td></tr>
+        <tr><td class="co">ActualBuro</td><td>Sud-Ouest</td><td>—</td><td>à identifier</td><td>Infogérance 24/7 multi-agences.</td><td><span class="score s3">52</span></td></tr>
+        <tr><td class="co">AntemetA</td><td>IDF</td><td>—</td><td>à identifier</td><td>Cloud privé managé + infogérance 24/7 (BaaS/DRaaS, K8s).</td><td><span class="score s3">52</span></td></tr>
+        <tr><td class="co">ComputerLand</td><td>Boulogne-B. (92)</td><td>~50-100</td><td>DG (à identifier)</td><td>30+ ans infogérance PME, expansion Paris/92. Tél 01 46 99 42 99.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">IT Partner</td><td>National</td><td>~50-100</td><td>Abdénour Ainséba (Président)</td><td>3000+ postes gérés, infogérance + cybersécurité.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Enix</td><td>Paris</td><td>—</td><td>à identifier</td><td>Infogérance plateformes web critiques → astreintes 24/7.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">NeoOne</td><td>—</td><td>—</td><td>à identifier</td><td>Positionné marque blanche MSP — qualifier opérateur vs cabinet.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Naitways</td><td>Boulogne-B. (92)</td><td>—</td><td>Spy &amp; Nguyen Minh Hoa</td><td>Cloud + hébergement infogéré, 15,8 M€, PE Andera. ⚠️ discours « 100 % français ».</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Hexanet</td><td>Reims (51)</td><td>—</td><td>à identifier</td><td>Opérateur régional cloud/télécom/infogérance, datacenters propres.</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Axido <span class="tag">groupe Proxiteam</span></td><td>Paris/IDF</td><td>—</td><td>à identifier</td><td>Infogérance PME 20+ ans, support illimité (protéger leur marge forfaitaire).</td><td><span class="score s3">50</span></td></tr>
+        <tr><td class="co">Alteo</td><td>Paris/Lille/Lyon/Dijon</td><td>~50-80</td><td>DG (à identifier)</td><td>⚠️ requalifié agence web (score abaissé 55→30).</td><td><span class="score s2">30</span></td></tr>
+        <tr><td class="co">Nowteam <span class="tag">groupe NowBrains</span></td><td>Lyon + régions</td><td>DG agence</td><td>MSP multi-sites. Passer par NowServiceDesk (l190) — même groupe.</td><td><span class="score s3">48</span></td></tr>
+        <tr><td class="co">ACI Technology</td><td>Bois-Colombes (92)</td><td>—</td><td>à identifier</td><td>Infogérance ISO 20000-1/27001 → cadre ITSM propre.</td><td><span class="score s2">48</span></td></tr>
+        <tr><td class="co">Groupe Asten</td><td>Brest (29)</td><td>~140</td><td>Jean-Christophe Cagnard</td><td>17,5 M€. ⚠️ discours souveraineté à cadrer.</td><td><span class="score s2">48</span></td></tr>
+        <tr><td class="co">Quietic</td><td>Nantes</td><td>—</td><td>à identifier</td><td>MSP proactif TPE/PME + cyber.</td><td><span class="score s2">48</span></td></tr>
+        <tr><td class="co">CLEV'IT</td><td>Lille</td><td>—</td><td>à identifier</td><td>MSP co-managé (modèle idéal insertion N1 MB).</td><td><span class="score s2">48</span></td></tr>
+        <tr><td class="co">Leader System</td><td>IDF</td><td>—</td><td>à identifier</td><td>Infogérance PME depuis 1993.</td><td><span class="score s2">45</span></td></tr>
+        <tr><td class="co">MaDSI</td><td>Nantes</td><td>—</td><td>à identifier</td><td>MSP PME/TPE.</td><td><span class="score s2">45</span></td></tr>
+        <tr><td class="co">Comète Informatique</td><td>Rennes</td><td>—</td><td>à identifier</td><td>Infogérance + parc PME.</td><td><span class="score s2">45</span></td></tr>
+        <tr><td class="co">UltraNova</td><td>Strasbourg</td><td>—</td><td>à identifier</td><td>Infogérance PME/ETI.</td><td><span class="score s2">45</span></td></tr>
+        <tr><td class="co">Acteis</td><td>Bordeaux</td><td>—</td><td>à identifier</td><td>Maintenance + infogérance PME.</td><td><span class="score s2">45</span></td></tr>
+        <tr><td class="co">Itak-IT</td><td>—</td><td>~30-60</td><td>Alex Kong (cofondateur)</td><td>Services managés sur mesure. Tél 01 84 23 30 10.</td><td><span class="score s2">42</span></td></tr>
+        <tr><td class="co">Actual Systèmes</td><td>—</td><td>—</td><td>à identifier</td><td>⚡ Vend du MSP en marque blanche aux ESN — profil Oxxodata (1 deal = portefeuille).</td><td><span class="score s4">68</span></td></tr>
+        <tr><td class="co">BlueBearsIT</td><td>Lyon</td><td>~20-50</td><td>Eric Charpentier (Président)</td><td>Infogérance entreprises Lyon.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">Next2i</td><td>Lyon</td><td>~30-60</td><td>Rachid Sourhou (Président)</td><td>IT, cybersécurité, infogérance.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">VDI Telecom</td><td>Lyon (69)</td><td>~30-60</td><td>Thierry Brejon (Président)</td><td>Infogérance Lyon, clients PME/ETI.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">Acti-One</td><td>—</td><td>~30-60</td><td>Jérôme Niochet</td><td>Infogérance, services managés.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">OCI</td><td>Lyon</td><td>~50-100</td><td>à identifier</td><td>Prestataire IT + digital, implantations régionales.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">Value IT</td><td>Saint-Étienne (42)</td><td>~30-60</td><td>Jeremy Orlowski</td><td>IT support PME, infogérance + télécoms.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">IT Systèmes</td><td>—</td><td>—</td><td>à identifier</td><td>MSP supervision + support.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">My-MSP</td><td>AURA</td><td>—</td><td>à identifier</td><td>Services managés PME.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">IPE</td><td>—</td><td>—</td><td>à identifier</td><td>MSP infogérance.</td><td><span class="score s2">40</span></td></tr>
+        <tr><td class="co">Edeal IT</td><td>Lyon</td><td>~3-5</td><td>Laurent Cognet (Président)</td><td>Infogérance et gestion de parc — micro-structure.</td><td><span class="score s2">38</span></td></tr>
+        <tr><td class="co">EzWay Technology</td><td>—</td><td>—</td><td>à identifier</td><td>Infogérance PME en développement commercial.</td><td><span class="score s1">38</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- CANADA -->
+    <div class="niche-head">
+      <h3>Extension Canada — MSP / TI</h3><span class="badge it">IT · QC</span>
+      <span class="cnt">Leads CRM Canada ca039-ca044</span>
+    </div>
+    <table class="leads">
+      <thead><tr><th>Société</th><th>Profil / Signal</th><th>Décideur</th><th>Pertinence</th></tr></thead>
+      <tbody>
+        <tr><td class="co">Vertisoft</td><td>MSP multi-sites (Boucherville/Sherbrooke/Victoriaville), recrute Dir. centre de données</td><td>Donald French (Président)</td><td><span class="score s4">8/10</span></td></tr>
+        <tr><td class="co">Kezber</td><td>Services TI Estrie, expansion Magog + créations d'emplois</td><td>Alan Kezber (PDG)</td><td><span class="score s4">8/10</span></td></tr>
+        <tr><td class="co">Present</td><td>MSP Montréal, 35 ans, services gérés + cyber + M365</td><td>à identifier</td><td><span class="score s3">7/10</span></td></tr>
+        <tr><td class="co">Micrologic</td><td>~350 experts, top 300 QC — ⚠ « cloud souverain » à cadrer</td><td>Stéphane Garneau (sponsor)</td><td><span class="score s3">7/10</span></td></tr>
+        <tr><td class="co">ITI <span class="tag">ex-ProContact</span></td><td>Intégrateur majeur QC/MTL, 30+ ans</td><td>Dir. services gérés</td><td><span class="score s3">7/10</span></td></tr>
+        <tr><td class="co">Natrix Technologies</td><td>MSP PME Montréal, 25+ ans</td><td>à identifier</td><td><span class="score s3">6/10</span></td></tr>
+      </tbody>
+    </table>
+    <div class="noresult" id="noClient">Aucune société ne correspond à la recherche.</div>
+  </section>
+
+  <!-- =============== OBJECTIONS =============== -->
+  <section class="panel" id="objections">
+    <div class="search">
+      <input type="text" id="qObj" placeholder="🔎 Rechercher une objection ou une réponse…">
+    </div>
+
+    <h2 class="sec">Télésecrétariat médical — <code>OBJECTIONS_TELEMED</code></h2>
+    <div class="obj-group">
+      <details class="obj"><summary>« On a déjà une secrétaire physique au cabinet. »</summary><div class="ans">
+        <strong>Parfait, ce n'est pas l'un ou l'autre.</strong> La plupart de nos cabinets gardent leur secrétaire physique et nous délèguent uniquement les pics d'appels et les heures creuses où elle est en consultation. Combien d'appels votre secrétaire ne peut pas prendre pendant les rendez-vous ?
+        <div class="branch"><div>→ « presque aucun » : « Et le midi entre 12h et 14h ? » — creuse pour trouver un trou.</div><div>→ « pas mal en fait » : « C'est exactement notre cas d'usage. On prend le relais sur ces moments, forfait calé sur votre volume. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Vous êtes à Madagascar, l'accent va poser problème aux patients âgés. »</summary><div class="ans">
+        <strong>C'est la question qu'on entend le plus.</strong> Le français est ma langue maternelle, comme pour toutes nos télésecrétaires. Je vous propose le 1er mois à -50 % : vos patients appellent, vous jugez en direct — écoute en double ligne quand vous voulez, ou appel test de 5 min avant de démarrer. Par défaut on n'enregistre pas (RGPD). Si un patient se plaint de l'accent, on arrête, sans engagement.
+        <div class="branch"><div>→ « OK pour tester » : passe au closing, fixe le pilote.</div><div>→ « même comme ça non » : « Acceptez juste un appel de 5 min avec une secrétaire pour vous faire votre opinion. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« C'est trop cher pour un cabinet de notre taille. »</summary><div class="ans">
+        <strong>Vous payez aujourd'hui combien — y compris le coût des rendez-vous manqués ?</strong> Un patient qui ne peut pas vous joindre = ~30€ de consultation perdue. 15 manqués/mois = déjà 450€. Notre forfait commence à 350€.
+        <div class="branch"><div>→ « jamais calculé » : « On chiffre ça ensemble sur le mois pilote à -50 %. »</div><div>→ « pas tant de manqués » : « Alors le plus petit forfait suffit — et le 1er mois à -50 % le confirme. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Envoyez-moi un email, je regarderai. »</summary><div class="ans">
+        <strong>Bien sûr je l'envoie aujourd'hui.</strong> Pour qu'il soit utile, j'ai besoin de 5 minutes maintenant pour comprendre votre volume — sinon je vous envoie un truc générique que vous supprimerez en 30 secondes. 5 minutes là, ça marche ?
+        <div class="branch"><div>→ OK : qualif rapide (3 questions) → closing.</div><div>→ « envoyez quand même » : « OK. Je vous rappelle vendredi à 11h pour en discuter ? » — bloque le RDV.</div></div>
+      </div></details>
+      <details class="obj"><summary>« Ce n'est pas moi qui décide, c'est mon associé. »</summary><div class="ans">
+        <strong>Important qu'il soit dans la boucle.</strong> Je propose une visio à 3 — vous, lui et moi — 20 minutes max. Plutôt jeudi ou vendredi cette semaine ?
+        <div class="branch"><div>→ OK : pose les 2 créneaux immédiatement.</div><div>→ « je lui en parle d'abord » : « Je vous relance lundi à 10h, ça vous va ? »</div></div>
+      </div></details>
+    </div>
+
+    <h2 class="sec">Support N1 SaaS — <code>OBJECTIONS_SUPPORT</code></h2>
+    <div class="obj-group">
+      <details class="obj"><summary>« On préfère garder le N1 en interne, c'est stratégique. »</summary><div class="ans">
+        <strong>Je l'entends souvent, et 50 % du temps c'est la bonne réponse.</strong> Notre proposition : on prend uniquement le débordement et les horaires étendus — vous gardez les tickets stratégiques en interne. Combien de tickets dorment > 24h aujourd'hui ?
+        <div class="branch"><div>→ « beaucoup » : « C'est exactement la zone qu'on couvre — pas votre cœur, le surplus. »</div><div>→ « très peu » : « Vous n'êtes peut-être pas mûrs. Je vous recontacte dans 6 mois. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« L'offshore, on a essayé, ça s'est mal passé. »</summary><div class="ans">
+        <strong>Réflexe normal.</strong> 3 différences : (1) français langue maternelle, pas LV1 ; (2) KPI hebdo partagés en transparence ; (3) 1er mois à -50 %, pas d'engagement. Qu'est-ce qui s'était mal passé exactement ?
+        <div class="branch"><div>→ « qualité de langue » : « Faites le test avec un agent demain, vous évaluez. »</div><div>→ « tickets jamais résolus » : « Notre KPI clé = taux de résolution N1, engagé par contrat avec 20 % d'avoir. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« On utilise [outil obscur], pas Zendesk. »</summary><div class="ans">
+        <strong>Pas un problème.</strong> Nos agents maîtrisent 4-5 outils en moyenne, un nouvel outil en < 1 semaine. C'est plus une question de process que d'outil. Décrivez-moi un ticket type, de la création à la résolution ?
+        <div class="branch"><div>→ process simple : « On est dans notre zone, on s'adapte. »</div><div>→ process complexe : « On planifie 2 semaines de formation au lieu d'1. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Je n'ai pas le budget en ce moment. »</summary><div class="ans">
+        <strong>Le budget n'est pas la vraie question.</strong> Si je vous montre 30 % d'économie sur 6 mois, vous trouvez le budget ou pas ? Sinon on n'est pas le bon prestataire à ce stade.
+        <div class="branch"><div>→ « oui si ROI prouvé » : « 1er mois à -50 %, vous mesurez vous-même. »</div><div>→ « non c'est gelé » : « Je vous recontacte au prochain trimestre fiscal — c'est quand ? »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Il faut que j'en parle à mon CTO / Head of Eng. »</summary><div class="ans">
+        <strong>C'est lui le décideur opérationnel.</strong> On bloque une visio à 3 — 30 minutes, je présente, il challenge. Plus efficace que transmettre un document. Mardi prochain 14h ?
+        <div class="branch"><div>→ OK : bloque le créneau, envoie l'invite.</div><div>→ « je préfère transmettre » : « Je vous envoie un one-pager spécial CTO — focus archi/sécurité. »</div></div>
+      </div></details>
+    </div>
+
+    <h2 class="sec">Helpdesk IT N1 — <code>OBJECTIONS_HELPDESK</code></h2>
+    <div class="obj-group">
+      <details class="obj"><summary>« On a déjà un contrat avec [ESN concurrente]. »</summary><div class="ans">
+        <strong>Et ça se passe comment ?</strong> 2 questions : (1) Êtes-vous au-dessus ou en-dessous du SLA ? (2) Quand le contrat se termine ? Si tout va bien, je vous recontacte 3 mois avant l'échéance. Si ça pèche, on peut être complémentaires.
+        <div class="branch"><div>→ tout va bien : note la date de fin → calendrier J-90.</div><div>→ ça coince : « On peut prendre un débordement sans casser votre contrat actuel. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Madagascar c'est trop loin pour la confiance, on préfère un prestataire FR. »</summary><div class="ans">
+        <strong>Légitime.</strong> 3 points : (1) société française, contrat FR, juridiction FR ; (2) données hébergées en UE, RGPD documenté ; (3) votre interlocuteur direct est en France. Madagascar = uniquement la production. On regarde la doc juridique ensemble ?
+        <div class="branch"><div>→ « OK pour voir la doc » : envoie le dossier conformité, rappel J+3.</div><div>→ « question de principe » : « Je vous laisse mes coordonnées, on se reparle quand vous êtes prêts. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« On a besoin de profils certifiés ITIL. »</summary><div class="ans">
+        <strong>Tous nos chefs de plateau sont certifiés ITIL Foundation minimum</strong>, avec des profils Intermediate sur les plateaux clés. On garantit contractuellement le ratio de certifiés. Combien d'ETP certifiés ITIL sur votre périmètre ?
+        <div class="branch"><div>→ volume défini : note → dimensionnement précis au pitch.</div><div>→ pas défini : « On fait un atelier d'1h pour cadrer. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« C'est un appel d'offres public, vous ne pouvez pas y répondre seul. »</summary><div class="ans">
+        <strong>Exact — c'est pour ça qu'on travaille en sous-traitance avec des ESN établies.</strong> On candidate avec votre prestataire historique, ou on vous met en relation avec une ESN partenaire porteuse du marché. Quel est votre besoin sur l'AO ?
+        <div class="branch"><div>→ déjà un porteur : « Présentez-nous au porteur, on le rassure sur la capacité. »</div><div>→ pas de porteur : « On vous met en relation avec une ESN partenaire sous 48h. »</div></div>
+      </div></details>
+      <details class="obj"><summary>« Le N1 doit être 24/7, vous ne pourrez pas couvrir la nuit. »</summary><div class="ans">
+        <strong>Si, et c'est un de nos points forts.</strong> Madagascar est UTC+3 : notre journée couvre votre soirée naturellement. Pour la nuit profonde (2h-6h Paris), équipe rotative dédiée. Quel volume de tickets la nuit ?
+        <div class="branch"><div>→ faible volume : « Astreinte mutualisée, beaucoup moins cher. »</div><div>→ fort volume : « Plateau dédié 24/7 — on cadre dans l'atelier. »</div></div>
+      </div></details>
+    </div>
+  </section>
+
+</main>
+
+<div class="foot">
+  Document consolidé Salverys — usage interne équipe commerciale. Source de vérité prix/SLA :
+  <code>PRICING.md</code>. En cas de divergence, PRICING.md fait foi. Toute modification de fond
+  des scripts doit rester synchronisée avec <code>02-Prospection/SCRIPTS-APPEL.md</code> et
+  <code>CRM_Salverys.html</code>.
+</div>
+
+<script>
+  // --- Tabs ---
+  const tabBtns = document.querySelectorAll('nav.tabs button');
+  const panels = document.querySelectorAll('.panel');
+  function showTab(id){
+    tabBtns.forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+    panels.forEach(p=>p.classList.toggle('active', p.id===id));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabBtns.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+  document.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showTab(a.dataset.goto);}));
+
+  // --- Search: scripts (filter cards) ---
+  document.getElementById('qScripts').addEventListener('input',function(){
+    const q=this.value.toLowerCase().trim();
+    document.querySelectorAll('#scripts .card.srch').forEach(c=>{
+      c.style.display = c.textContent.toLowerCase().includes(q)?'':'none';
+    });
+  });
+
+  // --- Search: clients (filter table rows) ---
+  document.getElementById('qClients').addEventListener('input',function(){
+    const q=this.value.toLowerCase().trim();
+    let visible=0;
+    document.querySelectorAll('#clients table.leads tbody tr').forEach(r=>{
+      const ok=r.textContent.toLowerCase().includes(q);
+      r.style.display=ok?'':'none'; if(ok)visible++;
+    });
+    // hide empty niche tables
+    document.querySelectorAll('#clients table.leads').forEach(t=>{
+      const any=[...t.querySelectorAll('tbody tr')].some(r=>r.style.display!=='none');
+      t.style.display=any?'':'none';
+      t.previousElementSibling && t.previousElementSibling.classList.contains('niche-head') &&
+        (t.previousElementSibling.style.display=any?'':'none');
+    });
+    document.getElementById('noClient').style.display = visible?'none':'block';
+    document.getElementById('clientCount').textContent = q ? visible+' résultat(s)' : '';
+  });
+
+  // --- Search: objections ---
+  document.getElementById('qObj').addEventListener('input',function(){
+    const q=this.value.toLowerCase().trim();
+    document.querySelectorAll('#objections details.obj').forEach(d=>{
+      const ok=d.textContent.toLowerCase().includes(q);
+      d.style.display=ok?'':'none';
+      if(q&&ok) d.open=true; if(!q) d.open=false;
+    });
+    document.querySelectorAll('#objections .obj-group').forEach(g=>{
+      const any=[...g.querySelectorAll('details.obj')].some(d=>d.style.display!=='none');
+      g.style.display=any?'':'none';
+      g.previousElementSibling && (g.previousElementSibling.style.display=any?'':'none');
+    });
+  });
+</script>
+</body>
+</html>
