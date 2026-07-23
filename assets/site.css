@@ -953,9 +953,9 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .float-cta.open .float-cta-toggle {
   animation: none; box-shadow: var(--shadow-lg), 0 0 0 6px rgba(38, 58, 46, .10);
 }
-/* Survol : le bouton monte et se pose à une position de repos constante. */
+/* Survol / ouvert : le bouton monte et se pose à une position de repos constante. */
 .float-cta-toggle:hover { background: var(--green-deeper); transform: translateY(-3px); }
-.float-cta.open .float-cta-toggle { transform: translateY(0); }
+.float-cta.open .float-cta-toggle { transform: translateY(-3px); }
 .float-cta-toggle-icon { display: inline-block; transition: transform .25s var(--ease); }
 .float-cta.open .float-cta-toggle-icon { transform: rotate(90deg); }
 .float-cta-menu {
