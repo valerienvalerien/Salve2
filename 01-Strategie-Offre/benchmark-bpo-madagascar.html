@@ -1,0 +1,337 @@
+<title>Benchmark BPO Madagascar — Salverys</title>
+<style>
+  :root{
+    --ground:#F4EFE4; --surface:#FBF8F1; --surface-2:#EFE8D8;
+    --ink:#2E3B4E; --ink-soft:#5C6879; --ink-faint:#8A93A0;
+    --line:#DED5C2; --line-soft:#E8E0D0;
+    --sage:#6F8770; --sage-deep:#566b57; --sage-tint:#DDE5DC;
+    --or:#B89968; --or-deep:#9a7d4f; --or-tint:#EDE2CE;
+    --gold:#C79A2B; --navy:#013C58;
+    --shadow:0 1px 2px rgba(46,59,78,.06),0 8px 24px rgba(46,59,78,.07);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#161D27; --surface:#1E2733; --surface-2:#26303D;
+      --ink:#ECE6D8; --ink-soft:#AEB6C1; --ink-faint:#7C8593;
+      --line:#313C49; --line-soft:#2A343F;
+      --sage:#8FA890; --sage-deep:#9db69e; --sage-tint:#2A3830;
+      --or:#CDAE7F; --or-deep:#d8bd92; --or-tint:#38301F;
+      --gold:#F0B429; --navy:#7FB4CE;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F4EFE4; --surface:#FBF8F1; --surface-2:#EFE8D8;
+    --ink:#2E3B4E; --ink-soft:#5C6879; --ink-faint:#8A93A0;
+    --line:#DED5C2; --line-soft:#E8E0D0;
+    --sage:#6F8770; --sage-deep:#566b57; --sage-tint:#DDE5DC;
+    --or:#B89968; --or-deep:#9a7d4f; --or-tint:#EDE2CE;
+    --gold:#C79A2B; --navy:#013C58;
+    --shadow:0 1px 2px rgba(46,59,78,.06),0 8px 24px rgba(46,59,78,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#161D27; --surface:#1E2733; --surface-2:#26303D;
+    --ink:#ECE6D8; --ink-soft:#AEB6C1; --ink-faint:#7C8593;
+    --line:#313C49; --line-soft:#2A343F;
+    --sage:#8FA890; --sage-deep:#9db69e; --sage-tint:#2A3830;
+    --or:#CDAE7F; --or-deep:#d8bd92; --or-tint:#38301F;
+    --gold:#F0B429; --navy:#7FB4CE;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:clamp(20px,4vw,52px) clamp(16px,4vw,40px) 64px}
+  .eyebrow{
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:700; margin:0 0 10px;
+  }
+  h1{
+    font-size:clamp(28px,5vw,44px); line-height:1.08; margin:0 0 14px;
+    font-weight:800; letter-spacing:-.02em; text-wrap:balance; max-width:20ch;
+  }
+  .lede{font-size:clamp(15px,2vw,17px); color:var(--ink-soft); max-width:64ch; margin:0}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+  .tag{
+    font-size:12px; font-weight:600; padding:5px 11px; border-radius:999px;
+    background:var(--surface); border:1px solid var(--line); color:var(--ink-soft);
+  }
+  .note{
+    margin-top:22px; padding:14px 16px; border-radius:12px;
+    background:var(--or-tint); border:1px solid var(--or);
+    color:var(--ink); font-size:13.5px;
+  }
+  .note b{color:var(--or-deep)}
+  section{margin-top:clamp(34px,5vw,56px)}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap}
+  h2{font-size:clamp(19px,2.6vw,24px); margin:0; font-weight:750; letter-spacing:-.01em}
+  .sec-head .hint{font-size:13px; color:var(--ink-faint)}
+  /* KPI */
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px}
+  .kpi{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 18px 16px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+  }
+  .kpi::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--sage)}
+  .kpi.or::before{background:var(--or)} .kpi.navy::before{background:var(--navy)} .kpi.gold::before{background:var(--gold)}
+  .kpi .k-label{font-size:12.5px; color:var(--ink-soft); font-weight:600; margin:0 0 8px}
+  .kpi .k-val{font-size:clamp(24px,3.4vw,30px); font-weight:800; letter-spacing:-.02em; line-height:1}
+  .kpi .k-val small{font-size:15px; font-weight:600; color:var(--ink-soft); letter-spacing:0}
+  .kpi .k-sub{font-size:12px; color:var(--ink-faint); margin:8px 0 0}
+  /* Card */
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:clamp(18px,3vw,26px); box-shadow:var(--shadow);
+  }
+  .legend{display:flex; flex-wrap:wrap; gap:16px; margin:2px 0 20px; font-size:12.5px; color:var(--ink-soft)}
+  .legend span{display:inline-flex; align-items:center; gap:7px}
+  .sw{width:14px; height:14px; border-radius:4px; display:inline-block}
+  .sw.sage{background:var(--sage)} .sw.or{background:var(--or)}
+  .sw.band{background:var(--sage-tint); border:1px solid var(--sage)}
+  .sw.dash{background:transparent; border:2px dashed var(--gold); border-radius:2px}
+  .chart-scroll{overflow-x:auto}
+  svg{display:block; width:100%; height:auto; min-width:520px}
+  .ax{fill:var(--ink-faint); font-size:13px}
+  .grid{stroke:var(--line-soft); stroke-width:1}
+  .band-sage{fill:var(--sage-tint)}
+  .band-or{fill:var(--or-tint)}
+  .lbl{fill:var(--ink); font-size:13px; font-weight:600}
+  .lbl-soft{fill:var(--ink-soft); font-size:12px}
+  .dot{fill:var(--sage)}
+  .rangebar{fill:var(--sage); opacity:.9}
+  /* Monthly bars */
+  .bars{display:flex; flex-direction:column; gap:13px}
+  .bar-row{display:grid; grid-template-columns:170px 1fr; gap:14px; align-items:center}
+  .bar-name{font-size:13.5px; font-weight:600}
+  .bar-name small{display:block; font-weight:500; color:var(--ink-faint); font-size:11.5px}
+  .bar-plot{position:relative; height:30px; background:var(--surface-2); border-radius:7px}
+  .bar-fill{position:absolute; left:0; top:0; bottom:0; border-radius:7px; background:var(--or); display:flex; align-items:center; justify-content:flex-end}
+  .bar-fill.sage{background:var(--sage)}
+  .bar-fill.ghost{background:transparent; border:2px dashed var(--gold)}
+  .bar-val{position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:12.5px; font-weight:700; color:#fff; white-space:nowrap}
+  .bar-fill.ghost .bar-val{color:var(--ink); right:auto; left:calc(100% + 8px)}
+  .scale-x{display:grid; grid-template-columns:170px 1fr; gap:14px; margin-top:6px; font-size:11px; color:var(--ink-faint)}
+  .ticks{display:flex; justify-content:space-between}
+  /* Table */
+  .tbl-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+  table{border-collapse:collapse; width:100%; min-width:680px; background:var(--surface); font-size:13.5px}
+  thead th{
+    text-align:left; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:700; padding:13px 14px; background:var(--surface-2);
+    border-bottom:1px solid var(--line); white-space:nowrap;
+  }
+  tbody td{padding:12px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .co{font-weight:700; white-space:nowrap}
+  .price-pub{color:var(--sage-deep); font-weight:600}
+  .chip{font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap}
+  .chip.pub{background:var(--sage-tint); color:var(--sage-deep)}
+  .chip.devis{background:var(--or-tint); color:var(--or-deep)}
+  /* Takeaways */
+  .takes{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .take{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px 18px 16px; box-shadow:var(--shadow)}
+  .take .t-num{font-size:12px; font-weight:800; color:var(--sage); letter-spacing:.04em}
+  .take h3{font-size:15px; margin:6px 0 7px; letter-spacing:-.01em}
+  .take p{font-size:13px; color:var(--ink-soft); margin:0}
+  footer{margin-top:48px; padding-top:22px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-faint)}
+  footer a{color:var(--sage-deep); text-decoration:none; border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--or-deep)}
+  footer .srcs{margin:10px 0 0; display:flex; flex-direction:column; gap:5px}
+  a:focus-visible,tr:focus-visible{outline:2px solid var(--sage); outline-offset:2px}
+  @media (max-width:560px){
+    .bar-row,.scale-x{grid-template-columns:110px 1fr}
+    .bar-name small{display:none}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Benchmark concurrentiel · Salverys</p>
+    <h1>Prix des BPO basés à Madagascar</h1>
+    <p class="lede">10 concurrents directs à Antananarivo, positionnés sur le prix facturé au client français / canadien : tarif horaire, position mensuelle et forfait.</p>
+    <div class="meta">
+      <span class="tag">10 sociétés</span>
+      <span class="tag">Prix publics + fourchettes marché</span>
+      <span class="tag">Mise à jour : 26 juil. 2026</span>
+    </div>
+    <div class="note"><b>À lire :</b> dans le BPO offshore, la vente est presque toujours « sur devis ». Seuls <b>3 acteurs affichent des prix publics</b> (GetHumanCall, Optiserv, télésec médical). Les 7 autres sont positionnés sur la <b>fourchette de marché sourcée</b>, à confirmer par demande de devis.</div>
+  </header>
+
+  <section>
+    <div class="sec-head"><h2>Repères de prix du marché</h2><span class="hint">taux ~5 000 Ar ≈ 1 €</span></div>
+    <div class="kpis">
+      <div class="kpi sage">
+        <p class="k-label">Heure facturée au client</p>
+        <div class="k-val">6–9<small> €/h</small></div>
+        <p class="k-sub">jusqu'à ~8,75 €/h profils expérimentés</p>
+      </div>
+      <div class="kpi or">
+        <p class="k-label">Position en régie / mois</p>
+        <div class="k-val">600–800<small> €</small></div>
+        <p class="k-sub">tout compris · télésec médical 700–800 €</p>
+      </div>
+      <div class="kpi navy">
+        <p class="k-label">À l'appel — support N1</p>
+        <div class="k-val">1,50–3<small> €</small></div>
+        <p class="k-sub">prise de RDV : 0,50–1 € / appel</p>
+      </div>
+      <div class="kpi gold">
+        <p class="k-label">Coût agent Salverys</p>
+        <div class="k-val">650<small> €/mois</small></div>
+        <p class="k-sub">~4,5× le marché local (~120 €)</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Positionnement — prix horaire facturé</h2><span class="hint">€/h, échelle 0 → 10</span></div>
+    <div class="card">
+      <div class="legend">
+        <span><i class="sw band"></i> Prix facturé marché (6–9 €/h)</span>
+        <span><i class="sw sage"></i> Prix public affiché</span>
+        <span><i class="sw dash"></i> Repère coût Salverys (≠ prix de vente)</span>
+      </div>
+      <div class="chart-scroll">
+        <svg viewBox="0 0 1000 240" role="img" aria-label="Positionnement des prix horaires facturés des BPO Madagascar sur une échelle de 0 à 10 euros par heure.">
+          <!-- gridlines + axis ticks -->
+          <g>
+            <line class="grid" x1="80" y1="40" x2="80" y2="180"/>
+            <line class="grid" x1="256" y1="40" x2="256" y2="180"/>
+            <line class="grid" x1="432" y1="40" x2="432" y2="180"/>
+            <line class="grid" x1="608" y1="40" x2="608" y2="180"/>
+            <line class="grid" x1="784" y1="40" x2="784" y2="180"/>
+            <line class="grid" x1="960" y1="40" x2="960" y2="180"/>
+            <text class="ax" x="80"  y="205" text-anchor="middle">0 €</text>
+            <text class="ax" x="256" y="205" text-anchor="middle">2 €</text>
+            <text class="ax" x="432" y="205" text-anchor="middle">4 €</text>
+            <text class="ax" x="608" y="205" text-anchor="middle">6 €</text>
+            <text class="ax" x="784" y="205" text-anchor="middle">8 €</text>
+            <text class="ax" x="960" y="205" text-anchor="middle">10 €</text>
+          </g>
+          <!-- salaire local band 1.5-4 -->
+          <rect class="band-or" x="212" y="120" width="220" height="40" rx="6"/>
+          <text class="lbl-soft" x="322" y="145" text-anchor="middle">coût salarial local</text>
+          <text class="lbl-soft" x="322" y="112" text-anchor="middle">1,5–4 €/h</text>
+          <!-- market billed band 6-9 -->
+          <rect class="band-sage" x="608" y="60" width="264" height="100" rx="8"/>
+          <text class="lbl" x="740" y="52" text-anchor="middle">prix facturé marché</text>
+          <!-- Salverys cost dashed line at 3.8 -->
+          <line x1="414" y1="46" x2="414" y2="172" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <text class="lbl" x="414" y="230" text-anchor="middle" fill="var(--gold)">coût Salverys ≈ 3,8 €/h</text>
+          <!-- Optiserv dès 6 -->
+          <circle class="dot" cx="608" cy="110" r="7" fill="var(--sage-deep)"/>
+          <text class="lbl" x="600" y="90" text-anchor="end">Optiserv</text>
+          <text class="lbl-soft" x="600" y="106" text-anchor="end">dès 6 €</text>
+          <!-- GetHumanCall range 7.75-8.75 -->
+          <rect class="rangebar" x="762" y="103" width="88" height="14" rx="7"/>
+          <circle cx="762" cy="110" r="7" fill="var(--sage-deep)"/>
+          <circle cx="850" cy="110" r="7" fill="var(--sage-deep)"/>
+          <text class="lbl" x="806" y="90" text-anchor="middle">GetHumanCall</text>
+          <text class="lbl-soft" x="806" y="137" text-anchor="middle">7,75 → 8,75 €</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Position mensuelle par agent</h2><span class="hint">€/mois, tout compris — barre = borne haute, fourchette dans l'étiquette</span></div>
+    <div class="card">
+      <div class="legend">
+        <span><i class="sw sage"></i> Prix public affiché</span>
+        <span><i class="sw or"></i> Fourchette marché (sur devis)</span>
+        <span><i class="sw dash"></i> Coût agent Salverys</span>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-name">Marché régie<small>tout compris</small></div>
+          <div class="bar-plot"><div class="bar-fill" style="width:48.9%"><span class="bar-val">600–685 €</span></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Coût Salverys<small>freelance</small></div>
+          <div class="bar-plot"><div class="bar-fill ghost" style="width:46.4%"><span class="bar-val">650 €</span></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Télésec médical<small>Nosycom / Serenity…</small></div>
+          <div class="bar-plot"><div class="bar-fill" style="width:57.1%"><span class="bar-val">700–800 €</span></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">GetHumanCall<small>standard 40 h/sem</small></div>
+          <div class="bar-plot"><div class="bar-fill sage" style="width:79.2%"><span class="bar-val">1 109 €</span></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">GetHumanCall<small>profil expérimenté</small></div>
+          <div class="bar-plot"><div class="bar-fill sage" style="width:93.1%"><span class="bar-val">1 304 €</span></div></div>
+        </div>
+      </div>
+      <div class="scale-x">
+        <div></div>
+        <div class="ticks"><span>0</span><span>350</span><span>700</span><span>1 050</span><span>1 400 €</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Les 10 sociétés</h2><span class="hint">basées / opérant à Antananarivo</span></div>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Société</th><th>Base</th><th>Activité</th><th>Prix / modèle</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="co">GetHumanCall</td><td>Antananarivo</td><td>Service client, support</td><td><span class="price-pub">dès 7,75 €/h · ~1 109–1 304 €/mois</span></td><td><span class="chip pub">public</span></td></tr>
+          <tr><td class="co">Optiserv</td><td>Madagascar</td><td>Call center, back-office</td><td><span class="price-pub">dès 6 €/h</span></td><td><span class="chip pub">public</span></td></tr>
+          <tr><td class="co">Teleservices</td><td>Antananarivo</td><td>Télésecrétariat médical</td><td><span class="price-pub">~700–800 €/position/mois</span></td><td><span class="chip pub">public</span></td></tr>
+          <tr><td class="co">Vivetic Group</td><td>Antananarivo</td><td>Relation client, back-office, data &amp; IT</td><td>Sur devis · régie / ETP (leader)</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">Nosycom</td><td>Antananarivo</td><td>Relation client, télésec médical, data</td><td>Sur devis · forfaits télésec</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">eTech Madagascar</td><td>Antananarivo</td><td>BPO + dev/IT + relation client</td><td>Sur devis</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">Serenity Center</td><td>Madagascar</td><td>Télésecrétariat médical (RGPD/HDS)</td><td>Sur devis</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">ProContact</td><td>Antananarivo + Maurice</td><td>Multiservice BPO</td><td>Sur devis</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">Madagascar Call Center</td><td>Antananarivo</td><td>Externalisation service client</td><td>Sur devis</td><td><span class="chip devis">devis</span></td></tr>
+          <tr><td class="co">Beepeeoo</td><td>Antananarivo</td><td>Plateforme téléphonique</td><td>Sur devis · marché dès 6 €/h</td><td><span class="chip devis">devis</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Lecture pour Salverys</h2></div>
+    <div class="takes">
+      <div class="take">
+        <div class="t-num">01</div>
+        <h3>Terrain de prix : 6–9 €/h</h3>
+        <p>C'est la référence que verront les prospects FR/CA. Toute proposition Salverys sera comparée à cette bande.</p>
+      </div>
+      <div class="take">
+        <div class="t-num">02</div>
+        <h3>Ne pas jouer le moins-disant</h3>
+        <p>Coût agent à 650 € (~4,5× le marché local). Différenciation par process, qualité et zéro turnover — pas par le prix plancher.</p>
+      </div>
+      <div class="take">
+        <div class="t-num">03</div>
+        <h3>L'IT est peu benchmarké</h3>
+        <p>Presque aucun prix public sur le support applicatif N1 SaaS. Seuls Vivetic et eTech ont une vraie jambe IT — espace ouvert pour notre grille.</p>
+      </div>
+      <div class="take">
+        <div class="t-num">04</div>
+        <h3>Le médical est le plus transparent</h3>
+        <p>Télésec ~700–800 €/position : comparaison prix frontale. Appuyer sur conformité HDS/RGPD et double écoute.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prix publics vérifiés au 26 juil. 2026 ; fourchettes = agrégation de sources marché. Document interne, non contractuel. Source de vérité tarifaire Salverys : <b>PRICING.md</b>.</p>
+    <div class="srcs">
+      <a href="https://www.gethumancall.fr/tarifs">GetHumanCall — tarifs</a>
+      <a href="https://www.optiserv.fr/call-center-madagascar-guide-pour-externaliser/">Optiserv — guide externalisation 2026</a>
+      <a href="https://centredappelmadagascar.wordpress.com/2026/03/16/tarifs-des-centres-dappel-a-madagascar-combien-ca-coute-vraiment/">Centre d'appel Madagascar — tarifs</a>
+      <a href="https://www.vivetic-group.com/en/">Vivetic Group</a>
+      <a href="https://www.asako.mg/blog/observatoire/600-000-ariary-par-mois-ce-que-gagne-reellement-un-agent-bpo-a-madagascar-en-2026">Asako — salaire réel agent BPO 2026</a>
+    </div>
+  </footer>
+</div>
