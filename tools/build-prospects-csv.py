@@ -107,6 +107,18 @@ def classer(v, niche_raw):
             return org, 'Client direct'
     return 'Non typé', 'Client direct'
 
+# Qui viser en 2e contact, après le dirigeant. Le DSI n'est le bon interlocuteur
+# que chez les clients finaux : chez une ESN, le DSI gère l'informatique interne,
+# pas le service desk vendu aux clients — c'est le dir. des opérations qui décide.
+ROLE_CONTACT2 = {
+    'ESN / MSP / infogérance': "Directeur des opérations / Resp. service desk",
+    'Éditeur SaaS / agence logicielle': "Head of Support / Directeur relation client",
+    "Télésecrétariat / centre d'appels": "Directeur d'exploitation / Resp. plateau",
+    'Bailleur social / immobilier': "DSI / CIO + Directeur relation locataires",
+    'Association / ONG': "DSI / CIO + Resp. relation donateurs",
+    'Organisme public / paritaire': "DSI / CIO",
+    'Cabinet / centre médical': "Médecin associé / Resp. du secrétariat",
+}
 ORDRE_NICHE = {'Support applicatif N1': 1, 'Helpdesk IT N1': 2, 'Télésecrétariat médical': 3}
 
 def key(name):
@@ -243,6 +255,30 @@ rows['x001'] = {
     'Sources': {'ESN-TARGETS.md'},
 }
 
+# ---------- source 5 : enrichissement téléphones (recherche web 2026-07-27) ----------
+ENRICH_TEL = {}
+try:
+    with open(BASE + 'exports/enrichissement-telephones.csv', encoding='utf-8-sig') as f:
+        for r in csv.DictReader(f, delimiter=';'):
+            ENRICH_TEL[r['ID'].strip()] = r
+except FileNotFoundError:
+    pass
+for rid, e in ENRICH_TEL.items():
+    tgt = rows.get(rid)
+    if not tgt:
+        continue
+    tgt['Sources'].add('enrichissement-web')
+    tgt['Standard'] = e['Standard'].strip()
+    tgt['Ligne directe'] = e['Ligne directe'].strip()
+    tgt['Mobile pro'] = e['Mobile pro'].strip()
+    tgt['Source tél.'] = e['Source'].strip()
+    tgt['Date vérif.'] = e['Date verif'].strip()
+    if e['Email societe'].strip() and not tgt['Email société']:
+        tgt['Email société'] = e['Email societe'].strip()
+    if e['Contact nom'].strip() and not tgt['Décideur']:
+        tgt['Décideur'] = e['Contact nom'].strip()
+        tgt['Titre décideur'] = tgt['Titre décideur'] or e['Contact titre'].strip()
+
 # ---------- doublons de nom ----------
 dupes = collections.defaultdict(list)
 for v in rows.values():
@@ -252,15 +288,35 @@ dupes = {k: ids for k, ids in dupes.items() if len(ids) > 1}
 # ---------- écriture ----------
 COLS = ['Marché', 'ID', 'Entreprise', 'Niche', 'Type de client', "Type d'organisation",
         'Niche (libellé CRM)', 'Statut', 'Score',
-        'Tél. dispo', 'Téléphone société', 'Téléphone décideur',
-        'Décideur', 'Titre décideur', 'Email société', 'Email décideur', 'LinkedIn décideur',
-        'Localisation', 'Secteur', 'Effectif', 'Site web', 'Canal',
+        # téléphonie — du plus utile au moins utile
+        'Meilleur tél.', 'Standard', 'Ligne directe', 'Mobile pro',
+        'Source tél.', 'Date vérif.', 'À enrichir',
+        # contact 1 — le dirigeant / décideur déjà identifié
+        'C1 — Nom', 'C1 — Titre', 'C1 — Email', 'C1 — Ligne directe', 'C1 — Mobile',
+        'C1 — LinkedIn',
+        # contact 2 — DSI/CIO ou responsable opérationnel selon le type d'organisation
+        'C2 — Rôle à viser', 'C2 — Nom', 'C2 — Titre', 'C2 — Email',
+        'C2 — Ligne directe', 'C2 — Mobile', 'C2 — LinkedIn',
+        'Email société', 'Localisation', 'Secteur', 'Effectif', 'Site web', 'Canal',
         "Signaux d'achat", 'Notes', 'Action']
 
 out = []
 for v in rows.values():
     niche = niche_of(v['NicheRaw'])
-    tel = (v['Téléphone société'] or v['Téléphone décideur']).strip()
+    standard = (v.get('Standard') or v['Téléphone société']).strip()
+    directe = (v.get('Ligne directe') or '').strip()
+    mobile = (v.get('Mobile pro') or '').strip()
+    c1_directe = v['Téléphone décideur'].strip()
+    # meilleur canal : mobile > ligne directe > standard
+    if mobile:
+        meilleur = 'Mobile pro'
+    elif directe or c1_directe:
+        meilleur = 'Ligne directe'
+    elif standard:
+        meilleur = 'Standard'
+    else:
+        meilleur = 'Aucun'
+    tel = standard or directe or mobile or c1_directe
     org, modele = classer(v, v['NicheRaw'])
     statut = v['Statut']
     if v['Notes'].lstrip().startswith('⚠️ DÉQUALIFIÉ'):
@@ -270,11 +326,18 @@ for v in rows.values():
         'Niche': niche, 'Type de client': modele, "Type d'organisation": org,
         'Niche (libellé CRM)': lib_crm(v['NicheRaw']),
         'Statut': statut, 'Score': v['Score'],
-        'Tél. dispo': 'Oui' if tel else 'Non',
-        'Téléphone société': v['Téléphone société'], 'Téléphone décideur': v['Téléphone décideur'],
-        'Décideur': v['Décideur'], 'Titre décideur': v['Titre décideur'],
-        'Email société': v['Email société'], 'Email décideur': v['Email décideur'],
-        'LinkedIn décideur': v['LinkedIn décideur'],
+        'Meilleur tél.': meilleur, 'Standard': standard,
+        'Ligne directe': directe, 'Mobile pro': mobile,
+        'Source tél.': v.get('Source tél.', ''), 'Date vérif.': v.get('Date vérif.', ''),
+        'À enrichir': {'Aucun': 'Oui — priorité 1 (aucun numéro)',
+                       'Standard': 'Oui — priorité 2 (standard seul)'}.get(meilleur, 'Non'),
+        'C1 — Nom': v['Décideur'], 'C1 — Titre': v['Titre décideur'],
+        'C1 — Email': v['Email décideur'], 'C1 — Ligne directe': c1_directe,
+        'C1 — Mobile': '', 'C1 — LinkedIn': v['LinkedIn décideur'],
+        'C2 — Rôle à viser': ROLE_CONTACT2.get(org, 'DSI / CIO'),
+        'C2 — Nom': '', 'C2 — Titre': '', 'C2 — Email': '',
+        'C2 — Ligne directe': '', 'C2 — Mobile': '', 'C2 — LinkedIn': '',
+        'Email société': v['Email société'],
         'Localisation': v['Localisation'], 'Secteur': v['Secteur'], 'Effectif': v['Effectif'],
         'Site web': v['Site web'], 'Canal': v['Canal'],
         "Signaux d'achat": v['Signaux'], 'Notes': v['Notes'], 'Action': v['Action'],
@@ -286,7 +349,8 @@ def score_num(s):
 
 out.sort(key=lambda r: (r['Type de client'] != 'Marque blanche',
                         ORDRE_NICHE.get(r['Niche'], 9), r['Marché'] != 'France',
-                        r['Tél. dispo'] != 'Oui', -score_num(r['Score']), r['Entreprise'].lower()))
+                        {'Mobile pro': 0, 'Ligne directe': 1, 'Standard': 2, 'Aucun': 3}[r['Meilleur tél.']],
+                        -score_num(r['Score']), r['Entreprise'].lower()))
 
 with open(OUT, 'w', encoding='utf-8-sig', newline='') as f:
     w = csv.DictWriter(f, fieldnames=COLS, delimiter=';', quoting=csv.QUOTE_ALL)
@@ -302,9 +366,16 @@ print('type de client  :', dict(collections.Counter(r['Type de client'] for r in
 print("type d'organisation :")
 for k, n in collections.Counter(r["Type d'organisation"] for r in out).most_common():
     print(f'    {k:36} {n:4}')
-print('avec téléphone  :', sum(1 for r in out if r['Tél. dispo'] == 'Oui'))
-print('avec email      :', sum(1 for r in out if r['Email société'] or r['Email décideur']))
-print('avec décideur   :', sum(1 for r in out if r['Décideur']))
+print('joignables      :', sum(1 for r in out if r['Meilleur tél.'] != 'Aucun'), '/', len(out))
+print('  dont mobile   :', sum(1 for r in out if r['Meilleur tél.'] == 'Mobile pro'))
+print('  ligne directe :', sum(1 for r in out if r['Meilleur tél.'] == 'Ligne directe'))
+print('  standard seul :', sum(1 for r in out if r['Meilleur tél.'] == 'Standard'))
+print('  aucun numéro  :', sum(1 for r in out if r['Meilleur tél.'] == 'Aucun'))
+print('avec email      :', sum(1 for r in out if r['Email société'] or r['C1 — Email']))
+print('avec décideur   :', sum(1 for r in out if r['C1 — Nom']))
 print('doublons de nom :', dupes if dupes else 'aucun')
-print('tel par niche   :', {n: sum(1 for r in out if r['Niche'] == n and r['Tél. dispo'] == 'Oui')
-                            for n in ORDRE_NICHE})
+print('à enrichir P1   :', sum(1 for r in out if r['À enrichir'].startswith('Oui — priorité 1')))
+print('à enrichir P2   :', sum(1 for r in out if r['À enrichir'].startswith('Oui — priorité 2')))
+print('joignables MB   :', sum(1 for r in out if r['Type de client'] == 'Marque blanche'
+                                and r['Meilleur tél.'] != 'Aucun'), '/',
+      sum(1 for r in out if r['Type de client'] == 'Marque blanche'))
