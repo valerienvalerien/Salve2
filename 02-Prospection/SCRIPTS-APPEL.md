@@ -15,6 +15,11 @@
 >
 > **Placeholders** : `{prenom}` = prénom de l'interlocuteur · `{structure}` =
 > nom du cabinet / de l'éditeur / de la DSI.
+>
+> 🎭 **Version parlée (niche IT)** : `SCRIPT-TELEPHONE-IT-parle.html` — même trame,
+> rédigée comme on parle (phrases courtes, langage courant), mise en page en dialogue
+> de théâtre avec les **silences** et les **réponses attendues** indiqués. C'est la
+> version à avoir sous les yeux pendant l'appel ; celle-ci reste la référence de fond.
 
 ---
 

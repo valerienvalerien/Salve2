@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Script téléphone IT — version parlée | Salverys</title>
+<style>
+  :root{
+    --bleu:#2E3B4E; --bleu-clair:#5B7F9E; --sauge:#6F8770; --or:#B89968;
+    --creme:#F6F2EA; --rouge:#B05C4A; --violet:#8A7A9B; --gris:#8A8275;
+    --ligne:#E7DFD1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',system-ui,sans-serif;
+    background:var(--creme);color:var(--bleu);
+    padding:28px 18px 80px;line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto}
+
+  header.top{margin-bottom:26px;border-bottom:3px solid var(--bleu);padding-bottom:16px}
+  header.top .kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);font-weight:700}
+  header.top h1{font-size:1.9rem;line-height:1.2;margin:6px 0 8px}
+  header.top p{color:var(--gris);font-size:.92rem;max-width:640px}
+
+  /* ---------- Légende ---------- */
+  .legende{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:28px;
+    box-shadow:0 2px 10px rgba(46,59,78,.08);border-left:6px solid var(--or)}
+  .legende h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--or);margin-bottom:12px}
+  .legende ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
+  @media(max-width:660px){.legende ul{grid-template-columns:1fr}}
+  .legende li{font-size:.86rem;display:flex;gap:9px;align-items:baseline}
+  .swatch{display:inline-block;width:11px;height:11px;border-radius:3px;flex:0 0 auto;position:relative;top:1px}
+
+  /* ---------- Sections ---------- */
+  section{margin-bottom:38px}
+  h2.sec{
+    font-size:1.15rem;background:var(--bleu);color:#fff;
+    padding:10px 16px;border-radius:10px;margin-bottom:18px;
+    display:flex;align-items:center;gap:10px
+  }
+  h2.sec .num{background:rgba(255,255,255,.18);border-radius:6px;padding:1px 9px;font-size:.85rem}
+  h3.sub{font-size:1rem;color:var(--bleu-clair);margin:26px 0 10px;
+    border-bottom:2px solid var(--ligne);padding-bottom:6px}
+  h3.sub .tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gris);font-weight:400;margin-left:6px}
+
+  /* ---------- Scène ---------- */
+  .scene{background:#fff;border-radius:14px;padding:20px 22px;
+    box-shadow:0 2px 10px rgba(46,59,78,.07);margin-bottom:16px}
+
+  .ligne{display:grid;grid-template-columns:78px 1fr;gap:14px;margin-bottom:11px;align-items:baseline}
+  @media(max-width:560px){.ligne{grid-template-columns:1fr;gap:2px}}
+  .qui{font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;text-align:right;padding-top:3px}
+  @media(max-width:560px){.qui{text-align:left}}
+
+  /* TOI = ce que tu dis */
+  .toi .qui{color:var(--bleu)}
+  .toi .txt{font-size:1.06rem;color:var(--bleu);font-weight:500}
+
+  /* LUI = réponse attendue */
+  .lui .qui{color:var(--sauge)}
+  .lui .txt{font-size:.95rem;color:var(--sauge);font-style:italic}
+  .lui .txt::before{content:"« ";}
+  .lui .txt::after{content:" »";}
+
+  /* Silence */
+  .silence{margin:12px 0 14px;padding:9px 14px;border-radius:9px;
+    background:rgba(176,92,74,.09);border-left:4px solid var(--rouge);
+    color:var(--rouge);font-size:.86rem;font-weight:600;letter-spacing:.01em}
+  .silence .dur{background:var(--rouge);color:#fff;border-radius:20px;padding:1px 9px;font-size:.72rem;margin-right:8px;font-weight:700}
+  .silence em{font-weight:400;font-style:normal;opacity:.85}
+
+  /* Didascalie (ton, jeu) */
+  .didas{margin:8px 0 12px 92px;font-size:.85rem;color:var(--violet);font-style:italic}
+  @media(max-width:560px){.didas{margin-left:0}}
+  .didas::before{content:"🎭 "}
+
+  /* Branche conditionnelle */
+  .si{margin:14px 0 8px;padding:6px 0 6px 14px;border-left:3px dashed var(--or);
+    font-size:.83rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--or)}
+
+  /* Interdits / obligations */
+  .jamais,.toujours{border-radius:9px;padding:11px 15px;font-size:.9rem;margin:12px 0}
+  .jamais{background:rgba(176,92,74,.08);border:1px solid rgba(176,92,74,.35);color:var(--rouge)}
+  .toujours{background:rgba(111,135,112,.09);border:1px solid rgba(111,135,112,.35);color:#4E6350}
+  .jamais b,.toujours b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+
+  /* Objection : en-tête */
+  .obj{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(46,59,78,.07);
+    margin-bottom:18px;overflow:hidden}
+  .obj > .head{background:rgba(111,135,112,.12);border-bottom:2px solid rgba(111,135,112,.3);
+    padding:12px 20px}
+  .obj > .head .n{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);font-weight:700}
+  .obj > .head .phrase{font-size:1.02rem;color:var(--sauge);font-style:italic;font-weight:600;margin-top:2px}
+  .obj > .body{padding:18px 22px 20px}
+
+  /* Ouvertures : cartouche */
+  .ouv-tag{display:inline-block;background:var(--or);color:#fff;font-size:.68rem;
+    letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:2px}
+
+  .note{font-size:.85rem;color:var(--gris);margin-top:10px}
+  code{background:rgba(46,59,78,.07);padding:1px 6px;border-radius:4px;font-size:.85em}
+
+  footer.bas{margin-top:44px;padding-top:16px;border-top:2px solid var(--ligne);
+    font-size:.8rem;color:var(--gris)}
+
+  @media print{
+    body{background:#fff;padding:0}
+    .scene,.obj,.legende{box-shadow:none;border:1px solid var(--ligne)}
+    section{page-break-inside:avoid}
+    h2.sec{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Salverys · Prospection téléphonique · Niche IT</div>
+  <h1>Script téléphone — version parlée</h1>
+  <p>Même contenu que le script écrit, mais rédigé comme on parle : phrases courtes,
+  vocabulaire de tous les jours, silences indiqués. À lire à voix haute avant d'appeler.
+  Remplace <code>{prenom}</code> par le prénom de l'interlocuteur et <code>{structure}</code>
+  par le nom de sa boîte.</p>
+</header>
+
+<!-- ====================== LÉGENDE ====================== -->
+<div class="legende">
+  <h2>Comment lire ce script</h2>
+  <ul>
+    <li><span class="swatch" style="background:#2E3B4E"></span><b style="color:#2E3B4E">TOI</b> — ce que tu dis, mot pour mot.</li>
+    <li><span class="swatch" style="background:#6F8770"></span><b style="color:#6F8770">LUI / ELLE</b> — la réponse attendue.</li>
+    <li><span class="swatch" style="background:#B05C4A"></span><b style="color:#B05C4A">⏸ SILENCE</b> — tu te tais. La durée est indiquée.</li>
+    <li><span class="swatch" style="background:#8A7A9B"></span><b style="color:#8A7A9B">🎭 Didascalie</b> — le ton, le rythme, l'intention.</li>
+    <li><span class="swatch" style="background:#B89968"></span><b style="color:#B89968">SI…</b> — la branche à prendre selon sa réponse.</li>
+    <li><span class="swatch" style="background:#B05C4A"></span><b style="color:#B05C4A">⛔ / ✅</b> — à ne jamais dire / à dire absolument.</li>
+  </ul>
+</div>
+
+<!-- ====================== RÈGLES DU JEU ====================== -->
+<section>
+  <h2 class="sec"><span class="num">0</span> Les règles du jeu (à relire avant chaque session)</h2>
+  <div class="scene">
+    <div class="toujours"><b>✅ Toujours</b>
+      Parle lentement. Plus lentement que tu ne le crois. Fais des phrases de 8 mots.
+      Descends la voix à la fin de tes phrases — même sur les questions. Une voix qui monte,
+      c'est une voix qui demande la permission.</div>
+    <div class="toujours"><b>✅ Toujours</b>
+      Après ta question, tu te tais. Toujours. Le silence, c'est ton meilleur outil :
+      c'est lui qui fait parler l'autre. Compte dans ta tête si besoin.</div>
+    <div class="jamais"><b>⛔ Jamais</b>
+      « Je sais que vous êtes très occupé », « je ne vais pas vous déranger longtemps »,
+      « est-ce que je tombe bien ? » — tu t'excuses d'exister, il raccroche.</div>
+    <div class="jamais"><b>⛔ Jamais</b>
+      Deux questions à la suite. Une question, un silence, une réponse. Puis la suivante.</div>
+    <div class="note">Objectif de l'appel : <b>obtenir 20 minutes</b>. Rien d'autre.
+    Pas de prix, pas de démo, pas de contrat. Juste le créneau.</div>
+  </div>
+</section>
+
+<!-- ====================== OUVERTURES ====================== -->
+<section>
+  <h2 class="sec"><span class="num">1</span> Les 4 ouvertures — choisis selon le prospect</h2>
+
+  <!-- OUVERTURE A -->
+  <h3 class="sub">Ouverture A — équipes techniques débordées <span class="tag">le cas le plus fréquent</span></h3>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Bonjour, {prenom} ?</div></div>
+    <div class="silence"><span class="dur">⏸ 1 sec</span>Tu attends son « oui ». <em>Ne parle pas par-dessus.</em></div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Lola, de chez Salverys. Je vous prends 30 secondes.</div></div>
+    <div class="didas">Ton posé, un peu souriant. Tu annonces, tu ne demandes pas.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">On aide les boîtes IT à tenir leur support de premier niveau. Le but, c'est que vos techniciens restent sur les vrais sujets techniques.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et ce qu'on m'explique souvent, c'est que les techniciens passent leurs journées sur des demandes qui reviennent tout le temps. Du coup les projets traînent, et l'équipe tire la langue.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Chez vous, c'est pareil ?</div></div>
+
+    <div class="silence"><span class="dur">⏸ 3 sec</span>Silence long. C'est à lui de parler. <em>Ne comble surtout pas le blanc.</em></div>
+
+    <div class="ligne lui"><div class="qui">Lui</div><div class="txt">Oui, un peu / Non, ça va / C'est quoi Salverys ?</div></div>
+    <div class="si">Quelle que soit sa réponse → tu passes en qualification (étape 2).</div>
+  </div>
+
+  <!-- OUVERTURE B -->
+  <h3 class="sub">Ouverture B — délais de réponse difficiles à tenir <span class="tag">prestataires avec SLA clients</span></h3>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Bonjour, {prenom} ?</div></div>
+    <div class="silence"><span class="dur">⏸ 1 sec</span>Il répond.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Lola, de Salverys. On renforce le support de premier niveau des prestataires IT, sans qu'ils aient à recruter.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je discute souvent avec des dirigeants qui n'arrivent plus à tenir leurs délais de réponse. Dès qu'il y a un pic, ou quelqu'un en congé, ça décroche.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je me demandais si ça vous parlait.</div></div>
+
+    <div class="silence"><span class="dur">⏸ 3 sec</span>Tu ne bouges pas.</div>
+    <div class="didas">« Je me demandais si ça vous parlait » est volontairement mou : ça enlève la pression et il répond plus honnêtement.</div>
+  </div>
+
+  <!-- OUVERTURE C -->
+  <h3 class="sub">Ouverture C — la croissance est bloquée <span class="tag">boîtes qui recrutent / lèvent / grossissent</span></h3>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Bonjour, {prenom} ?</div></div>
+    <div class="silence"><span class="dur">⏸ 1 sec</span>Il répond.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Lola, de Salverys. On prend en charge une partie du support utilisateur des boîtes IT, pour qu'elles puissent continuer à grossir sans écraser leurs équipes.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et il y a un truc qui revient souvent : ce qui freine, c'est plus la capacité du support que le manque de clients.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ça vous parle ?</div></div>
+
+    <div class="silence"><span class="dur">⏸ 3 sec</span>À lui.</div>
+  </div>
+
+  <!-- OUVERTURE D -->
+  <h3 class="sub">Ouverture D — recrutement compliqué <span class="tag">quand tu vois des offres d'emploi ouvertes depuis des mois</span></h3>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Bonjour, {prenom} ?</div></div>
+    <div class="silence"><span class="dur">⏸ 1 sec</span>Il répond.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Lola, de Salverys. On prend une partie du support de premier niveau des boîtes IT, pour leur donner de la souplesse au quotidien.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ce qu'on entend beaucoup en ce moment : c'est devenu très dur de recruter des profils support. Et encore plus dur de les garder.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous faites comment, vous, aujourd'hui ?</div></div>
+
+    <div class="silence"><span class="dur">⏸ 4 sec</span>Question ouverte : il va parler longtemps. Laisse-le. <em>Prends des notes.</em></div>
+  </div>
+</section>
+
+<!-- ====================== QUALIFICATION ====================== -->
+<section>
+  <h2 class="sec"><span class="num">2</span> Qualification — une question, un silence</h2>
+  <div class="scene">
+    <div class="didas">Quatre questions, dans cet ordre. Jamais deux d'affilée. Tu notes ses réponses, tu t'en resserviras à l'étape 3.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Votre support, il est organisé comment aujourd'hui ?</div></div>
+    <div class="silence"><span class="dur">⏸ jusqu'au bout</span>Il déroule. <em>Ne l'interromps pas, même s'il part loin.</em></div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">D'accord. Et vous êtes combien à traiter les demandes de premier niveau ?</div></div>
+    <div class="silence"><span class="dur">⏸ 2 sec</span>Note le chiffre.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et quand ça charge — un pic, une absence — vous absorbez, ou ça déborde ?</div></div>
+    <div class="silence"><span class="dur">⏸ 3 sec</span>C'est LA question. Ne la sauve pas avec une deuxième phrase.</div>
+
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et si vous deviez citer un seul truc pénible sur le support aujourd'hui, ce serait quoi ?</div></div>
+    <div class="silence"><span class="dur">⏸ 4 sec</span>Laisse le blanc s'installer. C'est là qu'il dit la vraie raison.</div>
+
+    <div class="toujours"><b>✅ Reformule avant de continuer</b>
+      « Donc si je résume : vous êtes trois sur le N1, et dès qu'il y en a un absent, les délais partent. C'est ça ? » — puis tu attends son « oui ».</div>
+  </div>
+</section>
+
+<!-- ====================== POSITIONNEMENT ====================== -->
+<section>
+  <h2 class="sec"><span class="num">3</span> Ce qu'on fait — 20 secondes, pas plus</h2>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est exactement là-dessus qu'on travaille.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Nous, on vient en renfort. On prend une partie du premier niveau, avec vos outils et votre façon de faire.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vos équipes gardent la main. Elles récupèrent juste du temps pour les sujets qui comptent vraiment.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et vous, vous répondez plus vite.</div></div>
+
+    <div class="jamais"><b>⛔ Jamais à ce stade</b>
+      Un prix. Un tarif. Un « ça commence à… ». Le prix se discute au rendez-vous, avec les
+      bons chiffres en face. Au téléphone, un prix sorti sans contexte tue l'appel.</div>
+    <div class="jamais"><b>⛔ Jamais</b>
+      Un monologue de 2 minutes sur Salverys, Madagascar, l'équipe, l'historique. Il s'en fiche.
+      Quatre phrases, puis tu passes au rendez-vous.</div>
+  </div>
+</section>
+
+<!-- ====================== RDV ====================== -->
+<section>
+  <h2 class="sec"><span class="num">4</span> La prise de rendez-vous</h2>
+  <div class="scene">
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Le plus simple, c'est 20 minutes avec notre responsable partenariats. Il vous montre concrètement comment on intervient, et vous voyez si ça colle chez vous.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous êtes plutôt mardi matin, ou mercredi après-midi ?</div></div>
+
+    <div class="silence"><span class="dur">⏸ tant qu'il faut</span>Le premier qui parle a perdu. <em>Tu attends. Même si c'est long. Même si c'est gênant.</em></div>
+
+    <div class="ligne lui"><div class="qui">Lui</div><div class="txt">Mardi, plutôt.</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Parfait. 10h ou 11h ?</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je vous envoie l'invitation tout de suite. C'est bien {prenom}@… votre adresse ?</div></div>
+    <div class="didas">Tu verrouilles le mail dans la foulée, tant qu'il est encore d'accord. Un RDV sans invitation envoyée n'existe pas.</div>
+
+    <div class="jamais"><b>⛔ Jamais</b>
+      « Quand est-ce que vous seriez disponible ? » — c'est une porte de sortie. Toujours deux
+      créneaux fermés, et jamais plus de deux.</div>
+  </div>
+</section>
+
+<!-- ====================== OBJECTIONS ====================== -->
+<section>
+  <h2 class="sec"><span class="num">5</span> Les 12 objections</h2>
+
+  <!-- 1 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 1</div><div class="phrase">On a déjà une équipe support.</div></div>
+    <div class="body">
+      <div class="didas">Ton détendu, presque amusé. Surtout pas défensif.</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Oui, bien sûr. C'est le cas de quasiment tout le monde.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Juste par curiosité : les grosses semaines, elle les absorbe tranquillement, ou il y a des moments plus compliqués ?</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span>Ne réponds pas à sa place.</div>
+
+      <div class="si">SI il reconnaît une difficulté</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Voilà, c'est exactement là qu'on intervient.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">L'idée, c'est pas de changer votre organisation. C'est juste de vous donner de l'air quand ça charge.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Mardi matin ou mercredi après-midi ?</div></div>
+
+      <div class="si">SI il dit que tout va bien</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Tant mieux. Alors ça vaut peut-être 20 minutes juste pour comparer avec ce que font les autres boîtes du secteur.</div></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 2</div><div class="phrase">On travaille déjà avec un prestataire.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Très bien.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous en êtes pleinement content, ou il vous arrive de chercher autre chose à côté selon les besoins ?</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span>Tout se joue ici. <em>Une hésitation, un « ça dépend », un soupir : c'est une ouverture.</em></div>
+
+      <div class="si">SI il hésite</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je comprends.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Le but, c'est pas de remplacer quelqu'un qui fonctionne. C'est juste de vous montrer une autre façon de faire, au cas où ça couvre des besoins que lui ne couvre pas.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ça vaut 20 minutes, non ?</div></div>
+      <div class="silence"><span class="dur">⏸ 2 sec</span></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 3</div><div class="phrase">On n'a pas besoin.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">D'accord.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Juste par curiosité : qu'est-ce qui fait que c'est pas un sujet aujourd'hui ?</div></div>
+      <div class="silence"><span class="dur">⏸ 5 sec</span>Le plus long silence du script. <em>Laisse-le aller au bout. C'est là qu'il te donne la vraie info.</em></div>
+
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est justement ce que je voulais vérifier.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je cherche pas à vous vendre quoi que ce soit aujourd'hui. Je veux juste savoir si, dans trois ou six mois, ça peut vous servir.</div></div>
+      <div class="didas">Tu enlèves toute la pression. Souvent, c'est là qu'il accepte le rendez-vous.</div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 4</div><div class="phrase">On gère tout en interne.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Très bien. Beaucoup de nos partenaires faisaient pareil.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ce qui les a fait bouger, c'est surtout une chose : ils voulaient arrêter de mettre leurs bons techniciens sur les demandes les plus répétitives.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous y avez déjà pensé, vous ?</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 5</div><div class="phrase">On n'a pas le budget.</div></div>
+    <div class="body">
+      <div class="jamais"><b>⛔ Ne réponds jamais sur le prix</b>
+        Pas de chiffre, pas de « on peut s'adapter », pas de remise. Le budget n'est presque
+        jamais le vrai sujet.</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je comprends.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est vraiment une question de budget, ou c'est juste pas la priorité en ce moment ?</div></div>
+      <div class="silence"><span class="dur">⏸ 4 sec</span>Question binaire : il doit choisir. <em>Tu ne l'aides pas.</em></div>
+
+      <div class="si">SI c'est une priorité</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Justement. Le rendez-vous sert à voir s'il y a un intérêt financier ou pas.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Après, vous décidez en connaissance de cause. Ça vous coûte 20 minutes.</div></div>
+
+      <div class="si">SI c'est pas la priorité</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">D'accord. Ce serait quoi, la priorité en ce moment ?</div></div>
+      <div class="didas">Tu écoutes : soit tu raccroches ton offre dessus, soit tu cales un rappel daté.</div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 6</div><div class="phrase">Envoyez-moi un mail.</div></div>
+    <div class="body">
+      <div class="didas">La plus fréquente. Dans 9 cas sur 10, c'est une façon polie de raccrocher.</div>
+      <div class="jamais"><b>⛔ Ne dis jamais</b>
+        « Oui bien sûr, je vous envoie ça. » — l'appel est mort.</div>
+
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Avec plaisir.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Juste une question avant, pour vous envoyer un truc utile et pas un catalogue.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Votre support, il tourne plutôt pour des PME, ou pour des grands comptes ?</div></div>
+      <div class="silence"><span class="dur">⏸ 2 sec</span>Il répond — et vous voilà de nouveau en conversation.</div>
+
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Parfait, merci. J'adapte.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Après, un document ça répond jamais à tout. On prend plutôt 20 minutes pour le regarder ensemble ?</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Mardi ou mercredi ?</div></div>
+      <div class="silence"><span class="dur">⏸ tant qu'il faut</span></div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 7</div><div class="phrase">Je suis en réunion.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Pas de souci. Je vous prends 15 secondes.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Si ça vous parle pas, je vous laisse tout de suite.</div></div>
+      <div class="silence"><span class="dur">⏸ 1 sec</span>Une seconde, pas plus. <em>Puis tu enchaînes ton ouverture, en version courte.</em></div>
+
+      <div class="si">SI il refuse quand même</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ce serait quoi le meilleur moment pour vous rappeler ? Aujourd'hui, ou demain ?</div></div>
+      <div class="didas">Deux options fermées. Jamais « quand voulez-vous ? ».</div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 8</div><div class="phrase">Ce n'est pas moi qui m'occupe de ça.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">D'accord, merci.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est qui qui gère ce sujet chez vous ?</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span>Il donne un nom. <em>Note l'orthographe exacte.</em></div>
+
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Super. Vous pouvez me mettre en relation ?</div></div>
+      <div class="silence"><span class="dur">⏸ 2 sec</span></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Et je peux lui dire que ça vient de vous ?</div></div>
+      <div class="didas">Cette dernière phrase vaut de l'or : elle transforme un appel à froid en appel recommandé.</div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 9</div><div class="phrase">On ne recrute pas en ce moment.</div></div>
+    <div class="body">
+      <div class="jamais"><b>⛔ Ne dis jamais</b>
+        « Je ne vous appelle pas pour un recrutement. » — tu te places en négatif et tu perds la main.</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Justement.</div></div>
+      <div class="didas">Marque un temps après ce mot. Il fait tout le travail.</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">La plupart des boîtes qu'on accompagne veulent surtout éviter de recruter. Mais sans perdre en qualité de service.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est exactement pour ça que je vous appelle.</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span></div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 10</div><div class="phrase">Rappelez-moi plus tard.</div></div>
+    <div class="body">
+      <div class="jamais"><b>⛔ Ne dis jamais</b>
+        « D'accord, je vous rappelle. » — tu n'as rien, et tu rappelleras dans le vide.</div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Avec plaisir.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Pour pas vous déranger deux fois : c'est quel jour, et à quelle heure ?</div></div>
+      <div class="silence"><span class="dur">⏸ tant qu'il faut</span>Tu veux une date et une heure. <em>« La semaine prochaine », c'est pas une date — relance : « plutôt lundi ou jeudi ? »</em></div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 11</div><div class="phrase">On est trop petits pour ça.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Merci d'être direct.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous êtes combien sur le support aujourd'hui ?</div></div>
+      <div class="silence"><span class="dur">⏸ 2 sec</span>Il donne un chiffre.</div>
+
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">D'accord, je comprends.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Franchement, c'est souvent les petites équipes qui prennent le plus cher. Il suffit d'un absent ou d'un pic de tickets, et tout le monde court.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Ça vaut peut-être quelques minutes juste pour voir les options ?</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span></div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="obj">
+    <div class="head"><div class="n">Objection 12</div><div class="phrase">On est très contents de notre fonctionnement.</div></div>
+    <div class="body">
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Tant mieux, c'est une bonne nouvelle.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Juste par curiosité : vous regardez quoi comme indicateur ? Les délais de réponse, la satisfaction client, ou la charge des équipes ?</div></div>
+      <div class="silence"><span class="dur">⏸ 4 sec</span>Trois options : il en choisit une, et il te dit où il regarde vraiment.</div>
+
+      <div class="ligne lui"><div class="qui">Lui</div><div class="txt">Surtout les délais de réponse.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">C'est intéressant, justement.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Le but du rendez-vous, c'est pas de remettre en cause ce qui marche. C'est de comparer avec ce que font d'autres boîtes du secteur.</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">S'il y a rien à gagner, on vous le dira.</div></div>
+      <div class="silence"><span class="dur">⏸ 3 sec</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ANTISÈCHE ====================== -->
+<section>
+  <h2 class="sec"><span class="num">6</span> L'anti-sèche — à coller devant toi</h2>
+  <div class="scene">
+    <div class="toujours"><b>✅ Les 5 phrases qui sauvent un appel</b>
+      « Juste par curiosité… » · « Justement. » · « Je comprends. » ·
+      « C'est exactement pour ça que je vous appelle. » · « Mardi matin ou mercredi après-midi ? »</div>
+    <div class="jamais"><b>⛔ Les 5 phrases qui tuent un appel</b>
+      « Je sais que vous êtes occupé » · « Oui bien sûr, je vous envoie un mail » ·
+      « D'accord, je vous rappelle » · « Je ne vous appelle pas pour… » ·
+      « Quand seriez-vous disponible ? »</div>
+    <div class="silence"><span class="dur">⏸ RÈGLE D'OR</span>Tu poses une question → tu te tais. <em>Celui qui parle en premier après une question a perdu.</em></div>
+  </div>
+</section>
+
+<footer class="bas">
+  Salverys — usage interne prospection. Version parlée du script d'appel IT.
+  Script écrit complet (3 niches, chiffres, garde-fous) : <code>02-Prospection/SCRIPTS-APPEL.md</code>.
+  Prix et conditions : <code>PRICING.md</code> — jamais de chiffre au téléphone.
+</footer>
+
+</div>
+</body>
+</html>
