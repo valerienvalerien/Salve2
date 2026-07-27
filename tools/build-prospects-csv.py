@@ -29,6 +29,84 @@ LIB_CRM = {
 }
 # Marque blanche explicite : marqueur « MB | » en tête de notes, ou niche donneur d'ordre
 NICHE_MB = {'helpdesk-it-esn', 'helpdesk it — esn/msp', 'telesec-mb', 'télésecrétariat — marque blanche'}
+
+# ─── Type d'organisation → détermine marque blanche vs client direct ───
+# Donneur d'ordre = a ses PROPRES clients, on travaille sous sa marque.
+# Client direct  = n'a que ses usagers (locataires, patients, allocataires, donateurs).
+# Règle d'or : on classe sur ce que l'organisation EST (champ Secteur, libellé de
+# niche, marqueur MB), jamais sur ce que les notes disent de son BESOIN — « télésec
+# probable » décrit un besoin, pas un métier.
+
+# Libellés de niche propres à un type d'organisation (Canada = MSP et éditeurs)
+NICHE_ORG = {
+    'telesec-mb': ("Télésecrétariat / centre d'appels", 'Marque blanche'),
+    'télésecrétariat — marque blanche': ("Télésecrétariat / centre d'appels", 'Marque blanche'),
+    'telemed': ('Cabinet / centre médical', 'Client direct'),
+    'télésecrétariat médical': ('Cabinet / centre médical', 'Client direct'),
+    'helpdesk-it-esn': ('ESN / MSP / infogérance', 'Marque blanche'),
+    'helpdesk it — esn/msp': ('ESN / MSP / infogérance', 'Marque blanche'),
+    'helpdesk it': ('ESN / MSP / infogérance', 'Marque blanche'),
+    'support n1 saas': ('Éditeur SaaS / agence logicielle', 'Marque blanche'),
+    'support applicatif': ('Éditeur SaaS / agence logicielle', 'Marque blanche'),
+}
+# Métiers reconnus dans le champ Secteur (ce que la boîte fait)
+SECTEUR_RULES = [
+    ('ESN / MSP / infogérance', 'Marque blanche', (
+        'msp', 'infogérance', 'intégrateur', 'esn', 'services ti', 'services gérés',
+        'service desk', 'mssp', 'externalisation de support', 'conseil ti',
+        'prestataire it', 'infogerance')),
+    ("Télésecrétariat / centre d'appels", 'Marque blanche', (
+        'télésecrétariat', 'telesecretariat', "centre d'appels", 'permanence téléphonique')),
+    ('Éditeur SaaS / agence logicielle', 'Marque blanche', (
+        'éditeur', 'saas', 'logiciel', 'agence', 'développement')),
+]
+# Marqueurs explicites de sous-traitance posés dans les fiches
+MB_MARKERS = ('mb |', 'mb partenariat', 'mb francophone', 'marque blanche',
+              "donneur d'ordre", "donneur d'ordres", 'sous leur marque', 'sous-traitance')
+# Entités clientes finales, reconnues dans les notes quand le Secteur est vide
+ENTITE_RULES = [
+    ('Bailleur social / immobilier', (
+        'bailleur', 'locataire', 'esh ', 'oph ', 'habitat', 'logement', 'résidences',
+        'foyers travailleurs', 'parc locatif')),
+    ('Association / ONG', (
+        'association', 'fondation', 'ong', 'humanitaire', 'donateur', 'bénévole',
+        'solidarité', 'secours', 'caritas', 'emmaüs', 'croix-rouge', 'exclusion',
+        'hébergement urgence', 'fédération', 'compagnons', 'bénéficiaires')),
+    ('Organisme public / paritaire', (
+        'urssaf', 'caf ', 'allocations familiales', 'france travail', 'pôle emploi',
+        'service public', 'caisse nationale', 'caisse des dépôts', 'sncf',
+        'action logement', 'collectivité', 'agences')),
+]
+
+def classer(v, niche_raw):
+    """Renvoie (type d'organisation, type de client)."""
+    raw = (niche_raw or '').strip().lower()
+    if raw in NICHE_ORG:                                   # 1. le libellé de niche tranche
+        return NICHE_ORG[raw]
+    secteur = (v.get('Secteur') or '').lower()
+    if secteur.strip():                                    # 2. le métier déclaré
+        for org, modele, mots in SECTEUR_RULES:
+            if any(m in secteur for m in mots):
+                return org, modele
+    notes = (v.get('Notes') or '')
+    contexte = (notes + ' ' + (v.get('Signaux') or '')).lower()
+    if any(m in contexte for m in MB_MARKERS):             # 3. marqueur MB explicite
+        for org, modele, mots in SECTEUR_RULES:
+            if any(m in contexte for m in mots):
+                return org, modele
+        # sous-traitant sans métier explicite : la niche dit lequel des deux
+        niche = niche_of(niche_raw)
+        if niche == 'Support applicatif N1':
+            return 'Éditeur SaaS / agence logicielle', 'Marque blanche'
+        if niche == 'Helpdesk IT N1':
+            return 'ESN / MSP / infogérance', 'Marque blanche'
+        return "Donneur d'ordre (à typer)", 'Marque blanche'
+    contexte += ' ' + (v.get('Entreprise') or '').lower()
+    for org, mots in ENTITE_RULES:                         # 4. entité cliente finale
+        if any(m in contexte for m in mots):
+            return org, 'Client direct'
+    return 'Non typé', 'Client direct'
+
 ORDRE_NICHE = {'Support applicatif N1': 1, 'Helpdesk IT N1': 2, 'Télésecrétariat médical': 3}
 
 def key(name):
@@ -172,7 +250,8 @@ for v in rows.values():
 dupes = {k: ids for k, ids in dupes.items() if len(ids) > 1}
 
 # ---------- écriture ----------
-COLS = ['Marché', 'ID', 'Entreprise', 'Niche', 'Niche (libellé CRM)', 'Modèle', 'Statut', 'Score',
+COLS = ['Marché', 'ID', 'Entreprise', 'Niche', 'Type de client', "Type d'organisation",
+        'Niche (libellé CRM)', 'Statut', 'Score',
         'Tél. dispo', 'Téléphone société', 'Téléphone décideur',
         'Décideur', 'Titre décideur', 'Email société', 'Email décideur', 'LinkedIn décideur',
         'Localisation', 'Secteur', 'Effectif', 'Site web', 'Canal',
@@ -182,14 +261,15 @@ out = []
 for v in rows.values():
     niche = niche_of(v['NicheRaw'])
     tel = (v['Téléphone société'] or v['Téléphone décideur']).strip()
-    raw = v['NicheRaw'].strip().lower()
-    modele = ('Marque blanche'
-              if v['Notes'].strip().startswith('MB |') or raw in NICHE_MB
-              else 'Direct / à confirmer')
+    org, modele = classer(v, v['NicheRaw'])
+    statut = v['Statut']
+    if v['Notes'].lstrip().startswith('⚠️ DÉQUALIFIÉ'):
+        statut = 'déqualifié'
     out.append({
         'Marché': v['Marché'], 'ID': v['ID'], 'Entreprise': v['Entreprise'],
-        'Niche': niche, 'Niche (libellé CRM)': lib_crm(v['NicheRaw']), 'Modèle': modele,
-        'Statut': v['Statut'], 'Score': v['Score'],
+        'Niche': niche, 'Type de client': modele, "Type d'organisation": org,
+        'Niche (libellé CRM)': lib_crm(v['NicheRaw']),
+        'Statut': statut, 'Score': v['Score'],
         'Tél. dispo': 'Oui' if tel else 'Non',
         'Téléphone société': v['Téléphone société'], 'Téléphone décideur': v['Téléphone décideur'],
         'Décideur': v['Décideur'], 'Titre décideur': v['Titre décideur'],
@@ -204,7 +284,8 @@ def score_num(s):
     try: return float(str(s).replace(',', '.'))
     except (ValueError, TypeError): return -1
 
-out.sort(key=lambda r: (ORDRE_NICHE.get(r['Niche'], 9), r['Marché'] != 'France',
+out.sort(key=lambda r: (r['Type de client'] != 'Marque blanche',
+                        ORDRE_NICHE.get(r['Niche'], 9), r['Marché'] != 'France',
                         r['Tél. dispo'] != 'Oui', -score_num(r['Score']), r['Entreprise'].lower()))
 
 with open(OUT, 'w', encoding='utf-8-sig', newline='') as f:
@@ -217,7 +298,10 @@ print('→', OUT)
 print('total prospects :', len(out))
 print('par marché      :', dict(collections.Counter(r['Marché'] for r in out)))
 print('par niche       :', dict(collections.Counter(r['Niche'] for r in out)))
-print('par modèle      :', dict(collections.Counter(r['Modèle'] for r in out)))
+print('type de client  :', dict(collections.Counter(r['Type de client'] for r in out)))
+print("type d'organisation :")
+for k, n in collections.Counter(r["Type d'organisation"] for r in out).most_common():
+    print(f'    {k:36} {n:4}')
 print('avec téléphone  :', sum(1 for r in out if r['Tél. dispo'] == 'Oui'))
 print('avec email      :', sum(1 for r in out if r['Email société'] or r['Email décideur']))
 print('avec décideur   :', sum(1 for r in out if r['Décideur']))
