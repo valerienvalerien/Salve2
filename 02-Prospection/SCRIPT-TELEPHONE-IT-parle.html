@@ -98,6 +98,16 @@
   .ouv-tag{display:inline-block;background:var(--or);color:#fff;font-size:.68rem;
     letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:2px}
 
+  /* Grille des créneaux */
+  table.creneaux{width:100%;border-collapse:collapse;margin:14px 0 6px;font-size:.9rem}
+  table.creneaux th{background:var(--bleu);color:#fff;text-align:left;padding:8px 12px;
+    font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+  table.creneaux td{padding:8px 12px;border-bottom:1px solid var(--ligne)}
+  table.creneaux tr:last-child td{border-bottom:none}
+  table.creneaux td:first-child{font-weight:700;color:var(--bleu);width:118px}
+  table.creneaux td:last-child{color:var(--bleu-clair)}
+  table.creneaux tr.we td{background:rgba(184,153,104,.10)}
+
   .note{font-size:.85rem;color:var(--gris);margin-top:10px}
   code{background:rgba(46,59,78,.07);padding:1px 6px;border-radius:4px;font-size:.85em}
 
@@ -268,18 +278,37 @@
   <h2 class="sec"><span class="num">4</span> La prise de rendez-vous</h2>
   <div class="scene">
     <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Le plus simple, c'est 20 minutes avec notre responsable partenariats. Il vous montre concrètement comment on intervient, et vous voyez si ça colle chez vous.</div></div>
-    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous êtes plutôt mardi matin, ou mercredi après-midi ?</div></div>
+    <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Vous êtes plutôt demain matin, ou jeudi après-midi ?</div></div>
 
     <div class="silence"><span class="dur">⏸ tant qu'il faut</span>Le premier qui parle a perdu. <em>Tu attends. Même si c'est long. Même si c'est gênant.</em></div>
 
-    <div class="ligne lui"><div class="qui">Lui</div><div class="txt">Mardi, plutôt.</div></div>
+    <div class="ligne lui"><div class="qui">Lui</div><div class="txt">Demain, plutôt.</div></div>
     <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Parfait. 10h ou 11h ?</div></div>
     <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Je vous envoie l'invitation tout de suite. C'est bien {prenom}@… votre adresse ?</div></div>
     <div class="didas">Tu verrouilles le mail dans la foulée, tant qu'il est encore d'accord. Un RDV sans invitation envoyée n'existe pas.</div>
 
+    <div class="toujours"><b>✅ Surfe sur la vague : lendemain ou surlendemain</b>
+      Il vient de te dire son problème, il est chaud maintenant. Chaque jour d'attente fait
+      retomber la pression — et grimper le no-show. Tu proposes toujours les deux prochains
+      jours ouvrés, jamais « la semaine prochaine ».</div>
+
+    <table class="creneaux">
+      <tr><th>Tu appelles un…</th><th>Tu proposes</th></tr>
+      <tr><td>Lundi</td><td>demain matin, ou mercredi après-midi</td></tr>
+      <tr><td>Mardi</td><td>demain matin, ou jeudi après-midi</td></tr>
+      <tr><td>Mercredi</td><td>demain matin, ou vendredi après-midi</td></tr>
+      <tr class="we"><td>Jeudi</td><td>demain matin, ou mardi après-midi</td></tr>
+      <tr class="we"><td>Vendredi</td><td>lundi matin, ou mardi après-midi</td></tr>
+    </table>
+    <div class="note">En fin de semaine, le surlendemain tombe sur le week-end : tu bascules
+    sur <b>mardi</b>. Jamais plus de 4 jours ouvrés entre l'appel et le rendez-vous.</div>
+
     <div class="jamais"><b>⛔ Jamais</b>
       « Quand est-ce que vous seriez disponible ? » — c'est une porte de sortie. Toujours deux
       créneaux fermés, et jamais plus de deux.</div>
+    <div class="jamais"><b>⛔ Jamais</b>
+      « La semaine prochaine », « on se rappelle pour caler ». Une date, une heure, une
+      invitation envoyée pendant l'appel — sinon le rendez-vous n'existe pas.</div>
   </div>
 </section>
 
@@ -299,7 +328,8 @@
       <div class="si">SI il reconnaît une difficulté</div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Voilà, c'est exactement là qu'on intervient.</div></div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">L'idée, c'est pas de changer votre organisation. C'est juste de vous donner de l'air quand ça charge.</div></div>
-      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Mardi matin ou mercredi après-midi ?</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Demain matin ou jeudi après-midi ?</div></div>
+      <div class="didas">Adapte selon le jour où tu appelles — voir la grille des créneaux (étape 4).</div>
 
       <div class="si">SI il dit que tout va bien</div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Tant mieux. Alors ça vaut peut-être 20 minutes juste pour comparer avec ce que font les autres boîtes du secteur.</div></div>
@@ -383,7 +413,7 @@
 
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Parfait, merci. J'adapte.</div></div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Après, un document ça répond jamais à tout. On prend plutôt 20 minutes pour le regarder ensemble ?</div></div>
-      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Mardi ou mercredi ?</div></div>
+      <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Demain ou jeudi ?</div></div>
       <div class="silence"><span class="dur">⏸ tant qu'il faut</span></div>
     </div>
   </div>
@@ -439,7 +469,7 @@
         « D'accord, je vous rappelle. » — tu n'as rien, et tu rappelleras dans le vide.</div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Avec plaisir.</div></div>
       <div class="ligne toi"><div class="qui">Toi</div><div class="txt">Pour pas vous déranger deux fois : c'est quel jour, et à quelle heure ?</div></div>
-      <div class="silence"><span class="dur">⏸ tant qu'il faut</span>Tu veux une date et une heure. <em>« La semaine prochaine », c'est pas une date — relance : « plutôt lundi ou jeudi ? »</em></div>
+      <div class="silence"><span class="dur">⏸ tant qu'il faut</span>Tu veux une date et une heure. <em>« La semaine prochaine », c'est pas une date — relance : « plutôt demain ou jeudi ? »</em></div>
     </div>
   </div>
 
@@ -481,7 +511,10 @@
   <div class="scene">
     <div class="toujours"><b>✅ Les 5 phrases qui sauvent un appel</b>
       « Juste par curiosité… » · « Justement. » · « Je comprends. » ·
-      « C'est exactement pour ça que je vous appelle. » · « Mardi matin ou mercredi après-midi ? »</div>
+      « C'est exactement pour ça que je vous appelle. » · « Demain matin, ou jeudi après-midi ? »</div>
+    <div class="toujours"><b>✅ La règle du créneau</b>
+      Toujours <b>lendemain ou surlendemain</b>. En fin de semaine, bascule sur <b>mardi</b>.
+      Jamais plus de 4 jours ouvrés — au-delà, le rendez-vous saute.</div>
     <div class="jamais"><b>⛔ Les 5 phrases qui tuent un appel</b>
       « Je sais que vous êtes occupé » · « Oui bien sûr, je vous envoie un mail » ·
       « D'accord, je vous rappelle » · « Je ne vous appelle pas pour… » ·
