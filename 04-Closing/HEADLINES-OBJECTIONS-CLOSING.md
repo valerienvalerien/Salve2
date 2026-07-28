@@ -118,11 +118,10 @@
   le marché local. `CLAUDE.md` (source qui prime) et `FINANCE-PREVISIONNEL.md` (calcul
   sourcé : salaire moyen agent call center Tana ≈ 700 000 Ar → 3 250 000 Ar / 700 000 Ar
   ≈ 4,64×, arrondi 4,5×) s'accordent, et `index.html` l'affiche publiquement (« × 4,5 »).
-  Le **2,5×** est une erreur sans calcul derrière, propagée dans
+  Le **2,5×** était une erreur sans calcul derrière, propagée dans
   `02-Prospection/ONEPAGER-PARTENAIRE-MB.md`, les trois `tools/espace-contenu-*.html`
-  (medical / helpdesk / support) et `05-Process-Delivery/PROCESS-QA-DOUBLE-ECOUTE.md`
-  (qui attribue à tort le 2,5× à `CLAUDE.md`). **Ces 5 fichiers restent à corriger** —
-  non fait ici, hors périmètre de cette grille.
+  (medical / helpdesk / support) et `05-Process-Delivery/PROCESS-QA-DOUBLE-ECOUTE.md`.
+  **Corrigé** dans ces 5 fichiers (2026-07-28) — 4,5× partout désormais.
 1. **Délai de démarrage** — « 2 semaines » (`SCRIPTS-APPEL.md`) vs « ~3 semaines »
    (`ONEPAGER-PARTENAIRE-MB.md`). → **« 2 à 3 semaines »** retenu ici.
 2. **Juridiction** — `SCRIPTS-APPEL.md` (objection helpdesk n°2) fait dire « société
