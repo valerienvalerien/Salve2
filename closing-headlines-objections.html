@@ -1,0 +1,607 @@
+<title>Headlines × objections — grille de closing Salverys</title>
+<style>
+  :root{
+    --paper:#F6F2EA;
+    --card:#FFFFFF;
+    --ink:#2A2620;
+    --ink-soft:#544C40;
+    --ink-mute:#8A8275;
+    --primary:#2E3B4E;
+    --sauge:#5E7760;
+    --sauge-tint:#EAF0EA;
+    --gold:#8A6A36;
+    --gold-tint:#F4ECDD;
+    --terracotta:#A2503B;
+    --terracotta-tint:#F7EAE5;
+    --line:#E2D9C9;
+    --line-soft:#EFE8DB;
+    --shadow:0 1px 2px rgba(32,48,63,.05), 0 10px 30px rgba(32,48,63,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#191C20;
+      --card:#22262B;
+      --ink:#EAE5DB;
+      --ink-soft:#BBB3A5;
+      --ink-mute:#8C8578;
+      --primary:#C9D6E5;
+      --sauge:#9CB69E;
+      --sauge-tint:#232C25;
+      --gold:#D7BC8C;
+      --gold-tint:#2B2620;
+      --terracotta:#DC917A;
+      --terracotta-tint:#2F211C;
+      --line:#353B42;
+      --line-soft:#2B3037;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#191C20; --card:#22262B; --ink:#EAE5DB; --ink-soft:#BBB3A5; --ink-mute:#8C8578;
+    --primary:#C9D6E5; --sauge:#9CB69E; --sauge-tint:#232C25; --gold:#D7BC8C; --gold-tint:#2B2620;
+    --terracotta:#DC917A; --terracotta-tint:#2F211C; --line:#353B42; --line-soft:#2B3037;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+  }
+  :root[data-theme="light"]{
+    --paper:#F6F2EA; --card:#FFFFFF; --ink:#2A2620; --ink-soft:#544C40; --ink-mute:#8A8275;
+    --primary:#2E3B4E; --sauge:#5E7760; --sauge-tint:#EAF0EA; --gold:#8A6A36; --gold-tint:#F4ECDD;
+    --terracotta:#A2503B; --terracotta-tint:#F7EAE5; --line:#E2D9C9; --line-soft:#EFE8DB;
+    --shadow:0 1px 2px rgba(32,48,63,.05), 0 10px 30px rgba(32,48,63,.06);
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:48px 24px 96px;
+    display:flex;
+    flex-direction:column;
+    gap:44px;
+  }
+
+  /* ---------- en-tête ---------- */
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--sauge);
+  }
+  h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:600;
+    font-size:clamp(30px,4.2vw,46px);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    color:var(--primary);
+    text-wrap:balance;
+    margin:10px 0 14px;
+  }
+  .lede{ max-width:66ch; color:var(--ink-soft); font-size:17px; }
+  .lede strong{ color:var(--ink); font-weight:600; }
+
+  .rules{
+    display:grid; gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    margin-top:26px;
+  }
+  .rule{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:16px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .rule .lbl{
+    font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold);
+  }
+  .rule p{ font-size:14px; color:var(--ink-soft); }
+  .rule strong{ color:var(--ink); font-weight:600; }
+
+  .paste{
+    border-left:3px solid var(--sauge);
+    background:var(--sauge-tint);
+    border-radius:0 12px 12px 0;
+    padding:14px 18px;
+    font-size:14px; color:var(--ink-soft);
+    max-width:78ch;
+  }
+  .paste strong{ color:var(--ink); }
+
+  /* ---------- sections ---------- */
+  section{ display:flex; flex-direction:column; gap:14px; }
+  .pain{
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line); padding-bottom:10px;
+  }
+  .pain .n{
+    font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--card); background:var(--primary);
+    padding:4px 9px; border-radius:5px;
+  }
+  .pain h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:600; font-size:24px; letter-spacing:-.01em; color:var(--primary);
+  }
+  .pain .note{ font-size:13px; color:var(--ink-mute); font-style:italic; }
+
+  /* ---------- tableaux ---------- */
+  .tw{ overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--card); box-shadow:var(--shadow); }
+  table{ border-collapse:collapse; width:100%; min-width:900px; }
+  thead th{
+    position:sticky; top:0; z-index:2;
+    background:var(--card);
+    text-align:left; vertical-align:bottom;
+    font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-mute);
+    padding:14px 18px 10px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  th.c1{ width:23%; } th.c2{ width:29%; } th.c3{ width:48%; }
+  tbody td{
+    vertical-align:top;
+    padding:18px;
+    border-bottom:1px solid var(--line-soft);
+    font-size:14px;
+  }
+  tbody tr:last-child td{ border-bottom:0; }
+  td + td{ border-left:1px solid var(--line-soft); }
+
+  .hl{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:17px; line-height:1.3; color:var(--primary); font-weight:600;
+    text-wrap:balance;
+  }
+  .hl em{ font-style:italic; font-weight:400; }
+  .tag{
+    display:inline-block; margin-top:8px;
+    font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gold); background:var(--gold-tint);
+    padding:3px 8px; border-radius:4px;
+  }
+
+  td p{ margin:0 0 9px; }
+  td p:last-child{ margin-bottom:0; }
+  .obj{ color:var(--ink-soft); }
+  .lbl-in{
+    font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--sauge); margin-right:7px;
+  }
+  .say{ color:var(--ink); }
+  .warn{ color:var(--terracotta); }
+  .warn .lbl-in{ color:var(--terracotta); }
+  .rebond{
+    background:var(--gold-tint);
+    border-radius:8px; padding:10px 12px;
+    color:var(--ink); font-weight:600;
+  }
+  .rebond .lbl-in{ color:var(--gold); }
+  ol.mini{ margin:0 0 9px; padding-left:20px; }
+  ol.mini li{ margin-bottom:5px; }
+  strong{ font-weight:600; }
+
+  /* ---------- pieds ---------- */
+  .foot{
+    display:grid; gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  }
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px 24px; box-shadow:var(--shadow);
+  }
+  .panel.alert{ border-color:var(--terracotta); background:var(--terracotta-tint); }
+  .panel h3{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:19px; font-weight:600; color:var(--primary); margin-bottom:12px;
+  }
+  .panel.alert h3{ color:var(--terracotta); }
+  .panel ul{ padding-left:18px; display:flex; flex-direction:column; gap:9px; }
+  .panel li{ font-size:14px; color:var(--ink-soft); }
+  .panel li strong{ color:var(--ink); }
+  .src{ font-size:12.5px; color:var(--ink-mute); border-top:1px solid var(--line); padding-top:16px; }
+
+  @media print{
+    body{ background:#fff; }
+    .wrap{ padding:0; gap:24px; max-width:none; }
+    .tw{ overflow:visible; box-shadow:none; }
+    table{ min-width:0; }
+    thead th{ position:static; }
+    section{ break-inside:avoid; }
+    .paste{ display:none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Salverys · préparation closing</div>
+    <h1>Headlines × objections</h1>
+    <p class="lede">
+      Trois colonnes : <strong>l'accroche qu'on envoie</strong>, <strong>ce que le prospect
+      répond réellement</strong> quand elle fait mouche, et <strong>notre réponse — preuve à
+      l'appui — avec la question qui relance</strong>. Cible par défaut : le donneur d'ordre
+      en marque blanche (télésecrétariat FR, éditeur SaaS, ESN/MSP).
+    </p>
+
+    <div class="rules">
+      <div class="rule">
+        <span class="lbl">Règle 1</span>
+        <p>La headline <strong>ouvre, elle ne vend pas</strong>. Si elle marche, elle déclenche
+        l'objection de la colonne du milieu : c'est le signal que le pain est le bon. Une
+        headline qui ne provoque aucune objection n'a pas été lue.</p>
+      </div>
+      <div class="rule">
+        <span class="lbl">Règle 2</span>
+        <p>Ne jamais finir sur une affirmation. Chaque case de droite se termine par une
+        <strong>question de rebond</strong> — c'est elle qui fait avancer vers le cadrage,
+        pas l'argument.</p>
+      </div>
+      <div class="rule">
+        <span class="lbl">Règle 3</span>
+        <p>Tout chiffre vient de <strong>PRICING.md</strong>. En marque blanche :
+        <strong>aucun prix par écrit avant le cadrage</strong> — la grille se remet sous NDA.</p>
+      </div>
+    </div>
+
+    <p class="paste" style="margin-top:26px;">
+      <strong>Pour le coller dans Loop :</strong> sélectionner un tableau (ou toute la page),
+      copier, puis coller dans la page Loop — les tableaux arrivent en tableaux natifs,
+      éditables ligne par ligne. Coller <strong>section par section</strong> donne le résultat
+      le plus propre.
+    </p>
+  </header>
+
+  <!-- ============ PAIN 1 ============ -->
+  <section>
+    <div class="pain">
+      <span class="n">Pain 1</span>
+      <h2>Turnover / stabilité d'équipe</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th class="c1">Headline</th>
+            <th class="c2">Ce qu'il répond</th>
+            <th class="c3">Notre réponse · preuve · rebond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p class="hl">La même équipe, mois après mois. <em>Sous votre marque.</em></p></td>
+            <td>
+              <p class="obj">« Tous les offshore disent ça. Il est de combien, votre turnover réel ? »</p>
+              <p class="obj">« Vous démarrez : vous n'avez aucun historique à me montrer. »</p>
+              <p class="obj">« Et si l'agent que vous m'affectez part au bout de 3 mois ? »</p>
+            </td>
+            <td>
+              <p class="say">« Je ne vais pas vous inventer un historique : on démarre. Ce que je peux vous montrer, c'est <strong>pourquoi</strong> ils restent. »</p>
+              <p><span class="lbl-in">Preuve éco</span>Agents payés <strong>~2,5× le marché local</strong> à Antananarivo — personne en face ne s'aligne. Managers inclus. Objectif assumé : zéro turnover.</p>
+              <p><span class="lbl-in">Preuve contrat</span>Agents <strong>nominatifs</strong> · remplacement <strong>annoncé à l'avance</strong> avec doublure formée <strong>à nos frais</strong>, jamais refacturée · <strong>backup +1 agent</strong> par compte.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Sur votre équipe actuelle, un départ vous coûte combien — recrutement, re-formation, temps d'improductivité ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">La continuité que le lowcost <em>ne vous offrira jamais.</em></p></td>
+            <td>
+              <p class="obj">« J'ai des devis 30 % moins chers que vous. »</p>
+              <p class="obj">« Vous êtes offshore aussi — quelle différence concrètement ? »</p>
+              <p class="obj">« Pour du N1 basique, le lowcost me suffit. »</p>
+            </td>
+            <td>
+              <p class="say">« Moins cher à l'heure, plus cher à l'année. À 0,50 € l'appel, l'agent est au minimum local et tourne en 6 mois : vous <strong>repayez</strong> la montée en compétence à chaque rotation, et vos escalades remontent chez vous. »</p>
+              <p><span class="lbl-in">Preuve</span>Le delta de prix finance exactement ce qui empêche la rotation : rémunération, manager dédié, QA / double écoute, reporting hebdo.</p>
+              <p><span class="lbl-in">Take-away</span>À dire calmement, jamais agressivement : « Si le seul critère c'est le prix, prenez le lowcost — et rappelez-moi quand l'équipe aura tourné deux fois. »</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Ces 12 derniers mois, combien de fois avez-vous dû re-former une équipe chez votre prestataire actuel ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">La fidélité de vos clients <em>commence par celle de nos agents.</em></p></td>
+            <td>
+              <p class="obj">« Jolie phrase. Vous la mesurez comment ? »</p>
+              <p class="obj">« Mes clients ne voient pas vos agents, ils voient mes SLA. »</p>
+              <p class="obj">« Ça reste du marketing tant qu'il n'y a pas de chiffre. »</p>
+            </td>
+            <td>
+              <p class="say">« D'accord — on la transforme en KPI : <strong>ancienneté moyenne des agents sur votre compte</strong> et <strong>% d'agents inchangés sur 6 mois</strong>, dans le reporting hebdo, à côté de vos SLA. »</p>
+              <p><span class="lbl-in">Le lien</span>Un agent qui connaît votre produit depuis 8 mois <strong>résout</strong> en N1 ce qu'un nouveau <strong>escalade</strong>. Chaque escalade évitée, c'est votre N2 — le plus cher — qui respire.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Aujourd'hui, quelle part de vos tickets N1 remonte en N2 uniquement parce que l'agent ne savait pas ? »</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PAIN 2 ============ -->
+  <section>
+    <div class="pain">
+      <span class="n">Pain 2</span>
+      <h2>Staffing / recrutement</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th class="c1">Headline</th>
+            <th class="c2">Ce qu'il répond</th>
+            <th class="c3">Notre réponse · preuve · rebond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p class="hl">Votre croissance ne devrait pas dépendre <em>de vos recrutements.</em></p></td>
+            <td>
+              <p class="obj">« On recrute déjà, on s'en sort. »</p>
+              <p class="obj">« Et s'il me faut 5 personnes le mois prochain, vous suivez ? »</p>
+              <p class="obj">« Je ne veux pas rendre ma capacité dépendante d'un tiers. »</p>
+              <p class="obj">« Vous mettez combien de temps à staffer, vous ? »</p>
+            </td>
+            <td>
+              <p class="say">« Le problème n'est pas que vous ne savez pas recruter : c'est que la capacité doit exister <strong>avant</strong> de signer le client. Donc vous bridez la croissance, ou vous portez la masse salariale à vide. »</p>
+              <p><span class="lbl-in">Preuve</span>Capacité activable en <strong>2 à 3 semaines</strong> (vivier déjà constitué + formation à vos process incluse) contre <strong>60-90 jours</strong> de recrutement en France, montée en compétence non comprise. Élastique : on monte et on descend au rythme de vos contrats.</p>
+              <p><span class="lbl-in">Anti-dépendance</span>Engagement initial <strong>3 mois</strong>, puis 12 mois renouvelable · base de connaissance et procédures écrites <strong>chez vous</strong> · réversibilité prévue au contrat.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Votre prochain contrat démarre quand — et vous avez les têtes, ou vous les cherchez encore ? »</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PAIN 3 ============ -->
+  <section>
+    <div class="pain">
+      <span class="n">Pain 3</span>
+      <h2>Qualité / marque blanche invisible</h2>
+      <span class="note">ex-déception offshore</span>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th class="c1">Headline</th>
+            <th class="c2">Ce qu'il répond</th>
+            <th class="c3">Notre réponse · preuve · rebond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p class="hl">Vos clients ne devraient pas deviner <em>que c'est externalisé.</em></p></td>
+            <td>
+              <p class="obj">« Concrètement, ils décrochent en disant quoi ? »</p>
+              <p class="obj">« Et si un agent lâche le nom de votre boîte ? »</p>
+              <p class="obj">« Mon contrat client m'oblige à déclarer mes sous-traitants et leur localisation. »</p>
+              <p class="obj">« Mes clients exigent des données hébergées en France. »</p>
+            </td>
+            <td>
+              <p class="say">« Marque blanche totale : votre script d'accueil, votre signature mail, <strong>vos</strong> outils (Doctolib/Maiia · Zendesk/Freshdesk · ServiceNow/Jira SM), votre ton. On n'apparaît nulle part, et <strong>aucun contact direct</strong> avec votre client final hors du cadre que vous fixez. »</p>
+              <p><span class="lbl-in">Preuve</span>NDA + clause de non-sollicitation de vos clients, signés avant le premier appel · comptes nommés dans vos outils.</p>
+              <p class="warn"><span class="lbl-in">Ne jamais promettre de cacher</span>Si votre contrat aval impose de déclarer le sous-traitant, on fournit le dossier : DPA art. 28, clauses art. 46 pour le transfert hors UE, registre. Données : <strong>on ne stocke rien chez nous, on travaille dans vos outils</strong> — donc rien à héberger en France côté Salverys.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Votre contrat client dit quoi exactement sur la sous-traitance ? On cale le montage dessus avant de parler prix. »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">Fini les « pouvez-vous répéter ? ». <em>Français maternel.</em></p></td>
+            <td>
+              <p class="obj">« C'est ce que dit tout le monde. »</p>
+              <p class="obj">« J'ai déjà essayé [Maurice / Maroc / Madagascar], ça s'est mal passé. »</p>
+              <p class="obj">« Mes clients sont des médecins / des DSI : zéro patience. »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Ne pas argumenter, faire entendre :</strong> « Je vous mets un agent au téléphone 5 minutes cette semaine, avant même qu'on parle contrat. Vous jugez vous-même. »</p>
+              <p><span class="lbl-in">Ensuite</span>Vous validez les profils au démarrage · double écoute / double ligne quand vous voulez pendant le mois pilote.</p>
+              <p><span class="lbl-in">Creuser</span>« Qu'est-ce qui a lâché exactement — la langue, la résolution, ou le pilotage ? » Neuf fois sur dix c'est le pilotage : c'est là qu'on met un manager dédié et un reporting hebdo.</p>
+              <p><span class="lbl-in">Filet</span>1er mois à <strong>−50 %</strong> sans engagement ; puis en régime, <strong>20 % d'avoir automatique</strong> si le KPI convenu n'est pas tenu sur un mois.</p>
+              <p class="warn"><span class="lbl-in">Médical</span>Par défaut <strong>zéro enregistrement</strong> des appels patients → la preuve se fait en double écoute ou appel test, jamais « écoutez les enregistrements ».</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Mardi ou jeudi pour l'appel test ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">L'offshore <em>sans les mauvaises surprises.</em></p></td>
+            <td>
+              <p class="obj">« Les mauvaises surprises, c'est quoi pour vous ? » <em>(il vous teste)</em></p>
+              <p class="obj">« La dernière fois, toute l'équipe a changé en 3 mois. »</p>
+              <p class="obj">« Et les coupures internet / électricité à Madagascar ? »</p>
+              <p class="obj">« Quand ça dérape, j'appelle qui ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Nommer le risque avant lui</strong> — les 4 surprises classiques, une par une :</p>
+              <ol class="mini">
+                <li>Équipe qui tourne → agents nominatifs, remplacement annoncé + doublure formée.</li>
+                <li>Qualité qui s'effondre après le pilote → KPI hebdo partagés + <strong>20 % d'avoir automatique</strong> (rien à réclamer, plafonné 1 mois sur 12).</li>
+                <li>Interlocuteur injoignable → <strong>un manager dédié par plateau</strong> (1 médical, 1 IT), sur vos horaires.</li>
+                <li>Coupure réseau / électricité → <strong>plan de continuité écrit remis avant le démarrage</strong> (double connexion fibre + 4G, site de repli alimenté).</li>
+              </ol>
+              <p class="warn"><span class="lbl-in">Garde-fou</span>Ne promettre que ce qui est <strong>réellement en place au cadrage</strong> : le plan de continuité se montre, il ne se raconte pas.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Racontez-moi la dernière fois où ça a dérapé — je vous dis point par point ce qu'on fait différemment. »</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PAIN 4 ============ -->
+  <section>
+    <div class="pain">
+      <span class="n">Pain 4</span>
+      <h2>Coût / marge</h2>
+      <span class="note">vs poste interne France</span>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th class="c1">Headline</th>
+            <th class="c2">Ce qu'il répond</th>
+            <th class="c3">Notre réponse · preuve · rebond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p class="hl">40 à 60 % sous le coût complet <em>d'un poste France.</em></p></td>
+            <td>
+              <p class="obj">« 40-60 % de quoi ? Moi je compare au salaire brut. »</p>
+              <p class="obj">« Prouvez-le, avec mes chiffres. »</p>
+              <p class="obj">« Pour Madagascar, je vous trouve cher. »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Poser la bonne assiette :</strong> « Le vrai concurrent, ce n'est pas le salaire, c'est le <strong>coût complet</strong> : charges, congés et absences, recrutement, formation, supervision, matériel, licences, locaux, turnover. »</p>
+              <p><span class="lbl-in">Références</span>Support IT N1 = <strong>38-50 k€/an</strong> (≈ 3 200-4 200 €/mois) · télésecrétaire médicale = <strong>33-42 k€/an</strong> (≈ 2 750-3 500 €/mois). À sortir en face-à-face, pas par écrit.</p>
+              <p><span class="lbl-in">Méthode</span>Faire le calcul avec <strong>leurs</strong> chiffres, écran partagé, dans le simulateur — jamais une fourchette lâchée en l'air.</p>
+              <p class="warn"><span class="lbl-in">Marque blanche</span>Aucun prix de gros par écrit avant le cadrage ; la rate card partenaire (dégressive <strong>1 / 3 / 5+ ETP</strong>) se remet sous NDA.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Votre coût complet par poste, vous l'avez déjà calculé — ou on le fait ensemble maintenant ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">Payez le service, <em>pas les cotisations.</em></p></td>
+            <td>
+              <p class="obj">« Et le risque de prêt de main-d'œuvre / requalification ? »</p>
+              <p class="obj">« Mon comptable va me parler TVA et facture hors UE. »</p>
+              <p class="obj">« Donc vos agents n'ont aucune protection ? » <em>(question RSE, de plus en plus fréquente)</em></p>
+            </td>
+            <td>
+              <p><span class="lbl-in">Cadre juridique</span><strong>Contrat de prestation</strong> avec obligation de résultat et KPI — pas de mise à disposition de personnel. C'est nous qui recrutons, planifions, formons et supervisons : <strong>aucun lien de subordination</strong> avec vous.</p>
+              <p><span class="lbl-in">Facturation</span>Société <strong>VJUS</strong> (Antananarivo), prestation B2B hors UE → <strong>TVA non applicable</strong>, autoliquidation côté client français. Contrat de <strong>droit malgache</strong> avec médiation préalable ; pour les contrats MB significatifs, <strong>arbitrage CCI, siège Maurice</strong> — reconnu et exécutable en France (Convention de New York, 1958).</p>
+              <p class="warn"><span class="lbl-in">Jamais</span>Ne <strong>jamais</strong> dire « société française / juridiction française » : c'est faux et ça explose à la relecture juridique. L'arbitrage international <strong>est</strong> la réponse à leur réticence — pas une fausse domiciliation.</p>
+              <p><span class="lbl-in">RSE</span>À assumer en premier : « Nos agents sont payés ~2,5× le marché local. On ne fait pas de lowcost social — c'est exactement ce qui vous garantit la stabilité. »</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Je vous envoie le contrat type et le DPA aujourd'hui : votre juriste les lit avant qu'on aille plus loin, ça vous va ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">Le même service, <em>sans les charges françaises.</em></p></td>
+            <td>
+              <p class="obj">« "Le même service", c'est vite dit. »</p>
+              <p class="obj">« Autrement dit, du moins-disant. »</p>
+              <p class="obj">« À ce prix-là, vous tenez la qualité combien de temps ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Ne pas défendre le mot, poser le périmètre :</strong> mêmes outils, mêmes process, mêmes KPI, même amplitude. Ce qui change, c'est <strong>l'assiette de coûts</strong>, pas le livrable.</p>
+              <p>« Et non, on n'est pas le moins cher du marché offshore — volontairement. »</p>
+              <p><span class="lbl-in">Preuve</span>Mois pilote à <strong>−50 %</strong> : vos KPI actuels contre les nôtres, mesurés sur <strong>votre</strong> périmètre, avant tout engagement. Cadrage et mise en place <strong>offerts</strong> (affichés à leur valeur : 490 €).</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Donnez-moi les 3 KPI sur lesquels vous jugeriez que c'est "le même service" — on les met dans le contrat. »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">Un peu plus cher que le lowcost. <em>Bien moins cher que Paris.</em></p></td>
+            <td>
+              <p class="obj">« Pourquoi payer plus qu'un autre offshore ? »</p>
+              <p class="obj">« J'ai un devis à X, alignez-vous et on signe. »</p>
+              <p class="obj">« Vous vous situez où, exactement ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Assumer le positionnement :</strong> « C'est un choix. Le delta finance la rémunération des agents — donc la stabilité — et le pilotage : manager dédié, QA, reporting. Sans ça, on serait le prestataire que vous avez déjà quitté. »</p>
+              <p><span class="lbl-in">Ne pas casser le prix</span>Donner un « give » qui préserve la référence : option d'amplitude offerte 3 mois (samedi matin, valeur 90 €/mois) · mise en service 490 € offerte · <strong>palier de dégressivité contre engagement de volume</strong> (1 → 3 → 5+ ETP).</p>
+              <p>Si le prix reste le seul sujet : requalifier ou sortir. Un client acheté au prix le plus bas repart au prix le plus bas.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Qu'est-ce qui justifierait le delta, concrètement, à vos yeux ? » — leur réponse <strong>est</strong> votre plan de preuve.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="hl">Notre équipe coûte moins qu'un CDI. <em>Et elle reste.</em></p>
+              <span class="tag">Pont coût × stabilité</span>
+            </td>
+            <td>
+              <p class="obj">« C'est votre meilleur argument — et vous n'avez aucune référence à me montrer. »</p>
+              <p class="obj">« "Elle reste" : vous vous engagez dessus, ou c'est une intention ? »</p>
+              <p class="obj">« Un CDI, je le forme une fois. Chez vous je repaie à chaque changement ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>S'engager, pas promettre :</strong> agents nominatifs au contrat · remplacement annoncé avec <strong>doublure formée à nos frais</strong> — la re-formation n'est <strong>jamais</strong> refacturée.</p>
+              <p><span class="lbl-in">Pas de références</span>Le dire franchement et en faire l'offre : programme <strong>clients fondateurs</strong> (5 premiers logos) — <strong>−50 % / −30 % / −15 %</strong> sur 3 mois, contre un témoignage à 60 jours et une mise en relation si satisfait. « Vous entrez pendant qu'on construit la preuve — vous payez le prix de cette période-là. »</p>
+              <p><span class="lbl-in">Chiffrer leur alternative</span>Un départ = recrutement + 2-3 mois d'improductivité + management. Le leur faire dire.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Le dernier départ dans votre équipe support, il vous a coûté combien, honnêtement ? »</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PAIN 5 ============ -->
+  <section>
+    <div class="pain">
+      <span class="n">Pain 5</span>
+      <h2>Couverture horaire / débordement</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th class="c1">Headline</th>
+            <th class="c2">Ce qu'il répond</th>
+            <th class="c3">Notre réponse · preuve · rebond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p class="hl">Couvrez 8h-20h, <em>sans étirer votre équipe.</em></p></td>
+            <td>
+              <p class="obj">« Nous c'est 7h-19h / du 24-7. Vous suivez ? »</p>
+              <p class="obj">« Le décalage horaire, ça donne quoi en pratique ? »</p>
+              <p class="obj">« Et le samedi ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>L'argument fuseau, qui est le vrai :</strong> Antananarivo = <strong>UTC+3</strong>. Votre <strong>7h-9h du matin</strong> — le créneau le plus cher à staffer en France — c'est notre <strong>pleine heure de bureau</strong> : ni prime de nuit, ni rotation instable. Le 8h-20h Paris se couvre en journée normale.</p>
+              <p><span class="lbl-in">Nuit profonde</span>2h-6h Paris : possible, mais en équipe rotative dédiée → à cadrer. Faible volume = astreinte mutualisée, nettement moins chère.</p>
+              <p><span class="lbl-in">Médical</span>Options nommées : samedi matin <strong>+90 €/mois</strong> · soirée 20h-22h <strong>+120 €</strong> · samedi complet <strong>+150 €</strong>. « Samedi matin offert 3 mois » = excellent give de closing (coût ~270 €, prix de référence intact).</p>
+              <p class="warn"><span class="lbl-in">Canada</span>Ne pas transposer tel quel : 8h-20h heure de l'Est tombe la nuit à Tana. Ça se cadre en équipe rotative — ne pas le promettre en appel.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Sur quelle tranche perdez-vous le plus aujourd'hui : le matin tôt, la pause déjeuner, ou après 18h ? »</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="hl">Décrochez à chaque appel, <em>sans surdimensionner votre équipe.</em></p></td>
+            <td>
+              <p class="obj">« Mes pics sont imprévisibles, vous ne suivrez pas. »</p>
+              <p class="obj">« Je paie quoi les jours creux ? »</p>
+              <p class="obj">« Votre agent est malade — il se passe quoi ? »</p>
+            </td>
+            <td>
+              <p class="say"><strong>Adapter le modèle au débordement :</strong> ETP dédié quand le volume est stable, sinon <strong>à l'heure</strong> ou <strong>à l'appel traité</strong>, avec un tarif <strong>par créneau</strong> (jour vs soir/samedi) et une <strong>capacité réservée sur pics annonçables</strong> (rentrée, épidémies, campagnes) contre engagement de volume.</p>
+              <p><span class="lbl-in">Absence</span>C'est notre problème, pas le vôtre — <strong>backup +1 agent par compte</strong> ; en <strong>Priority</strong>, capacité réservée non mutualisée + backup permanent + traitement prioritaire (tolérance zéro rupture).</p>
+              <p><span class="lbl-in">Ce qui ferme</span>L'engagement chiffré : <strong>≥ 90 % de décroché</strong> (ou le SLA convenu) sur les plages couvertes, sinon <strong>20 % d'avoir</strong> automatique le mois suivant.</p>
+              <p class="rebond"><span class="lbl-in">Rebond</span>« Vos pics sont annonçables ou vraiment aléatoires ? Ça change tout le montage — et le prix. »</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PIEDS ============ -->
+  <div class="foot">
+    <div class="panel">
+      <h3>Garde-fous — à relire avant chaque RDV</h3>
+      <ul>
+        <li><strong>Rémunération des agents</strong> : dire « ~2,5× le marché local », jamais le montant en euros. Un donneur d'ordre qui connaît notre coût par tête négocie notre marge, pas notre valeur.</li>
+        <li><strong>Marque blanche</strong> : aucun prix par email. La grille (par créneau ou par ETP) se remet au cadrage, sous NDA ou via l'espace partenaire protégé.</li>
+        <li><strong>Médical</strong> : on dit <em>forfait</em>, jamais « abonnement ». Zéro enregistrement des appels patients par défaut.</li>
+        <li><strong>Entité</strong> : VJUS, société malgache ; <em>Salverys</em> est la marque commerciale. Ne jamais contracter « au nom de Salverys » seul.</li>
+        <li><strong>Pas de fausse référence</strong>, pas de claim « direction issue d'une structure de 1 000 collaborateurs ». On assume le démarrage : c'est le programme clients fondateurs qui répond.</li>
+        <li><strong>Ne rien promettre qui ne soit pas en place ou cadré</strong> (24/7, infra redondante, volumes) — la séquence reste Prospection → Équipe → Infrastructure.</li>
+      </ul>
+    </div>
+    <div class="panel alert">
+      <h3>3 incohérences à trancher</h3>
+      <ul>
+        <li><strong>Multiple de rémunération</strong> — CLAUDE.md dit ~4,5× le marché local (650 €/mois), ONEPAGER-PARTENAIRE-MB.md dit ~2,5×. Deux chiffres que le même prospect peut voir. <strong>2,5× retenu ici</strong> (le plus conservateur, déjà diffusé côté partenaires) — à figer à un seul endroit.</li>
+        <li><strong>Délai de démarrage</strong> — « 2 semaines » (SCRIPTS-APPEL.md) vs « ~3 semaines » (ONEPAGER-PARTENAIRE-MB.md). <strong>« 2 à 3 semaines » retenu ici.</strong></li>
+        <li><strong>Juridiction</strong> — SCRIPTS-APPEL.md (objection helpdesk n°2) fait dire « société française, contrat français, juridiction française ». Contredit par MENTIONS-LEGALES.md : droit malgache, pas de juridiction française. <strong>À corriger dans le script</strong> — la bonne réponse est l'arbitrage CCI siège Maurice + DPA art. 28 / clauses art. 46.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="src">
+    Sources de vérité : prix, SLA et durées = <strong>PRICING.md</strong> · scripts =
+    02-Prospection/SCRIPTS-APPEL.md · argumentaire marque blanche =
+    02-Prospection/ONEPAGER-PARTENAIRE-MB.md · juridique = MENTIONS-LEGALES.md · médical =
+    01-Strategie-Offre/CONFORMITE-HDS-RGPD.md. Version texte éditable :
+    04-Closing/HEADLINES-OBJECTIONS-CLOSING.md.
+  </p>
+
+</div>
