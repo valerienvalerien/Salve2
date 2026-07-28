@@ -15,6 +15,23 @@
 > éditeur SaaS / prestataire support, ESN-MSP) — GTM n°1. Les réponses fonctionnent en
 > direct, en remplaçant « votre client final » par « vos utilisateurs ».
 
+## Message d'en-tête (bandeau épinglé de la page Loop)
+
+> 📌 **Grille de closing — headlines × objections**
+>
+> À gauche l'accroche qu'on envoie. Au milieu ce que le prospect répond quand elle fait
+> mouche. À droite notre réponse, la preuve, et la question qui relance. Cible par défaut :
+> le donneur d'ordre en marque blanche.
+>
+> Deux règles. La headline ouvre, elle ne vend pas : si elle ne déclenche aucune objection,
+> c'est qu'elle n'a pas été lue. Et on ne finit jamais sur une affirmation — c'est la
+> question de rebond qui amène au cadrage.
+>
+> Après chaque RDV, complétez : l'objection réellement entendue, et ce qui a marché ou pas.
+> Une ligne suffit. C'est comme ça que la grille devient juste.
+>
+> Chiffres : `PRICING.md` fait foi. En marque blanche, aucun prix par écrit avant le cadrage.
+
 ## Mode d'emploi — 3 règles
 
 1. **La headline ouvre, elle ne vend pas.** Si elle marche, elle déclenche l'objection de
