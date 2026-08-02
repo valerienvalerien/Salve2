@@ -101,19 +101,27 @@
   .lead-card ::placeholder{color:#A9A294}
   .lead-help{font-size:12px;color:var(--text-soft);margin-bottom:8px}
 
-  /* les 3 cellules = liens verts vers les pages */
+  /* les 3 cellules = liens vers les pages, aux couleurs de chaque métier */
   .lead-routes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
   .route{
     display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
     min-height:56px;padding:8px 6px;border-radius:3px;
-    background:var(--accent);color:#fff;
     font-size:11.5px;font-weight:700;line-height:1.2;letter-spacing:.01em;
     border:1px solid rgba(38,58,46,.15);
     transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);
   }
   .route small{display:block;font-size:10px;font-weight:600;opacity:.85;margin-top:3px}
-  .route:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 8px 18px rgba(38,58,46,.28)}
+  .route:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(38,58,46,.28)}
   .route:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  /* Support N1 SaaS — thème IT : navy + jaune pastel */
+  .route-saas{background:#013C58;color:#FCE27C}
+  .route-saas:hover{background:#012C42}
+  /* Helpdesk IT N1 — thème helpdesk : corail */
+  .route-helpdesk{background:#E06B52;color:#fff}
+  .route-helpdesk:hover{background:#C9573F}
+  /* Télésecrétariat médical — thème médical : sauge */
+  .route-medical{background:#6F8770;color:#fff}
+  .route-medical:hover{background:#576B58}
 
   .lead-btn{
     width:100%;border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:700;
@@ -201,14 +209,15 @@
         <img class="hero-logo" src="assets/logo-salverys-blanc.svg" alt="Salverys" />
         <div class="hero-kick">Support &amp; télésecrétariat francophones</div>
         <div class="hero-rule"></div>
-        <h1>Tout le monde promet du « français natif ». <span class="hl">Ici, il l'est vraiment.</span></h1>
+        <h1>Deux fois plus cher qu'un BPO low cost. <span class="hl">Cinq fois moins de clients qui raccrochent.</span></h1>
         <p class="hero-lead">
-          Quand on externalise, ça s'entend : l'accent, les tournures approximatives, les fautes dans les tickets.
-          Nos agents sont <b>francophones de naissance</b>, formés à vos process, <b>à vos horaires et sous votre marque</b>.
+          Tout le monde promet du « français natif » — au tarif discount, ça reste un argument commercial.
+          Nos agents sont <b>francophones de naissance</b>, formés à vos process,
+          <b>à vos horaires et sous votre marque</b>.
         </p>
         <div class="hero-mini">
           <span>FR &amp; EN, français natif</span>
-          <span>8h–20h, heure de Paris</span>
+          <span>Agents payés bien au-dessus du marché — zéro turnover</span>
           <span>1<sup>er</sup> mois à −50 %, sans engagement</span>
         </div>
       </div>
@@ -229,9 +238,9 @@
 
           <p class="lead-help">Sur quoi peut-on vous aider&nbsp;?</p>
           <div class="lead-routes">
-            <a class="route" href="simulateur-informatique.html">Support N1 SaaS<small>Chiffrer</small></a>
-            <a class="route" href="simulateur-helpdesk-it.html">Helpdesk IT N1<small>Chiffrer</small></a>
-            <a class="route" href="simulateur-salverys.html">Télésecrétariat médical<small>Chiffrer</small></a>
+            <a class="route route-saas" href="simulateur-informatique.html">Support N1 SaaS<small>Chiffrer</small></a>
+            <a class="route route-helpdesk" href="simulateur-helpdesk-it.html">Helpdesk IT N1<small>Chiffrer</small></a>
+            <a class="route route-medical" href="simulateur-salverys.html">Télésecrétariat médical<small>Chiffrer</small></a>
           </div>
 
           <label for="l-msg" class="sr-only" hidden>Votre message</label>
