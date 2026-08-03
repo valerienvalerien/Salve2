@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Benchmark Salverys — coût à battre, concurrence, coût complet activation comprise</title>
+<style>
+  :root{
+    --primary:#013C58;
+    --primary-dark:#012C42;
+    --sage:#6F8770;
+    --sage-soft:#C5D2C5;
+    --sage-bg:#EAF0EA;
+    --cream:#F6F2EA;
+    --cream-line:#E7DFD1;
+    --navy:#2E3B4E;
+    --gold:#B89968;
+    --gold-bg:#FCEEC9;
+    --terra:#B6604D;
+    --ink:#2A2620;
+    --muted:#5C5448;
+  }
+  @page { size:A4; margin:9mm 9mm 9mm 9mm; }
+  *{box-sizing:border-box;}
+  body{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--ink); font-size:8.1pt; line-height:1.38; margin:0;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .page{page-break-after:always;}
+  .page.tight{zoom:.93;}
+  .page:last-child{page-break-after:auto;}
+
+  /* ---------- en-tête ---------- */
+  .masthead{border-bottom:2.5px solid var(--primary); padding-bottom:4px; margin-bottom:6px;
+            display:flex; align-items:flex-end; justify-content:space-between; gap:14px;}
+  .brand{font-family:Georgia,"Times New Roman",serif; font-size:17pt; font-weight:700;
+         color:var(--primary); letter-spacing:.5px; line-height:1;}
+  .brand span{display:block; font-family:inherit; font-size:8.2pt; font-weight:400;
+              letter-spacing:2.6px; text-transform:uppercase; color:var(--sage); margin-top:3px;}
+  .masthead .doc{text-align:right; font-size:7.6pt; color:var(--muted); line-height:1.5;}
+  .masthead .doc b{color:var(--primary); font-size:9.2pt; display:block;}
+
+  h2{font-family:Georgia,serif; font-size:11.4pt; color:var(--primary); margin:6px 0 2px;
+     padding-bottom:3px; border-bottom:1px solid var(--cream-line);}
+  h2 .num{display:inline-block; background:var(--primary); color:#fff; font-family:inherit;
+          font-size:8.4pt; width:15px; height:15px; line-height:15px; text-align:center;
+          border-radius:50%; margin-right:6px; vertical-align:1px;}
+  h3{font-size:8.6pt; color:var(--navy); margin:7px 0 2px; text-transform:uppercase; letter-spacing:.7px;}
+  p{margin:4px 0;}
+  .lead{color:var(--muted); font-size:7.9pt; margin:2px 0 4px;}
+
+  /* ---------- tableaux ---------- */
+  table{width:100%; border-collapse:collapse; margin:4px 0 5px; font-size:7.8pt;}
+  th{background:var(--primary); color:#fff; text-align:left; padding:3px 5px;
+     font-size:7.5pt; text-transform:uppercase; letter-spacing:.5px; font-weight:600;}
+  td{padding:3px 5px; border-bottom:1px solid var(--cream-line); vertical-align:top;}
+  tr:nth-child(even) td{background:var(--cream);}
+  .num-c{text-align:right; white-space:nowrap;}
+  .hi{color:var(--primary); font-weight:700;}
+  .total td{background:var(--sage-bg)!important; border-top:1.5px solid var(--sage);
+            border-bottom:1.5px solid var(--sage); font-weight:700; color:var(--primary-dark);}
+  table.it th{background:var(--navy);}
+
+  /* ---------- encadrés ---------- */
+  .box{border-left:3px solid var(--sage); background:var(--sage-bg);
+       padding:5px 8px; margin:5px 0; font-size:7.7pt;}
+  .box.warn{border-left-color:var(--terra); background:#FBEFEC;}
+  .box.gold{border-left-color:var(--gold); background:var(--gold-bg);}
+  .box b{color:var(--primary-dark);}
+  .box .t{display:block; font-weight:700; text-transform:uppercase; letter-spacing:.6px;
+          font-size:7.4pt; color:var(--muted); margin-bottom:2px;}
+  .draft{background:var(--terra); color:#fff; border-left:none; padding:7px 10px;}
+  .draft .t{color:#F6D9D2;}
+
+  .cols{display:flex; gap:10px;}
+  .cols > *{flex:1; min-width:0;}
+
+  ul{margin:3px 0 4px; padding-left:14px;}
+  li{margin-bottom:1.5px;}
+  .src{font-size:6.8pt; color:var(--muted); font-style:italic; margin-top:2px;}
+
+  /* ---------- matrice prix/valeur ---------- */
+  .matrix{border:1px solid var(--cream-line); background:var(--cream);
+          padding:8px 10px; font-size:7.4pt; position:relative; height:86px; margin-top:3px; overflow:hidden;}
+  .matrix .ax-y{position:absolute; left:6px; top:8px; bottom:16px; width:1px; background:var(--muted);}
+  .matrix .ax-x{position:absolute; left:6px; right:8px; bottom:16px; height:1px; background:var(--muted);}
+  .matrix .lab-y{position:absolute; left:10px; top:6px; font-size:6.8pt; color:var(--muted);
+                 text-transform:uppercase; letter-spacing:.5px;}
+  .matrix .lab-x{position:absolute; right:8px; bottom:5px; font-size:6.8pt; color:var(--muted);
+                 text-transform:uppercase; letter-spacing:.5px;}
+  .dot{position:absolute; font-size:7.2pt; padding:2px 6px; border-radius:9px; white-space:nowrap;}
+  .dot.us{background:var(--primary); color:#fff; font-weight:700;}
+  .dot.fr{background:#E0F0F8; color:var(--primary-dark); border:1px solid var(--primary);}
+  .dot.mid{background:#fff; color:var(--muted); border:1px solid var(--cream-line);}
+  .dot.low{background:#FBEFEC; color:var(--terra); border:1px solid var(--terra);}
+  .matrix .dot{line-height:1.2;}
+
+  /* ---------- journey ---------- */
+  .phase{margin:8px 0 0;}
+  .phase-h{display:flex; align-items:center; gap:7px; margin-bottom:3px;}
+  .phase-h .tag{font-size:7pt; font-weight:700; letter-spacing:1.1px; text-transform:uppercase;
+                color:#fff; background:var(--navy); padding:2px 8px; border-radius:2px;}
+  .phase-h .when{font-size:7.2pt; color:var(--muted);}
+  .phase-h .rule{flex:1; height:1px; background:var(--cream-line);}
+  .p1 .tag{background:var(--sage);} .p2 .tag{background:var(--primary);} .p3 .tag{background:var(--gold); color:var(--ink);}
+
+  .step{display:flex; gap:8px; padding:4px 0; border-bottom:1px dotted var(--cream-line);}
+  .step:last-child{border-bottom:none;}
+  .step .no{flex:0 0 19px; height:19px; border-radius:50%; background:#fff; color:var(--primary);
+            border:1.5px solid var(--primary); font-size:8pt; font-weight:700;
+            text-align:center; line-height:16px;}
+  .step .body{flex:1; min-width:0;}
+  .step .ttl{font-weight:700; color:var(--primary-dark); font-size:8.4pt;}
+  .step .who{font-size:7.6pt; color:var(--muted);}
+  .step .who b{color:var(--navy); font-weight:600;}
+  .step .money{flex:0 0 118px; text-align:right; font-size:7.4pt;}
+  .step .money span{display:inline-block; padding:2px 6px; border-radius:2px;
+                    background:var(--sage-bg); color:var(--primary-dark); font-weight:700;}
+  .step .money span.out{background:#FBEFEC; color:var(--terra);}
+  .step .money span.zero{background:#F2F2F0; color:var(--muted); font-weight:400;}
+
+  .cash{display:flex; gap:0; margin:9px 0 0; border:1px solid var(--cream-line);}
+  .cash div{flex:1; padding:5px 7px; font-size:7.4pt; border-right:1px solid var(--cream-line);}
+  .cash div:last-child{border-right:none;}
+  .cash b{display:block; color:var(--primary); font-size:8pt;}
+
+  .foot{margin-top:5px; padding-top:4px; border-top:1px solid var(--cream-line);
+        font-size:6.9pt; color:var(--muted); display:flex; justify-content:space-between;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ PAGE 1 ══════════════════ -->
+<section class="page tight">
+  <div class="masthead">
+    <div class="brand">Salverys<span>Benchmark</span></div>
+    <div class="doc">
+      <b>Coût à battre · Concurrence · Coût complet</b>
+      Document interne — ne pas diffuser<br>
+      Édition du 3 août 2026
+    </div>
+  </div>
+
+  <p class="lead">Synthèse des données déjà arbitrées. Sources : <b>PRICING.md</b> §3 et §5 (révision
+  du 12/07/2026) et <b>EVALUATION-STRATEGIQUE-2026-06.md</b> §2-§3. En cas de divergence, PRICING.md fait foi.</p>
+
+  <h2><span class="num">1</span>Le coût à battre — coût complet d'un poste interne en France</h2>
+  <p class="lead">Révision du 12/07/2026 : la valeur unique de 38-46 k€/an appliquée aux deux métiers a été
+  <b>abandonnée</b> (non crédible en rendez-vous). Le benchmark est désormais <b>différencié par métier</b>.</p>
+
+  <table>
+    <tr><th>Poste (CDI France)</th><th>Salaire brut / an</th><th>Coût employeur complet</th><th>Équivalent mensuel</th><th>Objectif Salverys</th></tr>
+    <tr><td><b>Télésecrétaire médicale</b></td><td class="num-c">23 - 30 k€</td><td class="num-c hi">33 - 42 k€/an</td><td class="num-c">2 750 - 3 500 €</td><td class="num-c">−40 à −60 %</td></tr>
+    <tr><td><b>Technicien support IT N1</b></td><td class="num-c">26 - 34 k€</td><td class="num-c hi">38 - 50 k€/an</td><td class="num-c">3 200 - 4 200 €</td><td class="num-c">−40 à −60 %</td></tr>
+    <tr><td>Téléconseiller CDI (CRC — relation client)</td><td class="num-c">~21,9 k€</td><td class="num-c hi">38 - 46 k€/an</td><td class="num-c">3 200 - 3 850 €</td><td class="num-c">—</td></tr>
+  </table>
+
+  <div class="cols">
+    <div class="box">
+      <span class="t">Méthode de calcul</span>
+      Brut moyen marché <b>× charges patronales (~+42 %)</b> + poste de travail + formation +
+      coût de recrutement et de turnover amortis. Les anciens repères (35-45 k€ secrétaire,
+      48-55 k€ téléconseiller) ont été <b>révisés à la baisse</b> pour rester défendables face
+      à un prospect qui connaît ses coûts.
+    </div>
+    <div class="box gold">
+      <span class="t">L'argument, c'est le coût complet</span>
+      Le vrai concurrent n'est pas le salaire mais le <b>coût complet d'un ETP interne</b> :
+      salaire + charges, congés et absences, recrutement, formation, supervision, matériel,
+      licences, locaux, risque de turnover. En ESN d'Île-de-France, un N1 dépasse facilement
+      <b>50 k€/an</b> une fois tout intégré.
+    </div>
+  </div>
+  <p class="src">Constantes conservées : délai de recrutement 60-90 jours · turnover CRC ~25 %/an ·
+  sources marché 2025 (forfaits télésecrétariat FR 300-900 €/mois, Indeed / Talent.com / HelloWork, modèles BPO per-seat / per-minute / per-ticket).</p>
+
+  <h2><span class="num">2</span>Benchmark concurrentiel — télésecrétariat médical offshore</h2>
+  <p class="lead">La menace principale sur la niche médicale. Relevé de juin 2026.</p>
+  <table>
+    <tr><th style="width:23%">Concurrent</th><th style="width:17%">Prix connu</th><th>Force</th><th>Faiblesse exploitable</th></tr>
+    <tr><td><b>Callmed</b></td><td class="hi">dès 0,50 € HT/appel</td><td>Prix plancher du marché, 1 M+ appels/an</td><td>Densité extrême = tension qualité</td></tr>
+    <tr><td><b>Stylrendez-vous</b></td><td class="hi">0,70 € TTC/appel</td><td>Entrée très bas coût, abo. min. 30 €/mois</td><td>Volume low-cost, aucun agent dédié</td></tr>
+    <tr><td><b>Telesecretaire-mlg</b></td><td class="hi">0,98 €/appel</td><td>Prix simple et lisible</td><td>Aucun discours qualité / continuité</td></tr>
+    <tr><td><b>Serenity Center</b></td><td>à l'heure ou à la perf.</td><td>Le plus proche de notre niche</td><td>Pas d'engagement de service chiffré</td></tr>
+    <tr><td><b>Téléservices / Télésec-Madagascar</b></td><td>à l'appel (n.p.)</td><td>Bi-site Mada/Maurice, 8h-20h + samedi matin</td><td>Vend du prix, zéro réassurance process</td></tr>
+    <tr><td><b>Nosycom</b></td><td>n.p.</td><td>10+ ans d'ancienneté médicale</td><td>Visibilité faible, pas de garantie</td></tr>
+  </table>
+
+  <div class="cols">
+    <div>
+      <h3>Notre positionnement en €/appel implicite</h3>
+      <table>
+        <tr><th>Forfait</th><th>€/appel</th><th>Corridor Mada</th><th>Plateformes FR</th></tr>
+        <tr><td>Essentiel 350 € / ~250 appels</td><td class="num-c hi">1,40 €</td><td class="num-c">0,50-1,00 €</td><td class="num-c">1,00-2,50 €</td></tr>
+        <tr><td>Confort 590 € / ~500 appels</td><td class="num-c hi">1,18 €</td><td class="num-c">idem</td><td class="num-c">300-900 €/mois</td></tr>
+        <tr><td>Intensif 950 € / ~900 appels</td><td class="num-c hi">1,06 €</td><td class="num-c">idem</td><td class="num-c">Doctolib ~400 €+</td></tr>
+      </table>
+      <div class="box"><b>Verdict : premium offshore — c'est le bon endroit.</b> 1,5 à 2× les low-cost
+      malgaches, sous les pure players français à service équivalent. <b>Ne pas descendre</b> sous
+      ~0,80 €/appel implicite (≈ 280 € l'Essentiel) : en santé, trop pas cher = pas sérieux. Le palier
+      « Starter » &lt; 350 € reste écarté — Stylrendez occupe l'entrée à 30 €/mois, terrain non rentable.</div>
+    </div>
+    <div>
+      <h3>Matrice prix / valeur</h3>
+      <div class="matrix">
+        <div class="ax-y"></div><div class="ax-x"></div>
+        <div class="lab-y">Valeur perçue (process, garantie, conformité)</div>
+        <div class="lab-x">Prix ▶</div>
+        <div class="dot us" style="left:126px; top:21px;">SALVERYS</div>
+        <div class="dot fr" style="left:206px; top:23px;">Plateformes FR</div>
+        <div class="dot mid" style="left:100px; top:40px;">Serenity · Nosycom · Téléservices</div>
+        <div class="dot low" style="left:20px; top:57px;">Callmed 0,50 € · Stylrendez 0,70 € · Telesec-mlg 0,98 €</div>
+      </div>
+      <p class="src">Salverys est seul dans le quadrant « offshore + valeur perçue haute ». Les plateformes
+      françaises sont au-dessus en prix, la guerre des prix est en bas à gauche.</p>
+      <div class="box warn"><span class="t">Script de défense anti-low-cost</span>
+      « À 0,50 € l'appel, l'agent est payé au minimum local, tourne en 6 mois, et personne ne vous
+      garantit un taux de décroché. Nous, on s'engage : <b>≥ 90 % d'appels décrochés, sinon 20 % d'avoir</b>.
+      La question n'est pas le prix de l'appel, c'est le prix du patient perdu quand le prestataire à
+      0,50 € ne décroche pas. »</div>
+    </div>
+  </div>
+
+  <h2><span class="num">3</span>Benchmark concurrentiel — support IT &amp; helpdesk (priorité n°1)</h2>
+  <table class="it">
+    <tr><th>Repère</th><th>Valeur</th><th>Lecture</th></tr>
+    <tr><td>Corridor offshore malgache</td><td class="hi">600 - 1 400 €/ETP/mois</td><td>Régie ~600 € · dédié premium encadré ~1 400 €. Horaire pratiqué : 9-10 €/h.</td></tr>
+    <tr><td><b>Marque blanche Salverys</b></td><td class="hi">1 350 - 2 000 €</td><td>Cale sur le haut du corridor → <b>bien positionnée</b>. Un donneur d'ordre connaît les prix malgaches : négociable mais crédible.</td></tr>
+    <tr><td><b>Direct Salverys</b></td><td class="hi">1 900 - 2 800 €</td><td>Au-dessus du corridor, mais le benchmark du client final est le CDI FR (3 200-4 200 €/mois). <b>Risque</b> : un éditeur qui a déjà benchmarké Madagascar verra l'écart → défense par encadrement, backup, SLA, conformité. <b>Ne pas publier de prix ferme.</b></td></tr>
+  </table>
+  <p class="src"><b>Tarif horaire interne</b> : 12-15 €/h en direct · 8-11 €/h en MB, contre 9-10 €/h pratiqués sur le marché — acceptable en direct, <b>serré en marque blanche</b> → privilégier systématiquement le modèle ETP en MB. &nbsp;·&nbsp; <b>Géants du volume</b> (Vivetic ~1 800 collab. · Intelcia ~2 000 · Outsourcia 650+ · Concentrix · ADM Value · Connecteo) :
+  ne jamais aller sur leur terrain (&gt; 10 positions, appels d'offres volume). Leur vraie menace est <b>RH</b> — la guerre des salaires à Tana — pas commerciale.</p>
+
+  <div class="foot"><span>Salverys — Benchmark · document interne</span><span>Page 1 / 3</span></div>
+</section>
+
+<!-- ══════════════════ PAGE 2 ══════════════════ -->
+<section class="page tight">
+  <div class="masthead">
+    <div class="brand">Salverys<span>Coût complet</span></div>
+    <div class="doc">
+      <b>Coût complet, activation comprise</b>
+      Année 1, toutes lignes incluses<br>
+      Édition du 3 août 2026
+    </div>
+  </div>
+
+  <p class="lead">Le benchmark de la page 1 compare des <b>coûts de run</b>. Ci-dessous, le <b>coût complet réel</b> :
+  abonnement + mise en service + offre de lancement + dépôt d'activation, sur 12 mois — des deux côtés de la table.</p>
+
+  <h2><span class="num">4</span>Ce que le client paie vraiment sur 12 mois</h2>
+
+  <div class="cols">
+    <div>
+      <h3>A · Helpdesk IT N1 — 1 position, en direct</h3>
+      <table class="it">
+        <tr><th>Ligne</th><th class="num-c">Bas</th><th class="num-c">Haut</th></tr>
+        <tr><td>Abonnement mensuel × 12</td><td class="num-c">26 400 €</td><td class="num-c">33 600 €</td></tr>
+        <tr><td>Mise en service (affichée 490 €)</td><td class="num-c">offerte — 0 €</td><td class="num-c">0 €</td></tr>
+        <tr><td>Offre de lancement : 1<sup>er</sup> mois −50 %</td><td class="num-c">−1 100 €</td><td class="num-c">−1 400 €</td></tr>
+        <tr><td>Dépôt d'activation</td><td class="num-c">néant en direct</td><td class="num-c">néant</td></tr>
+        <tr class="total"><td>Coût complet année 1</td><td class="num-c">25 300 €</td><td class="num-c">32 200 €</td></tr>
+        <tr><td>Face au poste interne équivalent</td><td class="num-c" colspan="2">38 000 - 50 000 €</td></tr>
+        <tr class="total"><td>Écart réel</td><td class="num-c" colspan="2">−33 % à −49 %</td></tr>
+      </table>
+      <p class="src">+ le délai de recrutement de <b>60 à 90 jours</b> évité, et le risque de turnover
+      transféré (backup +1 agent contractuel).</p>
+    </div>
+    <div>
+      <h3>B · Télésecrétariat médical — forfait Confort, en direct</h3>
+      <table>
+        <tr><th>Ligne</th><th class="num-c">Montant</th></tr>
+        <tr><td>Forfait 590 € × 12</td><td class="num-c">7 080 €</td></tr>
+        <tr><td>Mise en service (affichée 490 €)</td><td class="num-c">offerte — 0 €</td></tr>
+        <tr><td>Offre de lancement : 1<sup>er</sup> mois −50 %</td><td class="num-c">−295 €</td></tr>
+        <tr><td>Add-on samedi matin (optionnel)</td><td class="num-c">+1 080 €</td></tr>
+        <tr class="total"><td>Coût complet année 1 (sans add-on)</td><td class="num-c">6 785 €</td></tr>
+        <tr><td>Face à une secrétaire interne</td><td class="num-c">33 000 - 42 000 €</td></tr>
+        <tr class="total"><td>Écart affiché</td><td class="num-c">−80 % à −84 %</td></tr>
+      </table>
+      <p class="src"><b>Nuance de périmètre à dire en rendez-vous</b> : le forfait Confort couvre ~500 appels/mois,
+      ce n'est pas un ETP à temps plein. C'est exactement pourquoi on annonce <b>−40 % en plancher</b> : le client
+      compare souvent à un mi-temps ou à un appoint, scénario où −40 % est exact et incontestable.</p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="t">Point de vigilance — le seul chiffre à surveiller</span>
+    Activation comprise, l'écart réel en <b>IT direct est de −33 % à −49 %</b>, soit <b>sous le plancher
+    du claim public « −40 à −60 % »</b> quand le prospect compare au bas de la fourchette interne (38 k€).
+    Le claim tient sans discussion en médical, et en IT face au haut de fourchette (ESN Île-de-France &gt; 50 k€).
+    <b>À faire</b> : en IT, argumenter sur le coût complet haut + le délai de 60-90 jours, ou basculer la
+    formulation sur « <b>jusqu'à −50 %</b> ». Ne pas laisser un acheteur poser le calcul avant nous.
+  </div>
+
+  <h2><span class="num">5</span>Le coût de l'activation — côté partenaire marque blanche</h2>
+  <div class="box draft">
+    <span class="t">⚠ Projet de recalibrage — non validé officiellement</span>
+    Les montants de cette section et le parcours de la page 3 proviennent de la branche de travail
+    <b>claude/audit-espace-client-refonte-pn3n8r</b> (document AUDIT-ESPACE-CLIENT.md §9). Ils sont
+    <b>en attente d'arbitrage direction</b> : dépôt d'activation, suppression du −50 % en marque blanche,
+    palier 5+ conditionné. À ne pas propager en clientèle avant validation.
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3>C · Marque blanche — helpdesk, 3 positions</h3>
+      <table class="it">
+        <tr><th>Ligne</th><th class="num-c">Montant</th></tr>
+        <tr><td>Prix de gros 1 750 € × 3 positions × 12</td><td class="num-c">63 000 €</td></tr>
+        <tr><td>Dépôt d'activation 900 €/position, encaissé à J0</td><td class="num-c">2 700 €</td></tr>
+        <tr><td>Imputation sur les 3 premières factures (300 €/pos./mois)</td><td class="num-c">−2 700 €</td></tr>
+        <tr><td>Remise / mois pilote</td><td class="num-c">supprimée en MB</td></tr>
+        <tr class="total"><td>Coût net année 1 pour le partenaire</td><td class="num-c">63 000 €</td></tr>
+        <tr><td>Sa revente conseillée (2 700 €/position)</td><td class="num-c">97 200 €</td></tr>
+        <tr class="total"><td>Sa marge brute</td><td class="num-c">34 200 €/an — 35 %</td></tr>
+      </table>
+      <p class="src"><b>Le dépôt ne coûte rien au partenaire qui va au bout</b> : il est imputable, pas ferme.
+      Il n'est acquis à Salverys que s'il annule <b>après</b> le démarrage de la mise en service.</p>
+    </div>
+    <div>
+      <h3>Ce que l'activation nous coûte, à nous</h3>
+      <table>
+        <tr><th>Poste</th><th class="num-c">Montant</th></tr>
+        <tr><td>Onboarding réel : socle partenaire ~400 € + ~400 €/position</td><td class="num-c hi">~1 600 €</td></tr>
+        <tr><td>Coût marginal agent pendant la montée en charge (3 × 700 €)</td><td class="num-c">2 100 €/mois</td></tr>
+        <tr><td>Délai signature → 1<sup>re</sup> facture (recrut. 2-4 sem. + formation 2-3 sem.)</td><td class="num-c">5 à 7 semaines</td></tr>
+        <tr><td>Fees engagés avant le 1<sup>er</sup> euro encaissé (5 positions)</td><td class="num-c">~3 500 €/mois</td></tr>
+        <tr><td>Creux de trésorerie maximal</td><td class="num-c">35-45 k€ vers M+7-8</td></tr>
+        <tr class="total"><td>Couverture par le dépôt (3 positions)</td><td class="num-c">2 700 € &gt; 1 600 €</td></tr>
+      </table>
+      <div class="box warn" style="margin-top:4px">
+        <span class="t">Pourquoi le −50 % saute en marque blanche</span>
+        Sur 3 positions helpdesk, la remise vaut <b>~2 625 €</b> pour un onboarding réel de <b>~1 600 €</b> :
+        <b>elle coûte plus cher que ce qu'elle compense</b>, et le mois pilote sort à <b>≈ −1 075 €</b>.
+        Surtout, une remise sur le prix de gros améliore la marge du mois du partenaire — elle ne l'aide
+        <b>pas</b> à gagner son client final. Valeur jetée sur un acheteur qui revend.
+      </div>
+    </div>
+  </div>
+
+  <h3>Ce qui remplace la remise : trois contreparties de risque</h3>
+  <table>
+    <tr><th style="width:30%">Contrepartie</th><th>Ce qu'elle donne au partenaire</th><th class="num-c" style="width:18%">Coût pour nous</th></tr>
+    <tr><td><b>Sortie à 30 jours</b> les 3 premiers mois (au lieu de 60 j)</td><td>Le vrai « sans risque » en marque blanche : de la réversibilité, pas de la remise</td><td class="num-c">Faible — le dépôt couvre l'onboarding</td></tr>
+    <tr><td><b>Exclusivité territoire ou segment</b>, 12 mois</td><td>Valeur perçue forte, différenciation face à ses propres concurrents</td><td class="num-c hi">0 € aujourd'hui</td></tr>
+    <tr><td><b>Appui avant-vente sous 48 h</b> : PCA, DPA, CV anonymisés, dispositif QA, SLA écrit</td><td>Réutilisables tels quels dans <b>ses</b> réponses d'appels d'offres — le seul give qui lui fait <b>gagner du CA</b> au lieu d'en économiser</td><td class="num-c hi">~0 € marginal</td></tr>
+  </table>
+  <p class="src">Se concèdent <b>une à la fois</b>, sont affichées au partenaire et tracées deal par deal.
+  Plancher absolu corrigé : <b>840 €/ETP</b> (coût marginal 700 € + 20 %) — l'ancien 540 € venait du modèle salarié abandonné le 10/06/2026 et permettait de signer à perte.</p>
+
+  <div class="foot"><span>Salverys — Coût complet activation comprise · document interne</span><span>Page 2 / 3</span></div>
+</section>
+
+<!-- ══════════════════ PAGE 3 ══════════════════ -->
+<section class="page">
+  <div class="masthead">
+    <div class="brand">Salverys<span>Parcours</span></div>
+    <div class="doc">
+      <b>Customer journey — deal marque blanche</b>
+      Du 1<sup>er</sup> contact au régime de croisière<br>
+      Édition du 3 août 2026
+    </div>
+  </div>
+
+  <div class="box draft" style="margin-top:0">
+    <span class="t">⚠ Projet — non validé officiellement</span>
+    Parcours reconstitué depuis la branche de travail <b>claude/audit-espace-client-refonte-pn3n8r</b>.
+    Il décrit le fonctionnement <b>proposé</b> (page de closing par deal, dépôt d'activation, fin du −50 % en MB).
+    Tant que la direction n'a pas tranché, le parcours en vigueur reste celui de PRICING.md §7 et ONBOARDING-CLIENT.md.
+  </div>
+
+  <div class="phase p1">
+    <div class="phase-h"><span class="tag">Phase 1 · Avant-vente</span><span class="when">Semaine 0 à 2 — rien n'est encaissé</span><span class="rule"></span></div>
+
+    <div class="step">
+      <div class="no">1</div>
+      <div class="body">
+        <div class="ttl">Prospection ciblée &amp; prise de rendez-vous</div>
+        <div class="who"><b>Le partenaire vit :</b> un email qui parle de son débordement, pas de nos tarifs.
+        &nbsp;·&nbsp; <b>On fait :</b> séquence cold Emelia sur les 3 cibles MB (télésecrétariats FR, éditeurs SaaS, ESN/MSP). Aucun prix en email.</div>
+      </div>
+      <div class="money"><span class="zero">0 €</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">2</div>
+      <div class="body">
+        <div class="ttl">Cadrage — 1 rendez-vous</div>
+        <div class="who"><b>Il vit :</b> on l'interroge sur ses créneaux non rentables, sa volumétrie, ses clients finaux.
+        &nbsp;·&nbsp; <b>On fait :</b> on note <b>ses mots</b>, on fige le palier, on choisit la concession éventuelle. Grille remise sous NDA, jamais par email.</div>
+      </div>
+      <div class="money"><span class="zero">0 €</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">3</div>
+      <div class="body">
+        <div class="ttl">Sa page de deal, générée pour lui seul</div>
+        <div class="who"><b>Il vit :</b> une URL privée + un code dicté au téléphone. Il y lit « ce que vous nous avez dit le [date] »,
+        <b>sa marge à lui en €/mois</b>, le coût complet d'un recrutement France en face, un calendrier daté, les garanties, la date de validité.
+        &nbsp;·&nbsp; <b>On fait :</b> un fichier de deal → build → lien + code. Le plancher 840 €/ETP est refusé par l'outil.</div>
+      </div>
+      <div class="money"><span class="zero">0 €</span></div>
+    </div>
+  </div>
+
+  <div class="phase p2">
+    <div class="phase-h"><span class="tag">Phase 2 · Activation</span><span class="when">Signature → J1 · 5 à 7 semaines</span><span class="rule"></span></div>
+
+    <div class="step">
+      <div class="no">4</div>
+      <div class="body">
+        <div class="ttl">Signature + encaissement du dépôt d'activation</div>
+        <div class="who"><b>Il vit :</b> un dépôt <b>imputable</b>, pas des frais — il lui revient en déduction s'il va au bout.
+        &nbsp;·&nbsp; <b>On fait :</b> palier figé, contreparties actées au contrat. <b>Garde-fou : on ne recrute personne avant l'encaissement.</b></div>
+      </div>
+      <div class="money"><span>+2 700 € à J0</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">5</div>
+      <div class="body">
+        <div class="ttl">Mise en service — 2 à 3 semaines, affichée puis offerte</div>
+        <div class="who"><b>Il vit :</b> intégration à ses outils, scripts écrits à son nom, QA armée, agents formés à ses procédures.
+        &nbsp;·&nbsp; <b>On fait :</b> recrutement freelance 2-4 sem. + formation 2-3 sem. Coût réel ~1 600 € — couvert par le dépôt.</div>
+      </div>
+      <div class="money"><span class="out">−1 600 € réels</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">6</div>
+      <div class="body">
+        <div class="ttl">J1 — démarrage du pilote, sous son nom</div>
+        <div class="who"><b>Il vit :</b> un périmètre restreint (un seul client final, lot de 200-400 tickets), une sortie à 30 jours,
+        <b>et plus aucune remise</b>. &nbsp;·&nbsp; <b>On fait :</b> 1<sup>er</sup> ticket décroché en marque blanche, point de fin de journée, double écoute renforcée la 1<sup>re</sup> semaine.</div>
+      </div>
+      <div class="money"><span>plein tarif</span></div>
+    </div>
+  </div>
+
+  <div class="phase p3">
+    <div class="phase-h"><span class="tag">Phase 3 · Régime</span><span class="when">M+1 à M+12</span><span class="rule"></span></div>
+
+    <div class="step">
+      <div class="no">7</div>
+      <div class="body">
+        <div class="ttl">Bascule en régime — le dépôt lui revient</div>
+        <div class="who"><b>Il vit :</b> −300 €/position sur chacune de ses 3 premières factures. Le dépôt lui a coûté 0 €.
+        &nbsp;·&nbsp; <b>On fait :</b> imputation, contrôle du minimum facturable, reporting hebdomadaire.</div>
+      </div>
+      <div class="money"><span>−2 700 € imputés</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">8</div>
+      <div class="body">
+        <div class="ttl">J+60 — bilan et preuve</div>
+        <div class="who"><b>Il vit :</b> des chiffres tenus, un SLA mesuré, un interlocuteur stable.
+        &nbsp;·&nbsp; <b>On fait :</b> bilan chiffré, témoignage (programme fondateurs), montée en positions au rythme de ses signatures.</div>
+      </div>
+      <div class="money"><span>récurrent</span></div>
+    </div>
+
+    <div class="step">
+      <div class="no">9</div>
+      <div class="body">
+        <div class="ttl">Extension — palier 5+ contre volume ferme</div>
+        <div class="who"><b>Il vit :</b> le meilleur prix (1 550 €/position) contre un <b>minimum de 5 positions facturées, consommées ou non</b>.
+        &nbsp;·&nbsp; <b>On fait :</b> on n'accorde plus le prix de volume sur une intention — le risque de sous-consommation reste chez celui qui le crée.</div>
+      </div>
+      <div class="money"><span>volume engagé</span></div>
+    </div>
+  </div>
+
+  <div class="cash">
+    <div><b>J0</b>Dépôt encaissé : +2 700 €<br>Au lieu de rien avant J+30</div>
+    <div><b>Semaines 1-7</b>Onboarding ~1 600 € + agents 2 100 €/mois<br>Aucune facture émise</div>
+    <div><b>M+1 à M+3</b>Facturation pleine −300 €/pos./mois<br>Le dépôt est rendu</div>
+    <div><b>M+4 et au-delà</b>63 000 €/an sur 3 positions<br>Sa marge : 34 200 €/an</div>
+  </div>
+
+  <div class="box gold">
+    <span class="t">Les trois choses à retenir de ce parcours</span>
+    <b>1.</b> Le « give » porte sur le <b>risque</b> (sortie 30 j, exclusivité, appui avant-vente), plus sur le prix —
+    un donneur d'ordre ne cherche pas une remise, il cherche à ne pas exploser devant son propre client.
+    <b>2.</b> Le dépôt <b>filtre l'intention</b> : qui refuse 900 € imputables ne signera pas, et on le sait en 48 h
+    au lieu de 3 semaines de cadrage. <b>3.</b> Une page par <b>deal</b>, jamais par niche : deux télésecrétariats
+    concurrents ne doivent pas lire la même grille.
+  </div>
+
+  <div class="foot"><span>Salverys — Customer journey marque blanche · projet non validé</span><span>Page 3 / 3</span></div>
+</section>
+
+</body>
+</html>
