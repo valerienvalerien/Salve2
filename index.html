@@ -26,6 +26,88 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
 <link rel="preconnect" href="https://images.unsplash.com" />
 <link rel="stylesheet" href="assets/site.css" />
+<style>
+  /* ====== Hero "carte sombre + formulaire lateral" (test design) ====== */
+  .dt-hero-wrap{padding:26px 16px 0;background:#fff}
+  .dt-hero{
+    position:relative;overflow:hidden;border-radius:16px;
+    background:var(--green-deep,#263A2E);color:#fff;max-width:1220px;margin:0 auto;
+  }
+  .dt-hero-photo{
+    position:absolute;inset:0;z-index:0;
+    background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;opacity:.85;
+  }
+  .dt-hero-photo::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(100deg,#263A2E 0%,rgba(38,58,46,.96) 28%,rgba(38,58,46,.58) 50%,rgba(38,58,46,.62) 68%,rgba(38,58,46,.86) 100%),
+      linear-gradient(180deg,rgba(28,44,34,.35) 0%,rgba(28,44,34,0) 30%,rgba(28,44,34,.55) 100%);
+  }
+  .dt-hero-inner{
+    position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .82fr;gap:36px;
+    align-items:center;padding:44px 46px 44px;min-height:520px;
+  }
+  .dt-kick{font-size:15px;font-weight:600;color:#EDE6D8;margin-bottom:10px}
+  .dt-rule{width:64px;height:3px;background:#B89968;border-radius:2px;margin-bottom:28px}
+  .dt-hero h1{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    font-size:clamp(27px,2.9vw,38px);line-height:1.14;font-weight:800;letter-spacing:-.02em;
+    color:#fff;text-transform:none;max-width:24ch;margin-bottom:20px;
+  }
+  .dt-hero h1 .hl{color:#D4B98A;background:none;-webkit-text-fill-color:currentColor}
+  .dt-lead{font-size:17px;line-height:1.6;color:#E6E1D6;max-width:44ch}
+  .dt-lead b{color:#fff;font-weight:700}
+  .dt-mini{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:24px;font-size:13px;color:#D8D2C4}
+  .dt-mini span::before{content:"✓";color:#D4B98A;font-weight:800;margin-right:6px}
+
+  .dt-card{background:#F4F1EA;color:#2A2620;border-radius:6px;padding:22px;box-shadow:0 24px 60px rgba(20,30,24,.35)}
+  .dt-card-title{font-size:19px;line-height:1.25;font-weight:700;color:#263A2E;text-align:center;margin-bottom:16px}
+  .dt-card input[type=text],.dt-card input[type=email],.dt-card textarea{
+    width:100%;background:#fff;border:1px solid #DCD6C8;border-radius:3px;padding:12px 13px;
+    font:inherit;font-size:14px;color:#2A2620;margin-bottom:12px;
+  }
+  .dt-card textarea{min-height:86px;resize:vertical}
+  .dt-card input:focus,.dt-card textarea:focus{outline:none;border-color:#6F8770;box-shadow:0 0 0 3px rgba(111,135,112,.18)}
+  .dt-card ::placeholder{color:#A9A294}
+  .dt-help{font-size:12px;color:#5C5448;margin-bottom:8px}
+  .dt-routes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .dt-route{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    min-height:56px;padding:8px 6px;border-radius:3px;font-size:11.5px;font-weight:700;line-height:1.2;
+    border:1px solid rgba(38,58,46,.15);transition:background .2s,transform .2s,box-shadow .2s;
+  }
+  .dt-route small{display:block;font-size:10px;font-weight:600;opacity:.85;margin-top:3px}
+  .dt-route:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(38,58,46,.28)}
+  .dt-route-saas{background:#013C58;color:#FCE27C}
+  .dt-route-saas:hover{background:#012C42}
+  .dt-route-helpdesk{background:#E06B52;color:#fff}
+  .dt-route-helpdesk:hover{background:#C9573F}
+  .dt-route-medical{background:#6F8770;color:#fff}
+  .dt-route-medical:hover{background:#576B58}
+  .dt-btn{
+    width:100%;border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:700;
+    background:#B89968;color:#fff;border-radius:3px;padding:13px 16px;transition:background .2s,transform .2s;
+  }
+  .dt-btn:hover{background:#A6884D;transform:translateY(-1px)}
+  .dt-legal{font-size:11px;color:#8A8275;text-align:center;margin-top:10px}
+  .dt-ok{display:none;text-align:center;padding:26px 8px}
+  .dt-ok .tick{width:44px;height:44px;border-radius:50%;background:#6F8770;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 12px}
+  .dt-ok b{display:block;color:#263A2E;font-size:17px;margin-bottom:4px}
+  .dt-ok p{font-size:13px;color:#5C5448}
+
+  @media (max-width:1000px){
+    .dt-hero-inner{grid-template-columns:1fr;padding:32px 26px 34px;min-height:0}
+    .dt-hero-photo{opacity:.55}
+    .dt-hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.88) 0%,rgba(38,58,46,.94) 100%)}
+    .dt-hero h1{max-width:100%}
+  }
+  @media (max-width:620px){
+    .dt-hero-wrap{padding:14px 10px 0}
+    .dt-routes{grid-template-columns:1fr}
+    .dt-route{flex-direction:row;gap:8px;min-height:0;padding:11px 12px;justify-content:flex-start;text-align:left}
+    .dt-route small{margin-top:0}
+  }
+</style>
 </head>
 <body class="home">
 
@@ -51,44 +133,69 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <span class="hero-bg-blob b1"></span>
-  <span class="hero-bg-blob b2"></span>
-  <div class="container hero-grid">
-    <div class="hero-copy reveal">
-      <span class="eyebrow"><span class="pulse"></span> BPO francophone · Antananarivo&nbsp;<img class="flag" src="assets/img/flag-mg.svg" alt="Madagascar" loading="lazy" decoding="async" /> → France</span>
-      <h1>Un support si bien intégré <span class="hl">que vos clients le croiront interne.</span></h1>
-      <p class="lead">Support applicatif, helpdesk IT ou appels patients : on absorbe le répétitif <b>sous votre marque, en français, à vos horaires.</b></p>
-      <div class="hero-actions">
-        <a href="simulateur-informatique.html" class="btn btn-primary">Support N1 SaaS</a>
-        <a href="simulateur-helpdesk-it.html" class="btn btn-helpdesk">Helpdesk IT N1</a>
-        <a href="simulateur-salverys.html" class="btn btn-it">Télésecrétariat médical</a>
+<!-- HERO (carte sombre + formulaire latéral) -->
+<div class="dt-hero-wrap">
+  <section class="dt-hero">
+    <div class="dt-hero-photo" aria-hidden="true"></div>
+    <div class="dt-hero-inner">
+      <div>
+        <div class="dt-kick">Support &amp; télésecrétariat francophones · Antananarivo → France</div>
+        <div class="dt-rule"></div>
+        <h1>Le support low cost <span class="hl">se paie deux fois</span> : quand l'utilisateur doit interpréter la réponse, puis quand vous devrez reformer son interlocuteur.</h1>
+        <p class="dt-lead">
+          Au tarif discount, le « français natif » reste un argument commercial — et l'agent qui commençait
+          à connaître votre produit part <b>au bout de six mois</b>. Les nôtres sont
+          <b>francophones de naissance</b>, payés pour rester, et travaillent <b>sous votre marque</b>.
+        </p>
+        <div class="dt-mini">
+          <span>FR &amp; EN, français natif</span>
+          <span>Agents payés bien au-dessus du marché — zéro turnover</span>
+          <span>1<sup>er</sup> mois à −50 %, sans engagement</span>
+        </div>
       </div>
-      <div class="hero-trust">
-        <span><b>FR &amp; EN</b> · français natif</span>
-        <span>Standard ouvert <b>de 8h à 20h</b></span>
-        <span><b>Sans engagement</b>, résiliable à tout moment</span>
+
+      <div class="dt-card">
+        <form id="form-hero" action="https://formspree.io/f/xjgdkblp" method="POST">
+          <input type="hidden" name="_subject" value="Contact site — hero accueil" />
+          <input type="hidden" name="source" value="index-hero" />
+          <p class="dt-card-title">Un support en français que vos clients ne remettront pas en cause</p>
+          <input type="text" name="nom" required placeholder="Votre nom" autocomplete="name" aria-label="Votre nom" />
+          <input type="email" name="email" required placeholder="Votre email professionnel" autocomplete="email" aria-label="Votre email professionnel" />
+          <p class="dt-help">Sur quoi peut-on vous aider&nbsp;?</p>
+          <div class="dt-routes">
+            <a class="dt-route dt-route-saas" href="simulateur-informatique.html">Support N1 SaaS<small>Chiffrer</small></a>
+            <a class="dt-route dt-route-helpdesk" href="simulateur-helpdesk-it.html">Helpdesk IT N1<small>Chiffrer</small></a>
+            <a class="dt-route dt-route-medical" href="simulateur-salverys.html">Télésecrétariat médical<small>Chiffrer</small></a>
+          </div>
+          <textarea name="message" placeholder="Que pouvons-nous faire pour vous ? (volumes, outils, horaires…)" aria-label="Votre message"></textarea>
+          <button type="submit" class="dt-btn">Parler à un francophone</button>
+          <p class="dt-legal">Réponse sous 24 h ouvrées. Données utilisées uniquement pour vous répondre.</p>
+        </form>
+        <div class="dt-ok" id="hero-ok">
+          <div class="tick">✓</div>
+          <b>Message envoyé&nbsp;!</b>
+          <p>Nous revenons vers vous sous 24 h ouvrées.<br />
+            En attendant&nbsp;: <a href="mailto:contact@salverys.fr" style="color:#6F8770;font-weight:700">contact@salverys.fr</a></p>
+        </div>
       </div>
     </div>
-    <div class="hero-visual reveal d1">
-      <div class="photo-wrap">
-        <img class="photo" loading="eager" decoding="async" onerror="this.style.display='none'"
-             src="assets/img/equipe-antananarivo.jpg"
-             alt="Équipe Salverys au travail à Antananarivo" />
-      </div>
-      <div class="float-card fc1">
-        <div class="fc-num">−40 à −60 %</div>
-        <div class="fc-lab">vs le coût complet d'un poste interne en France</div>
-      </div>
-      <div class="float-card fc2">
-        <div class="fc-num">8h–20h</div>
-        <div class="fc-lab">aux mêmes horaires que vous, jamais de répondeur</div>
-      </div>
-    </div>
-  </div>
-  <a class="scroll-next" href="#stats" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var f = document.getElementById('form-hero'), ok = document.getElementById('hero-ok');
+    if (!f) return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var b = f.querySelector('.dt-btn'), label = b.textContent;
+      b.disabled = true; b.textContent = 'Envoi…';
+      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error('http'); f.style.display = 'none'; ok.style.display = 'block'; })
+        .catch(function () { b.disabled = false; b.textContent = label; alert("L'envoi a échoué. Écrivez-nous à contact@salverys.fr"); });
+    });
+  })();
+</script>
 
 <!-- MARQUEE : bandeau logos partenaires -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
