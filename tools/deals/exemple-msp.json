@@ -1,5 +1,5 @@
 {
-  "_note": "DEAL DE DÉMONSTRATION — sert de gabarit. Dupliquer ce fichier pour chaque deal réel, puis supprimer celui-ci si besoin. Prix alignés PRICING.md §3 (rate card MB helpdesk 2000/1750/1550, direct 2200-2800).",
+  "_note": "DEAL DE DÉMONSTRATION — sert de gabarit. Dupliquer ce fichier pour chaque deal réel, puis supprimer celui-ci si besoin. Prix alignés PRICING.md §3 (rate card MB helpdesk 2000/1750/1550, direct 2200-2800). Mise à jour 2026-08-03 : plus de remise de lancement en MB (§3.b) — le pilote est un périmètre restreint au tarif du palier ; dépôt d'activation calculé automatiquement (§3.a) ; palier 5+ porteur d'un minimumFacturable (§3).",
   "slug": "exemple-msp",
   "partenaire": "Ardenor Systèmes",
   "contact": "la direction des opérations",
@@ -39,14 +39,14 @@
   "grille": [
     { "engagement": "1 position", "gros": 2000 },
     { "engagement": "3 positions", "gros": 1750, "retenu": true },
-    { "engagement": "5 positions et plus", "gros": 1550 }
+    { "engagement": "5 positions et plus", "gros": 1550, "minimumFacturable": 5 }
   ],
   "grilleNote": "Amplitudes au-delà du périmètre ci-dessus (nuit, dimanche, jours fériés) chiffrées séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.",
   "heuresSemaine": "35 h/semaine",
   "etpRetenus": 3,
   "coutInterneMensuel": [3200, 4200],
 
-  "pilote": "Premier mois à −50 % sur une seule position et un seul de vos clients finaux, sans engagement, KPI partagés dès le premier jour. Si le taux de prise en charge n'est pas au rendez-vous au bout de quatre semaines, vous arrêtez — la position s'éteint, vos procédures vous sont restituées, rien n'est dû au-delà du mois entamé.",
+  "pilote": "On démarre sur une seule position et un seul de vos clients finaux, au tarif de la grille, KPI partagés dès le premier jour. Ce qui limite votre risque, c'est le périmètre, pas une remise. Si le taux de prise en charge n'est pas au rendez-vous au bout de quatre semaines, vous arrêtez en prévenant trente jours — la position s'éteint, vos procédures et votre base de connaissances vous sont restituées, rien n'est dû au-delà du mois entamé.",
 
   "sla": {
     "kpi": "prise en charge des tickets N1 sous 30 minutes",
@@ -55,12 +55,16 @@
   },
   "concessions": [
     {
+      "titre": "Sortie à 30 jours pendant les 3 premiers mois",
+      "detail": "au lieu des 60 jours de préavis contractuels, vous pouvez arrêter sur simple notification pendant le premier trimestre, sans indemnité — seul le dépôt d'activation reste acquis une fois la mise en service démarrée."
+    },
+    {
       "titre": "Exclusivité Hauts-de-France, 12 mois",
       "detail": "aucun autre prestataire d'infogérance de la région ne sera servi par Salverys pendant les 12 premiers mois du contrat."
     },
     {
       "titre": "Appui avant-vente sous 48 h",
-      "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement SLA écrit, fournis sur demande et réutilisables tels quels dans vos propres réponses d'appels d'offres."
+      "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement SLA écrit, fournis sous 48 h ouvrées et réutilisables tels quels dans vos propres réponses d'appels d'offres — le seul de ces trois points qui vous aide à gagner un client plutôt qu'à en économiser un."
     }
   ],
   "nonSollicitationMois": 24,

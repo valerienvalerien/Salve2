@@ -36,6 +36,28 @@ const COUT_AGENT = 700;
 const PLANCHER_ETP = 840;
 const MARGE_ALERTE = 0.50;
 
+/* Depot d'activation MB (PRICING.md §3.a, decide 2026-08-03) : 900 €/position, plafond
+ * 2 700 €, imputable sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
+ * frais : le partenaire qui va au bout ne paie rien de plus. Il couvre l'onboarding reel
+ * (~1 600 € sur 3 positions) s'il s'arrete, et fait rentrer du cash a J0 au lieu de J+30. */
+const DEPOT_PAR_POSITION = 900;
+const DEPOT_PLAFOND = 2700;
+const DEPOT_IMPUTATION_MENSUELLE = 300;
+const DEPOT_MOIS_IMPUTATION = 3;
+
+/* Palier 5+ conditionne a un volume ferme facture (PRICING.md §3, decide 2026-08-03) :
+ * le prix le plus bas de la grille s'achete avec un volume engage, pas avec une intention.
+ * Sans minimum facturable, le palier le moins marge (~48 %) porterait en plus le risque de
+ * sous-consommation du partenaire. */
+const MINIMUM_FACTURABLE_SEUIL = 5;
+
+/* Plus de remise de lancement en marque blanche (PRICING.md §3.b, decide 2026-08-03) :
+ * sur 3 positions, le mois pilote a -50 % coutait ~2 625 € pour un onboarding reel de
+ * ~1 600 €, et une remise sur prix de gros ameliore la marge du revendeur sans l'aider a
+ * gagner son client final. Le builder refuse une page qui la reintroduirait. */
+/* Le lookbehind evite de confondre une remise (« -50 % ») avec une fourchette (« 25-35 % »). */
+const REMISE_INTERDITE = /(?<!\d)\s*(?:−|-)\s*\d{1,2}\s*%|demi[- ]tarif|moiti(?:é|e) prix|gratuit/i;
+
 /* ---------------------------------------------------------------- utilitaires */
 
 const H = (s) => String(s ?? '')
@@ -88,12 +110,20 @@ function renderPlanning(deal) {
 
 function renderGrille(deal) {
   const revDef = deal.reventeConseillee;
+  let noteMinimum = '';
   const rows = deal.grille.map((r) => {
     const rev = r.revente ?? revDef;
     const marge = rev ? rev - r.gros : null;
     const hi = r.retenu ? ' class="hi"' : '';
+    /* Palier a volume ferme : le prix ne s'obtient pas sur une intention de volume. */
+    const min = r.minimumFacturable;
+    if (min) {
+      noteMinimum = `Le palier « ${r.engagement} » est un <b>prix de volume engagé</b> :
+        il suppose <b>${min} positions facturées chaque mois, qu'elles soient consommées ou non</b>.
+        En deçà, le tarif du palier immédiatement inférieur s'applique au mois concerné.`;
+    }
     return `<tr${hi}>
-      <td>${H(r.engagement)}</td>
+      <td>${H(r.engagement)}${min ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
       <td class="num">${EUR(r.gros)}</td>
       <td class="num">${rev ? EUR(rev) : '—'}</td>
       <td class="num">${marge != null ? `<b>${EUR(marge)}</b> <span style="opacity:.65">(${PCT(marge / rev)})</span>` : '—'}</td>
@@ -107,7 +137,37 @@ function renderGrille(deal) {
       <th class="num">Votre marge<br /><span style="font-weight:400">€/mois/ETP</span></th>
     </tr></thead>
     <tbody>${rows}</tbody>
-  </table></div>`;
+  </table></div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
+}
+
+/* Depot d'activation : montant, plafond et imputation mensuelle (PRICING.md §3.a). */
+function calcDepot(deal) {
+  if (deal.depot === false) return null;
+  const n = deal.etpRetenus || 1;
+  const parPosition = deal.depot?.parPosition ?? DEPOT_PAR_POSITION;
+  const plafond = deal.depot?.plafond ?? DEPOT_PLAFOND;
+  const total = Math.min(parPosition * n, plafond);
+  return { n, parPosition, plafond, total, mensuel: total / DEPOT_MOIS_IMPUTATION, plafonne: parPosition * n > plafond };
+}
+
+function renderDepot(deal) {
+  const d = calcDepot(deal);
+  if (!d) return '';
+  return `
+  <h2>L'activation</h2>
+  <div class="dl-box">
+    <p><b>Dépôt d'activation : ${EUR(d.total)}</b> — ${EUR(d.parPosition)} par position${d.plafonne ? `, plafonné à ${EUR(d.plafond)}` : ''}, réglé à la signature.</p>
+    <p><b>Vous ne le payez pas, vous l'avancez.</b> Il est déduit de vos ${DEPOT_MOIS_IMPUTATION} premières
+    factures, à raison de ${EUR(d.mensuel)} par mois. Si le contrat suit son cours, il ne vous coûte
+    rien de plus — ce ne sont pas des frais.</p>
+    <p>Il couvre le recrutement et la formation que nous engageons pour vous avant votre premier
+    ticket. Il vous est <b>intégralement restitué</b> si vous annulez avant le démarrage de la mise
+    en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les agents
+    recrutés et formés.</p>
+    <p class="dl-note">Le cadrage et la mise en place restent offerts. Nous ne pratiquons pas de
+    remise de lancement : vous revendez notre prestation, une remise gonflerait votre marge d'un
+    mois sans vous aider à gagner un client. Ce que nous vous accordons à la place figure ci-dessous.</p>
+  </div>`;
 }
 
 function renderGain(deal) {
@@ -214,6 +274,8 @@ function renderDoc(deal) {
     <p>${H(deal.pilote)}</p>
   </div>` : ''}
 
+  ${renderDepot(deal)}
+
   <h2>Vos garanties</h2>
   <div class="dl-g">
     ${garanties.map((g) => `<div><b>${H(g.t)}</b><span>${H(g.d)}</span></div>`).join('')}
@@ -302,6 +364,39 @@ for (const r of deal.grille) {
   }
 }
 
+/* Palier a volume ferme (PRICING.md §3) : un deal retenu a 5 positions ou plus doit porter
+ * un minimum facturable, sinon le palier le moins marge encaisse en plus le risque de
+ * sous-consommation du partenaire (5 annoncees, 3 consommees, banc a notre charge). */
+{
+  const retenue = deal.grille.find((r) => r.retenu);
+  const n = deal.etpRetenus || 0;
+  if (n >= MINIMUM_FACTURABLE_SEUIL && retenue && !retenue.minimumFacturable) {
+    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §3, decision 2026-08-03).`);
+    console.error(`  Ajouter "minimumFacturable": ${MINIMUM_FACTURABLE_SEUIL} sur la ligne « ${retenue.engagement} »,`);
+    console.error('  ou retenir le palier inferieur. Le prix de volume s\'achete avec un volume ferme.');
+    process.exit(1);
+  }
+  for (const r of deal.grille) {
+    if (r.minimumFacturable != null && !(Number.isInteger(r.minimumFacturable) && r.minimumFacturable > 0)) {
+      console.error(`✗ minimumFacturable invalide sur « ${r.engagement} » : entier positif attendu.`);
+      process.exit(1);
+    }
+  }
+}
+
+/* Plus de remise de lancement en marque blanche (PRICING.md §3.b) : intercepter une remise
+ * reintroduite dans le texte du pilote ou de la note de grille. Le pilote reste un perimetre
+ * restreint, au tarif du palier. */
+for (const [champ, texte] of [['pilote', deal.pilote], ['grilleIntro', deal.grilleIntro], ['grilleNote', deal.grilleNote]]) {
+  if (texte && REMISE_INTERDITE.test(texte)) {
+    console.error(`✗ Remise detectee dans « ${champ} » : "${texte.match(REMISE_INTERDITE)[0]}".`);
+    console.error('  Plus de remise sur le prix de gros en marque blanche (PRICING.md §3.b, 2026-08-03).');
+    console.error('  Le pilote est un PERIMETRE restreint au tarif du palier. Pour donner quelque chose,');
+    console.error('  utiliser concessions[] : sortie 30 j · exclusivite 12 mois · appui avant-vente 48 h.');
+    process.exit(1);
+  }
+}
+
 /* Token d'URL : généré une fois, conservé dans le JSON pour ne pas casser un lien déjà envoyé. */
 let tokenNouveau = false;
 if (!deal.token) {
@@ -345,6 +440,10 @@ writeFileSync(join(root, out), page);
   if (clair !== contenu) { console.error('✗ Vérification : le déchiffré ne correspond pas.'); process.exit(1); }
   const manquants = deal.grille.map((r) => EUR(r.gros)).filter((p) => !clair.includes(p));
   if (manquants.length) { console.error('✗ Vérification : prix absents du document : ' + manquants.join(', ')); process.exit(1); }
+  const dep = calcDepot(deal);
+  if (dep && !clair.includes(EUR(dep.total))) {
+    console.error(`✗ Vérification : dépôt d'activation (${EUR(dep.total)}) absent du document.`); process.exit(1);
+  }
   if (clair.includes('__') ) { console.error('✗ Vérification : placeholder non remplacé dans le document.'); process.exit(1); }
 }
 
@@ -353,7 +452,21 @@ console.log(`  URL      : https://salverys.fr/${out}`);
 console.log(`  Code     : ${codeAffiche}${codeArg ? ' (fourni)' : '  ← à dicter au partenaire, non stocké'}`);
 console.log(`  Chiffré  : ${chiffre.length} octets · PBKDF2 ${ITER} itérations`);
 
-/* Recapitulatif des concessions avant envoi : ce qui est concede doit etre vu, pas subi. */
+/* Recapitulatif economique avant envoi : ce qui est engage et ce qui est concede doit etre
+ * vu, pas subi. */
+{
+  const dep = calcDepot(deal);
+  if (dep) {
+    console.log(`  Depot    : ${EUR(dep.total)} a la signature (${EUR(dep.parPosition)} × ${dep.n} position${dep.n > 1 ? 's' : ''}${dep.plafonne ? `, plafonne a ${EUR(dep.plafond)}` : ''})`);
+    console.log(`             impute ${EUR(dep.mensuel)}/mois sur ${DEPOT_MOIS_IMPUTATION} mois — ne pas lancer le recrutement avant encaissement.`);
+  } else {
+    console.log('  Depot    : AUCUN (depot:false) — verifier que c\'est bien voulu (PRICING.md §3.a).');
+  }
+  const retenue = deal.grille.find((r) => r.retenu);
+  if (retenue?.minimumFacturable) {
+    console.log(`  Minimum  : ${retenue.minimumFacturable} positions facturees/mois, consommees ou non (palier « ${retenue.engagement} »).`);
+  }
+}
 if (deal.concessions && deal.concessions.length) {
   console.log(`  Concessions accordées (${deal.concessions.length}) :`);
   for (const c of deal.concessions) console.log(`   · ${c.titre}`);

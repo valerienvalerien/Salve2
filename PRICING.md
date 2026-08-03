@@ -4,7 +4,10 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-07-12 (**benchmark coût à battre différencié par métier §3 :
+> Dernière révision : 2026-08-03 (**recalibrage marque blanche — décision direction** :
+> dépôt d'activation MB 900 €/position §3.a · **fin du mois pilote −50 % en MB** remplacé par
+> 3 contreparties de risque §3.b · palier 5+ ETP conditionné à un volume ferme facturé §3) ·
+> précédente 2026-07-12 (**benchmark coût à battre différencié par métier §3 :
 > télésecrétaire 33-42 k€/an · support IT N1 38-50 k€/an, argumentaire « coût complet »**) ·
 > précédente 2026-06-22 (**priorité niches revue : IT n°1, médical n°2, relation
 > client de toutes sortes en futur non déterminé — labels §1/§3/§4 et récap §8**) ·
@@ -34,6 +37,12 @@
   **~25-35 %**, donc on capte moins par unité mais avec un coût d'acquisition ~nul.
 - **Modèles de tarification retenus (par ordre de préférence)** : **1) ETP par position ·
   2) à l'heure · 3) à l'interaction**. (Le forfait médical public est un packaging d'ETP.)
+- **Mécanique d'entrée dissociée direct / marque blanche (décidé 2026-08-03)** :
+  - **En direct** (médical, support & helpdesk client final) → **1er mois à −50 %**, mise en
+    service offerte, pas de dépôt (§7).
+  - **En marque blanche** → **dépôt d'activation imputable** (§3.a) + **contreparties de
+    risque** (§3.b) ; **plus de remise sur le prix de gros**. On ne remise pas un acheteur
+    qui revend : la remise gonfle sa marge du mois, elle ne l'aide pas à gagner son client final.
 - **SaaS-first** : aucun encaissement maison. Outil de facturation à trancher (§6).
 
 ---
@@ -108,9 +117,14 @@ chaque devis** :
 - Matérialise la value stack (le client voit ce qu'il ne paie pas).
 - Justifie le refus de l'essai gratuit (un onboarding a un coût réel).
 - Crée un « give » de closing à coût nul.
-- **Toujours offerte** (la facturer contredirait le « sans engagement ») : c'est un
+- **Toujours offerte en direct** (la facturer contredirait le « sans engagement ») : c'est un
   affichage de valeur, pas une ligne de revenu. Vaut aussi pour Support N1 / Helpdesk
-  (afficher « cadrage & mise en place : offerts » sur les propositions).
+  **en direct** (afficher « cadrage & mise en place : offerts » sur les propositions).
+- ⚠️ **Ne vaut pas en marque blanche** (précision 2026-08-03) : la mise en service y reste
+  **affichée à 0 €**, mais l'activation est couverte par un **dépôt imputable** (§3.a). La
+  règle « ne jamais facturer la mise en service » n'est pas contredite — un dépôt imputable
+  n'est **pas** des frais : il est déduit des premières factures et ne coûte rien au
+  partenaire qui va au bout.
 
 ---
 
@@ -160,16 +174,74 @@ où le dégressif **achète du volume** au lieu d'être concédé en négociatio
 |---|---|---|
 | 1 ETP | 1 700 € | 2 000 € |
 | 3 ETP | 1 500 € | 1 750 € |
-| 5+ ETP | 1 350 € | 1 550 € |
+| **5+ ETP** — *sous volume ferme facturé* | 1 350 € | 1 550 € |
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
   on ne baisse rien. **Plancher : 840 €** (coût marginal 700 € + ~20 %), cf. encadré ci-dessus.
 - Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : **~7 ETP placés**) : le palier 5+
   est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
-- ⚠️ **Marge du palier 5+ sous pression** : à 1 350 € (support N1), la marge brute tombe à
-  **~48 %** (`FINANCE-PREVISIONNEL.md §3`), et 5 positions représentent **62 % de la
-  capacité totale** (8 agents). Recalibrage à trancher — options documentées dans
-  `AUDIT-ESPACE-CLIENT.md §9`.
+- 🔒 **Palier 5+ conditionné à un volume ferme facturé (décidé 2026-08-03)** — le prix de
+  1 350 € / 1 550 € n'est accordé **que** contre un **minimum facturable de 5 positions**,
+  dues **qu'elles soient consommées ou non**. En deçà de 5 positions facturées, le prix
+  appliqué est celui du **palier 3 ETP** (1 500 € / 1 750 €). À défaut, le palier le moins
+  margé de la grille — **~48 % de marge brute** à 1 350 € (`FINANCE-PREVISIONNEL.md §3`) —
+  supporterait en plus le **risque de sous-consommation du partenaire** : il annoncerait
+  5 positions pour obtenir le prix, en consommerait 3, et Salverys porterait le banc.
+  Le minimum facturable remet ce risque chez celui qui le crée.
+  - **Ce que ça engage vraiment** : 5 positions, ce sont **~5 à 7 semaines** entre la
+    signature et la première facture (recrutement freelance 2-4 sem. + formation 2-3 sem.,
+    `FINANCE-PREVISIONNEL.md §5`) et **~3 500 €/mois de fees engagés** avant le premier euro
+    encaissé. La contrainte n'est pas un plafond d'effectif — le modèle 100 % freelance est
+    élastique (effectif M12 : 8 / 11-12 / 16-18 selon scénario) — c'est la **trésorerie**
+    (creux 35-45 k€ vers M+7-8, `FINANCE §6`) et le **délai de montée en charge**.
+  - Formulation partenaire : « le palier 5+ est un **prix de volume engagé** — il s'achète
+    avec un volume ferme, pas avec une intention. »
+
+### 3.a Dépôt d'activation — marque blanche uniquement (décidé 2026-08-03)
+
+> **Dépôt de 900 € par position, plafonné à 2 700 €**, encaissé **à la signature** et
+> **entièrement imputable** : déduit des **trois premières factures** à raison de
+> **300 €/position/mois**. Le partenaire qui va au bout ne paie **rien de plus**.
+
+- **Acquis à Salverys** si le partenaire annule **après le démarrage de la mise en service**
+  (recrutement engagé, formation lancée). Avant ce démarrage, il est intégralement restitué.
+- **Pourquoi un dépôt imputable et non des frais fermes** :
+  - **Coût nul** pour le partenaire qui va au bout ⇒ aucune friction sur le prix total face
+    à un acheteur professionnel à qui on n'a **aucune référence** à opposer.
+  - **Couvre le coût réel** s'il s'arrête : l'onboarding d'un deal MB coûte ~**1 600 €**
+    (socle partenaire ~400 € + ~400 €/position) — `AUDIT-ESPACE-CLIENT.md §9.2`.
+  - **Filtre d'intention majeur** : qui refuse 900 € imputables ne signera pas. On le sait
+    en 48 h au lieu de 3 semaines de cadrage.
+  - **Encaissement à J0 au lieu de J+30** : attaque directement le creux de trésorerie
+    (`FINANCE-PREVISIONNEL.md §6`, levier « acompte au cadrage MB » — désormais acté).
+- **Jamais en direct** : le médical et le support/helpdesk client final gardent
+  « mise en service offerte, 1er mois à −50 %, sans dépôt » (§7).
+
+### 3.b Fin du mois pilote −50 % en marque blanche (décidé 2026-08-03)
+
+**Le mois pilote à −50 % est supprimé en marque blanche.** Il reste en vigueur **en direct**
+(médical §7, support & helpdesk client final).
+
+**Pourquoi** (chiffrage complet : `AUDIT-ESPACE-CLIENT.md §9.2`) — sur un deal type de
+3 positions helpdesk : la remise consentie vaut **~2 625 €** pour un onboarding réel de
+**~1 600 €**. Elle **coûte donc plus cher que ce qu'elle compense**, et le mois pilote sort
+à **≈ −1 075 €**. Surtout : en MB, une remise sur le **prix de gros** améliore la **marge du
+mois** du partenaire — elle ne l'aide **pas à gagner son client final**. C'est de la valeur
+jetée sur un acheteur qui revend.
+
+**Ce qui la remplace — trois contreparties de risque, pas de prix :**
+
+| Contrepartie | Ce qu'elle donne au partenaire | Coût pour Salverys |
+|---|---|---|
+| **Sortie à 30 jours** pendant les 3 premiers mois (au lieu du préavis de 60 j) | Le vrai « sans risque » en MB : de la **réversibilité**, pas de la remise | Faible — le dépôt (§3.a) couvre l'onboarding |
+| **Exclusivité territoire ou segment, 12 mois** | Valeur perçue forte, argument de différenciation face à ses concurrents | **0 €** aujourd'hui (aucun autre partenaire sur la zone) |
+| **Appui avant-vente sous 48 h** : PCA, DPA, CV anonymisés, dispositif QA, engagement SLA écrit — **réutilisables tels quels dans SES réponses d'appels d'offres** | **Le seul give qui lui fait gagner du CA** au lieu d'en économiser — et qui rend Salverys difficile à remplacer | ~0 € marginal (documents déjà produits) |
+
+- Le **pilote comme périmètre restreint reste** (débordement, un seul client final, lot de
+  **200-400 tickets**) : c'est le **cadrage** qui limite le risque du partenaire, plus la remise.
+- Les contreparties se concèdent **une à la fois**, sont **affichées** au partenaire (bloc
+  « Ce que nous vous accordons » des pages de deal) et **tracées** dans
+  `tools/deals/*.json` (`concessions[]`) — cf. `AUDIT-ESPACE-CLIENT.md §10`.
 - **Canal de remise** : espaces partenaires protégés du site, **un par niche avec son
   propre mot de passe** (`espace-client-support.html` / `espace-client-helpdesk.html` /
   `espace-client-medical.html` pour la grille télésec §1.b — pages chiffrées, mot de
@@ -209,10 +281,15 @@ où le dégressif **achète du volume** au lieu d'être concédé en négociatio
 - **Durée de contrat (révisée)** : engagement initial **3 mois**, puis **12 mois
   renouvelable** ; 24-36 mois réservés aux grands comptes avec dégressif.
   ⚠️ La copy dit « contrats 12 à 36 mois » → reformuler en « dès 3 mois, puis 12 mois ».
-- **Pilote (harmonisé 2026-06-12)** : **1er mois à −50 %**, périmètre N1 cadré
+- **Pilote — en direct (client final)** : **1er mois à −50 %**, périmètre N1 cadré
   (**200-400 tickets**), sans engagement — même mécanique que le médical (§7). Les
   anciennes formules « pilote 15 j (~80 tickets) » et « pilote 60 jours » sont
-  **abandonnées partout** (copy alignée, cf. `OUTREACH-IT-N1-marque-blanche.md`).
+  **abandonnées partout**.
+- **Pilote — en marque blanche** : **plus de remise** (décision 2026-08-03, §3.b). Périmètre
+  restreint identique (**200-400 tickets** ou un client final), **dépôt d'activation** (§3.a)
+  et **contreparties de risque** (§3.b) à la place. Copy alignée :
+  `OUTREACH-IT-N1-marque-blanche.md`, `OUTREACH-telesec-marque-blanche.md`,
+  `ONEPAGER-PARTENAIRE-MB.md`, espaces partenaires.
 
 ### Tier « Priority » (ex-« Premium ITIL+ ») — service critique
 
@@ -328,7 +405,14 @@ GoCardless ; si priorité **facturation + compta FR intégrée** → Pennylane +
 
 ---
 
-## 7. Offre de lancement — **1er mois à -50 %** (remplace l'essai gratuit)
+## 7. Offre de lancement — **1er mois à -50 %** (remplace l'essai gratuit) — **EN DIRECT UNIQUEMENT**
+
+> ⚠️ **Portée restreinte le 2026-08-03** : cette offre s'applique **au direct** (médical,
+> support N1 & helpdesk client final). **En marque blanche, elle est supprimée** et
+> remplacée par le dépôt d'activation (§3.a) + les trois contreparties de risque (§3.b).
+> Raison : un partenaire **revend** — une remise sur son prix de gros gonfle sa marge du
+> mois sans l'aider à décrocher son client final, pour un coût supérieur à l'onboarding
+> qu'elle est censée compenser (~2 625 € contre ~1 600 € sur 3 positions).
 
 **Décision : remplacer « essai 15 jours gratuit » par « 1er mois à -50 % ».**
 Repli si friction commerciale trop forte en cold : « 7 jours offerts, périmètre limité »
@@ -432,6 +516,9 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | Télésec MB à l'appel (2026-06-12) | tarif à plat 0,90-1,40 € | **par créneau** : jour 0,90-1,10 € · soir/samedi 1,20-1,40 € · pics réservés +15-20 % (§1.b) |
 | Amplitude médical (2026-06-12) | diluée dans « sur-mesure » | **add-ons nommés** : samedi matin +90 € · soirée +120 € · samedi complet +150 € (§1.a) |
 | Onboarding (2026-06-12) | invisible, gratuit | **« Mise en service : 490 € — offerte »** sur chaque devis (§1.c) |
+| **Activation MB (2026-08-03)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, plafond 2 700 €**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a) |
+| **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
+| **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
 
 ---
 

@@ -115,9 +115,23 @@ plusieurs ETP d'un coup.
   M+7-8. **Capital de départ recommandé : 50-60 k€** (creux + coussin 30 %). En
   démarrage à 8 agents d'emblée : creux ~55-65 k€ → 75 k€ de capital. **Recommandation
   ferme : noyau de 4 agents, montée au contrat.**
-- Leviers anti-creux : acompte au cadrage MB, prélèvement SEPA dès le 1er mois,
-  gel du 2e salaire de direction, fee d'attente réduit pour les agents en banc
-  (à négocier au contrat freelance : plein fee dès staffing).
+- Leviers anti-creux :
+  - ✅ **Acompte au cadrage MB — ACTÉ le 2026-08-03** sous forme de **dépôt d'activation
+    imputable : 900 €/position, plafond 2 700 €**, encaissé **à la signature**, déduit des
+    3 premières factures (300 €/position/mois) — `PRICING.md §3.a`. Effet trésorerie :
+    encaissement **à J0 au lieu de J+30**, soit **2 700 € par deal de 3 positions** entrés
+    un mois plus tôt, et le **coût d'onboarding couvert (~1 600 €)** si le partenaire
+    s'arrête. L'ancienne contradiction avec « ne jamais facturer la mise en service »
+    (`ONBOARDING-CLIENT.md`) est levée : un dépôt **imputable** n'est pas des frais.
+  - ✅ **Fin de la remise de lancement en MB — ACTÉE le 2026-08-03** (`PRICING.md §3.b`) :
+    le mois pilote à −50 % coûtait **~2 625 €** sur un deal de 3 positions, pour un
+    onboarding réel de ~1 600 €, et sortait le mois d'entrée à **≈ −1 075 €**. Supprimée,
+    ce mois passe **à l'équilibre positif** (3 × 1 750 € encaissés contre 3 × 700 € de fees).
+    Remplacée par 3 contreparties à coût ~nul. **Conservée en direct** (`PRICING.md §7`).
+  - ✅ **Palier 5+ ETP conditionné à un volume ferme facturé** (`PRICING.md §3`) : supprime
+    le risque de banc payé sur le palier le moins margé (~48 %).
+  - Prélèvement SEPA dès le 1er mois, gel du 2e salaire de direction, fee d'attente réduit
+    pour les agents en banc (à négocier au contrat freelance : plein fee dès staffing).
 - Simulation interactive : `tresorerie-salverys.html` (paramètres par défaut alignés
   sur ce modèle v2).
 

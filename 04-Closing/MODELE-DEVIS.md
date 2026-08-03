@@ -5,9 +5,14 @@
 > **Source de vérité prix : `PRICING.md`** — en cas de divergence, `PRICING.md` fait foi.
 >
 > Règles fixes : forfait/ETP **jamais à l'appel côté client final** · offre de lancement
-> = **1er mois à −50 %** (jamais « essai gratuit ») · **mise en service 490 € — offerte** ·
-> côté médical on dit **« forfait »**, jamais « abonnement » · le prix MB figure dans le
-> devis au partenaire (c'est l'acheteur) mais **ne se recopie jamais dans un support public**.
+> = **1er mois à −50 %** (jamais « essai gratuit ») **en variante A uniquement** ·
+> **mise en service 490 € — offerte** · côté médical on dit **« forfait »**, jamais
+> « abonnement » · le prix MB figure dans le devis au partenaire (c'est l'acheteur) mais
+> **ne se recopie jamais dans un support public**.
+>
+> ⚠️ **Variante B (MB) — mise à jour 2026-08-03** : **plus de mois pilote à −50 %**. À la
+> place : **dépôt d'activation imputable 900 €/position** (B.4), **contreparties de risque**
+> (B.7) et **minimum facturable** sur le palier 5+ (B.2/B.3). Cf. `PRICING.md §3.a/§3.b`.
 >
 > Identité juridique en cours d'enregistrement → laisser les placeholders `[...]` tant que
 > non renseignés. Ne rien inventer (SIREN, préavis, outil de paiement).
@@ -117,7 +122,11 @@ KPI engagé : **taux de décroché**. Plancher : jamais sous coût chargé agent
 |---|---|---|---|
 | 1 ETP | **1 700 €** | [ ] | [ ] € |
 | 3 ETP | **1 500 €** | [ ] | [ ] € |
-| 5+ ETP | **1 350 €** | [ ] | [ ] € |
+| **5+ ETP** — *volume ferme facturé* | **1 350 €** | [ ] | [ ] € |
+
+> **Palier 5+ — minimum facturable** : ce tarif est consenti contre un **volume ferme de
+> 5 positions, facturées qu'elles soient consommées ou non**. En deçà de 5 positions
+> facturées sur un mois, le tarif du **palier 3 ETP (1 500 €)** s'applique à ce mois.
 
 KPI engagé : **SLA de première réponse**. Option **Priority** (capacité réservée non
 mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3`).
@@ -128,15 +137,34 @@ mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3
 |---|---|---|---|
 | 1 ETP | **2 000 €** | [ ] | [ ] € |
 | 3 ETP | **1 750 €** | [ ] | [ ] € |
-| 5+ ETP | **1 550 €** | [ ] | [ ] € |
+| **5+ ETP** — *volume ferme facturé* | **1 550 €** | [ ] | [ ] € |
+
+> **Palier 5+ — minimum facturable** : ce tarif est consenti contre un **volume ferme de
+> 5 positions, facturées qu'elles soient consommées ou non**. En deçà de 5 positions
+> facturées sur un mois, le tarif du **palier 3 ETP (1 750 €)** s'applique à ce mois.
 
 KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 
-## B.4 Mise en service & offre de lancement (MB)
+## B.4 Mise en service & dépôt d'activation (MB)
 
-- SETUP : **cadrage & mise en place — offerts** (afficher la valeur, facturer 0 €).
-- **Mois pilote à −50 %**, sans engagement, sur périmètre limité (débordement ou lot de
-  **200-400 tickets** côté support/IT) défini au cadrage.
+| Réf. | Désignation | Qté | PU | Total |
+|---|---|---|---|---|
+| SETUP | **Cadrage & mise en place** (intégration outils, formation aux procédures, armement QA) | 1 | ~~[valeur] €~~ | **0 € — offert** |
+| DEPOT | **Dépôt d'activation** — 900 €/position, plafond 2 700 € | [ ] | 900 € | **[ ] €** |
+
+- **Le dépôt n'est pas des frais** : il est **intégralement imputé** sur les **3 premières
+  factures**, à raison de **300 €/position/mois**. Un partenaire qui va au bout ne paie
+  **rien de plus** — c'est une avance, pas un coût.
+- **Exigible à la signature**, avant démarrage de la mise en service. **Restitué en totalité**
+  si le contrat est annulé **avant** ce démarrage ; **acquis à Salverys** si l'annulation
+  intervient **après** (recrutement engagé, formation lancée).
+- **Pas de mois pilote à −50 %** en marque blanche (`PRICING.md §3.b`). Le pilote éventuel
+  est un **périmètre restreint** — débordement, un client final, lot de **200-400 tickets**
+  côté support/IT — **au tarif du palier retenu**, défini au cadrage.
+
+> **Phrase de closing** : « Le dépôt, vous ne le payez pas — vous l'avancez. Il revient dans
+> vos trois premières factures. Il ne reste chez nous que si vous annulez une fois qu'on a
+> recruté et formé pour vous. »
 
 ## B.5 Engagement de service (MB, en régime)
 
@@ -149,8 +177,27 @@ Seuil exact **figé au cadrage**.
 - **Marque blanche totale** : scripts, outils, SLA et **nom du partenaire**.
 - **Durée** : engagement initial **3 mois (pilote)**, puis **12 mois renouvelable**
   (24-36 mois réservés aux grands comptes avec dégressif).
+- **Sortie à 30 jours pendant les 3 premiers mois** (cf. B.7), préavis de droit commun
+  ensuite.
 - Backup **+1 agent par compte**. Plan de continuité écrit remis avant démarrage.
+- **Non-sollicitation** de vos clients finaux pendant le contrat et 24 mois après.
 - Facturation mensuelle, paiement à [__ jours] par [moyen de paiement à préciser].
+
+## B.7 Ce que nous vous accordons (contreparties de risque — cocher les concédées)
+
+> Remplacent toute remise sur le prix de gros (`PRICING.md §3.b`). Se négocient **une à la
+> fois** ; ce qui est concédé doit être **écrit et visible**, jamais subi.
+
+- [ ] **Sortie à 30 jours** pendant les 3 premiers mois (au lieu de [60] jours de préavis) —
+  vous arrêtez sur simple notification, sans indemnité.
+- [ ] **Exclusivité [territoire / segment] pendant 12 mois** — aucun autre prestataire de
+  même nature sur **[zone/segment]** ne sera servi par Salverys pendant 12 mois.
+- [ ] **Appui avant-vente sous 48 h** — plan de continuité, DPA, description du dispositif
+  QA, CV anonymisés et engagement SLA écrit, fournis sous 48 h ouvrées et **réutilisables
+  tels quels dans vos propres réponses d'appels d'offres**.
+
+*Argumentaire : ces trois contreparties enlèvent du **risque**, là où une remise n'enlevait
+que du **prix** — et la troisième est la seule qui vous aide à **gagner un client**.*
 
 ---
 

@@ -355,7 +355,11 @@
 | Forfaits médical | **350 / 590 / 950 €** | `PRICING.md` §1 |
 | SLA décroché médical | **≥ 90 %** sur le mois | `PRICING.md` §7 |
 | Remède si seuil non tenu | **20 % d'avoir** (mois suivant, max 1 mois/12) | `PRICING.md` §7 |
-| Offre de lancement | **1er mois à -50 %** (sans engagement) | `PRICING.md` §7 |
-| Pilote support / helpdesk | **200-400 tickets**, 1er mois à -50 % | `PRICING.md` §3 |
+| Offre de lancement — **en direct uniquement** | **1er mois à -50 %** (sans engagement) | `PRICING.md` §7 |
+| Pilote support / helpdesk **en direct** | **200-400 tickets**, 1er mois à -50 % | `PRICING.md` §3 |
+| **Pilote en marque blanche** | **200-400 tickets, PAS de remise** — périmètre restreint au tarif du palier | `PRICING.md` §3.b |
+| **Dépôt d'activation MB** | **900 €/position**, plafond 2 700 €, imputé sur les 3 premières factures | `PRICING.md` §3.a |
+| **Contreparties MB** (à la place de la remise) | sortie **30 j** les 3 premiers mois · exclusivité **12 mois** · appui avant-vente **48 h** | `PRICING.md` §3.b |
+| **Palier MB 5+ ETP** | **volume ferme facturé** : 5 positions dues, consommées ou non | `PRICING.md` §3 |
 | Durée contrats IT | **dès 3 mois, puis 12 mois** renouvelable | `PRICING.md` §3 |
 | Avantage coût | **~40 %** sous un prestataire FR | `CLAUDE.md` |

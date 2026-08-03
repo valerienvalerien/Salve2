@@ -169,9 +169,9 @@ Bonjour {prenom},
 
 En offshore marque blanche, la vraie question c'est la qualité — pas le prix. Chez nous tout est cadré avant le premier appel : décroché, script, double écoute et reporting hebdo.
 
-Concrètement, on propose un pilote : 200 à 500 appels/mois sur vos créneaux de débordement, KPIs mesurés (taux de décroché, temps moyen, satisfaction), sans engagement. Et une fois en régime, on s'engage sur le décroché : sous le seuil convenu sur un mois, 20 % d'avoir le mois suivant.
+Concrètement, on démarre petit : 200 à 500 appels/mois sur vos créneaux de débordement, KPIs mesurés (taux de décroché, temps moyen, satisfaction). Et une fois en régime, on s'engage sur le décroché : sous le seuil convenu sur un mois, 20 % d'avoir le mois suivant.
 
-Si le résultat ne tient pas vos standards, vous arrêtez. Ça vaut un test ?
+Si le résultat ne tient pas vos standards, vous arrêtez en prévenant 30 jours — c'est écrit au contrat pendant les trois premiers mois. Ça vaut un test ?
 
 {signature}
 
@@ -278,7 +278,14 @@ Bonne continuation,
 | « On a déjà essayé l'offshore, ça s'est mal passé. » | Compréhensible. La différence : cadrage qualité documenté (script, double écoute, reporting) et démarrage en pilote mesuré, pas en bascule totale. |
 | « D'autres prestataires malgaches sont moins chers (0,50-1 €/appel). » | Exact, et c'est volontaire. À ce prix, l'agent est payé au minimum local et tourne en 6 mois — votre qualité de marque part avec lui. Nous, on paie nos agents au-dessus du marché pour les garder, on s'engage contractuellement sur le décroché (avoir automatique en deçà), avec plan de continuité écrit (double connexion par agent, hub de repli alimenté) et backup +1 agent. La question n'est pas le prix de l'appel : c'est le coût du client que vous perdez quand le prestataire à 0,50 € ne décroche pas sous votre marque. |
 | « L'IA / les callbots vont absorber ce marché. » | L'IA absorbe le RDV simple — raison de plus de nous sous-traiter le trafic **humain** restant (urgences, patients âgés, demandes complexes, débordement) à coût malgache, plutôt que de payer un plateau France pour des appels que le bot vous enlève déjà. (cf. `NARRATIF-HYBRIDE-CALLBOT.md`) |
+| « Vous me faites un geste sur le prix pour démarrer ? » | Non, et c'est assumé : vous revendez notre prestation, une remise améliorerait votre marge d'un mois sans vous faire gagner un seul client. Ce que je vous donne à la place enlève du **risque** : vous arrêtez en prévenant 30 jours pendant les 3 premiers mois, exclusivité sur votre zone 12 mois, et notre dossier avant-vente (plan de continuité, DPA, dispositif QA, engagement de décroché écrit) sous 48 h, **réutilisable tel quel dans vos propres appels d'offres**. Sur le prix, c'est le volume que vous engagez fermement qui le fait baisser. |
+| « Une avance à la signature ? » | Ce n'est pas des frais : c'est **imputé sur vos trois premières factures**, vous ne payez rien de plus. Elle couvre le recrutement et la formation qu'on engage pour vous avant le premier appel. Elle ne nous reste que si vous annulez une fois qu'on a recruté. |
 
 ---
 
 *Généré via le skill `sales-outreach` (ai-sales-team-claude), adapté au positionnement marque blanche Salverys.*
+
+*Mise à jour 2026-08-03 — `PRICING.md §3.a/§3.b` : **aucune remise sur le prix de gros en
+marque blanche**. Le pilote reste un **périmètre restreint** au tarif de la grille. Mécanique
+d'entrée : **dépôt d'activation imputable** + **3 contreparties de risque** (sortie 30 j les
+3 premiers mois · exclusivité 12 mois · appui avant-vente sous 48 h).*

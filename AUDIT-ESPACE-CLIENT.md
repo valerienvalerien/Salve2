@@ -257,9 +257,8 @@ codé.
 
 ## 9. Recalibrage marque blanche — dossier de décision (2026-07-29)
 
-> **Statut : non appliqué.** Quatre arbitrages engagent la politique tarifaire ; ils
-> attendent une décision direction. Ce qui n'en dépendait pas a été appliqué (corrections
-> chiffrées §9.1, garde-fou builder, couche « concessions »).
+> ✅ **Statut : APPLIQUÉ — décision direction du 2026-08-03.** Les quatre arbitrages ont été
+> tranchés (A, B, C, D ci-dessous) et propagés à l'ensemble du corpus (§9.7).
 
 ### 9.1 Deux contradictions corrigées
 
@@ -304,12 +303,12 @@ Trois conclusions :
 
 ### 9.4 Les quatre décisions
 
-| # | Décision | Recommandation | Alternatives |
+| # | Décision | **Arbitrage retenu (2026-08-03)** | Alternatives écartées |
 |---|---|---|---|
-| A | Frais d'activation MB | **Dépôt imputable 900 €/position**, plafond 2 700 €, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après début de mise en service | frais fermes · statu quo |
-| B | Pilote −50 % en MB | **Supprimé**, remplacé par 3 gives de risque (§9.5) | gardé en plus du dépôt · gardé seul |
-| C | Palier 5+ ETP | **Conditionné à un minimum facturable** (5 positions payées même si 3 consommées) | remonter le prix · statu quo |
-| D | Propagation | **Tout le corpus** | PRICING + outil · PRICING seul |
+| A | Frais d'activation MB | ✅ **Dépôt imputable 900 €/position**, plafond 2 700 €, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après début de mise en service | frais fermes · statu quo |
+| B | Pilote −50 % en MB | ✅ **Supprimé en MB**, remplacé par les 3 contreparties de risque (§9.5). **Conservé en direct** | gardé en plus du dépôt · gardé seul |
+| C | Palier 5+ ETP | ✅ **Conditionné à un volume ferme facturé** : 5 positions facturées, consommées ou non ; en deçà, tarif du palier 3 ETP | remonter le prix · statu quo |
+| D | Propagation | ✅ **Tout le corpus** (§9.7) | PRICING + outil · PRICING seul |
 
 **Pourquoi un dépôt imputable plutôt que des frais fermes** : coût nul pour le partenaire
 qui va au bout, donc pas de friction sur le prix total face à un acheteur professionnel
@@ -328,15 +327,53 @@ encaissement J0 au lieu de J+30, ce qui attaque directement le creux de trésore
 Le troisième est le meilleur : c'est le seul qui aide le partenaire à **vendre** plutôt
 qu'à économiser.
 
-### 9.6 Si les décisions sont validées — fichiers à propager
+### 9.6 Correction — l'argument de capacité était faux
 
-`PRICING.md` (§0, §1.c, §3, §7, §8) · `tools/deal-build.mjs` + `deal-template.html` +
-`deals/*.json` (champs `depot`, `minimumFacturable`) ·
-`04-Closing/MODELE-CONTRAT-PRESTATION.md` (art. 4 dépôt, art. 10 non-sollicitation,
-art. 13 sortie 30 j + réversibilité, Annexe B) · `MODELE-DEVIS.md` (variante B) ·
-`ONBOARDING-CLIENT.md` (phases 0/1/4 + garde-fous) ·
-`02-Prospection/ONEPAGER-PARTENAIRE-MB.md` (mécanique d'entrée, sans montant) ·
-`FINANCE-PREVISIONNEL.md` (§6 acompte acté).
+L'ancienne rédaction de `PRICING.md §3` justifiait le recalibrage du palier 5+ par
+« 5 positions = **62 % de la capacité totale (8 agents)** ». **L'arithmétique était juste
+contre un chiffre qui n'est pas un plafond.** Les 8 agents de `FINANCE-PREVISIONNEL.md §1`
+sont le **modèle de référence** du prévisionnel v2, pas une limite : le même document
+prévoit un démarrage à 4 agents, une montée « au fil des placements », et un effectif M12
+de **8 / 11-12 / 16-18** selon le scénario (§5). Le modèle est **100 % freelance**,
+précisément pour être élastique.
+
+La vraie contrainte sur un engagement de 5 positions est double, et elle est **plus forte** :
+
+- **Trésorerie** — creux maximal **35-45 k€** vers M+7-8 (`FINANCE §6`).
+- **Délai** — **~5 à 7 semaines** entre la signature et la première facture
+  (recrutement freelance 2-4 sem. + formation 2-3 sem., `FINANCE §5`), soit
+  **~3 500 €/mois de fees engagés** avant le premier euro encaissé.
+
+C'est cet argument-là qui fonde le minimum facturable, pas un plafond d'effectif : le
+risque créé par un engagement non tenu doit rester chez celui qui le crée. Corrigé dans
+`PRICING.md §3`.
+
+### 9.7 Propagation — fichiers modifiés (2026-08-03)
+
+| Fichier | Ce qui a changé |
+|---|---|
+| `PRICING.md` | §0 mécanique d'entrée dissociée direct/MB · §1.c portée de la mise en service offerte · §3 palier 5+ conditionné + correction capacité · **§3.a dépôt d'activation** · **§3.b fin du pilote −50 % en MB** · §7 portée restreinte au direct · §8 trois lignes de récap |
+| `tools/deal-build.mjs` | constantes `DEPOT_*` / `MINIMUM_FACTURABLE_SEUIL` / `REMISE_INTERDITE` · `calcDepot()` + `renderDepot()` · minimum facturable rendu dans la grille · **refus de build** si palier ≥5 retenu sans `minimumFacturable`, ou si une remise réapparaît dans `pilote`/`grilleIntro`/`grilleNote` · vérification que le dépôt figure dans le déchiffré · récap dépôt/minimum au terminal |
+| `tools/deals/exemple-msp.json` | `minimumFacturable: 5` sur le palier 5+ · `pilote` réécrit sans remise · concession « sortie à 30 jours » ajoutée |
+| `04-Closing/MODELE-CONTRAT-PRESTATION.md` | art. 3 sortie 30 j · art. 4 dépôt d'activation · art. 10 non-sollicitation · **art. 10 bis contreparties de risque** · art. 13 réversibilité + sort du dépôt · Annexe B minimum facturable |
+| `04-Closing/MODELE-DEVIS.md` | B.2/B.3 palier 5+ à volume ferme · **B.4 dépôt d'activation** (+ phrase de closing) · B.6 sortie 30 j · **B.7 contreparties à cocher** |
+| `04-Closing/ONBOARDING-CLIENT.md` | phase 0 encaissement du dépôt + palier figé + contreparties · phase 4 imputation et contrôle du minimum · garde-fous (ne pas recruter avant encaissement, jamais de remise MB) |
+| `02-Prospection/ONEPAGER-PARTENAIRE-MB.md` | mécanique d'entrée réécrite, les 3 contreparties, avance d'activation **sans montant** (règle « aucun prix ») |
+| `02-Prospection/OUTREACH-IT-N1-marque-blanche.md` | email 4 et objection « pas de références » réécrits · **nouvelle objection « un geste sur le prix ? »** · statut CRM `pilote` reformulé |
+| `02-Prospection/OUTREACH-telesec-marque-blanche.md` | email 3 (sortie 30 j) · 2 objections ajoutées (remise, avance) |
+| `02-Prospection/SCRIPTS-APPEL.md` · `HANDOFF-scripts-appel.md` | table des chiffres : −50 % scopé au direct, 4 lignes MB ajoutées |
+| `tools/espace-contenu-{medical,support,helpdesk}.html` | conditions réécrites (dépôt, minimum facturable, plus de remise) + bloc **« Ce que nous vous accordons »** |
+| `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` | §6 : acompte MB **acté**, effet trésorerie chiffré, fin de la remise MB chiffrée |
+
+⚠️ **Reste à faire manuellement** : régénérer les trois espaces partenaires chiffrés
+(`espace-client-{medical,support,helpdesk}.html`) — les mots de passe ne sont stockés nulle
+part :
+
+```
+node tools/espace-client-build.mjs medical  "<mot de passe>" --verify
+node tools/espace-client-build.mjs support  "<mot de passe>" --verify
+node tools/espace-client-build.mjs helpdesk "<mot de passe>" --verify
+```
 
 ---
 
