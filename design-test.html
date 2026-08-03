@@ -67,10 +67,9 @@
   .hero-face{position:relative;align-self:stretch;margin:-44px calc(-1 * var(--face-bleed)) -44px 0}
   .hero-face img{
     width:100%;height:100%;object-fit:cover;object-position:86% 20%;display:block;
-    border-radius:0 14px 14px 0;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
-    -webkit-mask-composite:source-in;mask-composite:intersect;
+    border-radius:0 var(--radius) var(--radius) 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 26%);
   }
   .hero-logo{height:34px;width:auto;margin-bottom:56px}
   .hero-kick{
@@ -102,7 +101,7 @@
   .lead-card input[type=text],
   .lead-card input[type=email],
   .lead-card textarea{
-    width:100%;background:#fff;border:1px solid #DCD6C8;border-radius:3px;
+    width:100%;background:#fff;border:1px solid #DCD6C8;border-radius:10px;
     padding:12px 13px;font:inherit;font-size:14px;color:var(--text);margin-bottom:12px;
     transition:border-color .2s var(--ease),box-shadow .2s var(--ease);
   }
@@ -115,32 +114,45 @@
 
   /* les 3 cellules = liens vers les pages, aux couleurs de chaque métier */
   .lead-routes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  /* forme, balayage brillant et hover repris des .btn-* du site */
   .route{
     display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-    min-height:56px;padding:8px 6px;border-radius:3px;
+    min-height:56px;padding:8px 6px;border-radius:14px;
     font-size:11.5px;font-weight:700;line-height:1.2;letter-spacing:.01em;
-    border:1px solid rgba(38,58,46,.15);
-    transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);
+    background-size:260% 100%;background-position:100% 0;
+    transition:transform .18s var(--ease),box-shadow .25s,background-position .7s var(--ease);
   }
   .route small{display:block;font-size:10px;font-weight:600;opacity:.85;margin-top:3px}
-  .route:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(38,58,46,.28)}
+  .route:hover{transform:translateY(-2px);background-position:0 0}
   .route:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   /* Support N1 SaaS — thème IT : navy + jaune pastel */
-  .route-saas{background:#013C58;color:#FCE27C}
-  .route-saas:hover{background:#012C42}
+  .route-saas{
+    background-image:linear-gradient(120deg,#013C58 0%,#013C58 42%,#0A5A80 50%,#013C58 58%,#013C58 100%);
+    color:#FCE27C;box-shadow:0 6px 20px -8px rgba(1,60,88,.55);
+  }
+  .route-saas:hover{box-shadow:0 14px 30px -8px rgba(1,60,88,.7)}
   /* Helpdesk IT N1 — thème helpdesk : corail */
-  .route-helpdesk{background:#E06B52;color:#fff}
-  .route-helpdesk:hover{background:#C9573F}
+  .route-helpdesk{
+    background-image:linear-gradient(120deg,#E06B52 0%,#E06B52 42%,#EA8B7A 50%,#E06B52 58%,#E06B52 100%);
+    color:#fff;box-shadow:0 6px 20px -8px rgba(224,107,82,.55);
+  }
+  .route-helpdesk:hover{box-shadow:0 14px 30px -8px rgba(224,107,82,.7)}
   /* Télésecrétariat médical — thème médical : sauge */
-  .route-medical{background:#6F8770;color:#fff}
-  .route-medical:hover{background:#576B58}
+  .route-medical{
+    background-image:linear-gradient(120deg,#6F8770 0%,#6F8770 42%,#92AE93 50%,#6F8770 58%,#6F8770 100%);
+    color:#fff;box-shadow:0 6px 20px -8px rgba(111,135,112,.55);
+  }
+  .route-medical:hover{box-shadow:0 14px 30px -8px rgba(111,135,112,.7)}
 
   .lead-btn{
     width:100%;border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:700;
-    background:var(--gold);color:#fff;border-radius:3px;padding:13px 16px;
-    transition:background .2s var(--ease),transform .2s var(--ease);
+    color:#fff;border-radius:100px;padding:15px 28px;
+    background-image:linear-gradient(120deg,#B89968 0%,#B89968 42%,#D9C097 50%,#B89968 58%,#B89968 100%);
+    background-size:260% 100%;background-position:100% 0;
+    box-shadow:0 6px 20px -8px rgba(184,153,104,.6);
+    transition:transform .18s var(--ease),box-shadow .25s,background-position .7s var(--ease);
   }
-  .lead-btn:hover{background:#A6884D;transform:translateY(-1px)}
+  .lead-btn:hover{transform:translateY(-2px);background-position:0 0;box-shadow:0 14px 30px -8px rgba(184,153,104,.75)}
   .lead-legal{font-size:11px;color:var(--text-mute);text-align:center;margin-top:10px}
   .lead-ok{display:none;text-align:center;padding:26px 8px}
   .lead-ok .tick{
@@ -242,7 +254,7 @@
         <div class="hero-mini">
           <span>FR &amp; EN, français natif</span>
           <span>Agents payés bien au-dessus du marché — zéro turnover</span>
-          <span>1<sup>er</sup> mois à −50 %, sans engagement</span>
+          <span>Arrêt possible à 30 jours, les 3 premiers mois</span>
         </div>
       </div>
 
