@@ -48,17 +48,26 @@
   .hero-photo{
     position:absolute;inset:0;z-index:0;
     background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;
-    opacity:.85;
+    opacity:.22;
   }
   .hero-photo::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(100deg, var(--green-deep) 0%, rgba(38,58,46,.96) 28%, rgba(38,58,46,.58) 50%, rgba(38,58,46,.62) 68%, rgba(38,58,46,.86) 100%),
-      linear-gradient(180deg, rgba(28,44,34,.35) 0%, rgba(28,44,34,0) 30%, rgba(28,44,34,.55) 100%);
+      linear-gradient(100deg, rgba(38,58,46,.96) 0%, rgba(38,58,46,.88) 30%, rgba(38,58,46,.5) 55%, rgba(38,58,46,.5) 74%, rgba(38,58,46,.9) 100%),
+      linear-gradient(180deg, rgba(28,44,34,.3) 0%, rgba(28,44,34,0) 32%, rgba(28,44,34,.45) 100%);
   }
   .hero-inner{
-    position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .82fr;gap:36px;
-    align-items:center;padding:44px 46px 40px;min-height:520px;
+    position:relative;z-index:1;display:grid;grid-template-columns:1fr 220px 380px;gap:26px;
+    align-items:stretch;padding:44px 40px;min-height:540px;
+  }
+  .hero-copy,.lead-card{align-self:center}
+  /* colonne visage */
+  .hero-face{position:relative;align-self:stretch;margin:-44px 0}
+  .hero-face img{
+    width:100%;height:100%;object-fit:cover;object-position:86% 20%;display:block;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-composite:intersect;
   }
   .hero-logo{height:34px;width:auto;margin-bottom:56px}
   .hero-kick{
@@ -66,11 +75,11 @@
   }
   .hero-rule{width:64px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:28px}
   .hero h1{
-    font-size:clamp(27px,2.9vw,38px);line-height:1.14;font-weight:800;letter-spacing:-.02em;
-    max-width:24ch;margin-bottom:20px;
+    font-size:clamp(25px,2.4vw,33px);line-height:1.16;font-weight:800;letter-spacing:-.02em;
+    max-width:26ch;margin-bottom:18px;
   }
   .hero h1 .hl{color:var(--gold-soft)}
-  .hero-lead{font-size:17px;color:#E6E1D6;max-width:44ch}
+  .hero-lead{font-size:16px;color:#E6E1D6;max-width:46ch}
   .hero-lead b{color:#fff;font-weight:700}
   .hero-mini{
     display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:24px;
@@ -176,12 +185,22 @@
   .foot a:hover{opacity:1;text-decoration:underline}
 
   /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1100px){
+    .hero-inner{grid-template-columns:1fr 380px}
+    .hero-face{display:none}
+  }
   @media (max-width:1000px){
     .hero-inner{grid-template-columns:1fr;padding:32px 26px 34px;min-height:0}
-    .hero-photo{opacity:.55}
-    .hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.88) 0%,rgba(38,58,46,.94) 100%)}
+    .hero-photo{opacity:.18}
+    .hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.9) 0%,rgba(38,58,46,.94) 100%)}
     .hero-logo{margin-bottom:26px}
     .hero h1{max-width:100%}
+    .hero-face{display:block;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
+    .hero-face img{
+      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;
+      -webkit-mask-image:none;mask-image:none;
+      -webkit-mask-composite:source-over;mask-composite:add;
+    }
     .toolband{padding:18px 26px}
     .toolband .tb-lead{max-width:100%;flex:0 0 100%}
     .duo-grid{grid-template-columns:1fr 1fr;gap:34px}
@@ -220,6 +239,10 @@
           <span>Agents payés bien au-dessus du marché — zéro turnover</span>
           <span>1<sup>er</sup> mois à −50 %, sans engagement</span>
         </div>
+      </div>
+
+      <div class="hero-face" aria-hidden="true">
+        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
       </div>
 
       <!-- FORMULAIRE LATÉRAL -->

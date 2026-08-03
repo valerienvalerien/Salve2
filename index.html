@@ -28,34 +28,44 @@
 <link rel="stylesheet" href="assets/site.css" />
 <style>
   /* ====== Hero "carte sombre + formulaire lateral" (test design) ====== */
-  .dt-hero-wrap{padding:26px 16px 0;background:#fff}
+  .dt-hero-wrap{padding:26px 16px 44px;background:#fff}
+  .home .marquee{margin-bottom:34px}
   .dt-hero{
     position:relative;overflow:hidden;border-radius:16px;
     background:var(--green-deep,#263A2E);color:#fff;max-width:1220px;margin:0 auto;
   }
   .dt-hero-photo{
     position:absolute;inset:0;z-index:0;
-    background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;opacity:.85;
+    background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;opacity:.22;
   }
   .dt-hero-photo::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(100deg,#263A2E 0%,rgba(38,58,46,.96) 28%,rgba(38,58,46,.58) 50%,rgba(38,58,46,.62) 68%,rgba(38,58,46,.86) 100%),
-      linear-gradient(180deg,rgba(28,44,34,.35) 0%,rgba(28,44,34,0) 30%,rgba(28,44,34,.55) 100%);
+      linear-gradient(100deg,rgba(38,58,46,.96) 0%,rgba(38,58,46,.88) 30%,rgba(38,58,46,.5) 55%,rgba(38,58,46,.5) 74%,rgba(38,58,46,.9) 100%),
+      linear-gradient(180deg,rgba(28,44,34,.3) 0%,rgba(28,44,34,0) 32%,rgba(28,44,34,.45) 100%);
   }
   .dt-hero-inner{
-    position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .82fr;gap:36px;
-    align-items:center;padding:44px 46px 44px;min-height:520px;
+    position:relative;z-index:1;display:grid;grid-template-columns:1fr 220px 380px;gap:26px;
+    align-items:stretch;padding:44px 40px;min-height:540px;
+  }
+  .dt-hero-copy,.dt-card{align-self:center}
+  /* colonne visage */
+  .dt-face{position:relative;align-self:stretch;margin:-44px 0}
+  .dt-face img{
+    width:100%;height:100%;object-fit:cover;object-position:86% 20%;display:block;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-composite:intersect;
   }
   .dt-kick{font-size:15px;font-weight:600;color:#EDE6D8;margin-bottom:10px}
   .dt-rule{width:64px;height:3px;background:#B89968;border-radius:2px;margin-bottom:28px}
   .dt-hero h1{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    font-size:clamp(27px,2.9vw,38px);line-height:1.14;font-weight:800;letter-spacing:-.02em;
-    color:#fff;text-transform:none;max-width:24ch;margin-bottom:20px;
+    font-size:clamp(25px,2.4vw,33px);line-height:1.16;font-weight:800;letter-spacing:-.02em;
+    color:#fff;text-transform:none;max-width:26ch;margin-bottom:18px;
   }
   .dt-hero h1 .hl{color:#D4B98A;background:none;-webkit-text-fill-color:currentColor}
-  .dt-lead{font-size:17px;line-height:1.6;color:#E6E1D6;max-width:44ch}
+  .dt-lead{font-size:16px;line-height:1.6;color:#E6E1D6;max-width:46ch}
   .dt-lead b{color:#fff;font-weight:700}
   .dt-mini{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:24px;font-size:13px;color:#D8D2C4}
   .dt-mini span::before{content:"✓";color:#D4B98A;font-weight:800;margin-right:6px}
@@ -95,14 +105,24 @@
   .dt-ok b{display:block;color:#263A2E;font-size:17px;margin-bottom:4px}
   .dt-ok p{font-size:13px;color:#5C5448}
 
+  @media (max-width:1100px){
+    .dt-hero-inner{grid-template-columns:1fr 380px}
+    .dt-face{display:none}
+  }
   @media (max-width:1000px){
     .dt-hero-inner{grid-template-columns:1fr;padding:32px 26px 34px;min-height:0}
-    .dt-hero-photo{opacity:.55}
-    .dt-hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.88) 0%,rgba(38,58,46,.94) 100%)}
+    .dt-hero-photo{opacity:.18}
+    .dt-hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.9) 0%,rgba(38,58,46,.94) 100%)}
     .dt-hero h1{max-width:100%}
+    .dt-face{display:block;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
+    .dt-face img{
+      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;
+      -webkit-mask-image:none;mask-image:none;
+      -webkit-mask-composite:source-over;mask-composite:add;
+    }
   }
   @media (max-width:620px){
-    .dt-hero-wrap{padding:14px 10px 0}
+    .dt-hero-wrap{padding:14px 10px 30px}
     .dt-routes{grid-template-columns:1fr}
     .dt-route{flex-direction:row;gap:8px;min-height:0;padding:11px 12px;justify-content:flex-start;text-align:left}
     .dt-route small{margin-top:0}
@@ -138,7 +158,7 @@
   <section class="dt-hero">
     <div class="dt-hero-photo" aria-hidden="true"></div>
     <div class="dt-hero-inner">
-      <div>
+      <div class="dt-hero-copy">
         <div class="dt-kick">Support &amp; télésecrétariat francophones · Antananarivo → France</div>
         <div class="dt-rule"></div>
         <h1>Le support low cost <span class="hl">se paie deux fois</span> : quand l'utilisateur doit interpréter la réponse, puis quand vous devrez reformer son interlocuteur.</h1>
@@ -152,6 +172,10 @@
           <span>Agents payés bien au-dessus du marché — zéro turnover</span>
           <span>1<sup>er</sup> mois à −50 %, sans engagement</span>
         </div>
+      </div>
+
+      <div class="dt-face" aria-hidden="true">
+        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
       </div>
 
       <div class="dt-card">
@@ -197,6 +221,31 @@
   })();
 </script>
 
+<!-- STATS -->
+<section class="section soft" id="stats">
+  <div class="container">
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="num" data-to="40" data-pre="−" data-suf=" %">−0 %</div>
+        <div class="lab">de coût vs un prestataire hexagonal</div>
+      </div>
+      <div class="stat reveal d1">
+        <div class="num" data-to="100" data-suf=" %">0 %</div>
+        <div class="lab">d'agents francophones</div>
+      </div>
+      <div class="stat reveal d2">
+        <div class="num" data-to="50" data-pre="−" data-suf=" %">−0 %</div>
+        <div class="lab">le 1er mois, sans engagement</div>
+      </div>
+      <div class="stat reveal d3">
+        <div class="num" data-to="3" data-suf=" sem.">0 sem.</div>
+        <div class="lab">pour être pleinement opérationnel</div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-next" href="#services" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+</section>
+
 <!-- MARQUEE : bandeau logos partenaires -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="ic-zendesk" viewBox="0 0 24 24"><path d="M12.914 2.904V16.29L24 2.905H12.914zM0 2.906C0 5.966 2.483 8.45 5.543 8.45s5.542-2.484 5.543-5.544H0zm11.086 4.807L0 21.096h11.086V7.713zm7.37 7.84c-3.063 0-5.542 2.48-5.542 5.543H24c0-3.06-2.48-5.543-5.543-5.543z"/></symbol>
@@ -225,31 +274,6 @@
     <span class="mq-chip mq-ubicentrex">Ubicentrex</span>
   </div>
 </div>
-
-<!-- STATS -->
-<section class="section soft" id="stats">
-  <div class="container">
-    <div class="stats">
-      <div class="stat reveal">
-        <div class="num" data-to="40" data-pre="−" data-suf=" %">−0 %</div>
-        <div class="lab">de coût vs un prestataire hexagonal</div>
-      </div>
-      <div class="stat reveal d1">
-        <div class="num" data-to="100" data-suf=" %">0 %</div>
-        <div class="lab">d'agents francophones</div>
-      </div>
-      <div class="stat reveal d2">
-        <div class="num" data-to="50" data-pre="−" data-suf=" %">−0 %</div>
-        <div class="lab">le 1er mois, sans engagement</div>
-      </div>
-      <div class="stat reveal d3">
-        <div class="num" data-to="3" data-suf=" sem.">0 sem.</div>
-        <div class="lab">pour être pleinement opérationnel</div>
-      </div>
-    </div>
-  </div>
-  <a class="scroll-next" href="#services" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
 
 <!-- FENÊTRE VERTE — SERVICES -->
 <section class="greenband reveal" id="services">
