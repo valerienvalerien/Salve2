@@ -28,33 +28,36 @@
 <link rel="stylesheet" href="assets/site.css" />
 <style>
   /* ====== Hero "carte sombre + formulaire lateral" (test design) ====== */
-  .dt-hero-wrap{padding:26px 16px 44px;background:#fff}
+  .dt-hero-wrap{padding:26px 16px 44px;background:#fff;overflow-x:clip}
   .home .marquee{margin-bottom:34px}
   .dt-hero{
-    position:relative;overflow:hidden;border-radius:16px;
+    /* la photo deborde dans la marge blanche, sans jamais toucher le bord de l'ecran */
+    --face-bleed:clamp(0px,calc((100vw - 1220px) / 2 - 28px),110px);
+    position:relative;border-radius:16px;
     background:var(--green-deep,#263A2E);color:#fff;max-width:1220px;margin:0 auto;
   }
   .dt-hero-photo{
-    position:absolute;inset:0;z-index:0;
-    background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;opacity:.22;
+    position:absolute;inset:0;z-index:0;border-radius:inherit;
+    background:url('assets/img/equipe-antananarivo.jpg') 12% 30% / cover no-repeat;opacity:.22;
   }
   .dt-hero-photo::after{
-    content:"";position:absolute;inset:0;
+    content:"";position:absolute;inset:0;border-radius:inherit;
     background:
-      linear-gradient(100deg,rgba(38,58,46,.96) 0%,rgba(38,58,46,.88) 30%,rgba(38,58,46,.5) 55%,rgba(38,58,46,.5) 74%,rgba(38,58,46,.9) 100%),
+      linear-gradient(100deg,rgba(38,58,46,.96) 0%,rgba(38,58,46,.9) 45%,rgba(38,58,46,.72) 100%),
       linear-gradient(180deg,rgba(28,44,34,.3) 0%,rgba(28,44,34,0) 32%,rgba(28,44,34,.45) 100%);
   }
   .dt-hero-inner{
-    position:relative;z-index:1;display:grid;grid-template-columns:1fr 220px 380px;gap:26px;
-    align-items:stretch;padding:44px 40px;min-height:540px;
+    position:relative;z-index:1;display:grid;grid-template-columns:1fr 360px 270px;gap:26px;
+    align-items:stretch;padding:44px 0 44px 40px;min-height:540px;
   }
   .dt-hero-copy,.dt-card{align-self:center}
-  /* colonne visage */
-  .dt-face{position:relative;align-self:stretch;margin:-44px 0}
+  /* colonne visage, calee a droite et debordant dans le blanc */
+  .dt-face{position:relative;align-self:stretch;margin:-44px calc(-1 * var(--face-bleed)) -44px 0}
   .dt-face img{
     width:100%;height:100%;object-fit:cover;object-position:86% 20%;display:block;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    border-radius:0 14px 14px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
     -webkit-mask-composite:source-in;mask-composite:intersect;
   }
   .dt-kick{font-size:15px;font-weight:600;color:#EDE6D8;margin-bottom:10px}
@@ -105,8 +108,8 @@
   .dt-ok b{display:block;color:#263A2E;font-size:17px;margin-bottom:4px}
   .dt-ok p{font-size:13px;color:#5C5448}
 
-  @media (max-width:1100px){
-    .dt-hero-inner{grid-template-columns:1fr 380px}
+  @media (max-width:1200px){
+    .dt-hero-inner{grid-template-columns:1fr 380px;padding:44px 40px}
     .dt-face{display:none}
   }
   @media (max-width:1000px){
@@ -114,9 +117,10 @@
     .dt-hero-photo{opacity:.18}
     .dt-hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.9) 0%,rgba(38,58,46,.94) 100%)}
     .dt-hero h1{max-width:100%}
-    .dt-face{display:block;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
+    .dt-hero-copy{order:-2}
+    .dt-face{display:block;order:-1;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
     .dt-face img{
-      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;
+      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;border-radius:0;
       -webkit-mask-image:none;mask-image:none;
       -webkit-mask-composite:source-over;mask-composite:add;
     }
@@ -174,10 +178,6 @@
         </div>
       </div>
 
-      <div class="dt-face" aria-hidden="true">
-        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
-      </div>
-
       <div class="dt-card">
         <form id="form-hero" action="https://formspree.io/f/xjgdkblp" method="POST">
           <input type="hidden" name="_subject" value="Contact site — hero accueil" />
@@ -201,6 +201,10 @@
           <p>Nous revenons vers vous sous 24 h ouvrées.<br />
             En attendant&nbsp;: <a href="mailto:contact@salverys.fr" style="color:#6F8770;font-weight:700">contact@salverys.fr</a></p>
         </div>
+      </div>
+
+      <div class="dt-face" aria-hidden="true">
+        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
       </div>
     </div>
   </section>

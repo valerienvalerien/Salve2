@@ -40,33 +40,36 @@
   .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
 
   /* ---------- HERO (carte sombre) ---------- */
-  .hero-wrap{padding:26px 16px 0}
+  .hero-wrap{padding:26px 16px 0;overflow-x:clip}
   .hero{
-    position:relative;overflow:hidden;border-radius:var(--radius);
+    /* la photo deborde dans la marge blanche, sans jamais toucher le bord de l'ecran */
+    --face-bleed:clamp(0px,calc((100vw - var(--maxw) - 40px) / 2 - 28px),110px);
+    position:relative;border-radius:var(--radius);
     background:var(--green-deep);color:#fff;max-width:calc(var(--maxw) + 40px);margin:0 auto;
   }
   .hero-photo{
-    position:absolute;inset:0;z-index:0;
-    background:url('assets/img/equipe-antananarivo.jpg') center 28% / cover no-repeat;
+    position:absolute;inset:0;z-index:0;border-radius:inherit;
+    background:url('assets/img/equipe-antananarivo.jpg') 12% 30% / cover no-repeat;
     opacity:.22;
   }
   .hero-photo::after{
-    content:"";position:absolute;inset:0;
+    content:"";position:absolute;inset:0;border-radius:inherit;
     background:
-      linear-gradient(100deg, rgba(38,58,46,.96) 0%, rgba(38,58,46,.88) 30%, rgba(38,58,46,.5) 55%, rgba(38,58,46,.5) 74%, rgba(38,58,46,.9) 100%),
+      linear-gradient(100deg, rgba(38,58,46,.96) 0%, rgba(38,58,46,.9) 45%, rgba(38,58,46,.72) 100%),
       linear-gradient(180deg, rgba(28,44,34,.3) 0%, rgba(28,44,34,0) 32%, rgba(28,44,34,.45) 100%);
   }
   .hero-inner{
-    position:relative;z-index:1;display:grid;grid-template-columns:1fr 220px 380px;gap:26px;
-    align-items:stretch;padding:44px 40px;min-height:540px;
+    position:relative;z-index:1;display:grid;grid-template-columns:1fr 360px 270px;gap:26px;
+    align-items:stretch;padding:44px 0 44px 40px;min-height:540px;
   }
   .hero-copy,.lead-card{align-self:center}
-  /* colonne visage */
-  .hero-face{position:relative;align-self:stretch;margin:-44px 0}
+  /* colonne visage, calee a droite et debordant dans le blanc */
+  .hero-face{position:relative;align-self:stretch;margin:-44px calc(-1 * var(--face-bleed)) -44px 0}
   .hero-face img{
     width:100%;height:100%;object-fit:cover;object-position:86% 20%;display:block;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    border-radius:0 14px 14px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 26%),linear-gradient(180deg,#000 72%,transparent 100%);
     -webkit-mask-composite:source-in;mask-composite:intersect;
   }
   .hero-logo{height:34px;width:auto;margin-bottom:56px}
@@ -150,6 +153,7 @@
   /* ---------- BANDEAU OUTILS ---------- */
   .toolband{
     position:relative;z-index:1;background:var(--green-deeper);
+    border-radius:0 0 var(--radius) var(--radius);
     display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;
     padding:18px 46px;
   }
@@ -185,8 +189,8 @@
   .foot a:hover{opacity:1;text-decoration:underline}
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width:1100px){
-    .hero-inner{grid-template-columns:1fr 380px}
+  @media (max-width:1200px){
+    .hero-inner{grid-template-columns:1fr 380px;padding:44px 40px}
     .hero-face{display:none}
   }
   @media (max-width:1000px){
@@ -195,9 +199,10 @@
     .hero-photo::after{background:linear-gradient(180deg,rgba(38,58,46,.9) 0%,rgba(38,58,46,.94) 100%)}
     .hero-logo{margin-bottom:26px}
     .hero h1{max-width:100%}
-    .hero-face{display:block;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
+    .hero-copy{order:-2}
+    .hero-face{display:block;order:-1;align-self:auto;margin:2px 0 6px;height:200px;overflow:hidden;border-radius:10px}
     .hero-face img{
-      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;
+      width:100%;object-position:center;transform:scale(1.9);transform-origin:78% 32%;border-radius:0;
       -webkit-mask-image:none;mask-image:none;
       -webkit-mask-composite:source-over;mask-composite:add;
     }
@@ -241,10 +246,6 @@
         </div>
       </div>
 
-      <div class="hero-face" aria-hidden="true">
-        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
-      </div>
-
       <!-- FORMULAIRE LATÉRAL -->
       <div class="lead-card">
         <form id="form-lead" action="https://formspree.io/f/xjgdkblp" method="POST">
@@ -279,6 +280,10 @@
           <p>Nous revenons vers vous sous 24 h ouvrées.<br />
             En attendant&nbsp;: <a href="mailto:contact@salverys.fr" style="color:var(--accent);font-weight:700">contact@salverys.fr</a></p>
         </div>
+      </div>
+
+      <div class="hero-face" aria-hidden="true">
+        <img src="assets/img/equipe-antananarivo.jpg" alt="" loading="eager" decoding="async" />
       </div>
     </div>
 
