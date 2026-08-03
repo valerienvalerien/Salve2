@@ -208,6 +208,7 @@ Démo générée : `espace/exemple-msp-M9vJj_ZqmYFf.html` (code `SLV-DEMO-2026-T
 | 4 | Produire les substituts de preuve (§3.7) : modèle de reporting hebdomadaire, extrait de procédure, profils anonymisés des 2 managers, plan d'onboarding daté. | 🟠 |
 | 5 | Décider si le seuil « 5+ ETP » se présente comme capacité rare et chiffrer les places ouvertes par trimestre. | 🟡 |
 | 6 | Ajouter la clause de non-sollicitation et la réversibilité à `04-Closing/MODELE-CONTRAT-PRESTATION.md` — la page les promet, le contrat doit les tenir. | 🔴 |
+| 7 | **Trancher les 4 décisions de recalibrage MB (§9.4)** : dépôt d'activation, sort du −50 % en MB, palier 5+, périmètre de propagation. | 🔴 |
 
 ---
 
@@ -251,3 +252,105 @@ L'appellation « espace client » couvrait un seul objet alors qu'il en faut deu
 
 C'est le premier qui vient d'être refait. Le second n'existe pas encore et n'a pas à être
 codé.
+
+---
+
+## 9. Recalibrage marque blanche — dossier de décision (2026-07-29)
+
+> **Statut : non appliqué.** Quatre arbitrages engagent la politique tarifaire ; ils
+> attendent une décision direction. Ce qui n'en dépendait pas a été appliqué (corrections
+> chiffrées §9.1, garde-fou builder, couche « concessions »).
+
+### 9.1 Deux contradictions corrigées
+
+| Sujet | `PRICING.md §3` (avant) | `FINANCE-PREVISIONNEL.md` | Retenu |
+|---|---|---|---|
+| Plancher MB | « coût + 20 % ≈ **540 €** » | « ≈ **840 €/ETP** » (§3) | **840 €** — le 540 € vient du modèle salarié v1 abandonné le 2026-06-10 |
+| Point mort | « ~**5 ETP** » | « ~**7 ETP** » (§4) | **7 ETP** |
+
+Le 540 € était le plus dangereux : négocier avec ce plancher en tête permet de signer à
+perte. Corrigé, et **codé en dur dans `tools/deal-build.mjs`** — le builder refuse
+désormais de générer une proposition sous 840 €/ETP, et alerte si la marge brute d'un
+palier passe sous 50 %.
+
+### 9.2 L'économie réelle d'un deal MB (3 positions helpdesk)
+
+Base : coût marginal agent ~700 €/mois (`FINANCE §2`), onboarding 2-3 semaines
+(`ONBOARDING-CLIENT.md` phase 1).
+
+| Poste | Montant |
+|---|---|
+| Onboarding réel : socle partenaire (~400 €) + ~400 €/position | ~1 600 € |
+| Remise consentie par le pilote −50 % | ~2 625 € |
+| Recette du mois pilote (3 × 875 €) | +2 625 € |
+| Coût agents pendant le pilote (3 × 700 €) | −2 100 € |
+| **Résultat du mois pilote** | **≈ −1 075 €** |
+
+Trois conclusions :
+1. **Le −50 % coûte plus cher que l'onboarding qu'il compense** (2 625 € contre ~1 600 €).
+2. Si le partenaire s'arrête après le pilote : ~1 075 € brûlés **plus** 3 agents au banc à
+   700 €/mois, sans contrepartie.
+3. En MB, une remise sur le prix de gros améliore la **marge du mois** du partenaire ; elle
+   ne l'aide pas à **gagner son client final**. Valeur jetée sur un acheteur qui revend.
+
+### 9.3 L'arbitrage déjà latent, jamais tranché
+
+- `FINANCE-PREVISIONNEL.md §6` liste « **acompte au cadrage MB** » comme premier levier
+  anti-creux (creux max 35-45 k€ vers M+7-8).
+- `PRICING.md §1.c` et `ONBOARDING-CLIENT.md` (garde-fous) l'interdisent : « Ne jamais
+  facturer la mise en service ».
+
+**Il faut trancher.** Recommandation : un **dépôt d'activation**, pas des frais.
+
+### 9.4 Les quatre décisions
+
+| # | Décision | Recommandation | Alternatives |
+|---|---|---|---|
+| A | Frais d'activation MB | **Dépôt imputable 900 €/position**, plafond 2 700 €, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après début de mise en service | frais fermes · statu quo |
+| B | Pilote −50 % en MB | **Supprimé**, remplacé par 3 gives de risque (§9.5) | gardé en plus du dépôt · gardé seul |
+| C | Palier 5+ ETP | **Conditionné à un minimum facturable** (5 positions payées même si 3 consommées) | remonter le prix · statu quo |
+| D | Propagation | **Tout le corpus** | PRICING + outil · PRICING seul |
+
+**Pourquoi un dépôt imputable plutôt que des frais fermes** : coût nul pour le partenaire
+qui va au bout, donc pas de friction sur le prix total face à un acheteur professionnel
+sans référence à lui opposer ; couvre le coût réel s'il s'arrête ; filtre d'intention
+majeur (qui refuse 900 € imputables ne signera pas — su en 48 h au lieu de 3 semaines) ;
+encaissement J0 au lieu de J+30, ce qui attaque directement le creux de trésorerie.
+
+### 9.5 Ce qui remplacerait le −50 % en MB
+
+| Give | Pourquoi | Coût |
+|---|---|---|
+| **Sortie à 30 j** les 3 premiers mois (vs préavis 60 j) | Du risque, pas du prix — le vrai « sans risque » en MB | Faible si le dépôt couvre l'onboarding |
+| **Exclusivité territoire/segment 12 mois** | Valeur perçue forte | **0 €** aujourd'hui |
+| **Appui avant-vente sous 48 h** : PCA, DPA, CV anonymisés, dispositif QA, engagement SLA écrit — réutilisables dans SA réponse d'appel d'offres | **Seul give qui lui fait gagner du CA**, et rend Salverys difficile à remplacer | ~0 € marginal |
+
+Le troisième est le meilleur : c'est le seul qui aide le partenaire à **vendre** plutôt
+qu'à économiser.
+
+### 9.6 Si les décisions sont validées — fichiers à propager
+
+`PRICING.md` (§0, §1.c, §3, §7, §8) · `tools/deal-build.mjs` + `deal-template.html` +
+`deals/*.json` (champs `depot`, `minimumFacturable`) ·
+`04-Closing/MODELE-CONTRAT-PRESTATION.md` (art. 4 dépôt, art. 10 non-sollicitation,
+art. 13 sortie 30 j + réversibilité, Annexe B) · `MODELE-DEVIS.md` (variante B) ·
+`ONBOARDING-CLIENT.md` (phases 0/1/4 + garde-fous) ·
+`02-Prospection/ONEPAGER-PARTENAIRE-MB.md` (mécanique d'entrée, sans montant) ·
+`FINANCE-PREVISIONNEL.md` (§6 acompte acté).
+
+---
+
+## 10. Découpage du contenu en 3 couches (appliqué)
+
+Une page par deal ne suffit pas : sans règle, chaque deal réinvente tout et le pouvoir de
+négociation se dissout.
+
+| Couche | Contenu | Où | Négociable |
+|---|---|---|---|
+| **1. Socle** | Garanties, RGPD/DPA, PCA, réversibilité, non-sollicitation, QA, reporting | **En dur** dans `tools/deal-template.html` | **Jamais** — c'est la marque |
+| **2. Paramètres** | Prix ETP, volume, créneaux, seuil SLA, durée | JSON, **bornés** (plancher 840 €) | Oui, dans les bornes |
+| **3. Concessions** | Exclusivité, appui avant-vente, options offertes | JSON `concessions[]`, bloc « Ce que nous vous accordons » | Oui, une à la fois |
+
+La couche 3 est **affichée au partenaire** (le give devient visible au lieu d'être subi),
+**récapitulée dans le terminal** au build (contrôle avant envoi), et **tracée dans git**
+(historique de tout ce qui a été concédé, deal par deal).

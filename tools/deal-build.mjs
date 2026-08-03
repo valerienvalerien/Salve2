@@ -18,13 +18,23 @@
  *
  * Révoquer un accès : supprimer le JSON du deal + la page dans espace/, puis pousser.
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
-import { dirname, join, basename } from 'node:path';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
+import { dirname, join, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pbkdf2Sync, randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
 
 const ITER = 310000;
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+/* Garde-fous economiques — FINANCE-PREVISIONNEL.md §2/§3 fait foi.
+ * Cout marginal d'un agent : ~700 €/mois. Plancher absolu = cout + ~20 % = 840 €/ETP.
+ * (PRICING.md §3 annoncait 540 €, valeur heritee du modele salarie v1 abandonne le
+ * 2026-06-10 : negocier avec ce chiffre en tete permet de signer a perte.)
+ * Le builder refuse de produire un document sous le plancher : on ne peut pas, sous
+ * pression en closing, generer une proposition qui met l'entreprise en perte. */
+const COUT_AGENT = 700;
+const PLANCHER_ETP = 840;
+const MARGE_ALERTE = 0.50;
 
 /* ---------------------------------------------------------------- utilitaires */
 
@@ -144,7 +154,6 @@ function renderDoc(deal) {
       t: 'Réversibilité écrite',
       d: `Sur préavis de ${deal.preavisJours || 60} jours : restitution complète des procédures, de la base de connaissances et de l'historique, et accompagnement du transfert. Vous ne devenez jamais captif.`,
     },
-    deal.exclusivite && { t: 'Exclusivité accordée', d: deal.exclusivite },
     {
       t: 'Continuité de service',
       d: 'Chaque agent en double connexion (fibre + 4G), hub de repli sous onduleur et groupe électrogène, backup identifié par compte. Plan de continuité écrit et annexé au contrat.',
@@ -210,6 +219,14 @@ function renderDoc(deal) {
     ${garanties.map((g) => `<div><b>${H(g.t)}</b><span>${H(g.d)}</span></div>`).join('')}
   </div>
 
+  ${deal.concessions && deal.concessions.length ? `
+  <h2>Ce que nous vous accordons</h2>
+  <p>Au-delà des garanties ci-dessus, accordé dans le cadre de cet accord précis :</p>
+  <div class="dl-accord"><ul>
+    ${deal.concessions.map((c) => `<li><b>${H(c.titre)}</b> — ${H(c.detail)}</li>`).join('')}
+  </ul></div>
+  ` : ''}
+
   ${deal.attendus && deal.attendus.length ? `
   <h2>Ce dont nous avons besoin de votre côté</h2>
   <p>Le calendrier ci-dessus tient si ces éléments sont disponibles à la signature :</p>
@@ -242,9 +259,47 @@ if (!jsonPath) {
   process.exit(1);
 }
 
-const deal = JSON.parse(readFileSync(join(root, jsonPath), 'utf8'));
+const deal = JSON.parse(readFileSync(resolve(root, jsonPath), 'utf8'));
 for (const champ of ['slug', 'partenaire', 'niche', 'dateEmission', 'signaturePrevue', 'grille']) {
   if (!deal[champ]) { console.error(`✗ Champ manquant dans ${jsonPath} : ${champ}`); process.exit(1); }
+}
+
+/* Deal archive (signe ou perdu) : la page sort du depot, donc du build Netlify. */
+if (deal.archive) {
+  const cible = join(root, `espace/${deal.slug}-${deal.token}.html`);
+  if (deal.token && existsSync(cible)) {
+    rmSync(cible);
+    console.log(`✓ Deal archive : espace/${deal.slug}-${deal.token}.html supprime, acces revoque.`);
+  } else {
+    console.log('✓ Deal archive : aucune page publiee.');
+  }
+  process.exit(0);
+}
+
+/* Le gabarit actuel est concu pour le modele ETP (colonnes €/mois/ETP). Le telesec MB se
+ * facture a l'appel traite par creneau (PRICING.md §1.b) : refuser explicitement plutot
+ * que produire un document faux. */
+if (deal.niche === 'medical') {
+  console.error('✗ Le modele « a l\'appel par creneau » (PRICING.md §1.b) n\'est pas encore');
+  console.error('  couvert par ce gabarit, concu pour le modele ETP. Ne pas forcer.');
+  process.exit(1);
+}
+
+/* Plancher : aucune proposition sous le cout marginal + 20 %. */
+const sousPlancher = deal.grille.filter((r) => r.gros < PLANCHER_ETP);
+if (sousPlancher.length) {
+  console.error(`✗ Plancher viole (${PLANCHER_ETP} € = cout agent ${COUT_AGENT} € + 20 %, FINANCE-PREVISIONNEL.md §3) :`);
+  for (const r of sousPlancher) console.error(`  · ${r.engagement} a ${EUR(r.gros)}`);
+  console.error('  Document non genere. Remonter le prix, ou assumer la decision et ajuster PLANCHER_ETP.');
+  process.exit(1);
+}
+
+/* Alerte non bloquante : marge brute Salverys sous le seuil de confort. */
+for (const r of deal.grille) {
+  const marge = (r.gros - COUT_AGENT) / r.gros;
+  if (marge < MARGE_ALERTE) {
+    console.warn(`⚠ ${r.engagement} a ${EUR(r.gros)} : marge brute ${PCT(marge)} (< ${PCT(MARGE_ALERTE)}) — palier sous pression.`);
+  }
 }
 
 /* Token d'URL : généré une fois, conservé dans le JSON pour ne pas casser un lien déjà envoyé. */
@@ -252,7 +307,7 @@ let tokenNouveau = false;
 if (!deal.token) {
   deal.token = randomBytes(9).toString('base64url');
   tokenNouveau = true;
-  writeFileSync(join(root, jsonPath), JSON.stringify(deal, null, 2) + '\n');
+  writeFileSync(resolve(root, jsonPath), JSON.stringify(deal, null, 2) + '\n');
 }
 
 const code = codeArg ? normCode(codeArg) : normCode(genCode());
@@ -297,4 +352,10 @@ console.log(`✓ ${out}`);
 console.log(`  URL      : https://salverys.fr/${out}`);
 console.log(`  Code     : ${codeAffiche}${codeArg ? ' (fourni)' : '  ← à dicter au partenaire, non stocké'}`);
 console.log(`  Chiffré  : ${chiffre.length} octets · PBKDF2 ${ITER} itérations`);
+
+/* Recapitulatif des concessions avant envoi : ce qui est concede doit etre vu, pas subi. */
+if (deal.concessions && deal.concessions.length) {
+  console.log(`  Concessions accordées (${deal.concessions.length}) :`);
+  for (const c of deal.concessions) console.log(`   · ${c.titre}`);
+}
 if (tokenNouveau) console.log(`  Token d'URL écrit dans ${basename(jsonPath)} — ne plus le modifier, le lien en dépend.`);

@@ -141,7 +141,13 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 
 \* Le donneur d'ordre établi prend ~25-35 % de marge : on capte moins par ETP, mais le
 coût d'acquisition est ~nul et le volume est apporté. **Plancher absolu** : jamais sous
-le coût chargé agent + ~20 % (cf. §7).
+le coût marginal agent + ~20 %, soit **840 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
+coût marginal 700 €/mois au fee freelance de 3 250 000 Ar).
+
+> ⚠️ **Correction 2026-07-29** : ce plancher était annoncé à **540 €** ci-dessous — valeur
+> héritée du **modèle salarié v1, abandonné le 2026-06-10**. Négocier avec 540 € en tête
+> permet de signer à perte. **Le plancher est 840 €.** Il est désormais codé en dur dans
+> `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
 
 **Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12)**
 
@@ -157,9 +163,13 @@ où le dégressif **achète du volume** au lieu d'être concédé en négociatio
 | 5+ ETP | 1 350 € | 1 550 € |
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
-  on ne baisse rien. Plancher inchangé (coût + ~20 % ≈ 540 €).
-- Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : ~5 ETP placés) : le palier 5+
+  on ne baisse rien. **Plancher : 840 €** (coût marginal 700 € + ~20 %), cf. encadré ci-dessus.
+- Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : **~7 ETP placés**) : le palier 5+
   est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
+- ⚠️ **Marge du palier 5+ sous pression** : à 1 350 € (support N1), la marge brute tombe à
+  **~48 %** (`FINANCE-PREVISIONNEL.md §3`), et 5 positions représentent **62 % de la
+  capacité totale** (8 agents). Recalibrage à trancher — options documentées dans
+  `AUDIT-ESPACE-CLIENT.md §9`.
 - **Canal de remise** : espaces partenaires protégés du site, **un par niche avec son
   propre mot de passe** (`espace-client-support.html` / `espace-client-helpdesk.html` /
   `espace-client-medical.html` pour la grille télésec §1.b — pages chiffrées, mot de

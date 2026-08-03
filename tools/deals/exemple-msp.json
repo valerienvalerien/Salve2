@@ -53,7 +53,16 @@
     "seuil": "90 % des tickets présentés sur les plages couvertes",
     "avoir": "20 %"
   },
-  "exclusivite": "Aucun autre prestataire d'infogérance des Hauts-de-France ne sera servi par Salverys pendant les 12 premiers mois du contrat.",
+  "concessions": [
+    {
+      "titre": "Exclusivité Hauts-de-France, 12 mois",
+      "detail": "aucun autre prestataire d'infogérance de la région ne sera servi par Salverys pendant les 12 premiers mois du contrat."
+    },
+    {
+      "titre": "Appui avant-vente sous 48 h",
+      "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement SLA écrit, fournis sur demande et réutilisables tels quels dans vos propres réponses d'appels d'offres."
+    }
+  ],
   "nonSollicitationMois": 24,
   "preavisJours": 60,
 
