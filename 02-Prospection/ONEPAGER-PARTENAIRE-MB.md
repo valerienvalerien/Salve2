@@ -45,7 +45,7 @@ vos SLA, votre nom. Votre client final ne voit que vous.
 Parce que c'est **votre marque** qui décroche. À 0,50 € l'appel, l'agent est payé au
 minimum local et tourne en 6 mois — votre qualité part avec lui.
 
-- **Nos agents sont payés ~2,5× le marché local** : zéro turnover visé, les mêmes voix
+- **Nos agents sont payés ~4,5× le marché local** : zéro turnover visé, les mêmes voix
   sur votre compte dans la durée.
 - **Engagement de service contractuel** : taux de décroché ou SLA convenu au cadrage ;
   en deçà sur un mois, **20 % d'avoir automatique** — on met notre argent sur le résultat.
@@ -61,15 +61,31 @@ minimum local et tourne en 6 mois — votre qualité part avec lui.
 
 ---
 
-## La mécanique d'entrée (sans risque)
+## La mécanique d'entrée
 
 1. **Cadrage** (1 RDV) : périmètre, créneaux, scripts, KPI — et la grille tarifaire
-   partenaire, remise à ce moment-là (dégressive selon le volume engagé : plus vous
-   placez, meilleur est votre prix de gros).
-2. **Mois pilote à −50 %, sans engagement**, sur un périmètre limité (débordement ou
-   lot de tickets défini ensemble), KPIs partagés dès J1.
+   partenaire, remise à ce moment-là (dégressive selon le **volume ferme engagé** : plus
+   vous engagez de positions, meilleur est votre prix de gros).
+2. **Démarrage sur périmètre restreint** : un seul de vos clients finaux, vos créneaux de
+   débordement, ou un lot de tickets défini ensemble. KPIs partagés dès J1. C'est le
+   **périmètre** qui limite votre risque — vous jugez sur vos vrais flux, en petit.
 3. **En régime** : l'engagement de service s'active (KPI convenu, 20 % d'avoir en deçà).
    Vous étendez le périmètre à votre rythme.
+
+**Nous ne remisons pas notre prix de gros.** Vous revendez : une remise gonflerait votre
+marge d'un mois, elle ne vous aiderait pas à gagner votre client. Ce qu'on vous donne à la
+place enlève du **risque**, pas du prix :
+
+- **Vous pouvez arrêter en prévenant 30 jours** pendant les 3 premiers mois.
+- **Exclusivité sur votre territoire ou votre segment pendant 12 mois.**
+- **Notre dossier avant-vente sous 48 h** — plan de continuité, DPA, dispositif QA, CV
+  anonymisés, engagement SLA écrit — **réutilisable tel quel dans vos propres réponses
+  d'appels d'offres**. C'est le seul de ces trois points qui vous aide à **gagner un
+  client**, pas seulement à en économiser un.
+
+*Une avance d'activation, imputable sur vos premières factures, est demandée à la signature :
+elle couvre le recrutement et la formation engagés pour vous, et vous revient intégralement
+si le contrat suit son cours. Montant précisé au cadrage.*
 
 ---
 
@@ -92,6 +108,6 @@ ITSM (ServiceNow, Jira SM, Freshservice). KPI engagé : **SLA de prise en charge
 ## Prochaine étape
 
 **15 minutes** pour cadrer : vos créneaux ou volumes les plus coûteux à tenir en interne,
-et le périmètre d'un mois pilote. La grille partenaire vous est remise à ce moment-là.
+et le périmètre de démarrage. La grille partenaire vous est remise à ce moment-là.
 
 📧 contact@salverys.fr

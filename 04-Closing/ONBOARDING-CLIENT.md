@@ -3,7 +3,11 @@
 > Du « oui » au régime stabilisé. S'applique au **médical direct** et au **MB partenaire**
 > (adapter l'outil et le KPI). Objectif : tenir la promesse du one-pager — **« QA, double
 > écoute, reporting, escalades documentés avant le premier appel/ticket »** — et faire
-> basculer proprement le mois pilote −50 % vers le régime avec engagement de service.
+> basculer proprement le mois d'entrée vers le régime avec engagement de service.
+>
+> ⚠️ **Mécanique d'entrée dissociée (2026-08-03)** : **en direct** → mois pilote **−50 %** ;
+> **en marque blanche** → **pas de remise**, mais **dépôt d'activation** encaissé en phase 0
+> et **contreparties de risque** (`PRICING.md §3.a/§3.b`).
 >
 > Prix & garanties : `PRICING.md` fait foi. Documents liés : `MODELE-DEVIS.md`,
 > `MODELE-CONTRAT-PRESTATION.md`, `MODELE-DPA-RGPD.md`, `PROCESS-QA-DOUBLE-ECOUTE.md`,
@@ -15,11 +19,11 @@
 
 | Phase | Quand | Aboutissement |
 |---|---|---|
-| 0. Cadrage | J-? (1 RDV) | Périmètre figé, contrat + DPA signés |
+| 0. Cadrage | J-? (1 RDV) | Périmètre figé, contrat + DPA signés, **dépôt encaissé (MB)** |
 | 1. Mise en service | ~2-3 semaines | Outils intégrés, scripts prêts, QA armée |
 | 2. J1 — démarrage pilote | Jour 1 | 1er appel/ticket décroché sous le nom du client |
 | 3. Semaine 1 | S1 | Ajustements scripts, double écoute renforcée |
-| 4. Bascule régime | fin du mois pilote | Plein tarif + **activation de l'engagement de service** |
+| 4. Bascule régime | fin du mois d'entrée | Plein tarif (direct) + **activation de l'engagement de service** |
 | 5. Jalon 60 j | J+60 | Bilan + **témoignage** (programme fondateurs) |
 
 ---
@@ -36,9 +40,24 @@ l'engagement de service).
 - [ ] Procédure d'**escalade** (qui, quand, vers qui côté client).
 - [ ] Outils à intégrer + modalités d'accès (comptes nominatifs).
 - [ ] **Signature** : devis + contrat de prestation + **DPA**.
-- [ ] Choix offre de lancement : mois pilote −50 % ou programme fondateurs.
+- [ ] **Direct** — choix offre de lancement : mois pilote −50 % ou programme fondateurs.
+- [ ] **Marque blanche** — **pas de remise**. À la place :
+  - [ ] **Dépôt d'activation encaissé** : 900 €/position, plafond 2 700 € — **avant tout
+    démarrage de la mise en service**. Rappeler qu'il est **imputé sur les 3 premières
+    factures** (300 €/position/mois) et ne coûte rien au partenaire qui va au bout.
+  - [ ] **Palier tarifaire figé** : si palier **5+**, acter le **minimum facturable de
+    5 positions** (dues consommées ou non) dans l'Annexe B du contrat.
+  - [ ] **Contreparties de risque** concédées, écrites et **cochées** dans le devis (B.7) :
+    sortie 30 j / exclusivité 12 mois / appui avant-vente 48 h. Une à la fois.
+  - [ ] Si **appui avant-vente** concédé : préparer le **kit sous 48 h ouvrées** (PCA, DPA,
+    dispositif QA, CV anonymisés, engagement SLA écrit) — c'est la contrepartie qui aide le
+    partenaire à **vendre**, elle doit partir vite ou elle ne vaut rien.
 
-## Phase 1 — Mise en service (~2-3 semaines, **490 € offerts**)
+> **Garde-fou trésorerie** : en MB, **ne pas engager de recrutement avant l'encaissement du
+> dépôt**. C'est tout l'intérêt du dispositif (`FINANCE-PREVISIONNEL.md §6` — encaissement
+> J0 au lieu de J+30).
+
+## Phase 1 — Mise en service (~2-3 semaines, **offerte**)
 
 - [ ] **Intégration outils par Salverys** : Doctolib / Maiia / Médistory / Cegedim (médical)
   ou ticketing/ITSM (support/IT) — **comptes nominatifs + MFA**, droits au strict nécessaire.
@@ -64,7 +83,13 @@ l'engagement de service).
 ## Phase 4 — Bascule en régime (fin du mois pilote)
 
 - [ ] Bilan du mois pilote (KPI atteints, ajustements faits).
-- [ ] Passage au **plein tarif** (ou paliers fondateurs −30 % puis −15 %).
+- [ ] **Direct** : passage au **plein tarif** (ou paliers fondateurs −30 % puis −15 %).
+- [ ] **MB** : pas de bascule tarifaire (le tarif du palier s'applique dès le 1er mois).
+  Vérifier l'**imputation du dépôt** sur les factures 1 à 3 (300 €/position/mois) et
+  **solder le reliquat** sur la facture suivante.
+- [ ] **MB, palier 5+** : contrôler que le **minimum facturable de 5 positions** est bien
+  facturé, y compris si le partenaire en consomme moins. Sinon, rebasculer au tarif du
+  palier 3 ETP pour le mois concerné.
 - [ ] **Activation de l'engagement de service** (le KPI engagé court à partir du 1er mois
   plein en régime ; avoir 20 % si non tenu — cf. contrat art. 6 / `PRICING.md §7`).
 - [ ] Confirmation de la cadence de reporting (mensuel médical / hebdo MB).
@@ -94,6 +119,11 @@ l'engagement de service).
 ## Garde-fous onboarding
 
 - Ne jamais démarrer J1 sans **QA armée et escalades documentées** (promesse one-pager).
-- Ne jamais facturer la mise en service (affichée 490 € → **offerte**).
+- Ne jamais **facturer** la mise en service (affichée 490 € → **offerte**), en direct comme
+  en MB. Le **dépôt d'activation MB n'est pas une facturation de la mise en service** : il
+  est **imputable** et revient au partenaire dans ses 3 premières factures.
+- **MB** : ne jamais engager de recrutement **avant encaissement du dépôt**.
+- **MB** : ne **jamais** consentir de remise sur le prix de gros (`PRICING.md §3.b`). Si le
+  partenaire pousse, concéder une **contrepartie de risque** (B.7 du devis) — une seule.
 - Périmètre et seuil **figés au cadrage** — toute extension passe par avenant/devis.
 - Médical : parler de **« forfait »**, jamais d'« abonnement ».

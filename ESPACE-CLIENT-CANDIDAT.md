@@ -6,12 +6,52 @@
 
 ---
 
-## 1. Espaces partenaires (3 pages chiffrées) — prix MB protégés
+## 0. Pages de closing par deal (dispositif principal depuis 2026-07-29)
+
+> Remplace les 3 espaces par niche pour tout nouveau partenaire. Motifs et audit complet :
+> `AUDIT-ESPACE-CLIENT.md`. Résumé : le prix se fige en appel de closing, donc le document
+> doit être nominatif — une page par deal, révocable seule.
+
+```
+tools/deals/<partenaire>.json   → données du deal (gabarit : tools/deals/exemple-msp.json)
+tools/deal-template.html        → coquille publique (rien de lisible sans le code)
+tools/deal-build.mjs            → génère espace/<slug>-<token>.html
+```
+
+**Deux facteurs** : URL non devinable (token aléatoire, listée nulle part) + code d'accès
+généré qui déchiffre le contenu (AES-256-GCM, PBKDF2-SHA256 310 000 itérations).
+Le code **n'est jamais écrit sur disque** — affiché une fois dans le terminal, à dicter.
+
+```bash
+# nouveau deal
+cp tools/deals/exemple-msp.json tools/deals/ardenor.json    # puis éditer
+node tools/deal-build.mjs tools/deals/ardenor.json           # → URL + code affichés
+git add tools/deals/ardenor.json espace/ && git commit -m "Deal Ardenor" && git push
+
+# régénérer après renégociation, sans casser le lien ni le code déjà transmis
+node tools/deal-build.mjs tools/deals/ardenor.json "SLV-XXXX-XXXX-XXXX"
+
+# révoquer cet accès, et lui seul
+git rm tools/deals/ardenor.json espace/ardenor-*.html && git commit && git push
+```
+
+Le `token` est écrit dans le JSON au premier build : **ne jamais le modifier**, le lien
+déjà envoyé en dépend. Le build Netlify publie `espace/*.html` en
+`noindex / no-store / no-referrer` et **échoue** si un contenu non chiffré s'y glisse.
+
+`espace-client.html` est désormais une **page neutre** (aucune niche nommée, retirée du
+footer public) : elle renvoie simplement vers le lien nominatif.
+
+---
+
+## 1. Espaces partenaires par niche (3 pages chiffrées) — dispositif hérité
+
+> ⚠️ Conservé pour les partenaires déjà détenteurs d'un mot de passe. **Tout nouveau
+> partenaire passe par §0.** À retirer du build une fois les partenaires actifs basculés.
 
 ### Architecture
-`espace-client.html` est une simple **page d'aiguillage** (aucun prix) vers 3 espaces
-chiffrés, **un par niche, chacun avec son propre mot de passe** — un télésecrétariat ne
-voit jamais la rate card IT, et inversement :
+Trois espaces chiffrés, **un par niche, chacun avec son propre mot de passe** — un
+télésecrétariat ne voit jamais la rate card IT, et inversement :
 
 | Espace | Page | Source en clair | Contenu (PRICING.md) |
 |---|---|---|---|
@@ -87,9 +127,10 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 
 - `netlify.toml` : build = `bash tools/build-site.sh`, publish = `_site/`.
 - Pages servies : index, 3 simulateurs, espace-client, espace-candidat,
-  suivi-candidature + `assets/`. **Tout le reste est exclu** (le script échoue si un .md
-  ou `tools/` se retrouve dans `_site/`).
-- En-têtes : `espace-client.html` servi en `noindex` + `Cache-Control: no-store`.
+  suivi-candidature, `espace/*.html` (pages de deal) + `assets/`. **Tout le reste est
+  exclu** (le script échoue si un .md ou `tools/` se retrouve dans `_site/`).
+- En-têtes : `espace-client*.html` en `noindex` + `Cache-Control: no-store` ;
+  `/espace/*` en plus en `Referrer-Policy: no-referrer` (l'URL contient le token).
 - Test local du build : `bash tools/build-site.sh && python3 -m http.server -d _site`.
 
 ## 4. Checklist mise en ligne

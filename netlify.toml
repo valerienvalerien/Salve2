@@ -10,3 +10,13 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
+
+# Pages de closing nominatives (une par deal). Même règle, plus stricte :
+# pas d'indexation, pas de cache, et pas de referer fuité vers un tiers —
+# l'URL contient le token qui donne accès au document.
+[[headers]]
+  for = "/espace/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+    Cache-Control = "no-store"
+    Referrer-Policy = "no-referrer"

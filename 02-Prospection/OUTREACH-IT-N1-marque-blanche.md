@@ -155,7 +155,7 @@ Vous pouvez tester notre réactivité directement sur salverys.fr
 ### Email 4 — Pivot + offre pilote (Jour 14)
 
 **Objet A :** {{firstName}}, une proposition concrète pour {{esn_nom}}
-**Objet B :** un mois pilote à −50 % — sans engagement
+**Objet B :** un périmètre restreint, et vous arrêtez en 30 jours si ça ne va pas
 **Objet C :** on s'engage sur vos SLA, sinon on vous crédite
 
 ---
@@ -164,7 +164,9 @@ Bonjour {{firstName}},
 
 Je reviens avec quelque chose de concret plutôt qu'une relance.
 
-Proposition : un **mois pilote à −50 %, sans engagement**, sur un périmètre N1 défini ensemble (200 à 400 tickets), avec KPIs partagés dès J1 (FCR, CSAT, AHT). Et une fois en régime, on s'engage sur le SLA : non tenu sur un mois, 20 % d'avoir le mois suivant — et vous pouvez arrêter sans frais de sortie.
+Proposition : on démarre sur un **périmètre N1 restreint défini ensemble** (200 à 400 tickets, ou un seul de vos clients finaux), avec KPIs partagés dès J1 (FCR, CSAT, AHT). Et une fois en régime, on s'engage sur le SLA : non tenu sur un mois, 20 % d'avoir le mois suivant.
+
+Je ne vous propose pas de remise — vous revendez, ça ne vous ferait gagner aucun client. Ce que je vous propose à la place : **vous pouvez arrêter en prévenant 30 jours** pendant les trois premiers mois, et je vous remets sous 48 h notre plan de continuité, notre DPA, notre dispositif QA et un engagement SLA écrit, **réutilisables tels quels dans vos propres réponses d'appels d'offres**.
 
 C'est la seule façon de vérifier si ça vaut l'intégration dans votre delivery — sans engager de budget significatif.
 
@@ -210,7 +212,10 @@ Votre réponse (même courte) m'aidera à savoir si je reste utile ou si je revi
 > "C'est de la marque blanche totale : ils ne voient que votre marque. Nos agents sont francophones natifs, formés sur vos scripts, sans accent identifiable. Ce qu'on absorbe, c'est le N1 répétitif — exactement là où le risque qualité est le plus faible."
 
 **"Vous êtes trop petits / pas assez de références"**
-> "C'est pour ça qu'on propose un mois pilote à −50 %, sans engagement, sur un périmètre restreint. Vous n'avez pas besoin de nous croire sur parole — vous avez besoin de KPIs réels sur vos propres tickets. Et on adosse un avoir de 20 % si les SLA ne sont pas tenus en régime : on met notre argent sur le résultat. Notre direction a géré des équipes de 1 000+ personnes : les process qualité existent, même si l'équipe actuelle est plus petite."
+> "C'est pour ça qu'on démarre sur un périmètre restreint, avec une sortie à 30 jours pendant les trois premiers mois. Vous n'avez pas besoin de nous croire sur parole — vous avez besoin de KPIs réels sur vos propres tickets, et de pouvoir arrêter si ça ne va pas. Et on adosse un avoir de 20 % si les SLA ne sont pas tenus en régime : on met notre argent sur le résultat. Notre direction a géré des équipes de 1 000+ personnes : les process qualité existent, même si l'équipe actuelle est plus petite."
+
+**"Vous me faites un geste sur le prix pour démarrer ?"**
+> "Non, et c'est volontaire. Vous revendez notre prestation : une remise sur votre prix de gros améliore votre marge d'un mois, elle ne vous fait gagner aucun client. Ce que je peux vous donner, c'est du risque en moins — sortie à 30 jours les trois premiers mois — et de quoi gagner vos propres appels d'offres : notre plan de continuité, notre DPA, notre dispositif QA et un engagement SLA écrit, sous 48 h, réutilisables tels quels dans vos réponses. Sur le prix, c'est le volume que vous engagez fermement qui le fait baisser, pas la négociation."
 
 **"On gère ça en interne, on n'externalise pas"**
 > "Vous recrutez {{nb_postes}} postes helpdesk en ce moment — ce qui suggère que l'interne est sous tension. La question n'est pas 'externaliser ou pas', c'est 'comment scalez-vous la capacité N1 sans attendre 3 mois de recrutement par CDI ?'"
@@ -226,12 +231,15 @@ Statuts de progression :
 - `contacté` → E1 envoyé
 - `réponse` → réponse reçue (positive ou négative)
 - `rdv` → appel découverte planifié
-- `pilote` → mois pilote (−50 %) en cours
+- `pilote` → démarrage sur périmètre restreint en cours
 - `client` → contrat signé
 
 ---
 
 *Séquence alignée avec PRICING.md §3 (tarif marque blanche : interne — **rate card
-partenaire 1/3/5+ ETP remise au cadrage sous NDA**, jamais en cold email). Pilote
-harmonisé 2026-06-12 : 1er mois à −50 %, 200-400 tickets, sans engagement.*  
+partenaire 1/3/5+ ETP remise au cadrage sous NDA**, jamais en cold email). **Mise à jour
+2026-08-03 : plus de mois pilote à −50 % en marque blanche** (`PRICING.md §3.b`) — le pilote
+reste un **périmètre restreint** (200-400 tickets ou un client final) au tarif du palier, +
+**dépôt d'activation** (§3.a) et **contreparties de risque** : sortie 30 j les 3 premiers
+mois · exclusivité 12 mois · appui avant-vente sous 48 h.*  
 *Format identique au master playbook OUTREACH-SEQUENCE.md*
