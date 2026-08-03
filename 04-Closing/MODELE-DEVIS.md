@@ -124,9 +124,11 @@ KPI engagé : **taux de décroché**. Plancher : jamais sous coût chargé agent
 | 3 ETP | **1 500 €** | [ ] | [ ] € |
 | **5+ ETP** — *volume ferme facturé* | **1 350 €** | [ ] | [ ] € |
 
-> **Palier 5+ — minimum facturable** : ce tarif est consenti contre un **volume ferme de
-> 5 positions, facturées qu'elles soient consommées ou non**. En deçà de 5 positions
-> facturées sur un mois, le tarif du **palier 3 ETP (1 500 €)** s'applique à ce mois.
+> **Palier 5+ — minimum facturable** : le tarif de **1 350 €** est conditionné à un
+> **engagement ferme de 5 positions**. Elles sont **payées toutes les cinq chaque mois**,
+> même si seules trois ou quatre sont utilisées — c'est cet engagement qui finance le prix
+> bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
+> 3 ETP, soit 1 500 € par position utilisée**.
 
 KPI engagé : **SLA de première réponse**. Option **Priority** (capacité réservée non
 mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3`).
@@ -139,9 +141,11 @@ mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3
 | 3 ETP | **1 750 €** | [ ] | [ ] € |
 | **5+ ETP** — *volume ferme facturé* | **1 550 €** | [ ] | [ ] € |
 
-> **Palier 5+ — minimum facturable** : ce tarif est consenti contre un **volume ferme de
-> 5 positions, facturées qu'elles soient consommées ou non**. En deçà de 5 positions
-> facturées sur un mois, le tarif du **palier 3 ETP (1 750 €)** s'applique à ce mois.
+> **Palier 5+ — minimum facturable** : le tarif de **1 550 €** est conditionné à un
+> **engagement ferme de 5 positions**. Elles sont **payées toutes les cinq chaque mois**,
+> même si seules trois ou quatre sont utilisées — c'est cet engagement qui finance le prix
+> bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
+> 3 ETP, soit 1 750 € par position utilisée**.
 
 KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 

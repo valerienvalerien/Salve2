@@ -111,16 +111,24 @@ function renderPlanning(deal) {
 function renderGrille(deal) {
   const revDef = deal.reventeConseillee;
   let noteMinimum = '';
-  const rows = deal.grille.map((r) => {
+  const rows = deal.grille.map((r, i) => {
     const rev = r.revente ?? revDef;
     const marge = rev ? rev - r.gros : null;
     const hi = r.retenu ? ' class="hi"' : '';
-    /* Palier a volume ferme : le prix ne s'obtient pas sur une intention de volume. */
+    /* Palier a volume ferme : le prix ne s'obtient pas sur une intention de volume.
+     * La note nomme le prix de repli au lieu de renvoyer a « palier inferieur » : le
+     * partenaire doit pouvoir chiffrer la consequence sans relire le tableau. */
     const min = r.minimumFacturable;
     if (min) {
-      noteMinimum = `Le palier « ${r.engagement} » est un <b>prix de volume engagé</b> :
-        il suppose <b>${min} positions facturées chaque mois, qu'elles soient consommées ou non</b>.
-        En deçà, le tarif du palier immédiatement inférieur s'applique au mois concerné.`;
+      const repli = deal.grille[i - 1];
+      noteMinimum = `<b>Le tarif de ${EUR(r.gros)} est conditionné à un engagement ferme
+        de ${min} positions.</b> Vous les payez toutes les ${min} chaque mois, même si vous
+        n'en utilisez que ${min - 2} ou ${min - 1} : c'est cet engagement qui finance le prix bas.`
+        + (repli
+          ? ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
+             « ${repli.engagement} », soit ${EUR(repli.gros)} par position utilisée.`
+          : ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
+             inférieur, pour les positions réellement utilisées.`);
     }
     return `<tr${hi}>
       <td>${H(r.engagement)}${min ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
