@@ -334,7 +334,7 @@ for (const champ of ['slug', 'partenaire', 'niche', 'dateEmission', 'signaturePr
   if (!deal[champ]) { console.error(`✗ Champ manquant dans ${jsonPath} : ${champ}`); process.exit(1); }
 }
 
-/* Deal archive (signe ou perdu) : la page sort du depot, donc du build Netlify. */
+/* Deal archive (signe ou perdu) : la page sort du depot, donc du prochain build (tools/build-site.sh). */
 if (deal.archive) {
   const cible = join(root, `espace/${deal.slug}-${deal.token}.html`);
   if (deal.token && existsSync(cible)) {

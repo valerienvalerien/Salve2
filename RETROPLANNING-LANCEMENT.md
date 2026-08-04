@@ -81,7 +81,7 @@ Légende rôles : **[D]** Direction (Valérien, gérant) · **[BD]** Business de
   (ESN-TARGETS, analyses prospects) → nettoyée, dédoublonnée, dans le CRM. [BD]
 - **Équipe** : **relancer les candidats vivier ⚠️** (VIV-0007/0008/0010-013…) ; **verrouiller les
   2 managers** (priorité **manager IT**, niche n°1 — délai le plus long). [D]
-- **Site** : **déployer le site (Netlify)** + vérifier `salverys.fr` opérationnel sur M365. [D]
+- **Site** : **déployer le site (OVH, upload FTP)** + vérifier `salverys.fr` opérationnel sur M365. [D]
 - **Branding** : démarrer une **cadence de posts** (fondateur, angle IT/qualité). [D+BD]
 
 ### Semaine 2 — 7-13 juil

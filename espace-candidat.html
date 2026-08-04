@@ -55,8 +55,7 @@
     <li>Statut freelance, contrat de prestation clair</li>
   </ul>
 
-  <form class="cd-form" id="cd-form" name="candidature" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="candidature" />
+  <form class="cd-form" id="cd-form" name="candidature" method="POST" action="https://formspree.io/f/VOTRE_ID_FORMSPREE">
     <input type="hidden" name="code_candidat" id="cd-code-field" />
     <p class="cd-hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
 
@@ -167,17 +166,16 @@
     if (form.elements['bot-field'].value) return; // honeypot
     var btn = $('cd-submit');
     btn.disabled = true; btn.textContent = 'Envoi…';
-    var body = new URLSearchParams(new FormData(form)).toString();
-    /* Netlify Forms : POST vers la page elle-même, encodé en formulaire. */
-    fetch(location.pathname, {
+    /* Formspree : POST en AJAX vers le endpoint du formulaire, réponse JSON attendue. */
+    fetch(form.action, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form),
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       success();
     }).catch(function () {
-      /* Repli : email pré-rempli (avant mise en ligne Netlify, ou si Forms inactif). */
+      /* Repli : email pré-rempli (site pas encore en ligne, ou formulaire Formspree non configuré). */
       var f = form.elements;
       var subject = 'Candidature ' + f.poste.value + ' — ' + f.prenom.value + ' ' + f.nom.value + ' [' + code + ']';
       var lines = ['Code candidat : ' + code, 'Poste : ' + f.poste.value,
