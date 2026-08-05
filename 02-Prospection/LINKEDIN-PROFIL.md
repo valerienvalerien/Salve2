@@ -73,8 +73,8 @@ propres obligations — RGPD en France, Loi 25 au Québec.
 Nous démarrons petit, exprès. Une position, un mois, des indicateurs définis
 avec vous avant de commencer. Si les chiffres ne suivent pas, vous arrêtez.
 
-Vous voulez chiffrer ce que ça donnerait chez vous ? Écrivez-moi ici, je réponds
-sous 24 h.
+Écrivez-moi votre volume mensuel et les plages à couvrir. Je vous renvoie un
+chiffrage et un délai de démarrage.
 ```
 
 ---
@@ -85,8 +85,9 @@ sous 24 h.
 |---|---|---|
 | −40 à −60 % vs coût complet interne | ✅ | Documenté `PRICING.md §5` comme fourchette publique défendable |
 | « Le cadre de confidentialité est signé avant le premier accès » | ⚠️ | Formulation volontairement non technique (décision 2026-08-05). Le détail — sous-traitance art. 28 RGPD, clauses contractuelles types pour le transfert hors UE, NDA individuel, accès nominatifs et tracés — reste **l'argument à sortir à l'oral** face à un DPO ou un acheteur médical, et doit être en place dans le contrat |
-| NDA individuel par agent | ✅ | `MODELE-NDA-CONFIDENTIALITE.md` |
-| Réponse sous 24 h | ⚠️ | Engagement personnel — ne l'écrire que si tenable |
+| NDA individuel par agent | ⚠️ | `MODELE-NDA-CONFIDENTIALITE.md` existe, mais 6 des 7 pièces du pack agent restent à créer : `05-Process-Delivery/PACK-CONFORMITE-AGENT.md` |
+| « nous fournissons les pièces… Loi 25 au Québec » | ❌ | Le pack ÉFVP n'existe pas encore. Ne pas publier cette phrase avant de l'avoir monté (`PACK-CONFORMITE-AGENT.md §5`) |
+| Chiffrage + délai de démarrage en retour | ⚠️ | Suppose une grille prête à dégainer (`PRICING.md`) et un délai de démarrage arbitré |
 | Équipe de soirée pour le Canada | ⚠️ | 7 à 9 h d'écart avec Montréal : suppose un planning de soirée/nuit |
 | Infrastructure redondante (fibre, onduleurs) | ❌ | **Retiré.** Séquence `CLAUDE.md` : Prospection → Équipe → **Infrastructure**. À réintroduire une fois en place. |
 | « Stricte conformité RGPD / Loi 25 » | ❌ | **Retiré.** Madagascar est un pays tiers sans décision d'adéquation : formulation indéfendable en l'état. |
