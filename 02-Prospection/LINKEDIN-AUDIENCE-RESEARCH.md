@@ -421,7 +421,7 @@ Les piliers (P1…P5) sont définis dans `LINKEDIN-GROWTH-BLUEPRINT.md §4`.
 
 | # | Angle | Cible | Obj. |
 |---|---|---|---|
-| E1 | On repart de zéro à 10 personnes après avoir géré des équipes de 1 000+. Ce que je fais différemment | tous | R |
+| E1 | On monte une opération de support à 10 personnes. Les 3 décisions que ça impose dès le premier mois | tous | R |
 | E2 | Notre première décision structurante : 100 % freelances, payés très au-dessus du marché | tous | R |
 | E3 | Pourquoi j'ai supprimé notre offre d'essai gratuit | P1 P2 | C |
 | E4 | La décision de demander un dépôt d'activation — et les 3 objections qu'elle a créées | P2 | C |
@@ -502,9 +502,13 @@ le storytelling personnel sans lien métier, les emojis en début de ligne, les
    la **méthode** et les **coûts de marché**, jamais des « résultats clients ».
 5. **Aucune attaque nominative** d'un concurrent. On critique des pratiques, jamais des
    sociétés.
-6. **Aucune promesse de disponibilité qu'on ne tient pas encore** (24/7, multilingue,
+6. **Aucun claim d'expérience passée** (taille d'équipes dirigées, structures
+   antérieures) — règle `SCRIPTS-APPEL.md`. L'objection « vous êtes trop petits » se traite
+   par le **dispositif** (backup +1, PCA écrit, KPI partagés dès J1, sortie à 30 jours), pas
+   par un CV.
+7. **Aucune promesse de disponibilité qu'on ne tient pas encore** (24/7, multilingue,
    certifications non obtenues).
-7. **Les prix médicaux publics sont autorisés** (350/590/950 €, `PRICING.md §1`) — c'est la
+8. **Les prix médicaux publics sont autorisés** (350/590/950 €, `PRICING.md §1`) — c'est la
    seule grille publiable, et uniquement sur les contenus P4/P3 en direct.
 
 ---

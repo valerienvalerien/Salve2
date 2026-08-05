@@ -70,9 +70,15 @@ LinkedIn n'est pas là pour générer des leads entrants à court terme — le c
 ## 2. Architecture des comptes : qui parle ?
 
 **Décision : le porte-voix n°1 est le profil personnel du dirigeant.** Sur LinkedIn, un
-profil personnel a une portée structurellement supérieure à une page entreprise, et notre
-avantage différenciant est **humain** (« une direction qui a géré des équipes de 1 000+
-personnes et qui repart de zéro à 10 »). Une page entreprise ne peut pas porter ça.
+profil personnel a une portée structurellement supérieure à une page entreprise — et surtout,
+ce qu'on publie (des décisions opérationnelles assumées, des calculs ouverts, des cas où on se
+disqualifie) n'a de valeur que **signé par quelqu'un**. Une page entreprise ne peut pas porter
+ça : elle transforme une prise de position en communiqué.
+
+⚠️ **Aucun claim d'expérience passée** (taille des équipes dirigées, structures antérieures).
+Règle déjà posée dans `SCRIPTS-APPEL.md`. La crédibilité se construit ici sur ce qui est
+vérifiable et présent : **process documentés, cadrage qualité (script, double écoute,
+reporting), pilote mesuré** (`CLAUDE.md`).
 
 | Actif | Rôle | Fréquence |
 |---|---|---|
@@ -94,7 +100,7 @@ personnes et qui repart de zéro à 10 »). Une page entreprise ne peut pas port
 | **Bannière** | Promesse + 3 preuves (français natif · fuseau Paris · marque blanche totale) + `salverys.fr` | Occupe le seul espace visuel gratuit |
 | **Section « Infos »** | 3 premières lignes = le problème du lecteur (pas notre histoire), puis pour qui / pas pour qui, puis appel à l'action DM | Seules 3 lignes s'affichent avant « voir plus » |
 | **Sélection (Featured)** | 3 blocs : le one-pager partenaire MB, un simulateur (`simulateur-helpdesk-it.html`), le meilleur post du mois | Convertit la vue de profil, qui est notre vrai signal d'intérêt |
-| **Expérience** | Poste actuel décrit en résultats opérationnels, historique « équipes de 1 000+ » mis en avant | C'est l'antidote au « vous êtes trop petits » |
+| **Expérience** | Poste actuel décrit par le **mode opératoire** (marque blanche, QA/double écoute, reporting, engagement de service) — **jamais** par une taille d'équipe passée | L'antidote au « vous êtes trop petits » est un dispositif vérifiable, pas un CV |
 | **Coordonnées** | `contact@salverys.fr` + site | Certains préfèrent l'email au DM |
 | **Mode Créateur** | Activé, 5 sujets : support client · service desk · externalisation · ITIL · télésecrétariat médical | Débloque newsletter, mise en avant des posts, bouton « Suivre » par défaut |
 
@@ -328,7 +334,8 @@ canal.**
 
 ### Semaines 3-6 — Cadence et crédibilité
 - [ ] 4 posts/semaine, sans exception. Ordre de lancement recommandé : **A1** (coût complet),
-      **E1** (repartir de zéro à 10), **D1** (quand ne pas externaliser), **B1** (7 questions).
+      **E1** (les décisions d'un démarrage à 10), **D1** (quand ne pas externaliser),
+      **B1** (7 questions).
 - [ ] 8-10 commentaires/jour sur les comptes cibles.
 - [ ] Premier carrousel en semaine 4 (A1 en format document).
 - [ ] Les 2 managers commencent à commenter chaque post.
@@ -541,9 +548,14 @@ canal.**
    et les coûts de marché, jamais des « résultats obtenus ».
 5. **Aucune attaque nominative de concurrent.** On critique des pratiques.
 6. **Aucune promesse non tenue à date** (24/7, multilingue, certifications non obtenues).
-7. **Cohérence de marque** : lockup `Salverys.` conforme à `BRANDING-Salverys.md` — forme
+7. **Aucun claim d'expérience passée** — taille des équipes dirigées, structures
+   antérieures, volumes gérés ailleurs. Règle déjà en vigueur (`SCRIPTS-APPEL.md`), valable
+   ici aussi : sur LinkedIn, une affirmation invérifiable est vérifiée. Ce qu'on met à la
+   place : **process documentés, cadrage qualité (script, double écoute, reporting), pilote
+   mesuré** (`CLAUDE.md`).
+8. **Cohérence de marque** : lockup `Salverys.` conforme à `BRANDING-Salverys.md` — forme
    courte selon la cible, jamais de sous-marque « Salverys IT » autonome.
-8. **Sujet sensible = 24 h de recul.** Tout post qui pourrait exposer un futur partenaire ou
+9. **Sujet sensible = 24 h de recul.** Tout post qui pourrait exposer un futur partenaire ou
    toucher au pays d'implantation attend une relecture le lendemain.
 
 ---
