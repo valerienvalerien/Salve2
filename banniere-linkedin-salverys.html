@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bannière LinkedIn Salverys — comparatif des 2 formulations</title>
+<style>
+  :root{
+    --primary:#2E3B4E;
+    --primary-deep:#222C3B;
+    --ink:#20303F;
+    --accent:#6F8770;
+    --accent-soft:#C5D2C5;
+    --accent-tint:#EAF0EA;
+    --gold:#B89968;
+    --bg-soft:#F6F2EA;
+    --text-soft:#5C5448;
+    --text-mute:#8A8275;
+    --line:#E7DFD1;
+    --scale:1;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:48px 24px 90px;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:#F8F5F0;color:#2A2620;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:1180px;margin:0 auto}
+  .page-head{margin-bottom:44px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .page-head h1{font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:600;
+    letter-spacing:-.02em;color:var(--primary);margin:0 0 8px}
+  .page-head p{margin:0;color:var(--text-soft);font-size:15px;max-width:70ch}
+
+  .block{margin-bottom:54px}
+  .block-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .tag{display:inline-block;padding:4px 11px;border-radius:100px;background:var(--primary);
+    color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .tag.alt{background:var(--accent)}
+  .block-head h2{font-family:Georgia,serif;font-size:21px;font-weight:600;color:var(--primary);margin:0}
+  .block-note{margin:0 0 18px;font-size:14px;color:var(--text-soft);max-width:78ch}
+  .block-note b{color:var(--primary)}
+
+  /* --- cadre d'aperçu : la bannière est rendue à sa taille réelle puis mise à l'échelle --- */
+  .frame{
+    width:100%;
+    aspect-ratio:1584/396;
+    overflow:hidden;
+    border-radius:10px;
+    border:1px solid var(--line);
+    box-shadow:0 10px 28px rgba(32,48,63,.10),0 3px 8px rgba(32,48,63,.06);
+    position:relative;
+  }
+  .frame .banner{
+    position:absolute;top:0;left:0;
+    transform:scale(var(--scale));
+    transform-origin:top left;
+  }
+
+  /* ============ LA BANNIÈRE ============ */
+  .banner{
+    width:1584px;height:396px;
+    position:relative;overflow:hidden;
+    background:#FCFAF6;
+    font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  .banner .bg{position:absolute;inset:0;
+    background:
+      radial-gradient(760px 460px at 88% 18%, rgba(111,135,112,.20), transparent 62%),
+      radial-gradient(620px 420px at 4% 6%,  rgba(46,59,78,.10),   transparent 60%),
+      radial-gradient(520px 380px at 30% 108%, rgba(111,135,112,.10), transparent 65%),
+      linear-gradient(118deg,#FDFCF9 0%,#F6F2EA 52%,#EDF1EC 100%);
+  }
+  .banner .watermark{position:absolute;left:-40px;top:26px;width:420px;height:340px;
+    opacity:.07;color:var(--primary)}
+  .banner .blob{position:absolute;right:-90px;top:-120px;width:620px;height:620px;
+    border-radius:50%;background:radial-gradient(circle at 34% 34%,rgba(111,135,112,.28),rgba(111,135,112,0) 66%)}
+  .banner .rule{position:absolute;left:0;bottom:0;width:100%;height:6px;
+    background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 58%,var(--gold) 100%)}
+
+  .banner .content{position:absolute;left:196px;top:0;height:100%;width:1180px;
+    display:flex;flex-direction:column;justify-content:center;gap:0}
+
+  .kicker{display:flex;align-items:center;gap:11px;margin-bottom:17px}
+  .kicker .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);flex:none}
+  .kicker span{font-size:15px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--accent);white-space:nowrap}
+
+  .banner h2{
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:60px;line-height:1.09;font-weight:700;letter-spacing:-.015em;
+    color:var(--primary-deep);margin:0 0 16px;
+  }
+  .banner h2 .hl{position:relative;color:var(--accent);white-space:nowrap}
+  .banner h2 .hl svg{position:absolute;left:-4px;bottom:-13px;width:calc(100% + 8px);height:15px}
+
+  .banner .sub{font-size:21px;font-weight:500;color:var(--text-soft);margin:0 0 26px;letter-spacing:.005em}
+
+  .pills{display:flex;align-items:center;gap:0}
+  .pill{display:flex;align-items:center;gap:11px;padding-right:26px}
+  .pill + .pill{padding-left:26px;border-left:1px solid rgba(46,59,78,.18)}
+  .pill .ico{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.78);
+    border:1px solid var(--accent-soft);display:flex;align-items:center;justify-content:center;
+    color:var(--accent);flex:none}
+  .pill b{font-size:15px;font-weight:700;color:var(--primary);white-space:nowrap}
+
+  /* --- overlays d'aide à la décision (aperçu uniquement, jamais exportés) --- */
+  .frame .overlay{position:absolute;inset:0;pointer-events:none;display:none}
+  .frame.show-safe .overlay{display:block}
+  .overlay .avatar{position:absolute;left:2.8%;bottom:-6%;width:10.2%;aspect-ratio:1;
+    border-radius:50%;border:2px dashed #B6604D;background:rgba(182,96,77,.10)}
+  .overlay .crop{position:absolute;left:0;top:0;height:100%;width:100%;
+    box-shadow:inset 0 0 0 2px rgba(182,96,77,.28)}
+  .overlay .crop::before{content:"";position:absolute;left:0;top:0;height:100%;width:14%;
+    background:repeating-linear-gradient(45deg,rgba(182,96,77,.10) 0 8px,transparent 8px 16px)}
+  .overlay .crop::after{content:"";position:absolute;right:0;top:0;height:100%;width:14%;
+    background:repeating-linear-gradient(45deg,rgba(182,96,77,.10) 0 8px,transparent 8px 16px)}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-size:12.5px;color:var(--text-mute)}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;
+    vertical-align:-1px;background:rgba(182,96,77,.35);border:1px dashed #B6604D}
+
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 30px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;
+    font-size:13.5px;font-weight:700;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--primary);font-family:inherit;transition:transform .18s,box-shadow .22s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(32,48,63,.10)}
+  .btn.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+  .verdict{margin-top:46px;padding:26px 28px;border-radius:16px;background:#fff;
+    border:1px solid var(--line);border-left:5px solid var(--accent)}
+  .verdict h3{font-family:Georgia,serif;font-size:19px;color:var(--primary);margin:0 0 12px}
+  .verdict ul{margin:0;padding-left:20px;color:var(--text-soft);font-size:14.5px}
+  .verdict li{margin-bottom:8px}
+  .verdict b{color:var(--primary)}
+  .todo{margin-top:22px;padding:18px 22px;border-radius:14px;background:var(--accent-tint);
+    border:1px dashed var(--accent-soft);font-size:14px;color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-head">
+    <h1>Bannière LinkedIn — les deux formulations, côte à côte</h1>
+    <p>Format 1584 × 396 px (profil LinkedIn). Seule la headline change d'une version à l'autre :
+       surtitre, sous-ligne et les 3 labels du bas sont volontairement identiques pour isoler la comparaison.</p>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="btn-safe">Afficher les zones de rognage</button>
+    <span style="font-size:13px;color:var(--text-mute)">Aperçu à l'échelle — les PNG exportés sont en 1584 × 396.</span>
+  </div>
+
+  <!-- ================= VERSION A ================= -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag">Version A</span>
+      <h2>« Vos clients ne sauront jamais que ce n’est pas vous. »</h2>
+    </div>
+    <p class="block-note">Formulation d'origine. Plus forte en accroche, mais la négation
+      (<b>« ne sauront jamais »</b>) peut s'entendre comme de la dissimulation — sensible côté médical.</p>
+    <div class="frame" id="frame-a">
+      <div class="banner" id="banner-a">
+        <div class="bg"></div>
+        <svg class="watermark" viewBox="0 0 200 170" fill="none" stroke="currentColor" stroke-width="3.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M32 96V78a68 68 0 0 1 136 0v18"/>
+          <rect x="14" y="92" width="34" height="52" rx="17"/>
+          <rect x="152" y="92" width="34" height="52" rx="17"/>
+          <path d="M168 144v6a20 20 0 0 1-20 20h-30"/>
+          <rect x="92" y="160" width="26" height="16" rx="8"/>
+        </svg>
+        <div class="blob"></div>
+        <div class="content">
+          <div class="kicker"><span class="dot"></span><span>BPO francophone · Marque blanche</span></div>
+          <h2>Vos clients ne sauront jamais<br>que ce n’est <span class="hl">pas vous<svg viewBox="0 0 200 14" preserveAspectRatio="none" fill="none"><path d="M2 9.4C46 3.6 132 2.4 198 6.8" stroke="#6F8770" stroke-width="4.4" stroke-linecap="round"/></svg></span>.</h2>
+          <p class="sub">Support applicatif N1 · Helpdesk IT · Télésecrétariat médical</p>
+          <div class="pills">
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M9 4l1.5 4M7 20c2.5-4 4-8 4.5-12M13 12c1 4 3 6 6 8"/></svg></span>
+              <b>Français natif</b>
+            </div>
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+              <b>Fuseau horaire FR</b>
+            </div>
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.2"/><path d="M17.5 11.5a3 3 0 1 0-2.6-4.5M21 20v-1.8a3.6 3.6 0 0 0-2.4-3.3"/></svg></span>
+              <b>Équipe dédiée</b>
+            </div>
+          </div>
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="overlay">
+        <div class="crop"></div>
+        <div class="avatar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VERSION B ================= -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag alt">Version B — ma reco</span>
+      <h2>« Vos clients entendent votre marque, pas la nôtre. »</h2>
+    </div>
+    <p class="block-note">43 caractères, tient sur <b>une seule ligne</b> même après rognage mobile.
+      Même promesse, formulée en positif : on affirme ce que le client obtient au lieu de ce qu'on cache.</p>
+    <div class="frame" id="frame-b">
+      <div class="banner" id="banner-b">
+        <div class="bg"></div>
+        <svg class="watermark" viewBox="0 0 200 170" fill="none" stroke="currentColor" stroke-width="3.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M32 96V78a68 68 0 0 1 136 0v18"/>
+          <rect x="14" y="92" width="34" height="52" rx="17"/>
+          <rect x="152" y="92" width="34" height="52" rx="17"/>
+          <path d="M168 144v6a20 20 0 0 1-20 20h-30"/>
+          <rect x="92" y="160" width="26" height="16" rx="8"/>
+        </svg>
+        <div class="blob"></div>
+        <div class="content">
+          <div class="kicker"><span class="dot"></span><span>BPO francophone · Marque blanche</span></div>
+          <h2>Vos clients entendent <span class="hl">votre marque<svg viewBox="0 0 200 14" preserveAspectRatio="none" fill="none"><path d="M2 9.4C46 3.6 132 2.4 198 6.8" stroke="#6F8770" stroke-width="4.4" stroke-linecap="round"/></svg></span>,<br>pas la nôtre.</h2>
+          <p class="sub">Support applicatif N1 · Helpdesk IT · Télésecrétariat médical</p>
+          <div class="pills">
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M9 4l1.5 4M7 20c2.5-4 4-8 4.5-12M13 12c1 4 3 6 6 8"/></svg></span>
+              <b>Français natif</b>
+            </div>
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+              <b>Fuseau horaire FR</b>
+            </div>
+            <div class="pill">
+              <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.2"/><path d="M17.5 11.5a3 3 0 1 0-2.6-4.5M21 20v-1.8a3.6 3.6 0 0 0-2.4-3.3"/></svg></span>
+              <b>Équipe dédiée</b>
+            </div>
+          </div>
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="overlay">
+        <div class="crop"></div>
+        <div class="avatar"></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i></i> Zone couverte par la photo / le logo</span>
+      <span><i></i> Bords rognés sur mobile — ne jamais y placer de texte</span>
+    </div>
+  </section>
+
+  <div class="verdict">
+    <h3>Ce que le rendu confirme</h3>
+    <ul>
+      <li><b>Version A</b> pousse la headline sur deux lignes pleines : le bloc gagne en présence,
+          mais la sous-ligne et les labels sont comprimés vers le bas, près de la zone du logo.</li>
+      <li><b>Version B</b> laisse respirer : la deuxième ligne est courte, l'œil descend naturellement
+          vers la sous-ligne métiers, qui devient lisible au premier coup d'œil. C'est elle qui fait
+          le travail de qualification.</li>
+      <li>Dans les deux cas, le <b>surtitre porte « Marque blanche »</b> : la headline n'a pas à le dire,
+          elle la démontre. Aucun des mots verrouillants (sous-traitance, revente, donneur d'ordre) n'apparaît.</li>
+      <li>Aucun métier n'est cité dans la headline → la bascule vers le direct, ou vers la 4ᵉ niche,
+          ne demandera de réécrire <b>que la sous-ligne</b>.</li>
+    </ul>
+  </div>
+
+  <div class="todo">
+    <b>Point suivant :</b> les 3 labels du bas (« Français natif · Fuseau horaire FR · Équipe dédiée »)
+    sont ici des placeholders repris de la bannière actuelle — on les tranche juste après.
+  </div>
+
+</div>
+
+<script>
+  // met la bannière (1584 px de large) à l'échelle du cadre d'aperçu
+  function fit(){
+    document.querySelectorAll('.frame').forEach(function(f){
+      f.style.setProperty('--scale', f.clientWidth / 1584);
+    });
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  var btn = document.getElementById('btn-safe');
+  btn.addEventListener('click', function(){
+    var on = !document.querySelector('.frame').classList.contains('show-safe');
+    document.querySelectorAll('.frame').forEach(function(f){ f.classList.toggle('show-safe', on); });
+    btn.classList.toggle('on', on);
+    btn.textContent = on ? 'Masquer les zones de rognage' : 'Afficher les zones de rognage';
+  });
+</script>
+</body>
+</html>
