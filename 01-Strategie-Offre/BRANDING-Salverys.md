@@ -18,7 +18,7 @@ des marques autonomes.
 
 **Écarté (Option B) :** créer deux sous-marques indépendantes (« Salverys
 Médical » / « Salverys IT ») avec sites, logos et supports séparés. Prématuré et
-plus cher à gérer au stade actuel (équipe de 10, on repart de zéro).
+plus cher à gérer au stade actuel (structure resserrée, en démarrage).
 
 ---
 
