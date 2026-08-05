@@ -75,10 +75,12 @@ ce qu'on publie (des décisions opérationnelles assumées, des calculs ouverts,
 disqualifie) n'a de valeur que **signé par quelqu'un**. Une page entreprise ne peut pas porter
 ça : elle transforme une prise de position en communiqué.
 
-⚠️ **Aucun claim d'expérience passée** (taille des équipes dirigées, structures antérieures).
-Règle déjà posée dans `SCRIPTS-APPEL.md`. La crédibilité se construit ici sur ce qui est
-vérifiable et présent : **process documentés, cadrage qualité (script, double écoute,
-reporting), pilote mesuré** (`CLAUDE.md`).
+⚠️ **Aucun argument fondé sur le parcours de la direction** — « direction expérimentée »,
+taille des équipes dirigées, structures antérieures, « repart de zéro avec 10 personnes ».
+Garde-fou `CLAUDE.md` (durci le 2026-08-05) et `SCRIPTS-APPEL.md`. La crédibilité se construit
+ici sur ce qui est vérifiable et présent : **process documentés, cadrage qualité (script,
+double écoute, reporting), pilote mesuré, SLA chiffré**. Ce que le profil signe, ce sont des
+**arbitrages d'aujourd'hui**, pas un CV.
 
 | Actif | Rôle | Fréquence |
 |---|---|---|
@@ -142,7 +144,7 @@ dépôt d'activation) — y compris quand ça se retourne contre la vente.
 | **1** | **L'économie du support** — coûts complets, délais, ratios, calculs ouverts | **30 %** | Confiance + partages | P1 P2 | Thème A |
 | **2** | **Le mode d'emploi de la sous-traitance** — comment cadrer, quoi exiger, quels KPI | **25 %** | Demande (DM) | P1 P2 P3 | Thèmes B + F |
 | **3** | **Coulisses de l'opération** — QA, double écoute, PCA, recrutement, rémunération | **20 %** | Preuve / anti-objection | P2 P3 | Thème C |
-| **4** | **Le journal du redémarrage** — décisions réelles, erreurs, chiffres internes | **15 %** | Portée + followers | tous | Thème E |
+| **4** | **Décisions ouvertes** — arbitrages réels, erreurs, chiffres internes | **15 %** | Portée + followers | tous | Thème E |
 | **5** | **Anti-brochure** — les vérités qui disqualifient, les idées reçues démontées | **10 %** | Portée + autorité | tous | Thème D |
 
 **Règle des 70/30 :** ~70 % du contenu sert le **métier du lecteur** (il en tire quelque chose
@@ -189,7 +191,7 @@ médical ou le dirigeant PME, 1 est transversal (piliers 4/5).
 | **Mardi 8h** | Texte — économie du support | 1 |
 | **Mercredi 8h** | Document / carrousel — mode d'emploi | 2 |
 | **Jeudi 8h** | Coulisses ou anti-brochure | 3 ou 5 |
-| **Lundi ou vendredi 8h** | Journal du redémarrage / opinion | 4 |
+| **Lundi ou vendredi 8h** | Décisions ouvertes / opinion | 4 |
 
 Créneau cible : **7h30-9h en semaine** (nos personas ouvrent LinkedIn avant leurs réunions).
 Éviter vendredi après-midi et le week-end. **Ne jamais poster deux fois le même jour.**
@@ -313,7 +315,7 @@ gagnants** dans `LINKEDIN-AUDIENCE-RESEARCH.md §9` et on double la mise sur le 
 génère des vues de profil ICP (pas sur celui qui génère le plus de likes — ce n'est presque
 jamais le même).
 
-⚠️ **Piège à éviter :** le pilier 4 (journal du redémarrage) fera toujours plus de vues que
+⚠️ **Piège à éviter :** le pilier 4 (décisions ouvertes) fera toujours plus de vues que
 le pilier 2 (mode d'emploi). Ce n'est pas une raison pour basculer dessus : le pilier 2
 génère les DM. **Optimiser la portée au détriment de la demande est l'échec classique de ce
 canal.**
@@ -334,7 +336,7 @@ canal.**
 
 ### Semaines 3-6 — Cadence et crédibilité
 - [ ] 4 posts/semaine, sans exception. Ordre de lancement recommandé : **A1** (coût complet),
-      **E1** (les décisions d'un démarrage à 10), **D1** (quand ne pas externaliser),
+      **E1** (les 3 arbitrages du premier mois), **D1** (quand ne pas externaliser),
       **B1** (7 questions).
 - [ ] 8-10 commentaires/jour sur les comptes cibles.
 - [ ] Premier carrousel en semaine 4 (A1 en format document).
@@ -548,11 +550,11 @@ canal.**
    et les coûts de marché, jamais des « résultats obtenus ».
 5. **Aucune attaque nominative de concurrent.** On critique des pratiques.
 6. **Aucune promesse non tenue à date** (24/7, multilingue, certifications non obtenues).
-7. **Aucun claim d'expérience passée** — taille des équipes dirigées, structures
-   antérieures, volumes gérés ailleurs. Règle déjà en vigueur (`SCRIPTS-APPEL.md`), valable
-   ici aussi : sur LinkedIn, une affirmation invérifiable est vérifiée. Ce qu'on met à la
-   place : **process documentés, cadrage qualité (script, double écoute, reporting), pilote
-   mesuré** (`CLAUDE.md`).
+7. **Aucun argument fondé sur le parcours de la direction** — « direction expérimentée »,
+   taille des équipes dirigées, volumes gérés ailleurs, « repart de zéro avec 10 personnes ».
+   Garde-fou `CLAUDE.md` / `SCRIPTS-APPEL.md` : sur LinkedIn, une affirmation invérifiable est
+   vérifiée. Ce qu'on met à la place : **process documentés, cadrage qualité (script, double
+   écoute, reporting), pilote mesuré, SLA chiffré**.
 8. **Cohérence de marque** : lockup `Salverys.` conforme à `BRANDING-Salverys.md` — forme
    courte selon la cible, jamais de sous-marque « Salverys IT » autonome.
 9. **Sujet sensible = 24 h de recul.** Tout post qui pourrait exposer un futur partenaire ou

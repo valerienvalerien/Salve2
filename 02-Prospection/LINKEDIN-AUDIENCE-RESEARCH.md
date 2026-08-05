@@ -318,7 +318,7 @@ Ce que **personne ne publie** sur LinkedIn FR autour de ce sujet, et qui est à 
 | **G2** | **Le mode d'emploi de la sous-traitance réussie** (comment cadrer, quoi exiger, quels KPI) | Écrire le mode d'emploi, c'est armer l'acheteur contre soi | Le publier quand même : c'est ce qui distingue un opérateur d'un revendeur |
 | **G3** | **Les coulisses réelles d'un centre offshore** (salaires, QA, double écoute, PCA) | Le secteur cache ses conditions, car elles sont souvent indéfendables | Assumer : ~4,5× le marché local, freelances, zéro turnover visé |
 | **G4** | **Les cas où il ne faut PAS externaliser** | Personne ne se disqualifie volontairement | Le faire — c'est le contenu qui crée le plus de confiance par unité de risque |
-| **G5** | **Le journal d'un redémarrage à 10 personnes** (build in public B2B services) | Le build in public FR est monopolisé par la tech/SaaS, quasi absent du BPO | Raconter les décisions réelles (pourquoi on ne remise pas, pourquoi un dépôt d'activation) |
+| **G5** | **Le build in public d'un opérateur de services** (arbitrages, prix, refus de clients) | Le build in public FR est monopolisé par la tech/SaaS, quasi absent du BPO | Raconter les décisions réelles (pourquoi on ne remise pas, pourquoi un dépôt d'activation) |
 | **G6** | **Le vocabulaire pour vendre l'externalisation en interne** | Les prestataires parlent à l'acheteur, jamais à ses contraintes politiques | Fournir des formulations transférables telles quelles à un COO |
 
 > **G4 et G6 sont les plus sous-exploités du marché.** G4 achète la crédibilité, G6 achète la
@@ -417,11 +417,11 @@ Les piliers (P1…P5) sont définis dans `LINKEDIN-GROWTH-BLUEPRINT.md §4`.
 | D11 | Le mythe du support 24/7 : la plupart des boîtes ont besoin de 7h-19h, pas de la nuit | P2 P4 | R |
 | D12 | Ce que je réponds quand on me dit « vous êtes trop petits » | P2 | C |
 
-### Thème E — Le journal du redémarrage (pilier 4 · gap G5 · T1/T6)
+### Thème E — Décisions ouvertes (pilier 4 · gap G5 · T1/T6)
 
 | # | Angle | Cible | Obj. |
 |---|---|---|---|
-| E1 | On monte une opération de support à 10 personnes. Les 3 décisions que ça impose dès le premier mois | tous | R |
+| E1 | Les 3 arbitrages qu'impose le premier mois d'une opération de support (et ce qu'ils coûtent) | tous | R |
 | E2 | Notre première décision structurante : 100 % freelances, payés très au-dessus du marché | tous | R |
 | E3 | Pourquoi j'ai supprimé notre offre d'essai gratuit | P1 P2 | C |
 | E4 | La décision de demander un dépôt d'activation — et les 3 objections qu'elle a créées | P2 | C |
@@ -502,10 +502,10 @@ le storytelling personnel sans lien métier, les emojis en début de ligne, les
    la **méthode** et les **coûts de marché**, jamais des « résultats clients ».
 5. **Aucune attaque nominative** d'un concurrent. On critique des pratiques, jamais des
    sociétés.
-6. **Aucun claim d'expérience passée** (taille d'équipes dirigées, structures
-   antérieures) — règle `SCRIPTS-APPEL.md`. L'objection « vous êtes trop petits » se traite
-   par le **dispositif** (backup +1, PCA écrit, KPI partagés dès J1, sortie à 30 jours), pas
-   par un CV.
+6. **Aucun argument fondé sur le parcours de la direction** (« direction expérimentée »,
+   taille d'équipes dirigées, « repart de zéro avec 10 personnes ») — garde-fou `CLAUDE.md` /
+   `SCRIPTS-APPEL.md`. L'objection « vous êtes trop petits » se traite par le **dispositif**
+   (backup +1, PCA écrit, KPI partagés dès J1, sortie à 30 jours, SLA chiffré), pas par un CV.
 7. **Aucune promesse de disponibilité qu'on ne tient pas encore** (24/7, multilingue,
    certifications non obtenues).
 8. **Les prix médicaux publics sont autorisés** (350/590/950 €, `PRICING.md §1`) — c'est la
