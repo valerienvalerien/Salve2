@@ -9,7 +9,9 @@
 >
 > **Version 2 — « Le plan à cinq ans »** (angle : la légitimité s'accumule aujourd'hui,
 > charge contre l'obsession de la prédiction) : `SCENARIO-VIDEO-PUB-V2-AUJOURDHUI.md`.
-> V1 dit **ce qu'on fait**, V2 dit **pourquoi ça compte** — les deux sont compatibles.
+> **Version 3 — « Je reprends depuis le début »** (angle : langue, accent, turnover —
+> les trois douleurs réelles de l'acheteur) : `SCENARIO-VIDEO-PUB-V3-REPRENDRE.md`.
+> V1 dit **ce qu'on fait**, V2 **pourquoi ça compte**, V3 **contre quoi on vend**.
 
 ---
 

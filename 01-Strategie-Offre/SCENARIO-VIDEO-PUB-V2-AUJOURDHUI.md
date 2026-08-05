@@ -7,7 +7,10 @@
 > leurs clients ne sont pas correctement supportés maintenant.
 >
 > Version 1 (« Le nom des autres », angle marque blanche) : `SCENARIO-VIDEO-PUB.md`.
-> Les deux films sont compatibles : V1 dit **ce qu'on fait**, V2 dit **pourquoi ça compte**.
+> Version 3 (« Je reprends depuis le début », angle langue / accent / turnover) :
+> `SCENARIO-VIDEO-PUB-V3-REPRENDRE.md`.
+> Les trois films sont compatibles : V1 dit **ce qu'on fait**, V2 **pourquoi ça compte**,
+> V3 **contre quoi on vend**.
 > Aligné sur `BRANDING-Salverys.md`, `PRICING.md` (aucun prix affiché), garde-fous `CLAUDE.md`.
 
 ---
