@@ -6,6 +6,10 @@
 >
 > Aligné sur : `BRANDING-Salverys.md` (palette, lockup), `PRICING.md` (aucun prix affiché
 > — voir §9 règle d'affichage), `CLAUDE.md` (MB-first, IT prioritaire, garde-fou direction).
+>
+> **Version 2 — « Le plan à cinq ans »** (angle : la légitimité s'accumule aujourd'hui,
+> charge contre l'obsession de la prédiction) : `SCENARIO-VIDEO-PUB-V2-AUJOURDHUI.md`.
+> V1 dit **ce qu'on fait**, V2 dit **pourquoi ça compte** — les deux sont compatibles.
 
 ---
 
