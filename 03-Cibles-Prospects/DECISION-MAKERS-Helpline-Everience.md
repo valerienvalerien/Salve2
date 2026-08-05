@@ -130,7 +130,7 @@ LinkedIn en premier (connexion + message court), puis email de suivi si acceptat
 **Ancres de personnalisation :**
 1. **(Modérée)** Objectif public : doubler le CA à 400 M€ (évoqué) puis 500 M€ — engagement personnel fort sur la croissance du groupe.
 2. **(Modérée)** 50 % des clients sont du CAC 40 — sensibilité forte à la qualité de service et à la réputation ; un partenaire white-label fiable est un argument sécurité.
-3. **(Faible)** Profil fondateur-entrepreneur — sensible aux histoires de build, potentiellement à la démarche de Salverys qui part de zéro avec une direction expérimentée.
+3. **(Faible)** Profil fondateur-entrepreneur — sensible aux histoires de build, potentiellement à la démarche d'une structure naissante qui pose ses process avant de vendre du volume.
 
 **Parcours :**
 Fondateur de Helpline en 1994, Bernard Lewis a construit le groupe sur 30 ans jusqu'à la structuration holding Everience en novembre 2025. Profil fondateur historique, interlocuteur de haut niveau. À contacter en dernier recours ou en parallèle uniquement si warm path disponible.

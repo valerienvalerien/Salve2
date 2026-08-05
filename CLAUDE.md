@@ -3,10 +3,13 @@
 ## Contexte activité
 
 BPO basé à Antananarivo (Madagascar) ciblant des clients **français et canadiens**.
-Direction expérimentée qui repart de zéro avec une équipe de **10 personnes**.
+Structure volontairement resserrée, en démarrage.
 
->Mettre en avant à la place : process documentés, cadrage qualité (script, double écoute,
-> reporting), pilote mesuré.
+> ⚠️ **Interdit (garde-fou)** : tout argument fondé sur le parcours de la direction —
+> « direction expérimentée », « a piloté des équipes de 1 000+ », « repart de zéro
+> avec 10 personnes ». Ce n'est ni vérifiable ni vendeur.
+> **Mettre en avant à la place** : process documentés, cadrage qualité (script, double
+> écoute, reporting), pilote mesuré, SLA chiffré.
 
 ### Niches cibles (par priorité)
 > ⚠️ **Priorité revue (décision direction 2026-06-22) : l'IT devient la priorité n°1**,

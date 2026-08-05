@@ -39,7 +39,7 @@ Le secteur : 230+ entreprises, 40 000+ emplois, croissance >15 %/an. Trois étag
 
 ### 1.2 Où est le trou — et pourquoi Salverys est dessus
 
-**Le créneau inoccupé : « process de grand plateau, taille d'atelier ».**
+**Le créneau inoccupé : « process documentés et engagement chiffré, taille d'atelier ».**
 Personne à Madagascar ne combine : (a) ciblage 1-5 ETP exigeants, (b) process documentés
 (backup +1 agent, QA, reporting), (c) engagement de service chiffré (90 % décroché, avoir
 20 %), (d) conformité packagée. La stratégie actuelle (promesse-résultat, réassurance en
