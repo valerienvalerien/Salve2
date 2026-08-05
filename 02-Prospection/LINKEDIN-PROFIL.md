@@ -34,42 +34,41 @@ Décisions actées et rendus : `banniere-linkedin-salverys.html`
 ```
 Vos tickets N1 augmentent plus vite que votre équipe support.
 
-Nous prenons le relais — sous votre marque, à votre nom. Vos clients ne voient
-rien passer.
+Nous prenons le relais — sous votre marque, à votre nom. Pour vos clients, rien
+ne change.
 
 Salverys est un centre de support francophone basé à Antananarivo. Nous
 travaillons en marque blanche pour des éditeurs SaaS, des ESN et MSP, et des
 plateformes de télésecrétariat médical, en France et au Canada.
 
-Trois choses que nous tenons :
+Ce que nous prenons en charge :
 
 — Support applicatif SaaS N1 : gestion de comptes, paramétrages, incidents
 simples, qualification avant escalade.
-— Helpdesk IT N1 : prise d'appels, ticketing, escalade N2 documentée, pour MSP
-et DSI.
+— Helpdesk IT N1 : prise d'appels, ticketing, escalade N2 documentée, pour les
+MSP et les DSI internes.
 — Télésecrétariat médical : accueil patient, prise de rendez-vous, filtrage des
 urgences.
 
 Comment ça se passe.
 
-Nous travaillons sur vos outils, pas les nôtres : votre ticketing, votre agenda,
-vos scripts. Chaque position est tenue par un agent nommé, francophone natif,
-formé sur votre produit avant la première prise d'appel. Vous recevez un
-reporting hebdomadaire et vous pouvez écouter les appels quand vous voulez.
+Nous travaillons sur vos outils, pas les nôtres : votre outil de ticketing,
+votre logiciel de rendez-vous, vos procédures. Chaque position est tenue par un
+agent nommé, francophone natif, formé sur votre produit avant la première prise
+d'appel. Un rapport chiffré chaque semaine, et l'accès permanent aux
+enregistrements : le contrôle qualité reste chez vous.
 
 Nos horaires sont ceux de la France — Antananarivo est à une heure de Paris. Les
 plages canadiennes sont couvertes par une équipe de soirée dédiée.
 
-Côté coût. Une position tenue chez nous revient 40 à 60 % moins cher que le coût
-complet d'un poste équivalent recruté en France : salaire chargé, recrutement,
-encadrement, absentéisme et locaux compris.
+Le coût. Regardez ce que vous coûte réellement un poste en France : salaire
+chargé, recrutement, encadrement, absences, locaux. Une position chez nous,
+c'est 40 à 60 % de moins.
 
-Côté données. Nous intervenons comme sous-traitant au sens de l'article 28 du
-RGPD : contrat de sous-traitance, clauses contractuelles types pour le transfert
-hors UE, NDA individuel signé par chaque agent, accès nominatifs et tracés. Nous
-n'hébergeons pas vos données, nous travaillons dans vos systèmes. Pour le
-Québec, nous fournissons les éléments nécessaires à votre évaluation des
-facteurs relatifs à la vie privée (Loi 25).
+Les données. Elles restent chez vous : nous travaillons dans vos systèmes, nous
+n'en hébergeons aucune copie. Le cadre de confidentialité est signé avant le
+premier accès, et nous fournissons les pièces dont vous avez besoin pour vos
+propres obligations — RGPD en France, Loi 25 au Québec.
 
 Nous démarrons petit, exprès. Une position, un mois, des indicateurs définis
 avec vous avant de commencer. Si les chiffres ne suivent pas, vous arrêtez.
@@ -85,7 +84,7 @@ sous 24 h.
 | Claim | Statut | À vérifier |
 |---|---|---|
 | −40 à −60 % vs coût complet interne | ✅ | Documenté `PRICING.md §5` comme fourchette publique défendable |
-| Article 28 RGPD + clauses contractuelles types | ⚠️ | Les CCT doivent être **dans le contrat** avant d'être affichées |
+| « Le cadre de confidentialité est signé avant le premier accès » | ⚠️ | Formulation volontairement non technique (décision 2026-08-05). Le détail — sous-traitance art. 28 RGPD, clauses contractuelles types pour le transfert hors UE, NDA individuel, accès nominatifs et tracés — reste **l'argument à sortir à l'oral** face à un DPO ou un acheteur médical, et doit être en place dans le contrat |
 | NDA individuel par agent | ✅ | `MODELE-NDA-CONFIDENTIALITE.md` |
 | Réponse sous 24 h | ⚠️ | Engagement personnel — ne l'écrire que si tenable |
 | Équipe de soirée pour le Canada | ⚠️ | 7 à 9 h d'écart avec Montréal : suppose un planning de soirée/nuit |
