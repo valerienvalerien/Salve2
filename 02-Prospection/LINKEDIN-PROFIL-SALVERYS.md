@@ -95,12 +95,20 @@ Typographie : titres en serif (Georgia / Lora), texte courant en Inter.
 
 ### Fichiers livrés (`assets/linkedin/`)
 
-| Fichier | Usage | Format |
-|---|---|---|
-| `banniere-linkedin-A.png` | Profil personnel — navy + panneau crème en diagonale | 1584 × 396 |
-| `banniere-linkedin-B.png` | Profil personnel — navy plein, variante sobre | 1584 × 396 |
-| `banniere-page-entreprise-C.png` | Couverture de page entreprise | 1128 × 191 |
+| Fichier | Composition | Logo | Format |
+|---|---|---|---|
+| `banniere-A-diagonale-logo.png` | Navy + panneau crème en diagonale | Couleur, dans le panneau | 1584 × 396 |
+| `banniere-B-navy-sobre.png` | Navy plein, sans logo | — | 1584 × 396 |
+| `banniere-D-signature.png` | Navy plein, logo en signature au-dessus du titre | Blanc | 1584 × 396 |
+| `banniere-E-centree.png` | Composition centrée, logo en tête | Blanc | 1584 × 396 |
+| `banniere-F-fond-clair.png` | Fond crème, titre navy, biseau navy à droite | Couleur | 1584 × 396 |
+| `banniere-G-filigrane.png` | Navy + logo XL en filigrane à droite | Blanc ×2 | 1584 × 396 |
+| `banniere-page-entreprise.png` | Couverture de page entreprise (composition A) | Couleur | 1128 × 191 |
 
-Les `.html` du même dossier sont les sources : polices Lora et Inter embarquées en
-base64, aucune dépendance réseau. Pour modifier un texte ou une couleur, éditer le
-HTML puis re-capturer à l'échelle 2 et redimensionner à la taille cible.
+Les `.html` du même dossier sont les sources : polices Lora et Inter **et logo
+Salverys** embarqués en base64, aucune dépendance réseau. Pour modifier un texte ou
+une couleur, éditer le HTML puis re-capturer à l'échelle 2 et redimensionner à la
+taille cible.
+
+Logos utilisés : `assets/logo-salverys.svg` (fond clair) et
+`assets/logo-salverys-blanc.svg` (fond sombre).
