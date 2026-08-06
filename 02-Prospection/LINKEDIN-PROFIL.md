@@ -18,7 +18,34 @@ Décisions actées et rendus : `banniere-linkedin-salverys.html`
 
 ---
 
-## 2. Tagline de page / headline de profil (220 car. max)
+## 2. Titre de profil (220 car. max)
+
+> ⚠️ Le titre suit le nom **partout** : recherche, commentaires, invitations, messages.
+> C'est le texte le plus vu du profil après le nom, et il est **indexé** par la recherche
+> LinkedIn. Dans un fil de commentaires, seuls les **~60 premiers caractères** s'affichent :
+> tout ce qui compte doit tenir devant.
+
+**Retenu (148 car.)**
+
+```
+Support applicatif N1, Helpdesk IT & télésecrétariat médical en marque blanche | Équipe francophone dédiée · France & Canada | Fondateur de Salverys
+```
+
+**Variantes**
+
+| # | Titre | Car. | Quand la préférer |
+|---|---|---|---|
+| B | `Vos clients entendent votre marque, pas la nôtre \| Support N1, Helpdesk IT & télésecrétariat médical en marque blanche \| Fondateur de Salverys` | 142 | Cohérence maximale avec la bannière. Se remarque dans un fil, mais un inconnu ne sait pas ce que tu vends avant la 2ᵉ moitié |
+| C | `Support N1 en marque blanche pour éditeurs SaaS, ESN & MSP \| Helpdesk IT · Télésecrétariat médical \| Équipe francophone, France & Canada \| Salverys` | 147 | Si l'IT devient exclusif — nomme l'audience, au prix du médical |
+| D | `Fondateur de Salverys — support applicatif N1, helpdesk IT & télésecrétariat médical en marque blanche` | 102 | Registre sobre. Laisse 118 caractères de référencement inutilisés |
+
+**À ne pas faire** : ouvrir par « Fondateur & CEO » (personne ne cherche ça), la formule
+« J'aide les X à Y » (vue partout, elle date le profil), et les drapeaux 🇲🇬🇫🇷🇨🇦 —
+illisibles à cette taille et ils placent l'objection offshore avant l'argument.
+
+---
+
+## 2 bis. Slogan de page entreprise (120 car. max)
 
 > Support applicatif N1, Helpdesk IT & télésecrétariat médical en marque blanche —
 > équipe francophone dédiée, −40 à −60 % vs interne.
