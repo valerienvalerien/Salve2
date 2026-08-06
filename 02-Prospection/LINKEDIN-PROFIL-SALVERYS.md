@@ -95,15 +95,17 @@ Typographie : titres en serif (Georgia / Lora), texte courant en Inter.
 
 ### Fichiers livrés (`assets/linkedin/`)
 
+Trois fichiers retenus (décision 2026-08-06) — les autres déclinaisons ont été
+écartées.
+
 | Fichier | Composition | Logo | Format |
 |---|---|---|---|
 | `banniere-A-diagonale-logo.png` | Navy + panneau crème en diagonale | Couleur, dans le panneau | 1584 × 396 |
-| `banniere-B-navy-sobre.png` | Navy plein, sans logo | — | 1584 × 396 |
 | `banniere-D-signature.png` | Navy plein, logo en signature au-dessus du titre | Blanc | 1584 × 396 |
-| `banniere-E-centree.png` | Composition centrée, logo en tête | Blanc | 1584 × 396 |
-| `banniere-F-fond-clair.png` | Fond crème, titre navy, biseau navy à droite | Couleur | 1584 × 396 |
-| `banniere-G-filigrane.png` | Navy + logo XL en filigrane à droite | Blanc ×2 | 1584 × 396 |
 | `banniere-page-entreprise.png` | Couverture de page entreprise (composition A) | Couleur | 1128 × 191 |
+
+Ligne métiers affichée sur les trois :
+**SUPPORT APPLICATIF · HELPDESK IT · TÉLÉSECRÉTARIAT MÉDICAL**
 
 Les `.html` du même dossier sont les sources : polices Lora et Inter **et logo
 Salverys** embarqués en base64, aucune dépendance réseau. Pour modifier un texte ou
