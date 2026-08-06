@@ -92,3 +92,15 @@ Couleurs charte (`charte-graphique-salverys.html`) :
 | Or | `#B89968` |
 
 Typographie : titres en serif (Georgia / Lora), texte courant en Inter.
+
+### Fichiers livrés (`assets/linkedin/`)
+
+| Fichier | Usage | Format |
+|---|---|---|
+| `banniere-linkedin-A.png` | Profil personnel — navy + panneau crème en diagonale | 1584 × 396 |
+| `banniere-linkedin-B.png` | Profil personnel — navy plein, variante sobre | 1584 × 396 |
+| `banniere-page-entreprise-C.png` | Couverture de page entreprise | 1128 × 191 |
+
+Les `.html` du même dossier sont les sources : polices Lora et Inter embarquées en
+base64, aucune dépendance réseau. Pour modifier un texte ou une couleur, éditer le
+HTML puis re-capturer à l'échelle 2 et redimensionner à la taille cible.
