@@ -503,4 +503,86 @@
     renderClocks();
     setInterval(renderClocks, 30000);
   }
+
+  /* ---------- Console d'accueil : marque blanche + file vivante ----------
+     L'interrupteur remplace le nom affiché sur chaque ligne. C'est la
+     démonstration de la promesse : en marque blanche, le client lit son
+     propre nom ; sans elle, il lirait le nôtre. */
+  const consoleEl = document.getElementById('console');
+  if (consoleEl) {
+    const rowsEl = document.getElementById('consoleRows');
+    const toggle = document.getElementById('wbToggle');
+    const caption = document.getElementById('consoleCaption');
+
+    if (toggle && rowsEl) {
+      const applyBrand = on => {
+        rowsEl.querySelectorAll('.cx-row').forEach(row => {
+          const target = row.querySelector('.cx-brand');
+          if (target) target.textContent = on ? row.dataset.brand : 'Salverys';
+        });
+        toggle.setAttribute('aria-checked', String(on));
+        if (caption) {
+          caption.innerHTML = on
+            ? 'Exemple de file. <b>Coupez la marque blanche</b> pour voir ce que vos clients ne verront jamais.'
+            : 'Voilà ce que vos clients entendraient sans marque blanche. <b>Remettez-la</b> : c’est le mode par défaut, sur tous les comptes.';
+        }
+      };
+      toggle.addEventListener('click', () => {
+        applyBrand(toggle.getAttribute('aria-checked') !== 'true');
+      });
+    }
+
+    /* La file avance : la ligne la plus ancienne repasse en tête avec une
+       heure fraîche. On s'arrête si l'onglet est masqué ou si l'utilisateur
+       a demandé moins d'animation. */
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (rowsEl && !calm) {
+      let clock = null;
+      const advance = () => {
+        const last = rowsEl.lastElementChild;
+        if (!last) return;
+        const time = last.querySelector('.cx-time');
+        if (time) {
+          const now = new Date();
+          time.textContent = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' }).format(now).replace(':', ':');
+        }
+        last.style.animation = 'none';
+        rowsEl.insertBefore(last, rowsEl.firstElementChild);
+        void last.offsetWidth;
+        last.style.animation = '';
+      };
+      const start = () => { if (!clock) clock = setInterval(advance, 5200); };
+      const stop = () => { clearInterval(clock); clock = null; };
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+      start();
+    }
+  }
+
+  /* ---------- Repère « maintenant » sur la plage couverte (6h → 22h) ---------- */
+  const coverNow = document.getElementById('coverNow');
+  if (coverNow) {
+    const placeNow = () => {
+      const parts = new Intl.DateTimeFormat('fr-FR', {
+        hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Paris'
+      }).formatToParts(new Date());
+      const h = Number(parts.find(p => p.type === 'hour').value);
+      const m = Number(parts.find(p => p.type === 'minute').value);
+      const hh = h + m / 60;
+      const label = `Paris ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      const inScale = hh >= 6 && hh <= 22;
+      coverNow.classList.toggle('off', !inScale);
+      if (!inScale) {
+        const note = coverNow.parentElement.parentElement.querySelector('.cover-off');
+        if (note) note.textContent = `${label} — hors plage couverte`;
+        return;
+      }
+      const pct = (hh - 6) / 16 * 100;
+      coverNow.style.left = `calc(${pct}% - 1px)`;
+      coverNow.dataset.now = label;
+      coverNow.classList.toggle('at-end', pct > 88);
+      coverNow.classList.toggle('at-start', pct < 12);
+    };
+    placeNow();
+    setInterval(placeNow, 60000);
+  }
 })();
