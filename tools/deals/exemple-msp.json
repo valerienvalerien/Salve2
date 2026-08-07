@@ -1,5 +1,5 @@
 {
-  "_note": "DEAL DE DÉMONSTRATION — sert de gabarit. Dupliquer ce fichier pour chaque deal réel, puis supprimer celui-ci si besoin. Prix alignés PRICING.md §3 (rate card MB helpdesk 2000/1750/1550, direct 2200-2800). Mise à jour 2026-08-03 : plus de remise de lancement en MB (§3.b) — le pilote est un périmètre restreint au tarif du palier ; dépôt d'activation calculé automatiquement (§3.a) ; palier 5+ porteur d'un minimumFacturable (§3). Vocabulaire : on écrit « demande », « sollicitation » ou « incident », jamais « ticket ».",
+  "_note": "DEAL DE DÉMONSTRATION — sert de gabarit. Dupliquer ce fichier pour chaque deal réel, puis supprimer celui-ci si besoin. Prix alignés PRICING.md §3 (rate card MB helpdesk 2000/1750/1550, direct 2200-2800). Mise à jour 2026-08-03 : plus de remise de lancement en MB (§3.b) — le pilote est un périmètre restreint au tarif du palier ; dépôt d'activation calculé automatiquement (§3.a) ; palier 5+ porteur d'un minimumFacturable (§3). RÈGLE DE RÉDACTION : le document est lu par des non-informaticiens (direction, comptabilité, juridique). Aucun sigle métier (N1, SLA, ETP, ITIL, VPN, AD, MFA, KPI, QA, DPA, RGPD), aucun anglicisme (ticket, turnover, reporting, offshore, delivery). On nomme un logiciel uniquement s'il est indispensable, et on explique en trois mots ce qu'il fait.",
   "slug": "exemple-msp",
   "partenaire": "Ardenor Systèmes",
   "contact": "la direction des opérations",
@@ -9,76 +9,76 @@
   "validiteJours": 21,
   "signaturePrevue": "2026-08-10",
 
-  "accroche": "Trois techniciens de niveau 1, francophones, basés à Antananarivo — sous votre marque, dans vos outils, sur vos procédures. Le créneau 7h-9h heure de Paris tombe en pleine journée de bureau chez nous : ni astreinte, ni majoration de nuit. Vos clients finaux ne voient qu'Ardenor.",
+  "accroche": "Trois personnes à temps plein, francophones, basées à Antananarivo, qui répondent aux utilisateurs de vos clients — sous votre nom, dans vos logiciels, en suivant vos façons de faire. Entre 7h et 9h du matin heure de Paris, c'est déjà la pleine journée de travail chez nous : vous couvrez ce créneau sans payer de permanence ni de majoration de nuit. Vos clients ne voient qu'Ardenor.",
 
   "douleurs": [
-    "Depuis le rachat du portefeuille en janvier, le niveau 1 déborde : sur les deux derniers mois, près de 40 % des demandes ont été prises en charge hors du délai contractuel.",
-    "Deux postes ouverts depuis mars, aucun profil resté au-delà de six mois — le turnover vous coûte désormais plus cher que le poste lui-même.",
-    "Le 7h-9h et le samedi matin reposent sur l'astreinte : mal vécue par l'équipe, et non rentable.",
-    "Un offshore visible est exclu — vos contrats-cadres imposent Ardenor comme interlocuteur unique."
+    "Depuis le rachat du portefeuille en janvier, vos équipes sont débordées : sur les deux derniers mois, près de 40 % des demandes ont été prises en charge plus tard que le délai promis à vos clients.",
+    "Deux postes ouverts depuis mars, et personne n'est resté plus de six mois — les départs vous coûtent désormais plus cher que le poste lui-même.",
+    "Le créneau 7h-9h et le samedi matin reposent sur des permanences : mal vécues par l'équipe, et non rentables.",
+    "Une équipe à l'étranger visible est exclue — vos contrats imposent Ardenor comme interlocuteur unique."
   ],
 
   "perimetre": {
     "inclus": [
-      "Qualification et résolution de niveau 1 dans GLPI, sous compte nommé Ardenor",
-      "Poste de travail, messagerie, VPN, impression, comptes AD et MFA",
-      "7h-19h du lundi au vendredi, samedi 8h-13h",
-      "Escalade vers vos équipes de niveau 2, avec dossier déjà constitué",
-      "Reporting hebdomadaire : volumes, délais, motifs les plus fréquents, irritants récurrents"
+      "Répondre aux utilisateurs et résoudre les problèmes courants, dans votre logiciel de suivi des demandes (GLPI), avec un compte au nom d'Ardenor",
+      "Ordinateurs, messagerie, connexion à distance, impression, création et accès des comptes utilisateurs",
+      "Du lundi au vendredi de 7h à 19h, et le samedi de 8h à 13h",
+      "Transmission à vos spécialistes des cas que nous ne traitons pas, avec le dossier déjà préparé",
+      "Un compte rendu chaque semaine : nombre de demandes, délais tenus, problèmes les plus fréquents, points qui reviennent sans cesse"
     ],
     "exclus": [
-      "Niveaux 2 et 3, interventions sur site, projets et changements",
-      "Relation commerciale avec vos clients finaux",
-      "Astreinte de nuit et du dimanche (chiffrable séparément)",
-      "Achat et gestion du parc matériel"
+      "Les problèmes complexes nécessitant vos spécialistes, les déplacements chez les clients, les projets et les changements d'infrastructure",
+      "Toute la relation commerciale avec vos clients",
+      "Les permanences de nuit et du dimanche (chiffrables séparément)",
+      "L'achat et la gestion du matériel informatique"
     ]
   },
 
-  "grilleIntro": "Prix arrêtés lors de notre échange du 24 juillet, dégressifs selon le volume que vous engagez. La colonne « revente conseillée » est le repère de marché constaté pour un niveau 1 francophone dédié — vous restez évidemment libre de votre prix de vente.",
+  "grilleIntro": "Prix arrêtés lors de notre échange du 24 juillet. Plus vous engagez de postes, moins chaque poste vous coûte. La colonne du milieu indique ce que des prestations équivalentes se facturent sur le marché : c'est un repère, vous restez évidemment libre de votre propre prix de vente.",
   "reventeConseillee": 2700,
   "grille": [
-    { "engagement": "1 position", "gros": 2000 },
-    { "engagement": "3 positions", "gros": 1750, "retenu": true },
-    { "engagement": "5 positions et plus", "gros": 1550, "minimumFacturable": 5 }
+    { "engagement": "1 poste", "gros": 2000 },
+    { "engagement": "3 postes", "gros": 1750, "retenu": true },
+    { "engagement": "5 postes et plus", "gros": 1550, "minimumFacturable": 5 }
   ],
-  "grilleNote": "Toute amplitude au-delà du périmètre ci-dessus — nuit, dimanche, jours fériés — est chiffrée séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable une fois par an, avec préavis de 90 jours.",
-  "heuresSemaine": "35 h/semaine",
+  "grilleNote": "Les horaires en dehors de ceux prévus ci-dessus — nuit, dimanche, jours fériés — sont chiffrés à part. La mise en place est offerte. Facturation une fois par mois, par prélèvement. Les prix sont revus une fois par an, et tout changement vous est annoncé 90 jours à l'avance.",
+  "heuresSemaine": "35 h par semaine",
   "etpRetenus": 3,
   "coutInterneMensuel": [3200, 4200],
 
-  "pilote": "On démarre sur une seule position et un seul de vos clients finaux, au tarif de la grille, avec les indicateurs partagés dès le premier jour. Ce qui limite votre risque, c'est le périmètre — pas une remise. Si le délai de prise en charge n'est pas au rendez-vous au bout de quatre semaines, vous arrêtez en prévenant trente jours : la position s'éteint, vos procédures et votre base de connaissances vous sont restituées, et rien n'est dû au-delà du mois entamé.",
+  "pilote": "On commence petit : un seul poste, et un seul de vos clients. Au prix de la grille, avec les chiffres partagés dès le premier jour. Ce qui limite votre risque, c'est la taille de ce qu'on vous confie — pas une remise. Si au bout de quatre semaines les délais ne sont pas au rendez-vous, vous arrêtez en nous prévenant trente jours à l'avance : le poste s'arrête, tout ce qui a été mis par écrit vous revient, et vous ne devez rien au-delà du mois commencé.",
 
   "sla": {
-    "kpi": "prise en charge des demandes de niveau 1 en moins de 30 minutes",
-    "seuil": "90 % des demandes reçues pendant les plages couvertes",
+    "kpi": "prendre en charge chaque demande en moins de 30 minutes",
+    "seuil": "9 demandes sur 10 reçues pendant les horaires couverts",
     "avoir": "20 %"
   },
   "concessions": [
     {
-      "titre": "Sortie à 30 jours pendant les 3 premiers mois",
-      "detail": "au lieu des 60 jours de préavis contractuels, vous pouvez arrêter sur simple notification pendant le premier trimestre, sans indemnité — seul le dépôt d'activation reste acquis une fois la mise en service démarrée."
+      "titre": "Vous pouvez arrêter en prévenant 30 jours, pendant les 3 premiers mois",
+      "detail": "au lieu des 60 jours prévus au contrat, un simple courrier suffit pendant le premier trimestre, et vous ne payez aucune indemnité. Seul le versement de départ nous reste, et uniquement si nous avons déjà commencé à recruter pour vous."
     },
     {
-      "titre": "Exclusivité Hauts-de-France, 12 mois",
-      "detail": "aucun autre prestataire d'infogérance de la région ne sera servi par Salverys pendant les 12 premiers mois du contrat."
+      "titre": "Vous êtes le seul de votre région pendant 12 mois",
+      "detail": "pendant les 12 premiers mois, nous nous interdisons de travailler avec un autre prestataire informatique des Hauts-de-France."
     },
     {
-      "titre": "Appui avant-vente sous 48 h",
-      "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement de service écrit, fournis sous 48 h ouvrées et réutilisables tels quels dans vos propres réponses d'appels d'offres — le seul de ces trois points qui vous aide à gagner un client plutôt qu'à en économiser un."
+      "titre": "Notre dossier pour vos appels d'offres, sous 48 heures",
+      "detail": "notre plan de secours, notre contrat de protection des données, la description de notre contrôle qualité, des CV sans les noms et notre engagement de délai par écrit. Vous les recevez sous 48 heures ouvrées et vous pouvez les recopier tels quels dans vos propres réponses d'appels d'offres. C'est le seul de ces trois points qui vous aide à gagner un client, et pas seulement à faire des économies."
     }
   ],
   "nonSollicitationMois": 24,
   "preavisJours": 60,
 
   "attendus": [
-    "Un référent technique chez Ardenor, 3 h par semaine pendant les trois premières semaines",
-    "Des accès GLPI nominatifs, et l'accès en lecture à votre base de connaissances",
-    "Vos procédures existantes, même incomplètes — nous les mettons au propre et vous les rendons",
-    "La volumétrie des six derniers mois, par client final, pour dimensionner juste"
+    "Quelqu'un chez Ardenor qui connaît le sujet et nous consacre 3 heures par semaine pendant les trois premières semaines",
+    "Des accès à votre logiciel de suivi des demandes, un par personne, et la possibilité de lire votre documentation existante",
+    "Vos façons de faire actuelles, même incomplètes — nous les mettons au propre et nous vous les rendons",
+    "Le nombre de demandes des six derniers mois, client par client, pour dimensionner correctement l'équipe"
   ],
 
   "ctaTitre": "La suite",
-  "ctaTexte": "Vingt minutes pour figer le périmètre de démarrage et la date. Contrat, DPA et plan de continuité partent dans la foulée.",
+  "ctaTexte": "Vingt minutes pour arrêter ce que nous prenons en charge et la date de démarrage. Le contrat, l'accord sur la protection des données et le plan de secours partent dans la foulée.",
   "rdvUrl": "",
   "signataire": "Valérien Rakotosalama — Salverys",
   "emailContact": "valerien@salverys.fr",

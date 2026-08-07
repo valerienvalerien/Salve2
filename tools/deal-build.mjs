@@ -73,10 +73,13 @@ const DSHORT = (d) => d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-
 const addDays = (d, n) => new Date(d.getTime() + n * 86400000);
 
 const THEMES = { medical: '', support: 'theme-it', helpdesk: 'theme-it' };
+/* Libelles lus par des non-informaticiens : on decrit le service, on n'empile pas les
+ * sigles metier. « Support applicatif N1 » et « Helpdesk IT N1 » ne disent rien a une
+ * direction ou a une comptabilite — et c'est ce libelle qui compose le titre du document. */
 const NICHES = {
-  medical: 'Télésecrétariat médical',
-  support: 'Support applicatif N1',
-  helpdesk: 'Helpdesk IT N1',
+  medical: 'Secrétariat médical à distance',
+  support: 'Assistance aux utilisateurs de votre logiciel',
+  helpdesk: 'Assistance informatique aux utilisateurs',
 };
 
 /* Code d'accès dictable au téléphone : pas de 0/O/1/I/L, groupes de 4. */
@@ -92,10 +95,10 @@ const normCode = (s) => String(s).toUpperCase().replace(/[\s\-_.]/g, '');
 function renderPlanning(deal) {
   const sign = D(deal.signaturePrevue);
   const etapes = deal.planning && deal.planning.length ? deal.planning : [
-    { jours: 0, titre: 'Cadrage', detail: 'Périmètre figé, accès à vos outils, référent désigné de chaque côté, volumétrie de départ.' },
-    { jours: 4, titre: 'Formation produit & procédures', detail: 'Base de connaissances, arbres de décision, escalades, consignes de ton — écrit avant le premier contact.' },
-    { jours: 11, titre: 'Production accompagnée (double écoute)', detail: 'Vos flux traités par nos agents, QA quotidienne, corrections à chaud.' },
-    { jours: 18, titre: 'Mise en production & reporting', detail: 'Autonomie complète, reporting hebdomadaire, engagement de service actif.' },
+    { jours: 0, titre: 'On fixe le cadre', detail: 'Nous décidons ensemble de ce que nous prenons en charge et de ce qui reste chez vous. Vous nous ouvrez les accès, chacun désigne son interlocuteur, et nous relevons les volumes de départ.' },
+    { jours: 4, titre: 'Nous formons l\'équipe', detail: 'Nous mettons par écrit les réponses aux cas courants, la marche à suivre, les situations à vous transmettre et le ton à employer. Tout est écrit avant le premier contact avec un utilisateur.' },
+    { jours: 11, titre: 'Démarrage accompagné', detail: 'Nos agents commencent à traiter vos demandes, avec un contrôle qualité tous les jours et des corrections immédiates.' },
+    { jours: 18, titre: 'Fonctionnement normal', detail: 'L\'équipe travaille en autonomie, vous recevez un compte rendu chaque semaine, et notre engagement de délai s\'applique.' },
   ];
   const li = etapes.map((e, i) => {
     const d1 = addDays(sign, e.jours);
@@ -121,14 +124,14 @@ function renderGrille(deal) {
     const min = r.minimumFacturable;
     if (min) {
       const repli = deal.grille[i - 1];
-      noteMinimum = `<b>Le tarif de ${EUR(r.gros)} est conditionné à un engagement ferme
-        de ${min} positions.</b> Vous les payez toutes les ${min} chaque mois, même si vous
-        n'en utilisez que ${min - 2} ou ${min - 1} : c'est cet engagement qui finance le prix bas.`
+      noteMinimum = `<b>Le prix de ${EUR(r.gros)} suppose que vous vous engagiez fermement
+        sur ${min} postes.</b> Vous payez ces ${min} postes tous les mois, même si vous n'en
+        utilisez que ${min - 2} ou ${min - 1} : c'est cet engagement qui permet le prix bas.`
         + (repli
-          ? ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
-             « ${repli.engagement} », soit ${EUR(repli.gros)} par position utilisée.`
-          : ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
-             inférieur, pour les positions réellement utilisées.`);
+          ? ` Si un mois vous en facturez moins de ${min}, ce mois-là vous est facturé
+             ${EUR(repli.gros)} par poste utilisé, soit le prix de la ligne « ${repli.engagement} ».`
+          : ` Si un mois vous en facturez moins de ${min}, ce mois-là vous est facturé au prix
+             de la ligne du dessus, pour les postes réellement utilisés.`);
     }
     return `<tr${hi}>
       <td>${H(r.engagement)}${min ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
@@ -139,10 +142,10 @@ function renderGrille(deal) {
   }).join('');
   return `<div class="dl-scroll"><table class="dl-table">
     <thead><tr>
-      <th>Volume engagé</th>
-      <th class="num">Votre prix de gros<br /><span style="font-weight:400">€/mois/ETP</span></th>
-      <th class="num">Revente conseillée<br /><span style="font-weight:400">€/mois/ETP</span></th>
-      <th class="num">Votre marge<br /><span style="font-weight:400">€/mois/ETP</span></th>
+      <th>Nombre de postes</th>
+      <th class="num">Ce que vous nous payez<br /><span style="font-weight:400">par poste et par mois</span></th>
+      <th class="num">Ce que vous pouvez facturer<br /><span style="font-weight:400">par poste et par mois</span></th>
+      <th class="num">Ce qu'il vous reste<br /><span style="font-weight:400">par poste et par mois</span></th>
     </tr></thead>
     <tbody>${rows}</tbody>
   </table></div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
@@ -162,19 +165,19 @@ function renderDepot(deal) {
   const d = calcDepot(deal);
   if (!d) return '';
   return `
-  <h2>L'activation</h2>
+  <h2>Le versement de départ</h2>
   <div class="dl-box">
-    <p><b>Dépôt d'activation : ${EUR(d.total)}</b> — ${EUR(d.parPosition)} par position${d.plafonne ? `, plafonné à ${EUR(d.plafond)}` : ''}, réglé à la signature.</p>
+    <p><b>Versement de départ : ${EUR(d.total)}</b> — ${EUR(d.parPosition)} par poste${d.plafonne ? `, avec un maximum de ${EUR(d.plafond)}` : ''}, réglé à la signature.</p>
     <p><b>Vous ne le payez pas, vous l'avancez.</b> Il est déduit de vos ${DEPOT_MOIS_IMPUTATION} premières
-    factures, à raison de ${EUR(d.mensuel)} par mois. Si le contrat suit son cours, il ne vous coûte
-    rien de plus — ce ne sont pas des frais.</p>
-    <p>Il couvre le recrutement et la formation que nous engageons pour vous avant la première
-    demande traitée. Il vous est <b>intégralement restitué</b> si vous annulez avant le démarrage
-    de la mise en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les
-    agents recrutés et formés.</p>
-    <p class="dl-note">Le cadrage et la mise en place restent offerts. Nous ne pratiquons pas de
-    remise de lancement : vous revendez notre prestation, une remise gonflerait votre marge d'un
-    mois sans vous aider à gagner un client. Ce que nous vous accordons à la place figure ci-dessous.</p>
+    factures, à raison de ${EUR(d.mensuel)} par mois. Au bout de ${DEPOT_MOIS_IMPUTATION} mois, vous
+    l'avez entièrement récupéré : ce ne sont pas des frais en plus, c'est une avance.</p>
+    <p>Elle couvre les personnes que nous recrutons et formons pour vous avant même la première
+    demande traitée. Vous la récupérez <b>en totalité</b> si vous renoncez avant que nous ayons
+    commencé à recruter. Elle ne nous reste que si vous renoncez <b>après</b>, une fois les
+    personnes recrutées et formées pour votre compte.</p>
+    <p class="dl-note">La mise en place, elle, reste offerte. Nous ne faisons pas de remise pour
+    démarrer : vous revendez notre prestation, une remise augmenterait votre marge pendant un mois
+    sans vous aider à gagner un client. Ce que nous vous accordons à la place figure plus bas.</p>
   </div>`;
 }
 
@@ -187,15 +190,16 @@ function renderGain(deal) {
   const annuel = mensuel * 12;
   const [ci1, ci2] = deal.coutInterneMensuel || [];
   const compare = ci1
-    ? `<div class="s">À titre de comparaison, la même capacité recrutée en France vous coûte
-       <b>${EUR(ci1)} à ${EUR(ci2)}</b> par mois et par poste, en coût complet (salaire chargé, congés,
-       absences, recrutement, encadrement, matériel, locaux) — soit
-       <b>${EUR(ci1 * n)} à ${EUR(ci2 * n)}</b> par mois pour ${n} poste${n > 1 ? 's' : ''}, avec 60 à 90 jours de délai de recrutement.</div>`
+    ? `<div class="s">Pour comparer : les mêmes personnes recrutées en France vous coûteraient
+       <b>${EUR(ci1)} à ${EUR(ci2)}</b> par mois et par poste, tout compris — salaire, charges,
+       congés, absences, recrutement, encadrement, matériel et bureaux. Soit
+       <b>${EUR(ci1 * n)} à ${EUR(ci2 * n)}</b> par mois pour ${n} poste${n > 1 ? 's' : ''}, et 2 à 3 mois
+       d'attente avant que quelqu'un soit en poste.</div>`
     : '';
   return `<div class="dl-gain">
     <div class="k">${EUR(annuel)}</div>
-    <div class="l">de marge brute par an sur ${n} position${n > 1 ? 's' : ''} — soit ${EUR(mensuel)}/mois,
-      sans recrutement, sans encadrement et sans risque social côté vous.</div>
+    <div class="l">c'est ce qu'il vous reste par an sur ${n} poste${n > 1 ? 's' : ''}, soit ${EUR(mensuel)} par mois.
+      Sans recrutement à mener, sans personne à encadrer, et sans embauche à porter.</div>
     ${compare}
   </div>`;
 }
@@ -209,26 +213,29 @@ function renderDoc(deal) {
 
   const li = (arr) => (arr || []).map((x) => `<li>${H(x)}</li>`).join('');
 
+  /* Ces cinq garanties sont lues par des gens qui ne font pas d'informatique (direction,
+   * comptabilite, juridique). Elles sont donc redigees sans sigle ni terme metier : ce qui
+   * est promis doit se comprendre a la premiere lecture, sinon ce n'est pas une garantie. */
   const garanties = [
     deal.sla && {
-      t: `Engagement de service : ${deal.sla.kpi}`,
-      d: `Seuil convenu ${deal.sla.seuil}, mesuré sur le périmètre cadré. En deçà sur un mois civil, ${deal.sla.avoir || '20 %'} d'avoir automatique sur la facture suivante — vous n'avez rien à réclamer.`,
+      t: `Nous nous engageons sur un délai : ${deal.sla.kpi}`,
+      d: `L'objectif convenu est de ${deal.sla.seuil}. Si nous ne le tenons pas sur un mois, vous recevez ${deal.sla.avoir || '20 %'} de remise sur la facture du mois suivant. C'est automatique : vous n'avez aucune démarche à faire, aucun courrier à envoyer.`,
     },
     {
-      t: 'Non-sollicitation de vos clients finaux',
-      d: `Salverys s'interdit contractuellement toute approche directe des clients finaux confiés, pendant le contrat et ${deal.nonSollicitationMois || 24} mois après. Vous restez le seul interlocuteur commercial.`,
+      t: 'Nous ne démarchons jamais vos clients',
+      d: `Le contrat nous interdit de contacter commercialement les clients que vous nous confiez, pendant toute la durée du contrat et ${deal.nonSollicitationMois || 24} mois après son terme. Vous restez leur seul interlocuteur.`,
     },
     {
-      t: 'Réversibilité écrite',
-      d: `Sur préavis de ${deal.preavisJours || 60} jours : restitution complète des procédures, de la base de connaissances et de l'historique, et accompagnement du transfert. Vous ne devenez jamais captif.`,
+      t: 'Vous pouvez partir sans rester bloqué',
+      d: `Si vous décidez d'arrêter, vous nous prévenez ${deal.preavisJours || 60} jours à l'avance et nous vous rendons tout ce qui a été construit pendant le contrat : vos façons de faire mises par écrit, la documentation accumulée et l'historique de ce qui a été traité. Nous accompagnons aussi la reprise par vos équipes ou par un autre prestataire.`,
     },
     {
-      t: 'Continuité de service',
-      d: 'Chaque agent en double connexion (fibre + 4G), hub de repli sous onduleur et groupe électrogène, backup identifié par compte. Plan de continuité écrit et annexé au contrat.',
+      t: 'Le service ne s\'arrête pas',
+      d: 'Chaque personne travaille avec deux connexions internet indépendantes, pour qu\'une panne de l\'une n\'arrête rien. Nos locaux ont un groupe électrogène en cas de coupure de courant. Et pour chaque client, une personne de remplacement est déjà formée et prête à prendre le relais en cas d\'absence.',
     },
     {
-      t: 'Conformité',
-      d: 'Sous-traitant au sens de l\'article 28 RGPD : DPA signé, clauses de transfert art. 46, comptes nommés, MFA, zéro téléchargement, aucune donnée stockée chez nous — nous travaillons dans vos outils.',
+      t: 'Vos données restent chez vous',
+      d: 'Nous travaillons directement dans vos logiciels : rien n\'est copié ni conservé chez nous, et le téléchargement de fichiers est bloqué sur nos postes. Chaque personne a son propre compte à son nom. Le contrat de protection des données exigé par la réglementation européenne est signé avec vous.',
     },
   ].filter(Boolean);
 
@@ -250,7 +257,7 @@ function renderDoc(deal) {
   <p class="dl-note">Si un point est mal retranscrit, dites-le nous : tout ce qui suit en découle.</p>
   ` : ''}
 
-  <h2>Le périmètre proposé</h2>
+  <h2>Qui fait quoi</h2>
   <div class="dl-two">
     <div class="dl-box">
       <h3>Ce que nous prenons en charge</h3>
@@ -262,22 +269,22 @@ function renderDoc(deal) {
     </div>
   </div>
 
-  <h2>Vos conditions tarifaires</h2>
-  <p>${H(deal.grilleIntro || 'Prix arrêtés lors de notre échange, dégressifs selon le volume engagé. La colonne « revente conseillée » est un repère de marché — vous restez libre de votre prix de vente.')}</p>
+  <h2>Vos prix</h2>
+  <p>${H(deal.grilleIntro || 'Prix arrêtés lors de notre échange. Plus vous engagez de postes, moins le poste vous coûte. La colonne « ce que vous pouvez facturer » est un repère de marché — vous restez libre de votre prix de vente.')}</p>
   ${renderGrille(deal)}
-  <p class="dl-note">ETP = position dédiée ${H(deal.heuresSemaine || '35 h/semaine')}, formée à vos procédures, sous votre marque.
-  ${H(deal.grilleNote || 'Amplitudes étendues (soir, week-end, 7h-9h) chiffrées séparément. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.')}</p>
+  <p class="dl-note">Un poste, c'est une personne à temps plein — ${H(deal.heuresSemaine || '35 h par semaine')} — formée à vos façons de faire et qui répond sous votre nom.
+  ${H(deal.grilleNote || 'Les horaires en dehors de ce qui est prévu ci-dessus (soirée, week-end, très tôt le matin) sont chiffrés à part. Facturation mensuelle, prélèvement automatique. Les prix sont revus une fois par an, avec un préavis de 90 jours.')}</p>
 
   <h2>Ce que ça vous rapporte</h2>
   ${renderGain(deal)}
 
-  <h2>Démarrage — calendrier</h2>
-  <p>Sur la base d'un accord au ${H(DFMT(plan.signature))}, vos flux sont traités en autonomie
-  le <b>${H(DFMT(plan.production))}</b>. Chaque étape a un livrable écrit.</p>
+  <h2>Le calendrier de démarrage</h2>
+  <p>Si nous nous mettons d'accord le ${H(DFMT(plan.signature))}, l'équipe travaille seule à partir
+  du <b>${H(DFMT(plan.production))}</b>. Chaque étape se termine par un document écrit que vous recevez.</p>
   ${plan.html}
 
   ${deal.pilote ? `
-  <h2>Le format d'entrée</h2>
+  <h2>Comment on commence</h2>
   <div class="dl-box">
     <p>${H(deal.pilote)}</p>
   </div>` : ''}
@@ -290,8 +297,8 @@ function renderDoc(deal) {
   </div>
 
   ${deal.concessions && deal.concessions.length ? `
-  <h2>Ce que nous vous accordons</h2>
-  <p>Au-delà des garanties ci-dessus, accordé dans le cadre de cet accord précis :</p>
+  <h2>Ce que nous vous accordons en plus</h2>
+  <p>En plus des garanties ci-dessus, et uniquement dans le cadre de cet accord :</p>
   <div class="dl-accord"><ul>
     ${deal.concessions.map((c) => `<li><b>${H(c.titre)}</b> — ${H(c.detail)}</li>`).join('')}
   </ul></div>
@@ -299,7 +306,7 @@ function renderDoc(deal) {
 
   ${deal.attendus && deal.attendus.length ? `
   <h2>Ce dont nous avons besoin de votre côté</h2>
-  <p>Le calendrier ci-dessus tient si ces éléments sont disponibles à la signature :</p>
+  <p>Le calendrier tient si nous recevons ces éléments au moment de la signature :</p>
   <ul>${li(deal.attendus)}</ul>
   ` : ''}
 
