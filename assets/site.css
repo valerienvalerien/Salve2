@@ -751,85 +751,134 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .tagchip { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--primary); color: var(--primary); margin-bottom: 20px; }
 .tagchip.on-dark { border-color: var(--accent-soft); color: var(--accent-soft); }
 
-/* ---------- Fenêtre verte services (greenband) ---------- */
-.greenband { background: var(--green-deep); color: #fff; border-radius: var(--radius-lg); margin: 0 auto; max-width: calc(100% - 16px); padding: clamp(44px, 6vw, 78px) 0; }
+/* ================================================================
+   NOS SERVICES — fenêtre verte (refonte)
+   Cartes blanches lisibles sur le vert, hauteur égale, CTA aligné
+   en pied de carte, bandeau KPI en grille (plus de retour à la ligne
+   bancal). Une couleur de marque par métier via variables locales.
+   ================================================================ */
+.greenband { background: var(--green-deep); color: #fff; border-radius: var(--radius-lg); margin: 0 auto; max-width: calc(100% - 16px); padding: clamp(48px, 6vw, 82px) 0; }
 @media (min-width: 1228px) { .greenband { max-width: calc(var(--maxw) + 16px); } }
-.greenband h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .006em; line-height: .98; color: #fff; font-size: clamp(32px, 4.8vw, 60px); max-width: 18ch; margin-bottom: 26px; }
-.greenband h2 em { font-style: normal; color: var(--accent-soft); }
-.gbv1-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: end; margin-bottom: 34px; }
-.gbv1-head h2 { margin-bottom: 0; }
-.gbv1-intro { font-size: 15px; color: rgba(255,255,255,.75); max-width: 40ch; justify-self: end; padding-bottom: 8px; }
-.gbv1-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
-/* Cartes « pastels vifs » (esprit chaleureux/dynamique) : une couleur de marque par métier */
-.svc-card { position: relative; display: block; border: 0; border-radius: 20px; padding: 28px 24px 24px; overflow: hidden; box-shadow: 0 18px 44px -18px rgba(0,0,0,.5); transition: transform .22s var(--ease), box-shadow .25s; }
-.svc-card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 28px 56px -18px rgba(0,0,0,.55); }
-.svc-saas { background: linear-gradient(170deg, #FDEFAF, #FCE27C); }
-.svc-helpdesk { background: linear-gradient(170deg, #F8C9B8, #F0937D); }
-.svc-medical { background: linear-gradient(170deg, #DCE8DC, #C5D2C5); }
-.svc-kick { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; padding: 5px 12px; border-radius: var(--radius-pill); background: var(--green-deep); color: #fff; }
-.svc-card h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: .01em; color: #263A2E; margin-bottom: 12px; }
-.svc-card > p { font-size: 13.5px; margin-bottom: 16px; min-height: 3em; }
-.svc-list { list-style: none; margin: 0 0 20px; padding: 0; }
-.svc-list li { position: relative; padding: 6px 0 6px 22px; font-size: 13.5px; }
-.svc-list li::before { content: "✓"; position: absolute; left: 0; top: 6px; font-weight: 800; color: var(--green-deep); }
-.svc-saas > p, .svc-saas .svc-list li { color: #4A3B0C; }
-.svc-helpdesk > p, .svc-helpdesk .svc-list li { color: #5A2317; }
-.svc-medical > p, .svc-medical .svc-list li { color: #34473A; }
-.svc-link { font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; color: var(--green-deep); }
+
+/* -- En-tête : titre à gauche, chapô filet à droite -- */
+.svc-head { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: 22px 48px; align-items: end; margin-bottom: clamp(30px, 3.6vw, 44px); }
+.svc-head .tagchip { margin-bottom: 16px; }
+.greenband h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .006em; line-height: .98; color: #fff; font-size: clamp(30px, 4.1vw, 52px); max-width: 16ch; margin: 0; }
+.greenband h2 em { font-style: normal; color: var(--gold-soft); }
+.svc-intro { font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.76); max-width: 42ch; border-left: 2px solid rgba(255,255,255,.22); padding-left: 20px; }
+@media (max-width: 980px) {
+  .svc-head { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+  .greenband h2 { max-width: none; }
+  .svc-intro { border-left: 0; padding-left: 0; max-width: 60ch; }
+}
+
+/* -- Grille des 3 cartes -- */
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 22px; }
+@media (max-width: 1000px) { .svc-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; } }
+
+.svc-card {
+  --svc-accent: #6F8770; --svc-tint: #E7EEE7; --svc-on: #33452F;
+  position: relative; display: flex; flex-direction: column;
+  background: #fff; color: var(--text); border-radius: 22px;
+  padding: 32px 26px 24px; overflow: hidden;
+  box-shadow: 0 20px 44px -22px rgba(0,0,0,.55);
+  transition: transform .24s var(--ease), box-shadow .28s;
+}
+.svc-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--svc-accent); }
+.svc-card:hover { transform: translateY(-6px); box-shadow: 0 34px 62px -24px rgba(0,0,0,.6); }
+.svc-card:focus-visible { outline: 3px solid var(--svc-accent); outline-offset: 3px; }
+.svc--saas     { --svc-accent: #FCE27C; --svc-tint: #FCF2CE; --svc-on: #4A3B0C; }
+.svc--helpdesk { --svc-accent: #E06B52; --svc-tint: #FAE5DF; --svc-on: #7A2A18; }
+.svc--medical  { --svc-accent: #6F8770; --svc-tint: #E7EEE7; --svc-on: #33452F; }
+
+.svc-rank { position: absolute; top: 20px; right: 22px; font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1; letter-spacing: .02em; color: var(--green-deep); opacity: .13; }
+.svc-kick { align-self: flex-start; font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; padding: 6px 13px; border-radius: var(--radius-pill); background: var(--svc-tint); color: var(--svc-on); margin-bottom: 14px; }
+.svc-card h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(21px, 2.1vw, 25px); line-height: 1.02; letter-spacing: .01em; color: var(--green-deep); margin: 0 0 10px; padding-right: 46px; }
+.svc-desc { font-size: 14px; line-height: 1.6; color: var(--text-soft); margin: 0 0 18px; }
+.svc-list { list-style: none; display: grid; gap: 9px; margin: 0 0 22px; padding: 0; }
+.svc-list li { position: relative; padding-left: 28px; font-size: 13.5px; line-height: 1.5; color: var(--text); }
+.svc-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%; background: var(--svc-tint); color: var(--svc-on); font-size: 11px; font-weight: 800; line-height: 19px; text-align: center; }
+.svc-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+.svc-note { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--text-mute); }
+.svc-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; color: var(--green-deep); }
 .svc-link .arrow { transition: transform .22s var(--ease); }
 .svc-card:hover .svc-link .arrow { transform: translateX(4px); }
-.gbv1-kpis { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #D4B98A, #EAD9BD); border: 0; border-radius: var(--radius-pill); padding: 15px 28px; box-shadow: 0 14px 34px -16px rgba(0,0,0,.45); }
-.gbv1-kpis .kpi { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; color: #5A4526; }
-.gbv1-kpis .kpi b { font-family: var(--font-display); font-weight: 400; font-size: 22px; color: #263A2E; letter-spacing: .01em; }
-@media (max-width: 900px) {
-  .gbv1-head { grid-template-columns: 1fr; gap: 14px; }
-  .gbv1-intro { justify-self: start; padding-bottom: 0; }
-  .gbv1-grid { grid-template-columns: 1fr; }
-  .gbv1-kpis { border-radius: var(--radius); justify-content: flex-start; }
+
+/* -- Bandeau KPI : grille 4 colonnes, jamais de veuve en 2e ligne -- */
+.svc-kpis { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-radius: 20px; overflow: hidden; }
+.svc-kpis li { display: flex; flex-direction: column; gap: 5px; padding: 18px 22px; border-left: 1px solid rgba(255,255,255,.13); }
+.svc-kpis li:first-child { border-left: 0; }
+.svc-kpis b { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1; letter-spacing: .01em; color: var(--gold-soft); }
+.svc-kpis span { font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.72); }
+@media (max-width: 1000px) {
+  .svc-kpis { grid-template-columns: repeat(2, 1fr); }
+  .svc-kpis li:nth-child(odd) { border-left: 0; }
+  .svc-kpis li:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.13); }
+}
+@media (max-width: 560px) {
+  .svc-kpis { grid-template-columns: 1fr; }
+  .svc-kpis li { border-left: 0; }
+  .svc-kpis li + li { border-top: 1px solid rgba(255,255,255,.13); }
 }
 
-/* ---------- Qu'externalisez-vous ? (cartes photo) ---------- */
-.types-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-@media (max-width: 960px) { .types-row { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px) { .types-row { grid-template-columns: 1fr; } }
-.tcard { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3/4; display: block; }
-.tcard .bgfall { position: absolute; inset: 0; }
-.tcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
-.tcard:hover img { transform: scale(1.05); }
-.tcard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(28,44,34,.6)); }
-.tcard-txt { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2; text-align: left; }
-.tcard-txt .tsub { display: block; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 6px; }
-.tcard-txt .tlab { display: block; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.05; letter-spacing: .01em; color: #fff; }
-.tcard .tgo { position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.94); color: var(--green-deep); display: flex; align-items: center; justify-content: center; font-weight: 800; transition: transform .25s var(--ease); }
-.tcard:hover .tgo { transform: translateX(3px); }
-.tcard.soon { pointer-events: none; }
-.tcard.soon img { filter: grayscale(.4); opacity: .8; }
-.tcard.soon::after { background: rgba(28,44,34,.6); }
+/* ================================================================
+   QU'EXTERNALISEZ-VOUS ? — cartes métiers (refonte)
+   Photo en haut + bloc texte blanc en dessous : le libellé n'est
+   plus posé sur l'image (lisibilité garantie), le CTA est visible
+   dès le repos. Le 4e métier (à venir) passe en bandeau plein.
+   ================================================================ */
+.mtr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 1000px) { .mtr-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }
 
-/* ---------- Accordéon d'images au survol (desktop) ----------
-   Au repos les cartes se partagent la largeur ; au survol (ou focus clavier)
-   la carte s'élargit et révèle son CTA (sous-titre + flèche). Le libellé reste
-   visible pour l'orientation. Sous 961px on garde la grille (pas de survol tactile). */
-@media (min-width: 961px) {
-  .types-row { display: flex; gap: 14px; height: 460px; }
-  .tcard {
-    flex: 1 1 0%; min-width: 0; height: 100%; aspect-ratio: auto;
-    transition: flex-grow .55s var(--ease); will-change: flex-grow;
-  }
-  .tcard:hover, .tcard:focus-visible { flex-grow: 4.2; }
-  /* CTA masqué au repos, révélé au survol/focus */
-  .tcard .tsub { opacity: 0; transform: translateY(6px); transition: opacity .4s var(--ease) .06s, transform .4s var(--ease) .06s; }
-  .tcard .tgo  { opacity: 0; transform: scale(.7); transition: opacity .35s var(--ease), transform .3s var(--ease); }
-  .tcard:hover .tsub, .tcard:focus-visible .tsub { opacity: 1; transform: none; }
-  .tcard:hover .tgo,  .tcard:focus-visible .tgo  { opacity: 1; transform: none; }
-  /* Le libellé grossit légèrement quand la carte s'ouvre */
-  .tcard .tlab { font-size: 17px; transition: font-size .4s var(--ease); }
-  .tcard:hover .tlab, .tcard:focus-visible .tlab { font-size: 22px; }
-  /* La carte « Bientôt » ne s'ouvre pas : on garde son sous-titre visible */
-  .tcard.soon .tsub { opacity: 1; transform: none; }
+.mtr-card {
+  --m-accent: #6F8770; --m-tint: #E7EEE7; --m-on: #33452F; --m-chip-ink: #fff;
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; border: 1px solid var(--line-soft); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md); transition: transform .24s var(--ease), box-shadow .28s;
 }
-@media (min-width: 961px) and (prefers-reduced-motion: reduce) {
-  .tcard, .tcard .tsub, .tcard .tgo, .tcard .tlab { transition: none; }
+.mtr-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.mtr-card:focus-visible { outline: 3px solid var(--m-accent); outline-offset: 3px; }
+.mtr--saas     { --m-accent: #FCE27C; --m-tint: #FCF2CE; --m-on: #4A3B0C; --m-chip-ink: #4A3B0C; }
+.mtr--helpdesk { --m-accent: #E06B52; --m-tint: #FAE5DF; --m-on: #7A2A18; --m-chip-ink: #fff; }
+.mtr--medical  { --m-accent: #6F8770; --m-tint: #E7EEE7; --m-on: #33452F; --m-chip-ink: #1C2C22; }
+
+.mtr-media { position: relative; aspect-ratio: 16/11; overflow: hidden; background: linear-gradient(160deg, #3b5a48, #263A2E); }
+.mtr-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.mtr-card:hover .mtr-media img { transform: scale(1.05); }
+.mtr-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28,44,34,0) 45%, rgba(28,44,34,.34)); }
+.mtr-chip { position: absolute; z-index: 2; left: 14px; bottom: 14px; display: inline-flex; align-items: center; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 7px 13px; border-radius: var(--radius-pill); background: var(--m-accent); color: var(--m-chip-ink); box-shadow: 0 8px 18px -8px rgba(0,0,0,.55); }
+
+.mtr-body { flex: 1; display: flex; flex-direction: column; padding: 20px 22px 22px; }
+.mtr-body h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 22px; line-height: 1.04; letter-spacing: .01em; color: var(--green-deep); margin: 0 0 9px; }
+.mtr-desc { font-size: 14px; line-height: 1.6; color: var(--text-soft); margin: 0 0 18px; }
+.mtr-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 800; color: var(--green-deep); }
+.mtr-cta .arrow { width: 26px; height: 26px; border-radius: 50%; background: var(--m-tint); color: var(--m-on); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; transition: transform .22s var(--ease); }
+.mtr-card:hover .mtr-cta .arrow { transform: translateX(3px); }
+
+/* Tablette : carte à l'horizontale (photo à gauche) pour éviter la colonne trop haute */
+@media (min-width: 660px) and (max-width: 1000px) {
+  .mtr-grid { max-width: 760px; }
+  .mtr-card { flex-direction: row; }
+  .mtr-media { flex: 0 0 42%; aspect-ratio: auto; min-height: 200px; }
+  .mtr-body { flex: 1; justify-content: center; }
+  .mtr-desc { margin-bottom: 0; }
+  .mtr-cta { margin-top: 16px; }
+}
+
+/* -- Bandeau « bientôt » (relation client / back-office) -- */
+.mtr-soon { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 20px; padding: 22px 26px; background: var(--green-deep); color: #fff; border-radius: var(--radius-lg); }
+.mtr-soon-tag { flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 6px 13px; border-radius: var(--radius-pill); border: 1px solid var(--gold-soft); color: var(--gold-soft); }
+.mtr-soon-txt { flex: 1 1 340px; }
+.mtr-soon-txt h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.05; letter-spacing: .01em; color: #fff; margin: 0 0 5px; }
+.mtr-soon-txt p { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,.72); margin: 0; }
+.mtr-soon-link { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; color: var(--gold-soft); }
+.mtr-soon-link .arrow { transition: transform .22s var(--ease); }
+.mtr-soon-link:hover .arrow { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-card, .mtr-card, .mtr-media img, .svc-link .arrow, .mtr-cta .arrow, .mtr-soon-link .arrow { transition: none; }
+  .svc-card:hover, .mtr-card:hover { transform: none; }
+  .mtr-card:hover .mtr-media img { transform: none; }
 }
 
 /* ---------- 3 étapes colorées ---------- */
