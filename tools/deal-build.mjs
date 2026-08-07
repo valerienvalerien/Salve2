@@ -168,10 +168,10 @@ function renderDepot(deal) {
     <p><b>Vous ne le payez pas, vous l'avancez.</b> Il est déduit de vos ${DEPOT_MOIS_IMPUTATION} premières
     factures, à raison de ${EUR(d.mensuel)} par mois. Si le contrat suit son cours, il ne vous coûte
     rien de plus — ce ne sont pas des frais.</p>
-    <p>Il couvre le recrutement et la formation que nous engageons pour vous avant votre premier
-    ticket. Il vous est <b>intégralement restitué</b> si vous annulez avant le démarrage de la mise
-    en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les agents
-    recrutés et formés.</p>
+    <p>Il couvre le recrutement et la formation que nous engageons pour vous avant la première
+    demande traitée. Il vous est <b>intégralement restitué</b> si vous annulez avant le démarrage
+    de la mise en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les
+    agents recrutés et formés.</p>
     <p class="dl-note">Le cadrage et la mise en place restent offerts. Nous ne pratiquons pas de
     remise de lancement : vous revendez notre prestation, une remise gonflerait votre marge d'un
     mois sans vous aider à gagner un client. Ce que nous vous accordons à la place figure ci-dessous.</p>
