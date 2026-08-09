@@ -106,6 +106,24 @@ cash. Périmètre et seuil **figés au cadrage** (cf. contrat + `PRICING.md §7`
 > Elle reste **confidentielle (NDA)** et ne doit **jamais** apparaître sur un support public.
 > Garder uniquement le bloc de la niche concernée.
 
+## B.0 — Ce que comprend une position (paramètres par défaut)
+
+> À reprendre **tel quel** dans tout devis MB support/helpdesk, avant la grille. Un
+> périmètre implicite se renégocie en cours de contrat ; celui-ci est opposable
+> (`PRICING.md §3.0`).
+
+| Paramètre | Valeur par défaut |
+|---|---|
+| **Volume** | 1 ETP dédié, **35 h/semaine** (≈ 151,67 h/mois) |
+| **Canaux** | **Ticket et e-mail** — la voix (téléphone) **n'est pas incluse** |
+| **Langue** | **Français** |
+| **Couverture** | **9h-18h heure de Paris, du lundi au vendredi**, hors jours fériés français |
+| **Niveau** | **N1** : qualification, diagnostic, résolution de 1er niveau, escalade documentée |
+
+**Hors périmètre par défaut — chiffré séparément** : amplitude étendue (avant 9h, après 18h,
+samedi, dimanche, nuit, jours fériés), astreinte, canal voix, N2/N3, interventions sur site,
+gestion de parc. Toute extension fait l'objet d'un **avenant ou d'un nouveau devis**.
+
 ## B.1 — Télésecrétariat médical FR (à l'appel traité, par créneau)
 
 | Créneau | Prix de gros / appel traité | Volume estimé/mois | Total estimé |
@@ -118,34 +136,48 @@ KPI engagé : **taux de décroché**. Plancher : jamais sous coût chargé agent
 
 ## B.2 — Support N1 SaaS (ETP par position, dégressif)
 
-| Engagement | Prix MB €/mois/ETP | Nb ETP | Total / mois |
-|---|---|---|---|
-| 1 ETP | **1 700 €** | [ ] | [ ] € |
-| 3 ETP | **1 500 €** | [ ] | [ ] € |
-| **5+ ETP** — *volume ferme facturé* | **1 350 €** | [ ] | [ ] € |
+| Positions engagées | Palier | Prix €/mois/position | Retenu | Total / mois |
+|---|---|---|---|---|
+| 1 position | 1-2 | **1 700 €** | [ ] | [ ] € |
+| 2 positions | 1-2 | **1 700 €** | [ ] | [ ] € |
+| 3 positions | 3-4 | **1 500 €** | [ ] | [ ] € |
+| 4 positions | 3-4 | **1 500 €** | [ ] | [ ] € |
+| **5 positions et +** | 5+ — *volume ferme facturé* | **1 350 €** | [ ] | [ ] € |
 
+> **Lecture de la grille** : trois paliers, pas un prix par effectif. Le palier **1-2** couvre
+> 1 et 2 positions, le palier **3-4** couvre 3 et 4, le palier **5+** s'ouvre à partir de
+> 5 positions **fermes**. Un palier ne s'ouvre qu'au seuil atteint : 2 positions restent au
+> prix de 1, 4 positions au prix de 3.
+>
 > **Palier 5+ — minimum facturable** : le tarif de **1 350 €** est conditionné à un
 > **engagement ferme de 5 positions**. Elles sont **payées toutes les cinq chaque mois**,
 > même si seules trois ou quatre sont utilisées — c'est cet engagement qui finance le prix
 > bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
-> 3 ETP, soit 1 500 € par position utilisée**.
+> 3-4 positions, soit 1 500 € par position utilisée**.
 
 KPI engagé : **SLA de première réponse**. Option **Priority** (capacité réservée non
 mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3`).
 
 ## B.3 — Helpdesk IT N1 (ITIL, ETP par position, dégressif)
 
-| Engagement | Prix MB €/mois/ETP | Nb ETP | Total / mois |
-|---|---|---|---|
-| 1 ETP | **2 000 €** | [ ] | [ ] € |
-| 3 ETP | **1 750 €** | [ ] | [ ] € |
-| **5+ ETP** — *volume ferme facturé* | **1 550 €** | [ ] | [ ] € |
+| Positions engagées | Palier | Prix €/mois/position | Retenu | Total / mois |
+|---|---|---|---|---|
+| 1 position | 1-2 | **2 000 €** | [ ] | [ ] € |
+| 2 positions | 1-2 | **2 000 €** | [ ] | [ ] € |
+| 3 positions | 3-4 | **1 750 €** | [ ] | [ ] € |
+| 4 positions | 3-4 | **1 750 €** | [ ] | [ ] € |
+| **5 positions et +** | 5+ — *volume ferme facturé* | **1 550 €** | [ ] | [ ] € |
 
+> **Lecture de la grille** : trois paliers, pas un prix par effectif. Le palier **1-2** couvre
+> 1 et 2 positions, le palier **3-4** couvre 3 et 4, le palier **5+** s'ouvre à partir de
+> 5 positions **fermes**. Un palier ne s'ouvre qu'au seuil atteint : 2 positions restent au
+> prix de 1, 4 positions au prix de 3.
+>
 > **Palier 5+ — minimum facturable** : le tarif de **1 550 €** est conditionné à un
 > **engagement ferme de 5 positions**. Elles sont **payées toutes les cinq chaque mois**,
 > même si seules trois ou quatre sont utilisées — c'est cet engagement qui finance le prix
 > bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
-> 3 ETP, soit 1 750 € par position utilisée**.
+> 3-4 positions, soit 1 750 € par position utilisée**.
 
 KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 
@@ -157,8 +189,23 @@ KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 | DEPOT | **Dépôt d'activation** — 900 €/position, plafond 2 700 € | [ ] | 900 € | **[ ] €** |
 
 - **Le dépôt n'est pas des frais** : il est **intégralement imputé** sur les **3 premières
-  factures**, à raison de **300 €/position/mois**. Un partenaire qui va au bout ne paie
+  factures**, **par tiers — soit `dépôt ÷ 3` par mois**. Un partenaire qui va au bout ne paie
   **rien de plus** — c'est une avance, pas un coût.
+
+  | Positions | Dépôt encaissé | Imputation mensuelle (× 3 mois) |
+  |---|---|---|
+  | 1 | 900 € | 300 € |
+  | 2 | 1 800 € | 600 € |
+  | 3 | 2 700 € | 900 € |
+  | 4 | **2 700 €** *(plafonné)* | **900 €** |
+  | 5 et + | **2 700 €** *(plafonné)* | **900 €** |
+
+  > ⚠️ **Correction 2026-08-09.** La règle était écrite « **300 € par position et par mois** ».
+  > Elle est exacte jusqu'à 3 positions, mais **fausse au-delà** : le dépôt étant plafonné à
+  > 2 700 €, 4 positions donneraient 4 × 300 × 3 = **3 600 € d'imputation pour 2 700 € encaissés**.
+  > La règle opposable est l'**imputation par tiers**, qui coïncide avec les 300 €/position/mois
+  > tant que le plafond n'est pas atteint. C'est déjà ce que calcule `tools/deal-build.mjs`
+  > (`total / 3`) : seuls les documents rédigés étaient à corriger.
 - **Exigible à la signature**, avant démarrage de la mise en service. **Restitué en totalité**
   si le contrat est annulé **avant** ce démarrage ; **acquis à Salverys** si l'annulation
   intervient **après** (recrutement engagé, formation lancée).

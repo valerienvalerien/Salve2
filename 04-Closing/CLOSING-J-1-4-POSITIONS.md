@@ -11,12 +11,44 @@
 
 ## 1. Le deal en chiffres — 4 positions
 
-**4 positions ne donnent PAS le palier 5+.** Le tarif applicable est celui du **palier
-3 ETP** (`PRICING.md §3`). C'est le premier chiffre à avoir en tête demain.
+### 1.0 Ce que comprend une position (à dire avant tout prix)
+
+`PRICING.md §3.0` — définition opposable, reprise dans le devis (B.0) et le contrat (Annexe B) :
+
+| Paramètre | Valeur |
+|---|---|
+| Volume | 1 ETP dédié, **35 h/semaine** (≈ 151,67 h/mois) |
+| Canaux | **Ticket et e-mail** — la voix **n'est pas incluse** |
+| Langue | **Français** |
+| Couverture | **9h-18h heure de Paris, lundi-vendredi**, hors jours fériés FR |
+| Niveau | **N1** — qualification, diagnostic, résolution 1er niveau, escalade documentée |
+
+Hors périmètre, chiffré séparément : amplitude étendue, astreinte, canal voix, N2/N3, sur site.
+**Ne l'accorde jamais verbalement en closing** — c'est la fuite de marge la plus fréquente en MB.
+
+> 9h-18h Paris = **10h-19h (été) / 11h-20h (hiver)** à Tana. Pleine journée ouvrée locale,
+> sans majoration de nuit — c'est ce qui rend le 7h-9h Paris peu coûteux à consentir plus tard.
+
+### 1.1 La grille et le palier applicable
+
+**4 positions ne donnent PAS le palier 5+.** Le tarif applicable est celui du **palier 3-4
+positions** (`PRICING.md §3`). C'est le premier chiffre à avoir en tête demain.
+
+| Positions | Palier | Helpdesk IT N1 | Support N1 SaaS |
+|---|---|---|---|
+| 1 | 1-2 | 2 000 € | 1 700 € |
+| 2 | 1-2 | 2 000 € | 1 700 € |
+| 3 | 3-4 | 1 750 € | 1 500 € |
+| **4** | **3-4** | **1 750 €** | **1 500 €** |
+| 5 et + | 5+ *(volume ferme facturé)* | 1 550 € | 1 350 € |
+
+Les paliers sont des **seuils**, pas un prix par effectif : 2 positions restent au prix de 1,
+4 au prix de 3. La grille a été relibellée en ce sens le 2026-08-09 — **aucun prix n'a changé**,
+mais chaque volume de 1 à 5 a désormais sa ligne. Plus d'ambiguïté à défendre en séance.
 
 | | Helpdesk IT N1 (MB) | Support N1 SaaS (MB) |
 |---|---|---|
-| Prix/position (palier 3 ETP) | **1 750 €** | **1 500 €** |
+| Prix/position (palier 3-4) | **1 750 €** | **1 500 €** |
 | CA mensuel (4 positions) | **7 000 €** | **6 000 €** |
 | Coût direct (4 × 700 €) | 2 800 € | 2 800 € |
 | **Marge brute** | **4 200 €/mois (60 %)** | **3 200 €/mois (53 %)** |
@@ -48,13 +80,12 @@ facturé, extension à M+3), pas comme levier de closing demain.
 
 ### ⚠️ Deux erreurs de chiffre à ne pas commettre à l'oral
 
-1. **L'imputation du dépôt.** Le contrat (art. 4) et le devis (B.4) disent
-   « **300 € par position et par mois** ». À 4 positions ça donne 1 200 €/mois × 3 =
-   **3 600 €**, alors que le dépôt encaissé n'est que de **2 700 €** (plafond). La règle
-   correcte au-delà de 3 positions est **par tiers** : **900 €/mois sur 3 mois**
-   (c'est ce que calcule `tools/deal-build.mjs`, `total / 3`). **Corrige le devis et le
-   contrat avant de les imprimer** — un chiffre faux sur la ligne financière décrédibilise
-   tout le reste du document.
+1. **L'imputation du dépôt — ✅ corrigée le 2026-08-09.** Le contrat (art. 4), le devis (B.4)
+   et les espaces partenaires disaient « **300 € par position et par mois** ». Exact jusqu'à
+   3 positions, **faux au-delà** : à 4 positions ça donnait 1 200 €/mois × 3 = **3 600 €** pour
+   un dépôt plafonné à **2 700 €**. La règle opposable est désormais l'**imputation par tiers**
+   — **900 €/mois sur 3 mois** — ce que calculait déjà `tools/deal-build.mjs` (`total / 3`).
+   Les quatre documents sont alignés ; il n'y a plus rien à corriger avant impression.
 2. **« Capacité activable en ~3 semaines »** (`ONEPAGER-PARTENAIRE-MB.md`). C'est la durée
    de la **mise en service**, pas du recrutement. Le vrai délai signature → production, à
    vivier non constitué, c'est **5 à 7 semaines** (`FINANCE-PREVISIONNEL.md §5`). Annonce
@@ -118,8 +149,9 @@ Chaque `[__]` non rempli devient un point discuté **pendant** l'appel, en posit
 | art. 12 | Plafond de responsabilité | **3 derniers mois facturés** |
 | art. 13 | Délai de résiliation pour manquement | 30 jours |
 | art. 13 | Réversibilité | 15 jours (déjà posé) |
-| Annexe B | Positions fermes / palier | **4 positions · 1 750 €** (helpdesk) |
-| Annexe B | Dépôt | **2 700 €**, imputé **900 €/mois sur 3 mois** |
+| Annexe B | Positions fermes / palier | **4 positions · palier 3-4 · 1 750 €** (helpdesk) |
+| Annexe B | Dépôt | **2 700 €**, imputé **par tiers : 900 €/mois sur 3 mois** |
+| Annexe B | Définition de la position | 35 h/sem · ticket + e-mail · FR · 9h-18h Paris lun-ven · N1 |
 
 ### 2.5 🟠 Le plan de continuité n'existe pas — et il est dû contractuellement
 
@@ -332,10 +364,12 @@ l'appel, et il rend le « je vais réfléchir » plus coûteux à sortir.
 
 ### 6.3 Le prix — ancrer sur le palier, pas sur le total
 
-> « Sur quatre positions, le prix est de **1 750 € par position et par mois**, soit
-> **7 000 €**. La grille est dégressive au volume ferme engagé : une position seule c'est
-> 2 000 €, à partir de trois c'est 1 750 €, et il existe un palier à cinq positions à
-> 1 550 €. Vous êtes à quatre : **le palier trois s'applique**. »
+> « Avant le prix, ce qu'il y a dans une position : un ETP dédié, 35 heures par semaine,
+> ticket et e-mail, en français, de 9h à 18h heure de Paris du lundi au vendredi, sur du N1.
+> Sur cette base, la grille a trois paliers de volume — pas un prix par effectif. Un ou deux
+> postes, c'est 2 000 € la position. Trois ou quatre, c'est **1 750 €**. Cinq et au-delà,
+> 1 550 €, contre un volume ferme facturé. Vous êtes à quatre : **1 750 € la position, soit
+> 7 000 € par mois**. »
 
 Dire le palier 5+ **toi-même** vaut mieux qu'il le découvre : ça pose que le prix baisse par
 **volume ferme**, pas par négociation, et ça installe l'extension future comme la voie
@@ -406,7 +440,7 @@ Formulation de l'appui avant-vente, si c'est celle-là :
 | **« D'autres malgaches sont à moitié prix »** | « Exact, et c'est assumé. À ce prix-là l'agent est payé au minimum local et tourne en six mois — **votre** qualité part avec lui, sous **votre** marque. Nous, on paie nos agents très au-dessus du marché local pour les garder, et on s'engage contractuellement sur le SLA avec un avoir automatique. La question n'est pas le prix de la position : c'est le coût du client final que vous perdez quand votre sous-traitant ne tient pas. » |
 | **« Droit malgache ? Arbitrage à Maurice ? »** ⚠️ *la plus probable* | « Je comprends la réticence — c'est précisément pour ça que je propose un **arbitrage CCI avec siège à Maurice** plutôt que les tribunaux d'Antananarivo. C'est une juridiction neutre, une procédure internationale standard, et une sentence exécutable en France au titre de la Convention de New York. Vous n'êtes ni chez moi ni à devoir plaider à 9 000 km. » |
 | **« Et si un de vos agents part ? »** | « Deux réponses. La structurelle : nos agents sont payés très au-dessus du marché local, c'est le levier anti-turnover. L'opérationnelle : **backup +1 agent par compte**, formé sur vos procédures, qui prend le relais sans jour d'arrêt. Et la base de connaissances constituée reste — c'est ce qui fait qu'un remplacement ne vous coûte pas trois semaines. » |
-| **« Je veux démarrer avec une position, pour voir »** | « On peut, mais alors c'est le tarif d'une position, 2 000 €. Ce que je vous propose à la place, c'est de garder les quatre positions au tarif de 1 750 € et de **restreindre le périmètre** : un seul de vos clients finaux, ou un lot de 200 à 400 tickets. Vous jugez sur vos vrais flux, en petit, sans payer le prix du volume unitaire. C'est le **périmètre** qui limite votre risque, pas le nombre de positions. » |
+| **« Je veux démarrer avec une position, pour voir »** | « On peut, mais alors vous basculez au palier 1-2 : 2 000 € la position. Ce que je vous propose à la place, c'est de garder les quatre positions au palier 3-4 à 1 750 € et de **restreindre le périmètre** : un seul de vos clients finaux, ou un lot de 200 à 400 tickets. Vous jugez sur vos vrais flux, en petit, sans payer le prix du volume unitaire. C'est le **périmètre** qui limite votre risque, pas le nombre de positions. » |
 | **« Il faut que j'en parle à mon associé »** | « Bien sûr. Deux questions alors : **qu'est-ce qui, dans ce qu'on vient de voir, mérite qu'il dise non ?** Et **quand vous voyez-vous ?** Je bloque la capacité de recrutement jusqu'à [date + 5 jours ouvrés] ; au-delà je ne peux plus garantir un démarrage [date]. » |
 | **« Envoyez-moi ça, je regarde »** | « C'est déjà en ligne — je vous donne le code d'accès maintenant, tout ce qu'on vient de dire y est écrit, avec votre marge calculée. Regardez-le avec moi deux minutes, comme ça ce qui bloque, on le voit tout de suite plutôt que dans dix jours. » |
 

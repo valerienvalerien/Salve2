@@ -71,9 +71,13 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
   - Montant : **900 € par position**, plafonné à **2 700 €**, soit **[____] €** au titre du
     présent contrat.
   - **Exigible à la signature**, avant tout démarrage de la mise en service.
-  - **Intégralement imputable** : déduit des **trois (3) premières factures mensuelles** à
-    raison de **300 € par position et par mois**. Le dépôt **ne constitue pas des frais** —
-    il ne représente aucun coût supplémentaire pour le Client qui exécute le contrat.
+  - **Intégralement imputable** : déduit des **trois (3) premières factures mensuelles**,
+    **par tiers**, soit **[____] € par mois** (montant du dépôt divisé par trois). Le dépôt
+    **ne constitue pas des frais** — il ne représente aucun coût supplémentaire pour le
+    Client qui exécute le contrat.
+    *(Rédaction corrigée le 2026-08-09 : l'ancienne formule « 300 € par position et par mois »
+    dépassait le dépôt encaissé dès 4 positions, le montant étant plafonné à 2 700 €.
+    L'imputation par tiers est équivalente tant que le plafond n'est pas atteint.)*
   - **Restitué intégralement** si le contrat est annulé **avant** le démarrage de la mise en
     service. **Acquis à Salverys** si l'annulation intervient **après** ce démarrage
     (recrutement engagé, formation des agents lancée), à titre d'indemnisation forfaitaire
@@ -207,16 +211,27 @@ Garder le(s) bloc(s) de niche concerné(s).
 - **Marque blanche totale** : scripts, outils, SLA et **nom du partenaire**.
 - **Télésecrétariat médical FR** : facturation à l'appel traité par créneau (jour
   0,90-1,10 € · soir/samedi 1,20-1,40 € · pics réservés +15-20 %). KPI : **taux de décroché**.
-- **Support N1 SaaS** : ETP/position dégressif (1 ETP 1 700 € · 3 ETP 1 500 € · 5+ 1 350 €).
-  KPI : **SLA de première réponse**.
-- **Helpdesk IT N1 (ITIL)** : ETP/position dégressif (1 ETP 2 000 € · 3 ETP 1 750 € · 5+ 1 550 €).
-  KPI : **SLA de prise en charge**.
+- **Définition d'une position (paramètres par défaut)** — `PRICING.md §3.0` : **1 ETP dédié,
+  35 heures par semaine** (≈ 151,67 h/mois) · canaux **ticket et e-mail**, la **voix
+  (téléphone) étant exclue** · langue **française** · couverture **9h-18h heure de Paris,
+  du lundi au vendredi**, hors jours fériés français · niveau **N1** (qualification,
+  diagnostic, résolution de premier niveau, escalade documentée). Sont **hors périmètre** et
+  chiffrés séparément : amplitude étendue (avant 9h, après 18h, samedi, dimanche, nuit, jours
+  fériés), astreinte, canal voix, N2/N3, interventions sur site, gestion de parc.
+- **Support N1 SaaS** — tarif dégressif par palier de volume (`PRICING.md §3`) :
+  **1-2 positions : 1 700 €** · **3-4 positions : 1 500 €** · **5 positions et plus :
+  1 350 €** (volume ferme facturé). KPI : **SLA de première réponse**.
+- **Helpdesk IT N1 (ITIL)** — tarif dégressif par palier de volume :
+  **1-2 positions : 2 000 €** · **3-4 positions : 1 750 €** · **5 positions et plus :
+  1 550 €** (volume ferme facturé). KPI : **SLA de prise en charge**.
+- **Lecture des paliers** : un palier ne s'ouvre qu'au **seuil atteint**. Deux positions sont
+  facturées au tarif du palier 1-2 ; quatre positions au tarif du palier 3-4.
 - **Minimum facturable — palier 5+ ETP** (`PRICING.md §3`) : le tarif du palier « 5 positions
   et plus » (1 350 € support N1 / 1 550 € helpdesk IT) est consenti **en contrepartie d'un
   volume ferme de cinq (5) positions**, **facturées chaque mois qu'elles soient consommées
   ou non**, pendant toute la durée de l'engagement. Si le Client facture moins de cinq
   positions sur un mois donné, le prix applicable à ce mois est celui du **palier
-  3 positions** (1 500 € / 1 750 €), appliqué aux positions effectivement consommées.
+  3-4 positions** (1 500 € / 1 750 €), appliqué aux positions effectivement consommées.
   → Positions fermes retenues : **[__]** · palier applicable : **[__] €/mois/position**.
 - **Dépôt d'activation** : **900 € × [__] positions = [____] €** (plafond 2 700 €) — art. 4.
 - **Pas de remise de lancement** : la variante MB ne comporte **aucun mois pilote à −50 %**

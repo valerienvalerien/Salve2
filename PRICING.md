@@ -4,7 +4,11 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-03 (**recalibrage marque blanche — décision direction** :
+> Dernière révision : 2026-08-09 (**définition de la position §3.0** : 35 h/semaine, canaux
+> ticket + e-mail, français, 9h-18h Paris du lundi au vendredi · **rate card MB relibellée
+> par volume §3** : une ligne et un prix pour 1, 2, 3, 4 et 5+ positions — paliers 1-2 / 3-4 /
+> 5+, **aucun prix ne change** · table de marge par volume et alerte sur le passage 4→5) ·
+> précédente 2026-08-03 (**recalibrage marque blanche — décision direction** :
 > dépôt d'activation MB 900 €/position §3.a · **fin du mois pilote −50 % en MB** remplacé par
 > 3 contreparties de risque §3.b · palier 5+ ETP conditionné à un volume ferme facturé §3) ·
 > précédente 2026-07-12 (**benchmark coût à battre différencié par métier §3 :
@@ -163,27 +167,102 @@ coût marginal 700 €/mois au fee freelance de 3 250 000 Ar).
 > permet de signer à perte. **Le plancher est 840 €.** Il est désormais codé en dur dans
 > `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
 
-**Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12)**
+### 3.0 Ce qu'est une « position » — paramètres par défaut (décidé 2026-08-09)
+
+Le mot « position » (= 1 ETP) était employé partout sans jamais être défini : un acheteur
+professionnel demande **toujours** ce qu'il y a dedans, et un périmètre implicite se
+renégocie en cours de contrat. Définition de référence, à reprendre telle quelle dans le
+devis (Annexe B) et le contrat :
+
+| Paramètre | Valeur par défaut |
+|---|---|
+| **Volume** | 1 ETP dédié, **35 h/semaine** (≈ **151,67 h/mois**) |
+| **Canaux** | **Ticket et e-mail** — la **voix (téléphone) n'est pas incluse** |
+| **Langue** | **Français** |
+| **Couverture** | **Horaires de bureau : 9h-18h heure de Paris, du lundi au vendredi**, hors jours fériés français |
+| **Niveau** | **N1** uniquement (qualification, diagnostic, résolution de 1er niveau, escalade documentée) |
+
+- **Fuseau** : Antananarivo est à **UTC+3**. 9h-18h Paris = **10h-19h (été) / 11h-20h (hiver)**
+  à Tana — pleine journée ouvrée locale, **sans majoration de nuit ni astreinte**. C'est ce
+  qui rend l'amplitude étendue vers le matin (7h-9h Paris) peu coûteuse à consentir.
+- **Hors périmètre par défaut, chiffré séparément au cadrage** : amplitude étendue (avant
+  9h, après 18h, samedi, dimanche, nuit, jours fériés), **astreinte**, **canal voix**,
+  N2/N3, interventions sur site, gestion de parc.
+- Toute extension passe par **avenant ou nouveau devis** (contrat art. 2). Ne jamais
+  l'accorder verbalement en closing : c'est la fuite de marge la plus fréquente en MB.
+
+**Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12 · relibellée 2026-08-09)**
 
 Remplace le « prix donné en cadrage » au cas par cas : un donneur d'ordre qui revend a
 besoin de **visibilité** pour construire sa propre marge — le flou rallonge le cycle de
 closing. Grille **confidentielle** (PDF remis au cadrage, sous NDA — jamais en email),
-où le dégressif **achète du volume** au lieu d'être concédé en négociation :
+où le dégressif **achète du volume** au lieu d'être concédé en négociation.
 
-| Engagement | Support N1 SaaS MB (€/mois/ETP) | Helpdesk IT N1 MB (€/mois/ETP) |
-|---|---|---|
-| 1 ETP | 1 700 € | 2 000 € |
-| 3 ETP | 1 500 € | 1 750 € |
-| **5+ ETP** — *sous volume ferme facturé* | 1 350 € | 1 550 € |
+> ⚠️ **Relibellage 2026-08-09 — aucun prix ne change.** L'ancienne grille ne nommait que
+> « 1 ETP / 3 ETP / 5+ ETP » et **ne disait rien de 2 ni de 4 positions**. Les libellés se
+> lisaient comme un **effectif** alors que ce sont des **seuils**. La règle applicable était
+> pourtant déjà écrite (« en deçà de 5 positions facturées, le prix appliqué est celui du
+> palier 3 ETP ») mais obligeait à la déduire en pleine négociation. Chaque volume de 1 à 5
+> a désormais **sa ligne et son prix**.
+
+**Support N1 SaaS — marque blanche**
+
+| Positions engagées | Palier | €/mois/position | Total mensuel | Équiv. €/h (151,67 h) |
+|---|---|---|---|---|
+| 1 position | **1-2** | 1 700 € | 1 700 € | 11,2 € |
+| 2 positions | **1-2** | 1 700 € | 3 400 € | 11,2 € |
+| 3 positions | **3-4** | 1 500 € | 4 500 € | 9,9 € |
+| 4 positions | **3-4** | 1 500 € | 6 000 € | 9,9 € |
+| **5 positions et +** | **5+** — *volume ferme facturé* | **1 350 €** | 6 750 € | 8,9 € |
+
+**Helpdesk IT N1 (ITIL) — marque blanche**
+
+| Positions engagées | Palier | €/mois/position | Total mensuel | Équiv. €/h (151,67 h) |
+|---|---|---|---|---|
+| 1 position | **1-2** | 2 000 € | 2 000 € | 13,2 € |
+| 2 positions | **1-2** | 2 000 € | 4 000 € | 13,2 € |
+| 3 positions | **3-4** | 1 750 € | 5 250 € | 11,5 € |
+| 4 positions | **3-4** | 1 750 € | 7 000 € | 11,5 € |
+| **5 positions et +** | **5+** — *volume ferme facturé* | **1 550 €** | 7 750 € | 10,2 € |
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
   on ne baisse rien. **Plancher : 840 €** (coût marginal 700 € + ~20 %), cf. encadré ci-dessus.
+- **Le palier ne s'ouvre qu'au seuil atteint.** 2 positions restent au prix de 1 ; 4 restent
+  au prix de 3. C'est volontaire : le palier suivant est un **objectif à atteindre**, pas une
+  interpolation. Formulation partenaire : « le deuxième palier couvre 3 et 4 positions, le
+  troisième s'ouvre à 5 — et il s'ouvre contre un volume ferme facturé, pas contre un
+  effectif approché. »
+
+**Marge brute par volume (interne — ne jamais montrer au partenaire)**
+Coût direct 700 €/position (`FINANCE-PREVISIONNEL.md §2`).
+
+| Positions | Support N1 — marge | Δ marge | Helpdesk IT — marge | Δ marge |
+|---|---|---|---|---|
+| 1 | 1 000 € (59 %) | — | 1 300 € (65 %) | — |
+| 2 | 2 000 € (59 %) | +1 000 € | 2 600 € (65 %) | +1 300 € |
+| 3 | 2 400 € (53 %) | +400 € | 3 150 € (60 %) | +550 € |
+| 4 | 3 200 € (53 %) | +800 € | 4 200 € (60 %) | +1 050 € |
+| 5 | 3 250 € (48 %) ⚠️ | **+50 €** | 4 250 € (55 %) | **+50 €** |
+
+- ⚠️ **Le passage de 4 à 5 positions ne rapporte que ~50 €/mois de marge brute** (le prix
+  du palier 5+ s'applique aux 5 positions, pas seulement à la nouvelle) contre un
+  recrutement, une formation et un banc supplémentaires à porter. **Ne jamais l'utiliser
+  comme levier de closing** : le palier 5+ se justifie par la **sécurisation du volume ferme**
+  et l'atteinte du point mort (~7 ETP), pas par la marge unitaire.
+- ⚠️ **Support N1 à 5 positions sort à ~48 % de marge brute** — sous le seuil d'alerte de
+  `tools/deal-build.mjs` (`MARGE_ALERTE = 0.50`). Le builder alertera : c'est voulu, pas un bug.
+- 🔒 **Cohérence avec le modèle « à l'heure »** : à 35 h/semaine, la grille ETP donne
+  **8,9 à 13,2 €/h**, alors que le modèle horaire MB affiche **~8-11 €/h** (ci-dessous). Ce
+  n'est pas une contradiction — mais **ne jamais exposer les deux modèles au même partenaire**
+  sans dire pourquoi : l'ETP inclut la **capacité réservée**, le **backup +1** et
+  l'**engagement de service** ; le tarif horaire couvre un périmètre **variable et non dédié**
+  (débordement), sans ces trois garanties.
 - Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : **~7 ETP placés**) : le palier 5+
   est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
 - 🔒 **Palier 5+ conditionné à un volume ferme facturé (décidé 2026-08-03)** — le prix de
   1 350 € / 1 550 € n'est accordé **que** contre un **minimum facturable de 5 positions**,
   dues **qu'elles soient consommées ou non**. En deçà de 5 positions facturées, le prix
-  appliqué est celui du **palier 3 ETP** (1 500 € / 1 750 €). À défaut, le palier le moins
+  appliqué est celui du **palier 3-4 positions** (1 500 € / 1 750 €). À défaut, le palier le moins
   margé de la grille — **~48 % de marge brute** à 1 350 € (`FINANCE-PREVISIONNEL.md §3`) —
   supporterait en plus le **risque de sous-consommation du partenaire** : il annoncerait
   5 positions pour obtenir le prix, en consommerait 3, et Salverys porterait le banc.
@@ -519,6 +598,9 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Activation MB (2026-08-03)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, plafond 2 700 €**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a) |
 | **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
 | **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
+| **Définition de la position (2026-08-09)** | « ETP » / « position » employés partout, **jamais définis** (seul « 35 h/sem » apparaissait dans les espaces partenaires) | **§3.0** : 1 ETP dédié **35 h/semaine** (≈151,67 h/mois) · canaux **ticket + e-mail**, voix exclue · **français** · **9h-18h Paris, lun-ven**, hors fériés FR · **N1 seul**. Amplitude, astreinte, voix, N2/N3 = hors périmètre, chiffrés séparément |
+| **Libellés de la rate card MB (2026-08-09)** | 3 lignes « 1 ETP / 3 ETP / 5+ ETP », **muettes sur 2 et 4 positions** ; libellés lus comme un effectif | **Une ligne et un prix par volume de 1 à 5+**, colonne **palier** (1-2 / 3-4 / 5+) et équivalent €/h. **Aucun prix ne change** : 2 reste au prix de 1, 4 au prix de 3 |
+| **Marge par volume (2026-08-09)** | non documentée | **Table de marge brute par volume (§3, interne)** + alerte : le passage **4→5 ne rapporte que ~50 €/mois** de marge brute ⇒ ne jamais s'en servir comme levier de closing |
 
 ---
 
