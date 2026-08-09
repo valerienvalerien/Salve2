@@ -488,7 +488,116 @@ Ne pars pas avec « je vous relance ». Pars avec une **date et une condition** 
 
 ---
 
-## 8. Les cinq phrases à retenir
+## 8. Les deux leviers de marge — et la règle qui les protège
+
+### 8.1 « Ne jamais accorder verbalement » — ce que ça veut dire
+
+Il ne s'agit **pas** de taire l'amplitude pendant l'appel. Au contraire : **dis-la, chiffre-la,
+montre-la sur le devis** — en ligne cochée « non retenue ». Ce qui est interdit, c'est de
+l'**accorder** sans prix et sans écrit : « on regardera le 7h-9h », « on vous le fera au
+démarrage », « on s'arrangera ». Ces phrases-là créent une attente gratuite que tu ne pourras
+plus facturer sans passer pour celui qui revient sur sa parole.
+
+- **Une amplitude offerte coûte 200 à 520 € par mois, pendant toute la durée du contrat.**
+  Une contrepartie de risque (§6.5) coûte ~0 €. Si un geste est nécessaire, prends celui qui
+  ne coûte rien.
+- **Formule sûre** : « le 7h-9h, c'est hors du périmètre standard. C'est chiffré, c'est
+  550 € par mois, et c'est activable par avenant quand vous le voudrez. »
+
+### 8.2 Comment la lui faire choisir (et gagner plus)
+
+L'amplitude ne se vend **pas au closing** : elle rouvrirait la discussion prix le jour où tu
+veux la fermer. Elle se vend à **M+2 / M+3**, et c'est **le reporting hebdomadaire qui la vend**
+à ta place : « 38 tickets sont arrivés entre 7h et 9h ce mois-ci, pris en charge à 9h15 en
+moyenne. » Le besoin est démontré par ses propres chiffres, pas par ton argumentaire.
+
+Grille proposée (`PRICING.md §3.c` — **à valider avant de la montrer**) :
+
+| Créneau ajouté (une position présente) | Helpdesk | Marge |
+|---|---|---|
+| **Matin 7h-9h Paris**, lun-ven | **550 €/mois** | 350 € (64 %) |
+| Soirée 18h-20h Paris, lun-ven | 650 €/mois | 450 € (69 %) |
+| Samedi 9h-13h | 320 €/mois | 240 € (75 %) |
+| Samedi 9h-18h | 700 €/mois | 520 € (74 %) |
+| Dimanche / férié (9h-18h) | 190 €/jour | 148 € (78 %) |
+
+**Pousse le 7h-9h en priorité** : c'est le créneau le plus douloureux pour lui (astreinte,
+prime, mauvaise volonté d'équipe) et le moins cher à produire pour toi — 8h-10h locales, pleine
+journée ouvrée. Vendu par **créneau couvert**, pas par position : il n'a pas besoin de quatre
+techniciens à 7h, il en a besoin d'un.
+
+### 8.3 Le vrai upsell de ce deal : Priority, pas la 5e position
+
+Le contrat (art. 7) promet **« backup +1 agent par compte »**. Sur un **client unique**, ce
+backup ne se mutualise sur personne : il faut une **5e tête**. Les deux modèles se comparent
+donc à effectif égal (5 têtes, 3 500 €/mois de coût) :
+
+| | CA mensuel | Coût (5 têtes) | Marge |
+|---|---|---|---|
+| 4 positions **dédiées** | 7 000 € | 3 500 € | **3 500 € (50 %)** |
+| 4 positions **Priority** | **9 280 €** | 3 500 € | **5 780 € (62 %)** |
+
+**+2 280 €/mois à effectif identique** — soit **45 fois** le gain du passage à 5 positions
+dédiées (+50 €/mois, §1). Et pour lui : à garantie égale, **4 Priority ≡ 6 dédiées**, or
+6 dédiées au meilleur palier coûtent 9 300 € — donc **même budget, deux interlocuteurs de moins
+à piloter**.
+
+⚠️ **À savoir avant l'appel** : la marge de 60 % annoncée en §1 suppose le backup **mutualisé
+sur un autre compte**. Avec un seul client, elle tombe réellement à **50 %** (helpdesk) et
+**42 %** (support N1). Ce n'est pas une raison pour renoncer — c'est une raison pour préparer
+la réponse Priority.
+
+**Quand le sortir** : jamais en ouverture (ça double le prix affiché). Le déclencheur est
+**l'objection de résilience** — « et si votre agent tombe malade ? », « comment tenez-vous le
+SLA à quatre ? ». Là, Priority est une réponse, pas une montée en gamme. Slides 14 et 15 du
+deck sont en annexe exactement pour ça.
+
+### 8.4 Le dépôt — pourquoi il existe, pourquoi 2 700 €
+
+Quatre fonctions, dans cet ordre d'importance :
+
+1. **Encaisser à J0 au lieu de J+30.** C'est le seul levier qui attaque directement le creux
+   de trésorerie de 35-45 k€ prévu vers M+7-8.
+2. **Couvrir l'abandon.** Si le partenaire s'arrête après le démarrage de la mise en service,
+   ton exposition à 4 positions est de **4 800 €** (onboarding 2 000 € + un mois de fees
+   2 800 €). Le dépôt en couvre **56 %**.
+3. **Filtrer l'intention.** Qui refuse une avance imputable ne signera pas. Tu le sais en 48 h
+   au lieu de trois semaines de cadrage.
+4. **Autoriser le démarrage immédiat du recrutement**, qui est le chemin critique de sa date.
+
+**Pourquoi 2 700 €** : ce n'est pas un calcul de couverture, c'est un **plafond commercial**.
+Au-delà de ~3 000 €, un acheteur professionnel fait remonter la décision (DG ou finance) et le
+cycle s'allonge. 2 700 € est le dernier palier rond sous ce seuil. Il a été calibré pour un deal
+de **3 positions** (couverture 73 %) — **à partir de 4 positions il mord**, et à 6 il ne couvre
+plus que 39 %.
+
+**Le dépôt n'est pas un revenu.** Il est imputable : il revient intégralement au partenaire.
+Il déplace de la trésorerie et couvre un risque. **Il ne compense jamais une remise.**
+
+### 8.5 Dépôt à 600 € + 1er mois à −50 % : non
+
+Modélisé sur 4 positions (`PRICING.md §3.a`) :
+
+- **Baisser à 600 €/position ne donne que 2 400 € au lieu de 2 700 € — 300 € d'écart.** Aucun
+  effet commercial mesurable sur l'objection, six points de protection en moins. Si tu veux une
+  meilleure *histoire*, **650 €/position = « un mois de rémunération de l'équipe qu'on
+  constitue pour vous »** est plus racontable, pour une couverture équivalente.
+- **Ajouter −50 % le 1er mois coûte 3 500 € secs**, jamais rattrapés : la trésorerie cumulée
+  finit **3 500 € sous** le scénario actuel, et le retournement de trésorerie est décalé
+  **d'un mois entier** (M+3 → M+4). Le mois pilote sortirait à **−1 300 €**, soit pire que les
+  −1 075 € à 3 positions qui avaient motivé la suppression de la remise en MB le 2026-08-03.
+- Et le fond du problème n'a pas changé : en MB, une remise **améliore sa marge d'un mois** —
+  elle ne l'aide pas à gagner son client final. C'est de la valeur jetée sur un acheteur qui
+  revend.
+
+**Le geste à coût nul, s'il en faut un** : **étaler le dépôt** — 50 % à la signature, 50 % au
+démarrage de la mise en service. Zéro impact sur la marge, l'avance demandée est divisée par
+deux à l'instant de signer, et le montant reste acquis en cas d'abandon. À préférer à toute
+baisse de barème, et à garder en réserve pour demain.
+
+---
+
+## 9. Les cinq phrases à retenir
 
 1. **« Quatre positions, c'est le palier trois : 1 750 €. Le palier cinq s'achète avec un volume ferme, pas avec une intention. »**
 2. **« Le dépôt, vous ne le payez pas — vous l'avancez. Il revient dans vos trois premières factures. »**

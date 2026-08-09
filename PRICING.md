@@ -296,6 +296,76 @@ Coût direct 700 €/position (`FINANCE-PREVISIONNEL.md §2`).
 - **Jamais en direct** : le médical et le support/helpdesk client final gardent
   « mise en service offerte, 1er mois à −50 %, sans dépôt » (§7).
 
+**Pourquoi le plafond est à 2 700 € — et où il commence à sous-couvrir (analysé 2026-08-09)**
+
+Le plafond n'est **pas** un calcul de couverture : c'est un **plafond commercial**. Au-delà
+de ~3 000 €, un acheteur professionnel fait remonter la décision (signature DG ou finance)
+et le cycle s'allonge de plusieurs semaines — on perd en délai ce qu'on gagne en protection.
+2 700 € est le dernier palier rond sous ce seuil.
+
+Exposition réelle si le partenaire s'arrête après le démarrage de la mise en service =
+**onboarding** (400 € socle + 400 €/position) **+ un mois de fees déjà engagés** (700 €/position) :
+
+| Positions | Onboarding | Fees 1 mois | **Exposition** | Dépôt 900/pos (plafond 2 700) | Couverture |
+|---|---|---|---|---|---|
+| 1 | 800 € | 700 € | 1 500 € | 900 € | 60 % |
+| 2 | 1 200 € | 1 400 € | 2 600 € | 1 800 € | 69 % |
+| 3 | 1 600 € | 2 100 € | 3 700 € | 2 700 € | **73 %** ← optimum |
+| 4 | 2 000 € | 2 800 € | 4 800 € | 2 700 € | 56 % |
+| 5 | 2 400 € | 3 500 € | 5 900 € | 2 700 € | 46 % |
+| 6 | 2 800 € | 4 200 € | 7 000 € | 2 700 € | 39 % |
+
+- Le dispositif est **calibré pour un deal de 3 positions** (le deal type de l'époque). À partir
+  de **4 positions le plafond mord**, et à 6 il ne couvre plus que 39 % de l'exposition.
+- **Piste d'évolution (à arbitrer, hors urgence closing)** : relever le plafond à
+  **3 600 €** (= 900 × 4) couvrirait 75 % de l'exposition à 4 positions, mais franchit le seuil
+  psychologique des 3 000 €. Alternative sans friction : **plafond à 2 700 € jusqu'à 3 positions,
+  puis 600 €/position supplémentaire** au-delà.
+
+**Variantes de barème étudiées (2026-08-09) — aucune retenue**
+
+| Barème | À 4 positions | Couverture à 4 | Verdict |
+|---|---|---|---|
+| **900 €/pos, plafond 2 700** *(en vigueur)* | 2 700 € | 56 % | Retenu |
+| 600 €/pos | 2 400 € | 50 % | ❌ **−300 € seulement** pour le partenaire : aucun effet commercial mesurable, protection réduite de 6 points. Ne change rien à l'objection, affaiblit le dispositif |
+| 650 €/pos (« un mois de rémunération de l'équipe ») | 2 600 € | 54 % | 🟡 **Meilleure histoire**, couverture quasi identique. À considérer si le dépôt bloque réellement, mais pas de gain net |
+| 900 €/pos sans plafond | 3 600 € | 75 % | 🟡 Meilleure protection, franchit les 3 000 € |
+
+> **Le dépôt n'est pas un revenu.** Il est **imputable** : il revient intégralement au
+> partenaire. Il déplace de la **trésorerie** (J0 au lieu de J+30) et couvre un **risque
+> d'abandon**. Il ne compense **jamais** une remise, et baisser son montant ne « paie »
+> aucune concession commerciale — cf. l'analyse ci-dessous.
+
+**Dépôt réduit + 1er mois à −50 % en MB : à ne pas faire (modélisé 2026-08-09)**
+
+Simulation sur **4 positions helpdesk** (CA plein 7 000 €, coût 2 800 €/mois, onboarding
+2 000 €, un mois de montée en charge payé avant production, encaissement à 30 j) :
+
+| Trésorerie cumulée | A — règle actuelle (dépôt 2 700, sans remise) | B — dépôt 600/pos + 1er mois −50 % | C — dépôt 600/pos, sans remise |
+|---|---|---|---|
+| M0 (signature) | +700 € | +400 € | +400 € |
+| M1 (production) | −4 900 € | −5 200 € | −5 200 € |
+| M2 | −1 600 € | **−5 300 €** | −1 800 € |
+| M3 | **+1 700 €** | −1 900 € | +1 600 € |
+| M4 | +5 000 € | +1 500 € | +5 000 € |
+| M5 | +9 200 € | **+5 700 €** | +9 200 € |
+
+Trois conclusions :
+
+1. **La remise coûte 3 500 € secs** à 4 positions, et l'écart n'est **jamais rattrapé** :
+   le scénario B finit 3 500 € sous A, définitivement.
+2. **Le mois pilote sortirait à −1 300 €** (recette 3 500 − agents 2 800 − onboarding 2 000),
+   soit **pire que les −1 075 € à 3 positions** qui avaient motivé la suppression de la remise
+   en MB le 2026-08-03 (`AUDIT-ESPACE-CLIENT.md §9.2`). La décision reste valable, *a fortiori*.
+3. **Baisser le dépôt seul ne coûte rien en marge** (scénario C : même cumul final que A,
+   simple décalage de trésorerie d'un mois). Autrement dit : si un geste est indispensable,
+   **jouer sur le dépôt plutôt que sur le prix**.
+
+**Le geste à coût nul, s'il en faut un** : **étaler le dépôt** — 50 % à la signature, 50 % au
+démarrage de la mise en service. Zéro impact sur la marge, l'avance demandée au partenaire est
+divisée par deux à l'instant de signer, et le montant total reste acquis en cas d'abandon.
+À préférer à toute baisse de barème.
+
 ### 3.b Fin du mois pilote −50 % en marque blanche (décidé 2026-08-03)
 
 **Le mois pilote à −50 % est supprimé en marque blanche.** Il reste en vigueur **en direct**
@@ -326,6 +396,98 @@ jetée sur un acheteur qui revend.
   `espace-client-medical.html` pour la grille télésec §1.b — pages chiffrées, mot de
   passe donné au cadrage) ou impression « PDF de cadrage » depuis la page — procédure
   dans `ESPACE-CLIENT-CANDIDAT.md`.
+
+### 3.c Options d'amplitude IT — grille nommée (proposition 2026-08-09, à arbitrer)
+
+> ⚠️ **Statut : proposition, pas encore actée.** Le médical a ses add-ons nommés depuis le
+> 2026-06-12 (§1.a) ; **l'IT n'en a jamais eu** — l'amplitude y était renvoyée à un « chiffré
+> au cadrage » au cas par cas, c'est-à-dire concédée sous pression ou oubliée. Cette grille
+> comble le trou. À valider par la direction avant usage en devis.
+
+**Unité de vente : le créneau, pas la position.** Un partenaire n'a pas besoin de quatre
+techniciens à 7h du matin — il en a besoin d'**un**. L'amplitude se vend donc par **créneau
+couvert par une position présente**, indépendamment du nombre de positions du contrat.
+
+| Option (1 position présente sur le créneau) | h/mois | Coût | **Helpdesk IT** | Marge | **Support N1** | Marge |
+|---|---|---|---|---|---|---|
+| **Matin 7h-9h Paris**, lun-ven | 43,3 h | 200 € | **550 €/mois** | 350 € (64 %) | **480 €/mois** | 280 € (58 %) |
+| **Soirée 18h-20h Paris**, lun-ven | 43,3 h | 200 € | **650 €/mois** | 450 € (69 %) | **560 €/mois** | 360 € (64 %) |
+| **Samedi 9h-13h** | 17,3 h | 80 € | **320 €/mois** | 240 € (75 %) | **280 €/mois** | 200 € (71 %) |
+| **Samedi 9h-18h** | 39 h | 180 € | **700 €/mois** | 520 € (74 %) | **620 €/mois** | 440 € (71 %) |
+| **Dimanche / jour férié** (9h-18h, à la journée) | 9 h | 42 € | **190 €/jour** | 148 € (78 %) | **170 €/jour** | 128 € (75 %) |
+
+- Base de calcul : coût marginal **4,62 €/h** (700 € ÷ 151,67 h). Coefficients appliqués au
+  taux horaire du palier 3-4 : ×1,10 le matin (pleine journée ouvrée à Tana, aucune pénibilité),
+  ×1,30 le soir, ×1,55-1,60 le samedi, ×2,0 le dimanche et les fériés.
+- **Marges supérieures à celles des positions elles-mêmes** (58-78 % contre 53-60 %) : ces
+  options sont le levier de panier moyen le plus rentable de la grille IT.
+- **Écart assumé avec le médical** (§1.a : +90 / +120 / +150 €) : là-bas le créneau est
+  **mutualisé entre plusieurs cabinets**, ici il est **dédié à un partenaire**. Ne jamais
+  présenter les deux grilles côte à côte.
+- **Asymétrie à exploiter** : le 7h-9h Paris est le créneau le plus douloureux pour un
+  partenaire français (astreinte, prime, mauvaise volonté des équipes) et le **moins cher à
+  produire** pour nous. C'est l'option à pousser en priorité.
+
+**Règle de vente (importante)** : l'amplitude est un **produit**, jamais un **give**. Elle ne
+se concède pas en closing pour débloquer une signature — les contreparties de risque (§3.b)
+sont là pour ça, et elles coûtent ~0 €. Une amplitude offerte coûte 200 à 520 € **par mois et
+pour toute la durée du contrat**.
+
+- **Fenêtre de vente** : **M+2 à M+3**, quand le reporting hebdomadaire montre le besoin
+  (« X tickets arrivés entre 7h et 9h, pris en charge à 9h15 en moyenne »). Le reporting est
+  l'outil de vente de l'amplitude — pas l'argumentaire de closing.
+- **Au closing, l'option doit être visible et chiffrée mais non retenue** : une ligne du devis
+  cochée « non », avec son prix. Elle existe, elle a un prix, elle s'active par simple avenant.
+
+### 3.d Forfait (dédié) vs Priority, par volume — table de référence (2026-08-09)
+
+> Ne remplace pas la rate card §3 : c'est sa **table compagnon**. Priority = capacité réservée
+> non mutualisée, **backup permanent intégré**, traitement prioritaire, supervision renforcée.
+> Multiplicateur `priorityMult(n) = 1,10 + 0,90/n` (`assets/site.js`).
+
+| Positions | Mult. | **Helpdesk — dédié** | **Helpdesk — Priority** | **Support — dédié** | **Support — Priority** |
+|---|---|---|---|---|---|
+| 1 | ×2,00 | 2 000 € → 2 000 €/mois | 4 000 € → 4 000 €/mois | 1 700 € → 1 700 € | 3 400 € → 3 400 € |
+| 2 | ×1,55 | 2 000 € → 4 000 € | 3 100 € → 6 200 € | 1 700 € → 3 400 € | 2 640 € → 5 280 € |
+| 3 | ×1,40 | 1 750 € → 5 250 € | 2 450 € → 7 350 € | 1 500 € → 4 500 € | 2 100 € → 6 300 € |
+| **4** | ×1,325 | **1 750 € → 7 000 €** | **2 320 € → 9 280 €** | **1 500 € → 6 000 €** | **1 990 € → 7 960 €** |
+| 5 | ×1,28 | 1 550 € → 7 750 € | 1 980 € → 9 900 € | 1 350 € → 6 750 € | 1 730 € → 8 650 € |
+
+**Marge réelle — le point que la grille dédiée masquait (interne)**
+
+Le contrat (art. 7) promet **« backup +1 agent par compte »**. Sur un **compte unique**, ce
+backup ne peut pas être mutualisé avec un autre client : il faut **une tête de plus**. Les deux
+modèles se comparent donc à **n+1 têtes**, soit `(n+1) × 700 €` :
+
+| Positions | Têtes | **Marge dédié** | **Marge Priority** | Écart |
+|---|---|---|---|---|
+| 1 | 2 | 600 € (30 %) ⚠️ | 2 600 € (65 %) | **+2 000 €** |
+| 2 | 3 | 1 900 € (47 %) | 4 100 € (66 %) | +2 200 € |
+| 3 | 4 | 2 450 € (47 %) | 4 550 € (62 %) | +2 100 € |
+| **4** | **5** | **3 500 € (50 %)** | **5 780 € (62 %)** | **+2 280 €** |
+| 5 | 6 | 3 550 € (46 %) | 5 700 € (58 %) | +2 150 € |
+
+*(Support N1 : marges dédiées de 18 à 42 %, Priority de 51 à 60 % — écart +1 700 à +1 960 €.)*
+
+Trois conséquences, toutes importantes :
+
+1. ⚠️ **Le dédié à backup honoré est nettement moins margé qu'annoncé.** La table de marge de
+   §3 (60 % à 4 positions helpdesk) suppose le backup **mutualisé sur un autre compte**. Avec
+   **un seul client**, il n'y a personne sur qui mutualiser : la marge réelle tombe à **50 %**
+   (helpdesk) et **42 %** (support N1, sous le seuil d'alerte de `deal-build.mjs`).
+2. ✅ **Priority est le modèle qui finance le backup déjà promis au contrat.** À **effectif
+   identique** (5 têtes pour 4 positions), il rapporte **+2 280 €/mois**. C'est **45 fois** le
+   gain du passage de 4 à 5 positions dédiées (+50 €/mois, §3).
+   **→ Le vrai upsell de ce deal n'est pas la 5e position, c'est Priority.**
+3. **Équivalence à garantie égale** (§3, tier Priority) : `g` Priority ≡ `g + ⌈g/3⌉` dédiés.
+   **4 Priority ≡ 6 dédiés.** Six dédiés au palier 5+ = 9 300 €/mois pour **6 têtes** ;
+   quatre Priority = 9 280 €/mois pour **5 têtes**. Recette identique pour le partenaire,
+   **une tête de moins** à recruter et à porter côté Salverys.
+
+**Quand le proposer** : pas en ouverture de closing (ça double le prix affiché et rouvre la
+discussion). Le bon déclencheur est **l'objection de résilience** — « et si votre agent tombe
+malade ? », « comment vous tenez le SLA à quatre ? ». C'est là que Priority devient la réponse
+naturelle, et non une montée en gamme.
 
 - **À l'heure** : ~12-15 €/h (direct) · ~8-11 €/h (marque blanche).
 - **À l'interaction** : ~2,5-4 €/ticket N1 (direct) · ~1,8-2,8 € (marque blanche).
