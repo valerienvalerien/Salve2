@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CAC vs LTV Salverys — simulateur d'économie unitaire</title>
+<style>
+  :root{
+    --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
+    --rouge:#B05C4A; --ok:#5E7F60; --it:#5B7F9E; --med:#6F8770;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+  body{background:var(--creme);color:var(--bleu);padding:24px}
+  .wrap{max-width:1500px;margin:0 auto}
+  .grid2{display:grid;grid-template-columns:420px 1fr;gap:20px;align-items:start}
+  @media(max-width:1100px){.grid2{grid-template-columns:1fr}}
+  h1{font-size:1.5rem;margin-bottom:4px}
+  .sub{color:#6b7280;font-size:.9rem;margin-bottom:20px;line-height:1.5}
+  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08);margin-bottom:20px}
+  .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
+  .card h3{font-size:.72rem;text-transform:uppercase;color:#9ca3af;margin:16px 0 10px;letter-spacing:.04em}
+  .card h3:first-of-type{margin-top:0}
+  .ctl{margin-bottom:13px}
+  .ctl label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:4px;gap:6px}
+  .ctl label b{color:var(--bleu);white-space:nowrap}
+  .ctl input[type=range]{width:100%;accent-color:var(--sauge)}
+  .ctl .hint{font-size:.7rem;color:#9ca3af;margin-top:2px;line-height:1.35}
+  .presets{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+  .presets button{flex:1;min-width:90px;padding:8px 6px;border:1px solid #d1d5db;background:#fff;border-radius:8px;
+    font-size:.78rem;font-weight:600;color:var(--bleu);cursor:pointer;transition:.15s}
+  .presets button:hover{background:var(--creme);border-color:var(--sauge)}
+  .presets button.on{background:var(--bleu);color:var(--creme);border-color:var(--bleu)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(46,59,78,.08)}
+  .kpi .v{font-size:1.4rem;font-weight:700;line-height:1.2}
+  .kpi .l{font-size:.71rem;color:#6b7280;margin-top:3px;line-height:1.3}
+  .kpi.bad .v{color:var(--rouge)} .kpi.good .v{color:var(--ok)} .kpi.warn .v{color:var(--or)}
+  .chart{display:flex;align-items:flex-end;gap:4px;height:190px;padding:8px 0;position:relative;margin-top:6px}
+  .zero{position:absolute;left:0;right:0;border-top:2px solid var(--bleu);z-index:1}
+  .col{flex:1;position:relative;height:100%}
+  .bar{position:absolute;left:0;right:0;background:var(--sauge);border-radius:3px 3px 0 0;min-height:3px}
+  .bar.neg{background:var(--rouge);border-radius:0 0 3px 3px}
+  .col:hover .bar{filter:brightness(1.15)}
+  .col:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
+    background:var(--bleu);color:var(--creme);font-size:.7rem;padding:5px 9px;border-radius:6px;white-space:nowrap;z-index:9}
+  .xlab{display:flex;gap:4px;margin-top:6px}
+  .xlab span{flex:1;text-align:center;font-size:.62rem;color:#9ca3af}
+  .legend{font-size:.75rem;color:#6b7280;margin-top:10px;line-height:1.5}
+  table{width:100%;border-collapse:collapse;font-size:.76rem;margin-top:6px}
+  th,td{padding:6px 7px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  th{font-size:.68rem;text-transform:uppercase;color:#9ca3af;letter-spacing:.03em;font-weight:600}
+  tr.hi td{background:#f6f2ea;font-weight:700}
+  td.g{color:var(--ok);font-weight:600} td.r{color:var(--rouge);font-weight:600} td.w{color:var(--or);font-weight:600}
+  .note{font-size:.78rem;color:#6b7280;margin-top:12px;line-height:1.6;background:var(--creme);
+    padding:12px 14px;border-radius:8px;border-left:3px solid var(--or)}
+  .note b{color:var(--bleu)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .foot{font-size:.72rem;color:#9ca3af;text-align:center;margin-top:24px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>CAC vs LTV — Salverys</h1>
+  <p class="sub">Interne · économie unitaire d'un deal <b>marque blanche</b> · aligné
+    <b>PRICING.md</b> (source de vérité prix), <b>FINANCE-PREVISIONNEL.md</b> (v2) et
+    <b>01-Strategie-Offre/CAC-LTV.md</b> (analyse). Deal de référence :
+    <b>tools/deals/exemple-msp.json</b> — helpdesk IT N1, 3 positions à 1 750 €.</p>
+
+  <div class="grid2">
+    <!-- ================= COLONNE PARAMÈTRES ================= -->
+    <div>
+      <div class="card">
+        <h2>Scénario</h2>
+        <div class="presets">
+          <button data-p="prudent">Prudent</button>
+          <button data-p="median" class="on">Médian</button>
+          <button data-p="ambitieux">Ambitieux</button>
+        </div>
+
+        <h3>Budget d'acquisition (mensuel, fixe)</h3>
+        <div class="ctl">
+          <label>Business dev — OTE <b id="vBd"></b></label>
+          <input type="range" id="bd" min="0" max="2500" step="50" value="1000">
+          <div class="hint">remuneration-vololoniaina.html · OTE cible 1 000 €/mois</div>
+        </div>
+        <div class="ctl">
+          <label>Outils cold (Emelia + GWS + domaines) <b id="vOut"></b></label>
+          <input type="range" id="outils" min="0" max="400" step="5" value="140">
+          <div class="hint">Emelia 99 € + 6 boîtes GWS 36 € + domaines ~3 €</div>
+        </div>
+        <div class="ctl">
+          <label>Quote-part direction <b id="vDir"></b></label>
+          <input type="range" id="dir" min="0" max="1400" step="20" value="460">
+          <div class="hint">temps gérant sur prospection/closing · FINANCE §2</div>
+        </div>
+
+        <h3>Rythme commercial</h3>
+        <div class="ctl">
+          <label>Deals marque blanche signés / an <b id="vDeals"></b></label>
+          <input type="range" id="deals" min="0.5" max="12" step="0.5" value="4">
+          <div class="hint">Médian FINANCE §5 ≈ 4 · Prudent ≈ 1,5 · Ambitieux ≈ 8</div>
+        </div>
+
+        <h3>Deal de référence</h3>
+        <div class="ctl">
+          <label>Positions par deal <b id="vPos"></b></label>
+          <input type="range" id="pos" min="1" max="8" step="1" value="3">
+        </div>
+        <div class="ctl">
+          <label>Prix de gros / position <b id="vPrix"></b></label>
+          <input type="range" id="prix" min="800" max="2800" step="25" value="1750">
+          <div class="hint">Rate card MB PRICING §3 — helpdesk 2000/1750/1550 · support N1 1700/1500/1350</div>
+        </div>
+        <div class="ctl">
+          <label>Coût marginal / position <b id="vCout"></b></label>
+          <input type="range" id="cout" min="500" max="1000" step="10" value="700">
+          <div class="hint">fee freelance 3,25 M Ar + connectivité + VoIP · FINANCE §2</div>
+        </div>
+        <div class="ctl">
+          <label>Positions staffées (payées) <b id="vCons"></b></label>
+          <input type="range" id="cons" min="1" max="10" step="1" value="3">
+          <div class="hint">Au-dessus des positions facturées = <b>banc porté par Salverys</b>.
+            C'est exactement le risque de sous-consommation que le minimum facturable du palier 5+
+            (PRICING §3) renvoie chez le partenaire.</div>
+        </div>
+
+        <h3>Entrée en relation</h3>
+        <div class="ctl">
+          <label>Onboarding — socle partenaire <b id="vSocle"></b></label>
+          <input type="range" id="socle" min="0" max="1200" step="50" value="400">
+        </div>
+        <div class="ctl">
+          <label>Onboarding — par position <b id="vOnb"></b></label>
+          <input type="range" id="onb" min="0" max="1200" step="50" value="400">
+          <div class="hint">AUDIT-ESPACE-CLIENT §9.2 · ≈ 2,5 sem. de fee en formation</div>
+        </div>
+        <div class="ctl">
+          <label>Dépôt d'activation / position <b id="vDep"></b></label>
+          <input type="range" id="dep" min="0" max="1500" step="50" value="900">
+          <div class="hint">PRICING §3.a · plafond 2 700 € · imputable 300 €/pos sur 3 mois</div>
+        </div>
+        <div class="ctl">
+          <label><span>Remise du 1<sup>er</sup> mois</span> <b id="vRem"></b></label>
+          <input type="range" id="rem" min="0" max="50" step="5" value="0">
+          <div class="hint">0 % en MB depuis le 2026-08-03 (PRICING §3.b) · 50 % en direct (§7)</div>
+        </div>
+
+        <h3>Durée de vie</h3>
+        <div class="ctl">
+          <label>Deals qui s'arrêtent ≤ 3 mois <b id="vMort"></b></label>
+          <input type="range" id="mort" min="0" max="60" step="5" value="25">
+          <div class="hint">fenêtre de la concession « sortie à 30 j » · PRICING §3.b</div>
+        </div>
+        <div class="ctl">
+          <label>Durée des deals survivants <b id="vSurv"></b></label>
+          <input type="range" id="surv" min="6" max="60" step="3" value="30">
+          <div class="hint">engagement 12 mois renouvelable, préavis 60 j · PRICING §3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= COLONNE RÉSULTATS ================= -->
+    <div>
+      <div class="kpis">
+        <div class="kpi" id="kCac"><div class="v">—</div><div class="l">CAC chargé par deal<br>(commercial + onboarding)</div></div>
+        <div class="kpi" id="kLtv"><div class="v">—</div><div class="l">LTV du deal<br>(marge brute × durée de vie)</div></div>
+        <div class="kpi" id="kRatio"><div class="v">—</div><div class="l">LTV / CAC<br>(seuil de santé : 3×)</div></div>
+        <div class="kpi" id="kPay"><div class="v">—</div><div class="l">Payback du CAC<br>(seuil : 12 mois)</div></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi" id="kMrr"><div class="v">—</div><div class="l">MRR du deal</div></div>
+        <div class="kpi" id="kMarge"><div class="v">—</div><div class="l">Marge brute mensuelle</div></div>
+        <div class="kpi" id="kBas"><div class="v">—</div><div class="l">Point bas de trésorerie<br>(cash immobilisé par deal)</div></div>
+        <div class="kpi" id="kZero"><div class="v">—</div><div class="l">Retour à zéro<br>(mois après signature)</div></div>
+      </div>
+
+      <div class="card">
+        <h2>Trésorerie cumulée d'un deal, mois par mois</h2>
+        <div class="chart" id="chart"><div class="zero" id="zero"></div></div>
+        <div class="xlab" id="xlab"></div>
+        <p class="legend">J0 = signature (CAC engagé, dépôt encaissé) · M0 = mise en service
+          (5-7 semaines : recrutement 2-4 sem. + formation 2-3 sem.) · M1 = 1<sup>er</sup> mois de
+          production, facturé et <b>encaissé à M2</b> (30 j). Le dépôt s'impute sur les
+          3 premières factures.</p>
+        <div class="note" id="noteCash"></div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h2>Sensibilité — le CAC est une division</h2>
+          <table>
+            <thead><tr><th>Deals/an</th><th>CAC chargé</th><th>LTV/CAC</th><th>Payback</th></tr></thead>
+            <tbody id="tSens"></tbody>
+          </table>
+          <p class="legend">Le budget d'acquisition est <b>fixe</b> : il est dû qu'on signe 1 ou
+            8 deals. Le seul levier qui bouge le CAC est le <b>dénominateur</b>.</p>
+        </div>
+
+        <div class="card">
+          <h2>Plancher de prix incluant le CAC</h2>
+          <table>
+            <thead><tr><th>Prix/position</th><th>Marge/mois</th><th>Payback</th><th>LTV/CAC</th></tr></thead>
+            <tbody id="tPlancher"></tbody>
+          </table>
+          <div class="note" id="notePlancher"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Ce que le calcul dit vraiment</h2>
+        <div class="note" id="noteVerdict"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Interne Salverys · aucun prix de ce simulateur ne prime sur <b>PRICING.md</b>.<br>
+    Analyse détaillée et seuils de décision : <b>01-Strategie-Offre/CAC-LTV.md</b></p>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
+const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
+const fmtD=(n,d=1)=>n.toFixed(d).replace('.',',');
+
+const PRESETS={
+  prudent  :{deals:1.5,mort:40,surv:18},
+  median   :{deals:4  ,mort:25,surv:30},
+  ambitieux:{deals:8  ,mort:15,surv:42}
+};
+
+// ---- coeur de calcul : renvoie tout ce dont on a besoin pour un jeu de paramètres ----
+function economics(o){
+  const facturees=o.pos, staffees=Math.max(o.cons,1);
+  const mrr=facturees*o.prix;                    // on facture ce qui est engagé
+  const cout=staffees*o.cout;                    // on paie tout le monde, banc compris
+  const marge=mrr-cout;
+
+  const budgetAn=(o.bd+o.outils+o.dir)*12;
+  const cacCom=o.deals>0?budgetAn/o.deals:Infinity;
+  const onboarding=o.socle+staffees*o.onb;       // on onboarde tout ce qu'on recrute
+  const cacCharge=cacCom+onboarding;
+
+  const duree=(o.mort/100)*3+(1-o.mort/100)*o.surv;
+  const ltv=marge*duree;
+
+  const ratio=cacCharge>0?ltv/cacCharge:0;
+  const payback=marge>0?cacCharge/marge:Infinity;
+
+  return {mrr,cout,marge,cacCom,onboarding,cacCharge,duree,ltv,ratio,payback,staffees,facturees};
+}
+
+// ---- trésorerie mois par mois d'un deal ----
+function cashflow(o,e){
+  const depot=Math.min(o.dep*o.pos,2700);
+  const imput=depot>0?depot/3:0;               // imputé sur les 3 premières factures
+  const rows=[];
+  let cash=-e.cacCom+depot;
+  rows.push({lab:'J0',v:cash,d:'CAC engagé + dépôt encaissé'});
+  cash-=e.onboarding;
+  rows.push({lab:'M0',v:cash,d:'mise en service'});
+
+  const factures=[];                            // factures émises, encaissées à +1 mois
+  for(let m=1;m<=10;m++){
+    cash-=e.cout;
+    if(m===1)cash+=0;
+    const encaisse=factures[m-1]||0;
+    cash+=encaisse;
+    let f=e.mrr-(m<=3?imput:0);
+    if(m===1)f*=(1-o.rem/100);
+    factures[m]=f;
+    rows.push({lab:'M'+m,v:cash,d:'encaissé '+fmtE(encaisse)+' · fees '+fmtE(-e.cout)});
+  }
+  return rows;
+}
+
+function read(){
+  return {
+    bd:+$('bd').value, outils:+$('outils').value, dir:+$('dir').value,
+    deals:+$('deals').value, pos:+$('pos').value, prix:+$('prix').value,
+    cout:+$('cout').value, cons:+$('cons').value, socle:+$('socle').value,
+    onb:+$('onb').value, dep:+$('dep').value, rem:+$('rem').value,
+    mort:+$('mort').value, surv:+$('surv').value
+  };
+}
+
+function setKpi(id,val,cls){
+  const el=$(id); el.querySelector('.v').textContent=val;
+  el.className='kpi'+(cls?' '+cls:'');
+}
+
+function render(){
+  const o=read(), e=economics(o);
+
+  // libellés des curseurs
+  $('vBd').textContent=fmtE(o.bd)+'/mois';
+  $('vOut').textContent=fmtE(o.outils)+'/mois';
+  $('vDir').textContent=fmtE(o.dir)+'/mois';
+  $('vDeals').textContent=o.deals.toLocaleString('fr-FR')+'/an';
+  $('vPos').textContent=o.pos+(o.pos>1?' positions':' position');
+  $('vPrix').textContent=fmtE(o.prix)+'/mois';
+  $('vCout').textContent=fmtE(o.cout)+'/mois';
+  $('vCons').textContent=o.cons+' staffées / '+o.pos+' facturées'+(o.cons>o.pos?' ⚠️ banc':'');
+  $('vSocle').textContent=fmtE(o.socle);
+  $('vOnb').textContent=fmtE(o.onb);
+  $('vDep').textContent=fmtE(o.dep)+' (plafond 2 700 €)';
+  $('vRem').textContent=o.rem+' %';
+  $('vMort').textContent=o.mort+' %';
+  $('vSurv').textContent=o.surv+' mois';
+
+  // KPI
+  setKpi('kCac',fmtE(e.cacCharge));
+  setKpi('kLtv',fmtK(e.ltv));
+  setKpi('kRatio',fmtD(e.ratio)+'×',e.ratio>=5?'good':e.ratio>=3?'warn':'bad');
+  setKpi('kPay',isFinite(e.payback)?fmtD(e.payback)+' mois':'jamais',
+    e.payback<=6?'good':e.payback<=12?'warn':'bad');
+  setKpi('kMrr',fmtE(e.mrr));
+  setKpi('kMarge',fmtE(e.marge)+' · '+Math.round(e.marge/e.mrr*100)+' %',
+    e.marge/e.mrr>=.5?'good':e.marge/e.mrr>=.3?'warn':'bad');
+
+  // trésorerie
+  const rows=cashflow(o,e);
+  const bas=Math.min(...rows.map(r=>r.v));
+  const zeroIdx=rows.findIndex((r,i)=>i>1&&r.v>=0);
+  setKpi('kBas',fmtE(bas),bas>=-4000?'good':bas>=-9000?'warn':'bad');
+  setKpi('kZero',zeroIdx>=0?rows[zeroIdx].lab:'> M10',
+    zeroIdx>=0&&zeroIdx<=5?'good':zeroIdx>=0&&zeroIdx<=9?'warn':'bad');
+
+  const posMax=Math.max(0,...rows.map(r=>r.v));
+  const negMax=Math.abs(Math.min(0,bas));
+  const span=(posMax+negMax)||1;
+  const zeroTop=posMax/span;                       // position de la ligne du zéro, en % du haut
+  const chart=$('chart');
+  chart.innerHTML='<div class="zero" style="top:'+(zeroTop*100)+'%"></div>';
+  rows.forEach(r=>{
+    const col=document.createElement('div'); col.className='col';
+    col.dataset.tip=r.lab+' : '+fmtE(r.v)+' — '+r.d;
+    const bar=document.createElement('div');
+    bar.className='bar'+(r.v<0?' neg':'');
+    bar.style.height=(Math.abs(r.v)/span*100)+'%';
+    if(r.v<0) bar.style.top=(zeroTop*100)+'%';     // vers le bas depuis le zéro
+    else      bar.style.bottom=((1-zeroTop)*100)+'%'; // vers le haut depuis le zéro
+    col.appendChild(bar); chart.appendChild(col);
+  });
+  $('xlab').innerHTML=rows.map(r=>'<span>'+r.lab+'</span>').join('');
+
+  const depot=Math.min(o.dep*o.pos,2700);
+  const moisZero=zeroIdx>=0?zeroIdx-1:10;                       // mois de production avant retour à zéro
+  const chevauchement=Math.max(1,o.deals*moisZero/12);
+  const oSansDepot={...o,dep:0};
+  const basSansDepot=Math.min(...cashflow(oSansDepot,economics(oSansDepot)).map(r=>r.v));
+  $('noteCash').innerHTML=
+    '<b>'+fmtE(-bas)+'</b> de trésorerie immobilisée par deal, au plus bas à <b>'+
+    rows[rows.findIndex(r=>r.v===bas)].lab+'</b>, retour à zéro à <b>'+
+    (zeroIdx>=0?rows[zeroIdx].lab:'plus de 10 mois')+'</b>. '+
+    (depot>0
+      ? 'Sans le dépôt d\'activation, le point bas serait de <b>'+fmtE(basSansDepot)+
+        '</b> : le dépôt réduit le cash au risque de <b>'+
+        Math.round((1-Math.abs(bas)/Math.abs(basSansDepot))*100)+' %</b> sans décaler le retour à zéro.'
+      : '⚠️ Dépôt d\'activation à 0 : c\'est <b>'+fmtE(Math.min(900*o.pos,2700))+
+        '</b> de trésorerie qui rentrent 30 jours plus tard (PRICING §3.a).')+
+    ' À <b>'+o.deals.toLocaleString('fr-FR')+' deals/an</b>, <b>'+fmtD(chevauchement)+'</b> deal'+
+    (chevauchement>=2?'s se chevauchent':' se chevauche')+' dans la fenêtre de payback, soit <b>'+
+    fmtK(Math.abs(bas)*chevauchement)+'</b> immobilisés en continu — à rapprocher du creux prévu de '+
+    '35-45 k€ (FINANCE §6), dont le reste est du banc.';
+
+  // sensibilité
+  $('tSens').innerHTML=[1,1.5,2,3,4,6,8,10].map(n=>{
+    const ee=economics({...o,deals:n});
+    const hi=Math.abs(n-o.deals)<0.01?' class="hi"':'';
+    const cr=ee.ratio>=5?'g':ee.ratio>=3?'w':'r';
+    const cp=ee.payback<=6?'g':ee.payback<=12?'w':'r';
+    return '<tr'+hi+'><td>'+n.toLocaleString('fr-FR')+'</td><td>'+fmtE(ee.cacCharge)+
+      '</td><td class="'+cr+'">'+fmtD(ee.ratio)+'×</td><td class="'+cp+'">'+
+      (isFinite(ee.payback)?fmtD(ee.payback)+' m':'—')+'</td></tr>';
+  }).join('');
+
+  // plancher de prix
+  const prixTest=[840,1050,1350,1550,1750,2000];
+  if(!prixTest.includes(o.prix)){prixTest.push(o.prix);prixTest.sort((a,b)=>a-b);}
+  $('tPlancher').innerHTML=prixTest.map(p=>{
+    const ee=economics({...o,prix:p});
+    const hi=p===o.prix?' class="hi"':'';
+    const cr=ee.ratio>=5?'g':ee.ratio>=3?'w':'r';
+    const cp=ee.payback<=6?'g':ee.payback<=12?'w':'r';
+    return '<tr'+hi+'><td>'+fmtE(p)+'</td><td>'+fmtE(ee.marge)+'</td><td class="'+cp+'">'+
+      (isFinite(ee.payback)?fmtD(ee.payback)+' m':'—')+'</td><td class="'+cr+'">'+
+      fmtD(ee.ratio)+'×</td></tr>';
+  }).join('');
+
+  // prix minimum pour payback 6 mois et ratio 3x
+  const pPayback=(e.cacCharge/6+e.staffees*o.cout)/o.pos;
+  const pRatio=(3*e.cacCharge/e.duree+e.staffees*o.cout)/o.pos;
+  $('notePlancher').innerHTML=
+    'Le plancher absolu de <b>840 €/position</b> (PRICING §3) ne couvre que le coût de service — '+
+    'ni l\'acquisition, ni l\'onboarding. Aux paramètres actuels, le plancher économique est de '+
+    '<b>'+fmtE(pPayback)+'/position</b> pour un payback ≤ 6 mois, et de <b>'+fmtE(pRatio)+
+    '/position</b> pour un LTV/CAC ≥ 3×.';
+
+  // verdict
+  const budgetMois=o.bd+o.outils+o.dir;
+  const caAn=e.mrr*12*Math.min(o.deals,12);
+  const chargesAn=10100*12;
+  const dealsPointMort=Math.ceil(10100/e.mrr);
+  $('noteVerdict').innerHTML=
+    'Budget d\'acquisition : <b>'+fmtE(budgetMois)+'/mois</b>, soit <b>'+
+    Math.round(budgetMois/10100*100)+' %</b> des charges fixes (10 100 €, FINANCE §2). '+
+    '<b>Le CAC est un petit poste</b> — ce qui coûte cher, c\'est le banc : chaque position '+
+    'payée non staffée brûle '+fmtE(o.cout)+'/mois.<br><br>'+
+    'Au rythme actuel de <b>'+o.deals.toLocaleString('fr-FR')+' deals/an</b>, le ratio LTV/CAC est de <b>'+
+    fmtD(e.ratio)+'×</b> — mais il faut <b>'+dealsPointMort+' deal'+(dealsPointMort>1?'s':'')+
+    ' actif'+(dealsPointMort>1?'s':'')+' simultanément</b> pour couvrir les charges. '+
+    (o.deals>=dealsPointMort
+      ? '✅ Le rythme simulé permet d\'atteindre puis de tenir le point mort.'
+      : '⚠️ <b>Le rythme simulé ne permet pas d\'atteindre le point mort</b> : le ratio LTV/CAC reste flatteur '+
+        'pendant que l\'entreprise perd de l\'argent. C\'est le piège de cette métrique dans un modèle de service '+
+        'à charges fixes élevées.')+
+    (e.staffees>e.facturees
+      ? '<br><br>⚠️ <b>Banc simulé</b> : '+e.staffees+' positions staffées pour seulement '+
+        e.facturees+' facturées. La marge tombe à '+fmtE(e.marge)+'/mois et le payback passe à '+
+        fmtD(e.payback)+' mois. Sans minimum facturable (PRICING §3, palier 5+), '+
+        'c\'est Salverys qui porte ce banc.'
+      : '');
+}
+
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{
+  document.querySelectorAll('.presets button').forEach(b=>b.classList.remove('on'));
+  render();
+}));
+document.querySelectorAll('.presets button').forEach(b=>b.addEventListener('click',()=>{
+  const p=PRESETS[b.dataset.p];
+  $('deals').value=p.deals; $('mort').value=p.mort; $('surv').value=p.surv;
+  document.querySelectorAll('.presets button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); render();
+}));
+render();
+</script>
+</body>
+</html>
