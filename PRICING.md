@@ -546,8 +546,8 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 > Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **freelances + équipes dédiées** est
 > viable sous conditions. Détail (tableaux par domaine) dans `RAPPORT-PRIX.html §10`.
 
-- **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **double connexion
-  par agent (fibre + 4G) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
+- **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **kit d'autonomie
+  individuel par agent (solaire ou batterie) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
   **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **backfill +1
   agent/compte** ; documentation écrite dès le client n°1.
 - **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un

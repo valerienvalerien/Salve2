@@ -72,7 +72,8 @@ l'engagement de service).
 - [ ] **Formation des agents** aux scripts, au secret médical/RGPD, aux process d'escalade.
 - [ ] **Armement QA** : grille de scoring prête, planning de double écoute, gabarit de
   reporting instancié (`PROCESS-QA-DOUBLE-ECOUTE.md`, `MODELE-REPORTING-CLIENT.md`).
-- [ ] Vérification **continuité** : double connexion (fibre+4G) + hub de repli, backup +1 agent.
+- [ ] Vérification **continuité** : kit d'autonomie de chaque agent **testé** (bascule
+  réelle, autonomie constatée) + hub de repli opérationnel, backup +1 agent.
 - [ ] Test de bout en bout (appel/ticket fictif) avant J1.
 
 ## Phase 2 — J1, démarrage du pilote

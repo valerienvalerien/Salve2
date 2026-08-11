@@ -78,7 +78,7 @@ Confidentialité en tête, exprès.
 | **Reporting mensuel** (décroché, délai de réponse) | Vous mesurez, vous ne croyez pas sur parole |
 | **Forfait mensuel, jamais à l'appel** | Coût prévisible, pas de mauvaise surprise |
 | **Vous gardez la main sur l'agenda** | Aucune perte de contrôle |
-| **Plan de continuité écrit** (double connexion fibre + 4G par agent, hub de repli alimenté) | Votre accueil ne dépend ni d'une ligne ni du réseau électrique local |
+| **Plan de continuité écrit** (kit d'autonomie individuel par agent, hub de repli alimenté) | Votre accueil ne dépend pas du réseau électrique local |
 | **Mise en service : 490 € — offerte** | L'intégration a un coût réel ; vous ne le payez pas |
 
 ---

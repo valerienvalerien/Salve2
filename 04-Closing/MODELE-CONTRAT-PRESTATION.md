@@ -110,9 +110,9 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
 ## Article 7 — Continuité de service
 
 - **Backup +1 agent par compte** : pas d'interruption sur absence d'un agent.
-- **Plan de continuité écrit**, remis avant démarrage : **double connexion par agent
-  (fibre + 4G)** et **hub de repli alimenté** (onduleur / groupe électrogène). Le service
-  ne dépend ni d'une ligne unique ni du réseau électrique local.
+- **Plan de continuité écrit**, remis avant démarrage : **kit d'autonomie individuel par
+  agent** (solaire ou batterie) et **hub de repli alimenté** (onduleur / groupe
+  électrogène). Le service ne dépend pas du réseau électrique local.
 
 ## Article 8 — Obligations du Client
 

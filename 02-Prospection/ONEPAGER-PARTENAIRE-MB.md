@@ -49,9 +49,10 @@ minimum local et tourne en 6 mois — votre qualité part avec lui.
   sur votre compte dans la durée.
 - **Engagement de service contractuel** : taux de décroché ou SLA convenu au cadrage ;
   en deçà sur un mois, **20 % d'avoir automatique** — on met notre argent sur le résultat.
-- **Plan de continuité écrit**, remis avant tout démarrage : agents équipés en double
-  connexion (fibre + 4G) et hub de repli alimenté (groupe électrogène, onduleurs).
-  Votre service ne dépend ni d'une ligne ni du réseau électrique local.
+- **Plan de continuité écrit**, remis avant tout démarrage : chaque agent dispose de son
+  **kit d'autonomie** (solaire ou batterie) sur lequel il bascule en moins de 5 minutes, et
+  un hub de repli alimenté (groupe électrogène, onduleurs) prend le relais sur les coupures
+  longues. Votre service ne dépend pas du réseau électrique local.
 - **Backup +1 agent par compte** : pas de jour d'arrêt sur absence.
 - **Conformité documentée** : sous-traitant RGPD (art. 28, DPA), transfert encadré
   (clauses art. 46), comptes nommés, **zéro donnée stockée chez nous** — on travaille
