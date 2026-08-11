@@ -14,7 +14,9 @@
 > (Annexe B).
 >
 > ⚠️ Ce gabarit est un support opérationnel, **pas un avis juridique** : faire valider par
-> un conseil avant signature d'un premier contrat.
+> un conseil avant signature d'un premier contrat. **L'art. 8 bis (encadrement / absence de
+> mise à disposition) appelle une relecture d'avocat prioritaire** : c'est la clause qui
+> distingue la prestation de services du prêt de main-d'œuvre.
 
 ---
 
@@ -118,6 +120,33 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
   consignes, et un interlocuteur pour le cadrage et le suivi.
 - Garantir la disponibilité de ses propres systèmes (ligne, logiciels) ; leurs
   indisponibilités sont exclues du périmètre de l'engagement de service (art. 6).
+
+**Réciproque —** Salverys désigne pour la durée du contrat un **référent d'exploitation
+nommé** ([nom — fonction]), interlocuteur unique du Client pour le pilotage courant, le
+reporting et les escalades. Tout remplacement est notifié au Client par écrit.
+
+## Article 8 bis — Encadrement des intervenants & absence de mise à disposition
+
+- **Nature de la prestation.** Salverys s'engage sur un **résultat** — le périmètre de
+  l'art. 2 et les engagements de service de l'art. 6. Le présent contrat n'emporte
+  **aucune fourniture de personnel ni mise à disposition** d'intervenants au profit du
+  Client.
+- **Autorité d'exploitation.** Salverys conserve **seule** l'autorité sur ses intervenants :
+  affectation, planification, encadrement qualité, discipline et rémunération. Aucun lien de
+  subordination n'existe entre le Client et les intervenants de Salverys.
+- **Canal unique des consignes.** Les consignes du Client sont transmises **exclusivement**
+  par le **référent d'exploitation** (art. 8) et par les procédures figées au cadrage
+  (art. 2). Le Client s'interdit toute instruction individuelle directe à un intervenant,
+  ainsi que toute mesure disciplinaire ou fixation d'horaires à son égard ; il signale au
+  référent tout écart constaté.
+- **Choix des intervenants.** Salverys détermine librement le nombre et l'identité des
+  intervenants affectés, sous réserve de ses engagements de service. Le Client ne procède ni
+  à leur sélection ni à leur validation ; les profils lui sont communiqués **anonymisés**
+  (cf. art. 10 bis).
+- **Encadrement qualité.** Le pilotage de la qualité (grille QA, double écoute, plans
+  d'action) relève de Salverys, qui en restitue les résultats au Client par le reporting
+  convenu (art. 6). Le Client peut demander des sessions de calibrage conjointes, conduites
+  **en présence du référent d'exploitation**.
 
 ## Article 9 — Confidentialité & secret professionnel
 
