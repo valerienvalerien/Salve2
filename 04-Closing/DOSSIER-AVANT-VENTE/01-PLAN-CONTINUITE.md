@@ -29,9 +29,9 @@ client (ligne, ticketing, téléphonie), exclue du périmètre de l'engagement d
 
 | # | Risque | Probabilité | Parade en place | Délai de reprise (RTO) |
 |---|---|---|---|---|
-| R1 | **Coupure électrique** (délestage réseau national) | Élevée — récurrente à Antananarivo | Onduleurs par poste au hub ; **groupe électrogène** avec réserve de carburant [X] h ; agents en BYOD sur batterie | **≤ 15 min** (bascule onduleur immédiate, groupe en relais) |
-| R2 | **Coupure Internet d'un agent** (FAI domicile) | Moyenne | **Double connexion par agent** : fibre + **4G de secours** (indemnité contractualisée) | **≤ 10 min** (bascule 4G) |
-| R3 | **Panne opérateur / câble sous-marin** (Madagascar dépend de liaisons sous-marines) | Faible, impact fort | **Deux opérateurs distincts** au hub ; agents sur un FAI différent de celui du hub | **≤ 2 h** (bascule opérateur) |
+| R1 | **Coupure électrique** (délestage réseau national) | Élevée — récurrente à Antananarivo | **Kit d'autonomie individuel** par agent (solaire ou batterie), sur lequel il bascule dès la coupure ; si l'autonomie du kit est dépassée, **repli au hub** (groupe électrogène, onduleurs) | **≤ 5 min** (bascule sur kit) · **≤ 1 h** si repli au hub — délai de trajet, agent résidant à Antananarivo |
+| R2 | **Coupure Internet d'un agent** (FAI domicile) | Moyenne | **Repli au hub**, raccordé indépendamment du domicile de l'agent | **≤ 1 h** (trajet, agent résidant à Antananarivo) |
+| R3 | **Panne opérateur / câble sous-marin** (Madagascar dépend de liaisons sous-marines) | Faible, impact fort | Aucune parade locale : la reprise dépend du rétablissement opérateur. Information du partenaire sous 30 min et priorisation des flux à la reprise (§3) | **Non garanti** — dépend de l'opérateur ; traité en force majeure au-delà de [X] h (§6) |
 | R4 | **Absence d'un agent** (maladie, imprévu) | Élevée | **Backup +1 agent par compte**, formé au compte et en double écoute régulière | **≤ 1 h**, sans jour d'arrêt |
 | R5 | **Absence du référent d'exploitation** | Faible | Suppléance nommée ([second référent / direction]) ; procédures écrites, pas de savoir oral | **≤ 4 h** |
 | R6 | **Cyclone / intempérie majeure** (saison nov.–avril) | Saisonnière | Bascule **100 % domicile** (BYOD) ; hub non nécessaire à la production ; pré-alerte météo à J-3 | **≤ 4 h** |
@@ -44,22 +44,27 @@ client (ligne, ticketing, téléphonie), exclue du périmètre de l'engagement d
 **Production distribuée, repli centralisé.** Le mode nominal est le travail à domicile
 (BYOD) : il n'y a **pas de point de défaillance unique** — la panne d'un agent n'affecte
 qu'un agent. Le hub n'est pas le lieu de production ; c'est le **point de repli alimenté**
-(groupe électrogène, onduleurs, double opérateur) vers lequel on rapatrie tout ou partie de
-l'équipe quand la panne devient collective (R1 étendu, R3).
+(groupe électrogène, onduleurs) vers lequel on rapatrie tout ou partie de l'équipe quand
+l'incident dépasse le kit d'autonomie individuel ou devient collectif (R1 étendu, R2).
 
 Trois postures, dans cet ordre :
 
-1. **Nominal** — agents à domicile, fibre, outils du client.
-2. **Dégradé** — bascule 4G individuelle (R2) ou rapatriement partiel au hub (R1, R3). Le
-   service tourne, les SLA restent engagés.
-3. **Repli** — rapatriement de l'équipe au hub sous alimentation autonome. Priorisation des
-   flux convenue au cadrage : **[à définir — ex. appels avant tickets, ou comptes prioritaires]**.
+1. **Nominal** — agents à domicile, sur secteur, outils du client.
+2. **Dégradé** — bascule sur le **kit d'autonomie individuel** (R1) : l'agent reste à son
+   poste, le service tourne sans interruption, les SLA restent engagés.
+3. **Repli** — rapatriement au hub sous alimentation autonome, quand l'autonomie du kit est
+   dépassée ou que la connexion du domicile est perdue. Priorisation des flux convenue au
+   cadrage : **[à définir — ex. appels avant tickets, ou comptes prioritaires]**.
+
+Le **kit d'autonomie** (solaire ou batterie, selon l'agent) est fourni ou indemnisé par
+Salverys, vérifié à l'entrée sur le compte et contrôlé périodiquement (§5). C'est lui qui
+absorbe le délestage, qui est le risque quotidien ; le hub ne sert qu'aux incidents longs.
 
 ## 4. Qui décide, et sous quel délai
 
 | Décision | Qui | Délai |
 |---|---|---|
-| Bascule d'un agent en dégradé (4G) | L'agent, sans validation | Immédiat |
+| Bascule sur le kit d'autonomie individuel | L'agent, sans validation | Immédiat |
 | Rapatriement au hub | **Référent d'exploitation** | ≤ 30 min après constat |
 | Activation du mode repli complet | Référent d'exploitation + direction | ≤ 1 h |
 | **Information du partenaire** | Référent d'exploitation | **≤ 30 min** après activation du mode dégradé collectif ou du repli |
@@ -73,7 +78,8 @@ confiance. Canal et destinataire figés au cadrage.
 
 - **Test annuel** du mode repli (bascule réelle, hors heures ouvrées) — compte rendu écrit
   remis au partenaire.
-- **Test trimestriel** de la bascule 4G, par agent, sur un créneau creux.
+- **Test trimestriel** de la bascule sur kit d'autonomie, par agent, sur un créneau creux :
+  bascule réelle, autonomie constatée, état de la batterie.
 - **Vérification mensuelle** du groupe électrogène (démarrage, niveau de carburant) et des
   onduleurs.
 - **Revue du plan** à chaque nouveau compte, et au minimum **une fois par an**.
@@ -86,6 +92,10 @@ Dit franchement, parce qu'un plan qui prétend tout couvrir n'est pas crédible 
 
 - L'**indisponibilité des systèmes du client** (leur ticketing, leur téléphonie, leurs
   accès) — hors périmètre de l'engagement de service (art. 6).
+- Une **panne opérateur ou de liaison sous-marine** (R3) : elle affecte le pays entier et
+  aucune parade locale n'y répond. On s'engage sur l'**information sous 30 minutes** et sur
+  la priorisation des flux à la reprise, pas sur un délai de rétablissement qui ne nous
+  appartient pas.
 - Une **crise nationale prolongée** (troubles majeurs, coupure réseau de plusieurs jours) :
   au-delà de **[X] jours** d'interruption continue, la clause de force majeure du contrat
   s'applique (art. [12/13]) et les modalités de reprise se traitent avec le partenaire.
