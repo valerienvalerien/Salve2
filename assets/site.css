@@ -74,7 +74,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 104px; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -96,12 +96,13 @@ img { display: block; max-width: 100%; }
 .theme-it .serif { font-family: 'Inter', sans-serif; }
 
 /* ================= NAV ================= */
-/* topbar + nav figés ensemble au scroll (l'offre reste visible) */
+/* topbar + nav figés ensemble au scroll (l'offre reste visible) — pages simulateurs */
 .site-head { position: sticky; top: 0; z-index: 60; }
+html:has(.site-head) { scroll-padding-top: 110px; }
 /* en mobile la topbar passe sur 2 lignes : on la resserre pour ne pas manger l'écran */
 @media (max-width: 600px) {
   .site-head .topbar { font-size: 11.5px; padding: 6px 12px; line-height: 1.35; }
-  html { scroll-padding-top: 118px; }
+  html:has(.site-head) { scroll-padding-top: 122px; }
 }
 .nav {
   position: sticky; top: 0; z-index: 60;
