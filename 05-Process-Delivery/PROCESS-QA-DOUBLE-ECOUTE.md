@@ -72,7 +72,9 @@ obtenus / points possibles, ramené sur 100.
 - **Réalisée par le manager de niche** (médical ou IT).
 - **Cadence** :
   - **Onboarding (S1)** : renforcée — **≥ 5 écoutes/agent** la première semaine.
-  - **Régime** : **≥ 2 écoutes/agent/semaine** (échantillon aléatoire sur les plages couvertes).
+  - **Régime** : **≥ 2 écoutes/agent/semaine** (échantillon aléatoire sur les plages couvertes)
+    — **≥ 3** dès le mode M1 (`ARBRE-DECISION-ONBOARDING.md §3.4`, qui fixe la cadence
+    par compte selon le mode d'armement retenu).
   - **Déclenchée** : systématique après une fiche **rouge** ou une réclamation client.
 - **Échantillonnage** : aléatoire + ciblé (créneaux sensibles : soir/samedi, pics).
 

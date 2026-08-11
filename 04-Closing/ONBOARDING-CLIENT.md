@@ -12,6 +12,12 @@
 > Prix & garanties : `PRICING.md` fait foi. Documents liés : `MODELE-DEVIS.md`,
 > `MODELE-CONTRAT-PRESTATION.md`, `MODELE-DPA-RGPD.md`, `PROCESS-QA-DOUBLE-ECOUTE.md`,
 > `MODELE-REPORTING-CLIENT.md`.
+>
+> 🧭 **Comment on arme le compte** : la phase 0 se déroule avec
+> `05-Process-Delivery/ARBRE-DECISION-ONBOARDING.md` (version cliquable :
+> `arbre-decision-onboarding.html`). Il tranche les 4 verrous GO/NO-GO, l'archétype du
+> compte, et surtout **référent mutualisé ou manager IT dédié**. Sa sortie s'écrit dans
+> `05-Process-Delivery/FICHE-COMPTE-CALL-FLOW.md`, instanciée par compte.
 
 ---
 
@@ -33,6 +39,13 @@
 Objectif : **figer le périmètre** (il devient l'Annexe de niche du contrat et la base de
 l'engagement de service).
 
+- [ ] **Dérouler `ARBRE-DECISION-ONBOARDING.md`** — dans cet ordre : les 4 verrous
+  (conformité / économique / trésorerie / gouvernance), l'archétype (ESN · MSP · éditeur
+  SaaS extension ou création · télésec MB · médical direct), puis les variables
+  d'armement. Sortie : **mode M0-M3, manager IT dédié ou non, call flow, séquencement du J1**.
+  🔴 **Ne jamais annoncer une date de J1 avant d'avoir passé l'arbre** — le plafond de
+  3 positions en onboarding simultané impose souvent un séquencement en vagues.
+- [ ] Ouvrir la **fiche de compte** (`FICHE-COMPTE-CALL-FLOW.md`) et y coller la sortie.
 - [ ] Périmètre : créneaux couverts, volumes attendus, forfait/ETP retenu.
 - [ ] **Scripts & consignes** d'accueil (sous le nom du client/cabinet).
 - [ ] **KPI & seuil** engagés : médical → décroché ≥ 90 % · support → SLA 1re réponse ·
@@ -127,6 +140,12 @@ l'engagement de service).
 ## Garde-fous onboarding
 
 - Ne jamais démarrer J1 sans **QA armée et escalades documentées** (promesse one-pager).
+- Ne jamais démarrer J1 avec des `[...]` non remplis dans la **fiche de compte** : un crochet
+  vide est un trou de process, pas un détail de rédaction.
+- **Encadrement** : jamais zéro (sinon c'est de la mise à disposition), et **jamais une ligne
+  facturée** — il est inclus dans le tarif ETP. Ce qui se négocie, c'est le volume : le
+  **référent dédié s'obtient à 5 positions facturées**, comme le palier 5+ (`PRICING §3`).
+- Plafond : le coût d'encadrement ne dépasse jamais **12 % du CA du compte**.
 - Ne jamais **facturer** la mise en service (affichée 490 € → **offerte**), en direct comme
   en MB. Le **dépôt d'activation MB n'est pas une facturation de la mise en service** : il
   est **imputable** et revient au partenaire dans ses 3 premières factures.

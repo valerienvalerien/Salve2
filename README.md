@@ -20,10 +20,14 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `02-Prospection/` | Séquences cold (`OUTREACH-*`) + one-pagers (chaînes médical, partenaire MB) |
 | `03-Cibles-Prospects/` | Analyses prospects (`PROSPECT-ANALYSIS-*`), décideurs, cibles ESN/télésec, ICP |
 | `04-Closing/` | Devis, contrat de prestation, DPA/RGPD, onboarding client |
-| `05-Process-Delivery/` | Grille QA + double écoute, modèles de reporting client |
+| `05-Process-Delivery/` | Grille QA + double écoute, gouvernance/chaîne de commandement, **arbre de décision d'onboarding** (armement du compte : référent mutualisé ou manager IT dédié) + gabarit de fiche de compte / call flow, modèles de reporting client |
 | `06-Warmup-Email/` | Warm-up email (démarrage, manuel) |
 
 ## Site / CRM (racine — ne pas déplacer)
 
 `index.html`, `CRM_Salverys.html`, simulateurs, espaces client/candidat, chartes,
 `assets/`, `tools/`. Build : `tools/build-site.sh`.
+
+Outils **internes** à la racine (non publiés — `build-site.sh` fonctionne sur liste
+blanche) : `arbre-decision-onboarding.html` (cadrage d'un nouveau compte, à dérouler en
+RDV), `tresorerie-salverys.html`, `retroplanning-salverys.html`, `rentabilite-horaire-salverys.html`.

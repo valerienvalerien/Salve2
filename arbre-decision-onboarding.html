@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Arbre de décision d'onboarding — Salverys (interne)</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FFFFFF; --bg-soft:#F6F2EA; --ink:#20303F; --text:#2A2620;
+  --text-soft:#5C5448; --text-mute:#8A8275; --line:#E7DFD1; --line-soft:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B; --accent:#6F8770; --accent-tint:#EAF0EA;
+  --gold:#B89968; --gold-tint:#F7F0E2; --danger:#B6604D; --danger-tint:#FAEDE9;
+  --radius:14px; --shadow-sm:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+  --shadow-md:0 10px 28px rgba(32,48,63,.10),0 3px 8px rgba(32,48,63,.06);
+}
+body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:#F8F5F0;color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-underline-offset:2px}
+code{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.9em;background:var(--bg-soft);padding:1px 5px;border-radius:5px;border:1px solid var(--line-soft)}
+
+/* Bandeau interne */
+.internal{background:var(--danger);color:#fff;text-align:center;padding:7px 16px;font-size:12.5px;font-weight:600;letter-spacing:.02em}
+
+/* En-tête */
+.head{background:var(--primary-deep);color:#fff;padding:44px 24px 40px;position:relative;overflow:hidden}
+.head::before{content:'';position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(111,135,112,.28),transparent 68%);top:-260px;left:62%;pointer-events:none}
+.head-in{max-width:1180px;margin:0 auto;position:relative}
+.head h1{font-size:clamp(24px,3.4vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.head h1 span{color:#8FA890}
+.head p{margin-top:10px;color:rgba(255,255,255,.68);font-size:14.5px;max-width:72ch}
+.head .refs{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.head .refs b{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.82);font-weight:500;font-size:12px;padding:4px 10px;border-radius:100px}
+
+/* Layout */
+.wrap{max-width:1180px;margin:0 auto;padding:26px 24px 80px;display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:26px;align-items:start}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr}}
+
+/* Cartes */
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px 24px;margin-bottom:20px}
+.card > h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-mute);font-weight:700;margin-bottom:4px}
+.card > .t{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.card > .sub{font-size:13.5px;color:var(--text-soft);margin-bottom:18px;max-width:80ch}
+
+/* Champs */
+.q{padding:15px 0;border-top:1px solid var(--line-soft)}
+.q:first-of-type{border-top:0;padding-top:4px}
+.q .lbl{font-size:14.5px;font-weight:600;margin-bottom:3px}
+.q .hint{font-size:12.5px;color:var(--text-mute);margin-bottom:10px;font-style:italic}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;width:0;height:0}
+.opts span{display:inline-block;border:1px solid var(--line);background:var(--bg-soft);border-radius:100px;padding:7px 14px;font-size:13px;font-weight:500;color:var(--text-soft);transition:.14s}
+.opts label:hover span{border-color:var(--accent);color:var(--text)}
+.opts input:checked + span{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow-sm)}
+.opts input:checked + span.ko{background:var(--danger);border-color:var(--danger)}
+.opts input:checked + span.warn{background:var(--gold);border-color:var(--gold);color:#2A2620}
+.opts input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.fld{display:flex;flex-direction:column;gap:5px}
+.fld label{font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:.05em}
+.fld input,.fld select{font-family:inherit;font-size:14px;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--text);min-width:130px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+
+/* Archétypes */
+.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.arch label{cursor:pointer}
+.arch input{position:absolute;opacity:0;width:0;height:0}
+.arch .box{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--bg-soft);height:100%;transition:.14s}
+.arch label:hover .box{border-color:var(--accent)}
+.arch input:checked + .box{background:var(--accent-tint);border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.arch .box b{display:block;font-size:14px;margin-bottom:3px}
+.arch .box em{display:block;font-size:12.2px;color:var(--text-soft);font-style:normal;line-height:1.45}
+.arch .box i{display:inline-block;margin-top:8px;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
+
+/* Panneau verdict */
+.side{position:sticky;top:18px}
+@media(max-width:1000px){.side{position:static}}
+.verdict{background:var(--primary-deep);color:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-md)}
+.verdict .k{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:rgba(255,255,255,.5);font-weight:700}
+.mode{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:6px 0 2px}
+.mode small{display:block;font-size:14px;font-weight:600;color:#8FA890;letter-spacing:0;margin-top:3px}
+.mgr{margin:16px 0 14px;padding:13px 15px;border-radius:11px;font-size:14px;font-weight:600;line-height:1.4}
+.mgr.yes{background:rgba(184,153,104,.18);border:1px solid rgba(184,153,104,.5);color:#EBD9B6}
+.mgr.no{background:rgba(111,135,112,.18);border:1px solid rgba(111,135,112,.5);color:#C5D8C6}
+.mgr em{display:block;font-style:normal;font-weight:400;font-size:12.5px;color:rgba(255,255,255,.62);margin-top:5px}
+.stats{border-top:1px solid rgba(255,255,255,.13);padding-top:13px;display:grid;gap:9px}
+.stat{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.stat span{color:rgba(255,255,255,.58)}
+.stat b{font-weight:700;text-align:right}
+.stat b.bad{color:#E2A08C}
+.stat b.ok{color:#A8C4A9}
+.flags{margin-top:14px;display:grid;gap:7px}
+.flag{font-size:12.4px;line-height:1.45;padding:9px 11px;border-radius:9px;background:rgba(255,255,255,.07);border-left:3px solid #8FA890}
+.flag.ko{background:rgba(182,96,77,.20);border-left-color:#E2A08C}
+.flag.warn{background:rgba(184,153,104,.16);border-left-color:#D4B98A}
+.btns{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:100px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#fff;cursor:pointer;transition:.14s}
+.btn:hover{background:rgba(255,255,255,.20)}
+.btn.pri{background:var(--accent);border-color:var(--accent)}
+.btn.pri:hover{background:#7d9a7e}
+
+/* Blocs contextuels */
+.ctx{margin-top:20px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm)}
+.ctx h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--text-mute);font-weight:700;margin-bottom:12px}
+.ctx ul{list-style:none;display:grid;gap:9px}
+.ctx li{font-size:13.4px;line-height:1.5;padding-left:20px;position:relative;color:var(--text-soft)}
+.ctx li::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.ctx li.ko::before{background:var(--danger)}
+.ctx li.warn::before{background:var(--gold)}
+.ctx li b{color:var(--text)}
+pre.flow{background:var(--primary-deep);color:#D8E0DA;border-radius:11px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.9px;line-height:1.65;overflow-x:auto;white-space:pre;margin-top:4px}
+
+/* Grille de décision */
+table.grid{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+table.grid th,table.grid td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+table.grid th{background:var(--bg-soft);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-mute)}
+table.grid td.on{background:var(--accent);color:#fff;font-weight:700}
+table.grid td.m2,table.grid td.m3{color:var(--text)}
+.note{font-size:12.4px;color:var(--text-mute);margin-top:10px;line-height:1.5}
+
+textarea.out{width:100%;min-height:230px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.8px;line-height:1.55;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--bg-soft);color:var(--text);resize:vertical;margin-top:10px}
+
+@media print{
+  .internal{background:#fff;color:#000;border-bottom:2px solid #000}
+  .head{background:#fff;color:#000}.head h1 span{color:#000}.head p,.head .refs b{color:#333}
+  .verdict{background:#fff;color:#000;border:2px solid #000}
+  .verdict .k,.stat span{color:#444}.mode small{color:#000}
+  .side{position:static}.wrap{grid-template-columns:1fr}
+  .btns,textarea.out{display:none}
+  pre.flow{background:#fff;color:#000;border:1px solid #000}
+}
+</style>
+</head>
+<body>
+
+<div class="internal">⚠️ DOCUMENT INTERNE — contient des planchers de prix et des coûts d'encadrement. Non publié par <code style="background:none;color:inherit;border:0">tools/build-site.sh</code>. Ne pas transmettre au client.</div>
+
+<header class="head">
+  <div class="head-in">
+    <h1>Arbre de décision <span>d'onboarding</span></h1>
+    <p>À dérouler pendant le RDV de cadrage (Phase 0). Décide de l'armement du compte : référent mutualisé ou <b>manager IT dédié</b>, intensité de QA, call flow, et à quelles conditions on refuse.</p>
+    <div class="refs">
+      <b>ARBRE-DECISION-ONBOARDING.md</b><b>FICHE-COMPTE-CALL-FLOW.md</b><b>ONBOARDING-CLIENT.md · Phase 0</b><b>PRICING.md · §3</b>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<main>
+
+  <!-- ÉTAGE 0 -->
+  <section class="card">
+    <h2>Étage 0</h2>
+    <div class="t">Les 4 verrous — GO / NO-GO</div>
+    <p class="sub">À passer <b>avant</b> toute discussion d'armement. Un verrou rouge = on n'onboarde pas, quel que soit l'intérêt du deal. Ils ne se compensent pas entre eux.</p>
+
+    <div class="q">
+      <div class="lbl">V1 — Régime de sous-traitance du partenaire <span style="color:var(--text-mute);font-weight:500">(ICP Q7)</span></div>
+      <div class="hint">« Votre contrat avec vos clients finaux prévoit quoi sur la sous-traitance ? »</div>
+      <div class="opts" data-name="v1">
+        <label><input type="radio" name="v1" value="ok" checked><span>Autorisation générale</span></label>
+        <label><input type="radio" name="v1" value="ok2"><span>Accord spécifique obtenu par écrit</span></label>
+        <label><input type="radio" name="v1" value="gel"><span class="warn">Accord requis, non obtenu → gel</span></label>
+        <label><input type="radio" name="v1" value="idk"><span class="warn">Il ne sait pas répondre</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">V1 bis — Clause de localisation des données (UE/EEE)</div>
+      <div class="hint">Madagascar est un pays tiers — <code>05-NOTE-TRANSFERT-HORS-UE.md</code></div>
+      <div class="opts">
+        <label><input type="radio" name="v1b" value="ok" checked><span>Aucune clause / levée</span></label>
+        <label><input type="radio" name="v1b" value="ko"><span class="ko">Clause stricte non levée</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">V4 — Le partenaire accepte-t-il la règle du canal unique ?</div>
+      <div class="hint">Les instructions descendent par le référent, jamais du client directement à l'agent (GOUVERNANCE §2)</div>
+      <div class="opts">
+        <label><input type="radio" name="v4" value="ok" checked><span>Oui — il prescrit les règles, on les applique</span></label>
+        <label><input type="radio" name="v4" value="mid"><span class="warn">Veut piloter au quotidien → co-pilotage cadré</span></label>
+        <label><input type="radio" name="v4" value="cv"><span class="warn">Veut choisir/interviewer les agents</span></label>
+        <label><input type="radio" name="v4" value="ko"><span class="ko">Veut fixer horaires, recadrer, sanctionner</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">V2 / V3 — Verrous économique et trésorerie</div>
+      <div class="row" style="margin-top:8px">
+        <div class="fld"><label>GTM</label>
+          <select id="gtm"><option value="mb">Marque blanche</option><option value="direct">Direct (client final)</option></select></div>
+        <div class="fld"><label>Prix appliqué €/ETP/mois</label><input id="prix" type="number" value="1750" step="50" min="0"></div>
+        <div class="fld"><label>Positions</label><input id="pos" type="number" value="3" min="1" max="30"></div>
+        <div class="fld" id="depot-fld"><label>Dépôt encaissé (MB)</label>
+          <select id="depot"><option value="ok">Oui, avant mise en service</option><option value="ko">Non / pas encore</option></select></div>
+      </div>
+      <p class="note">Plancher absolu <b>840 €/ETP</b> (<code>PRICING §3</code>, codé en dur dans <code>tools/deal-build.mjs</code>). Palier 5+ ⇒ minimum facturable de 5 positions à l'Annexe B. Dépôt MB : 900 €/position, plafond 2 700 €, <b>aucun recrutement engagé avant encaissement</b>.</p>
+    </div>
+  </section>
+
+  <!-- ÉTAGE 1 -->
+  <section class="card">
+    <h2>Étage 1</h2>
+    <div class="t">Typologie du compte</div>
+    <p class="sub">Détermine qui détient le référentiel, qui détient l'autorité technique — et donc le call flow.</p>
+    <div class="arch">
+      <label><input type="radio" name="arch" value="A1" checked><div class="box"><b>A1 — ESN / infogéreur</b><em>Achète de la capacité N1 sur un périmètre ITIL déjà cadré. N2 chez lui.</em><i>typique M0 / M1</i></div></label>
+      <label><input type="radio" name="arch" value="A2"><div class="box"><b>A2 — MSP</b><em>Multi-tenant, parcs hétérogènes, souvent de l'astreinte. Risque n°1 : l'erreur de tenant.</em><i>typique M2</i></div></label>
+      <label><input type="radio" name="arch" value="A3"><div class="box"><b>A3 — Éditeur SaaS, extension</b><em>Support déjà en production, veut de la capacité en plus. Le plus léger, le plus délicat en gouvernance.</em><i>typique M1</i></div></label>
+      <label><input type="radio" name="arch" value="A3R"><div class="box"><b>A3-R — Reprise de prestataire</b><em>Un sortant à remplacer. Transfert de KB + recouvrement + SLA suspendu.</em><i>typique M1 / M2</i></div></label>
+      <label><input type="radio" name="arch" value="A4"><div class="box"><b>A4 — Éditeur SaaS, création</b><em>Pas d'équipe, pas de KB. On construit le service. GTM direct, pas MB.</em><i>typique M2 / M3</i></div></label>
+      <label><input type="radio" name="arch" value="M1"><div class="box"><b>M1 — Télésec médical MB</b><em>Débordement d'un télésecrétariat FR. Créneaux, pas ETP.</em><i>typique M1</i></div></label>
+      <label><input type="radio" name="arch" value="M2"><div class="box"><b>M2 — Médical direct</b><em>Chaîne, cabinet de groupe. Aucun « N2 » n'existe côté client.</em><i>typique M1 / M2</i></div></label>
+    </div>
+  </section>
+
+  <!-- ÉTAGE 2 -->
+  <section class="card">
+    <h2>Étage 2</h2>
+    <div class="t">Variables d'armement</div>
+    <p class="sub">Quatre variables donnent l'<b>intensité</b> d'encadrement. Le volume (saisi ci-dessus) donne l'<b>exclusivité</b> du référent. Le croisement donne le mode.</p>
+
+    <div class="q">
+      <div class="lbl">D1 — Supervision côté client</div>
+      <div class="hint">« Qui, nommément, arbitre un doute technique de mon agent, et sous quel délai ? »</div>
+      <div class="opts">
+        <label><input type="radio" name="d1" value="0" checked><span>N2 nommé et joignable sur la plage</span></label>
+        <label><input type="radio" name="d1" value="2"><span>Un lead existe, peu disponible</span></label>
+        <label><input type="radio" name="d1" value="4"><span>Personne d'identifié</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">D2 — Maturité du référentiel</div>
+      <div class="hint">« Vos procédures N1 sont écrites où, et à quand remonte la dernière mise à jour ? »</div>
+      <div class="opts">
+        <label><input type="radio" name="d2" value="0" checked><span>KB / macros documentées et à jour</span></label>
+        <label><input type="radio" name="d2" value="2"><span>Partiel — le reste dans les têtes</span></label>
+        <label><input type="radio" name="d2" value="4"><span>Rien d'écrit</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">D4 — Surface de contextes</div>
+      <div class="hint">« Combien de clients finaux distincts la position servira-t-elle ? »</div>
+      <div class="opts">
+        <label><input type="radio" name="d4" value="0" checked><span>1</span></label>
+        <label><input type="radio" name="d4" value="2"><span>2 à 5</span></label>
+        <label><input type="radio" name="d4" value="4"><span>6 et plus</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">D5 — Amplitude &amp; continuité</div>
+      <div class="hint">Tana = UTC+3 → Paris +2 h en hiver, +1 h en été. 20 h Paris = 22 h à Tana.</div>
+      <div class="opts">
+        <label><input type="radio" name="d5" value="0" checked><span>7h–19h Paris (plage confort)</span></label>
+        <label><input type="radio" name="d5" value="2"><span>Étendue : jusqu'à 21h ou samedi</span></label>
+        <label><input type="radio" name="d5" value="4"><span class="warn">Nuit / astreinte / 24-7</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="lbl">Bonus d'intensité</div>
+      <div class="opts">
+        <label><input type="checkbox" id="crit"><span>Criticité (santé · paiement · prod client final) +2</span></label>
+        <label><input type="checkbox" id="prio"><span>Tier Priority souscrit +2</span></label>
+      </div>
+    </div>
+
+    <table class="grid" id="gridtbl">
+      <thead><tr><th>Positions ↓ / Intensité →</th><th>Faible (0-3)</th><th>Moyenne (4-7)</th><th>Forte (8+)</th></tr></thead>
+      <tbody>
+        <tr><th>1-2</th><td data-c="0-0">M0</td><td data-c="0-1">M1</td><td data-c="0-2">M2 ⚠️</td></tr>
+        <tr><th>3-4</th><td data-c="1-0">M1</td><td data-c="1-1">M1</td><td data-c="1-2">M2</td></tr>
+        <tr><th>5-7</th><td data-c="2-0">M2</td><td data-c="2-1">M2</td><td data-c="2-2">M3</td></tr>
+        <tr><th>8+</th><td data-c="3-0">M3</td><td data-c="3-1">M3</td><td data-c="3-2">M3</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><b>M2 à 1-2 positions</b> = alerte économique (700 € d'encadrement sur ~3 500 € de CA = 20 %). Trois issues dans l'ordre : faire retomber l'intensité (exiger un N2 nommé + la KB), monter à <b>5 positions facturées</b> — le référent dédié est un service de volume engagé, comme le palier 5+ — ou refuser.</p>
+  </section>
+
+  <!-- CONTEXTE -->
+  <section class="ctx" id="ctx-arch">
+    <h3>Prérequis et pièges de l'archétype</h3>
+    <ul id="arch-list"></ul>
+  </section>
+
+  <section class="ctx">
+    <h3>Call flow opérationnel — squelette à instancier</h3>
+    <pre class="flow" id="flow"></pre>
+    <p class="note">Copier dans <code>FICHE-COMPTE-CALL-FLOW.md §4</code> et remplacer <b>tous</b> les <code>[...]</code>. Un crochet non rempli au J1 est un trou de process.</p>
+  </section>
+
+  <section class="ctx">
+    <h3>Fiche de compte — export Markdown</h3>
+    <p class="note" style="margin-top:0">À coller dans <code>05-Process-Delivery/comptes/FICHE-&lt;COMPTE&gt;.md</code> (§2 du gabarit).</p>
+    <textarea class="out" id="md" readonly></textarea>
+  </section>
+
+</main>
+
+<!-- PANNEAU VERDICT -->
+<aside class="side">
+  <div class="verdict">
+    <div class="k">Mode d'armement</div>
+    <div class="mode" id="modeName">M1<small id="modeLbl">Mutualisé renforcé</small></div>
+
+    <div class="mgr no" id="mgrBox">
+      <span id="mgrTitle">Manager IT dédié : NON</span>
+      <em id="mgrWhy"></em>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span>Intensité</span><b id="sInt">0 — faible</b></div>
+      <div class="stat"><span>Comptes portés par le référent</span><b id="sShare">≤ 4</b></div>
+      <div class="stat"><span>Charge référent (régime)</span><b id="sLoad">11 h/sem</b></div>
+      <div class="stat"><span>CA mensuel du compte</span><b id="sCa">5 250 €</b></div>
+      <div class="stat"><span>Coût d'encadrement</span><b id="sCost">350 €/mois</b></div>
+      <div class="stat"><span>% du CA <span style="opacity:.6">(plafond 12 %)</span></span><b id="sPct" class="ok">6,7 %</b></div>
+      <div class="stat"><span>Vagues d'onboarding</span><b id="sWaves">1 vague</b></div>
+      <div class="stat"><span>Signature → J1</span><b id="sJ1">2-3 semaines</b></div>
+    </div>
+
+    <div class="flags" id="flags"></div>
+
+    <div class="btns">
+      <button class="btn pri" id="copy">Copier la fiche</button>
+      <button class="btn" onclick="window.print()">Imprimer</button>
+      <button class="btn" id="reset">Réinitialiser</button>
+    </div>
+  </div>
+</aside>
+</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const val = n => { const el = document.querySelector('input[name="'+n+'"]:checked'); return el ? el.value : null; };
+  const num = v => Number(v) || 0;
+
+  const MODES = {
+    M0:{lbl:'Mutualisé standard', comptes:'≤ 4', ecoutes:'≥ 2 / agent / sem.', joign:'4 h ouvrées', j1:'2-3 semaines'},
+    M1:{lbl:'Mutualisé renforcé', comptes:'≤ 2', ecoutes:'≥ 3 / agent / sem.', joign:'2 h ouvrées', j1:'2-3 semaines'},
+    M2:{lbl:'Référent dédié au compte', comptes:'1 seul', ecoutes:'≥ 3 / agent / sem. + revue KB', joign:'30 min sur la plage', j1:'4-5 semaines'},
+    M3:{lbl:'Cellule autonome', comptes:'1 seul + backup', ecoutes:'≥ 3 / agent / sem. + calibrage croisé', joign:'30 min + backup', j1:'6-8 semaines'}
+  };
+
+  const ARCH = {
+    A1:{nom:'ESN / infogéreur', items:[
+      ['','Périmètre N1 = <b>liste blanche écrite</b>, co-rédigée en Phase 0. Elle devient l\'Annexe de niche.'],
+      ['','Exiger un <b>N2 nommé et joignable</b> côté ESN. Sans nom, D1 = 4 et le compte bascule en M2 — donc le prix change.'],
+      ['warn','Vérifier <b>l\'écart de SLA</b> : ce que l\'ESN vend à son client final vs ce qu\'elle nous achète. L\'écart nous revient en réclamation.'],
+      ['warn','Le <b>delivery manager qui pilote au quotidien</b> est le marqueur de requalification n°1 sur cet archétype. Il prescrit, le référent applique.'],
+      ['','Appel d\'offres en cours → c\'est la contrepartie <b>appui avant-vente 48 h</b>. La concéder explicitement, <b>une seule</b>, et la tracer dans <code>tools/deals/*.json</code>.']
+    ]},
+    A2:{nom:'MSP', items:[
+      ['ko','<b>Fiche par tenant obligatoire</b> (contacts autorisés, périmètre, heures, exclusions) — prérequis bloquant de mise en service.'],
+      ['ko','<b>Identification du tenant avant tout acte</b> = critère KO de la grille QA du compte. Une action sans identification validée = fiche rouge.'],
+      ['','<b>KB cloisonnée par tenant</b>, jamais une KB « MSP » globale — risque de divulgation entre clients concurrents.'],
+      ['warn','Astreinte demandée → arbre d\'appel d\'urgence <b>par tenant</b>, jamais générique. Et validation direction (voir E5).'],
+      ['','Si le N2 est « le patron quand il peut » → D1 = 4. Prévoir un lead N1.5 dès 5 positions.']
+    ]},
+    A3:{nom:'Éditeur SaaS — extension d\'équipe existante', items:[
+      ['ko','<b>Verrou produit</b> : un référent produit côté éditeur engagé sur ~4 h/semaine pendant 4 semaines (sandbox + Q/R). Sans lui, l\'agent apprend le produit sur de vrais tickets → décaler le J1.'],
+      ['ko','<b>Verrou traçabilité</b> : tag ou groupe dédié dans le helpdesk. Sans traçabilité, notre SLA n\'est pas mesurable donc pas opposable — et l\'avoir de 20 % devient indéfendable dans les deux sens.'],
+      ['','<b>Répartition de la file</b> : par plage horaire (recommandé) ou par catégorie. Jamais « les tickets faciles » : périmètre non mesurable, démotivant, invisible au reporting.'],
+      ['warn','<b>Test gouvernance</b> : une instruction qui porte sur <b>un ticket</b> est légitime ; une instruction qui porte sur <b>une personne</b> ou <b>une journée</b> remonte au référent.'],
+      ['warn','<b>Ramp-up produit à annoncer avant signature</b> : ~40 % de productivité en S1-S2, ~70 % en S3-S4, plein régime à S6. L\'engagement SLA ne court qu\'à la bascule en régime.']
+    ]},
+    A3R:{nom:'Reprise de prestataire sortant', items:[
+      ['ko','<b>Transfert de KB écrit et daté</b> — condition n°1.'],
+      ['ko','<b>Recouvrement ≥ 2 semaines</b> avec le prestataire sortant.'],
+      ['ko','<b>Engagement de service suspendu</b> jusqu\'à la fin du recouvrement. Sans ces trois points, on hérite d\'un SLA intenable.'],
+      ['','Traiter le reste comme A3 : verrou produit, verrou traçabilité, répartition de file.'],
+      ['warn','Demander <b>pourquoi</b> le sortant part. Si c\'est un problème de SLA, vérifier que la cause n\'est pas côté client (N2 absent, KB inexistante) — sinon on hérite du problème, pas du contrat.']
+    ]},
+    A4:{nom:'Éditeur SaaS — création de la fonction support', items:[
+      ['ko','<b>Verrou d\'escalade</b> : qui, nommément, chez l\'éditeur, répond à un ticket que le N1 ne sait pas traiter, et sous quel délai ? Sans réponse nominative → NO-GO : on vendrait un service dont on ne maîtrise pas la sortie.'],
+      ['','<b>On porte le référentiel</b> : catégories, matrice de priorités, macros, KB v0, arbre d\'escalade. C\'est un livrable Salverys, cadré et daté — sinon il n\'a pas de fin.'],
+      ['warn','<b>GTM direct, pas MB</b> : grille <code>PRICING §3</code> colonne « En direct » (1 900-2 400 €/ETP support N1), mois pilote −50 %, mise en service offerte, <b>pas de dépôt d\'activation</b>.'],
+      ['','<b>Boucle KB</b> : tout ticket non couvert → fiche KB sous 48 h. C\'est le livrable qui fait la valeur du compte, pas le ticket.'],
+      ['','+2 semaines sur le délai J1 pour le build.']
+    ]},
+    M1:{nom:'Télésecrétariat médical — marque blanche', items:[
+      ['','Référent <b>médical</b>, pas IT. Grille QA variante MÉDICAL (KO = exactitude de saisie + secret médical).'],
+      ['','Unité de volume = <b>créneaux</b>, pas ETP (<code>PRICING §1.b</code> : tarification à l\'appel par créneau).'],
+      ['warn','D4 = nombre de <b>cabinets</b> servis derrière le télésec — il monte vite. Intensité moyenne quasi systématique → M1 minimum.'],
+      ['warn','Le créneau <b>soir 20h-22h Paris = 22h-minuit à Tana</b> en hiver : c\'est du travail de nuit, pas de la soirée. À staffer comme tel.'],
+      ['ko','<b>Qualifier le prix d\'achat cible dès le 1er échange</b> (leçon Callmed) — un partenariat n\'est viable que sur les créneaux que son plateau ne couvre pas.']
+    ]},
+    M2:{nom:'Médical direct — chaîne ou cabinet de groupe', items:[
+      ['','D1 = 4 par nature : aucun cabinet n\'a de « N2 ». Intensité au moins moyenne → <b>M1 minimum même à 2 positions</b>.'],
+      ['','Multi-sites → <b>une fiche par site</b> (praticiens, motifs, urgences, renvois).'],
+      ['','KPI engagé : <b>décroché ≥ 90 %</b>, avoir 20 % si non tenu (<code>PRICING §7</code>).'],
+      ['','Parler de <b>forfait</b>, jamais d\'« abonnement ».'],
+      ['warn','Mois pilote <b>−50 %</b> (direct), mise en service offerte, <b>pas de dépôt</b>.']
+    ]}
+  };
+
+  const FLOWS = {
+    A1:`1. ENTRÉE          ticket dans l'ITSM de l'ESN, file [nom] · ou appel routé du SVI
+2. PRISE EN CHARGE accusé + statut « en cours » sous [SLA prise en charge]
+                   ⏱ le chrono du SLA démarre ici
+3. QUALIFICATION   catégorie + priorité selon la MATRICE DE L'ESN (jamais la nôtre)
+4. PÉRIMÈTRE       liste blanche N1 : [MDP, comptes, VPN, impression, poste, O365…]
+                   ├─ dans la liste → étape 5
+                   └─ hors liste    → étape 7 IMMÉDIATEMENT, aucune tentative
+5. DIAGNOSTIC      KB de l'ESN uniquement · chaque action tracée dans le ticket
+6. ISSUE           ├─ résolu     → confirmation utilisateur → clôture + note
+                   └─ non résolu à [T min] → étape 7
+7. ESCALADE        N2 DE L'ESN, file [nom]. Jamais un N2 Salverys.
+   MÉTIER          Passation écrite : symptôme, testé, écarté, criticité.
+8. ESCALADE        doute process · réclamation · doute RGPD · incident majeur
+   EXPLOITATION    → RÉFÉRENT SALVERYS sous [délai]
+                   ❌ l'agent ne parle jamais au client final (contrat art. 10)
+9. CONTINUITÉ      kit d'autonomie → hub de repli · info donneur d'ordre sous [délai]`,
+    A2:`0.a IDENTIFICATION DU TENANT  avant toute lecture de procédure et toute action
+                              source de vérité : [PSA / IT-Glue / fiche tenant]
+0.b DROIT À AGIR              le demandeur est-il dans les contacts autorisés
+                              de CE tenant ? Sinon → refus poli + notif au MSP
+0.c COUVERTURE                la demande entre-t-elle dans le contrat DE CE TENANT
+                              (périmètre, heures, exclusions) ? Sinon → étape 7
+1. ENTRÉE          ticket [PSA/RMM], file [nom] · appel [ligne]
+2. PRISE EN CHARGE accusé sous [SLA] · ⏱ chrono
+3. QUALIFICATION   catégories du MSP · priorité selon le contrat du tenant
+4. PÉRIMÈTRE       liste blanche N1 [par tenant si elle diffère]
+5. DIAGNOSTIC      KB CLOISONNÉE du tenant · jamais une KB globale
+6. ISSUE           résolu → clôture · non résolu à [T] → étape 7
+7. ESCALADE MÉTIER N2 du MSP, file [nom] · hors heures : arbre d'appel [par tenant]
+8. ESCALADE EXPL.  → RÉFÉRENT SALVERYS sous [délai]
+9. CONTINUITÉ      kit d'autonomie → hub de repli · info sous [délai]
+
+⚠️ KO grille QA du compte : action engagée sans identification de tenant validée.`,
+    A3:`1. ENTRÉE          vue [nom] du helpdesk · attribution par [plage horaire | catégorie]
+                   🏷 tag/groupe [nom] appliqué systématiquement = preuve du SLA
+2. PRISE EN CHARGE 1re réponse sous [SLA 1re réponse] · macro d'accusé [nom]
+3. QUALIFICATION   catégories de l'éditeur · « bug produit » vs « usage »
+4. PÉRIMÈTRE       N1 = [usage, paramétrage, compte/facturation, how-to, incidents connus]
+                   ├─ dans le périmètre → étape 5
+                   └─ hors → étape 6
+5. TRAITEMENT      KB + macros de l'éditeur · réponse sous la marque de l'éditeur
+6. ESCALADE        ├─ bug produit → file [nom] AVEC template de reproduction :
+   MÉTIER          │  version, environnement, étapes, attendu/obtenu, capture, impact
+                   ├─ demande commerciale / churn → file [nom], jamais en N1
+                   └─ N2 support interne de l'éditeur sous [T]
+7. ESCALADE        priorisation contradictoire · instruction adressée à la PERSONNE
+   EXPLOITATION    et non au ticket · réclamation → RÉFÉRENT SALVERYS
+8. RITUELS         daily de l'éditeur : présence en écoute ✅ · réception d'ordres ❌`,
+    A4:`0. BUILD (Phase 1) catégories · matrice de priorités · macros v0 · KB v0 ·
+                   arbre d'escalade → validés par [sponsor éditeur], datés, versionnés
+1. ENTRÉE          [outil retenu], vue [nom]
+2. PRISE EN CHARGE 1re réponse sous [SLA] — ne court qu'à la bascule en régime
+3. QUALIFICATION   [catégories construites en Phase 1]
+4. PÉRIMÈTRE       [liste blanche N1 construite en Phase 1]
+5. TRAITEMENT      [KB v0] · réponse sous la marque de l'éditeur
+6. ESCALADE        [qui, nommément, chez l'éditeur — verrou de cadrage] sous [T]
+   MÉTIER
+6.b BOUCLE KB      tout ticket non couvert → fiche KB rédigée sous 48 h
+7. ESCALADE EXPL.  → RÉFÉRENT SALVERYS sous [délai]
+8. CONTINUITÉ      kit d'autonomie → hub de repli · info sous [délai]`,
+    M1:`1. ENTRÉE          appel routé par le télésec sur le créneau [nom] · outil [nom]
+2. DÉCROCHÉ        sous [n] sonneries · accueil au nom de [cabinet], formule convenue
+3. QUALIFICATION   urgence vs RDV vs message · selon les consignes DU CABINET
+4. PÉRIMÈTRE       [prise de RDV, annulation, message, orientation] — jamais de conseil médical
+5. TRAITEMENT      saisie agenda [outil] · exactitude = critère KO
+6. ISSUE           résolu → récapitulatif + prise de congé
+                   urgence → [protocole du cabinet : renvoi, n° d'urgence, consigne]
+7. ESCALADE MÉTIER [contact du télésec] · [canal] · [délai]
+8. ESCALADE EXPL.  doute RGPD / secret médical · réclamation → RÉFÉRENT MÉDICAL
+9. CONTINUITÉ      kit d'autonomie → hub de repli · info sous [délai]
+
+⚠️ Aucun enregistrement d'appel patient. Double écoute en poste à poste.`,
+    M2:`1. ENTRÉE          appel du patient sur la ligne [cabinet / site]
+2. DÉCROCHÉ        sous [n] sonneries · « Cabinet [nom], bonjour »
+3. QUALIFICATION   urgence · RDV · annulation · message · résultat
+4. PÉRIMÈTRE       [par site : praticiens, motifs, durées, créneaux réservés]
+5. TRAITEMENT      saisie [Doctolib/Maiia/Médistory/Cegedim] — exactitude = KO
+6. ISSUE           résolu → récapitulatif · urgence → [protocole du site]
+7. ESCALADE MÉTIER [praticien/secrétaire référente du site] · [canal] · [délai]
+8. ESCALADE EXPL.  doute secret médical · réclamation patient → RÉFÉRENT MÉDICAL
+9. CONTINUITÉ      kit d'autonomie → hub de repli · info sous [délai]
+
+KPI engagé : décroché ≥ 90 % · avoir 20 % si non tenu.`
+  };
+  FLOWS.A3R = FLOWS.A3;
+
+  function compute(){
+    const arch = val('arch');
+    const n = Math.max(1, num($('#pos').value));
+    const prix = num($('#prix').value);
+    const gtm = $('#gtm').value;
+    const d1 = num(val('d1')), d2 = num(val('d2')), d4 = num(val('d4')), d5 = num(val('d5'));
+    const bonus = ($('#crit').checked?2:0) + ($('#prio').checked?2:0);
+    const intensity = d1+d2+d4+d5+bonus;
+    const iBand = intensity<=3 ? 0 : intensity<=7 ? 1 : 2;
+    const iLbl  = ['faible','moyenne','forte'][iBand];
+    const vBand = n<=2 ? 0 : n<=4 ? 1 : n<=7 ? 2 : 3;
+
+    const GRID = [['M0','M1','M2'],['M1','M1','M2'],['M2','M2','M3'],['M3','M3','M3']];
+    let mode = GRID[vBand][iBand];
+    const order = ['M0','M1','M2','M3'];
+    if (d5 === 4 && order.indexOf(mode) < 2) mode = 'M2';
+
+    // Économie
+    const ca = n * prix;
+    const cost = mode==='M0' ? 87.5*n : mode==='M1' ? 116.67*n : mode==='M2' ? 700 : 840;
+    const pct = ca > 0 ? (cost/ca)*100 : 0;
+    const load = n*3 + 2;
+    const waves = Math.ceil(n/3);
+
+    // Drapeaux
+    const F = [];
+    const v1 = val('v1'), v1b = val('v1b'), v4 = val('v4');
+    if (v1b === 'ko') F.push(['ko','🔴 <b>NO-GO — clause de localisation UE/EEE</b> non levée. Madagascar est un pays tiers. Rien ne démarre tant qu\'elle tient.']);
+    if (v4 === 'ko') F.push(['ko','🔴 <b>NO-GO — gouvernance.</b> Fixer les horaires, recadrer, sanctionner = mise à disposition. Requalification prêt de main-d\'œuvre (L.8241-1).']);
+    if (v1 === 'gel') F.push(['warn','🟠 <b>Gel.</b> Accord spécifique requis et non obtenu : aucun recrutement engagé avant confirmation écrite du partenaire.']);
+    if (v1 === 'idk') F.push(['warn','🟠 Le partenaire <b>ne sait pas répondre</b> sur la sous-traitance. Forcer la réponse avant l\'Annexe B — c\'est là que les deals meurent, après la signature.']);
+    if (v4 === 'cv') F.push(['warn','🟠 <b>CV anonymisés uniquement.</b> Visio de lancement collective ✅, entretien de sélection individuel ❌ (art. 10 bis). S\'il insiste → NO-GO.']);
+    if (v4 === 'mid') F.push(['warn','🟠 <b>Co-pilotage cadré</b> à poser explicitement : instruction sur un ticket ✅, instruction sur une personne ou une journée → référent.']);
+    if (prix < 840) F.push(['ko','🔴 <b>Sous le plancher de 840 €/ETP.</b> On signerait à perte. <code>deal-build.mjs</code> refusera de générer la proposition.']);
+    if (n >= 5) F.push(['','🔒 Palier 5+ : acter le <b>minimum facturable de 5 positions</b> à l\'Annexe B, dues consommées ou non. Sinon, appliquer le prix du palier 3 ETP.']);
+    if (gtm === 'mb' && $('#depot').value === 'ko') F.push(['ko','🔴 <b>Dépôt d\'activation non encaissé.</b> Aucun recrutement engagé avant l\'encaissement — c\'est tout l\'intérêt du dispositif (encaissement J0 au lieu de J+30).']);
+    if (gtm === 'mb' && n >= 5) F.push(['warn','💶 5 positions = <b>~3 500 €/mois de fees</b> engagés et <b>5 à 7 semaines</b> avant la première facture. Vérifier la trésorerie, pas seulement la marge.']);
+    if (pct > 12) F.push(['ko','🔴 <b>Encadrement à '+pct.toFixed(1).replace('.',',')+' % du CA</b>, au-dessus du plafond de 12 %. Faire retomber l\'intensité (N2 nommé + KB écrite), monter à 5 positions facturées, ou refuser.']);
+    if (mode === 'M2' && n <= 2) F.push(['warn','⚠️ <b>Référent dédié sur 1-2 positions</b> : le référent dédié est un service de <b>volume engagé</b>. Il s\'obtient à 5 positions facturées, comme le palier 5+ — il ne se facture jamais en ligne séparée.']);
+    if (d5 === 4) F.push(['warn','🌙 <b>Nuit / astreinte.</b> Tana = UTC+3 : 20 h Paris = 22 h à Tana, 22 h Paris = minuit. Au-delà de 19h-20h Paris ce n\'est plus de l\'amplitude, c\'est de la nuit — prime, fatigue, turnover. <b>Refus par défaut avant M12</b>, sinon validation direction + surcoût + rotation écrite.']);
+    if (n >= 8) F.push(['','👥 <b>M3</b> : le lead technique N1.5 est une <b>position facturée</b> (il produit). Le référent et le doc owner restent inclus.']);
+    if (waves > 1) F.push(['','📅 Plafond de <b>3 positions en onboarding simultané</b> → <b>'+waves+' vagues</b>. Séquencer le J1 et l\'annoncer au cadrage, pas trois semaines après.']);
+    if (d1 === 4 && d2 === 4) F.push(['','🧭 Personne ne porte le métier ni l\'écrit côté client → c\'est nous qui le portons. Intensité forte mécanique, et c\'est justifié.']);
+    if (arch === 'A4' && gtm === 'mb') F.push(['warn','↔️ A4 (création de fonction) se vend <b>en direct</b>, pas en marque blanche : l\'éditeur ne revend pas. Grille « En direct », mois pilote −50 %, pas de dépôt.']);
+    if (F.length === 0) F.push(['','✅ Aucun point bloquant. Passer à la fiche de compte et figer le périmètre.']);
+
+    return {arch,n,prix,gtm,d1,d2,d4,d5,bonus,intensity,iLbl,mode,ca,cost,pct,load,waves,F};
+  }
+
+  function render(){
+    const r = compute();
+    const M = MODES[r.mode];
+
+    $('#modeName').firstChild.nodeValue = r.mode;
+    $('#modeLbl').textContent = M.lbl;
+
+    const dedie = (r.mode === 'M2' || r.mode === 'M3');
+    const box = $('#mgrBox');
+    box.className = 'mgr ' + (dedie ? 'yes' : 'no');
+    $('#mgrTitle').textContent = 'Manager IT dédié : ' + (dedie ? 'OUI' : 'NON');
+    $('#mgrWhy').innerHTML = dedie
+      ? 'Un référent d\'exploitation sur ce seul compte. Condition d\'octroi : <b>5 positions facturées</b>. Jamais une ligne facturée — inclus dans le tarif ETP.'
+      : 'Référent mutualisé (' + M.comptes + ' comptes). L\'autorité technique reste côté client — <b>la faire nommer au cadrage</b>. L\'encadrement d\'exploitation, lui, n\'est jamais nul.';
+
+    $('#sInt').textContent  = r.intensity + ' — ' + r.iLbl;
+    $('#sShare').textContent = M.comptes;
+    $('#sLoad').textContent = r.load + ' h/sem';
+    $('#sCa').textContent   = r.ca.toLocaleString('fr-FR') + ' €';
+    $('#sCost').textContent = Math.round(r.cost).toLocaleString('fr-FR') + ' €/mois';
+    const p = $('#sPct');
+    p.textContent = r.pct.toFixed(1).replace('.',',') + ' %';
+    p.className = r.pct > 12 ? 'bad' : 'ok';
+    $('#sWaves').textContent = r.waves + (r.waves > 1 ? ' vagues' : ' vague');
+    $('#sJ1').textContent = (r.arch === 'A4') ? M.j1.replace(/(\d)-(\d)/, (m,a,b)=>(+a+2)+'-'+(+b+2)) : M.j1;
+
+    $('#flags').innerHTML = r.F.map(f => '<div class="flag ' + f[0] + '">' + f[1] + '</div>').join('');
+
+    // Grille : surligner la case active
+    const vB = r.n<=2?0:r.n<=4?1:r.n<=7?2:3;
+    const iB = r.intensity<=3?0:r.intensity<=7?1:2;
+    document.querySelectorAll('#gridtbl td').forEach(td => td.classList.remove('on'));
+    const cell = document.querySelector('#gridtbl td[data-c="'+vB+'-'+iB+'"]');
+    if (cell) cell.classList.add('on');
+
+    // Contexte archétype
+    const A = ARCH[r.arch];
+    $('#ctx-arch').querySelector('h3').textContent = 'Prérequis et pièges — ' + A.nom;
+    $('#arch-list').innerHTML = A.items.map(i => '<li class="' + i[0] + '">' + i[1] + '</li>').join('');
+    $('#flow').textContent = FLOWS[r.arch];
+
+    $('#depot-fld').style.display = (r.gtm === 'mb') ? '' : 'none';
+
+    // Export Markdown
+    const lbl = {0:{d1:'N2 nommé et joignable',d2:'documenté',d4:'1',d5:'7h-19h Paris'},
+                 2:{d1:'lead peu disponible',d2:'partiel',d4:'2-5',d5:'étendue'},
+                 4:{d1:'personne d\'identifié',d2:'inexistant',d4:'6+',d5:'astreinte / 24-7'}};
+    const md =
+`### 2.2 Variables et verdict — généré le ${new Date().toLocaleDateString('fr-FR')}
+
+| Variable | Valeur retenue | Points |
+|---|---|---|
+| D1 — Supervision côté client | ${lbl[r.d1].d1} | ${r.d1} |
+| D2 — Maturité du référentiel | ${lbl[r.d2].d2} | ${r.d2} |
+| D4 — Contextes clients finaux | ${lbl[r.d4].d4} | ${r.d4} |
+| D5 — Amplitude & continuité | ${lbl[r.d5].d5} | ${r.d5} |
+| Bonus (criticité / Priority) | ${$('#crit').checked?'criticité ':''}${$('#prio').checked?'Priority':''}${r.bonus?'':'aucun'} | +${r.bonus} |
+| **Total intensité** | **${r.iLbl}** | **${r.intensity}** |
+| D3 — Positions | ${r.n} | bande ${r.n<=2?'1-2':r.n<=4?'3-4':r.n<=7?'5-7':'8+'} |
+
+> **Mode d'armement retenu : ${r.mode} — ${M.lbl}**
+> Archétype : ${A.nom} · GTM : ${r.gtm==='mb'?'marque blanche':'direct'}
+
+**Manager IT dédié : ${dedie?'OUI':'NON'}** — ${dedie
+  ? 'référent d\'exploitation sur ce seul compte, condition de volume à vérifier (≥ 5 positions facturées).'
+  : 'référent mutualisé (' + M.comptes + ' comptes) ; autorité technique portée par le client — À NOMMER : [nom, fonction, délai d\'arbitrage].'}
+
+### 2.3 Contrôle économique
+
+| | |
+|---|---|
+| CA mensuel du compte | ${r.ca.toLocaleString('fr-FR')} € (${r.n} × ${r.prix.toLocaleString('fr-FR')} €) |
+| Coût d'encadrement projeté | ${Math.round(r.cost).toLocaleString('fr-FR')} €/mois |
+| **% du CA** | **${r.pct.toFixed(1).replace('.',',')} %** — plafond 12 % ${r.pct>12?'⚠️ DÉPASSÉ':'✅'} |
+| Charge référent (régime) | ${r.load} h/semaine |
+| Vagues d'onboarding | ${r.waves} (plafond 3 positions simultanées) |
+| Signature → J1 | ${$('#sJ1').textContent} |
+| Double écoute | ${M.ecoutes} |
+| Joignabilité du référent | ${M.joign} |
+
+### Points ouverts issus de l'arbre
+
+${r.F.map(f => '- ' + f[1].replace(/<[^>]+>/g,'')).join('\n')}
+`;
+    $('#md').value = md;
+  }
+
+  document.addEventListener('input', render);
+  document.addEventListener('change', render);
+
+  $('#copy').addEventListener('click', function(){
+    const ta = $('#md');
+    ta.select(); ta.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(ta.value).then(()=>{
+      this.textContent = 'Copié ✓';
+      setTimeout(()=>{ this.textContent = 'Copier la fiche'; }, 1800);
+    }).catch(()=>{ document.execCommand('copy'); });
+  });
+
+  $('#reset').addEventListener('click', function(){
+    document.querySelectorAll('input[type=radio]').forEach(el => { el.checked = (el.value === 'ok' || el.value === '0' || el.value === 'A1'); });
+    document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
+    $('#pos').value = 3; $('#prix').value = 1750; $('#gtm').value = 'mb'; $('#depot').value = 'ok';
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

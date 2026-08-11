@@ -26,6 +26,12 @@ strictement :
 
 **Un agent Salverys n'a donc qu'un seul manager : son référent d'exploitation.**
 
+> 🧭 **Combien de référents, et dédiés ou mutualisés ?** Ce document dit *qui commande* ;
+> `ARBRE-DECISION-ONBOARDING.md` dit *comment on l'arme compte par compte* (référent
+> mutualisé ou manager IT dédié, selon le volume, la supervision côté client, le
+> référentiel, la surface de clients finaux et l'amplitude). L'encadrement d'exploitation,
+> lui, n'est **jamais** nul : c'est ce §1 qui l'impose, pas une préférence d'organisation.
+
 Le delivery manager de l'ESN et le head of support du client final **ne sont pas ses
 managers**. Ce sont des *prescripteurs de règles*, et ces règles lui parviennent par un
 canal — le cadrage, les scripts, les procédures — jamais par des ordres quotidiens.
