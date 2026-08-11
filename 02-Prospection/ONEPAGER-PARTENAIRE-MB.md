@@ -72,16 +72,48 @@ minimum local et tourne en 6 mois — votre qualité part avec lui.
 3. **En régime** : l'engagement de service s'active (KPI convenu, 20 % d'avoir en deçà).
    Vous étendez le périmètre à votre rythme.
 
+---
+
+## La conversation que vous redoutez, on vous la prépare
+
+Le vrai obstacle n'est pas de trouver de la capacité. C'est le moment où vous devez
+expliquer à un client déjà en place que vous vous appuyez sur un sous-traitant.
+
+Mal amenée, cette conversation coûte la confiance : *ils réduisent leurs coûts sur mon dos,
+ils perdent la main, mes données partent à l'étranger.* Bien amenée, elle la renforce : *ils
+investissent pour tenir mes engagements, et ils maîtrisent leur chaîne.* **La variable n'est
+pas qu'il y ait un sous-traitant — c'est que vous arriviez avec le dossier bouclé plutôt
+qu'avec une demande.**
+
+Alors on vous le donne, **sous 48 h ouvrées**, prêt à porter votre nom :
+
+| Pièce | Ce qu'elle éteint |
+|---|---|
+| **Engagement de service écrit** | « qu'est-ce qui est garanti, et s'il ne l'est pas ? » |
+| **Plan de continuité** | « et si l'électricité saute à Madagascar ? » |
+| **Dispositif qualité** | « comment la qualité tient dans la durée ? » |
+| **Profils anonymisés** | « qui sont les gens, concrètement ? » |
+| **DPA + note transfert hors UE (CCT)** | « mes données sortent d'Europe ? » |
+
+**Réutilisable tel quel dans vos réponses d'appels d'offres** — y compris celles qui n'ont
+rien à voir avec nous. Vous ne repartez pas seulement avec de la capacité : vous repartez
+avec de quoi **gagner vos propres marchés**.
+
+Un point qu'on vous dira franchement au cadrage plutôt que de le découvrir ensemble : votre
+contrat avec vos clients finaux prévoit-il une **autorisation générale** de sous-traitance ou
+un **accord spécifique préalable** ? Y a-t-il une clause de localisation des données ? C'est
+la question qui fait dérailler ces dossiers quand elle arrive trop tard.
+
+---
+
+## Sur le prix : ce qu'on ne fait pas, et ce qu'on fait à la place
+
 **Nous ne remisons pas notre prix de gros.** Vous revendez : une remise gonflerait votre
 marge d'un mois, elle ne vous aiderait pas à gagner votre client. Ce qu'on vous donne à la
 place enlève du **risque**, pas du prix :
 
 - **Vous pouvez arrêter en prévenant 30 jours** pendant les 3 premiers mois.
 - **Exclusivité sur votre territoire ou votre segment pendant 12 mois.**
-- **Notre dossier avant-vente sous 48 h** — plan de continuité, DPA, dispositif QA, CV
-  anonymisés, engagement SLA écrit — **réutilisable tel quel dans vos propres réponses
-  d'appels d'offres**. C'est le seul de ces trois points qui vous aide à **gagner un
-  client**, pas seulement à en économiser un.
 
 *Une avance d'activation, imputable sur vos premières factures, est demandée à la signature :
 elle couvre le recrutement et la formation engagés pour vous, et vous revient intégralement
