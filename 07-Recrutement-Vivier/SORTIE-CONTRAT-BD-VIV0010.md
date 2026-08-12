@@ -5,107 +5,245 @@
 >
 > Référence : `CONTRAT-PRESTATION-BD-VIV0010-Randrianasinoro.md` · NDA annexé :
 > `NDA-CONSULTANT-VIV0010-Randrianasinoro.md`
+>
+> **Objectif retenu (direction, 12/08/2026) : sortie la plus rapide possible**, sans
+> attendre le terme du 30 septembre.
 
 ---
 
-## 1. Calendrier verrouillé
+## 1. Réponse directe : y a-t-il un préavis ?
 
-| Repère | Date | Base contractuelle |
-|---|---|---|
-| Signature | **30 juin 2026** | art. 6.1 |
-| Terme de la période initiale (3 mois) | **30 septembre 2026** | art. 6.1 |
-| **Date limite de notification de non-reconduction (J-15)** | **15 septembre 2026** | art. 2.4 al. 2 |
-| Envoi recommandé (marge de sécurité + accusé) | **10 septembre 2026** | — |
-| Reconduction tacite automatique si rien n'est envoyé | 1ᵉʳ octobre 2026, par périodes d'1 mois | art. 6.2 |
+**Non, il n'y a pas de préavis** au sens de l'art. 6.3 — cette clause n'est **pas ouverte**
+avant le 30 septembre (« à tout moment **après** la période initiale »).
 
-**Si le 15 septembre est dépassé** : reconduction automatique, puis sortie uniquement par
-l'art. 6.3 (préavis d'1 mois, mission poursuivie normalement pendant le préavis).
-**Coût du retard : 2 800 000 Ar** d'honoraires supplémentaires.
+**Mais il y a un délai incompressible** sur la seule voie unilatérale disponible :
+l'art. 6.4 impose une **mise en demeure écrite + sept (7) jours** avant de pouvoir résilier
+de plein droit. Ce délai n'est pas négociable : le sauter rend la résiliation elle-même
+fautive et ouvre droit à dommages-intérêts contre la Société.
 
-⛔ Avant le 30 septembre, **l'art. 6.3 n'est pas ouvert** : il ne joue qu'« à tout moment
-**après** la période initiale ». La seule sortie anticipée possible est l'art. 6.4
-(manquement grave).
+**Conclusion : une sortie unilatérale « d'ici la fin de la semaine » est impossible.**
+La seule voie qui permet une sortie sous 3-4 jours est la **résiliation d'un commun accord**
+(§3), que rien dans le contrat n'interdit et qui ne suppose aucun délai.
 
 ---
 
-## 2. Tri des griefs : ce qui est utilisable, ce qui est à bannir
+## 2. Calendrier des trois voies
 
-### ✅ Utilisable — obligations contractuelles concrètes non exécutées (art. 6.4)
+| Voie | Départ | Sortie effective | Coût total (juillet + solde) | Risque |
+|---|---|---|---|---|
+| **A — Accord amiable** (§3) | proposition dès le 13/08 | **15-20 août** | 5 600 000 Ar | ✅ quasi nul — recours éteints par la renonciation réciproque |
+| **B — Manquement grave art. 6.4** (§5) | mise en demeure le 15/08 | **23 août** | 5 600 000 Ar | ⚠️ contestable — phase amiable 30 j puis tribunal (art. 11) |
+| **C — Non-reconduction art. 2.4** (§7) | notification avant le 15/09 | 30 septembre | 8 400 000 Ar | ✅ nul, mais 6 semaines de plus |
 
-Ce sont des **faits vérifiables**, rattachés à une clause précise :
+Rappels : honoraires 2 800 000 Ar/mois (art. 4.1) · signature 30/06/2026 · terme de la
+période initiale 30/09/2026 · J-15 de notification = 15/09/2026.
 
-| Fait constaté | Clause violée |
+### 🎯 Recommandation
+
+**À coût identique (5,6 M Ar), la voie A domine strictement la voie B.** Même sortie, même
+prix, mais aucun risque de contentieux et une renonciation à recours signée.
+
+**Donc : proposer l'accord amiable en premier. La voie B n'est qu'un plan de repli si elle
+refuse de signer.** Le contexte est favorable — elle se désengage visiblement (refus
+d'appels, fichier non partagé, demande d'absence) ; une sortie négociée a de bonnes chances
+d'être accueillie comme un soulagement des deux côtés.
+
+**Ne pas envoyer la mise en demeure en même temps que la proposition amiable.** Les deux
+ensemble se lisent comme une menace et durcissent la négociation. Ordre : proposition
+amiable → 48 h → si refus ou silence, mise en demeure.
+
+---
+
+## 3. 🔴 Urgent — les trois pièges de la conversation WhatsApp
+
+La capture du 12/08 contient des éléments qui **jouent contre la Société** en cas de
+requalification. À traiter avant toute sortie.
+
+### Piège n°1 — « Je te demande 3 jours de congé »
+
+Un prestataire indépendant **ne demande pas de congés** : il organise librement son temps
+(art. 1.3). Si tu réponds « je t'accorde 3 jours », tu crées de tes propres mains un indice
+de subordination — le plus lisible de tous.
+
+**Ne réponds jamais en termes d'autorisation.** Réponse à envoyer (§4).
+
+### Piège n°2 — « Bonjour chef »
+
+Terme de subordination. Il vient d'elle, pas de toi, donc l'impact est limité — mais ne le
+reprends jamais à ton compte et n'y réponds pas sur ce registre.
+
+### Piège n°3 — « Si ajd tu n'appelles pas, je passerai quelques appels de mon côté »
+
+Instruction sur l'activité **quotidienne**, qui touche à l'organisation du travail — or
+l'art. 1.3 pose qu'elle « n'est soumise à aucun horaire imposé » et « conserve la maîtrise
+de l'organisation de son travail ». Pour la suite, formuler en **livrables et échéances**
+(« j'attends la liste de prospects et le reporting pour vendredi »), jamais en tâches du
+jour.
+
+### ✅ Ce que la capture t'apporte, en revanche
+
+- Une **demande écrite et datée** du partage du fichier sur SharePoint/Teams (09:47),
+  restée sans exécution — elle confirme l'inexécution de l'art. 2.2 (suivi/CRM, reporting)
+  **par une preuve horodatée**.
+- « Je ne vais pas passer des appels aujourd'hui » (15:17) : refus d'exécution documenté.
+- Elle-même reconnaît le grief : « j'entends et je comprends ce que tu veux dire. Tout à
+  fait légitime et je ne m'en justifie pas. » → **quasi-aveu écrit**, très utile.
+
+**À faire aujourd'hui** : exporter la conversation WhatsApp complète (Discussion → Plus →
+Exporter la discussion, avec médias) et l'archiver hors du téléphone.
+
+### ⛔ Ne jamais utiliser l'enfant malade ni les 3 jours d'absence comme grief
+
+Ni dans la mise en demeure, ni dans aucun courrier. Trois raisons : c'est juridiquement
+faible (une indisponibilité ponctuelle pour raison familiale n'est pas un manquement
+grave) ; ça se retourne en représailles ; et le dossier n'en a pas besoin — les six
+semaines de non-livraison suffisent largement. **Attendre son retour (15/08) pour toute
+notification formelle** : ça coûte 3 jours et retire tout argument du type « j'étais
+absente, je n'ai pas pu répondre ».
+
+---
+
+## 4. À envoyer maintenant — réponse WhatsApp à la demande d'absence
+
+> Objectif : ne créer aucun indice de subordination, rester humain, et ouvrir la porte de
+> la conversation de sortie sans l'annoncer.
+
+---
+
+Bonjour Vololoniaina,
+
+J'espère que ça va aller pour le bébé, c'est le plus important — prends le temps qu'il faut.
+
+Juste un point de forme : tu es prestataire indépendante, tu organises ton temps comme tu
+l'entends, donc il n'y a pas de congés à me demander. Préviens-moi simplement de tes
+indisponibilités, c'est tout ce dont j'ai besoin.
+
+Quand tu es de retour, j'aimerais qu'on prenne un moment tous les deux pour faire le point
+sur la mission et sur la suite. Disons vendredi ?
+
+Bon rétablissement à ton petit.
+
+---
+
+## 5. Voie A — Résiliation d'un commun accord (la plus rapide)
+
+### 5.1. Comment amener la conversation (vendredi 15/08)
+
+Par téléphone, pas par écrit. Trois messages, dans cet ordre :
+
+1. **Le constat, sans procès** : « À six semaines, on n'a ni liste de prospects qualifiés,
+   ni CRM alimenté, ni reporting. Ce n'est pas un reproche personnel : le format ne
+   fonctionne pas. »
+2. **La proposition** : « Je te propose qu'on arrête d'un commun accord, tout de suite.
+   Je te règle le mois d'août en entier, tu n'as rien à rembourser, et on se quitte
+   proprement. »
+3. **Le cadre** : « Je t'envoie un document court à signer qui acte ça. »
+
+Ne pas argumenter sur la compétence, ne pas répondre aux justifications. Si elle demande
+pourquoi : « le format ne fonctionne pas, c'est tout. »
+
+### 5.2. Modèle — Protocole de résiliation amiable
+
+> Deux exemplaires signés, ou signature électronique. Aucun délai légal : effet à la date
+> convenue par les Parties.
+
+---
+
+**PROTOCOLE DE RÉSILIATION AMIABLE**
+**du contrat de prestation de services du 30 juin 2026**
+
+**Entre les soussignés :**
+
+**VJUS**, société de droit malgache, NIF 6018198778, RCS 102071032469, siège social Lot IIE
+21 A ter, Antananarivo (Madagascar), exploitant sous le nom commercial « Salverys »,
+représentée par M. Valérien Rakotosalama, Gérant — ci-après « la Société » ;
+
+**Mme Vololoniaina Randrianasinoro**, consultante indépendante en développement commercial,
+demeurant 737 bis parcelle 13/74 Tanambao V, Toamasina 501 (Madagascar) — ci-après
+« la Prestataire » ;
+
+Ensemble « les Parties ».
+
+**Il a été convenu ce qui suit :**
+
+**Article 1 — Objet.** Les Parties conviennent, d'un commun accord et sans qu'aucune faute
+ne soit imputée à l'une ou à l'autre, de mettre fin par anticipation au contrat de
+prestation de services de développement commercial B2B conclu entre elles le 30 juin 2026.
+
+**Article 2 — Date d'effet.** Le contrat prend fin le **[JJ] août 2026** à minuit. À
+compter de cette date, la Prestataire est déliée de toute obligation d'exécution au titre
+de la mission, et la Société de toute obligation de rémunération autre que celles prévues
+à l'article 3.
+
+**Article 3 — Règlement final.** La Société règle à la Prestataire, sur émission de sa
+facture et dans les conditions de l'article 5.2 du contrat, les honoraires fixes du mois
+d'août 2026 **en totalité**, soit **2 800 000 Ar** (deux millions huit cent mille ariary),
+sans proratisation, les honoraires des mois de juillet 2026 ayant déjà été réglés.
+
+Les Parties constatent qu'aucun « Contrat gagné » au sens de l'article 3 du contrat n'a été
+réalisé et qu'**aucune commission de performance n'est due**.
+
+**Article 4 — Restitution.** La Prestataire s'engage à restituer ou détruire, selon les
+instructions de la Société et au plus tard à la date d'effet, l'ensemble des accès, données,
+fichiers et matériels confiés (CRM, Emelia, comptes de messagerie, fichiers de prospection,
+documents partagés), conformément à l'article 6.5 du contrat et au NDA.
+
+Elle transmet à la Société, à la même date, l'intégralité des travaux réalisés au titre de
+la mission, quel qu'en soit l'état d'avancement.
+
+**Article 5 — Stipulations survivantes.** Les Parties confirment expressément que demeurent
+en vigueur, dans toutes leurs stipulations, les obligations issues du
+**NDA-CONSULTANT-VIV0010-Randrianasinoro** — confidentialité (3 ans), non-sollicitation des
+contacts, prospects et clients (24 mois), cession des livrables et propriété intellectuelle,
+ainsi que la clause pénale de 20 000 000 Ar de son article 10.
+
+**Article 6 — Renonciation réciproque à recours.** Sous réserve de la parfaite exécution du
+présent protocole, les Parties déclarent être remplies de tous leurs droits au titre du
+contrat du 30 juin 2026 et de son exécution. Elles renoncent réciproquement et
+définitivement à toute réclamation, action ou instance, de quelque nature que ce soit, née
+ou à naître, relative à ce contrat, à sa formation, à son exécution ou à sa cessation.
+
+Cette renonciation ne s'étend pas aux obligations visées à l'article 5 du présent protocole.
+
+**Article 7 — Droit applicable.** Le présent protocole est régi par le droit malgache. Tout
+différend relatif à son interprétation ou à son exécution relève des tribunaux compétents
+d'Antananarivo.
+
+Fait à ________________, le ____ / ____ / 2026, en deux exemplaires originaux.
+
+| La Société (VJUS — Salverys) | La Prestataire |
 |---|---|
-| Aucune liste de prospects qualifiés constituée en 6 semaines | art. 2.2, tiret 1 — « Ciblage et constitution de listes de prospects qualifiées » |
-| CRM non alimenté / non tenu à jour | art. 2.2, tiret 8 — « Suivi et mise à jour du CRM » |
-| Aucun reporting d'activité produit | art. 2.2, tiret 9 — « Reporting d'activité … reporting périodique » |
-| Document de cadrage + rétroplanning non remis *(à confirmer)* | art. 2.3 — « au cours des premières semaines » |
-| Veille concurrentielle non produite *(à confirmer)* | art. 2.2, tiret 2 |
+| Valérien Rakotosalama, Gérant | Vololoniaina Randrianasinoro |
+| Signature : | Signature : |
 
-### ⛔ À bannir de tout écrit — et de toute conversation enregistrée
+> *Mention manuscrite pour chaque Partie : « Lu et approuvé, bon pour accord ».*
 
-| Grief | Pourquoi c'est un piège |
+---
+
+## 6. Voie B — Repli : mise en demeure puis résiliation (art. 6.4)
+
+**À n'engager que si elle refuse de signer le protocole ou reste silencieuse 48 h.**
+
+Calendrier : envoi **15/08** (à son retour) → expiration **22/08** → résiliation effective
+**23/08**.
+
+### 6.1. Tri des griefs — rappel impératif
+
+| ✅ Utilisable (livrables non remis) | ⛔ À bannir de tout écrit |
 |---|---|
-| « Bégaye au téléphone », « parle comme une débutante » | **Appréciation de la compétence d'une personne** = vocabulaire de l'insuffisance professionnelle, c'est-à-dire du **salariat**. C'est la munition n°1 pour une requalification en contrat de travail (verrou art. 1.2 / 1.3). Aucun gain juridique, risque maximal. |
-| « Erreur au casting » | Même problème : c'est un jugement sur la personne, pas un manquement contractuel. |
-| « Aucun RDV obtenu », « objectifs non atteints » | C'est un **résultat**, or l'art. 2.4 al. 1 pose une **obligation de moyens sans garantie de résultat chiffré**. Inutilisable comme faute. |
+| Aucune liste de prospects qualifiés en 6 semaines — art. 2.2 tiret 1 | « Bégaye au téléphone », « parle comme une débutante », « erreur au casting » → jugement sur la personne = vocabulaire de l'insuffisance professionnelle, donc du salariat. Munition n°1 pour une requalification (verrou art. 1.2/1.3). |
+| CRM non alimenté malgré demande écrite du 12/08 — art. 2.2 tiret 8 | « Aucun RDV obtenu », « objectifs non atteints » → c'est un **résultat**, or l'art. 2.4 al. 1 pose une obligation de moyens **sans garantie de résultat**. |
+| Aucun reporting d'activité — art. 2.2 tiret 9 | L'absence de 3 jours / l'enfant malade (voir §3). |
+| Document de cadrage + rétroplanning non remis *(à confirmer)* — art. 2.3 | |
+| Veille concurrentielle non produite *(à confirmer)* — art. 2.2 tiret 2 | |
 
-> **Nuance importante** : l'absence de RDV / de prospect avancé **redevient légitime** dans
-> un seul document — la lettre de non-reconduction — parce que l'art. 2.4 al. 2 en fait
-> lui-même le déclencheur contractuel. Ailleurs, ne pas l'invoquer.
+Règle : on ne reproche jamais *ce qu'elle est* ni *ce qu'elle n'a pas obtenu*, seulement
+**ce qu'elle n'a pas remis**.
 
-**Règle de rédaction** : on ne reproche jamais *ce qu'elle est* ni *ce qu'elle n'a pas
-obtenu*, seulement *ce qu'elle n'a pas remis*.
+### 6.2. Modèle — Mise en demeure
 
----
-
-## 3. Les deux scénarios
-
-### Scénario A — Non-reconduction au terme (recommandé par défaut)
-
-Ne rien faire jusqu'au 10 septembre, puis envoyer la **lettre §5**.
-
-- **Condition de fond (art. 2.4 al. 2)** : absence de tout prospect en négociation avancée
-  **et** de contrat signé au 30 septembre. Avec zéro RDV à 6 semaines, la condition sera
-  selon toute vraisemblance remplie — mais **à revérifier le 8 septembre** avant envoi.
-- **Coût total** : juillet + août + septembre = **8 400 000 Ar** (dont 5,6 M déjà engagés).
-  Coût marginal de l'attente : **2 800 000 Ar**.
-- **Risque juridique** : quasi nul. Le contrat qualifie lui-même cette décision de non
-  fautive et n'ouvrant droit à aucune indemnité.
-
-### Scénario B — Résiliation anticipée pour manquement grave (art. 6.4)
-
-Mise en demeure §4 → 7 jours → si non réparé, résiliation de plein droit (lettre §6).
-
-- **Calendrier** : envoi le 14 août → échéance le 21 août → résiliation effective le 22 août.
-- **Économie** : ~**3 600 000 Ar** par rapport au scénario A.
-- **Risques** : contestation possible (l'art. 11 impose une phase amiable de 30 jours avant
-  tout contentieux, puis tribunaux d'Antananarivo) ; le contrat ne prévoit **pas** de
-  prorata d'honoraires en cas de résiliation en cours de mois (art. 4.1 : forfait mensuel)
-  → point de friction à trancher à l'amiable, prévoir de payer août en entier pour éteindre
-  la discussion.
-
-### 🎯 Recommandation : le hybride
-
-**Envoyer la mise en demeure (§4) maintenant, décider ensuite.**
-
-Elle sert dans les deux cas :
-- soit elle exécute sous 7 jours — improbable, mais ce serait la seule issue qui sauve la
-  mission ;
-- soit elle n'exécute pas, et tu as alors **le choix** : résilier immédiatement (§6) ou
-  laisser courir jusqu'au 30 septembre. Dans les deux cas, tu disposes d'un **dossier écrit
-  daté** qui rend la non-reconduction incontestable.
-
-⚠️ **Avant d'envoyer la mise en demeure, sécuriser les accès** (checklist §7). Une mise en
-demeure change la relation le jour même, et elle détient le CRM, Emelia et le fichier de
-prospection.
-
----
-
-## 4. Modèle — Mise en demeure (art. 6.4)
-
-> Envoi : courriel avec accusé de réception **et** copie remise en main propre ou LRAR si
-> possible. Objet neutre. Conserver la preuve d'envoi datée.
+> Courriel avec accusé de réception, doublé d'un envoi papier si possible. Conserver la
+> preuve d'envoi datée.
 
 ---
 
@@ -123,7 +261,8 @@ exécutés :
 1. **Constitution de listes de prospects qualifiées** (art. 2.2) — aucune liste ne nous a
    été remise à ce jour ;
 2. **Suivi et mise à jour du CRM** (art. 2.2) — l'outil mis à votre disposition n'est pas
-   alimenté ni tenu à jour ;
+   alimenté ni tenu à jour, et le fichier de suivi ne nous a pas été rendu accessible
+   malgré notre demande écrite du 12 août 2026 ;
 3. **Reporting d'activité périodique** (art. 2.2) — aucun reporting (volumes contactés,
    taux de réponse, rendez-vous obtenus, état du pipeline) ne nous a été transmis depuis le
    début de la mission ;
@@ -136,21 +275,18 @@ Ces éléments ne relèvent pas de l'appréciation d'un résultat commercial, qu
 garantit pas (art. 2.4), mais de l'exécution d'obligations contractuelles précises et
 vérifiables.
 
-En conséquence, et conformément à l'article 6.4 du contrat, nous vous mettons en demeure
-de remédier à ces manquements dans un délai de **sept (7) jours calendaires** à compter de
-la réception de la présente, en nous adressant :
+En conséquence, et conformément à l'article 6.4 du contrat, nous vous mettons en demeure de
+remédier à ces manquements dans un délai de **sept (7) jours calendaires** à compter de la
+réception de la présente, en nous adressant :
 
 - la liste des prospects qualifiés constituée à ce jour, au format exploitable ;
-- un CRM à jour reflétant l'intégralité des actions de prospection menées ;
+- un accès à un CRM à jour reflétant l'intégralité des actions de prospection menées ;
 - un reporting d'activité couvrant la période du 30 juin à ce jour ;
 - le document de cadrage prévu à l'article 2.3.
 
 À défaut d'exécution complète dans ce délai, nous serons contraints de constater la
 résiliation du contrat de plein droit dans les conditions de l'article 6.4, sans préjudice
 de nos autres droits.
-
-Nous restons naturellement disponibles pour échanger sur les moyens de remédier à cette
-situation.
 
 Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
@@ -159,15 +295,53 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
 ---
 
-## 5. Modèle — Notification de non-reconduction (art. 2.4 al. 2)
+### 6.3. Modèle — Constat de résiliation de plein droit
 
-> **À envoyer au plus tard le 15 septembre 2026** — envoi recommandé le **10 septembre**.
-> Courriel avec accusé de réception (l'art. 6.3 admet expressément ce mode ; le conserver
-> pour l'art. 2.4 par cohérence).
->
-> ✅ Vérifier avant envoi qu'aucun prospect n'est en négociation avancée et qu'aucun contrat
-> n'est signé — sinon la condition de l'art. 2.4 al. 2 n'est pas remplie et il faut basculer
-> sur l'art. 6.3 (reconduction puis préavis d'1 mois).
+> À n'utiliser que si la mise en demeure est restée sans effet à l'expiration des 7 jours.
+
+---
+
+**Objet : Résiliation du contrat de prestation de services — article 6.4**
+
+Madame,
+
+Par courrier du [date], nous vous avons mise en demeure de remédier, dans un délai de sept
+(7) jours, aux manquements constatés dans l'exécution du contrat de prestation de services
+du 30 juin 2026, et notamment à la non-remise des listes de prospects qualifiées, du
+reporting d'activité et du document de cadrage initial, ainsi qu'à l'absence de mise à jour
+du CRM.
+
+Ce délai est expiré le [date] sans que les livrables demandés nous soient parvenus.
+
+En conséquence, et conformément à l'article 6.4 du contrat, nous constatons la
+**résiliation de plein droit du contrat, avec effet au [date]**.
+
+Nous vous demandons de procéder sans délai, conformément à l'article 6.5, à la restitution
+ou à la destruction selon nos instructions de l'ensemble des accès, données et matériels
+confiés, et de nous transmettre l'intégralité des travaux réalisés au titre de la mission.
+
+Vos honoraires du mois d'août 2026 vous seront réglés **en totalité**, sans proratisation,
+sur émission de votre facture et dans les conditions de l'article 5.2.
+
+Nous vous rappelons que les obligations de confidentialité (3 ans) et de non-sollicitation
+(24 mois) issues du NDA annexé, ainsi que les stipulations relatives à la cession des
+livrables, survivent à la fin du contrat.
+
+Veuillez agréer, Madame, l'expression de nos salutations distinguées.
+
+*Valérien Rakotosalama — Gérant, VJUS (nom commercial Salverys)*
+*Fait à Antananarivo, le [JJ/MM/2026]*
+
+---
+
+## 7. Voie C — Filet de sécurité : non-reconduction au terme (art. 2.4 al. 2)
+
+**À conserver même si tu pars sur A ou B.** Si l'amiable échoue et que tu renonces au
+risque de la voie B, cette lettre reste ta sortie à coût nul.
+
+> ⏰ **Date limite absolue : 15 septembre 2026.** Envoi conseillé le 10 septembre.
+> Vérifier avant envoi qu'aucun prospect n'est en négociation avancée et qu'aucun contrat
+> n'est signé — sinon la condition de l'art. 2.4 al. 2 n'est pas remplie.
 
 ---
 
@@ -190,19 +364,14 @@ prendra fin de plein droit le 30 septembre 2026**.
 Conformément à l'article 2.4, cette décision ne constitue pas une rupture fautive et
 n'ouvre droit à aucune indemnité.
 
-La mission se poursuit dans des conditions normales jusqu'à cette date. Les honoraires
-fixes dus au titre du mois de septembre 2026 vous seront réglés dans les conditions
-habituelles de l'article 5.2, sur émission de votre facture.
+La mission se poursuit dans des conditions normales jusqu'à cette date. Les honoraires du
+mois de septembre 2026 vous seront réglés dans les conditions habituelles de l'article 5.2.
 
-Nous vous rappelons par ailleurs que :
-
-- conformément à l'article 6.5, il vous appartient de **restituer ou détruire**, selon nos
-  instructions, l'ensemble des accès, données et matériels confiés (CRM, Emelia, boîtes
-  courriel, fichiers de prospection, documents partagés), au plus tard le 30 septembre 2026 ;
-- les obligations de **confidentialité** (3 ans) et de **non-sollicitation** (24 mois)
-  prévues au NDA-CONSULTANT-VIV0010-Randrianasinoro **demeurent pleinement en vigueur**
-  après la fin du contrat, de même que les stipulations relatives à la cession des
-  livrables.
+Nous vous rappelons par ailleurs qu'il vous appartient de restituer ou détruire, selon nos
+instructions et au plus tard le 30 septembre 2026, l'ensemble des accès, données et
+matériels confiés (art. 6.5), et que les obligations de confidentialité (3 ans) et de
+non-sollicitation (24 mois) prévues au NDA demeurent pleinement en vigueur après la fin du
+contrat.
 
 Nous vous remercions pour le temps consacré à cette mission et vous souhaitons une pleine
 réussite dans vos activités.
@@ -214,100 +383,70 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
 ---
 
-## 6. Modèle — Constat de résiliation de plein droit (art. 6.4, après mise en demeure)
+## 8. Plan d'action
 
-> À n'utiliser **que** si la mise en demeure §4 est restée sans effet à l'expiration des
-> 7 jours. Vérifier que le délai est bien expiré et conserver la preuve de réception.
+### Aujourd'hui — 12 août
 
----
-
-**Objet : Résiliation du contrat de prestation de services — article 6.4**
-
-Madame,
-
-Par courrier du [date], nous vous avons mise en demeure de remédier, dans un délai de sept
-(7) jours, aux manquements constatés dans l'exécution du contrat de prestation de services
-du 30 juin 2026, et notamment à la non-remise des listes de prospects qualifiées, du
-reporting d'activité, du document de cadrage initial, ainsi qu'à l'absence de mise à jour
-du CRM.
-
-Ce délai est expiré le [date] sans que les livrables demandés nous soient parvenus.
-
-En conséquence, et conformément à l'article 6.4 du contrat, nous constatons la
-**résiliation de plein droit du contrat, avec effet au [date]**.
-
-Nous vous demandons de procéder, conformément à l'article 6.5, à la restitution ou à la
-destruction selon nos instructions de l'ensemble des accès, données et matériels confiés,
-et ce sans délai.
-
-Votre facture d'honoraires au titre du mois de [mois] sera réglée dans les conditions de
-l'article 5.2.
-
-Nous vous rappelons que les obligations de confidentialité (3 ans) et de non-sollicitation
-(24 mois) issues du NDA annexé, ainsi que les stipulations relatives à la cession des
-livrables, survivent à la fin du contrat.
-
-Veuillez agréer, Madame, l'expression de nos salutations distinguées.
-
-*Valérien Rakotosalama — Gérant, VJUS (nom commercial Salverys)*
-*Fait à Antananarivo, le [JJ/MM/2026]*
-
----
-
-## 7. Checklist opérationnelle
-
-### Avant tout envoi — constituer le dossier de preuve
-
-- [ ] Export daté du CRM (état de remplissage, date de dernière modification par utilisateur)
+- [ ] Répondre au message WhatsApp avec le texte du §4 — **ne pas employer le mot « congé »**
+- [ ] Exporter la conversation WhatsApp complète (avec médias) et l'archiver hors téléphone
+- [ ] Export daté du CRM (état de remplissage, dernière modification par utilisateur)
 - [ ] Export Emelia (campagnes créées, volumes envoyés, taux d'ouverture / réponse)
-- [ ] Recherche dans la messagerie : tout courriel de reporting reçu depuis le 30 juin (ou
-      constat d'absence)
-- [ ] Vérifier si le document de cadrage art. 2.3 a été remis — **à confirmer avant d'écrire
-      qu'il manque**
-- [ ] Relever les demandes écrites déjà adressées et restées sans réponse (elles renforcent
-      considérablement le dossier)
+- [ ] Recherche messagerie : tout reporting reçu depuis le 30/06 — ou constat d'absence
+- [ ] Vérifier si le document de cadrage art. 2.3 a été remis (**ne pas l'invoquer s'il l'a été** :
+      un grief faux affaiblit tous les autres)
 
-### Avant d'envoyer la mise en demeure — sécuriser
+### Avant le 15 août — sécuriser sans encore appliquer
 
 - [ ] Sauvegarder / exporter le CRM et toute liste de prospects existante
-- [ ] Préparer (sans encore les appliquer) la révocation des accès : CRM, Emelia, boîtes
-      courriel Salverys, domaines de chauffe, Drive / SharePoint
-- [ ] Identifier les prospects déjà contactés en son nom, pour reprise en direct
+- [ ] Préparer la révocation des accès : CRM, Emelia, boîtes courriel Salverys, domaines de
+      chauffe, SharePoint / Teams / Drive
+- [ ] Lister les prospects déjà contactés en son nom, pour reprise en direct
+- [ ] Faire relire le protocole §5.2 par le conseil juridique local
+
+### Vendredi 15 août — la conversation
+
+- [ ] Appel téléphonique, script du §5.1
+- [ ] Si accord → envoyer le protocole §5.2 dans la foulée, signature sous 48 h,
+      **sortie effective vers le 18-20 août**
+- [ ] Si refus ou silence à 48 h → mise en demeure §6.2, résiliation au 23 août
 
 ### Le jour de la fin de contrat
 
 - [ ] Révoquer tous les accès (art. 6.5)
 - [ ] Demander confirmation écrite de la destruction des données détenues localement
-- [ ] Vérifier qu'aucune commission n'est due : un « Contrat gagné » au sens de l'art. 3.1
-      suppose la signature **et** l'encaissement de deux mois de prestation — a priori zéro
-- [ ] Régler la dernière facture sans retard : ne laisser aucune créance ouverte
+- [ ] Régler la dernière facture sans retard — ne laisser aucune créance ouverte
 
 ### Ce que le contrat ne protège pas
 
-- **La non-concurrence (art. 7.2) s'éteint avec la mission.** Dès le lendemain de la fin du
-  contrat, elle peut prester pour un concurrent direct sur les trois niches. Seules
-  survivent la confidentialité (3 ans) et la non-sollicitation des contacts / prospects
-  (24 mois, NDA art. 5, clause pénale 20 000 000 Ar).
-- **Prorata d'honoraires** : non prévu par l'art. 4.1 en cas de résiliation en cours de
-  mois. En scénario B, payer le mois entier est le moyen le plus économique d'éteindre le
-  débat.
+- **La non-concurrence (art. 7.2) s'éteint avec la mission.** Dès le lendemain, elle peut
+  prester pour un concurrent direct sur les trois niches. Seules survivent la
+  confidentialité (3 ans) et la non-sollicitation (24 mois, NDA art. 5, clause pénale
+  20 000 000 Ar).
+- **Le prorata d'honoraires n'est pas prévu** par l'art. 4.1 (forfait mensuel). D'où le
+  choix, dans les trois voies, de payer août en entier : c'est le moyen le plus économique
+  d'éteindre le débat.
 
 ---
 
-## 8. Retour d'expérience pour le prochain recrutement BD
+## 9. Retour d'expérience pour le prochain recrutement BD
 
 À intégrer au prochain contrat de prestation BD, sans toucher au verrou anti-requalification :
 
 1. **Formaliser par écrit les objectifs de l'art. 1.4** dès la signature (annexe
-   « objectifs commerciaux »). Ici, aucun objectif chiffré n'a été formalisé — ce qui a
-   rendu inutilisable tout grief tiré de la performance.
+   « objectifs commerciaux »). Ici aucun objectif chiffré n'a été formalisé — ce qui a rendu
+   inutilisable tout grief tiré de la performance.
 2. **Dater les livrables de l'art. 2.3** : « dans les 15 jours de la signature » plutôt que
    « au cours des premières semaines ».
 3. **Cadencer le reporting de l'art. 2.2** : « hebdomadaire, tous les vendredis, au format
-   [X] ». Un reporting non daté est un manquement difficile à établir.
+   [X], déposé sur SharePoint ». Un reporting non daté est un manquement difficile à établir.
 4. **Ajouter une faculté de résiliation pendant la période initiale**, avec préavis court
-   (15 jours), pour ne plus dépendre du seul art. 6.4.
+   (15 jours), pour ne plus dépendre du seul art. 6.4 — c'est exactement ce qui manque ici.
 5. **Prévoir le prorata d'honoraires** en cas de résiliation en cours de mois.
-6. **Tester la prestation avant de signer** : un jeu de rôle d'appel de prospection de
+6. **Imposer les outils de la Société dès le jour 1** (CRM et fichiers sur l'espace Salverys,
+   jamais sur un fichier personnel) : le pilotage devient factuel et la preuve est native.
+7. **Tester la prestation avant de signer** : un jeu de rôle d'appel de prospection de
    15 minutes lors de la qualification aurait révélé l'écart. La fiche vivier VIV-0010
    signalait déjà « hors niches cœur » et « en poste » comme points de vigilance.
+8. **Discipline de communication** : piloter par livrables et échéances, jamais par tâches
+   quotidiennes ni par messagerie instantanée en temps réel — c'est ce qui nourrit le risque
+   de requalification.
