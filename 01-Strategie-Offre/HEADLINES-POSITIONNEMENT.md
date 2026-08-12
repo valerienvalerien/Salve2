@@ -92,6 +92,136 @@ standard), le sous-titre fait le travail de preuve d'échelle — c'est exacteme
 
 ---
 
+## 5 bis. Headline validée (décision direction, 2026-08-12)
+
+> # Le support IT que vos clients attendent. Sans les recrutements qui vont avec.
+
+Sous-headline retenue (mix des deux options travaillées) :
+
+> Une équipe francophone dédiée répond à votre nom, de 8h à 20h. Vos clients ne voient que vous.
+
+**Arbitrages :**
+
+- « les recrutements qui vont avec » chiffre implicitement la douleur là où « livrez » restait
+  neutre — c'est ce qui fait gagner cette headline sur D2.
+- **« mêmes interlocuteurs » écarté** : c'est précisément ce qui change quand on externalise.
+  Claim retournable en rendez-vous. Remplacé par « répond à votre nom » (mécanisme, factuel).
+- **« Pour vos clients, rien ne change » écarté en hero** : promesse de statu quo, peu
+  désirable pour un prospect dont le support est déjà saturé, et en tension avec une headline
+  qui promet un gain. Reste utilisable plus bas dans la page, en traitement d'objection.
+- **« scalez » écarté** : seul anglicisme d'une liste de verbes concrets, et abstraction là où
+  les autres verbes sont des actes (cf. §6).
+
+Variantes de longueur :
+
+- *Page partenaire MB* : « Nous prenons le relais à votre nom : équipe francophone dédiée,
+  8h-20h, même niveau de service. Vos clients ne voient que vous. »
+- *Hero chargé* : « Une équipe francophone dédiée qui répond à votre nom, 8h-20h. »
+
+⚠️ **Portée** : cette headline dit « support **IT** » — elle exclut le télésecrétariat médical.
+Terrain naturel = landing IT et one-pager partenaire MB. Pour l'accueil à 3 niches, utiliser
+la variante sans « IT » (hero n°9 ci-dessous).
+
+---
+
+## 5 ter. 10 heroes complets
+
+Structure de chaque bloc : `eyebrow · H1 · sous-headline · CTA · bandeau de preuve`.
+Chiffres sourcés : `PRICING.md` (−40 à −60 %, forfaits médicaux, mise en service offerte),
+`02-Prospection/ONEPAGER-PARTENAIRE-MB.md:37` (~3 semaines), `PRICING.md:376` (60-90 jours).
+
+### H1 — Le canonique · landing IT / partenaire MB
+
+- **Eyebrow** : Éditeurs SaaS · ESN & infogéreurs
+- **H1** : Le support IT que vos clients attendent. **Sans les recrutements qui vont avec.**
+- **Lead** : Une équipe francophone dédiée répond à votre nom, de 8h à 20h. Vos clients ne voient que vous.
+- **CTA** : Réserver un cadrage / Voir comment ça marche
+- **Preuve** : FR & EN · français natif — Capacité activable en ~3 semaines — Sans engagement
+
+### H2 — La promesse tenue · partenaire MB
+
+- **Eyebrow** : Marque blanche
+- **H1** : Le support IT que **vous avez promis** à vos clients. Sans les recrutements qui vont avec.
+- **Lead** : Nous prenons le relais à votre nom : équipe dédiée, 8h-20h, même niveau de service.
+- **CTA** : Recevoir la rate card partenaire / Parler à un opérationnel
+- **Preuve** : Marque blanche intégrale — SLA chiffré — Reporting mensuel
+
+### H3 — Le moment de signature · ESN & MSP
+
+- **Eyebrow** : Vous venez de gagner un contrat
+- **H1** : Vous avez signé. **Il vous manque l'équipe.**
+- **Lead** : Le support IT que vos clients attendent, sans les recrutements qui vont avec : position dédiée activable en ~3 semaines, contre 60 à 90 jours de recrutement.
+- **CTA** : Réserver un cadrage / Voir la capacité disponible
+- **Preuve** : ~3 semaines vs 60-90 jours — Français natif — Sous votre marque
+
+### H4 — Éditeurs SaaS (priorité n°1)
+
+- **Eyebrow** : Support applicatif N1
+- **H1** : Le support N1 que vos **utilisateurs** attendent. Sans les recrutements qui vont avec.
+- **Lead** : Une équipe francophone dédiée traite vos tickets à votre nom, de 8h à 20h. Vos développeurs ne reçoivent que ce qui les concerne.
+- **CTA** : Estimer mon besoin / Devis sous 24 h
+- **Preuve** : Tri, qualification, escalade — 8h-20h — Sans engagement
+
+### H5 — Deel, verbes empilés · partenaire MB
+
+- **Eyebrow** : Marque blanche
+- **H1** : Vous vendez, vous déployez. **On supporte.**
+- **Lead** : Le N1 de vos clients, sous votre marque, sans une seule embauche.
+- **CTA** : Devenir partenaire / Voir le périmètre
+- **Preuve** : N1 complet — Français natif — Marge revendeur préservée
+
+### H6 — L'angle marge · direct IT
+
+- **Eyebrow** : Helpdesk IT N1
+- **H1** : Le support IT que vos clients attendent. **À 40 à 60 % de moins qu'un poste en France.**
+- **Lead** : Position dédiée, francophone, 8h-20h — comparé au coût complet d'un ETP interne, pas au seul salaire chargé.
+- **CTA** : Calculer mon économie / Devis sous 24 h
+- **Preuve** : −40 à −60 % — Sans engagement — Résiliable à tout moment
+
+### H7 — Stripe, catégorie · accueil ambitieux
+
+- **Eyebrow** : Support N1 · Helpdesk IT · Télésecrétariat
+- **H1** : L'infrastructure humaine de **votre** support client.
+- **Lead** : Du premier ticket au dix-millième, sous votre marque : équipe dédiée francophone, 8h-20h, reporting mensuel.
+- **CTA** : Commencer / Voir les offres
+- **Preuve** : −40 à −60 % — 8h-20h — SLA chiffré
+
+### H8 — La douleur nommée · direct IT
+
+- **Eyebrow** : Vos clients appellent après 17h
+- **H1** : À 18h30, personne ne décroche. **Vos clients, eux, appellent encore.**
+- **Lead** : Le support IT que vos clients attendent, sans les recrutements qui vont avec : une équipe dédiée jusqu'à 20h, à votre nom.
+- **CTA** : Voir la couverture horaire / Réserver un cadrage
+- **Preuve** : Standard ouvert 8h-20h — Jamais de répondeur — Français natif
+
+### H9 — Accueil multi-niches *(la validée, sans « IT »)*
+
+- **Eyebrow** : Éditeurs SaaS · ESN & infogéreurs · Cabinets médicaux
+- **H1** : Le support que vos clients attendent. **Sans les recrutements qui vont avec.**
+- **Lead** : Une équipe francophone dédiée répond à votre nom, de 8h à 20h. Vos clients ne voient que vous.
+- **CTA** : Support N1 SaaS / Helpdesk IT N1 / Télésecrétariat médical
+- **Preuve** : FR & EN · français natif — 8h-20h — Sans engagement
+
+### H10 — Déclinaison médicale
+
+- **Eyebrow** : Télésecrétariat médical
+- **H1** : Le standard que vos **patients** attendent. Sans la secrétaire à recruter.
+- **Lead** : Prise de rendez-vous, filtrage, urgences : une secrétaire dédiée à distance, aux horaires du cabinet, sous le nom du cabinet.
+- **CTA** : Voir les forfaits / Simuler mon volume d'appels
+- **Preuve** : Dès 350 €/mois — 8h-20h — Mise en service offerte
+
+### Affectation recommandée
+
+| Page | Hero |
+|---|---|
+| Landing IT (`simulateur-helpdesk-it.html`, `simulateur-informatique.html`) | **H1** |
+| One-pager / prospection marque blanche | **H3** (puis H2 en relance) |
+| Accueil (`index.html`), 3 niches conservées | **H9** |
+| Accueil, si bascule 100 % IT | **H1** |
+| Landing médical (`simulateur-salverys.html`) | **H10** |
+
+---
+
 ## 6. Interdits (garde-fous)
 
 - **« Scale » / « scalable »** : 8 des 40 concurrents benchmarkés s'en servent — mot creux et
