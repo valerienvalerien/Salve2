@@ -31,9 +31,14 @@ La seule voie qui permet une sortie sous 3-4 jours est la **résiliation d'un co
 
 | Voie | Départ | Sortie effective | Coût total (juillet + solde) | Risque |
 |---|---|---|---|---|
-| **A — Accord amiable** (§3) | proposition dès le 13/08 | **15-20 août** | 5 600 000 Ar | ✅ quasi nul — recours éteints par la renonciation réciproque |
-| **B — Manquement grave art. 6.4** (§5) | mise en demeure le 15/08 | **23 août** | 5 600 000 Ar | ⚠️ contestable — phase amiable 30 j puis tribunal (art. 11) |
+| **A — Accord amiable, demi-mois** (§5) | proposition le 15/08 | **15-18 août** | **4 200 000 Ar** | ✅ nul si elle signe — mais probabilité d'acceptation plus faible |
+| **A′ — Accord amiable, août entier** (§5) | proposition le 15/08 | **15-18 août** | 5 600 000 Ar | ✅ quasi nul — recours éteints, acceptation probable |
+| **B — Manquement grave art. 6.4** (§6) | mise en demeure le 15/08 | **23 août** | 5 600 000 Ar | ⚠️ contestable — phase amiable 30 j puis tribunal (art. 11) |
 | **C — Non-reconduction art. 2.4** (§7) | notification avant le 15/09 | 30 septembre | 8 400 000 Ar | ✅ nul, mais 6 semaines de plus |
+
+**⚠️ Sa meilleure alternative si elle refuse de signer, c'est 5 600 000 Ar** (août +
+septembre en entier, contrat porté à son terme). Toute proposition doit être évaluée
+contre ce chiffre — c'est lui qui décide de son comportement, pas l'équité de l'offre.
 
 Rappels : honoraires 2 800 000 Ar/mois (art. 4.1) · signature 30/06/2026 · terme de la
 période initiale 30/09/2026 · J-15 de notification = 15/09/2026.
@@ -127,6 +132,67 @@ Bon rétablissement à ton petit.
 
 ## 5. Voie A — Résiliation d'un commun accord (la plus rapide)
 
+### 5.0. Combien proposer : la structure de négociation
+
+**Oui, tu peux proposer un demi-mois** — dans un protocole amiable, le montant est celui
+dont les Parties conviennent, il n'y a aucun plancher légal. Mais trois contraintes
+encadrent la marge.
+
+**1. Elle tient la facture.** L'art. 5.1 prévoit que *« la Prestataire émet une facture
+mensuelle »*, et l'art. 4.1 fixe un **forfait mensuel** de 2 800 000 Ar sans clause de
+prorata. Si elle ne signe pas, elle facture août en entier et cette facture est
+contractuellement due. **Le demi-mois n'existe que par sa signature** — il ne peut pas être
+imposé.
+
+**2. Son alternative vaut 5 600 000 Ar.** Refuser de signer lui rapporte août + septembre
+en entier. Proposer 1 400 000 Ar contre une alternative à 5 600 000 Ar, c'est demander de
+renoncer à 4 200 000 Ar sans contrepartie. Une offre trop basse ne fait pas gagner de
+l'argent : elle fait échouer l'accord, et l'échec coûte 2 800 000 Ar de plus (voie C) ou un
+contentieux (voie B).
+
+**3. Le motif de la réduction est un piège.** Ne jamais justifier le demi-mois par
+« tu n'as quasi rien fait depuis le début du mois ». Réduire la rémunération à proportion du
+travail constaté, c'est le raisonnement de la **retenue sur salaire pour insuffisance** — du
+salariat pur, et de surcroît exclu par l'art. 2.4 al. 1 (obligation de moyens, sans garantie
+de résultat). Sous un forfait, la prestation est due ou elle ne l'est pas ; elle ne se pèse
+pas.
+
+> **Le seul argumentaire défensible du demi-mois est la date d'effet** : « le contrat
+> s'arrête le 15 août, donc on règle la période du 1ᵉʳ au 15 ». C'est cohérent, neutre, et
+> ça ne dit rien de sa performance. C'est aussi pour ça que la **date d'effet doit être le
+> 15 août** si tu veux tenir le demi-mois — un demi-mois avec une sortie le 20 ne tient pas
+> debout.
+
+### 🎯 Structure recommandée
+
+| | Montant | Total (juillet inclus) |
+|---|---|---|
+| **Ouverture** | demi-mois — **1 400 000 Ar**, effet au 15/08 | 4 200 000 Ar |
+| **Point de bascule** — si elle résiste, hésite, ou parle d'en discuter avec quelqu'un | **août entier — 2 800 000 Ar**, effet immédiat | 5 600 000 Ar |
+| **Plancher** | ne jamais descendre sous 1 400 000 Ar | — |
+| **Plafond** | ne jamais dépasser 2 800 000 Ar — au-delà, la voie C est moins chère | — |
+
+Ouvre au demi-mois : si elle accepte, tu économises 1 400 000 Ar de plus. Mais **bascule
+vite** — l'écart entre les deux offres (1 400 000 Ar) est bien plus faible que le coût d'un
+refus (2 800 000 Ar minimum). La signature vaut plus que le dernier demi-mois.
+
+Phrase de bascule, à garder en réserve : *« Écoute, pour qu'on se quitte bien : je te règle
+août en entier et on s'arrête aujourd'hui. »*
+
+### 5.0 bis. Le faire maintenant ou vendredi ?
+
+Rien ne l'interdit juridiquement — une proposition amiable n'est pas une notification, elle
+ne fait courir aucun délai et elle appelle son consentement.
+
+**Mais attends vendredi.** Ce n'est pas une question de convenance : c'est la probabilité
+d'acceptation qui décide, et elle est plus basse chez quelqu'un qui gère un enfant malade.
+Un refus émotionnel coûte 2 800 000 Ar. Trois jours d'attente n'en coûtent aucun — les
+honoraires sont mensuels, pas journaliers, et le 15 août est précisément la date d'effet qui
+rend ton demi-mois cohérent.
+
+Le message du §4 réserve déjà le point de vendredi sans annoncer la couleur. C'est
+exactement ce qu'il faut : envoie-le aujourd'hui, garde l'offre pour l'appel.
+
 ### 5.1. Comment amener la conversation (vendredi 15/08)
 
 Par téléphone, pas par écrit. Trois messages, dans cet ordre :
@@ -134,13 +200,20 @@ Par téléphone, pas par écrit. Trois messages, dans cet ordre :
 1. **Le constat, sans procès** : « À six semaines, on n'a ni liste de prospects qualifiés,
    ni CRM alimenté, ni reporting. Ce n'est pas un reproche personnel : le format ne
    fonctionne pas. »
-2. **La proposition** : « Je te propose qu'on arrête d'un commun accord, tout de suite.
-   Je te règle le mois d'août en entier, tu n'as rien à rembourser, et on se quitte
-   proprement. »
+2. **La proposition** : « Je te propose qu'on arrête d'un commun accord, avec effet
+   aujourd'hui. Je te règle la période du 1ᵉʳ au 15 août, soit 1 400 000 Ar, tu n'as rien à
+   rembourser, et on se quitte proprement. »
 3. **Le cadre** : « Je t'envoie un document court à signer qui acte ça. »
 
 Ne pas argumenter sur la compétence, ne pas répondre aux justifications. Si elle demande
 pourquoi : « le format ne fonctionne pas, c'est tout. »
+
+**Si elle résiste sur le montant** — ou si elle dit vouloir « réfléchir », « en parler à
+quelqu'un », « relire le contrat » — bascule immédiatement sur août entier (§5.0). Ne
+défends pas le demi-mois : il vaut 1 400 000 Ar, la signature en vaut 2 800 000.
+
+**Trois choses à ne jamais dire** : « tu n'as quasi rien fait », « tu n'as obtenu aucun
+RDV », et toute allusion à son absence ou à son enfant.
 
 ### 5.2. Modèle — Protocole de résiliation amiable
 
@@ -170,15 +243,26 @@ Ensemble « les Parties ».
 ne soit imputée à l'une ou à l'autre, de mettre fin par anticipation au contrat de
 prestation de services de développement commercial B2B conclu entre elles le 30 juin 2026.
 
-**Article 2 — Date d'effet.** Le contrat prend fin le **[JJ] août 2026** à minuit. À
-compter de cette date, la Prestataire est déliée de toute obligation d'exécution au titre
-de la mission, et la Société de toute obligation de rémunération autre que celles prévues
-à l'article 3.
+**Article 2 — Date d'effet.** Le contrat prend fin le **15 août 2026** à minuit. À compter
+de cette date, la Prestataire est déliée de toute obligation d'exécution au titre de la
+mission, et la Société de toute obligation de rémunération autre que celles prévues à
+l'article 3.
 
 **Article 3 — Règlement final.** La Société règle à la Prestataire, sur émission de sa
-facture et dans les conditions de l'article 5.2 du contrat, les honoraires fixes du mois
-d'août 2026 **en totalité**, soit **2 800 000 Ar** (deux millions huit cent mille ariary),
-sans proratisation, les honoraires des mois de juillet 2026 ayant déjà été réglés.
+facture et dans les conditions de l'article 5.2 du contrat, les honoraires dus au titre de
+la **période du 1ᵉʳ au 15 août 2026**, soit **1 400 000 Ar** (un million quatre cent mille
+ariary), les honoraires du mois de juillet 2026 ayant déjà été réglés.
+
+Les Parties conviennent expressément que ce montant, arrêté d'un commun accord au regard de
+la date d'effet retenue à l'article 2, solde l'intégralité des honoraires dus au titre du
+contrat.
+
+> **Variante « août entier »** — remplacer l'article 3 par : *« La Société règle à la
+> Prestataire, sur émission de sa facture et dans les conditions de l'article 5.2 du
+> contrat, les honoraires fixes du mois d'août 2026 en totalité, soit 2 800 000 Ar (deux
+> millions huit cent mille ariary), sans proratisation, les honoraires du mois de juillet
+> 2026 ayant déjà été réglés. »* — et porter la date d'effet de l'article 2 au jour de la
+> signature.
 
 Les Parties constatent qu'aucun « Contrat gagné » au sens de l'article 3 du contrat n'a été
 réalisé et qu'**aucune commission de performance n'est due**.
@@ -405,10 +489,12 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
 ### Vendredi 15 août — la conversation
 
-- [ ] Appel téléphonique, script du §5.1
+- [ ] Appel téléphonique, script du §5.1 — ouverture au **demi-mois (1 400 000 Ar)**,
+      effet au 15/08
+- [ ] Bascule sur **août entier (2 800 000 Ar)** à la première résistance sérieuse (§5.0)
 - [ ] Si accord → envoyer le protocole §5.2 dans la foulée, signature sous 48 h,
-      **sortie effective vers le 18-20 août**
-- [ ] Si refus ou silence à 48 h → mise en demeure §6.2, résiliation au 23 août
+      **sortie effective au 15-18 août**
+- [ ] Si refus ou silence à 48 h → mise en demeure §6.2, résiliation vers le 25 août
 
 ### Le jour de la fin de contrat
 
