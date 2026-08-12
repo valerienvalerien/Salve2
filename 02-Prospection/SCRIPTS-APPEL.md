@@ -16,6 +16,14 @@
 > **Placeholders** : `{prenom}` = prénom de l'interlocuteur · `{structure}` =
 > nom du cabinet / de l'éditeur / de la DSI.
 
+> ⚖️ **Depuis le 11/08/2026** (loi n° 2025-594 du 30/06/2025) : le démarchage
+> téléphonique des **consommateurs** est interdit sans consentement préalable. **Le B2B
+> reste licite** (ligne pro + objet lié à l'activité), sous RGPD + droit d'opposition
+> immédiat. Zone de risque : les **lignes mixtes** de la niche médicale (praticiens
+> libéraux). Cadre complet, règles internes, script **barrage/accueil** et script
+> **inbound** → **`SCRIPTS-APPEL-2026-BARRAGE-INBOUND.md`**. À lire **avant** d'utiliser
+> les scripts ci-dessous.
+
 ---
 
 ## Les 5 étapes de l'appel (`CALL_STEPS`)
