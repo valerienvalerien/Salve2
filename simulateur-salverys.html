@@ -173,9 +173,11 @@
       <div class="kicker">Forfaits</div>
       <h2>Trois forfaits, une logique</h2>
       <p>Facturation au forfait mensuel selon votre volume — jamais à l'appel.</p>
+      <p class="pkg-recall" id="pkg-recall" hidden></p>
     </div>
     <div class="packages">
-      <div class="pkg pkg-sage reveal">
+      <div class="pkg pkg-sage reveal" data-pkg="essentiel">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Essentiel</div>
         <div class="pkg-tag">Pour un praticien seul</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">350</span><span class="pkg-unit"> €/mois</span></div>
@@ -190,8 +192,8 @@
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
-      <div class="pkg featured reveal d1">
-        <div class="pkg-badge">★ Le plus choisi</div>
+      <div class="pkg featured reveal d1" data-pkg="confort">
+        <div class="pkg-badge" data-default="★ Le plus choisi">★ Le plus choisi</div>
         <div class="pkg-name">Confort</div>
         <div class="pkg-tag">Pour un cabinet actif</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">590</span><span class="pkg-unit"> €/mois</span></div>
@@ -206,7 +208,8 @@
         <a href="#contact" class="pkg-cta" data-devis>Choisir Confort</a>
       </div>
 
-      <div class="pkg pkg-gold reveal d2">
+      <div class="pkg pkg-gold reveal d2" data-pkg="intensif">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Intensif</div>
         <div class="pkg-tag">Cabinet de groupe / fort volume</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">950</span><span class="pkg-unit"> €/mois</span></div>

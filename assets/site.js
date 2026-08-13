@@ -109,6 +109,30 @@
   }
   const euro = n => Math.round(n).toLocaleString('fr-FR');
 
+  /* Lie le simulateur à la section « Forfaits », plus bas dans la page : marque la
+     carte correspondant à la configuration courante et rappelle l'estimation
+     au-dessus des cartes, pour qui a scrollé et perdu le résultat de vue. */
+  function syncPackages(slug, recall) {
+    document.querySelectorAll('.pkg[data-pkg]').forEach(card => {
+      const match = card.dataset.pkg === slug;
+      card.classList.toggle('is-match', match);
+      const badge = card.querySelector('.pkg-badge');
+      if (!badge) return;
+      badge.classList.toggle('is-match', match);
+      if (match) {
+        badge.textContent = '✓ Correspond à votre simulation';
+        badge.hidden = false;
+      } else {
+        // Rend sa pastille d'origine à la carte vedette, masque celle des autres.
+        const def = badge.dataset.default;
+        badge.textContent = def || '';
+        badge.hidden = !def;
+      }
+    });
+    const el = document.getElementById('pkg-recall');
+    if (el) { el.innerHTML = recall || ''; el.hidden = !recall; }
+  }
+
   /* ========================================================
      SIMULATEUR MÉDICAL  (présent si #calls existe)
      ======================================================== */
@@ -163,7 +187,10 @@
       else if (name === 'Essentiel') reco = 'Forfait <strong>Essentiel</strong> — idéal pour un praticien.';
       else if (name === 'Confort') reco = 'Forfait <strong>Confort</strong> — le meilleur rapport volume / prix.';
       else reco = 'Forfait <strong>Intensif</strong> — pensé pour les cabinets de groupe.';
-      $('recommendation').innerHTML = reco;
+      $('recommendation').innerHTML = '<a class="reco-link" href="#forfaits">' + reco + '</a>';
+      syncPackages(name.toLowerCase(),
+        'Votre simulation : <b>' + (custom ? '≈ ' : '') + euro(price) + ' €/mois</b> · ' +
+        (custom ? 'volume au-delà de la grille, on cadre ensemble' : 'forfait ' + name));
 
       const disc = $('sim-disclaimer');
       if (disc) {
@@ -314,14 +341,15 @@
         if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
       }
 
+      let pkg;
+      if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
+      else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.coverage > 1.0)) pkg = { slug: 'centre-de-services', name: 'Centre de services', why: 'équipe N1 et couverture étendue.' };
+      else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
+
       const recoEl = $('recommendation');
-      if (recoEl) {
-        let reco;
-        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>Débordement</strong> — absorber les pics sans recruter.';
-        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.coverage > 1.0)) reco = 'Forfait <strong>Centre de services</strong> — équipe N1 et couverture étendue.';
-        else reco = 'Forfait <strong>Poste dédié</strong> — meilleur rapport coût / disponibilité.';
-        recoEl.innerHTML = reco;
-      }
+      if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
+      syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
+
       pop($('price-monthly'));
     }
 

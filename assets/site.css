@@ -377,9 +377,15 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .disclaimer { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.5); text-align: center; }
 
 /* ================= PACKAGES ================= */
-.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+/* Rappel de l'estimation courante au-dessus des cartes — le chiffre du simulateur
+   suit le lecteur qui a scrollé jusqu'aux forfaits. */
+.pkg-recall { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--text-soft); }
+.pkg-recall b { color: var(--primary); }
+.reco-link { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+.reco-link:hover { border-bottom-color: currentColor; }
 @media (max-width: 900px) { .packages { grid-template-columns: 1fr; } }
-.pkg { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 28px; position: relative; transition: transform .22s var(--ease), box-shadow .22s; }
+.pkg { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 28px; position: relative; display: flex; flex-direction: column; transition: transform .22s var(--ease), box-shadow .22s, border-color .22s; }
 .pkg:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .pkg.featured { background: var(--bg-deep); color: #fff; transform: scale(1.03); box-shadow: var(--shadow-lg); }
 .pkg.featured:hover { transform: scale(1.03) translateY(-5px); }
@@ -404,14 +410,20 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .theme-it .pkg-equiv { color: #0A6E96; }
 .pkg.featured .pkg-equiv { color: var(--gold-soft); border-bottom-color: rgba(255,255,255,.15); }
 .theme-it .pkg.featured .pkg-equiv { color: var(--accent); }
-.pkg-feat { list-style: none; }
+.pkg-feat { list-style: none; flex: 1 1 auto; }
 .pkg-feat li { display: flex; gap: 10px; padding: 7px 0; font-size: 14px; color: var(--text-soft); }
 .pkg.featured .pkg-feat li { color: rgba(255,255,255,.85); }
-.pkg-feat li::before { content: "✓"; color: var(--accent); font-weight: 800; flex-shrink: 0; }
-.pkg.featured .pkg-feat li::before { color: var(--gold-soft); }
+.pkg-feat li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; }
+.pkg.featured .pkg-feat li::before { background: var(--gold-soft); }
 .theme-it .pkg.featured .pkg-feat li::before { color: var(--accent); }
 .pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; }
 .pkg-cta:hover { background: var(--primary); color: #fff; }
+/* Carte correspondant a la configuration courante du simulateur. La pastille
+   « Le plus choisi » de la carte vedette lui cede la place quand elle est designee. */
+.pkg.is-match { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.pkg.featured.is-match { box-shadow: var(--shadow-lg), 0 0 0 2px var(--gold-soft) inset; }
+.pkg-badge.is-match { background: var(--accent); }
+.pkg.featured .pkg-badge.is-match { background: var(--gold-soft); color: var(--primary); }
 .pkg.featured .pkg-cta { background: var(--cta); border-color: var(--cta); color: var(--cta-text); }
 .pkg.featured .pkg-cta:hover { filter: brightness(1.05); }
 
