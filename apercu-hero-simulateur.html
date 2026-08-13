@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — 3 configurations de hero simulateur (sans scroll)</title>
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  /* ============================================================
+     PAGE D'APERÇU — maquettes à l'échelle réelle.
+     Chaque bloc est rendu dans un cadre à hauteur d'écran simulée
+     pour vérifier ce qui est visible SANS SCROLLER.
+     ============================================================ */
+  body { background:#ECE8E1; padding:28px 0 80px; }
+  .pv-head { max-width:1180px; margin:0 auto 26px; padding:0 24px; }
+  .pv-head h1 { font-family:'Inter',sans-serif; font-weight:800; font-size:27px; color:#013C58; letter-spacing:-.02em; }
+  .pv-head p { color:#5C5448; font-size:14.5px; margin-top:10px; max-width:840px; line-height:1.6; }
+  .pv-controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:18px; }
+  .pv-controls span { font-size:13px; font-weight:700; color:#5C5448; }
+  .pv-btn { padding:8px 14px; border:1.5px solid #D8D0C2; background:#fff; border-radius:100px; font-size:13px; font-weight:700; color:#5C5448; cursor:pointer; font-family:inherit; }
+  .pv-btn.on { background:#013C58; border-color:#013C58; color:#fff; }
+
+  .pv-block { max-width:1440px; margin:40px auto 0; padding:0 24px; }
+  .pv-title { font-family:'Inter',sans-serif; font-weight:800; font-size:19px; color:#013C58; }
+  .pv-desc { font-size:14px; color:#5C5448; margin:6px 0 14px; max-width:900px; line-height:1.55; }
+  .pv-tags { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
+  .pv-tag { font-size:12px; font-weight:700; padding:5px 11px; border-radius:100px; }
+  .pv-tag.up { background:#E4F4EC; color:#1E7A55; }
+  .pv-tag.down { background:#FCECE7; color:#B6604D; }
+
+  /* cadre = fenêtre navigateur simulée */
+  .vp { position:relative; height:640px; overflow:hidden; border-radius:14px; background:#fff;
+        box-shadow:0 14px 40px rgba(32,48,63,.16); border:1px solid #D8D0C2; }
+  .vp::after { content:"↓ ligne de flottaison — tout ce qui est sous ce cadre demande un scroll";
+        position:absolute; left:0; right:0; bottom:0; padding:5px 12px; font-size:11px; font-weight:700;
+        background:rgba(1,60,88,.86); color:#fff; letter-spacing:.02em; z-index:40; text-align:center; }
+  .vp .site-head { position:static; }
+
+  /* nav simplifiée dans les maquettes */
+  .vp .nav-inner { height:62px; }
+  .vp .brand-logo { height:34px; }
+  .vp .topbar { padding:7px 16px; font-size:12px; }
+
+  /* ---------- éléments communs aux maquettes ---------- */
+  .mk h1 { margin-bottom:14px; }
+  .mk .eyebrow { margin-bottom:14px; }
+  .mk .hero-trust { margin-top:16px; gap:18px; font-size:12.5px; }
+
+  .sim-card { background:#fff; border:1px solid var(--line); border-radius:22px; padding:20px 22px;
+              box-shadow:0 18px 44px rgba(32,48,63,.14); }
+  .sim-card .cg { margin-bottom:14px; }
+  .sim-card .cg:last-child { margin-bottom:0; }
+  .cl { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+  .cl-t { font-size:12.5px; font-weight:700; color:var(--primary); }
+  .cl-v { font-size:14px; font-weight:800; color:#0A6E96; }
+  .sim-card input[type=range] { height:5px; }
+  .sim-card input[type=range]::-webkit-slider-thumb { width:20px; height:20px; border-width:3px; }
+  .mini-pills { display:flex; gap:6px; }
+  .mini-pills .pill { padding:7px 10px; font-size:12px; border-radius:100px; }
+
+  /* bandeau prix compact */
+  .price-strip { display:flex; align-items:center; justify-content:space-between; gap:14px;
+                 background:var(--bg-deep); color:#fff; border-radius:16px; padding:14px 18px; }
+  .price-strip .ps-lab { font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.6); margin-bottom:3px; }
+  .price-strip .ps-val { font-size:29px; font-weight:800; color:var(--accent); line-height:1; letter-spacing:-.02em; }
+  .price-strip .ps-unit { font-size:14px; color:rgba(255,255,255,.75); font-weight:600; margin-left:3px; }
+  .price-strip .ps-side { text-align:right; font-size:11.5px; color:rgba(255,255,255,.72); line-height:1.45; }
+  .price-strip .ps-side b { color:#fff; }
+  .sim-cta { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; box-sizing:border-box;
+             padding:12px 18px; border-radius:100px; font-size:14px; font-weight:800; background:var(--accent); color:var(--primary); }
+  .sim-note { text-align:center; font-size:11px; color:var(--text-mute); margin-top:8px; }
+
+  /* ============ CONFIG 1 — simulateur en colonne droite ============ */
+  .m1 .hero { padding:26px 0 22px; }
+  .m1 .hero-grid { grid-template-columns:1fr 1.02fr; gap:38px; align-items:center; }
+  .m1 h1 { font-size:37px; line-height:1.05; }
+  .m1 .hero p.lead { font-size:15.5px; color:var(--text-soft); line-height:1.5; }
+  .m1 .medallion { display:flex; align-items:center; gap:14px; margin-top:18px; padding:12px 14px;
+                   background:#fff; border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-sm); }
+  .m1 .medallion img { width:96px; height:74px; object-fit:cover; border-radius:12px; flex:0 0 auto; }
+  .m1 .medallion .mtx { font-size:12.5px; color:var(--text-soft); line-height:1.45; }
+  .m1 .medallion .mtx b { display:block; color:var(--primary); font-size:13.5px; margin-bottom:3px; }
+
+  /* ============ CONFIG 2 — photo plein cadre + carte en verre ============ */
+  .m2 .hero { padding:34px 0 34px; position:relative; background:#012C42; }
+  .m2 .hero-bgimg { position:absolute; inset:0; z-index:0; }
+  .m2 .hero-bgimg img { width:100%; height:100%; object-fit:cover; }
+  .m2 .hero-bgimg::after { content:""; position:absolute; inset:0;
+      background:linear-gradient(100deg, rgba(1,40,60,.97) 0%, rgba(1,40,60,.95) 42%, rgba(1,40,60,.80) 62%, rgba(1,40,60,.32) 100%); }
+  .m2 .hero-grid { grid-template-columns:1fr .92fr; gap:44px; align-items:center; }
+  .m2 h1 { color:#fff; font-size:39px; line-height:1.05; }
+  .m2 .hero h1 .hl { color:var(--primary); }
+  .m2 .eyebrow { background:rgba(252,226,124,.16); color:#FCE27C; }
+  .m2 .hero p.lead { color:rgba(255,255,255,.92); font-size:15.5px; line-height:1.5; }
+  .m2 .hero-trust { color:rgba(255,255,255,.72); }
+  .m2 .hero-trust b { color:#FCE27C; }
+  .m2 .sim-card { background:rgba(255,255,255,.97); backdrop-filter:blur(8px); border-color:rgba(255,255,255,.5);
+                  box-shadow:0 26px 60px rgba(0,0,0,.34); }
+  .m2 .sim-head { font-size:13px; font-weight:800; color:var(--primary); margin-bottom:12px; letter-spacing:-.01em; }
+
+  /* ============ CONFIG 3 — hero compact + barre configurateur ============ */
+  .m3 .hero { padding:16px 0 0; }
+  .m3 .hero-grid { grid-template-columns:1.12fr .88fr; gap:34px; align-items:center; }
+  .m3 .eyebrow { margin-bottom:11px; }
+  .m3 h1 { font-size:31px; line-height:1.06; margin-bottom:9px; }
+  .m3 .hero p.lead { font-size:14.5px; color:var(--text-soft); line-height:1.5; }
+  .m3 .hero-trust { margin-top:12px; }
+  .m3 .shot { border-radius:18px; overflow:hidden; box-shadow:var(--shadow-lg); height:196px; }
+  .m3 .shot img { width:100%; height:100%; object-fit:cover; display:block; }
+  .m3 .simbar-wrap { background:var(--bg-soft); border-top:1px solid var(--line); margin-top:18px; padding:16px 0 18px; }
+  .m3 .simbar { display:grid; grid-template-columns:1fr 292px; gap:20px; align-items:stretch;
+                background:#fff; border:1px solid var(--line); border-radius:18px; padding:15px 18px; box-shadow:var(--shadow-md); }
+  .m3 .simbar-title { font-size:11.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); margin-bottom:11px; }
+  .m3 .fields { display:grid; grid-template-columns:1fr 1fr; gap:11px 26px; }
+  .m3 .fields .cg { margin-bottom:0; }
+  .m3 .panel { background:var(--bg-deep); border-radius:14px; padding:13px; display:flex; flex-direction:column; justify-content:center; text-align:center; color:#fff; }
+  .m3 .panel .ps-lab { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.6); margin-bottom:4px; }
+  .m3 .panel .ps-val { font-size:28px; font-weight:800; color:var(--accent); line-height:1; letter-spacing:-.02em; }
+  .m3 .panel .ps-sub { font-size:11px; color:rgba(255,255,255,.7); margin:7px 0 10px; }
+  .m3 .panel .sim-cta { padding:9px 14px; font-size:12.5px; }
+
+  @media (max-width:1100px) {
+    .m1 .hero-grid, .m2 .hero-grid, .m3 .hero-grid { grid-template-columns:1fr; gap:22px; }
+    .m3 .simbar { grid-template-columns:1fr; }
+    /* sur petit écran on laisse les maquettes se dérouler : la ligne de flottaison
+       ne veut plus rien dire, le cadre servirait juste à couper le contenu. */
+    .vp { height:auto !important; }
+    .vp::after { display:none; }
+    .pv-controls { display:none; }
+  }
+
+  /* ---------- synthèse ---------- */
+  .pv-reco { max-width:1180px; margin:52px auto 0; padding:26px 28px; background:#fff;
+             border:1px solid #D8D0C2; border-radius:18px; box-shadow:0 10px 28px rgba(32,48,63,.10); }
+  .pv-reco h2 { font-family:'Inter',sans-serif; font-weight:800; font-size:19px; color:#013C58; margin-bottom:12px; }
+  .pv-reco p { font-size:14.5px; color:#5C5448; line-height:1.6; margin-bottom:10px; }
+  .pv-reco b { color:#013C58; }
+  .pv-reco ul { margin:6px 0 0 18px; }
+  .pv-reco li { font-size:14.5px; color:#5C5448; line-height:1.6; margin-bottom:6px; }
+</style>
+</head>
+<body class="theme-it">
+
+<div class="pv-head">
+  <h1>Simulateurs — 3 façons de rendre le simulateur visible sans scroller</h1>
+  <p>
+    Problème actuel : le hero (texte + photo) occupe tout l'écran d'ouverture, le simulateur commence
+    sous la ligne de flottaison. Un visiteur pressé peut ne jamais le voir. Les 3 maquettes ci-dessous
+    sont rendues avec <code>assets/site.css</code>, au thème Support Applicatif, dans un cadre à hauteur
+    d'écran réelle. <b>Tout ce qui dépasse du cadre demande un scroll.</b>
+  </p>
+  <div class="pv-controls">
+    <span>Hauteur d'écran simulée :</span>
+    <button class="pv-btn on" data-h="640">Portable 1366×768</button>
+    <button class="pv-btn" data-h="770">Portable 1440×900</button>
+    <button class="pv-btn" data-h="950">Écran 1920×1080</button>
+  </div>
+</div>
+
+<!-- ================== CONFIG 1 ================== -->
+<div class="pv-block">
+  <div class="pv-title">Config 1 — « Le simulateur prend la colonne droite »</div>
+  <p class="pv-desc">
+    Les 2 colonnes restent, mais on échange les rôles : à gauche l'accroche, à droite le simulateur lui-même.
+    La photo ne disparaît pas — elle devient un médaillon de preuve sous le texte (visage + légende métier).
+    Le visiteur voit le prix bouger dès la première seconde.
+  </p>
+  <div class="pv-tags">
+    <span class="pv-tag up">Simulateur 100 % visible</span>
+    <span class="pv-tag up">Aucun scroll pour obtenir un prix</span>
+    <span class="pv-tag up">Structure 2 colonnes conservée</span>
+    <span class="pv-tag down">La photo perd sa surface hero</span>
+  </div>
+  <div class="vp">
+    <div class="mk m1" data-sim>
+      <div class="site-head">
+        <div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+        <header class="nav"><div class="container nav-inner">
+          <a class="brand" href="#"><img class="brand-logo" src="assets/logo-salverys-it.svg" alt="Salverys" /></a>
+          <nav class="nav-links">
+            <a href="#">Accueil</a><a href="#">Télésecrétariat médical</a>
+            <a href="#" class="active">Support Applicatif</a><a href="#">Helpdesk IT N1</a>
+          </nav>
+          <a href="#" class="nav-cta">Recevoir mon devis</a>
+        </div></header>
+      </div>
+
+      <section class="hero">
+        <span class="hero-bg-blob b1"></span>
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow"><span class="pulse"></span> Support N1 — Éditeurs SaaS FR</span>
+            <h1>Votre support utilisateurs, <span class="hl">réactif</span> et francophone.</h1>
+            <p class="lead">Des agents formés à votre produit : tickets, chat in-app, téléphone, escalade N2 cadrée vers vos équipes.</p>
+            <div class="medallion">
+              <img src="assets/img/metier-support-applicatif.jpg" alt="Agent support applicatif au poste de travail" />
+              <div class="mtx"><b>Une équipe dédiée, pas un centre d'appel</b>Agents nominatifs, formés à votre produit, sur le fuseau horaire français.</div>
+            </div>
+            <div class="hero-trust">
+              <span><b>Escalade N2</b> cadrée</span>
+              <span><b>−40 à −60 %</b> vs un N1 interne en France</span>
+            </div>
+          </div>
+
+          <div class="sim-card">
+            <div class="price-strip" style="margin-bottom:16px;">
+              <div>
+                <div class="ps-lab">Tarif mensuel estimé</div>
+                <div><span class="ps-val" data-out="price">2 070 – 2 530</span><span class="ps-unit">€/mois</span></div>
+              </div>
+              <div class="ps-side">France : <b data-out="fr">3 700 €</b><br />Économie <b data-out="save">37 %</b></div>
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Nombre d'agents</span><span class="cl-v" data-out="posts">1 agent</span></div>
+              <input type="range" data-in="posts" min="1" max="10" value="1" step="1" />
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Heures / semaine / agent</span><span class="cl-v" data-out="hours">35 h</span></div>
+              <input type="range" data-in="hours" min="10" max="40" value="35" step="5" />
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Niveau de service</span></div>
+              <div class="mini-pills" data-group="service">
+                <button class="pill" data-m="0.85">Mutualisé</button>
+                <button class="pill active" data-m="1.0">Dédié</button>
+                <button class="pill" data-m="1.25">Priority</button>
+              </div>
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Horaires de couverture</span></div>
+              <div class="mini-pills" data-group="schedule">
+                <button class="pill active" data-m="1.0">Bureau</button>
+                <button class="pill" data-m="1.15">Étendu</button>
+                <button class="pill" data-m="1.28">Soir + WE</button>
+                <button class="pill" data-m="1.45">24·7</button>
+              </div>
+            </div>
+            <a href="#" class="sim-cta" style="margin-top:16px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
+            <div class="sim-note">Estimation indicative · devis précis sous 24 h · sans engagement.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ================== CONFIG 2 ================== -->
+<div class="pv-block">
+  <div class="pv-title">Config 2 — « Photo en fond plein cadre + carte simulateur en verre »</div>
+  <p class="pv-desc">
+    La photo cesse d'être une colonne : elle devient le décor de tout le hero, avec un voile bleu profond.
+    Le texte reste à gauche en blanc, la carte simulateur flotte à droite. On garde la lecture en 2 colonnes,
+    la photo gagne même en surface, et le simulateur est le seul élément clair de l'écran — donc le point de fixation du regard.
+  </p>
+  <div class="pv-tags">
+    <span class="pv-tag up">Simulateur 100 % visible</span>
+    <span class="pv-tag up">La photo garde le maximum de surface</span>
+    <span class="pv-tag up">Contraste fort = le simulateur attire l'œil</span>
+    <span class="pv-tag down">Demande une photo qui supporte le recadrage large</span>
+  </div>
+  <div class="vp">
+    <div class="mk m2" data-sim>
+      <div class="site-head">
+        <div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+        <header class="nav"><div class="container nav-inner">
+          <a class="brand" href="#"><img class="brand-logo" src="assets/logo-salverys-it.svg" alt="Salverys" /></a>
+          <nav class="nav-links">
+            <a href="#">Accueil</a><a href="#">Télésecrétariat médical</a>
+            <a href="#" class="active">Support Applicatif</a><a href="#">Helpdesk IT N1</a>
+          </nav>
+          <a href="#" class="nav-cta">Recevoir mon devis</a>
+        </div></header>
+      </div>
+
+      <section class="hero">
+        <div class="hero-bgimg"><img src="assets/img/metier-support-applicatif.jpg" alt="Agent support applicatif au poste de travail" /></div>
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow"><span class="pulse"></span> Support N1 — Éditeurs SaaS FR</span>
+            <h1>Votre support utilisateurs, <span class="hl">réactif</span> et francophone.</h1>
+            <p class="lead">Des agents formés à votre produit : tickets, chat in-app, téléphone, escalade N2 cadrée vers vos équipes produit.</p>
+            <div class="hero-trust">
+              <span><b>Tickets</b> · chat · téléphone</span>
+              <span><b>Escalade N2</b> cadrée</span>
+              <span><b>−40 à −60 %</b> vs interne FR</span>
+            </div>
+          </div>
+
+          <div class="sim-card">
+            <div class="sim-head">Estimez votre équipe en 15 secondes</div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Nombre d'agents</span><span class="cl-v" data-out="posts">1 agent</span></div>
+              <input type="range" data-in="posts" min="1" max="10" value="1" step="1" />
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Heures / semaine / agent</span><span class="cl-v" data-out="hours">35 h</span></div>
+              <input type="range" data-in="hours" min="10" max="40" value="35" step="5" />
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Niveau de service</span></div>
+              <div class="mini-pills" data-group="service">
+                <button class="pill" data-m="0.85">Mutualisé</button>
+                <button class="pill active" data-m="1.0">Dédié</button>
+                <button class="pill" data-m="1.25">Priority</button>
+              </div>
+            </div>
+            <div class="cg">
+              <div class="cl"><span class="cl-t">Horaires</span></div>
+              <div class="mini-pills" data-group="schedule">
+                <button class="pill active" data-m="1.0">Bureau</button>
+                <button class="pill" data-m="1.15">Étendu</button>
+                <button class="pill" data-m="1.28">Soir + WE</button>
+                <button class="pill" data-m="1.45">24·7</button>
+              </div>
+            </div>
+            <div class="price-strip" style="margin-top:16px;">
+              <div>
+                <div class="ps-lab">Tarif mensuel estimé</div>
+                <div><span class="ps-val" data-out="price">2 070 – 2 530</span><span class="ps-unit">€/mois</span></div>
+              </div>
+              <div class="ps-side">France : <b data-out="fr">3 700 €</b><br />Économie <b data-out="save">37 %</b></div>
+            </div>
+            <a href="#" class="sim-cta" style="margin-top:12px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ================== CONFIG 3 ================== -->
+<div class="pv-block">
+  <div class="pv-title">Config 3 — « Hero 2 colonnes compact + barre configurateur »</div>
+  <p class="pv-desc">
+    Le hero actuel est conservé tel quel — texte à gauche, photo à droite — mais raccourci (photo en 16/10
+    au lieu de 4/5). Juste en dessous, toujours dans l'écran, une barre configurateur pleine largeur :
+    les 4 réglages à gauche, le prix en direct et le CTA à droite. C'est la variante la moins invasive
+    pour la mise en page actuelle.
+  </p>
+  <div class="pv-tags">
+    <span class="pv-tag up">Hero actuel quasi intact</span>
+    <span class="pv-tag up">Prix + CTA visibles sans scroll</span>
+    <span class="pv-tag up">Lecture « comparateur » très familière</span>
+    <span class="pv-tag down">Accroche raccourcie : moins de place pour l'argumentaire</span>
+  </div>
+  <div class="vp">
+    <div class="mk m3" data-sim>
+      <div class="site-head">
+        <div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+        <header class="nav"><div class="container nav-inner">
+          <a class="brand" href="#"><img class="brand-logo" src="assets/logo-salverys-it.svg" alt="Salverys" /></a>
+          <nav class="nav-links">
+            <a href="#">Accueil</a><a href="#">Télésecrétariat médical</a>
+            <a href="#" class="active">Support Applicatif</a><a href="#">Helpdesk IT N1</a>
+          </nav>
+          <a href="#" class="nav-cta">Recevoir mon devis</a>
+        </div></header>
+      </div>
+
+      <section class="hero">
+        <span class="hero-bg-blob b1"></span>
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow"><span class="pulse"></span> Support N1 — Éditeurs SaaS FR</span>
+            <h1>Votre support utilisateurs, <span class="hl">réactif</span> et francophone.</h1>
+            <p class="lead">Des agents formés à votre produit : tickets, chat in-app, téléphone, escalade N2 cadrée vers vos équipes produit.</p>
+            <div class="hero-trust">
+              <span><b>Escalade N2</b> cadrée</span>
+              <span><b>−40 à −60 %</b> vs interne FR</span>
+            </div>
+          </div>
+          <div class="shot"><img src="assets/img/metier-support-applicatif.jpg" alt="Agent support applicatif au poste de travail" /></div>
+        </div>
+      </section>
+
+      <div class="simbar-wrap">
+        <div class="container">
+          <div class="simbar">
+            <div>
+              <div class="simbar-title">Configurez votre équipe — tarif en direct</div>
+              <div class="fields">
+                <div class="cg">
+                  <div class="cl"><span class="cl-t">Nombre d'agents</span><span class="cl-v" data-out="posts">1 agent</span></div>
+                  <input type="range" data-in="posts" min="1" max="10" value="1" step="1" />
+                </div>
+                <div class="cg">
+                  <div class="cl"><span class="cl-t">Heures / semaine / agent</span><span class="cl-v" data-out="hours">35 h</span></div>
+                  <input type="range" data-in="hours" min="10" max="40" value="35" step="5" />
+                </div>
+                <div class="cg">
+                  <div class="cl"><span class="cl-t">Niveau de service</span></div>
+                  <div class="mini-pills" data-group="service">
+                    <button class="pill" data-m="0.85">Mutualisé</button>
+                    <button class="pill active" data-m="1.0">Dédié</button>
+                    <button class="pill" data-m="1.25">Priority</button>
+                  </div>
+                </div>
+                <div class="cg">
+                  <div class="cl"><span class="cl-t">Horaires</span></div>
+                  <div class="mini-pills" data-group="schedule">
+                    <button class="pill active" data-m="1.0">Bureau</button>
+                    <button class="pill" data-m="1.15">Étendu</button>
+                    <button class="pill" data-m="1.45">24·7</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="ps-lab">Tarif mensuel estimé</div>
+              <div><span class="ps-val" data-out="price">2 070 – 2 530</span></div>
+              <div class="ps-sub">€/mois · France <b data-out="fr">3 700 €</b> · <b data-out="save">37 %</b> d'économie</div>
+              <a href="#" class="sim-cta">Mon devis sous 24 h <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pv-reco">
+  <h2>Ce qu'on retient</h2>
+  <p>
+    Les 3 configurations règlent le problème de fond : <b>plus aucun scroll pour voir un prix</b>.
+    Elles se départagent sur ce qu'on accepte de sacrifier.
+  </p>
+  <ul>
+    <li><b>Config 1</b> — le plus efficace en conversion : le simulateur occupe la moitié de l'écran,
+        il devient le sujet de la page. La photo passe en preuve secondaire. C'est celle qui va le plus
+        loin dans le sens « la page est un simulateur, pas une brochure ».</li>
+    <li><b>Config 2</b> — le meilleur compromis image de marque / conversion : la photo gagne de la surface
+        (fond plein cadre), le simulateur devient le seul bloc clair de l'écran, donc le point de fixation
+        naturel du regard. Rendu plus premium, plus « éditeur SaaS ».</li>
+    <li><b>Config 3</b> — le moins risqué : le hero actuel est conservé presque tel quel, la barre
+        configurateur s'ajoute dessous. Bon si on veut garder la mise en page existante et ne changer
+        qu'une chose.</li>
+  </ul>
+  <p style="margin-top:14px;">
+    Dans les 3 cas, la section simulateur détaillée reste plus bas dans la page (résultats complets,
+    reco de forfait, comparatif) : le bloc du haut sert à donner un chiffre en 5 secondes, pas à
+    remplacer le simulateur complet.
+  </p>
+</div>
+
+<script>
+/* ---- hauteur d'écran simulée ---- */
+document.querySelectorAll('.pv-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.pv-btn').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  document.querySelectorAll('.vp').forEach(v => v.style.height = b.dataset.h + 'px');
+}));
+
+/* ---- moteur de prix (même formule que assets/site.js, base Support N1 SaaS) ---- */
+const CFG = { baseDirect: 2300, frBench: 3700 }, BAND = .05, FR_PEN = 1.35;
+const euro = n => Math.round(n).toLocaleString('fr-FR').replace(/ | /g, ' ');
+const vol = p => p >= 6 ? .90 : (p >= 3 ? .95 : 1);
+const priorityMult = n => 1.10 + .90 / n;
+
+document.querySelectorAll('[data-sim]').forEach(root => {
+  const st = { posts: 1, hours: 35, service: 1, priority: false, schedule: 1 };
+  const out = k => root.querySelector('[data-out="' + k + '"]');
+
+  function calc() {
+    const ratio = st.hours / 35;
+    const serviceMult = st.priority ? priorityMult(st.posts) : st.service;
+    const total = CFG.baseDirect * ratio * serviceMult * st.schedule * st.posts * vol(st.posts);
+    const frCost = CFG.frBench * ratio * st.posts * Math.pow(st.schedule, FR_PEN);
+    out('price').textContent = euro(total * (1 - BAND)) + ' – ' + euro(total * (1 + BAND));
+    out('fr').textContent = euro(frCost) + ' €';
+    out('save').textContent = Math.round((frCost - total) / frCost * 100) + ' %';
+    out('posts').textContent = st.posts + ' agent' + (st.posts > 1 ? 's' : '');
+    out('hours').textContent = st.hours + ' h';
+  }
+
+  root.querySelector('[data-in="posts"]').addEventListener('input', e => { st.posts = +e.target.value; calc(); });
+  root.querySelector('[data-in="hours"]').addEventListener('input', e => { st.hours = +e.target.value; calc(); });
+  root.querySelectorAll('[data-group]').forEach(g => g.addEventListener('click', e => {
+    const p = e.target.closest('.pill'); if (!p) return;
+    g.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    const m = parseFloat(p.dataset.m);
+    if (g.dataset.group === 'service') { st.service = m; st.priority = (m === 1.25); }
+    else st.schedule = m;
+    calc();
+  }));
+  calc();
+});
+</script>
+</body>
+</html>
