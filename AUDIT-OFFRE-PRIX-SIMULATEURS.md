@@ -4,22 +4,23 @@
 > publics (`simulateur-salverys.html`, `simulateur-informatique.html`,
 > `simulateur-helpdesk-it.html` + le moteur commun `assets/site.js`).
 >
-> Date : 2026-08-13 · Statut : **constats + options ouvertes, aucune décision appliquée**.
+> Date : 2026-08-13 · Statut : **arbitré et appliqué, sauf le bloc C** (benchmark & claim
+> −40 à −60 %), en attente de la décision sur les hypothèses de salaire.
 
 ---
 
 ## 0. Verdict en une page
 
-| Bloc | Gravité | Constat central |
-|---|---|---|
-| **A. Coefficients de couverture horaire** | 🔴 **critique** | Le 24·7 est vendu **+45 %** alors qu'il demande **×3,7 de présence**. Un devis 24·7 sort **à perte** et n'est **pas livrable**. |
-| **B. Tier Priority à 1-2 agents** | 🔴 **critique** | Le simulateur affiche publiquement **« Économie : −24 % »** et **« Économie annuelle : −10 800 € »**. On vend plus cher que d'embaucher en France. |
-| **C. Claim « −40 à −60 % » vs simulateur** | 🔴 **critique** | Les pages promettent −40 à −60 % ; le badge du simulateur calcule **−32 %** (helpdesk) et **−38 %** (SaaS). La page se contredit elle-même à 30 cm d'écart. |
-| **D. Badge médical −87 %** | 🟠 majeur | Hors doctrine `PRICING.md` (claim public = −40 à −60 %) et non crédible : compare un forfait 250 appels à une secrétaire à temps plein. |
-| **E. Noms des offres** | 🟠 majeur | 3 systèmes de nommage différents, **absents de `PRICING.md`**, mélange FR/EN sur une marque qui vend « français langue maternelle ». |
-| **F. Axes d'offre divergents entre les 2 simulateurs IT** | 🟠 majeur | Le SaaS a « Langue », le Helpdesk a « Périmètre N2 ». Deux produits frères, deux définitions d'offre. |
-| **G. Valeurs statiques périmées** | 🟡 mineur | Les valeurs en dur du HTML ne correspondent plus au calcul JS (badge 45 % affiché, 32 % calculé…). Visible ~200 ms au chargement + dans les tableaux comparatifs. |
-| **H. Promesses de délai** | 🟠 majeur | « Lancé en 10 jours » / « Onboarding 5 jours » vs `FINANCE-PREVISIONNEL.md` : **recrutement 2-4 sem. + formation 2-3 sem.** |
+| Bloc | Gravité | Constat central | Statut |
+|---|---|---|---|
+| **A. Coefficients de couverture horaire** | 🔴 **critique** | Le 24·7 est vendu **+45 %** alors qu'il demande **×3,7 de présence**. Un devis 24·7 sort **à perte** et n'est **pas livrable**. | ✅ **corrigé** — modèle ETP + astreinte/24·7 sur devis (`PRICING.md §3.c`) |
+| **B. Tier Priority à 1-2 agents** | 🔴 **critique** | Le simulateur affiche publiquement **« Économie : −24 % »** et **« Économie annuelle : −10 800 € »**. On vend plus cher que d'embaucher en France. | ✅ **corrigé** — badge « résilience » sous 3 agents, offre inchangée (`PRICING.md §3`) |
+| **C. Claim « −40 à −60 % » vs simulateur** | 🔴 **critique** | Les pages promettent −40 à −60 % ; le badge du simulateur calcule **−32 %** (helpdesk) et **−38 %** (SaaS). La page se contredit elle-même à 30 cm d'écart. | ⏳ **ouvert** — cf. §I.3 ci-dessous |
+| **D. Badge médical −87 %** | 🟠 majeur | Hors doctrine `PRICING.md` (claim public = −40 à −60 %) et non crédible : compare un forfait 250 appels à une secrétaire à temps plein. | ✅ **corrigé** — recadrage coût/jour ouvré (`PRICING.md §1`) |
+| **E. Noms des offres** | 🟠 majeur | 3 systèmes de nommage différents, **absents de `PRICING.md`**, mélange FR/EN sur une marque qui vend « français langue maternelle ». | ✅ **corrigé** — Débordement / Poste dédié / Centre de services (`PRICING.md §3.c`) |
+| **F. Axes d'offre divergents entre les 2 simulateurs IT** | 🟠 majeur | Le SaaS a « Langue », le Helpdesk a « Périmètre N2 ». Deux produits frères, deux définitions d'offre. | ✅ **corrigé** — socle commun (langue + périmètre N2 des deux côtés) + bloc recommandation ajouté au helpdesk |
+| **G. Valeurs statiques périmées** | 🟡 mineur | Les valeurs en dur du HTML ne correspondent plus au calcul JS (badge 45 % affiché, 32 % calculé…). Visible ~200 ms au chargement + dans les tableaux comparatifs. | ✅ **corrigé** — sauf les seuils `vol()` (cf. §I.8) |
+| **H. Promesses de délai** | 🟠 majeur | « Lancé en 10 jours » / « Onboarding 5 jours » vs `FINANCE-PREVISIONNEL.md` : **recrutement 2-4 sem. + formation 2-3 sem.** | ✅ **corrigé** — « opérationnel en 3 à 4 semaines » |
 
 ---
 
@@ -259,24 +260,42 @@ sur un deal 5 positions.
 
 ---
 
-## I. Ce qui doit être arbitré (et ne peut pas l'être par le code)
+## I. Arbitrages — décisions du 2026-08-13
 
-Les correctifs du §G sont mécaniques. Les blocs A à F supposent **des décisions
-direction**, listées ici sans réponse pré-remplie :
-
-1. **Couverture horaire** — modèle ETP calculé, coefficients recalibrés, ou retrait du
-   24·7 / astreinte du simulateur public (bascule « sur devis ») ?
-2. **Priority** — verrouiller sous 3 agents, replafonner la formule, ou masquer le coût brut
-   au profit du seul argument « à résilience égale » ?
-3. **Claim −40 à −60 %** — remonter le benchmark au haut de fourchette (4 200 €, sourcé
-   §3), afficher benchmark **et** économie **en fourchette**, ou baisser les prix directs ?
-   *(Les trois sont défendables ; elles n'engagent pas la même marge.)*
-4. **Médical** — que met-on dans le badge à la place du −87 % ?
-5. **Noms d'offres** — un système unique pour les 3 métiers, ou FR au médical / EN à l'IT
-   assumé ? Et « Mutualisé » : à définir dans `PRICING.md` ou à retirer du public ?
-6. **Axes d'offre IT** — aligner les deux simulateurs sur un socle commun (langue **et**
-   périmètre N2 des deux côtés) ?
-7. **Délais** — quelle promesse publique de mise en route pour l'IT ?
+1. ✅ **Couverture horaire** — **modèle ETP calculé** (étendu ×1,33) **et** retrait de
+   l'astreinte et du 24·7 du simulateur public (« sur devis »). Motif du retrait :
+   **livrabilité**, pas marge — un contrat 24·7 = ~4,8 ETP, soit toute la capacité de la
+   phase 1. `FR_PEN` supprimé au passage.
+2. ✅ **Priority** — **pas de verrou** : l'offre reste sélectionnable et vendable à 1-2
+   agents. C'est le **badge économie** qui disparaît sous 3 agents, remplacé par
+   « Résilience de N postes internes ». L'argument juste à cette taille est la faisabilité.
+3. ⏳ **Claim −40 à −60 %** — **ouvert.** Hypothèses de brut révisées (direction) :
+   **30-36 k€** au lieu de 26-34 k€ ⇒ coût complet **44-53 k€/an (3 650-4 400 €/mois)**.
+   Effet à prix inchangés : SaaS −37/−43/−48 %, helpdesk −31/−38/−43 % selon qu'on retient
+   le bas, la médiane ou le haut. **Le plancher −40 % redevient tenable ; le plafond −60 %
+   reste hors d'atteinte** (meilleur coin : −57 %) — il suppose la référence **ESN
+   Île-de-France**, qui n'est pas un recrutement interne. Reste à trancher : valeur de
+   benchmark retenue, et libellé du claim (**−40 à −55 %** vs poste interne ?).
+   ⚠️ Vigilance libellé : 30-36 k€ décrit un **technicien confirmé**, pas un N1 débutant
+   (marché FR ~24-28 k€ à l'entrée). Le libellé porte la défendabilité du chiffre.
+   - **Séniorité comme bouton client — écarté à ce stade.** Comme sélecteur de *benchmark*,
+     jamais : le prospect choisirait le chiffre qui le fait gagner. Comme **axe d'offre**
+     (profil Salverys livré), c'est pertinent et le benchmark en découlerait mécaniquement —
+     mais cela suppose d'abord une **grille de fees à deux niveaux** (`FINANCE-PREVISIONNEL.md`,
+     aujourd'hui 3 250 000 Ar pour tous) et une capacité à staffer le profil. À rouvrir avec
+     l'arbitrage n°3.
+4. ✅ **Médical** — badge = **coût/jour ouvré** + « N RDV récupérés paient le forfait ».
+5. ✅ **Noms d'offres** — trio FR métier pour l'IT : **Débordement / Poste dédié / Centre de
+   services**. Médical inchangé. *Reste à faire : définir « Mutualisé » dans `PRICING.md`
+   (son −15 % n'est toujours justifié nulle part).*
+6. ✅ **Axes d'offre IT** — socle commun : **langue et périmètre N2 des deux côtés**, plus le
+   bloc recommandation ajouté au helpdesk (il n'en avait aucun).
+7. ✅ **Délais** — **« opérationnel en 3 à 4 semaines »** partout en IT.
+8. ⏳ **Seuils `vol()`** — le simulateur dégresse à 3 et 6 agents, la rate card partenaire
+   à 1 / 3 / 5+ (§3). Deux grilles, aucun lien documenté. Non tranché.
+9. ⏳ **Médical « Sur-mesure »** — le simulateur affiche toujours un **prix calculé**
+   (`950 + 95 €/100 appels`) là où §1 dit « sur devis ». Le disclaimer, lui, est réparé et
+   s'affiche désormais correctement.
 
 ---
 

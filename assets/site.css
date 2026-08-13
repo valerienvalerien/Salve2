@@ -347,6 +347,8 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
 .pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before { opacity: 1; }
 .option-help { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); }
+.link-inline { background: none; border: 0; padding: 0; font: inherit; color: var(--primary); font-weight: 700; text-decoration: underline; cursor: pointer; }
+.link-inline:hover { color: var(--accent); }
 .result-primary { text-align: center; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.14); margin-bottom: 22px; }
 .result-label { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.6); margin-bottom: 8px; }
 .result-price { font-family: 'Georgia', serif; font-size: 56px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
@@ -356,6 +358,11 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .result-strikethrough .old { text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 2px; }
 .savings-badge { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 800; }
 .theme-it .savings-badge { background: var(--accent); color: var(--primary); }
+/* Variante « résilience » : Priority sous 3 agents n'a pas d'argument d'économie
+   (le backup permanent est une tête de plus). Badge neutre, pas accentué. */
+.savings-badge.badge-resilience,
+.theme-it .savings-badge.badge-resilience { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+.coverage-note { margin-top: 10px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.72); }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
 .result-stat { background: rgba(255,255,255,.07); border-radius: 12px; padding: 15px; }
 .result-stat.featured-saving { grid-column: 1 / -1; background: rgba(252,226,124,.13); border: 1px solid rgba(252,226,124,.28); text-align: center; }
