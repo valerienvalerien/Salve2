@@ -114,7 +114,7 @@
           <div class="pill-group" data-group="service">
             <button class="pill" data-value="shared" data-multiplier="0.85" data-tooltip="Équipe partagée" title="Équipe partagée" aria-label="Mutualisé : équipe partagée">Mutualisé</button>
             <button class="pill active" data-value="dedicated" data-multiplier="1.0" data-tooltip="Ressource nominative" title="Ressource nominative" aria-label="Dédié : ressource nominative">Dédié</button>
-            <button class="pill" data-value="priority" data-multiplier="1.25" data-tooltip="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture" title="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture" aria-label="Priority : service critique, capacité réservée et traitement prioritaire">Priority</button>
+            <button class="pill" data-value="priority" data-multiplier="1.0" data-tooltip="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture" title="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture" aria-label="Priority : service critique, capacité réservée et traitement prioritaire">Priority</button>
           </div>
         </div>
 
@@ -138,13 +138,22 @@
         </div>
 
         <div class="control-group">
-          <div class="control-label"><span class="control-label-text">Horaires de couverture</span></div>
-          <div class="pill-group" data-group="schedule">
-            <button class="pill active" data-value="office" data-multiplier="1.0">Bureau</button>
-            <button class="pill" data-value="extended" data-multiplier="1.15">Étendu</button>
-            <button class="pill" data-value="weekend" data-multiplier="1.28">Astreinte soir+WE</button>
-            <button class="pill" data-value="247" data-multiplier="1.45">24·7</button>
+          <div class="control-label"><span class="control-label-text">Périmètre N2</span></div>
+          <div class="pill-group" data-group="scope">
+            <button class="pill active" data-value="n1" data-multiplier="1.0">N1 seul</button>
+            <button class="pill" data-value="n1-escalade" data-multiplier="1.08">N1 + escalade cadrée</button>
+            <button class="pill" data-value="n1-n2" data-multiplier="1.22">N1 + N2 light</button>
           </div>
+          <div class="option-help">Escalade vers vos équipes produit, ou traitement de second niveau.</div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label"><span class="control-label-text">Horaires de couverture</span></div>
+          <div class="pill-group" data-group="coverage">
+            <button class="pill active" data-value="office" data-multiplier="1.0" data-tooltip="Heures ouvrées — fenêtre de ~45 h/semaine" title="Heures ouvrées — fenêtre de ~45 h/semaine">Bureau</button>
+            <button class="pill" data-value="extended" data-multiplier="1.333" data-tooltip="8h–20h, 5j/7 — 60 h/semaine, soit 1,33 agent par position" title="8h–20h, 5j/7 — 60 h/semaine, soit 1,33 agent par position">Étendu 8h–20h</button>
+          </div>
+          <div class="option-help">Soirée, week-end ou 24·7 : ces amplitudes se chiffrent au nombre de positions à couvrir — <button type="button" class="link-inline" data-devis>demander un devis</button>.</div>
         </div>
       </div>
 
@@ -152,22 +161,23 @@
       <div class="results-card reveal d1">
         <div class="result-primary">
           <div class="result-label">Tarif mensuel estimé</div>
-          <div><span class="result-price" id="price-monthly">2 070 – 2 530</span><span class="result-price-unit">€/mois</span></div>
+          <div><span class="result-price" id="price-monthly">2 185 – 2 415</span><span class="result-price-unit">€/mois</span></div>
           <div class="result-strikethrough">
-            Référence marché France (coût complet) : <span id="price-fr">3 700 €/mois</span>
+            Référence marché France (coût complet employeur, technicien support N1) : <span id="price-fr">3 700 €/mois</span>
           </div>
-          <div class="savings-badge" id="savings-badge">Économie : 37 %</div>
+          <div class="savings-badge" id="savings-badge">Économie : 38 %</div>
+          <div class="coverage-note" id="coverage-note" hidden></div>
         </div>
 
         <div class="result-grid">
           <div class="result-stat"><div class="result-stat-label">Heures / mois</div><div class="result-stat-value" id="hours-monthly">152 h</div></div>
           <div class="result-stat"><div class="result-stat-label">Équivalent horaire</div><div class="result-stat-value" id="hourly-equivalent">15,2 €</div></div>
-          <div class="result-stat featured-saving"><div class="result-stat-label">Économie annuelle estimée</div><div class="result-stat-value accent" id="annual-savings">16 152 €</div></div>
+          <div class="result-stat featured-saving"><div class="result-stat-label" id="annual-savings-label">Économie annuelle estimée</div><div class="result-stat-value accent" id="annual-savings">16 800 €</div></div>
         </div>
 
         <div class="recommendation">
           <div class="recommendation-label">★ Recommandé pour vous</div>
-          <div class="recommendation-text" id="recommendation">Forfait <strong>Support Pro</strong> — meilleur rapport coût / disponibilité.</div>
+          <div class="recommendation-text" id="recommendation">Forfait <strong>Poste dédié</strong> — meilleur rapport coût / disponibilité.</div>
         </div>
         <a href="mailto:contact@salverys.fr?subject=Devis%20support%20N1%20SaaS%20sous%2024h" class="btn btn-it" data-devis style="width:100%;justify-content:center;margin-top:14px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
         <div class="disclaimer">Estimation indicative · devis précis sous 24 h · sans engagement long terme.</div>
@@ -210,7 +220,7 @@
     </div>
     <div class="packages">
       <div class="pkg reveal">
-        <div class="pkg-name">Support Starter</div>
+        <div class="pkg-name">Débordement</div>
         <div class="pkg-tag">Premier niveau, sans recruter</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">1 100</span><span class="pkg-unit"> €/mois</span></div>
         <div class="pkg-equiv">1 agent mutualisé 20 h</div>
@@ -219,14 +229,14 @@
           <li>Tickets + email</li>
           <li>SLA standard · réponse &lt; 4 h</li>
           <li>Base de connaissance partagée</li>
-          <li>Onboarding 5 jours</li>
+          <li>Opérationnel en 3 à 4 semaines</li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
       <div class="pkg featured reveal d1">
         <div class="pkg-badge">★ Le plus choisi</div>
-        <div class="pkg-name">Support Pro</div>
+        <div class="pkg-name">Poste dédié</div>
         <div class="pkg-tag">Un N1 dédié à votre SaaS</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">2 300</span><span class="pkg-unit"> €/mois</span></div>
         <div class="pkg-equiv">1 agent 35 h dédié</div>
@@ -237,11 +247,11 @@
           <li>Reporting hebdomadaire + KPI CSAT</li>
           <li>Backup agent inclus</li>
         </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Choisir Support Pro</a>
+        <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
       </div>
 
       <div class="pkg reveal d2">
-        <div class="pkg-name">Centre N1 Scale</div>
+        <div class="pkg-name">Centre de services</div>
         <div class="pkg-tag">Équipe N1, couverture étendue</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">4 600</span><span class="pkg-unit"> €/mois</span></div>
         <div class="pkg-equiv">2 agents 35 h dédiés</div>
@@ -249,10 +259,10 @@
           <li>2 agents dédiés · 35 h / semaine</li>
           <li>Superviseur dédié</li>
           <li>Horaires étendus (8 h – 20 h)</li>
-          <li>Astreinte soir / week-end possible</li>
+          <li>Astreinte soir / week-end sur devis</li>
           <li>Account manager dédié</li>
         </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Passer à Scale</a>
+        <a href="#contact" class="pkg-cta" data-devis>Passer au centre de services</a>
       </div>
     </div>
   </div>
@@ -280,7 +290,7 @@
         <div class="ccell bad">3 700 €</div>
         <div class="ccell c-hide neu">350-550 €/j</div>
         <div class="ccell c-hide neu">Variable</div>
-        <div class="ccell salv">≈ 1 900-2 300 €</div>
+        <div class="ccell salv">≈ 2 185-2 415 €</div>
       </div>
       <div class="crow">
         <div class="cfeat">Disponibilité garantie</div>
@@ -326,7 +336,7 @@
 <section class="cta-band" id="contact">
   <span class="hero-bg-blob b1"></span>
   <div class="container">
-    <h2>Votre support N1, <span class="hl">lancé en 10 jours</span>.</h2>
+    <h2>Votre support N1, <span class="hl">opérationnel en 3 à 4 semaines</span>.</h2>
     <p>Onboarding offert · sans engagement long terme · un interlocuteur unique de bout en bout.</p>
     <a href="mailto:contact@salverys.fr" class="btn btn-it">Contactez-nous</a>
   </div>

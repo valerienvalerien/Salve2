@@ -83,6 +83,13 @@ gérer. »*
 - À l'inverse, en solo non critique : proposer **Dédié** et garder Priority pour
   plus tard (le surcoût ×2 en solo se défend mal hors contexte vraiment critique).
 
+> ⚠️ **Ne jamais adosser Priority au claim public « −40 à −60 % »** (décidé 2026-08-13).
+> Ce claim est un claim du tier **Dédié**. Priority ressort à ~10-17 % d'économie faciale
+> au-delà de 3 agents, et **négative** en dessous — c'est normal : on vend une tête de
+> backup en plus. Sur Priority, l'argument est la **continuité**, jamais l'économie.
+> C'est pour cette raison que le simulateur n'affiche plus aucun pourcentage sous 3 agents
+> (`PRICING.md §3`) : il affiche « Résilience de N postes internes ».
+
 ## 7. Phrases prêtes à dire
 
 - *« Dédié = un agent à vous. Priority = la garantie qu'il n'y a jamais de trou. »*
