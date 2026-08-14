@@ -340,13 +340,13 @@
       const badge = $('savings-badge');
       badge.classList.toggle('badge-resilience', priorityLowN);
       badge.textContent = priorityLowN
-        ? 'Résilience de ' + equivHeads + ' postes internes'
+        ? 'Continuité de ' + equivHeads + ' postes, sans en recruter ' + equivHeads
         : 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
 
       const annualEl = $('annual-savings'), annualLabel = $('annual-savings-label');
       if (priorityLowN) {
         annualEl.textContent = equivHeads + ' postes';
-        if (annualLabel) annualLabel.textContent = 'Équivalent interne sans rupture';
+        if (annualLabel) annualLabel.textContent = 'Pour faire pareil en interne';
       } else {
         annualEl.textContent = euro(savings * 12) + ' €';
         if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';

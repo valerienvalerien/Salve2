@@ -88,7 +88,7 @@ gérer. »*
 > au-delà de 3 agents, et **négative** en dessous — c'est normal : on vend une tête de
 > backup en plus. Sur Priority, l'argument est la **continuité**, jamais l'économie.
 > C'est pour cette raison que le simulateur n'affiche plus aucun pourcentage sous 3 agents
-> (`PRICING.md §3`) : il affiche « Résilience de N postes internes ».
+> (`PRICING.md §3`) : il affiche « Continuité de N postes, sans en recruter N ».
 
 ## 7. Phrases prêtes à dire
 
