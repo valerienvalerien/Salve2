@@ -484,6 +484,10 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .theme-it .pkg-price { font-family: 'Inter', sans-serif; }
 .pkg.featured .pkg-price { color: #fff; }
 .theme-it .pkg.featured .pkg-price { color: var(--accent); }
+/* Fourchette d'estimation : deux nombres et un tiret ne tiennent pas dans le
+   corps de 44 px prévu pour un prix ferme. */
+.pkg-price.is-range { font-size: 29px; letter-spacing: -.01em; }
+@media (max-width: 480px) { .pkg-price.is-range { font-size: 26px; } }
 .pkg-unit { font-size: 16px; color: var(--text-mute); }
 .pkg.featured .pkg-unit { color: rgba(255,255,255,.7); }
 .pkg-equiv { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 8px; margin-bottom: 24px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }

@@ -352,17 +352,48 @@
         if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
       }
 
+      // Le palier se déduit de ce qui le définit : le niveau de service d'abord
+      // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
+      // plus dans le tri — elles font varier le prix, pas la nature du forfait.
       let pkg;
-      if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
-      else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.coverage > 1.0)) pkg = { slug: 'centre-de-services', name: 'Centre de services', why: 'équipe N1 et couverture étendue.' };
+      if (st.service <= 0.85 && st.serviceTier !== 'priority') pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
+      else if (st.posts >= 2) pkg = { slug: 'centre-de-services', name: 'Centre de services', why: 'équipe N1 et couverture étendue.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
       if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
       syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
+      syncPackagePrices();
 
       pop($('price-monthly'));
       syncMirrors();
+    }
+
+    /* Prix des cartes « Forfaits » — même moteur que l'estimation du haut de page.
+       Chaque carte impose seulement ce qui la définit (niveau de service, taille
+       d'équipe, via data-pkg-service / data-pkg-agents) et hérite du reste :
+       heures, amplitude, canaux, langue, périmètre. La carte désignée par le
+       simulateur affiche donc exactement la fourchette du bandeau prix — sans
+       cette règle, les deux chiffres divergent sur la même page. */
+    function syncPackagePrices() {
+      document.querySelectorAll('.pkg[data-pkg-service]').forEach(card => {
+        const shared = card.dataset.pkgService === 'shared';
+        const rule = card.dataset.pkgAgents;
+        const agents = rule === 'solo' ? 1 : rule === 'team' ? Math.max(2, st.posts) : st.posts;
+        const serviceMult = shared ? 0.85 : (st.serviceTier === 'priority' ? priorityMult(agents) : 1.0);
+        const etp = agents * st.coverage;
+        const total = st.mode * (st.hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
+
+        const priceEl = card.querySelector('.pkg-price');
+        if (priceEl) priceEl.textContent = range(total);
+        const equivEl = card.querySelector('.pkg-equiv');
+        if (equivEl) {
+          const s = agents > 1 ? 's' : '';
+          equivEl.textContent = agents + ' agent' + s + (shared ? ' mutualisé' + s : ' dédié' + s)
+            + ' · ' + st.hours + ' h / semaine'
+            + (st.coverage > 1 ? ' · 8h–20h' : '');
+        }
+      });
     }
 
     $('posts').addEventListener('input', e => {
