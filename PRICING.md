@@ -4,7 +4,12 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
+> Dernière révision : 2026-08-14 (**palier haut IT & axes du simulateur — décision direction** :
+> palier 3 renommé **Non-stop** avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
+> **supprimé** du simulateur public §3.d · **backup réservé au Non-stop** §3.d · revue de
+> service mensuelle **incluse partout**, donc hors différenciation §3.d · fourchette
+> d'estimation rattachée au **profil de l'agent** §3.d) ·
+> précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
 > horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
 > argument d'économie sous 3 agents** §3 · badge médical recadré sur le **coût/jour ouvré**
@@ -395,6 +400,41 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 10 jours » et « onboarding 5 jours », intenables face à `FINANCE-PREVISIONNEL.md §5`
 (recrutement 2-4 sem. + formation 2-3 sem.). Aligne l'IT sur le médical (§1.c).
 
+### 3.d Palier haut « Non-stop » & axes du simulateur (décidé 2026-08-14)
+
+**Le palier 3 « Centre de services » devient « Non-stop »** (§3.c mis à jour) : le nom dit
+la promesse achetée — la continuité — au lieu de décrire une organisation interne.
+
+| Palier | Nom | Contenu type |
+|---|---|---|
+| 1 | **Débordement** | 1 agent mutualisé · base 20 h/sem · tickets + email |
+| 2 | **Poste dédié** | agent 100 % dédié, 35 h ou 40 h/sem · escalade N2 cadrée · se vend à la position |
+| 3 | **Non-stop** | **≥ 4 agents** en rotation · superviseur dédié · 6h-20h ou 3×8 · backup inclus |
+
+- **Plancher de 4 agents, opposable.** En dessous, la rotation n'existe pas : le forfait
+  n'est ni staffable ni tenable. Le simulateur **verrouille le bouton** du Non-stop sous
+  4 agents et affiche la raison au survol, plutôt que d'ouvrir un devis impossible.
+- **Prix : pas d'estimation, un « à partir de » sur devis** — 11 000 €/mois (helpdesk IT) ·
+  10 000 €/mois (support N1 SaaS). Base : 4 agents au tarif direct (§3), dégressif volume
+  inclus, plus la réserve de backup (~100 €/position, §10) et la supervision dédiée. Au-delà,
+  l'amplitude (6h-20h, 3×8) se chiffre au devis — cohérent avec le retrait des paliers
+  astreinte / 24·7 du simulateur public (§3.c).
+- **Le backup n'est plus affiché au Poste dédié.** « Dédié » et « quelqu'un d'autre prend le
+  relais » se contredisent, et le backup permanent est ce que facture le tier Priority
+  (`priorityMult`, §3). Il devient exclusif au Non-stop, où il est structurel : à 4 agents en
+  rotation, la continuité est mécanique. ⚠️ Reste adossé à l'arbitrage ouvert de §10
+  (réserve partagée non financée à ce jour).
+- **Axe « Périmètre N2 » supprimé du simulateur.** Il majorait le prix (+8 % / +22 %) pour
+  une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
+- **La fourchette d'estimation (±5 %) porte désormais le profil de l'agent** : bas de
+  fourchette = profil formé chez nous aux process du client ; haut = profil confirmé, déjà
+  rodé aux exigences de comptes européens. ⚠️ **Ouvert** : ±5 % est étroit pour un écart
+  junior → confirmé ; élargir la bande (±10 %) est à trancher.
+- **Revue de service mensuelle (compte rendu écrit) : incluse dans tous les forfaits**, donc
+  retirée des lignes de différenciation. Le suivi commercial et les évolutions de périmètre
+  sont assurés par la direction pour tous les comptes — ce n'est pas un poste qui se
+  débloque au palier 3.
+
 ---
 
 ## 4. Bailleurs sociaux & grandes structures — relation client de toutes sortes (futur non déterminé) — **INTERNE**
@@ -596,6 +636,10 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Priority sous 3 agents (2026-08-13)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | **aucun % d'économie affiché** sous 3 agents ⇒ « Continuité de N postes, sans en recruter N » ; l'offre reste vendable à 1-2 agents (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
 | **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
+| **Palier 3 IT (2026-08-14)** | « Centre de services », sans effectif minimum | **« Non-stop »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
+| **Backup agent (2026-08-14)** | affiché comme inclus dans le **Poste dédié** | **exclusif au Non-stop** — « dédié » et « quelqu'un d'autre prend le relais » se contredisent, et le backup permanent est ce que facture Priority (§3.d) |
+| **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
+| **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
 
 ---
 

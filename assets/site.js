@@ -95,11 +95,38 @@
       const name = group.dataset.group;
       group.querySelectorAll('.pill').forEach(pill => {
         pill.addEventListener('click', () => {
-          group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
+          // Les mêmes réglages sont proposés en haut de page et dans la carte
+          // « Votre estimation en détail » : tous les groupes portant ce nom
+          // basculent ensemble, sinon les deux jeux de boutons divergent.
+          const groups = name
+            ? document.querySelectorAll('.pill-group[data-group="' + name + '"]')
+            : [group];
+          groups.forEach(g => g.querySelectorAll('.pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.value === pill.dataset.value);
+          }));
           onChange(name, parseFloat(pill.dataset.multiplier), pill.dataset.value);
         });
       });
+    });
+  }
+
+  /* Curseurs dupliqués : un input marqué data-sync="posts" rejoue l'input
+     principal du même nom, dans les deux sens. */
+  function bindRangeMirrors() {
+    document.querySelectorAll('input[type="range"][data-sync]').forEach(mirror => {
+      const main = document.getElementById(mirror.dataset.sync);
+      if (!main) return;
+      mirror.min = main.min; mirror.max = main.max; mirror.step = main.step; mirror.value = main.value;
+      mirror.addEventListener('input', () => {
+        main.value = mirror.value;
+        main.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+  }
+  function syncRangeMirrors() {
+    document.querySelectorAll('input[type="range"][data-sync]').forEach(mirror => {
+      const main = document.getElementById(mirror.dataset.sync);
+      if (main) mirror.value = main.value;
     });
   }
 
@@ -281,7 +308,8 @@
       // inchangée tant que la décision n'est pas actée dans PRICING.md §3/§5.
       baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, BAND = 0.05; // ±5 % autour de l'estimation
+    const PROD = 0.85, BAND = 0.05; // ±5 % autour de l'estimation — voir la note « profil d'agent » sous le prix
+    const NONSTOP_MIN = 4;          // rotation impossible en dessous (cf. PRICING.md §3.c)
     const st = {
       posts: 1, hours: 35,
       service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, scope: 1.0,
@@ -355,18 +383,34 @@
       // Le palier se déduit de ce qui le définit : le niveau de service d'abord
       // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
       // plus dans le tri — elles font varier le prix, pas la nature du forfait.
+      // Non-stop suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
       let pkg;
       if (st.service <= 0.85 && st.serviceTier !== 'priority') pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
-      else if (st.posts >= 2) pkg = { slug: 'centre-de-services', name: 'Centre de services', why: 'équipe N1 et couverture étendue.' };
+      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Non-stop', why: 'rotation d\'équipe et couverture continue.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
       if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
       syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
       syncPackagePrices(pkg.slug);
+      syncPackageLocks();
+      syncRangeMirrors();
 
       pop($('price-monthly'));
       syncMirrors();
+    }
+
+    /* Forfaits soumis à un effectif minimum : le bouton reste visible mais
+       inopérant tant que le curseur n'y est pas, avec la raison au survol —
+       laisser cliquer puis expliquer dans le devis ferait perdre le lead. */
+    function syncPackageLocks() {
+      document.querySelectorAll('.pkg-cta[data-min-agents]').forEach(cta => {
+        const min = parseInt(cta.dataset.minAgents, 10);
+        const locked = st.posts < min;
+        cta.classList.toggle('is-locked', locked);
+        cta.setAttribute('aria-disabled', locked ? 'true' : 'false');
+        if (locked) cta.setAttribute('tabindex', '-1'); else cta.removeAttribute('tabindex');
+      });
     }
 
     /* Prix des cartes « Forfaits » — même moteur que l'estimation du haut de page.
@@ -421,6 +465,10 @@
     bindPills((name, m, value) => {
       if (name === 'service') st.serviceTier = value;
       if (name !== 'mode') { st[name] = m; calc(); }
+    });
+    bindRangeMirrors();
+    document.querySelectorAll('.pkg-cta[data-min-agents]').forEach(cta => {
+      cta.addEventListener('click', e => { if (cta.classList.contains('is-locked')) e.preventDefault(); });
     });
 
     /* ----- Graphe comparatif Dédié vs Priority (SVG sans dépendance) ----- */
@@ -538,7 +586,11 @@
     }
 
     document.querySelectorAll('[data-devis]').forEach(el =>
-      el.addEventListener('click', e => { e.preventDefault(); openModal(); })
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        if (el.classList.contains('is-locked')) return; // forfait sous son effectif minimum
+        openModal();
+      })
     );
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });

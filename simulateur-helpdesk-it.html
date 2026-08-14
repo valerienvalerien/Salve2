@@ -129,12 +129,47 @@
     <div class="section-head reveal">
       <div class="kicker">Le détail</div>
       <h2>Votre estimation en détail</h2>
-      <p>Canaux, langue et périmètre N2 affinent l'estimation — tout se recalcule en direct, en haut comme ici.</p>
+      <p>Tous les réglages sont ici, et le bandeau du haut suit — chaque changement recalcule l'estimation en direct.</p>
     </div>
 
     <div class="sim-grid">
       <!-- CONTRÔLES -->
       <div class="controls-card reveal">
+        <div class="control-group">
+          <div class="control-label">
+            <span class="control-label-text">Nombre d'agents</span>
+            <span class="control-value" data-mirror="posts-value">1 agent</span>
+          </div>
+          <div class="slider-wrap"><input type="range" data-sync="posts" aria-label="Nombre d'agents" /></div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span class="control-label-text">Heures / semaine / agent</span>
+            <span class="control-value" data-mirror="hours-value">35 h</span>
+          </div>
+          <div class="slider-wrap"><input type="range" data-sync="hours" aria-label="Heures par semaine et par agent" /></div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label"><span class="control-label-text">Niveau de service</span></div>
+          <div class="pill-group" data-group="service">
+            <button class="pill" data-value="shared" data-multiplier="0.85">Mutualisé</button>
+            <button class="pill active" data-value="dedicated" data-multiplier="1.0">Dédié</button>
+            <button class="pill" data-value="priority" data-multiplier="1.0"
+                    data-tooltip="Service critique : capacité réservée non mutualisée, traitement prioritaire, backup permanent, supervision renforcée — tolérance zéro rupture">Priority</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label"><span class="control-label-text">Horaires de couverture</span></div>
+          <div class="pill-group" data-group="coverage">
+            <button class="pill active" data-value="office" data-multiplier="1.0" data-tooltip="Heures ouvrées — fenêtre de ~45 h/semaine">Bureau</button>
+            <button class="pill" data-value="extended" data-multiplier="1.333" data-tooltip="8h–20h, 5j/7 — 60 h/semaine, soit 1,33 agent par position">Étendu 8h–20h</button>
+          </div>
+          <div class="option-help">Soirée, week-end ou 24·7 : <button type="button" class="link-inline" data-devis>sur devis</button>.</div>
+        </div>
+
         <div class="control-group">
           <div class="control-label"><span class="control-label-text">Canaux traités</span></div>
           <div class="pill-group" data-group="channels">
@@ -153,20 +188,6 @@
           </div>
           <div class="option-help">Pour les parcs avec des utilisateurs anglophones.</div>
         </div>
-
-        <div class="control-group">
-          <div class="control-label"><span class="control-label-text">Périmètre N2</span></div>
-          <div class="pill-group" data-group="scope">
-            <button class="pill active" data-value="n1" data-multiplier="1.0">N1 seul</button>
-            <button class="pill" data-value="n1-escalade" data-multiplier="1.08">N1 + escalade cadrée</button>
-            <button class="pill" data-value="n1-n2" data-multiplier="1.22">N1 + N2 light</button>
-          </div>
-        </div>
-
-        <div class="option-help" style="margin-top:22px;">
-          Nombre d'agents, heures, niveau de service et horaires se règlent
-          <a href="#top" style="font-weight:700;color:var(--primary);">en haut de page</a>.
-        </div>
       </div>
 
       <!-- RÉSULTATS -->
@@ -179,6 +200,7 @@
           </div>
           <div class="savings-badge" id="savings-badge">Économie : 32 %</div>
           <div class="coverage-note" id="coverage-note" hidden></div>
+          <div class="result-band-note">Fourchette = <b>profil de l'agent</b> : le bas correspond à un profil formé chez nous à vos process, le haut à un profil confirmé, déjà rodé aux exigences de comptes européens.</div>
         </div>
 
         <div class="result-grid">
@@ -249,16 +271,14 @@
           <li class="off"><span class="sr-only">Non inclus : </span><span>Agent 100 % dédié · en 35 h ou 40 h / semaine</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Téléphone + chat en plus des tickets</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Escalade N2 cadrée vers vos techniciens</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Agent de backup en cas d'absence</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Équipe d'au moins 2 agents dédiés</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Superviseur dédié</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (8 h – 20 h)</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Revue de service mensuelle · compte rendu écrit</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (6 h – 20 h) ou rotation en 3×8</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Agent de backup en cas d'absence</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
-      <div class="pkg featured reveal d1" data-pkg="poste-dedie" data-pkg-service="dedicated" data-pkg-agents="solo">
+      <div class="pkg featured reveal d1" data-pkg="poste-dedie" data-pkg-service="dedicated" data-pkg-agents="follow">
         <div class="pkg-badge" data-default="★ Le plus choisi">★ Le plus choisi</div>
         <div class="pkg-name">Poste dédié</div>
         <div class="pkg-tag">Un N1 dédié à vos utilisateurs, gestion structurée</div>
@@ -273,21 +293,19 @@
           <li>Agent 100 % dédié · en 35 h ou 40 h / semaine</li>
           <li>Téléphone + chat en plus des tickets</li>
           <li>Escalade N2 cadrée vers vos techniciens</li>
-          <li>Agent de backup en cas d'absence</li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Équipe d'au moins 2 agents dédiés</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Superviseur dédié</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (8 h – 20 h)</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Revue de service mensuelle · compte rendu écrit</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (6 h – 20 h) ou rotation en 3×8</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Agent de backup en cas d'absence</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
       </div>
 
-      <div class="pkg reveal d2" data-pkg="centre-de-services" data-pkg-service="dedicated" data-pkg-agents="team">
+      <div class="pkg reveal d2" data-pkg="non-stop">
         <div class="pkg-badge" hidden></div>
-        <div class="pkg-name">Centre de services</div>
-        <div class="pkg-tag">Équipe N1, gestion structurée, couverture étendue</div>
-        <div><span class="pkg-from">Estimation type</span><span class="pkg-price is-range">4 750 – 5 250</span><span class="pkg-unit"> €/mois</span></div>
-        <div class="pkg-equiv">2 agents dédiés · 35 h / semaine</div>
+        <div class="pkg-name">Non-stop</div>
+        <div class="pkg-tag">Rotation d'équipe, couverture continue</div>
+        <div><span class="pkg-from">Sur devis</span><span class="pkg-unit">à partir de </span><span class="pkg-price">11 000</span><span class="pkg-unit"> €/mois</span></div>
+        <div class="pkg-equiv">4 agents dédiés minimum · amplitude chiffrée au devis</div>
         <ul class="pkg-feat">
           <li>Tickets + email</li>
           <li>Gestion structurée des tickets</li>
@@ -297,18 +315,16 @@
           <li>Agent 100 % dédié · en 35 h ou 40 h / semaine</li>
           <li>Téléphone + chat en plus des tickets</li>
           <li>Escalade N2 cadrée vers vos techniciens</li>
-          <li>Agent de backup en cas d'absence</li>
-          <li>Équipe d'au moins 2 agents dédiés</li>
           <li>Superviseur dédié</li>
-          <li>Horaires étendus (8 h – 20 h)</li>
-          <li>Revue de service mensuelle · compte rendu écrit</li>
+          <li>Horaires étendus (6 h – 20 h) ou rotation en 3×8</li>
+          <li>Agent de backup en cas d'absence</li>
         </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Passer au centre de services</a>
+        <a href="#contact" class="pkg-cta" data-devis data-min-agents="4" data-tooltip="Le forfait Non-stop démarre à 4 agents — remontez le curseur « Nombre d'agents ».">Passer au Non-stop</a>
       </div>
     </div>
     <p style="text-align:center;margin-top:26px;font-size:13.5px;color:var(--text-soft);">
-      <b>Astreinte soir / week-end et couverture 24·7</b> : sur devis, quel que soit le forfait.
-      <b>Cadrage et mise en place : offerts.</b>
+      <b>Revue de service mensuelle</b> (compte rendu écrit) et <b>cadrage &amp; mise en place</b> : inclus dans tous les forfaits.
+      <b>Astreinte soir / week-end et couverture 24·7</b> : sur devis.
     </p>
   </div>
   <a class="scroll-next" href="#comparaison" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>

@@ -422,10 +422,12 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .pill:hover { border-color: var(--accent); color: var(--primary); }
 .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .theme-it .pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
-.pill[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
-.pill[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
-.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
-.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before { opacity: 1; }
+.pill[data-tooltip]::after, .pkg-cta.is-locked[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
+.pill[data-tooltip]::before, .pkg-cta.is-locked[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
+.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after,
+.pkg-cta.is-locked[data-tooltip]:hover::after, .pkg-cta.is-locked[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before,
+.pkg-cta.is-locked[data-tooltip]:hover::before, .pkg-cta.is-locked[data-tooltip]:focus-visible::before { opacity: 1; }
 .option-help { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); }
 .link-inline { background: none; border: 0; padding: 0; font: inherit; color: var(--primary); font-weight: 700; text-decoration: underline; cursor: pointer; }
 .link-inline:hover { color: var(--accent); }
@@ -523,6 +525,11 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; }
 .pkg-cta:hover { background: var(--primary); color: #fff; }
+/* Forfait sous son effectif minimum : le bouton reste lisible mais inerte, et
+   dit pourquoi au survol — un clic qui ouvre un devis impossible perd le lead. */
+.pkg-cta.is-locked { position: relative; opacity: .5; cursor: not-allowed; }
+.pkg-cta.is-locked:hover { background: transparent; color: var(--primary); }
+.pkg.featured .pkg-cta.is-locked:hover { background: var(--cta); color: var(--cta-text); }
 /* Carte correspondant a la configuration courante du simulateur. La pastille
    « Le plus choisi » de la carte vedette lui cede la place quand elle est designee. */
 .pkg.is-match { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
@@ -1125,3 +1132,8 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
   .float-cta-toggle, .float-cta-toggle-inner { animation: none; }
   .float-cta-link { transition-duration: .01ms; }
 }
+
+/* Note sous le prix : la fourchette n'est pas une marge de négociation, elle
+   correspond au profil de l'agent affecté. */
+.result-band-note { margin-top: 12px; font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.65); }
+.result-band-note b { color: rgba(255,255,255,.9); }
