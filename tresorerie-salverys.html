@@ -87,7 +87,7 @@
 <body>
 <div class="wrap">
   <h1>Trésorerie Salverys — simulateur 24 mois</h1>
-  <p class="sub">Interne · v5 du 2026-06-18 · <b>3 métiers séparés</b> (médical · Support N1 SaaS · Helpdesk IT) + transverse · coûts bottom-up + SaaS · aligné sur <b>FINANCE-PREVISIONNEL.md</b> et <b>PRICING.md</b> · encaissement à 30 jours</p>
+  <p class="sub">Interne · <b>v6 du 2026-08-14 — modèle 100 % salarié</b> · <b>3 métiers séparés</b> (médical · Support N1 SaaS · Helpdesk IT) + transverse · coûts bottom-up + SaaS · aligné sur <b>FINANCE-PREVISIONNEL.md v3</b> et <b>PRICING.md</b> · salaires payés dès l'embauche, facturation à M+2, encaissement à 30 jours</p>
 
   <!-- TAUX EUR → MGA — TOUT EN HAUT -->
   <div class="rate-bar">
@@ -115,10 +115,10 @@
         <h3>① Télésecrétariat médical</h3>
         <span class="coltag">Priorité absolue · cabinets × forfait</span>
         <div class="ctl"><label>Forfait médical moyen <b id="vForfait"></b></label>
-          <input type="range" id="forfait" min="300" max="950" step="10" value="420">
+          <input type="range" id="forfait" min="300" max="950" step="10" value="590">
           <div class="hint">€/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
         <div class="ctl"><label>Cabinets / freelance <b id="vRatio"></b></label>
-          <input type="range" id="ratio" min="1" max="20" step="1" value="6">
+          <input type="range" id="ratio" min="1" max="20" step="1" value="4">
           <div class="hint">Plancher Erlang : min 2 freelances dès le 1er cabinet</div></div>
         <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
           <input type="range" id="cab0" min="0" max="10" step="1" value="0">
@@ -137,7 +137,7 @@
           <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
         <div class="ctl"><label>% marque blanche <b id="vSupMix"></b></label>
           <input type="range" id="supMix" min="0" max="100" step="10" value="100">
-          <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (sur le dédié)</div></div>
+          <div class="hint">MB 1 700 / 1 500 / 1 350 €/ETP selon palier 1-4 / 5-8 / 9+ · direct ~2 150 €/ETP</div></div>
         <div class="ctl"><label>% mutualisé (vs dédié) <b id="vSupPctMut"></b></label>
           <input type="range" id="supPctMut" min="0" max="100" step="10" value="20">
           <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
@@ -158,7 +158,7 @@
           <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
         <div class="ctl"><label>% marque blanche <b id="vItMix"></b></label>
           <input type="range" id="itMix" min="0" max="100" step="10" value="100">
-          <div class="hint">MB ~1 350 €/ETP · direct ~2 150 €/ETP (sur le dédié)</div></div>
+          <div class="hint">MB 1 700 / 1 500 / 1 350 €/ETP selon palier 1-4 / 5-8 / 9+ · direct ~2 150 €/ETP</div></div>
         <div class="ctl"><label>% mutualisé (vs dédié) <b id="vItPctMut"></b></label>
           <input type="range" id="itPctMut" min="0" max="100" step="10" value="20">
           <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
@@ -177,25 +177,32 @@
 
         <h4>Financement</h4>
         <div class="ctl"><label>Capital initial <b id="vCap"></b></label>
-          <input type="range" id="cap" min="500" max="10000" step="500" value="2000">
-          <div class="hint">Démarrage léger (freelances) — 500 € → 10 k€</div></div>
+          <input type="range" id="cap" min="0" max="60000" step="1000" value="30000">
+          <div class="hint">FINANCE §6 : ~25-30 k€ couvrent les 3 scénarios</div></div>
         <div class="ctl"><label>Setup initial (M1) <b id="vSetup"></b></label>
           <input type="range" id="setupInit" min="0" max="3000" step="100" value="0">
           <div class="hint">Création société (VJUS / formalités)</div></div>
 
         <h4>Équipe — coûts</h4>
         <div class="ctl"><label>Plafond ETP par métier (Sup / IT) <b id="vCapEtp"></b></label>
-          <input type="range" id="capEtp" min="4" max="20" step="1" value="8">
-          <div class="hint">Taille max modélisée d'une équipe technique par métier. Au-delà : restructurer l'encadrement &amp; renégocier les paliers tarifaires.</div></div>
-        <div class="ctl"><label>Coût freelance <b id="vCostFL"></b></label>
-          <input type="range" id="costFL" min="300" max="1500" step="10" value="450">
-          <div class="hint"><span class="ar-equiv" id="vCostFLAr"></span> · €/mois (~1,8-2 M Ar, tous métiers)</div></div>
+          <input type="range" id="capEtp" min="4" max="40" step="1" value="40">
+          <div class="hint"><b>Plus de plafond d'effectif</b> (FINANCE v3) : on embauche sur positions fermes. Ce curseur ne sert qu'à borner une simulation.</div></div>
+        <div class="ctl"><label>Coût employeur / agent <b id="vCostFL"></b></label>
+          <input type="range" id="costFL" min="300" max="1500" step="1" value="736">
+          <div class="hint"><span class="ar-equiv" id="vCostFLAr"></span> · brut <b>3,25 M Ar (650 €)</b> + charges CNaPS/OSTIE <b>~86 €</b> (18 % plafonnés à 8× SME)</div></div>
         <div class="ctl"><label>VoIP médical / freelance <b id="vVoip"></b></label>
           <input type="range" id="voip" min="0" max="150" step="10" value="50">
           <div class="hint">€/mois par poste médical (IT/Support : ACD client)</div></div>
         <div class="ctl"><label>Superviseur / manager <b id="vMgr"></b></label>
-          <input type="range" id="costMgr" min="300" max="1500" step="50" value="750">
-          <div class="hint"><span class="ar-equiv" id="vMgrAr"></span> · €/mois — superviseur médical dès 3 freelances médical · <b>+ 1 superviseur partagé IT+Support / 8 technicians (dès 3)</b></div></div>
+          <input type="range" id="costMgr" min="300" max="1500" step="1" value="736">
+          <div class="hint"><span class="ar-equiv" id="vMgrAr"></span> · €/mois — manager médical dès 3 agents médical · <b>+ 1 manager partagé IT+Support / 8 agents (dès 3)</b></div></div>
+
+        <div class="ctl"><label>Commercial (Vololona) <b id="vCostCom"></b></label>
+          <input type="range" id="costCom" min="0" max="2000" step="1" value="586">
+          <div class="hint">Coût employeur €/mois — fixe seul ≈ 586 € · à l'OTE ≈ 1 086 €</div></div>
+        <div class="ctl"><label>Divers / imprévus <b id="vDivers"></b></label>
+          <input type="range" id="divers" min="0" max="25" step="1" value="10">
+          <div class="hint">% appliqué à l'ensemble des charges</div></div>
 
         <h4>SaaS &amp; outils</h4>
         <div class="saas-row"><div class="tool"><b>HubSpot</b> Free</div><div class="amount">0 €/mois</div></div>
@@ -253,9 +260,9 @@
   <p class="note">
     <b>Mécanique du modèle (v5 · 3 métiers séparés)</b> :
     <b>① Médical</b> = cabinets × forfait (remises fondateurs) ; freelances = ceil(cabinets/ratio), plancher Erlang min 2 ; coût = (freelance + VoIP) par poste, superviseur dès 3 freelances médical.
-    <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 350 € / direct 2 150 €) ; <b>mutualisé</b> = (freelances pool ÷ freelances-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
+    <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 500 € / direct 2 150 €) ; <b>mutualisé</b> = (freelances pool ÷ freelances-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
     <b>Staffing IT &amp; Support</b> : chaque ETP/freelance coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool). <b>Encadrement technique</b> : 1 superviseur partagé IT+Support dès 3 technicians cumulés, +1 par tranche de 8 (ceil((Sup+IT)/8)).
-    <b>Encaissement</b> décalé de 30 j. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× freelances méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
+    <b>Décalages</b> : agent payé dès l'embauche (M+1 après signature), facturé à M+2, <b>encaissement</b> à 30 j. <b>Charges</b> : salaire brut + charges patronales CNaPS/OSTIE (plafonnées), commercial, SaaS, puis imprévus en %. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× freelances méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
   </p>
 
   <!-- ============ STACK INTERNE VALIDÉE ============ -->
@@ -297,7 +304,7 @@ const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
 const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
 
 // prix ETP dédié (régie) — communs aux 2 métiers IT/Support, source PRICING.md
-const PRICE_MB=1350, PRICE_DIRECT=2150;
+const PRICE_MB=1500, PRICE_DIRECT=2150;   // MB : palier 5-8 ETP par defaut (PRICING §3 : 1 700 / 1 500 / 1 350)
 
 // capacité d'un métier IT/Support : croissance trimestrielle dès M4, plafond 8
 function etpCapacity(m,q,cap){ return m>=4 ? Math.min(cap, q*Math.floor((m-4)/3+1)) : 0; }
@@ -322,6 +329,7 @@ function simulate(){
         itPctMut=+$('itPctMut').value/100, itRatioMut=+$('itRatioMut').value, itForfaitMut=+$('itForfaitMut').value,
         capEtp=+$('capEtp').value,
         costFL=+$('costFL').value, voip=+$('voip').value, costMgr=+$('costMgr').value,
+        costCom=+$('costCom').value, divers=+$('divers').value/100,
         emelia=+$('emelia').value, ovh=+$('ovh').value, m365=+$('m365').value,
         founders=$('founders').checked, churn=$('churn').checked;
 
@@ -348,6 +356,8 @@ function simulate(){
   $('vCostFLAr').textContent=`≈ ${((costFL*rate)/1e6).toFixed(2)} M Ar`;
   $('vVoip').textContent=fmtE(voip);
   $('vMgr').textContent=fmtE(costMgr);
+  $('vCostCom').textContent=fmtE(costCom);
+  $('vDivers').textContent=Math.round(divers*100)+' %';
   $('vMgrAr').textContent=`≈ ${((costMgr*rate)/1e6).toFixed(2)} M Ar`;
   $('vEmelia').textContent=fmtE(emelia);
 
@@ -358,31 +368,38 @@ function simulate(){
     const baseTarget = cab0 + Math.round(acq*(m-1));
     while(signups.length < baseTarget) signups.push(m);
     if(churn && m>=9 && (m-9)%6===0) churned++;
-    const cabinets = signups.slice(churned).length;
+    const actifs = signups.slice(churned);
+    const cabinets = actifs.length;
+    // decalage FINANCE §5 : agent paye des M+1 (embauche), cabinet facture a partir de M+2
+    const cabPayes = actifs.filter(s=>m-s>=1).length;
     let revMed=0;
-    signups.slice(churned).forEach((s,i)=>{
-      const age=m-s+1; let f=1;
-      if(founders && i<5){ if(age===1)f=.5; else if(age===2)f=.7; else if(age===3)f=.85; }
+    actifs.forEach((s,i)=>{
+      const age=m-s+1; if(age<3) return;               // pas encore facture
+      const ageFact=age-2; let f=1;
+      if(founders && i<5){ if(ageFact===1)f=.5; else if(ageFact===2)f=.7; else if(ageFact===3)f=.85; }
       revMed+=forfait*f;
     });
-    const freelancesMed = cabinets>0 ? Math.max(2, Math.ceil(cabinets/ratio)) : 0; // plancher Erlang min 2
+    const freelancesMed = cabPayes>0 ? Math.max(2, Math.ceil(cabPayes/ratio)) : 0; // plancher Erlang min 2
 
     // ② Support N1 SaaS · ③ Helpdesk IT — capacités + CA en 2 flux
-    const supEtp = etpCapacity(m,supQ,capEtp);
-    const itEtp  = etpCapacity(m,itQ,capEtp);
+    // ETP signes / payes (M+1) / factures (M+2) — decalage FINANCE §5
+    const supEtp = etpCapacity(m-2,supQ,capEtp);         // factures
+    const itEtp  = etpCapacity(m-2,itQ,capEtp);
+    const supPay = etpCapacity(m-1,supQ,capEtp);         // payes
+    const itPay  = etpCapacity(m-1,itQ,capEtp);
     const revSup = revFlux(supEtp,supMix,supPctMut,supRatioMut,supForfaitMut);
     const revIt  = revFlux(itEtp ,itMix ,itPctMut ,itRatioMut ,itForfaitMut );
 
     const rev = revMed + revSup + revIt;
 
-    // coûts bottom-up
-    const medMgr = freelancesMed>=3 ? 1 : 0;            // superviseur médical dès 3 freelances médical
-    const techTotal = supEtp+itEtp;                      // technicians IT + Support
-    const techMgr = techTotal>=3 ? Math.ceil(techTotal/8) : 0; // 1 superviseur partagé / 8 technicians (dès 3)
+    // coûts bottom-up — modèle salarié (FINANCE v3)
+    const medMgr = freelancesMed>=3 ? 1 : 0;            // manager médical dès 3 agents médical
+    const techTotal = supPay+itPay;                      // agents IT + Support payés
+    const techMgr = techTotal>=3 ? Math.ceil(techTotal/8) : 0; // 1 manager partagé / 8 agents (dès 3)
     const nbMgr = medMgr + techMgr;
-    const masseSal = freelancesMed*costFL + techTotal*costFL + nbMgr*costMgr;
-    const costSaaS = emelia + freelancesMed*29 + ovh + m365*10; // CloudTalk sur freelances médical
-    const costs = masseSal + freelancesMed*voip + costSaaS + (m===1?setupInit:0);
+    const masseSal = freelancesMed*costFL + techTotal*costFL + nbMgr*costMgr + costCom;
+    const costSaaS = emelia + freelancesMed*29 + ovh + m365*10; // CloudTalk sur postes médicaux
+    const costs = (masseSal + freelancesMed*voip + costSaaS)*(1+divers) + (m===1?setupInit:0);
     const profit = rev - costs;
 
     const enc = m===1?0:rows[m-2].rev;

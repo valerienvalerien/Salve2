@@ -8,16 +8,13 @@
   "dateEmission": "2026-07-29",
   "validiteJours": 21,
   "signaturePrevue": "2026-08-10",
-
   "accroche": "Trois techniciens N1 francophones à Antananarivo, sous votre marque, dans vos outils, sur vos procédures. Le créneau 7h-9h Paris tombe en pleine journée de bureau chez nous — sans astreinte ni majoration nuit. Vos clients finaux ne voient qu'Ardenor.",
-
   "douleurs": [
     "Le N1 déborde depuis le rachat du portefeuille de janvier : ~40 % des tickets traités hors SLA sur les deux derniers mois.",
     "Deux recrutements N1 ouverts depuis mars, aucun profil tenu au-delà de six mois — le turnover coûte plus cher que le poste.",
     "La tranche 7h-9h et le samedi matin sont couverts en astreinte, mal vécus par l'équipe et non rentables.",
     "Vous ne voulez pas d'un offshore visible : vos contrats-cadres imposent un interlocuteur unique Ardenor."
   ],
-
   "perimetre": {
     "inclus": [
       "Qualification et traitement N1 sur GLPI, sous compte nommé Ardenor",
@@ -33,21 +30,34 @@
       "Achat et gestion du parc matériel"
     ]
   },
-
   "grilleIntro": "Prix arrêtés lors de notre échange du 24 juillet, dégressifs selon le volume engagé. La colonne « revente conseillée » est le repère de marché constaté pour un N1 francophone dédié — vous restez évidemment libre de votre prix de vente.",
   "reventeConseillee": 2700,
   "grille": [
-    { "engagement": "1 position", "gros": 2000 },
-    { "engagement": "3 positions", "gros": 1750, "retenu": true },
-    { "engagement": "5 positions et plus", "gros": 1550, "minimumFacturable": 5 }
+    {
+      "engagement": "1-4 ETP — tarif standard",
+      "gros": 2000,
+      "minimumFacturable": 1
+    },
+    {
+      "engagement": "5-8 ETP — tarif volume",
+      "gros": 1750,
+      "retenu": true,
+      "minimumFacturable": 5
+    },
+    {
+      "engagement": "9+ ETP — tarif strategique",
+      "gros": 1550,
+      "minimumFacturable": 9
+    }
   ],
   "grilleNote": "Amplitudes au-delà du périmètre ci-dessus (nuit, dimanche, jours fériés) chiffrées séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.",
   "heuresSemaine": "35 h/semaine",
-  "etpRetenus": 3,
-  "coutInterneMensuel": [3200, 4200],
-
+  "etpRetenus": 5,
+  "coutInterneMensuel": [
+    3200,
+    4200
+  ],
   "pilote": "On démarre sur une seule position et un seul de vos clients finaux, au tarif de la grille, KPI partagés dès le premier jour. Ce qui limite votre risque, c'est le périmètre, pas une remise. Si le taux de prise en charge n'est pas au rendez-vous au bout de quatre semaines, vous arrêtez en prévenant trente jours — la position s'éteint, vos procédures et votre base de connaissances vous sont restituées, rien n'est dû au-delà du mois entamé.",
-
   "sla": {
     "kpi": "prise en charge des tickets N1 sous 30 minutes",
     "seuil": "90 % des tickets présentés sur les plages couvertes",
@@ -69,14 +79,12 @@
   ],
   "nonSollicitationMois": 24,
   "preavisJours": 60,
-
   "attendus": [
     "Un référent technique côté Ardenor, 3 h/semaine pendant les trois premières semaines",
     "Des accès GLPI nominatifs et l'accès en lecture à votre base de connaissances",
     "Les procédures existantes, même incomplètes — nous les mettons au propre et vous les rendons",
     "La volumétrie des six derniers mois par client final, pour dimensionner correctement"
   ],
-
   "ctaTitre": "La suite",
   "ctaTexte": "Vingt minutes pour figer le périmètre du pilote et la date de démarrage. Contrat, DPA et plan de continuité partent dans la foulée.",
   "rdvUrl": "",
