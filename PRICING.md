@@ -428,8 +428,8 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
   une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
 - **La fourchette d'estimation (±5 %) porte désormais le profil de l'agent** : bas de
   fourchette = profil formé chez nous aux process du client ; haut = profil confirmé, déjà
-  rodé aux exigences de comptes européens. ⚠️ **Ouvert** : ±5 % est étroit pour un écart
-  junior → confirmé ; élargir la bande (±10 %) est à trancher.
+  rodé aux exigences de comptes européens. **Bande portée de ±5 % à ±9 %** (décidé
+  2026-08-14) : ±5 % ne pouvait pas représenter un écart junior → confirmé.
 - **Revue de service mensuelle (compte rendu écrit) : incluse dans tous les forfaits**, donc
   retirée des lignes de différenciation. Le suivi commercial et les évolutions de périmètre
   sont assurés par la direction pour tous les comptes — ce n'est pas un poste qui se
@@ -639,6 +639,7 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Palier 3 IT (2026-08-14)** | « Centre de services », sans effectif minimum | **« Non-stop »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
 | **Backup agent (2026-08-14)** | affiché comme inclus dans le **Poste dédié** | **exclusif au Non-stop** — « dédié » et « quelqu'un d'autre prend le relais » se contredisent, et le backup permanent est ce que facture Priority (§3.d) |
 | **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
+| **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
 | **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
 
 ---

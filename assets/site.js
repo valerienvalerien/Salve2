@@ -308,7 +308,7 @@
       // inchangée tant que la décision n'est pas actée dans PRICING.md §3/§5.
       baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, BAND = 0.05; // ±5 % autour de l'estimation — voir la note « profil d'agent » sous le prix
+    const PROD = 0.85, BAND = 0.09; // ±9 % autour de l'estimation — l'écart couvre le profil de l'agent (cf. PRICING.md §3.d)
     const NONSTOP_MIN = 4;          // rotation impossible en dessous (cf. PRICING.md §3.c)
     const st = {
       posts: 1, hours: 35,
