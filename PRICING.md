@@ -4,7 +4,12 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
+> Dernière révision : 2026-08-14 (**nettoyage des axes du simulateur & module de choix
+> de forfait — décision direction** : axes **« Omnicanal » et « Bilingue » supprimés** des
+> simulateurs IT, option « EN » renommée **« FR+EN »** §3.f · le module public
+> « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Non-stop**
+> (choix de forfait réel) et non plus Dédié vs Priority §3.f) ·
+> précédente 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
 > décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
 > CNaPS/OSTIE), fondateur unique non rémunéré, effectif **sans plafond**, dimensionné sur
 > les contrats · **plancher absolu porté de 840 € à 920 €/ETP** §3 · **rate card refondue en
@@ -530,6 +535,51 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
     Au-delà de **8 agents par métier**, prévoir un **agent volant** (~766 €/mois) plutôt que
     de dégrader la supervision. En équipe salariée, l'absence est payée : c'est un coût de
     **capacité**, pas de paie.
+
+### 3.f Axes du simulateur & module de choix de forfait (décidé 2026-08-14)
+
+**Deux axes supprimés des simulateurs IT — ils gonflaient le prix sans contrepartie.**
+
+| Axe retiré | Ancien effet | Motif du retrait |
+|---|---|---|
+| Canaux → **« Omnicanal »** | ×1,15 | Ne décrivait aucun travail supplémentaire réel : au-delà de « Tél + ticket », il n'y a pas de troisième canal que nous facturons différemment. Le curseur ajoutait +15 % à une case cochée. |
+| Langue → **« Bilingue »** | ×1,22 | Doublon de « EN » : un agent qui traite l'anglais traite déjà le français. Deux libellés pour une seule réalité, dont l'un facturé 10 points de plus. |
+
+- **L'option « EN » devient « FR+EN »**, multiplicateur **inchangé à ×1,12**. Le libellé dit ce
+  qui est réellement vendu (un agent qui tient les deux langues) ; le prix ne bouge pas — la
+  correction est de nommage, pas de tarif.
+- Axes conservés côté canaux : **Ticket / email** (×1,00) et **Tél + ticket** (×1,08). Le
+  téléphone est le seul canal qui change vraiment la charge de l'agent.
+- **Règle générale** : un axe de simulateur ne se justifie que s'il correspond à une charge
+  ou une compétence que nous **payons différemment**. Sinon c'est de la majoration décorative,
+  et elle se retourne contre nous au moment du devis — le prospect découvre que l'option
+  n'était adossée à rien.
+
+**Le module public « Le vrai coût de la continuité de service » compare Poste dédié vs
+Non-stop.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
+question que se pose réellement l'acheteur est un choix de **forfait**. Priority reste
+sélectionnable et garde sa démonstration propre (badge « Continuité de N postes, sans en
+recruter N », §3) ; il est renvoyé en note sous le graphe.
+
+- **Ce que le graphe démontre : le choix se joue sur l'amplitude, pas sur le volume.**
+
+  | Vue | Poste dédié | Non-stop | Lecture |
+  |---|---|---|---|
+  | **Heures de bureau** | 1 tête par position | rotation + superviseur, **×1,15** | Le dédié est **moins cher à tous les effectifs** — la rotation se paie sans couvrir une minute de plus |
+  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | la rotation tient la plage, **sans tête en plus** | Le Non-stop **repasse devant dès qu'il est staffable** (4 agents) |
+
+- **Calage du multiplicateur `NONSTOP_MULT = 1,15`** sur les « à partir de » publiés (§3.d) :
+  4 agents × 2 500 € × dégressif 0,95 × 1,15 = **10 925 €** (helpdesk, annoncé « dès 11 000 »)
+  et 4 × 2 300 × 0,95 × 1,15 = **10 051 €** (support SaaS, annoncé « dès 10 000 »). Le graphe
+  et la carte de forfait racontent donc le même prix.
+- **La zone sous 4 agents est grisée, jamais tracée en courbe** : le Non-stop n'y est pas
+  staffable (§3.d) et une courbe l'y ferait exister.
+- **Deux colonnes de verdict** accompagnent le graphe (« Restez au Poste dédié si… » /
+  « Passez au Non-stop si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
+  qui rend le conseil crédible quand on recommande l'inverse. Plaquette commerciale
+  correspondante : `04-Closing/PLAQUETTE-DEDIE-VS-NONSTOP.pptx`.
+- Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
+  Non-stop »), sections `#priority-compare` des deux simulateurs IT.
 
 ---
 
