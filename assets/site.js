@@ -556,17 +556,17 @@
 
         const cap = $('priority-chart-caption');
         if (cap) cap.textContent = chartView === 'office'
-          ? 'Sur les heures de bureau, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur du Non-stop se paient sans couvrir une minute de plus. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
-          : 'Pour tenir 8h–20h en Poste dédié, il faut 1,33 tête par position — l\'amplitude coûte des personnes, pas un pourcentage. Le Non-stop tient la même plage par sa rotation : dès qu\'il est staffable, il revient moins cher que le dédié sur-staffé.';
+          ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur du Non-stop se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
+          : 'Dès que la plage s\'étend à 8h–20h, il faut 1,33 tête par position en Poste dédié pour couvrir les mêmes heures — l\'amplitude coûte des personnes, pas un pourcentage. Le Non-stop tient la même plage par sa rotation : dès qu\'il est staffable, il revient moins cher que le dédié sur-staffé.';
 
         // Ligne de bascule chiffrée sous les deux colonnes de verdict.
         const vn = $('verdict-crossover');
         if (vn) {
           const n = NONSTOP_MIN;
           const office = st.mode * (st.hours / 35) * st.channels * st.language * st.scope * n * vol(n);
-          vn.innerHTML = 'Le basculement se joue sur l\'amplitude, pas sur le volume. À ' + n + ' agents en heures de bureau : '
-            + '<b>' + euro(office) + ' €/mois</b> en Poste dédié contre <b>' + euro(office * NONSTOP_MULT) + ' €/mois</b> en Non-stop. '
-            + 'À la même amplitude 8h–20h, il faut ' + (n * EXT_COVERAGE).toFixed(1).replace('.', ',') + ' têtes en Poste dédié — '
+          vn.innerHTML = 'Le basculement se joue sur les heures à couvrir, pas sur le volume de tickets. À ' + n + ' agents sur 9h–18h : '
+            + '<b>' + euro(office) + ' €/mois</b> en Poste dédié contre <b>' + euro(office * NONSTOP_MULT) + ' €/mois</b> en Non-stop — restez au dédié. '
+            + 'Dès que la même équipe doit tenir 8h–20h, il faut ' + (n * EXT_COVERAGE).toFixed(1).replace('.', ',') + ' têtes en Poste dédié — '
             + '<b>' + euro(office * EXT_COVERAGE) + ' €/mois</b> — et le Non-stop repasse devant.';
         }
       }

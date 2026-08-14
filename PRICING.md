@@ -578,6 +578,24 @@ recruter N », §3) ; il est renvoyé en note sous le graphe.
   « Passez au Non-stop si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
   qui rend le conseil crédible quand on recommande l'inverse. Plaquette commerciale
   correspondante : `04-Closing/PLAQUETTE-DEDIE-VS-NONSTOP.pptx`.
+- **Révision 2026-08-14 (2) — arguments recentrés sur les heures, pas l'abstraction
+  « amplitude ».** Premier jet jugé pas assez convaincant en interne : seuls 2 des 5
+  critères de chaque colonne référençaient une heure concrète, le reste étant générique
+  (« prix », « superviseur », « même interlocuteur »). Les deux colonnes sont réécrites en
+  ancrant **chaque ligne sur une heure ou une plage d'horloge** :
+  - Poste dédié : *9h–18h*, *un ticket du soir attend le lendemain matin*, *1 à 3
+    positions*, *une absence glisse le traitement de quelques heures*, *prix le plus
+    juste sur une plage classique*.
+  - Non-stop : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
+    62 h de silence*, *coût chiffrable de l'heure sans réponse*, *couverture > 45 h/semaine
+    (6h-20h, 3×8, 24·7)*, *4 positions ou plus*.
+  - L'intro de section et les légendes du graphe (`assets/site.js`) sont réécrites dans
+    la même logique : « le choix dépend des heures où on vous sollicite », pas de
+    « l'amplitude ». La phrase de bascule chiffrée mène désormais par la plage (« 9h–18h »
+    / « 8h–20h ») avant le prix, pas l'inverse.
+  - Objectif : qu'un lecteur qui hésite puisse trancher en se demandant une seule chose —
+    *à quelle heure mon dernier ticket peut-il arriver ?* — plutôt que de comparer des
+    arguments de nature différente (prix, interlocuteur, SLA, horaires) sans hiérarchie.
 - Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
   Non-stop »), sections `#priority-compare` des deux simulateurs IT.
 
