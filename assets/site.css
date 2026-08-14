@@ -490,12 +490,33 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .theme-it .pkg-equiv { color: #0A6E96; }
 .pkg.featured .pkg-equiv { color: var(--gold-soft); border-bottom-color: rgba(255,255,255,.15); }
 .theme-it .pkg.featured .pkg-equiv { color: var(--accent); }
+:root {
+  --pkg-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E");
+  --pkg-icon-cross: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M13.06 4 9 8.06 4.94 4 4 4.94 8.06 9 4 13.06l.94.94L9 9.94 13.06 14l.94-.94L9.94 9 14 4.94z'/%3E%3C/svg%3E");
+}
 .pkg-feat { list-style: none; flex: 1 1 auto; }
 .pkg-feat li { display: flex; gap: 10px; padding: 7px 0; font-size: 14px; color: var(--text-soft); }
 .pkg.featured .pkg-feat li { color: rgba(255,255,255,.85); }
-.pkg-feat li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; }
+.pkg-feat li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; background: var(--accent); -webkit-mask: var(--pkg-icon-check) no-repeat center / 18px 18px; mask: var(--pkg-icon-check) no-repeat center / 18px 18px; }
 .pkg.featured .pkg-feat li::before { background: var(--gold-soft); }
 .theme-it .pkg.featured .pkg-feat li::before { color: var(--accent); }
+/* Fonctionnalité hors palier : affichée puis barrée au lieu d'être retirée. Chaque
+   carte porte la même liste, donc l'écart entre deux forfaits se lit sur place —
+   c'est ce que le lecteur débloque en montant d'un palier. Le texte est dans un
+   <span> parce que la décoration d'un conteneur flex ne descend pas sur ses items. */
+.pkg-feat li.off { color: var(--text-mute); }
+.pkg-feat li.off span:not(.sr-only) { text-decoration: line-through; text-decoration-thickness: 1px; text-underline-offset: 0; }
+.pkg-feat li.off::before { background: var(--text-mute); opacity: .5; -webkit-mask: var(--pkg-icon-cross) no-repeat center / 18px 18px; mask: var(--pkg-icon-cross) no-repeat center / 18px 18px; }
+.pkg.featured .pkg-feat li.off { color: rgba(255,255,255,.55); }
+.pkg.featured .pkg-feat li.off::before { background: rgba(255,255,255,.45); opacity: 1; }
+/* Légende : sans elle, une ligne barrée peut se lire « option supprimée ». */
+.pkg-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 24px; margin-top: 18px; font-size: 13px; color: var(--text-mute); }
+.pkg-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.pkg-legend span::before { content: ""; width: 16px; height: 16px; flex-shrink: 0; }
+.pkg-legend .lg-on::before { background: var(--accent); -webkit-mask: var(--pkg-icon-check) no-repeat center / 16px 16px; mask: var(--pkg-icon-check) no-repeat center / 16px 16px; }
+.pkg-legend .lg-off::before { background: var(--text-mute); opacity: .5; -webkit-mask: var(--pkg-icon-cross) no-repeat center / 16px 16px; mask: var(--pkg-icon-cross) no-repeat center / 16px 16px; }
+.pkg-legend .lg-off s { text-decoration-thickness: 1px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; }
 .pkg-cta:hover { background: var(--primary); color: #fff; }
 /* Carte correspondant a la configuration courante du simulateur. La pastille
