@@ -57,7 +57,7 @@ de chauffe des boîtes dans Emelia). Tout le reste se mène **en parallèle** su
 | T4 | **Cadre juridique** : VJUS OK ; **faire signer la NDA Vololona**, relecture conseil local (clause pénale/anti-requalification), relecture contrat/DPA | Sans contrat signable validé, impossible de closer | Closing |
 | T5 | **Site/domaine marque** : `index.html` re-thémé prêt ; **déploiement + `salverys.fr` (M365)** à confirmer | Le prospect (et le donneur d'ordre) qui clique doit atterrir sur un vrai site | Site |
 | T6 | **Branding gérant + marque Salverys** quasi inexistant en ligne | Un donneur d'ordre IT (ESN/éditeur) **google le fondateur avant de sous-traiter** | Branding |
-| T7 | **Infra physique** (groupe électrogène, double FAI, postes) non engagée | À cadrer maintenant, à **déclencher au 1er contrat** (séquence) | Infra |
+| T7 | **Infra physique** (groupe électrogène, kits d'autonomie agents, postes) non engagée | À cadrer maintenant, à **déclencher au 1er contrat** (séquence) | Infra |
 
 ---
 
@@ -107,7 +107,7 @@ Légende rôles : **[D]** Direction (Valérien, gérant) · **[BD]** Business de
 ### Semaine 5 — 28 juil-3 août
 - **Prospection** : **3 niches MB en campagne** (IT 1+2, médical), cadence stabilisée ; pipeline CRM. [BD]
 - **Closing** : **1ers RDV → propositions/devis** envoyés à des donneurs d'ordre IT. [D+BD]
-- **Infra** : **cadrer (devis, pas déployer)** groupe électrogène + onduleurs + double FAI + postes. [D]
+- **Infra** : **cadrer (devis, pas déployer)** groupe électrogène + onduleurs + **kits d'autonomie agents** + postes. Le devis des kits alimente la ligne capex du prévisionnel (`FINANCE-PREVISIONNEL.md §2`). [D]
 
 ### Semaine 6 — 4-10 août  ⟵ **JALON « rampe lancée »**
 - Cold en volume IT-first, **premiers RDV transformés en négociations**, vivier prêt, site live,

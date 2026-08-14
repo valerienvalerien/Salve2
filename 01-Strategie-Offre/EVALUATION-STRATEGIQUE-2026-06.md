@@ -51,8 +51,8 @@ positionnement est validé.
 1. **L'objection cachée n°1 n'est pas traitée frontalement : l'électricité.** La crise
    JIRAMA (délestages de 3 h à 24 h+, crise politique fin 2025) est documentée jusque dans
    la presse française. Un médecin qui googlise « Madagascar coupures » avant de signer
-   trouve de quoi fuir. Le dispositif existe (`PRICING.md §10` : double FAI + 4G + groupe
-   électrogène) mais il est **enterré en interne**. Il doit devenir un bloc public
+   trouve de quoi fuir. Le dispositif existe (`PRICING.md §10` : kit d'autonomie par agent
+   + groupe électrogène) mais il est **enterré en interne**. Il doit devenir un bloc public
    « plan de continuité écrit » dans chaque proposition et sur le site.
 2. **L'argument tueur de conformité n'est pas exploité.** Quasi aucun concurrent offshore
    ne met en avant : CCT art. 46 RGPD, zéro stockage local, travail dans les outils HDS
@@ -110,7 +110,7 @@ direct** : voir politique salariale §3.4.
 > « Exact — et c'est volontaire. À 0,50 € l'appel, l'agent est payé au minimum local,
 > tourne en 6 mois, et personne ne vous garantit un taux de décroché. Nous, on s'engage
 > contractuellement : ≥ 90 % d'appels décrochés, sinon 20 % d'avoir automatique. Plan de
-> continuité écrit (double connexion par agent, hub de repli alimenté), conformité RGPD
+> continuité écrit (kit d'autonomie par agent, hub de repli alimenté), conformité RGPD
 > documentée (clauses art. 46, zéro donnée stockée chez nous), backup +1 agent. La
 > question n'est pas le prix de l'appel, c'est le prix du patient perdu quand le
 > prestataire à 0,50 € ne décroche pas. »
@@ -256,7 +256,7 @@ RH révisés utilisés partout · « forfait » (jamais « abonnement ») respec
 | 1 | **Corriger les 2 fuites MB** (`OUTREACH-SEQUENCE.md`, `OUTREACH-IT-N1`) | Chaque envoi Emelia expose la marge aux revendeurs | ✅ fait 2026-06-10 |
 | 2 | **Harmoniser 90 %** (OUTREACH-SEQUENCE ×2, OUTREACH-cabinets ×3, ONEPAGER, index.html, OFFRE-MEDICAL, CHAPITRE, CRM script pitch) | Une promesse écrite à 95 % = avoirs en série | ✅ fait 2026-06-10 (9 occurrences) |
 | 3 | **Corriger le `<title>` d'index.html** (résultat, pas prix ; tuer le « à 40 % du coût ») | Claim faux + garde-fou violé, visible sur Google | ✅ fait 2026-06-10 |
-| 4 | **Publier le bloc « Continuité & Conformité »** (double FAI, groupe électrogène, CCT art. 46, zéro stockage) sur le site + one-pager | Les 2 différenciateurs les plus forts du marché sont invisibles | ✅ fait 2026-06-10 (index.html value stack + ONEPAGER) |
+| 4 | **Publier le bloc « Continuité & Conformité »** (kit d'autonomie par agent, groupe électrogène, CCT art. 46, zéro stockage) sur le site + one-pager | Les 2 différenciateurs les plus forts du marché sont invisibles | ✅ fait 2026-06-10 (index.html value stack + ONEPAGER) |
 | 5 | **Ajouter le script anti-low-cost malgache** (§2.3) aux objections des séquences | La comparaison à 0,50-1 €/appel arrivera dès les 1ers calls | ✅ fait 2026-06-10 (OUTREACH-cabinets + telesec-MB) |
 | 6 | **Politique de rémunération** — décision direction 2026-06-10 : **100 % freelances à 3 250 000 Ar (650 €)** (~4,5× marché), managers inclus, objectif zéro turnover. Rentabilité vérifiée (marges 48-75 %, point mort ~10 100 €) | Anti-turnover = la promesse qualité devient tenable | ✅ acté + prévisionnel v2 refait |
 | 7 | **Mettre à jour la note concurrentielle `TELESEC-TARGETS.md`** : corridor 0,50-1 €/appel, nouveaux acteurs, alerte prix d'achat Callmed avant tout E1 | Base de prospection fiable | ✅ fait 2026-06-10 |
@@ -279,8 +279,9 @@ RH révisés utilisés partout · « forfait » (jamais « abonnement ») respec
 ### Risques (par probabilité × impact)
 
 1. **Électricité / instabilité (élevé)** — crise JIRAMA + crise politique fin 2025.
-   Mitigation : agents en double connexion (fibre + 4G) + hub de repli alimenté (groupe
-   électrogène, onduleurs) + **plan de continuité écrit vendu comme un atout** (action 4).
+   Mitigation : kit d'autonomie individuel par agent (solaire ou batterie) + hub de repli
+   alimenté (groupe électrogène, onduleurs) + **plan de continuité écrit vendu comme un
+   atout** (action 4).
 2. **Décret souveraineté HDS, sept. 2026 (moyen, impact fort)** — l'hébergement UE est
    déjà obligatoire ; si l'accès depuis pays tiers se durcit, le modèle « zéro stockage
    local + CCT » est la seule architecture défendable. Veille active (action 8).

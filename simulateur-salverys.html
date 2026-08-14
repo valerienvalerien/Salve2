@@ -20,12 +20,12 @@
 <meta name="twitter:title" content="Salverys — Télésecrétariat médical : simulateur de forfait" />
 <meta name="twitter:description" content="Télésecrétariat médical francophone : prise d'appels 8h–20h, gestion d'agendas Doctolib/Maiia, secret médical. Forfait dès 350 €/mois." />
 <meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<link rel="preconnect" href="https://images.unsplash.com" />
-<link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/site.css?v=4" />
 </head>
 <body>
 
 <!-- TOPBAR -->
+<div class="site-head">
 <div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
 <!-- NAV -->
 <header class="nav">
@@ -37,48 +37,79 @@
       <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
       <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
       <a href="espace-candidat.html" class="nav-rejoin">Nous rejoindre</a>
-      <a href="#simulator" class="nav-cta">Simuler mon forfait</a>
+      <a href="#top" class="nav-cta">Simuler mon forfait</a>
     </nav>
-    <a href="#simulator" class="nav-cta">Simuler mon forfait</a>
+    <a href="#top" class="nav-cta">Simuler mon forfait</a>
     <a href="espace-candidat.html" class="nav-rejoin-standalone">Nous rejoindre</a>
     <button class="nav-burger" aria-label="Menu">☰</button>
   </div>
 </header>
+</div><!-- /site-head -->
 
-<!-- HERO -->
-<section class="hero">
-  <span class="hero-bg-blob b1"></span>
+<!-- HERO — photo plein cadre + simulateur visible dès l'ouverture, sans scroll -->
+<section class="hero hero-immersive" id="top">
+  <div class="hero-bgimg">
+    <img loading="eager" decoding="async" src="assets/img/metier-telesecretariat-medical-hero.jpg"
+         alt="Agente télésecrétariat médical au poste de travail" />
+  </div>
   <div class="container hero-grid">
     <div class="hero-copy reveal">
       <span class="eyebrow"><span class="pulse"></span> Télésecrétariat médical · Francophone</span>
       <h1>Des appels décrochés. <span class="hl">Sans CV à trier</span>.</h1>
       <p class="lead">Des télésecrétaires francophones, formées au secret médical, prennent vos appels et gèrent vos agendas pendant que vous consultez.</p>
-      <div class="hero-actions">
-        <a href="#simulator" class="btn btn-primary">Simuler mon forfait</a>
-        <a href="#forfaits" class="btn btn-outline">Voir les forfaits</a>
-      </div>
       <div class="hero-trust">
         <span><b>Doctolib</b> · Maiia · Médistory</span>
         <span><b>8h–20h</b>, jamais de répondeur</span>
         <span><b>1er mois à −50 %</b> sans engagement</span>
       </div>
     </div>
-    <div class="hero-visual reveal d1">
-      <div class="photo-wrap">
-        <img class="photo" loading="eager" decoding="async" onerror="this.style.display='none'"
-             src="assets/img/metier-telesecretariat-medical.jpg"
-             alt="Agente télésecrétariat médical au poste de travail" />
+
+    <!-- Simulateur : contrôles principaux + forfait en direct -->
+    <div class="hero-sim reveal d1">
+      <div class="hero-sim-head">Votre forfait en 15 secondes</div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span class="control-label-text">Volume d'appels / mois</span>
+          <span class="control-value" id="calls-value">250 appels</span>
+        </div>
+        <div class="slider-wrap"><input type="range" id="calls" min="50" max="1200" value="250" step="1" /></div>
+        <div class="tier-zones">
+          <div class="tz tz-essentiel"></div>
+          <div class="tz tz-confort"></div>
+          <div class="tz tz-intensif"></div>
+          <div class="tz tz-surmesure"></div>
+        </div>
+        <div class="tier-alert" id="tier-alert"></div>
       </div>
-      <div class="float-card fc1">
-        <div class="fc-num">350 €</div>
-        <div class="fc-lab">à partir de, par mois</div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span class="control-label-text">Options d'amplitude</span>
+          <span class="control-value">base : 5 j/7 · 8h–20h</span>
+        </div>
+        <div class="pill-group" data-group="addons" data-multi>
+          <button class="pill" data-addon="soiree" data-price="120">+ Soirée · +120 €</button>
+          <button class="pill" data-addon="samedi-matin" data-price="90" data-excl="samedi-complet">+ Samedi matin · +90 €</button>
+          <button class="pill" data-addon="samedi-complet" data-price="150" data-excl="samedi-matin">+ Samedi complet · +150 €</button>
+        </div>
+        <div class="option-help">Dimanche / 7 j-7 : sur devis.</div>
       </div>
+
+      <div class="price-strip">
+        <div>
+          <div class="ps-lab">Votre forfait mensuel</div>
+          <div><span class="ps-val" data-mirror="price-monthly">350</span><span class="ps-unit">€/mois</span></div>
+        </div>
+        <div class="ps-side">
+          <span data-mirror="savings-badge">≈ 16 € / jour ouvré</span>
+          <span>Mise en service <b>offerte</b></span>
+        </div>
+      </div>
+
+      <a href="mailto:contact@salverys.fr?subject=Devis%20t%C3%A9l%C3%A9secr%C3%A9tariat%20m%C3%A9dical%20sous%2024h" class="btn btn-primary" data-devis>Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
+      <a class="hero-sim-more" href="#simulator">Voir le détail de l'estimation ↓</a>
     </div>
-  </div>
-  <div class="scroll-hint-wrap">
-    <a href="#simulator" class="scroll-hint" aria-label="Voir le simulateur">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </a>
   </div>
 </section>
 
@@ -86,42 +117,14 @@
 <section class="section soft" id="simulator">
   <div class="container">
     <div class="section-head reveal">
-      <div class="kicker">Simulateur</div>
-      <h2>Configurez votre télésecrétariat</h2>
-      <p>Ajustez le volume et la couverture — votre forfait se calcule en temps réel.</p>
+      <div class="kicker">Le détail</div>
+      <h2>Votre forfait en détail</h2>
+      <p>L'intégration agenda se choisit ici — le forfait se recalcule en direct, en haut comme ici.</p>
     </div>
 
     <div class="sim-grid">
-      <!-- CONTRÔLES -->
+      <!-- CONTRÔLES COMPLÉMENTAIRES -->
       <div class="controls-card reveal">
-        <div class="control-group">
-          <div class="control-label">
-            <span class="control-label-text">Volume d'appels / mois</span>
-            <span class="control-value" id="calls-value">250 appels</span>
-          </div>
-          <div class="slider-wrap"><input type="range" id="calls" min="50" max="1200" value="250" step="1" /></div>
-          <div class="tier-zones">
-            <div class="tz tz-essentiel"></div>
-            <div class="tz tz-confort"></div>
-            <div class="tz tz-intensif"></div>
-            <div class="tz tz-surmesure"></div>
-          </div>
-          <div class="tier-alert" id="tier-alert"></div>
-        </div>
-
-        <div class="control-group">
-          <div class="control-label">
-            <span class="control-label-text">Options d'amplitude</span>
-            <span class="control-value">base : 5 j/7 · 8h–20h</span>
-          </div>
-          <div class="pill-group" data-group="addons" data-multi>
-            <button class="pill" data-addon="soiree" data-price="120">+ Soirée 20h–22h · +120 €</button>
-            <button class="pill" data-addon="samedi-matin" data-price="90" data-excl="samedi-complet">+ Samedi matin · +90 €</button>
-            <button class="pill" data-addon="samedi-complet" data-price="150" data-excl="samedi-matin">+ Samedi complet · +150 €</button>
-          </div>
-          <div style="margin-top:8px;font-size:12.5px;color:var(--text-soft);">Dimanche / 7 j-7 : sur devis.</div>
-        </div>
-
         <div class="control-group">
           <div class="control-label"><span class="control-label-text">Intégration agenda</span></div>
           <div class="pill-group" data-group="integration">
@@ -132,6 +135,11 @@
             <button class="pill" data-value="other" data-multiplier="1.0">Autre</button>
           </div>
         </div>
+
+        <div class="option-help" style="margin-top:22px;">
+          Le volume d'appels et les options d'amplitude se règlent
+          <a href="#top" style="font-weight:700;color:var(--primary);">en haut de page</a>.
+        </div>
       </div>
 
       <!-- RÉSULTATS -->
@@ -140,9 +148,9 @@
           <div class="result-label">Votre forfait mensuel</div>
           <div><span class="result-price" id="price-monthly">350</span><span class="result-price-unit">€/mois</span></div>
           <div class="result-strikethrough" id="compare-line">
-            Une secrétaire au cabinet : <span class="old">2 750 €+/mois</span> en coût complet
+            <strong>2 à 3 RDV récupérés</strong> dans le mois paient le forfait
           </div>
-          <div class="savings-badge" id="savings-badge">−87 % vs une secrétaire interne</div>
+          <div class="savings-badge" id="savings-badge">≈ 16 € / jour ouvré</div>
           <div class="result-strikethrough">Mise en service : <span class="old">490 €</span> — <b>offerte</b></div>
         </div>
 
@@ -150,7 +158,7 @@
           <div class="result-stat"><div class="result-stat-label">Coût / jour ouvré</div><div class="result-stat-value" id="price-per-day">≈ 16 €</div></div>
           <div class="result-stat"><div class="result-stat-label">Appels pris / jour</div><div class="result-stat-value" id="calls-perday">≈ 12</div></div>
           <div class="result-stat"><div class="result-stat-label">Couverture</div><div class="result-stat-value" id="coverage">5 j · 8h–20h</div></div>
-          <div class="result-stat"><div class="result-stat-label">Économie / mois</div><div class="result-stat-value accent" id="savings-monthly">1 850 €</div></div>
+          <div class="result-stat"><div class="result-stat-label">Écart vs secrétaire temps plein</div><div class="result-stat-value accent" id="savings-monthly">2 400 €</div></div>
         </div>
 
         <div class="recommendation">
@@ -158,7 +166,7 @@
           <div class="recommendation-text" id="recommendation">Forfait <strong>Essentiel</strong> — idéal pour un praticien.</div>
         </div>
         <a href="mailto:contact@salverys.fr?subject=Devis%20t%C3%A9l%C3%A9secr%C3%A9tariat%20m%C3%A9dical%20sous%2024h" class="btn btn-primary" data-devis style="width:100%;justify-content:center;margin-top:14px;">Recevoir mon devis sous 24 h <span class="arrow">→</span></a>
-        <div class="disclaimer">Montants fermes · 1er mois à -50 %, sans engagement.</div>
+        <div class="disclaimer" id="sim-disclaimer">Montants fermes (options incluses) · 1er mois à -50 %, sans engagement.</div>
       </div>
     </div>
   </div>
@@ -171,9 +179,12 @@
       <div class="kicker">Forfaits</div>
       <h2>Trois forfaits, une logique</h2>
       <p>Facturation au forfait mensuel selon votre volume — jamais à l'appel.</p>
+      <p class="pkg-legend"><span class="lg-on">Inclus dans le forfait</span><span class="lg-off"><s>Barré</s> : se débloque au forfait supérieur</span></p>
+      <p class="pkg-recall" id="pkg-recall" hidden></p>
     </div>
     <div class="packages">
-      <div class="pkg pkg-sage reveal">
+      <div class="pkg pkg-sage reveal" data-pkg="essentiel">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Essentiel</div>
         <div class="pkg-tag">Pour un praticien seul</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">350</span><span class="pkg-unit"> €/mois</span></div>
@@ -183,38 +194,60 @@
           <li>Gestion d'agenda Doctolib / Maiia / Ubicentrex</li>
           <li>Formé au secret médical</li>
           <li>Messages transmis en temps réel</li>
+          <li>Mise en service (490 €) offerte</li>
           <li>1er mois à -50 %, sans engagement</li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Confirmations &amp; rappels de RDV</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Filtrage urgences selon vos consignes</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Reporting mensuel des appels</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Plusieurs praticiens / agendas</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Protocoles personnalisés par médecin</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Interlocuteur dédié</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
-      <div class="pkg featured reveal d1">
-        <div class="pkg-badge">★ Le plus choisi</div>
+      <div class="pkg featured reveal d1" data-pkg="confort">
+        <div class="pkg-badge" data-default="★ Le plus choisi">★ Le plus choisi</div>
         <div class="pkg-name">Confort</div>
         <div class="pkg-tag">Pour un cabinet actif</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">590</span><span class="pkg-unit"> €/mois</span></div>
         <div class="pkg-equiv">jusqu'à ~500 appels/mois</div>
         <ul class="pkg-feat">
-          <li>Tout l'Essentiel, volume doublé</li>
+          <li>Prise d'appels 8h–20h, 5j/7</li>
+          <li>Gestion d'agenda Doctolib / Maiia / Ubicentrex</li>
+          <li>Formé au secret médical</li>
+          <li>Messages transmis en temps réel</li>
+          <li>Mise en service (490 €) offerte</li>
+          <li>1er mois à -50 %, sans engagement</li>
           <li>Confirmations &amp; rappels de RDV</li>
           <li>Filtrage urgences selon vos consignes</li>
           <li>Reporting mensuel des appels</li>
-          <li>1er mois à -50 %, sans engagement</li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Plusieurs praticiens / agendas</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Protocoles personnalisés par médecin</span></li>
+          <li class="off"><span class="sr-only">Non inclus : </span><span>Interlocuteur dédié</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Choisir Confort</a>
       </div>
 
-      <div class="pkg pkg-gold reveal d2">
+      <div class="pkg pkg-gold reveal d2" data-pkg="intensif">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Intensif</div>
         <div class="pkg-tag">Cabinet de groupe / fort volume</div>
         <div><span class="pkg-from">À partir de</span><span class="pkg-price">950</span><span class="pkg-unit"> €/mois</span></div>
         <div class="pkg-equiv">jusqu'à ~900 appels/mois</div>
         <ul class="pkg-feat">
+          <li>Prise d'appels 8h–20h, 5j/7</li>
+          <li>Gestion d'agenda Doctolib / Maiia / Ubicentrex</li>
+          <li>Formé au secret médical</li>
+          <li>Messages transmis en temps réel</li>
+          <li>Mise en service (490 €) offerte</li>
+          <li>1er mois à -50 %, sans engagement</li>
+          <li>Confirmations &amp; rappels de RDV</li>
+          <li>Filtrage urgences selon vos consignes</li>
+          <li>Reporting mensuel des appels</li>
           <li>Plusieurs praticiens / agendas</li>
-          <li>Plage horaire étendue possible</li>
           <li>Protocoles personnalisés par médecin</li>
           <li>Interlocuteur dédié</li>
-          <li>1er mois à -50 %, sans engagement</li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Passer à Intensif</a>
       </div>
@@ -351,7 +384,7 @@
   </div>
 </footer>
 
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=4"></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

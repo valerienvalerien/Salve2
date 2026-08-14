@@ -147,9 +147,22 @@ presque jamais le Président/DG. ⚠️ Appels d'offres fréquents : cycle long,
 5. Peut-on identifier la **bonne personne opérationnelle** (pas seulement le grand
    patron) ? (oui/non)
 6. Le budget existe-t-il (structure rentable, grand compte, organisme financé) ? (oui/non)
+7. **MB — la question conformité, à poser AVANT la signature** : son contrat avec ses
+   clients finaux prévoit quoi sur la **sous-traitance** (autorisation générale ou accord
+   spécifique préalable — RGPD art. 28 §2), et y a-t-il une **clause de localisation des
+   données** (UE/EEE) ? (oui/non = il sait répondre)
 
-6 oui = cible prioritaire · 4-5 = bonne piste · 2-3 = à creuser seulement si le reste est
+7 oui = cible prioritaire · 5-6 = bonne piste · 2-4 = à creuser seulement si le reste est
 calme · 0-1 = laisser tomber.
+
+> **Pourquoi la Q7 est éliminatoire en pratique.** Un partenaire dont le contrat interdit la
+> sous-traitance ou impose un accord spécifique qu'il n'a pas obtenu nous fait perdre le
+> compte **après** la signature, sans qu'on y soit pour rien. Et une clause de localisation
+> UE/EEE stricte est rédhibitoire tant qu'elle n'est pas levée : Madagascar est un pays tiers
+> (`04-Closing/DOSSIER-AVANT-VENTE/05-NOTE-TRANSFERT-HORS-UE.md`).
+> Un prospect qui **ne sait pas répondre** n'est pas disqualifié — mais il annonce que la
+> conversation conformité aura lieu après le closing. C'est là que les deals meurent : la
+> poser tôt, c'est aussi un signal de sérieux qui nous distingue.
 
 ---
 

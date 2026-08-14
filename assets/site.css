@@ -18,6 +18,7 @@
   /* Accents médical (défaut) */
   --primary: #2E3B4E;
   --primary-deep: #222C3B;
+  --veil-rgb: 34, 44, 59;   /* voile du hero immersif */
   --accent: #6F8770;       /* sauge */
   --accent-soft: #C5D2C5;
   --accent-tint: #EAF0EA;
@@ -45,6 +46,7 @@
   --bg-deep: #013C58;
   --primary: #013C58;
   --primary-deep: #012C42;
+  --veil-rgb: 1, 40, 60;
   --accent: #FCE27C;       /* jaune pastel */
   --accent-soft: #FFE9A0;
   --accent-tint: #FCEEC9;
@@ -61,6 +63,7 @@
   --bg-deep: #0E3D4E;
   --primary: #1A5F7A;
   --primary-deep: #114457;
+  --veil-rgb: 12, 52, 67;
   --accent: #E06B52;
   --accent-soft: #EA8B7A;
   --accent-tint: #FDEEE9;
@@ -74,7 +77,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -96,6 +99,14 @@ img { display: block; max-width: 100%; }
 .theme-it .serif { font-family: 'Inter', sans-serif; }
 
 /* ================= NAV ================= */
+/* topbar + nav figés ensemble au scroll (l'offre reste visible) — pages simulateurs */
+.site-head { position: sticky; top: 0; z-index: 60; }
+html:has(.site-head) { scroll-padding-top: 110px; }
+/* en mobile la topbar passe sur 2 lignes : on la resserre pour ne pas manger l'écran */
+@media (max-width: 600px) {
+  .site-head .topbar { font-size: 11.5px; padding: 6px 12px; line-height: 1.35; }
+  html:has(.site-head) { scroll-padding-top: 122px; }
+}
 .nav {
   position: sticky; top: 0; z-index: 60;
   background: rgba(255,255,255,.78);
@@ -196,6 +207,83 @@ img { display: block; max-width: 100%; }
 .float-card.fc1 { left: -22px; bottom: 40px; animation: floaty 9s ease-in-out infinite; }
 .float-card.fc2 { right: -16px; top: 36px; animation: floaty 11s ease-in-out infinite; animation-delay: -4s; }
 @media (max-width: 920px) { .float-card.fc1 { left: 8px; } .float-card.fc2 { right: 8px; } }
+
+/* ================= HERO IMMERSIF (pages simulateurs) =================
+   La photo devient le décor plein cadre du hero (sous un voile profond) et
+   la colonne droite accueille le simulateur lui-même : l'accroche, la photo
+   ET le simulateur tiennent dans l'écran d'ouverture, sans scroll.
+   ==================================================================== */
+.hero-immersive { padding: 22px 0; background: var(--primary-deep); }
+.hero-immersive .hero-bgimg { position: absolute; inset: 0; z-index: 0; }
+/* cadrage haut : les visages sont dans la moitié supérieure des photos métier */
+.hero-immersive .hero-bgimg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.hero-immersive .hero-bgimg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(var(--veil-rgb), .96) 0%, rgba(var(--veil-rgb), .93) 38%,
+    rgba(var(--veil-rgb), .80) 50%, rgba(var(--veil-rgb), .52) 70%,
+    rgba(var(--veil-rgb), .28) 100%);
+}
+.hero-immersive .hero-grid { grid-template-columns: 1fr .92fr; gap: 44px; align-items: center; }
+.hero-immersive h1 { color: #fff; font-size: clamp(29px, 3.1vw, 40px); line-height: 1.06; margin-bottom: 14px; }
+.theme-it .hero-immersive h1 .hl { color: var(--primary); }
+.hero-immersive .eyebrow { background: rgba(255,255,255,.13); color: var(--accent-soft); margin-bottom: 14px; }
+.theme-it .hero-immersive .eyebrow { background: rgba(255,255,255,.13); color: var(--accent-soft); }
+.hero-immersive p.lead { color: rgba(255,255,255,.92); font-size: 16px; margin-bottom: 0; max-width: 520px; }
+.hero-immersive .hero-trust { margin-top: 18px; gap: 20px; font-size: 12.5px; color: rgba(255,255,255,.72); }
+.hero-immersive .hero-trust b { color: var(--accent-soft); }
+
+/* Carte simulateur du hero — seul bloc clair de l'écran, donc point de fixation du regard */
+.hero-sim {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,.97);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  box-shadow: 0 26px 60px rgba(0,0,0,.34);
+}
+.hero-sim-head { font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 9px; letter-spacing: -.01em; }
+.hero-sim .control-group { margin-bottom: 10px; }
+.hero-sim .control-label { margin-bottom: 7px; }
+.hero-sim .control-label-text { font-size: 12.5px; }
+.hero-sim .control-value { font-size: 14px; }
+.hero-sim .slider-wrap { padding: 2px 0; }
+.hero-sim input[type="range"] { height: 5px; }
+.hero-sim input[type="range"]::-webkit-slider-thumb { width: 20px; height: 20px; border-width: 3px; }
+.hero-sim input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-width: 3px; }
+.hero-sim .pill-group { gap: 6px; }
+.hero-sim .pill { padding: 8px 10px; font-size: 12px; }
+.hero-sim .btn { width: 100%; box-sizing: border-box; justify-content: center; padding: 11px 20px; font-size: 14.5px; margin-top: 11px; }
+.hero-sim .tier-alert { font-size: 12px; padding: 6px 10px; margin-top: 8px; }
+.hero-sim .option-help { font-size: 11.5px; margin-top: 6px; }
+
+/* Bandeau prix compact (reprend les valeurs de la carte résultats détaillée) */
+.price-strip { display: flex; align-items: center; justify-content: space-between; gap: 14px;
+               background: var(--bg-deep); color: #fff; border-radius: 16px; padding: 11px 16px; margin-top: 11px; }
+.ps-lab { font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.6); margin-bottom: 3px; }
+.ps-val { font-family: 'Georgia', serif; font-size: 27px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -.02em; }
+.theme-it .ps-val { font-family: 'Inter', sans-serif; font-weight: 800; color: var(--accent); }
+.ps-unit { font-size: 14px; color: rgba(255,255,255,.75); font-weight: 600; margin-left: 3px; }
+.ps-side { display: flex; flex-direction: column; gap: 3px; text-align: right; font-size: 11.5px;
+           color: rgba(255,255,255,.72); line-height: 1.4; max-width: 160px; }
+.ps-side b { color: #fff; }
+.hero-sim-more { display: block; text-align: center; margin-top: 8px; font-size: 11.5px; font-weight: 700; color: var(--text-mute); }
+.hero-sim-more:hover { color: var(--primary); }
+
+@media (max-width: 520px) {
+  .price-strip { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ps-side { text-align: left; max-width: none; }
+}
+
+@media (max-width: 920px) {
+  .hero-immersive { padding: 26px 0 30px; }
+  .hero-immersive .hero-grid { grid-template-columns: 1fr; gap: 26px; }
+  .hero-immersive p.lead { max-width: none; }
+  .hero-immersive .hero-bgimg::after {
+    background: linear-gradient(180deg,
+      rgba(var(--veil-rgb), .92) 0%, rgba(var(--veil-rgb), .95) 45%, rgba(var(--veil-rgb), .97) 100%);
+  }
+}
 
 /* ================= MARQUEE ================= */
 .marquee { background: var(--bg-deep); color: #fff; overflow: hidden; padding: 18px 0; }
@@ -334,11 +422,15 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .pill:hover { border-color: var(--accent); color: var(--primary); }
 .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .theme-it .pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
-.pill[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
-.pill[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
-.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
-.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before { opacity: 1; }
+.pill[data-tooltip]::after, .pkg-cta.is-locked[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
+.pill[data-tooltip]::before, .pkg-cta.is-locked[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
+.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after,
+.pkg-cta.is-locked[data-tooltip]:hover::after, .pkg-cta.is-locked[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before,
+.pkg-cta.is-locked[data-tooltip]:hover::before, .pkg-cta.is-locked[data-tooltip]:focus-visible::before { opacity: 1; }
 .option-help { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); }
+.link-inline { background: none; border: 0; padding: 0; font: inherit; color: var(--primary); font-weight: 700; text-decoration: underline; cursor: pointer; }
+.link-inline:hover { color: var(--accent); }
 .result-primary { text-align: center; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.14); margin-bottom: 22px; }
 .result-label { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.6); margin-bottom: 8px; }
 .result-price { font-family: 'Georgia', serif; font-size: 56px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
@@ -348,6 +440,11 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .result-strikethrough .old { text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 2px; }
 .savings-badge { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 800; }
 .theme-it .savings-badge { background: var(--accent); color: var(--primary); }
+/* Variante « résilience » : Priority sous 3 agents n'a pas d'argument d'économie
+   (le backup permanent est une tête de plus). Badge neutre, pas accentué. */
+.savings-badge.badge-resilience,
+.theme-it .savings-badge.badge-resilience { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+.coverage-note { margin-top: 10px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.72); }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
 .result-stat { background: rgba(255,255,255,.07); border-radius: 12px; padding: 15px; }
 .result-stat.featured-saving { grid-column: 1 / -1; background: rgba(252,226,124,.13); border: 1px solid rgba(252,226,124,.28); text-align: center; }
@@ -362,9 +459,15 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .disclaimer { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.5); text-align: center; }
 
 /* ================= PACKAGES ================= */
-.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+/* Rappel de l'estimation courante au-dessus des cartes — le chiffre du simulateur
+   suit le lecteur qui a scrollé jusqu'aux forfaits. */
+.pkg-recall { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--text-soft); }
+.pkg-recall b { color: var(--primary); }
+.reco-link { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+.reco-link:hover { border-bottom-color: currentColor; }
 @media (max-width: 900px) { .packages { grid-template-columns: 1fr; } }
-.pkg { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 28px; position: relative; transition: transform .22s var(--ease), box-shadow .22s; }
+.pkg { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 28px; position: relative; display: flex; flex-direction: column; transition: transform .22s var(--ease), box-shadow .22s, border-color .22s; }
 .pkg:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .pkg.featured { background: var(--bg-deep); color: #fff; transform: scale(1.03); box-shadow: var(--shadow-lg); }
 .pkg.featured:hover { transform: scale(1.03) translateY(-5px); }
@@ -383,20 +486,56 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .theme-it .pkg-price { font-family: 'Inter', sans-serif; }
 .pkg.featured .pkg-price { color: #fff; }
 .theme-it .pkg.featured .pkg-price { color: var(--accent); }
+/* Fourchette d'estimation : deux nombres et un tiret ne tiennent pas dans le
+   corps de 44 px prévu pour un prix ferme. */
+.pkg-price.is-range { font-size: 29px; letter-spacing: -.01em; }
+@media (max-width: 480px) { .pkg-price.is-range { font-size: 26px; } }
 .pkg-unit { font-size: 16px; color: var(--text-mute); }
 .pkg.featured .pkg-unit { color: rgba(255,255,255,.7); }
 .pkg-equiv { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 8px; margin-bottom: 24px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .theme-it .pkg-equiv { color: #0A6E96; }
 .pkg.featured .pkg-equiv { color: var(--gold-soft); border-bottom-color: rgba(255,255,255,.15); }
 .theme-it .pkg.featured .pkg-equiv { color: var(--accent); }
-.pkg-feat { list-style: none; }
+:root {
+  --pkg-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E");
+  --pkg-icon-cross: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M13.06 4 9 8.06 4.94 4 4 4.94 8.06 9 4 13.06l.94.94L9 9.94 13.06 14l.94-.94L9.94 9 14 4.94z'/%3E%3C/svg%3E");
+}
+.pkg-feat { list-style: none; flex: 1 1 auto; }
 .pkg-feat li { display: flex; gap: 10px; padding: 7px 0; font-size: 14px; color: var(--text-soft); }
 .pkg.featured .pkg-feat li { color: rgba(255,255,255,.85); }
-.pkg-feat li::before { content: "✓"; color: var(--accent); font-weight: 800; flex-shrink: 0; }
-.pkg.featured .pkg-feat li::before { color: var(--gold-soft); }
+.pkg-feat li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; background: var(--accent); -webkit-mask: var(--pkg-icon-check) no-repeat center / 18px 18px; mask: var(--pkg-icon-check) no-repeat center / 18px 18px; }
+.pkg.featured .pkg-feat li::before { background: var(--gold-soft); }
 .theme-it .pkg.featured .pkg-feat li::before { color: var(--accent); }
+/* Fonctionnalité hors palier : affichée puis barrée au lieu d'être retirée. Chaque
+   carte porte la même liste, donc l'écart entre deux forfaits se lit sur place —
+   c'est ce que le lecteur débloque en montant d'un palier. Le texte est dans un
+   <span> parce que la décoration d'un conteneur flex ne descend pas sur ses items. */
+.pkg-feat li.off { color: var(--text-mute); }
+.pkg-feat li.off span:not(.sr-only) { text-decoration: line-through; text-decoration-thickness: 1px; text-underline-offset: 0; }
+.pkg-feat li.off::before { background: var(--text-mute); opacity: .5; -webkit-mask: var(--pkg-icon-cross) no-repeat center / 18px 18px; mask: var(--pkg-icon-cross) no-repeat center / 18px 18px; }
+.pkg.featured .pkg-feat li.off { color: rgba(255,255,255,.55); }
+.pkg.featured .pkg-feat li.off::before { background: rgba(255,255,255,.45); opacity: 1; }
+/* Légende : sans elle, une ligne barrée peut se lire « option supprimée ». */
+.pkg-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 24px; margin-top: 18px; font-size: 13px; color: var(--text-mute); }
+.pkg-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.pkg-legend span::before { content: ""; width: 16px; height: 16px; flex-shrink: 0; }
+.pkg-legend .lg-on::before { background: var(--accent); -webkit-mask: var(--pkg-icon-check) no-repeat center / 16px 16px; mask: var(--pkg-icon-check) no-repeat center / 16px 16px; }
+.pkg-legend .lg-off::before { background: var(--text-mute); opacity: .5; -webkit-mask: var(--pkg-icon-cross) no-repeat center / 16px 16px; mask: var(--pkg-icon-cross) no-repeat center / 16px 16px; }
+.pkg-legend .lg-off s { text-decoration-thickness: 1px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; }
 .pkg-cta:hover { background: var(--primary); color: #fff; }
+/* Forfait sous son effectif minimum : le bouton reste lisible mais inerte, et
+   dit pourquoi au survol — un clic qui ouvre un devis impossible perd le lead. */
+.pkg-cta.is-locked { position: relative; opacity: .5; cursor: not-allowed; }
+.pkg-cta.is-locked:hover { background: transparent; color: var(--primary); }
+.pkg.featured .pkg-cta.is-locked:hover { background: var(--cta); color: var(--cta-text); }
+/* Carte correspondant a la configuration courante du simulateur. La pastille
+   « Le plus choisi » de la carte vedette lui cede la place quand elle est designee. */
+.pkg.is-match { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.pkg.featured.is-match { box-shadow: var(--shadow-lg), 0 0 0 2px var(--gold-soft) inset; }
+.pkg-badge.is-match { background: var(--accent); }
+.pkg.featured .pkg-badge.is-match { background: var(--gold-soft); color: var(--primary); }
 .pkg.featured .pkg-cta { background: var(--cta); border-color: var(--cta); color: var(--cta-text); }
 .pkg.featured .pkg-cta:hover { filter: brightness(1.05); }
 
@@ -993,3 +1132,34 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
   .float-cta-toggle, .float-cta-toggle-inner { animation: none; }
   .float-cta-link { transition-duration: .01ms; }
 }
+
+/* Note sous le prix : la fourchette n'est pas une marge de négociation, elle
+   correspond au profil de l'agent affecté. */
+.result-band-note { margin-top: 12px; font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.65); }
+.result-band-note b { color: rgba(255,255,255,.9); }
+
+/* ================= TABLEAU DE FORFAITS (variante B) =================
+   Une ligne par fonctionnalité, une encoche là où elle est incluse — le
+   scan vertical remplace la lecture carte par carte. */
+.ptable-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ptable { width: 100%; min-width: 720px; border-collapse: collapse; background: var(--bg); }
+.ptable th, .ptable td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+.ptable thead th { border-bottom: 1px solid var(--line); vertical-align: top; }
+.ptable thead th.pt-corner { border-bottom-color: transparent; }
+.ptable tbody th { font-size: 14px; font-weight: 500; color: var(--text-soft); width: 38%; }
+.ptable tbody td { text-align: center; width: 20.6%; }
+.ptable tbody tr:last-child th, .ptable tbody tr:last-child td { border-bottom: 0; }
+.ptable thead th.pt-featured { background: var(--accent-tint); border-radius: 12px 12px 0 0; }
+.theme-it .ptable thead th.pt-featured, .theme-helpdesk .ptable thead th.pt-featured { background: rgba(10,110,150,.07); }
+.pt-name { display: block; font-size: 17px; font-weight: 800; color: var(--primary); }
+.pt-price { display: inline-block; margin: 8px 6px 0 0; font-size: 21px; font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
+.pt-unit { font-size: 12.5px; color: var(--text-mute); }
+.pt-cta { display: block; width: 100%; margin-top: 12px; padding: 10px 12px; border-radius: 100px; font-size: 13px; font-weight: 700; text-align: center; background: var(--primary); border: 1.5px solid var(--primary); color: #fff; transition: filter .15s; }
+.pt-cta:hover { filter: brightness(1.12); }
+/* Encoche / absence : l'icône porte la couleur, le texte lisible est en sr-only. */
+.pt-on::before, .pt-off::before { content: ""; display: inline-block; width: 20px; height: 20px; }
+.pt-on::before { background: #1F9D55; -webkit-mask: var(--pkg-icon-check) no-repeat center / 20px 20px; mask: var(--pkg-icon-check) no-repeat center / 20px 20px; }
+.pt-off::before { width: 14px; height: 2px; background: var(--line); border-radius: 2px; vertical-align: middle; }
+/* Le CTA du tableau porte un fond plein : le style « verrouillé » générique
+   ne doit pas le vider de sa couleur. */
+.pt-cta.is-locked, .pt-cta.is-locked:hover { background: var(--primary); border-color: var(--primary); color: #fff; filter: none; }

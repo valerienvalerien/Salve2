@@ -31,7 +31,7 @@ turnover **crédible** à ce niveau.
   cadrés, facturation, autonomie formelle — à verrouiller avec un conseil local.
 - **DPA signés** par chaque freelance (RGPD art. 28, déjà prévu `CONFORMITE-HDS-RGPD.md`).
 - Disponibilité garantie ≠ freelance pur (angle mort identifié dans `PRICING.md §10`) →
-  clause de plages réservées + backfill.
+  clause de plages réservées et remplaçants prévus.
 
 ## 2. Structure de coûts mensuelle (base 10 freelances, BYOD + hub)
 
@@ -44,12 +44,26 @@ navigateur. Un **hub léger de repli** (plateau réduit) couvre le risque déles
 | Managers (2) | fee ~3,25 M Ar | 1 300 |
 | Direction (2 fondateurs) | lancement | 1 400 |
 | Hub de repli + énergie | petit plateau, groupe électrogène, onduleurs | 500 |
-| Connectivité agents | indemnité double connexion + 4G backup (10 × ~20 €) | 200 |
+| Connectivité agents | indemnité connexion domicile (10 × ~15 €) — *hypothèse, à confirmer* | 150 |
 | SaaS | VoIP (~30 €/poste actif), Emelia, facturation | 550 |
 | Divers / imprévus (~10 %) | | 950 |
-| **Total charges fixes** | | **≈ 10 100** |
+| **Total charges fixes** | **hors amortissement des kits d'autonomie (voir ci-dessous)** | **≈ 10 050** |
 
-- **Coût marginal d'un agent supplémentaire : ~700 €/mois** (fee + connectivité + VoIP).
+> ⚠️ **Kits d'autonomie — à chiffrer.** Le dispositif de continuité repose désormais sur un
+> **kit individuel par agent** (solaire ou batterie) et non plus sur une double connexion
+> (décision 2026-08-11, cf. `04-Closing/DOSSIER-AVANT-VENTE/01-PLAN-CONTINUITE.md` R1).
+> C'est un **investissement à l'achat**, pas un abonnement : il sort de la trésorerie **avant
+> la première facture client**, au moment le plus tendu.
+> Ligne à compléter dès que le prix unitaire est connu :
+> **10 kits × [prix unitaire] € = [capex total] €**, amorti sur **[24] mois** →
+> **[capex/24] €/mois** à ajouter aux charges fixes.
+> Deux conséquences à recalculer une fois le chiffre connu : le **point mort** (§4) et le
+> **coût marginal par agent** ci-dessous. Ordre de grandeur : chaque **240 €** de capex total
+> ajoute ~10 €/mois de charges — l'impact sur le point mort est faible, l'impact sur la
+> **trésorerie de lancement** ne l'est pas.
+
+- **Coût marginal d'un agent supplémentaire : ~700 €/mois** (fee + connectivité + VoIP),
+  **+ le kit d'autonomie à l'entrée** (capex non récurrent, à provisionner au staffing).
 - vs modèle salarié premium (v1 : ~280 € chargé/agent) : le freelance à 3,25 M Ar coûte
   **~+370 €/agent/mois**, partiellement compensé par l'absence de locaux pleins
   (BYOD) et de charges. Surcoût net total vs v1 : **~+2 500-3 000 €/mois** — c'est le prix

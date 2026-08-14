@@ -39,6 +39,12 @@ l'engagement de service).
   helpdesk → SLA prise en charge. **Figés ici.**
 - [ ] Procédure d'**escalade** (qui, quand, vers qui côté client).
 - [ ] Outils à intégrer + modalités d'accès (comptes nominatifs).
+- [ ] **MB — régime de sous-traitance du partenaire** (bloquant, cf. `IDEAL-CUSTOMER-PROFILE.md`
+  Q7) : son contrat client prévoit une **autorisation générale** (→ information préalable
+  suffit) ou un **accord spécifique préalable** (→ il doit l'obtenir **avant** notre
+  démarrage) ? Existe-t-il une **clause de localisation UE/EEE** ? Consigner la réponse.
+  - [ ] Si accord spécifique requis : **ne pas engager de recrutement** avant confirmation
+    écrite du partenaire qu'il l'a obtenu.
 - [ ] **Signature** : devis + contrat de prestation + **DPA**.
 - [ ] **Direct** — choix offre de lancement : mois pilote −50 % ou programme fondateurs.
 - [ ] **Marque blanche** — **pas de remise**. À la place :
@@ -49,9 +55,10 @@ l'engagement de service).
     5 positions** (dues consommées ou non) dans l'Annexe B du contrat.
   - [ ] **Contreparties de risque** concédées, écrites et **cochées** dans le devis (B.7) :
     sortie 30 j / exclusivité 12 mois / appui avant-vente 48 h. Une à la fois.
-  - [ ] Si **appui avant-vente** concédé : préparer le **kit sous 48 h ouvrées** (PCA, DPA,
-    dispositif QA, CV anonymisés, engagement SLA écrit) — c'est la contrepartie qui aide le
-    partenaire à **vendre**, elle doit partir vite ou elle ne vaut rien.
+  - [ ] Si **appui avant-vente** concédé : envoyer le **kit sous 48 h ouvrées** —
+    `04-Closing/DOSSIER-AVANT-VENTE/` (PCA, engagement SLA, dispositif QA, profils
+    anonymisés, note transfert hors UE) **+ le DPA**. Les pièces existent : il n'y a qu'à
+    remplacer les `[...]` par les valeurs du compte. Elle doit partir vite ou elle ne vaut rien.
 
 > **Garde-fou trésorerie** : en MB, **ne pas engager de recrutement avant l'encaissement du
 > dépôt**. C'est tout l'intérêt du dispositif (`FINANCE-PREVISIONNEL.md §6` — encaissement
@@ -65,7 +72,8 @@ l'engagement de service).
 - [ ] **Formation des agents** aux scripts, au secret médical/RGPD, aux process d'escalade.
 - [ ] **Armement QA** : grille de scoring prête, planning de double écoute, gabarit de
   reporting instancié (`PROCESS-QA-DOUBLE-ECOUTE.md`, `MODELE-REPORTING-CLIENT.md`).
-- [ ] Vérification **continuité** : double connexion (fibre+4G) + hub de repli, backup +1 agent.
+- [ ] Vérification **continuité** : kit d'autonomie de chaque agent **testé** (bascule
+  réelle, autonomie constatée) + hub de repli opérationnel, backup +1 agent.
 - [ ] Test de bout en bout (appel/ticket fictif) avant J1.
 
 ## Phase 2 — J1, démarrage du pilote

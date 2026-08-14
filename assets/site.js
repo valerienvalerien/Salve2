@@ -95,11 +95,48 @@
       const name = group.dataset.group;
       group.querySelectorAll('.pill').forEach(pill => {
         pill.addEventListener('click', () => {
-          group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
+          // Les mêmes réglages sont proposés en haut de page et dans la carte
+          // « Votre estimation en détail » : tous les groupes portant ce nom
+          // basculent ensemble, sinon les deux jeux de boutons divergent.
+          const groups = name
+            ? document.querySelectorAll('.pill-group[data-group="' + name + '"]')
+            : [group];
+          groups.forEach(g => g.querySelectorAll('.pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.value === pill.dataset.value);
+          }));
           onChange(name, parseFloat(pill.dataset.multiplier), pill.dataset.value);
         });
       });
+    });
+  }
+
+  /* Curseurs dupliqués : un input marqué data-sync="posts" rejoue l'input
+     principal du même nom, dans les deux sens. */
+  function bindRangeMirrors() {
+    document.querySelectorAll('input[type="range"][data-sync]').forEach(mirror => {
+      const main = document.getElementById(mirror.dataset.sync);
+      if (!main) return;
+      mirror.min = main.min; mirror.max = main.max; mirror.step = main.step; mirror.value = main.value;
+      mirror.addEventListener('input', () => {
+        main.value = mirror.value;
+        main.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+  }
+  function syncRangeMirrors() {
+    document.querySelectorAll('input[type="range"][data-sync]').forEach(mirror => {
+      const main = document.getElementById(mirror.dataset.sync);
+      if (main) mirror.value = main.value;
+    });
+  }
+
+  /* ---------- Miroirs d'affichage ----------
+     Le bandeau prix du hero immersif rejoue les valeurs calculées par la carte
+     résultats détaillée : une seule source de vérité, aucune duplication d'état. */
+  function syncMirrors() {
+    document.querySelectorAll('[data-mirror]').forEach(el => {
+      const src = document.getElementById(el.dataset.mirror);
+      if (src) el.innerHTML = src.innerHTML;
     });
   }
 
@@ -108,6 +145,30 @@
     el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
   }
   const euro = n => Math.round(n).toLocaleString('fr-FR');
+
+  /* Lie le simulateur à la section « Forfaits », plus bas dans la page : marque la
+     carte correspondant à la configuration courante et rappelle l'estimation
+     au-dessus des cartes, pour qui a scrollé et perdu le résultat de vue. */
+  function syncPackages(slug, recall) {
+    document.querySelectorAll('.pkg[data-pkg]').forEach(card => {
+      const match = card.dataset.pkg === slug;
+      card.classList.toggle('is-match', match);
+      const badge = card.querySelector('.pkg-badge');
+      if (!badge) return;
+      badge.classList.toggle('is-match', match);
+      if (match) {
+        badge.textContent = '✓ Correspond à votre simulation';
+        badge.hidden = false;
+      } else {
+        // Rend sa pastille d'origine à la carte vedette, masque celle des autres.
+        const def = badge.dataset.default;
+        badge.textContent = def || '';
+        badge.hidden = !def;
+      }
+    });
+    const el = document.getElementById('pkg-recall');
+    if (el) { el.innerHTML = recall || ''; el.hidden = !recall; }
+  }
 
   /* ========================================================
      SIMULATEUR MÉDICAL  (présent si #calls existe)
@@ -146,20 +207,27 @@
       const savings = INTERNAL_SECRETARY - price;
       $('savings-monthly').textContent = euro(Math.max(savings, 0)) + ' €';
       const cmp = $('compare-line'), badge = $('savings-badge');
-      if (savings > 0) {
-        cmp.innerHTML = 'Une secrétaire au cabinet : <span class="old">2 750 €+/mois</span> en coût complet';
-        badge.textContent = '−' + Math.round((savings / INTERNAL_SECRETARY) * 100) + ' % vs une secrétaire interne';
-      } else {
-        cmp.textContent = 'Forfait tout compris, sans surprise.';
-        badge.textContent = '1er mois à −50 %';
-      }
+      // 4a — le badge porte le recadrage ROI de PRICING.md §1, plus un pourcentage
+      // d'économie : comparer un forfait 250 appels à une secrétaire temps plein
+      // donnait −87 %, hors doctrine (claim public −40 à −60 %) et peu crédible.
+      // Fourchette RDV calée sur l'ancre documentée « 350 €/mois = 2 à 3 RDV
+      // récupérés » ⇒ valeur implicite d'un RDV récupéré ≈ 117-175 €.
+      const RDV_HIGH = 175, RDV_LOW = 117;
+      const rdvMin = Math.ceil(price / RDV_HIGH), rdvMax = Math.ceil(price / RDV_LOW);
+      badge.textContent = '≈ ' + euro(price / WORKDAYS_PER_MONTH) + ' € / jour ouvré';
+      cmp.innerHTML = rdvMin === rdvMax
+        ? '<strong>' + rdvMin + ' RDV récupérés</strong> dans le mois paient le forfait'
+        : '<strong>' + rdvMin + ' à ' + rdvMax + ' RDV récupérés</strong> dans le mois paient le forfait';
 
       let reco;
       if (custom) reco = 'Offre <strong>Sur-mesure</strong> — on cadre ensemble.';
       else if (name === 'Essentiel') reco = 'Forfait <strong>Essentiel</strong> — idéal pour un praticien.';
       else if (name === 'Confort') reco = 'Forfait <strong>Confort</strong> — le meilleur rapport volume / prix.';
       else reco = 'Forfait <strong>Intensif</strong> — pensé pour les cabinets de groupe.';
-      $('recommendation').innerHTML = reco;
+      $('recommendation').innerHTML = '<a class="reco-link" href="#forfaits">' + reco + '</a>';
+      syncPackages(name.toLowerCase(),
+        'Votre simulation : <b>' + (custom ? '≈ ' : '') + euro(price) + ' €/mois</b> · ' +
+        (custom ? 'volume au-delà de la grille, on cadre ensemble' : 'forfait ' + name));
 
       const disc = $('sim-disclaimer');
       if (disc) {
@@ -191,6 +259,7 @@
       }
 
       pop($('price-monthly'));
+      syncMirrors();
     }
 
     $('calls').addEventListener('input', e => {
@@ -234,12 +303,17 @@
     // Le tarif marque blanche (sous-traitance) n'est JAMAIS exposé ici : il révélerait
     // la marge du revendeur (cf. PRICING.md §0 / RAPPORT-PRIX.html §9). Réservé au devis.
     const CFG = Object.assign({
+      // ⚠️ frBench est en attente de l'arbitrage n°3 (hypothèses de brut révisées à
+      // 30-36 k€ ⇒ coût complet 44-53 k€/an, soit 3 650-4 400 €/mois). Valeur laissée
+      // inchangée tant que la décision n'est pas actée dans PRICING.md §3/§5.
       baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, FR_PEN = 1.35, BAND = 0.05; // ±5 % autour de l'estimation
+    const PROD = 0.85, BAND = 0.09; // ±9 % autour de l'estimation — l'écart couvre le profil de l'agent (cf. PRICING.md §3.d)
+    const NONSTOP_MIN = 4;          // rotation impossible en dessous (cf. PRICING.md §3.c)
     const st = {
       posts: 1, hours: 35,
-      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, schedule: 1.0,
+      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, scope: 1.0,
+      coverage: 1.0,
       mode: CFG.baseDirect,
     };
     const $ = id => document.getElementById(id);
@@ -252,36 +326,127 @@
     const priorityMult = n => 1.10 + 0.90 / n;
 
     function calc() {
-      const hpm = st.hours * 4.33;
-      const ratio = hpm / (35 * 4.33);
-      const basePrice = st.mode * ratio;
+      const ratio = st.hours / 35;
       const serviceMult = st.serviceTier === 'priority' ? priorityMult(st.posts) : st.service;
-      const mult = serviceMult * st.channels * st.language * st.schedule;
-      const total = basePrice * mult * st.posts * vol(st.posts);
-      const frMult = st.language * Math.pow(st.schedule, FR_PEN);
-      const frCost = CFG.frBench * ratio * st.posts * frMult;
+      // Axes d'offre communs aux deux simulateurs IT (décision 6a) : ils renchérissent
+      // aussi un recrutement interne (un technicien bilingue ou N2 coûte plus cher en
+      // France), donc ils s'appliquent des deux côtés de la comparaison.
+      const offerMult = st.channels * st.language * st.scope;
+      // ETP réellement mobilisés = positions × multiplicateur de présence.
+      // L'amplitude horaire coûte des TÊTES, pas une majoration (décision 1b).
+      const etp = st.posts * st.coverage;
+      const total = st.mode * ratio * etp * serviceMult * offerMult * vol(st.posts);
+      const frCost = CFG.frBench * ratio * etp * offerMult;
       const savings = frCost - total;
-      const hMonth = hpm * st.posts;
+      const hMonth = etp * st.hours * 4.33;
 
       $('price-monthly').textContent = range(total);
       if ($('price-fr-hourly')) $('price-fr-hourly').textContent = (frCost / hMonth).toFixed(1).replace('.', ',') + ' €/h';
       $('price-fr').textContent = euro(frCost) + ' €/mois';
-      $('savings-badge').textContent = 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
       $('hours-monthly').textContent = Math.round(hMonth) + ' h';
       const hourlyEquivalent = $('hourly-equivalent') || $('hourly-displayed');
       if (hourlyEquivalent) hourlyEquivalent.textContent = hourly(total / hMonth);
       if ($('hourly-productive')) $('hourly-productive').textContent = hourly(total / (hMonth * PROD));
-      $('annual-savings').textContent = euro(savings * 12) + ' €';
+
+      // Nombre de têtes réellement mobilisées — le prospect doit voir qu'une
+      // amplitude étendue mobilise plus d'une personne par position (décision 1b).
+      const noteEl = $('coverage-note');
+      if (noteEl) {
+        const heads = Math.ceil(etp);
+        noteEl.textContent = heads > st.posts
+          ? heads + ' agents mobilisés pour couvrir ' + st.posts + ' position' + (st.posts > 1 ? 's' : '') + ' en 8h–20h'
+          : '';
+        noteEl.hidden = heads <= st.posts;
+      }
+
+      // 2a-bis — sous 3 agents, Priority inclut un backup permanent : c'est
+      // littéralement une tête de plus. L'économie n'est pas l'argument à cet
+      // endroit (elle est négative), la faisabilité l'est : en interne on ne
+      // recrute pas un demi-backup. Cf. PRICING.md §3, ARGUMENTS-APPEL-priority.md.
+      const priorityLowN = st.serviceTier === 'priority' && st.posts < 3;
+      const equivHeads = st.posts + Math.ceil(st.posts / 3);
+      const badge = $('savings-badge');
+      badge.classList.toggle('badge-resilience', priorityLowN);
+      badge.textContent = priorityLowN
+        ? 'Continuité de ' + equivHeads + ' postes, sans en recruter ' + equivHeads
+        : 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
+
+      const annualEl = $('annual-savings'), annualLabel = $('annual-savings-label');
+      if (priorityLowN) {
+        annualEl.textContent = equivHeads + ' postes';
+        if (annualLabel) annualLabel.textContent = 'Pour faire pareil en interne';
+      } else {
+        annualEl.textContent = euro(savings * 12) + ' €';
+        if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
+      }
+
+      // Le palier se déduit de ce qui le définit : le niveau de service d'abord
+      // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
+      // plus dans le tri — elles font varier le prix, pas la nature du forfait.
+      // Non-stop suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
+      let pkg;
+      if (st.service <= 0.85 && st.serviceTier !== 'priority') pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
+      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Non-stop', why: 'rotation d\'équipe et couverture continue.' };
+      else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
-      if (recoEl) {
-        let reco;
-        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>Support Starter</strong> — idéal pour démarrer.';
-        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.schedule > 1.0)) reco = 'Forfait <strong>Centre N1 Scale</strong> — couverture étendue + backup.';
-        else reco = 'Forfait <strong>Support Pro</strong> — meilleur rapport coût / disponibilité.';
-        recoEl.innerHTML = reco;
-      }
+      if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
+      syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
+      syncPackagePrices(pkg.slug);
+      syncPackageLocks();
+      syncRangeMirrors();
+
       pop($('price-monthly'));
+      syncMirrors();
+    }
+
+    /* Forfaits soumis à un effectif minimum : le bouton reste visible mais
+       inopérant tant que le curseur n'y est pas, avec la raison au survol —
+       laisser cliquer puis expliquer dans le devis ferait perdre le lead. */
+    function syncPackageLocks() {
+      document.querySelectorAll('.pkg-cta[data-min-agents]').forEach(cta => {
+        const min = parseInt(cta.dataset.minAgents, 10);
+        const locked = st.posts < min;
+        cta.classList.toggle('is-locked', locked);
+        cta.setAttribute('aria-disabled', locked ? 'true' : 'false');
+        if (locked) cta.setAttribute('tabindex', '-1'); else cta.removeAttribute('tabindex');
+      });
+    }
+
+    /* Prix des cartes « Forfaits » — même moteur que l'estimation du haut de page.
+       Deux règles :
+       — la carte qui CORRESPOND à la simulation affiche exactement la fourchette
+         du bandeau prix, sinon les deux chiffres se contredisent sur la page ;
+       — les autres montrent leur configuration type. Chacune impose ce qui la
+         définit (data-pkg-service / -agents / -hours) et hérite du reste : heures,
+         amplitude, canaux, langue, périmètre. Le plafond d'heures garde au
+         Débordement son prix d'appel (base 20 h) quand la simulation vise un
+         autre palier. */
+    function syncPackagePrices(activeSlug) {
+      document.querySelectorAll('.pkg[data-pkg-service]').forEach(card => {
+        const isActive = card.dataset.pkg === activeSlug;
+        const shared = card.dataset.pkgService === 'shared';
+        const rule = card.dataset.pkgAgents;
+        const agents = rule === 'solo' ? 1 : rule === 'team' ? Math.max(2, st.posts) : st.posts;
+        const cap = parseInt(card.dataset.pkgHours || '0', 10);
+        const hours = (!isActive && cap) ? Math.min(st.hours, cap) : st.hours;
+        const serviceMult = shared ? 0.85 : (st.serviceTier === 'priority' ? priorityMult(agents) : 1.0);
+        const etp = agents * st.coverage;
+        const total = st.mode * (hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
+
+        const priceEl = card.querySelector('.pkg-price');
+        if (priceEl) priceEl.textContent = range(total);
+        // Le tableau comparatif (variante B) rejoue le même prix.
+        document.querySelectorAll('[data-pkg-price="' + card.dataset.pkg + '"]')
+          .forEach(el => { el.textContent = range(total); });
+        const equivEl = card.querySelector('.pkg-equiv');
+        if (equivEl) {
+          const s = agents > 1 ? 's' : '';
+          equivEl.textContent = agents + ' agent' + s + (shared ? ' mutualisé' + s : ' dédié' + s)
+            + ' · ' + hours + ' h / semaine'
+            + (st.coverage > 1 ? ' · 8h–20h' : '');
+        }
+      });
     }
 
     $('posts').addEventListener('input', e => {
@@ -304,6 +469,10 @@
       if (name === 'service') st.serviceTier = value;
       if (name !== 'mode') { st[name] = m; calc(); }
     });
+    bindRangeMirrors();
+    document.querySelectorAll('.pkg-cta[data-min-agents]').forEach(cta => {
+      cta.addEventListener('click', e => { if (cta.classList.contains('is-locked')) e.preventDefault(); });
+    });
 
     /* ----- Graphe comparatif Dédié vs Priority (SVG sans dépendance) ----- */
     const chart = $('priority-chart');
@@ -314,9 +483,8 @@
 
       // Coût mensuel pour n agents, multiplicateur de service donné, config courante.
       const cost = (n, svc) => {
-        const ratio = (st.hours * 4.33) / (35 * 4.33);
-        const m = svc * st.channels * st.language * st.schedule;
-        return st.mode * ratio * m * n * vol(n);
+        const m = svc * st.channels * st.language * st.scope;
+        return st.mode * (st.hours / 35) * m * n * st.coverage * vol(n);
       };
       // Vue « coût brut » : un point par nombre d'agents.
       const costDedie = n => cost(n, 1.0);
@@ -421,7 +589,11 @@
     }
 
     document.querySelectorAll('[data-devis]').forEach(el =>
-      el.addEventListener('click', e => { e.preventDefault(); openModal(); })
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        if (el.classList.contains('is-locked')) return; // forfait sous son effectif minimum
+        openModal();
+      })
     );
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });

@@ -118,8 +118,8 @@ art. 4), avec **attestation** sur demande. Aucune conservation au-delà de l'obl
 ## Annexe 2 — Mesures de sécurité
 
 - Comptes nominatifs + MFA · zéro download · pas de cache local · chiffrement TLS ·
-  formation RGPD + secret pro · révocation immédiate des accès · double connexion
-  (fibre+4G) + hub de repli alimenté (continuité) · aucun enregistrement d'appel.
+  formation RGPD + secret pro · révocation immédiate des accès · kit d'autonomie
+  individuel + hub de repli alimenté (continuité) · aucun enregistrement d'appel.
 
 ## Annexe 3 — Localisation
 
