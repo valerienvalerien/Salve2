@@ -103,6 +103,16 @@
     });
   }
 
+  /* ---------- Miroirs d'affichage ----------
+     Le bandeau prix du hero immersif rejoue les valeurs calculées par la carte
+     résultats détaillée : une seule source de vérité, aucune duplication d'état. */
+  function syncMirrors() {
+    document.querySelectorAll('[data-mirror]').forEach(el => {
+      const src = document.getElementById(el.dataset.mirror);
+      if (src) el.innerHTML = src.innerHTML;
+    });
+  }
+
   function pop(el) {
     if (!el) return;
     el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
@@ -222,6 +232,7 @@
       }
 
       pop($('price-monthly'));
+      syncMirrors();
     }
 
     $('calls').addEventListener('input', e => {
@@ -351,6 +362,7 @@
       syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
 
       pop($('price-monthly'));
+      syncMirrors();
     }
 
     $('posts').addEventListener('input', e => {
