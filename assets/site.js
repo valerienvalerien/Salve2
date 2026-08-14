@@ -363,26 +363,32 @@
       const recoEl = $('recommendation');
       if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
       syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
-      syncPackagePrices();
+      syncPackagePrices(pkg.slug);
 
       pop($('price-monthly'));
       syncMirrors();
     }
 
     /* Prix des cartes « Forfaits » — même moteur que l'estimation du haut de page.
-       Chaque carte impose seulement ce qui la définit (niveau de service, taille
-       d'équipe, via data-pkg-service / data-pkg-agents) et hérite du reste :
-       heures, amplitude, canaux, langue, périmètre. La carte désignée par le
-       simulateur affiche donc exactement la fourchette du bandeau prix — sans
-       cette règle, les deux chiffres divergent sur la même page. */
-    function syncPackagePrices() {
+       Deux règles :
+       — la carte qui CORRESPOND à la simulation affiche exactement la fourchette
+         du bandeau prix, sinon les deux chiffres se contredisent sur la page ;
+       — les autres montrent leur configuration type. Chacune impose ce qui la
+         définit (data-pkg-service / -agents / -hours) et hérite du reste : heures,
+         amplitude, canaux, langue, périmètre. Le plafond d'heures garde au
+         Débordement son prix d'appel (base 20 h) quand la simulation vise un
+         autre palier. */
+    function syncPackagePrices(activeSlug) {
       document.querySelectorAll('.pkg[data-pkg-service]').forEach(card => {
+        const isActive = card.dataset.pkg === activeSlug;
         const shared = card.dataset.pkgService === 'shared';
         const rule = card.dataset.pkgAgents;
         const agents = rule === 'solo' ? 1 : rule === 'team' ? Math.max(2, st.posts) : st.posts;
+        const cap = parseInt(card.dataset.pkgHours || '0', 10);
+        const hours = (!isActive && cap) ? Math.min(st.hours, cap) : st.hours;
         const serviceMult = shared ? 0.85 : (st.serviceTier === 'priority' ? priorityMult(agents) : 1.0);
         const etp = agents * st.coverage;
-        const total = st.mode * (st.hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
+        const total = st.mode * (hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
 
         const priceEl = card.querySelector('.pkg-price');
         if (priceEl) priceEl.textContent = range(total);
@@ -390,7 +396,7 @@
         if (equivEl) {
           const s = agents > 1 ? 's' : '';
           equivEl.textContent = agents + ' agent' + s + (shared ? ' mutualisé' + s : ' dédié' + s)
-            + ' · ' + st.hours + ' h / semaine'
+            + ' · ' + hours + ' h / semaine'
             + (st.coverage > 1 ? ' · 8h–20h' : '');
         }
       });
