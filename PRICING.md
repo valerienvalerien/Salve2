@@ -8,7 +8,10 @@
 > palier 3 renommé **Non-stop** avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
 > **supprimé** du simulateur public §3.d · **backup réservé au Non-stop** §3.d · revue de
 > service mensuelle **incluse partout**, donc hors différenciation §3.d · fourchette
-> d'estimation rattachée au **profil de l'agent** §3.d) ·
+> d'estimation rattachée au **profil de l'agent**, bande portée à **±9 %** §3.d ·
+> **doctrine de continuité à 3 niveaux §3.e** — le manager métier est le backup du Poste
+> dédié, la rotation celui du Non-stop. ⚠️ `FINANCE-PREVISIONNEL.md` **n'est plus une
+> source** : seul le **tableau d'effectif** est repris, en §3.e.) ·
 > précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
 > horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
@@ -419,11 +422,11 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
   inclus, plus la réserve de backup (~100 €/position, §10) et la supervision dédiée. Au-delà,
   l'amplitude (6h-20h, 3×8) se chiffre au devis — cohérent avec le retrait des paliers
   astreinte / 24·7 du simulateur public (§3.c).
-- **Le backup n'est plus affiché au Poste dédié.** « Dédié » et « quelqu'un d'autre prend le
+- **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
   relais » se contredisent, et le backup permanent est ce que facture le tier Priority
-  (`priorityMult`, §3). Il devient exclusif au Non-stop, où il est structurel : à 4 agents en
-  rotation, la continuité est mécanique. ⚠️ Reste adossé à l'arbitrage ouvert de §10
-  (réserve partagée non financée à ce jour).
+  (`priorityMult`, §3). Ce que chaque palier garantit réellement est fixé par la **doctrine
+  de continuité §3.e** : manager métier au Poste dédié, rotation au Non-stop, capacité
+  réservée en Priority.
 - **Axe « Périmètre N2 » supprimé du simulateur.** Il majorait le prix (+8 % / +22 %) pour
   une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
 - **La fourchette d'estimation (±5 %) porte désormais le profil de l'agent** : bas de
@@ -434,6 +437,47 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
   retirée des lignes de différenciation. Le suivi commercial et les évolutions de périmètre
   sont assurés par la direction pour tous les comptes — ce n'est pas un poste qui se
   débloque au palier 3.
+
+### 3.e Continuité de service — doctrine de remplacement (décidé 2026-08-14)
+
+> Remplace la règle « un agent de remplacement en plus par client » (§10), qui doublait le
+> coût d'un compte pour couvrir ~13 % d'absences (5 semaines de congés + ~3 % de maladie).
+> **Le remplacement n'est pas un produit à vendre : c'est le coût de l'engagement SLA (§7).**
+> Il est donc dans le prix, jamais en ligne d'option.
+
+**Effectif de référence (seule donnée retenue de `FINANCE-PREVISIONNEL.md`)**
+
+| Rôle | Effectif | Fee mensuel |
+|---|---|---|
+| Agents productifs (facturables) | 8 | 3 250 000 Ar (650 €) |
+| Manager médical | 1 | 3 250 000 Ar (650 €) |
+| Manager IT (Support N1 + Helpdesk) | 1 | 3 250 000 Ar (650 €) |
+
+> Lecture marché : salaire moyen d'un agent de call center à Tana ~700 000 Ar ; profils
+> expérimentés 900 000 Ar - 2 M Ar. À 3 250 000 Ar, Salverys paie **~4,5× le marché** — aucune
+> offre concurrente équivalente (Intelcia & co. recrutent à 600-800 k Ar). **Hypothèse zéro
+> turnover crédible à ce niveau.** C'est aussi ce qui rend la doctrine ci-dessous tenable :
+> l'absence à couvrir est une absence *prévue* (congés), pas un départ surprise.
+
+**Trois niveaux, adossés à ce qui est déjà payé :**
+
+| Palier | Qui remplace | Ce qu'on promet | Ce qu'on ne promet pas |
+|---|---|---|---|
+| **Débordement** (mutualisé) | le pool, par nature | continuité sans objet — l'agent n'est pas nominatif | un interlocuteur constant |
+| **Poste dédié** | le **manager métier** (1 médical, 1 IT — non facturables, formés, ils supervisent déjà le compte) | reprise des **absences ponctuelles** : congés isolés, arrêt court | deux absences simultanées, ni un arrêt long — on prévient et on ajuste le SLA au cadrage |
+| **Non-stop** (≥ 4 agents) | la **rotation** | la **plage horaire reste tenue** : 4 × 35 h = 140 h/sem pour 70 h d'amplitude, un absent laisse encore 105 h | la capacité à l'identique — elle baisse de ~25 % |
+| **Priority** (orthogonal) | un **backup nominatif réservé**, facturé par `priorityMult` (§3) | capacité **inchangée**, zéro rupture | — |
+
+- **Le manager métier comme premier backup est finançable par construction** : il est payé,
+  il connaît les comptes qu'il supervise (double écoute, QA), et il n'est affecté à aucune
+  position facturée. Aucune tête supplémentaire à recruter.
+- **Corollaire commercial** : « backup inclus » disparaît des listes de fonctionnalités. Le
+  Poste dédié affiche « absence ponctuelle reprise par votre manager métier », le Non-stop
+  « plage horaire tenue même en cas d'absence ». Deux promesses vraies, aux périmètres
+  distincts, qui laissent à Priority son argument exclusif : la capacité réservée.
+- **Limite à connaître en rendez-vous** : au-delà d'un manager mobilisé sur un compte, la
+  supervision des autres comptes se dégrade. Le seuil pratique est d'**un remplacement long
+  à la fois** par métier ; au-delà, c'est un recrutement, pas un backup.
 
 ---
 
@@ -637,7 +681,8 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
 | **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
 | **Palier 3 IT (2026-08-14)** | « Centre de services », sans effectif minimum | **« Non-stop »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
-| **Backup agent (2026-08-14)** | affiché comme inclus dans le **Poste dédié** | **exclusif au Non-stop** — « dédié » et « quelqu'un d'autre prend le relais » se contredisent, et le backup permanent est ce que facture Priority (§3.d) |
+| **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation Non-stop (plage tenue) · Priority (capacité réservée). Aucune tête supplémentaire à recruter |
+| **Source prévisionnel (2026-08-14)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **plus une source** — seul le **tableau d'effectif** (8 agents + 2 managers à 650 €) est repris, en §3.e |
 | **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
 | **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
 | **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
@@ -670,13 +715,11 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 
 - **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **kit d'autonomie
   individuel par agent (solaire ou batterie) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
-  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **un agent de
-  remplacement en plus par client** ; documentation écrite dès le client n°1.
-  > ⚠️ **Règle non financée à ce jour** : `FINANCE-PREVISIONNEL.md §2` compte **8 agents sur 8
-  > facturés à des clients** — personne n'est donc disponible pour remplacer un absent. Prévoir un
-  > remplaçant par client doublerait le coût de chaque compte. **Arbitrage ouvert** : soit on paie
-  > une réserve partagée (~1 personne pour 6-8 positions, ~700 €/mois), soit on retire la promesse
-  > de remplacement des forfaits — cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §I`.
+  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **continuité
+  de service selon la doctrine §3.e** ; documentation écrite dès le client n°1.
+  > La règle « un agent de remplacement en plus par client » est **abandonnée** (2026-08-14) :
+  > elle doublait le coût de chaque compte pour couvrir ~13 % d'absences. Remplacée par la
+  > doctrine de continuité à trois niveaux (§3.e), qui s'appuie sur l'encadrement déjà financé.
 - **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
