@@ -330,8 +330,8 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
   Plancher **1,10** = priorité de traitement + supervision renforcée, jamais nul.
 
 - **Équivalence résilience** (argument d'appel) : pour garantir `g` agents productifs
-  **sans rupture**, le **Dédié** doit sur-staffer ≈ **1 backup pour 3** (`g + ⌈g/3⌉`
-  têtes payées plein pot), alors que **Priority** inclut le backup. À garantie égale,
+  **sans rupture**, le **Dédié** doit prévoir un sur-effectif de ≈ **1 remplaçant pour 3 agents**
+  (`g + ⌈g/3⌉` personnes facturées au tarif plein), alors que **Priority** inclut le remplaçant. À garantie égale,
   **`g` Priority ≡ `g + ⌈g/3⌉` Dédiés** (ex. 2 Priority ≡ 3 Dédiés, 6 Priority ≡ 8 Dédiés).
   Sur le **coût**, Priority bascule **moins cher à partir de ~4 agents garantis** ;
   en dessous, l'avantage est ailleurs : backup **géré par nous** (zéro planning) et
@@ -341,7 +341,7 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
   `priorityMult` vaut ×2,00 / ×1,55 : le backup permanent est littéralement **une tête de
   plus**, et l'offre coûte alors **plus cher** qu'un recrutement France. Le simulateur
   n'affiche donc **aucun pourcentage d'économie** dans cette zone — il affiche
-  « **Résilience de N postes internes** » (N = `g + ⌈g/3⌉`). Priority **reste vendable et
+  « **Continuité de N postes, sans en recruter N** » (N = `g + ⌈g/3⌉`). Priority **reste vendable et
   sélectionnable à 1-2 agents** : ce qui change est l'argument, pas le périmètre de l'offre.
   L'argument juste y est la **faisabilité** — en interne on ne recrute pas un demi-backup.
   > ⚠️ Corollaire à connaître en rendez-vous : **le claim public « −40 à −60 % » est un claim
@@ -593,7 +593,7 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
 | **Forfaits IT (2026-08-13)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Centre de services**, identiques dans les deux simulateurs et **définis en §3.c** |
 | **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
-| **Priority sous 3 agents (2026-08-13)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | **aucun % d'économie affiché** sous 3 agents ⇒ « Résilience de N postes internes » ; l'offre reste vendable à 1-2 agents (§3) |
+| **Priority sous 3 agents (2026-08-13)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | **aucun % d'économie affiché** sous 3 agents ⇒ « Continuité de N postes, sans en recruter N » ; l'offre reste vendable à 1-2 agents (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
 | **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
 
@@ -625,8 +625,13 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 
 - **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **kit d'autonomie
   individuel par agent (solaire ou batterie) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
-  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **backfill +1
-  agent/compte** ; documentation écrite dès le client n°1.
+  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **un agent de
+  remplacement en plus par client** ; documentation écrite dès le client n°1.
+  > ⚠️ **Règle non financée à ce jour** : `FINANCE-PREVISIONNEL.md §2` compte **8 agents sur 8
+  > facturés à des clients** — personne n'est donc disponible pour remplacer un absent. Prévoir un
+  > remplaçant par client doublerait le coût de chaque compte. **Arbitrage ouvert** : soit on paie
+  > une réserve partagée (~1 personne pour 6-8 positions, ~700 €/mois), soit on retire la promesse
+  > de remplacement des forfaits — cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §I`.
 - **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
@@ -636,4 +641,4 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
   en **direct**, hébergeur HDS dédié (OVHcloud/Scaleway), **coût d'hébergement absorbé dans le forfait**
   (ordre de grandeur interne ~100-500 €/mois, **à absorber, pas un prix client**). Cadre conformité :
   `CONFORMITE-HDS-RGPD.md §2`.
-- **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement + backfill.
+- **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement et prévoir des remplaçants.

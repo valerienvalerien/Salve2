@@ -14,7 +14,7 @@
 | Bloc | Gravité | Constat central | Statut |
 |---|---|---|---|
 | **A. Coefficients de couverture horaire** | 🔴 **critique** | Le 24·7 est vendu **+45 %** alors qu'il demande **×3,7 de présence**. Un devis 24·7 sort **à perte** et n'est **pas livrable**. | ✅ **corrigé** — modèle ETP + astreinte/24·7 sur devis (`PRICING.md §3.c`) |
-| **B. Tier Priority à 1-2 agents** | 🔴 **critique** | Le simulateur affiche publiquement **« Économie : −24 % »** et **« Économie annuelle : −10 800 € »**. On vend plus cher que d'embaucher en France. | ✅ **corrigé** — badge « résilience » sous 3 agents, offre inchangée (`PRICING.md §3`) |
+| **B. Tier Priority à 1-2 agents** | 🔴 **critique** | Le simulateur affiche publiquement **« Économie : −24 % »** et **« Économie annuelle : −10 800 € »**. On vend plus cher que d'embaucher en France. | ✅ **corrigé** — badge de continuité sous 3 agents, offre inchangée (`PRICING.md §3`) |
 | **C. Claim « −40 à −60 % » vs simulateur** | 🔴 **critique** | Les pages promettent −40 à −60 % ; le badge du simulateur calcule **−32 %** (helpdesk) et **−38 %** (SaaS). La page se contredit elle-même à 30 cm d'écart. | ⏳ **ouvert** — cf. §I.3 ci-dessous |
 | **D. Badge médical −87 %** | 🟠 majeur | Hors doctrine `PRICING.md` (claim public = −40 à −60 %) et non crédible : compare un forfait 250 appels à une secrétaire à temps plein. | ✅ **corrigé** — recadrage coût/jour ouvré (`PRICING.md §1`) |
 | **E. Noms des offres** | 🟠 majeur | 3 systèmes de nommage différents, **absents de `PRICING.md`**, mélange FR/EN sur une marque qui vend « français langue maternelle ». | ✅ **corrigé** — Débordement / Poste dédié / Centre de services (`PRICING.md §3.c`) |
@@ -268,7 +268,7 @@ sur un deal 5 positions.
    phase 1. `FR_PEN` supprimé au passage.
 2. ✅ **Priority** — **pas de verrou** : l'offre reste sélectionnable et vendable à 1-2
    agents. C'est le **badge économie** qui disparaît sous 3 agents, remplacé par
-   « Résilience de N postes internes ». L'argument juste à cette taille est la faisabilité.
+   « Continuité de N postes, sans en recruter N ». L'argument juste à cette taille est la faisabilité.
 3. ⏳ **Claim −40 à −60 %** — **ouvert.** Hypothèses de brut révisées (direction) :
    **30-36 k€** au lieu de 26-34 k€ ⇒ coût complet **44-53 k€/an (3 650-4 400 €/mois)**.
    Effet à prix inchangés : SaaS −37/−43/−48 %, helpdesk −31/−38/−43 % selon qu'on retient

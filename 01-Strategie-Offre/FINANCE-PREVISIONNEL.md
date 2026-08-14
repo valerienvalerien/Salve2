@@ -31,7 +31,7 @@ turnover **crédible** à ce niveau.
   cadrés, facturation, autonomie formelle — à verrouiller avec un conseil local.
 - **DPA signés** par chaque freelance (RGPD art. 28, déjà prévu `CONFORMITE-HDS-RGPD.md`).
 - Disponibilité garantie ≠ freelance pur (angle mort identifié dans `PRICING.md §10`) →
-  clause de plages réservées + backfill.
+  clause de plages réservées et remplaçants prévus.
 
 ## 2. Structure de coûts mensuelle (base 10 freelances, BYOD + hub)
 
