@@ -4,7 +4,13 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
+> Dernière révision : 2026-08-14 (**restructuration des forfaits IT — décision direction** :
+> axe **« Périmètre N2 » supprimé** (escalade incluse partout) · fourchette affichée =
+> **profil de l'agent** ×0,95→×1,15 · **backup réservé au forfait Non-stop** · « Centre de
+> services » renommé **Non-stop**, **plancher 4 agents**, **6h-20h ou 3×8**, **« à partir de »
+> sur devis** ; account manager dédié et « équipe de 2 » retirés — tout en §3.c)
+>
+> Révision précédente : 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
 > horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
 > argument d'économie sous 3 agents** §3 · badge médical recadré sur le **coût/jour ouvré**
@@ -359,17 +365,53 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
 
 **Nommage retenu — trio FR métier, identique dans les deux simulateurs IT :**
 
-| Palier | Nom | Contenu type |
-|---|---|---|
-| 1 | **Débordement** | 1 agent mutualisé · 20 h/sem · tickets + email |
-| 2 | **Poste dédié** | 1 agent 100 % dédié · 35 h/sem · escalade N2 cadrée |
-| 3 | **Centre de services** | 2 agents dédiés · superviseur · couverture étendue |
+| Palier | Nom | Contenu type | Plancher |
+|---|---|---|---|
+| 1 | **Débordement** | 1 agent mutualisé · 20 h/sem · tickets + email | — |
+| 2 | **Poste dédié** | 1 agent 100 % dédié · 35 h/sem · escalade cadrée incluse | — |
+| 3 | **Non-stop** | amplitude 6h-20h **ou rotation 3×8** · superviseur · **backup inclus** | **4 agents**, sur devis |
 
 - Vocabulaire des acheteurs ESN / MSP / DSI, cohérent avec l'argument n°1 de la marque
   (**français langue maternelle**) — « Starter / Pro / Scale » disait l'inverse.
 - Règle au passage la **collision de vocabulaire** : « Dédié » ne désignait à la fois un
   niveau de service et un forfait que parce que le forfait s'appelait « Pro ».
 - Le médical **ne change pas** (Essentiel / Confort / Intensif, §1).
+
+**Restructuration du trio IT (décidé 2026-08-14).** Quatre arbitrages, appliqués dans
+les deux simulateurs IT :
+
+1. **Axe « Périmètre N2 » supprimé** (`N1 seul` ×1,00 / `N1 + escalade cadrée` ×1,08 /
+   `N1 + N2 light` ×1,22). Motif : **un N1 qui n'escalade pas n'est pas un N1** — on
+   faisait payer un supplément pour ce qui est la définition du service. L'escalade
+   cadrée est désormais **incluse partout**, sans majoration.
+2. **La fourchette affichée devient un axe de profil, pas une marge de confort.** L'ancien
+   ±5 % cosmétique est remplacé par **×0,95 → ×1,15** autour de l'estimation :
+   - **bas de fourchette** = agent malgache confirmé, **à former** aux outils du client et
+     aux méthodes de travail européennes ;
+   - **haut de fourchette** = profil ayant **déjà exercé plusieurs années en France ou à
+     l'international**.
+   C'est la seule différenciation de séniorité assumée publiquement ; le montant ferme
+   se tranche au devis, profil par profil.
+   > ⚠️ Bornes à valider en rendez-vous réel : ×1,15 est un premier calibrage, pas un
+   > benchmark de salaire vérifié sur des profils rentrés.
+3. **Backup — uniquement en Non-stop.** Il sortait de la carte « Poste dédié » alors qu'un
+   poste unique ne peut pas porter son propre remplaçant. La continuité se vend soit par
+   le **niveau de service Priority** (backup réservé, §3), soit par le **forfait Non-stop**
+   (équipe en rotation). Retirées au passage des cartes : **« Account manager dédié »** et
+   **« 2 agents dédiés / équipe de 2 »** — engagements de structure non tenables au
+   démarrage à 10 personnes.
+4. **Non-stop = plancher 4 agents, prix « à partir de » sur devis.** En dessous, ni le
+   6h-20h ni le 3×8 ne sont staffables sans rupture. Le CTA de la carte est **neutralisé
+   sous 4 agents** dans le simulateur, avec une bulle d'explication au survol. Planchers
+   publiés = 4 agents dédiés 35 h avec remise volume (`vol(4) = 0,95`) :
+   **Helpdesk 9 500 €/mois** (2 500 × 4 × 0,95) · **Support N1 SaaS 8 700 €/mois**
+   (2 300 × 4 × 0,95, arrondi bas). Aucun montant ferme affiché : amplitude et rotations
+   se chiffrent au devis.
+
+**Amplitude Non-stop vs curseur public.** Le curseur du simulateur reste borné à
+**Bureau / Étendu 8h-20h** (×1,33, tarifé publiquement). Le **6h-20h** (~70 h/sem) et le
+**3×8** sont des promesses du **forfait Non-stop uniquement**, donc sur devis — cohérent
+avec le retrait public de l'astreinte et du 24·7 ci-dessous.
 
 **Amplitude horaire = multiplicateur de présence, pas majoration (décidé 2026-08-13).**
 L'amplitude impose des **têtes supplémentaires** ; la traiter en pourcentage de confort
@@ -592,6 +634,10 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
 | **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
 | **Forfaits IT (2026-08-13)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Centre de services**, identiques dans les deux simulateurs et **définis en §3.c** |
+| **Périmètre N2 (2026-08-14)** | axe payant du simulateur : N1 seul ×1,00 · N1 + escalade ×1,08 · N1 + N2 light ×1,22 | **axe supprimé** — l'escalade cadrée est *incluse* dans tout N1, la faire payer gonflait le prix pour rien (§3.c) |
+| **Fourchette affichée (2026-08-14)** | ±5 % cosmétique autour de l'estimation | **×0,95 → ×1,15 = profil de l'agent** : bas = profil local à former aux méthodes européennes, haut = profil ayant exercé plusieurs années en France (§3.c) |
+| **Backup (2026-08-14)** | « Backup agent inclus » affiché sur la carte **Poste dédié** | **backup uniquement en Non-stop** (ou via le niveau de service Priority) — un poste unique ne porte pas son remplaçant (§3.c) |
+| **Centre de services (2026-08-14)** | « Centre de services » — 2 agents dédiés · account manager dédié · horaires 8h-20h · prix affiché 4 600-5 000 €/mois | **« Non-stop »** — **plancher 4 agents**, **6h-20h ou 3×8**, backup inclus, **« à partir de » sur devis** (8 700 € SaaS / 9 500 € helpdesk) ; account manager dédié et « équipe de 2 » retirés (§3.c) |
 | **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
 | **Priority sous 3 agents (2026-08-13)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | **aucun % d'économie affiché** sous 3 agents ⇒ « Continuité de N postes, sans en recruter N » ; l'offre reste vendable à 1-2 agents (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |

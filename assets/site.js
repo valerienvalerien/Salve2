@@ -88,16 +88,21 @@
     });
   }
 
-  /* ---------- Pills (partagé par les deux simulateurs) ---------- */
+  /* ---------- Pills (partagé par les deux simulateurs) ----------
+     Les contrôles sont dupliqués : bandeau du hero ET carte « Votre estimation
+     en détail ». Un clic met donc à jour tous les groupes qui portent le même
+     data-group, pour qu'aucun des deux jeux n'affiche un état périmé. */
   function bindPills(onChange) {
     document.querySelectorAll('.pill-group').forEach(group => {
       if (group.dataset.multi !== undefined) return; // groupes multi-sélection gérés à part (add-ons)
       const name = group.dataset.group;
+      if (!name) return;                             // bascule du graphe : son propre handler
       group.querySelectorAll('.pill').forEach(pill => {
         pill.addEventListener('click', () => {
-          group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          onChange(name, parseFloat(pill.dataset.multiplier), pill.dataset.value);
+          const value = pill.dataset.value;
+          document.querySelectorAll('.pill-group[data-group="' + name + '"] .pill')
+            .forEach(p => p.classList.toggle('active', p.dataset.value === value));
+          onChange(name, parseFloat(pill.dataset.multiplier), value);
         });
       });
     });
@@ -281,16 +286,23 @@
       // inchangée tant que la décision n'est pas actée dans PRICING.md §3/§5.
       baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, BAND = 0.05; // ±5 % autour de l'estimation
+    const PROD = 0.85;
+    // Fourchette = profil de l'agent, pas une marge de confort (décision 2026-08-14).
+    // Bas : agent malgache confirmé, à former aux méthodes de travail européennes.
+    // Haut : profil ayant déjà exercé plusieurs années en France / à l'international.
+    const PROFILE_LOW = 0.95, PROFILE_HIGH = 1.15;
+    // Le forfait Non-stop (ex-« Centre de services ») n'est staffable qu'à partir
+    // de 4 agents : en dessous, l'amplitude 6h-20h / 3×8 n'est pas tenable.
+    const NONSTOP_MIN = 4;
     const st = {
       posts: 1, hours: 35,
-      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, scope: 1.0,
+      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0,
       coverage: 1.0,
       mode: CFG.baseDirect,
     };
     const $ = id => document.getElementById(id);
     const hourly = n => n.toFixed(1).replace('.', ',') + ' €';
-    const range = n => euro(n * (1 - BAND)) + ' – ' + euro(n * (1 + BAND));
+    const range = n => euro(n * PROFILE_LOW) + ' – ' + euro(n * PROFILE_HIGH);
     const vol = p => p >= 6 ? 0.90 : (p >= 3 ? 0.95 : 1.0);
     // Tier Priority = service critique avec backup permanent réservé.
     // Le surcoût n'est pas plat : un agent seul porte un backup quasi complet
@@ -303,7 +315,7 @@
       // Axes d'offre communs aux deux simulateurs IT (décision 6a) : ils renchérissent
       // aussi un recrutement interne (un technicien bilingue ou N2 coûte plus cher en
       // France), donc ils s'appliquent des deux côtés de la comparaison.
-      const offerMult = st.channels * st.language * st.scope;
+      const offerMult = st.channels * st.language;
       // ETP réellement mobilisés = positions × multiplicateur de présence.
       // L'amplitude horaire coûte des TÊTES, pas une majoration (décision 1b).
       const etp = st.posts * st.coverage;
@@ -354,32 +366,77 @@
 
       let pkg;
       if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
-      else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.coverage > 1.0)) pkg = { slug: 'centre-de-services', name: 'Centre de services', why: 'équipe N1 et couverture étendue.' };
+      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Non-stop', why: 'équipe complète, amplitude 6h–20h ou 3×8.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
       if (recoEl) recoEl.innerHTML = '<a class="reco-link" href="#forfaits">Forfait <strong>' + pkg.name + '</strong> — ' + pkg.why + '</a>';
-      syncPackages(pkg.slug, 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
+      // Non-stop n'affiche pas d'estimation fermée : amplitude et rotations se
+      // chiffrent au devis, on ne publie qu'un plancher.
+      syncPackages(pkg.slug, pkg.slug === 'non-stop'
+        ? 'Votre simulation : <b>à partir de ' + euro(total * PROFILE_LOW) + ' €/mois</b> · forfait Non-stop, chiffré sur devis'
+        : 'Votre simulation : <b>' + range(total) + ' €/mois</b> · forfait ' + pkg.name);
+      syncNonstopLock();
 
       pop($('price-monthly'));
       syncMirrors();
     }
 
-    $('posts').addEventListener('input', e => {
-      st.posts = parseInt(e.target.value);
-      $('posts-value').textContent = st.posts + ' agent' + (st.posts > 1 ? 's' : '');
-      calc();
-    });
-    $('hours').addEventListener('input', e => {
-      st.hours = parseInt(e.target.value);
+    /* ----- Verrou du forfait Non-stop -----
+       Sous 4 agents le forfait n'est pas staffable : le CTA de la carte est
+       neutralisé et explique pourquoi au survol, plutôt que d'ouvrir un devis
+       qu'on ne pourrait pas honorer. */
+    const NONSTOP_TIP = 'Le forfait Non-stop démarre à ' + NONSTOP_MIN +
+      ' agents — augmentez « Nombre d\'agents » pour le débloquer.';
+    function syncNonstopLock() {
+      const locked = st.posts < NONSTOP_MIN;
+      document.querySelectorAll('.pkg[data-pkg="non-stop"]').forEach(card => {
+        card.classList.toggle('is-locked', locked);
+        const cta = card.querySelector('.pkg-cta');
+        if (!cta) return;
+        cta.classList.toggle('is-locked', locked);
+        cta.setAttribute('aria-disabled', locked ? 'true' : 'false');
+        if (locked) {
+          cta.dataset.tooltip = NONSTOP_TIP;
+          cta.setAttribute('title', NONSTOP_TIP);
+        } else {
+          delete cta.dataset.tooltip;
+          cta.removeAttribute('title');
+        }
+      });
+    }
+
+    /* ----- Curseurs miroirs (hero + carte « estimation en détail ») -----
+       Une seule source de vérité (st), plusieurs jeux de contrôles : chaque
+       saisie réaligne les autres champs et leurs libellés. */
+    const postsInputs = document.querySelectorAll('[data-sim="posts"]');
+    const hoursInputs = document.querySelectorAll('[data-sim="hours"]');
+    const setAll = (nodes, txt) => nodes.forEach(n => { n.textContent = txt; });
+    const syncAll = (nodes, src, v) => nodes.forEach(n => { if (n !== src) n.value = v; });
+
+    const postsLabel = () => setAll(document.querySelectorAll('[data-sim-label="posts"]'),
+      st.posts + ' agent' + (st.posts > 1 ? 's' : ''));
+    const hoursLabel = () => {
       let l;
       if (st.hours <= 20) l = st.hours + ' h · temps partiel';
       else if (st.hours <= 30) l = st.hours + ' h · 4/5e';
       else if (st.hours === 35) l = '35 h · temps plein';
       else l = st.hours + ' h · temps plein +';
-      $('hours-value').textContent = l;
+      setAll(document.querySelectorAll('[data-sim-label="hours"]'), l);
+    };
+
+    postsInputs.forEach(inp => inp.addEventListener('input', e => {
+      st.posts = parseInt(e.target.value, 10);
+      syncAll(postsInputs, e.target, e.target.value);
+      postsLabel();
       calc();
-    });
+    }));
+    hoursInputs.forEach(inp => inp.addEventListener('input', e => {
+      st.hours = parseInt(e.target.value, 10);
+      syncAll(hoursInputs, e.target, e.target.value);
+      hoursLabel();
+      calc();
+    }));
 
     bindPills((name, m, value) => {
       if (name === 'service') st.serviceTier = value;
@@ -395,7 +452,7 @@
 
       // Coût mensuel pour n agents, multiplicateur de service donné, config courante.
       const cost = (n, svc) => {
-        const m = svc * st.channels * st.language * st.scope;
+        const m = svc * st.channels * st.language;
         return st.mode * (st.hours / 35) * m * n * st.coverage * vol(n);
       };
       // Vue « coût brut » : un point par nombre d'agents.
@@ -467,6 +524,8 @@
       calc = function () { _calc(); renderChart(); };
     }
 
+    postsLabel();
+    hoursLabel();
     calc();
   }
 
@@ -501,7 +560,12 @@
     }
 
     document.querySelectorAll('[data-devis]').forEach(el =>
-      el.addEventListener('click', e => { e.preventDefault(); openModal(); })
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        // CTA neutralisé (ex. Non-stop sous 4 agents) : on n'ouvre pas de devis.
+        if (el.getAttribute('aria-disabled') === 'true') return;
+        openModal();
+      })
     );
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });

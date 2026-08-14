@@ -422,10 +422,13 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .pill:hover { border-color: var(--accent); color: var(--primary); }
 .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .theme-it .pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
-.pill[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
-.pill[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
-.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
-.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before { opacity: 1; }
+.pill[data-tooltip]::after, .pkg-cta[data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: max-content; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: var(--primary-deep); color: #fff; font-size: 12px; line-height: 1.3; font-weight: 700; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 5; }
+.pill[data-tooltip]::before, .pkg-cta[data-tooltip]::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--primary-deep); opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5; }
+.pill[data-tooltip]:hover::after, .pill[data-tooltip]:focus::after, .pill[data-tooltip]:focus-visible::after,
+.pkg-cta[data-tooltip]:hover::after, .pkg-cta[data-tooltip]:focus::after, .pkg-cta[data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.pill[data-tooltip]:hover::before, .pill[data-tooltip]:focus::before, .pill[data-tooltip]:focus-visible::before,
+.pkg-cta[data-tooltip]:hover::before, .pkg-cta[data-tooltip]:focus::before, .pkg-cta[data-tooltip]:focus-visible::before { opacity: 1; }
+.pkg-cta[data-tooltip]::after { max-width: 250px; white-space: normal; }
 .option-help { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); }
 .link-inline { background: none; border: 0; padding: 0; font: inherit; color: var(--primary); font-weight: 700; text-decoration: underline; cursor: pointer; }
 .link-inline:hover { color: var(--accent); }
@@ -443,6 +446,9 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .savings-badge.badge-resilience,
 .theme-it .savings-badge.badge-resilience { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.3); }
 .coverage-note { margin-top: 10px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.72); }
+/* Ce que recouvre la fourchette : le profil de l'agent, pas une marge de confort. */
+.profile-note { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.72); }
+.profile-note b { color: #fff; }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
 .result-stat { background: rgba(255,255,255,.07); border-radius: 12px; padding: 15px; }
 .result-stat.featured-saving { grid-column: 1 / -1; background: rgba(252,226,124,.13); border: 1px solid rgba(252,226,124,.28); text-align: center; }
@@ -496,8 +502,14 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .pkg-feat li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z'/%3E%3C/svg%3E") no-repeat center / 18px 18px; }
 .pkg.featured .pkg-feat li::before { background: var(--gold-soft); }
 .theme-it .pkg.featured .pkg-feat li::before { color: var(--accent); }
-.pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; }
+.pkg-cta { display: block; width: 100%; margin-top: 26px; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 700; text-align: center; background: transparent; border: 1.5px solid var(--primary); color: var(--primary); transition: all .15s; position: relative; }
 .pkg-cta:hover { background: var(--primary); color: #fff; }
+/* CTA verrouillé (Non-stop sous son effectif plancher) : visiblement inactif,
+   et la bulle au survol dit pourquoi plutôt que de laisser deviner. */
+.pkg-cta.is-locked, .pkg.featured .pkg-cta.is-locked { background: transparent; border-style: dashed; border-color: var(--line); color: var(--text-mute); cursor: not-allowed; opacity: .75; }
+.pkg-cta.is-locked:hover { background: transparent; color: var(--text-mute); filter: none; }
+.pkg.is-locked { opacity: .82; }
+.pkg.is-locked:hover { transform: none; box-shadow: none; }
 /* Carte correspondant a la configuration courante du simulateur. La pastille
    « Le plus choisi » de la carte vedette lui cede la place quand elle est designee. */
 .pkg.is-match { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }

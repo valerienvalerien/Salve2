@@ -72,17 +72,17 @@
       <div class="control-group">
         <div class="control-label">
           <span class="control-label-text">Nombre d'agents</span>
-          <span class="control-value" id="posts-value">1 agent</span>
+          <span class="control-value" id="posts-value" data-sim-label="posts">1 agent</span>
         </div>
-        <div class="slider-wrap"><input type="range" id="posts" min="1" max="10" value="1" step="1" /></div>
+        <div class="slider-wrap"><input type="range" id="posts" data-sim="posts" min="1" max="10" value="1" step="1" /></div>
       </div>
 
       <div class="control-group">
         <div class="control-label">
           <span class="control-label-text">Heures / semaine / agent</span>
-          <span class="control-value" id="hours-value">35 h</span>
+          <span class="control-value" id="hours-value" data-sim-label="hours">35 h</span>
         </div>
-        <div class="slider-wrap"><input type="range" id="hours" min="10" max="40" value="35" step="5" /></div>
+        <div class="slider-wrap"><input type="range" id="hours" data-sim="hours" min="10" max="40" value="35" step="5" /></div>
       </div>
 
       <div class="control-group">
@@ -106,7 +106,7 @@
       <div class="price-strip">
         <div>
           <div class="ps-lab">Tarif mensuel estimé</div>
-          <div><span class="ps-val" data-mirror="price-monthly">2 185 – 2 415</span><span class="ps-unit">€/mois</span></div>
+          <div><span class="ps-val" data-mirror="price-monthly">2 185 – 2 645</span><span class="ps-unit">€/mois</span></div>
         </div>
         <div class="ps-side">
           <span>France : <b data-mirror="price-fr">3 700 €/mois</b></span>
@@ -126,12 +126,46 @@
     <div class="section-head reveal">
       <div class="kicker">Le détail</div>
       <h2>Votre estimation en détail</h2>
-      <p>Canaux, langue et périmètre N2 affinent l'estimation — tout se recalcule en direct, en haut comme ici.</p>
+      <p>Tous les réglages sont ici comme en haut de page — effectif, heures, niveau de service, horaires, canaux et langue. Tout se recalcule en direct, des deux côtés.</p>
     </div>
 
     <div class="sim-grid">
       <!-- CONTRÔLES -->
       <div class="controls-card reveal">
+        <div class="control-group">
+          <div class="control-label">
+            <span class="control-label-text">Nombre d'agents</span>
+            <span class="control-value" data-sim-label="posts">1 agent</span>
+          </div>
+          <div class="slider-wrap"><input type="range" data-sim="posts" min="1" max="10" value="1" step="1" aria-label="Nombre d'agents" /></div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span class="control-label-text">Heures / semaine / agent</span>
+            <span class="control-value" data-sim-label="hours">35 h</span>
+          </div>
+          <div class="slider-wrap"><input type="range" data-sim="hours" min="10" max="40" value="35" step="5" aria-label="Heures par semaine et par agent" /></div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label"><span class="control-label-text">Niveau de service</span></div>
+          <div class="pill-group" data-group="service">
+            <button class="pill" data-value="shared" data-multiplier="0.85" data-tooltip="Équipe partagée" title="Équipe partagée">Mutualisé</button>
+            <button class="pill active" data-value="dedicated" data-multiplier="1.0" data-tooltip="Ressource nominative" title="Ressource nominative">Dédié</button>
+            <button class="pill" data-value="priority" data-multiplier="1.0" data-tooltip="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture" title="Service critique : capacité réservée, traitement prioritaire, backup permanent, supervision renforcée — zéro rupture">Priority</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label"><span class="control-label-text">Horaires de couverture</span></div>
+          <div class="pill-group" data-group="coverage">
+            <button class="pill active" data-value="office" data-multiplier="1.0" data-tooltip="Heures ouvrées — fenêtre de ~45 h/semaine" title="Heures ouvrées — fenêtre de ~45 h/semaine">Bureau</button>
+            <button class="pill" data-value="extended" data-multiplier="1.333" data-tooltip="8h–20h, 5j/7 — 60 h/semaine, soit 1,33 agent par position" title="8h–20h, 5j/7 — 60 h/semaine, soit 1,33 agent par position">Étendu 8h–20h</button>
+          </div>
+          <div class="option-help">6h–20h, 3×8, soirée, week-end ou 24·7 : forfait <a href="#forfaits" style="font-weight:700;color:var(--primary);">Non-stop</a>, sur devis.</div>
+        </div>
+
         <div class="control-group">
           <div class="control-label"><span class="control-label-text">Canaux traités</span></div>
           <div class="pill-group" data-group="channels">
@@ -151,19 +185,10 @@
           </div>
         </div>
 
-        <div class="control-group">
-          <div class="control-label"><span class="control-label-text">Périmètre N2</span></div>
-          <div class="pill-group" data-group="scope">
-            <button class="pill active" data-value="n1" data-multiplier="1.0">N1 seul</button>
-            <button class="pill" data-value="n1-escalade" data-multiplier="1.08">N1 + escalade cadrée</button>
-            <button class="pill" data-value="n1-n2" data-multiplier="1.22">N1 + N2 light</button>
-          </div>
-          <div class="option-help">Escalade vers vos équipes produit, ou traitement de second niveau.</div>
-        </div>
-
         <div class="option-help" style="margin-top:22px;">
-          Nombre d'agents, heures, niveau de service et horaires se règlent
-          <a href="#top" style="font-weight:700;color:var(--primary);">en haut de page</a>.
+          L'escalade vers vos équipes produit est <b>toujours incluse</b> : un N1 qui n'escalade pas
+          n'est pas un N1. Ce qui bouge dans la fourchette, c'est le <b>profil de l'agent</b> —
+          voir l'estimation ci-contre.
         </div>
       </div>
 
@@ -171,12 +196,17 @@
       <div class="results-card reveal d1">
         <div class="result-primary">
           <div class="result-label">Tarif mensuel estimé</div>
-          <div><span class="result-price" id="price-monthly">2 185 – 2 415</span><span class="result-price-unit">€/mois</span></div>
+          <div><span class="result-price" id="price-monthly">2 185 – 2 645</span><span class="result-price-unit">€/mois</span></div>
           <div class="result-strikethrough">
             Référence marché France (coût complet employeur, technicien support N1) : <span id="price-fr">3 700 €/mois</span>
           </div>
           <div class="savings-badge" id="savings-badge">Économie : 38 %</div>
           <div class="coverage-note" id="coverage-note" hidden></div>
+          <div class="profile-note">
+            <b>Ce que dit la fourchette :</b> en bas, un agent malgache confirmé que nous formons
+            à votre produit et aux méthodes de travail européennes. En haut, un profil qui a déjà
+            exercé plusieurs années en France ou à l'international. Vous arbitrez au devis.
+          </div>
         </div>
 
         <div class="result-grid">
@@ -257,25 +287,25 @@
           <li>Tickets + chat in-app + téléphone</li>
           <li>Escalade N2 cadrée vers vos équipes produit</li>
           <li>Reporting hebdomadaire + KPI CSAT</li>
-          <li>Backup agent inclus</li>
+          <li>Profil chiffré selon son expérience</li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
       </div>
 
-      <div class="pkg reveal d2" data-pkg="centre-de-services">
+      <div class="pkg reveal d2" data-pkg="non-stop">
         <div class="pkg-badge" hidden></div>
-        <div class="pkg-name">Centre de services</div>
-        <div class="pkg-tag">Équipe N1, couverture étendue</div>
-        <div><span class="pkg-unit">à partir de </span><span class="pkg-price">4 600</span><span class="pkg-unit"> €/mois</span></div>
-        <div class="pkg-equiv">2 agents 35 h dédiés</div>
+        <div class="pkg-name">Non-stop</div>
+        <div class="pkg-tag">Équipe N1 en rotation, amplitude large</div>
+        <div><span class="pkg-unit">à partir de </span><span class="pkg-price">8 700</span><span class="pkg-unit"> €/mois</span></div>
+        <div class="pkg-equiv">Dès 4 agents · montant ferme au devis</div>
         <ul class="pkg-feat">
-          <li>2 agents dédiés · 35 h / semaine</li>
+          <li>Horaires étendus (6 h – 20 h) ou rotation en 3×8</li>
           <li>Superviseur dédié</li>
-          <li>Horaires étendus (8 h – 20 h)</li>
+          <li>Backup inclus — le seul forfait qui le couvre</li>
           <li>Astreinte soir / week-end sur devis</li>
-          <li>Account manager dédié</li>
+          <li>Reporting hebdomadaire + KPI CSAT</li>
         </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Passer au centre de services</a>
+        <a href="#contact" class="pkg-cta" data-devis>Demander un devis Non-stop</a>
       </div>
     </div>
   </div>
@@ -303,14 +333,14 @@
         <div class="ccell bad">3 700 €</div>
         <div class="ccell c-hide neu">350-550 €/j</div>
         <div class="ccell c-hide neu">Variable</div>
-        <div class="ccell salv">≈ 2 185-2 415 €</div>
+        <div class="ccell salv">≈ 2 185-2 645 €</div>
       </div>
       <div class="crow">
         <div class="cfeat">Disponibilité garantie</div>
         <div class="ccell good">Oui (35 h)</div>
         <div class="ccell c-hide neu">Selon contrat</div>
         <div class="ccell c-hide bad">Variable</div>
-        <div class="ccell salv">Oui + backup</div>
+        <div class="ccell salv">Oui · backup en Non-stop</div>
       </div>
       <div class="crow alt">
         <div class="cfeat">Maîtrise du français</div>
@@ -391,7 +421,9 @@
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
   window.SIM_CONFIG = { baseDirect: 2300, frBench: 3700 };
 </script>
-<script src="assets/site.js"></script>
+<!-- defer : la modale devis est déclarée plus bas dans le document ; sans defer,
+     site.js s'exécutait avant elle et aucun CTA n'ouvrait le formulaire. -->
+<script src="assets/site.js" defer></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

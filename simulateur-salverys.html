@@ -362,7 +362,9 @@
   </div>
 </footer>
 
-<script src="assets/site.js"></script>
+<!-- defer : la modale devis est déclarée plus bas dans le document ; sans defer,
+     site.js s'exécutait avant elle et aucun CTA n'ouvrait le formulaire. -->
+<script src="assets/site.js" defer></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
