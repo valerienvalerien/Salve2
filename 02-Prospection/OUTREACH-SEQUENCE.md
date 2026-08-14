@@ -555,7 +555,7 @@ Bonne continuation à vous et à l'équipe.
 | « C'est combien ? » | Selon configuration (volume, amplitude, canaux) — devis sous 24 h après un premier cadrage. Repère : -40 à -60 % du coût complet d'un CDI support N1 FR (38-50 k€/an). |
 | « Nos tickets sont trop techniques pour du N1 externalisé » | C'est exactement le périmètre cadré : N1 sur catégories simples, escalade automatique vers votre N2 sur le reste. Vous gardez la complexité. |
 | « On a déjà un Customer Support Manager » | Pas pour le remplacer — pour absorber le N1 répétitif et lui rendre du temps sur la qualité, l'onboarding, la voice of customer. |
-| « Et la formation à notre produit ? » | Onboarding 5-10 jours sur votre base de connaissance + macros. Backup agent inclus pour absorber le turnover de votre côté **et** du nôtre. |
+| « Et la formation à notre produit ? » | **Opérationnel en 3 à 4 semaines** : recrutement du profil, puis 5-10 jours de formation sur votre base de connaissance + macros. Backup agent inclus pour absorber le turnover de votre côté **et** du nôtre. |
 
 ---
 

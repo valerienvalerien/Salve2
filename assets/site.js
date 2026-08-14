@@ -156,13 +156,17 @@
       const savings = INTERNAL_SECRETARY - price;
       $('savings-monthly').textContent = euro(Math.max(savings, 0)) + ' €';
       const cmp = $('compare-line'), badge = $('savings-badge');
-      if (savings > 0) {
-        cmp.innerHTML = 'Une secrétaire au cabinet : <span class="old">2 750 €+/mois</span> en coût complet';
-        badge.textContent = '−' + Math.round((savings / INTERNAL_SECRETARY) * 100) + ' % vs une secrétaire interne';
-      } else {
-        cmp.textContent = 'Forfait tout compris, sans surprise.';
-        badge.textContent = '1er mois à −50 %';
-      }
+      // 4a — le badge porte le recadrage ROI de PRICING.md §1, plus un pourcentage
+      // d'économie : comparer un forfait 250 appels à une secrétaire temps plein
+      // donnait −87 %, hors doctrine (claim public −40 à −60 %) et peu crédible.
+      // Fourchette RDV calée sur l'ancre documentée « 350 €/mois = 2 à 3 RDV
+      // récupérés » ⇒ valeur implicite d'un RDV récupéré ≈ 117-175 €.
+      const RDV_HIGH = 175, RDV_LOW = 117;
+      const rdvMin = Math.ceil(price / RDV_HIGH), rdvMax = Math.ceil(price / RDV_LOW);
+      badge.textContent = '≈ ' + euro(price / WORKDAYS_PER_MONTH) + ' € / jour ouvré';
+      cmp.innerHTML = rdvMin === rdvMax
+        ? '<strong>' + rdvMin + ' RDV récupérés</strong> dans le mois paient le forfait'
+        : '<strong>' + rdvMin + ' à ' + rdvMax + ' RDV récupérés</strong> dans le mois paient le forfait';
 
       let reco;
       if (custom) reco = 'Offre <strong>Sur-mesure</strong> — on cadre ensemble.';
@@ -245,12 +249,16 @@
     // Le tarif marque blanche (sous-traitance) n'est JAMAIS exposé ici : il révélerait
     // la marge du revendeur (cf. PRICING.md §0 / RAPPORT-PRIX.html §9). Réservé au devis.
     const CFG = Object.assign({
+      // ⚠️ frBench est en attente de l'arbitrage n°3 (hypothèses de brut révisées à
+      // 30-36 k€ ⇒ coût complet 44-53 k€/an, soit 3 650-4 400 €/mois). Valeur laissée
+      // inchangée tant que la décision n'est pas actée dans PRICING.md §3/§5.
       baseDirect: 2100, frBench: 3700,
     }, window.SIM_CONFIG || {});
-    const PROD = 0.85, FR_PEN = 1.35, BAND = 0.05; // ±5 % autour de l'estimation
+    const PROD = 0.85, BAND = 0.05; // ±5 % autour de l'estimation
     const st = {
       posts: 1, hours: 35,
-      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, schedule: 1.0,
+      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, scope: 1.0,
+      coverage: 1.0,
       mode: CFG.baseDirect,
     };
     const $ = id => document.getElementById(id);
@@ -263,33 +271,66 @@
     const priorityMult = n => 1.10 + 0.90 / n;
 
     function calc() {
-      const hpm = st.hours * 4.33;
-      const ratio = hpm / (35 * 4.33);
-      const basePrice = st.mode * ratio;
+      const ratio = st.hours / 35;
       const serviceMult = st.serviceTier === 'priority' ? priorityMult(st.posts) : st.service;
-      const mult = serviceMult * st.channels * st.language * st.schedule;
-      const total = basePrice * mult * st.posts * vol(st.posts);
-      const frMult = st.language * Math.pow(st.schedule, FR_PEN);
-      const frCost = CFG.frBench * ratio * st.posts * frMult;
+      // Axes d'offre communs aux deux simulateurs IT (décision 6a) : ils renchérissent
+      // aussi un recrutement interne (un technicien bilingue ou N2 coûte plus cher en
+      // France), donc ils s'appliquent des deux côtés de la comparaison.
+      const offerMult = st.channels * st.language * st.scope;
+      // ETP réellement mobilisés = positions × multiplicateur de présence.
+      // L'amplitude horaire coûte des TÊTES, pas une majoration (décision 1b).
+      const etp = st.posts * st.coverage;
+      const total = st.mode * ratio * etp * serviceMult * offerMult * vol(st.posts);
+      const frCost = CFG.frBench * ratio * etp * offerMult;
       const savings = frCost - total;
-      const hMonth = hpm * st.posts;
+      const hMonth = etp * st.hours * 4.33;
 
       $('price-monthly').textContent = range(total);
       if ($('price-fr-hourly')) $('price-fr-hourly').textContent = (frCost / hMonth).toFixed(1).replace('.', ',') + ' €/h';
       $('price-fr').textContent = euro(frCost) + ' €/mois';
-      $('savings-badge').textContent = 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
       $('hours-monthly').textContent = Math.round(hMonth) + ' h';
       const hourlyEquivalent = $('hourly-equivalent') || $('hourly-displayed');
       if (hourlyEquivalent) hourlyEquivalent.textContent = hourly(total / hMonth);
       if ($('hourly-productive')) $('hourly-productive').textContent = hourly(total / (hMonth * PROD));
-      $('annual-savings').textContent = euro(savings * 12) + ' €';
+
+      // Nombre de têtes réellement mobilisées — le prospect doit voir qu'une
+      // amplitude étendue mobilise plus d'une personne par position (décision 1b).
+      const noteEl = $('coverage-note');
+      if (noteEl) {
+        const heads = Math.ceil(etp);
+        noteEl.textContent = heads > st.posts
+          ? heads + ' agents mobilisés pour couvrir ' + st.posts + ' position' + (st.posts > 1 ? 's' : '') + ' en 8h–20h'
+          : '';
+        noteEl.hidden = heads <= st.posts;
+      }
+
+      // 2a-bis — sous 3 agents, Priority inclut un backup permanent : c'est
+      // littéralement une tête de plus. L'économie n'est pas l'argument à cet
+      // endroit (elle est négative), la faisabilité l'est : en interne on ne
+      // recrute pas un demi-backup. Cf. PRICING.md §3, ARGUMENTS-APPEL-priority.md.
+      const priorityLowN = st.serviceTier === 'priority' && st.posts < 3;
+      const equivHeads = st.posts + Math.ceil(st.posts / 3);
+      const badge = $('savings-badge');
+      badge.classList.toggle('badge-resilience', priorityLowN);
+      badge.textContent = priorityLowN
+        ? 'Résilience de ' + equivHeads + ' postes internes'
+        : 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
+
+      const annualEl = $('annual-savings'), annualLabel = $('annual-savings-label');
+      if (priorityLowN) {
+        annualEl.textContent = equivHeads + ' postes';
+        if (annualLabel) annualLabel.textContent = 'Équivalent interne sans rupture';
+      } else {
+        annualEl.textContent = euro(savings * 12) + ' €';
+        if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
+      }
 
       const recoEl = $('recommendation');
       if (recoEl) {
         let reco;
-        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>Support Starter</strong> — idéal pour démarrer.';
-        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.schedule > 1.0)) reco = 'Forfait <strong>Centre N1 Scale</strong> — couverture étendue + backup.';
-        else reco = 'Forfait <strong>Support Pro</strong> — meilleur rapport coût / disponibilité.';
+        if (st.posts === 1 && st.hours <= 20 && st.service <= 0.85) reco = 'Forfait <strong>Débordement</strong> — absorber les pics sans recruter.';
+        else if (st.posts >= 2 || (st.posts === 1 && st.hours >= 35 && st.service >= 1.0 && st.coverage > 1.0)) reco = 'Forfait <strong>Centre de services</strong> — équipe N1 et couverture étendue.';
+        else reco = 'Forfait <strong>Poste dédié</strong> — meilleur rapport coût / disponibilité.';
         recoEl.innerHTML = reco;
       }
       pop($('price-monthly'));
@@ -326,9 +367,8 @@
 
       // Coût mensuel pour n agents, multiplicateur de service donné, config courante.
       const cost = (n, svc) => {
-        const ratio = (st.hours * 4.33) / (35 * 4.33);
-        const m = svc * st.channels * st.language * st.schedule;
-        return st.mode * ratio * m * n * vol(n);
+        const m = svc * st.channels * st.language * st.scope;
+        return st.mode * (st.hours / 35) * m * n * st.coverage * vol(n);
       };
       // Vue « coût brut » : un point par nombre d'agents.
       const costDedie = n => cost(n, 1.0);
