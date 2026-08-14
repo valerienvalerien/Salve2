@@ -220,9 +220,11 @@
       <div class="kicker">Forfaits</div>
       <h2>Trois forfaits, une logique simple</h2>
       <p>Choisissez l'offre packagée, ou configurez sur mesure ci-dessus.</p>
+      <p class="pkg-recall" id="pkg-recall" hidden></p>
     </div>
     <div class="packages">
-      <div class="pkg reveal">
+      <div class="pkg reveal" data-pkg="debordement">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Débordement</div>
         <div class="pkg-tag">Débordement ponctuel, sans engagement long</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">1 200</span><span class="pkg-unit"> €/mois</span></div>
@@ -237,8 +239,8 @@
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
 
-      <div class="pkg featured reveal d1">
-        <div class="pkg-badge">★ Le plus choisi</div>
+      <div class="pkg featured reveal d1" data-pkg="poste-dedie">
+        <div class="pkg-badge" data-default="★ Le plus choisi">★ Le plus choisi</div>
         <div class="pkg-name">Poste dédié</div>
         <div class="pkg-tag">Un N1 dédié à vos utilisateurs, gestion structurée</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">2 500</span><span class="pkg-unit"> €/mois</span></div>
@@ -253,7 +255,8 @@
         <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
       </div>
 
-      <div class="pkg reveal d2">
+      <div class="pkg reveal d2" data-pkg="centre-de-services">
+        <div class="pkg-badge" hidden></div>
         <div class="pkg-name">Centre de services</div>
         <div class="pkg-tag">Équipe N1, gestion structurée, couverture étendue</div>
         <div><span class="pkg-unit">à partir de </span><span class="pkg-price">5 000</span><span class="pkg-unit"> €/mois</span></div>
