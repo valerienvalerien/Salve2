@@ -4,14 +4,24 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-14 (**palier haut IT & axes du simulateur — décision direction** :
+> Dernière révision : 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
+> décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
+> CNaPS/OSTIE), fondateur unique non rémunéré, effectif **sans plafond**, dimensionné sur
+> les contrats · **plancher absolu porté de 840 € à 920 €/ETP** §3 · **rate card refondue en
+> 1-4 / 5-8 / 9+ ETP** — le prix plancher s'achète désormais à **9** positions fermes et non
+> 5 §3 · **volume ferme facturable généralisé à tous les paliers** §3 · accroche
+> « à partir de » autorisée **en espace partenaire et one-pager MB uniquement** §3 ·
+> ⚠️ `FINANCE-PREVISIONNEL.md` **redevient une source** (v3) : la mention « n'est plus une
+> source » du 2026-08-14 matin est **annulée** — elle était contredite par les 8 citations
+> actives de ce fichier, cf. `AUDIT-FINANCE-PREVISIONNEL.md §M`) ·
+> précédente 2026-08-14 (**palier haut IT & axes du simulateur — décision direction** :
 > palier 3 renommé **Non-stop** avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
 > **supprimé** du simulateur public §3.d · **backup réservé au Non-stop** §3.d · revue de
 > service mensuelle **incluse partout**, donc hors différenciation §3.d · fourchette
 > d'estimation rattachée au **profil de l'agent**, bande portée à **±9 %** §3.d ·
 > **doctrine de continuité à 3 niveaux §3.e** — le manager métier est le backup du Poste
-> dédié, la rotation celui du Non-stop. ⚠️ `FINANCE-PREVISIONNEL.md` **n'est plus une
-> source** : seul le **tableau d'effectif** est repris, en §3.e.) ·
+> dédié, la rotation celui du Non-stop. *(La mention « `FINANCE-PREVISIONNEL.md` n'est plus
+> une source » portée ici a été **annulée** le même jour — voir en tête.)*) ·
 > précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
 > horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
@@ -180,47 +190,79 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 
 \* Le donneur d'ordre établi prend ~25-35 % de marge : on capte moins par ETP, mais le
 coût d'acquisition est ~nul et le volume est apporté. **Plancher absolu** : jamais sous
-le coût marginal agent + ~20 %, soit **840 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
-coût marginal 700 €/mois au fee freelance de 3 250 000 Ar).
+le coût direct agent + ~20 %, soit **920 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
+coût direct 766 €/mois — salaire brut 3 250 000 Ar + charges patronales + VoIP).
 
-> ⚠️ **Correction 2026-07-29** : ce plancher était annoncé à **540 €** ci-dessous — valeur
-> héritée du **modèle salarié v1, abandonné le 2026-06-10**. Négocier avec 540 € en tête
-> permet de signer à perte. **Le plancher est 840 €.** Il est désormais codé en dur dans
-> `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
+> ⚠️ **Révisé 2026-08-14 — bascule en équipe salariée.** Le plancher passe de **840 €**
+> (modèle 100 % freelance, coût marginal 700 €) à **920 €** (modèle salarié, coût direct
+> 766 €). Historique : il était annoncé à **540 €** avant le 2026-07-29 — valeur héritée
+> du modèle salarié v1 abandonné le 2026-06-10. **Le plancher est 920 €.** Il est codé en
+> dur dans `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
 
-**Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12)**
+**Rate card partenaire MB — paliers par volume ferme (révisé 2026-08-14)**
 
 Remplace le « prix donné en cadrage » au cas par cas : un donneur d'ordre qui revend a
 besoin de **visibilité** pour construire sa propre marge — le flou rallonge le cycle de
 closing. Grille **confidentielle** (PDF remis au cadrage, sous NDA — jamais en email),
-où le dégressif **achète du volume** au lieu d'être concédé en négociation :
+où le dégressif **achète du volume** au lieu d'être concédé en négociation.
 
-| Engagement | Support N1 SaaS MB (€/mois/ETP) | Helpdesk IT N1 MB (€/mois/ETP) |
+> **Tarif applicable selon le nombre minimum de positions fermes facturables
+> mensuellement.**
+
+| Engagement ferme | Support N1 SaaS | Helpdesk IT N1 |
 |---|---|---|
-| 1 ETP | 1 700 € | 2 000 € |
-| 3 ETP | 1 500 € | 1 750 € |
-| **5+ ETP** — *sous volume ferme facturé* | 1 350 € | 1 550 € |
+| **1-4 ETP** — tarif standard | 1 700 € | 2 000 € |
+| **5-8 ETP** — tarif volume | 1 500 € | 1 750 € |
+| **9+ ETP** — tarif stratégique | 1 350 € | 1 550 € |
+
+*Tarifs €/mois/ETP, pour les profils de la fourchette haute (agent confirmé, déjà rodé aux
+exigences de comptes européens — cf. la bande d'estimation ±9 %, §3.d).*
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
-  on ne baisse rien. **Plancher : 840 €** (coût marginal 700 € + ~20 %), cf. encadré ci-dessus.
-- Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : **~7 ETP placés**) : le palier 5+
-  est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
-- 🔒 **Palier 5+ conditionné à un volume ferme facturé (décidé 2026-08-03)** — le prix de
-  1 350 € / 1 550 € n'est accordé **que** contre un **minimum facturable de 5 positions**,
-  dues **qu'elles soient consommées ou non**. En deçà de 5 positions facturées, le prix
-  appliqué est celui du **palier 3 ETP** (1 500 € / 1 750 €). À défaut, le palier le moins
-  margé de la grille — **~48 % de marge brute** à 1 350 € (`FINANCE-PREVISIONNEL.md §3`) —
-  supporterait en plus le **risque de sous-consommation du partenaire** : il annoncerait
-  5 positions pour obtenir le prix, en consommerait 3, et Salverys porterait le banc.
-  Le minimum facturable remet ce risque chez celui qui le crée.
-  - **Ce que ça engage vraiment** : 5 positions, ce sont **~5 à 7 semaines** entre la
-    signature et la première facture (recrutement freelance 2-4 sem. + formation 2-3 sem.,
-    `FINANCE-PREVISIONNEL.md §5`) et **~3 500 €/mois de fees engagés** avant le premier euro
-    encaissé. La contrainte n'est pas un plafond d'effectif — le modèle 100 % freelance est
-    élastique (effectif M12 : 8 / 11-12 / 16-18 selon scénario) — c'est la **trésorerie**
-    (creux 35-45 k€ vers M+7-8, `FINANCE §6`) et le **délai de montée en charge**.
-  - Formulation partenaire : « le palier 5+ est un **prix de volume engagé** — il s'achète
+  on ne baisse rien. **Plancher : 920 €** (coût direct 766 € + ~20 %), cf. encadré ci-dessus.
+- **Ce qui change vs la grille 1 / 3 / 5+ (2026-06-12)** : le prix plancher n'est plus
+  accordé à **5** positions mais à **9**. Motif — au coût salarié, un deal de 5 positions
+  à 1 350 € sortait **sous le point mort** (`AUDIT-FINANCE-PREVISIONNEL.md §A`) ; à 9
+  positions il dégage **~+2 450 €/mois**. Le palier le plus bas est désormais adossé à un
+  volume qui le finance.
+- **Rapport au point mort** (`FINANCE-PREVISIONNEL.md §4` : **2 à 6 ETP** selon le palier
+  et le nombre de métiers activés) : **un seul deal de 3-4 positions au tarif standard
+  fait atteindre le point mort.** C'est l'argument de prospection MB à tenir.
+- 🔒 **Volume ferme facturable — sur tous les paliers (généralisé le 2026-08-14).** Le tarif
+  d'un palier n'est accordé **que** contre le **minimum de positions facturables** de ce
+  palier, dues **qu'elles soient consommées ou non**. En deçà, le prix appliqué est celui
+  du palier inférieur en volume. À défaut, Salverys porterait le **risque de
+  sous-consommation du partenaire** : il annoncerait 9 positions pour obtenir 1 350 €, en
+  consommerait 5, et porterait le banc. Le minimum facturable remet ce risque chez celui
+  qui le crée.
+  - ⚠️ **Le banc coûte désormais plus cher qu'avant.** En équipe salariée, un agent non
+    consommé ne se désactive pas : préavis et indemnité de licenciement s'ajoutent au
+    salaire (`FINANCE-PREVISIONNEL.md §7.1`). La clause de volume ferme n'est plus un
+    confort de marge, c'est une **protection contre un coût de sortie**.
+  - **Ce que ça engage vraiment** : ~**5 à 7 semaines** entre la signature et la première
+    facture (recrutement 2-4 sem. + formation 2-3 sem., `FINANCE-PREVISIONNEL.md §5`),
+    salaires payés dès l'embauche soit ~**1 mois avant** la première facture. Sur 5
+    positions : ~3 800 €/mois engagés avant le premier euro encaissé. La contrainte n'est
+    pas l'effectif — il n'y a plus de plafond — c'est le **rythme de recrutement et de
+    formation** (`FINANCE §5`), et accessoirement la trésorerie (creux ~23 k€, `FINANCE §6`).
+  - Formulation partenaire : « chaque palier est un **prix de volume engagé** — il s'achète
     avec un volume ferme, pas avec une intention. »
+
+**Affichage « à partir de » — espaces partenaires et one-pager MB uniquement**
+
+Accroche autorisée **après cadrage / NDA**, dans les espaces partenaires protégés et le
+`ONEPAGER-PARTENAIRE-MB.md` :
+
+> **Support N1 SaaS — à partir de 1 350 €/ETP/mois**
+> **Helpdesk IT N1 — à partir de 1 550 €/ETP/mois**
+
+- ⚠️ **Jamais sur le site public ni en cold email.** La doctrine §0/§9 est inchangée :
+  toute marque blanche reste privée (score 35 %), parce que le prix de gros est l'**input
+  de marge du revendeur**. Un « à partir de » publié deviendrait l'ancre de négociation de
+  tous les partenaires — y compris ceux qui ne prendront jamais 9 positions — et serait
+  lisible par les concurrents.
+- Les **paliers complets 1-4 / 5-8 / 9+** restent dans la **rate card confidentielle**
+  remise au cadrage. Le « à partir de » sert d'accroche, la grille sert de négociation.
 
 ### 3.a Dépôt d'activation — marque blanche uniquement (décidé 2026-08-03)
 
@@ -419,7 +461,7 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
   4 agents et affiche la raison au survol, plutôt que d'ouvrir un devis impossible.
 - **Prix : pas d'estimation, un « à partir de » sur devis** — 11 000 €/mois (helpdesk IT) ·
   10 000 €/mois (support N1 SaaS). Base : 4 agents au tarif direct (§3), dégressif volume
-  inclus, plus la réserve de backup (~100 €/position, §10) et la supervision dédiée. Au-delà,
+  inclus, plus la réserve de rotation (§3.e) et la supervision dédiée. Au-delà,
   l'amplitude (6h-20h, 3×8) se chiffre au devis — cohérent avec le retrait des paliers
   astreinte / 24·7 du simulateur public (§3.c).
 - **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
@@ -445,19 +487,24 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
 > **Le remplacement n'est pas un produit à vendre : c'est le coût de l'engagement SLA (§7).**
 > Il est donc dans le prix, jamais en ligne d'option.
 
-**Effectif de référence (seule donnée retenue de `FINANCE-PREVISIONNEL.md`)**
+**Effectif de référence (`FINANCE-PREVISIONNEL.md §1/§2`, v3 — équipe salariée)**
 
-| Rôle | Effectif | Fee mensuel |
-|---|---|---|
-| Agents productifs (facturables) | 8 | 3 250 000 Ar (650 €) |
-| Manager médical | 1 | 3 250 000 Ar (650 €) |
-| Manager IT (Support N1 + Helpdesk) | 1 | 3 250 000 Ar (650 €) |
+| Rôle | Effectif | Brut mensuel | Coût employeur |
+|---|---|---|---|
+| Agents productifs (facturables) | **dimensionné sur les contrats, sans plafond** | 3 250 000 Ar (650 €) | ~736 € |
+| Manager métier (1 médical, 1 IT) | 1 par métier actif, +1 par tranche de 8 agents | 3 250 000 Ar (650 €) | ~736 € |
 
 > Lecture marché : salaire moyen d'un agent de call center à Tana ~700 000 Ar ; profils
-> expérimentés 900 000 Ar - 2 M Ar. À 3 250 000 Ar, Salverys paie **~4,5× le marché** — aucune
-> offre concurrente équivalente (Intelcia & co. recrutent à 600-800 k Ar). **Hypothèse zéro
-> turnover crédible à ce niveau.** C'est aussi ce qui rend la doctrine ci-dessous tenable :
-> l'absence à couvrir est une absence *prévue* (congés), pas un départ surprise.
+> expérimentés 900 000 Ar - 2 M Ar. À 3 250 000 Ar **de brut**, Salverys paie **~4,5× le
+> marché** — aucune offre concurrente équivalente (Intelcia & co. recrutent à 600-800 k Ar).
+> **Hypothèse zéro turnover crédible à ce niveau.** C'est aussi ce qui rend la doctrine
+> ci-dessous tenable : l'absence à couvrir est une absence *prévue* (congés), pas un départ
+> surprise.
+>
+> ⚠️ **Depuis la bascule en salariat (2026-08-14), l'effectif n'est plus un plafond du tout** :
+> il n'y a pas d'équipe de 8 agents à saturer, il y a des embauches déclenchées par des
+> positions fermes facturables. Ne jamais opposer un plafond de capacité à un partenaire —
+> la contrainte réelle est le **rythme de recrutement et de formation** (`FINANCE §5`).
 
 **Trois niveaux, adossés à ce qui est déjà payé :**
 
@@ -478,6 +525,11 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
 - **Limite à connaître en rendez-vous** : au-delà d'un manager mobilisé sur un compte, la
   supervision des autres comptes se dégrade. Le seuil pratique est d'**un remplacement long
   à la fois** par métier ; au-delà, c'est un recrutement, pas un backup.
+  - **Chiffrage du plafond (`FINANCE-PREVISIONNEL.md §7.2`)** : à ~13 % d'absence, **8 agents
+    génèrent ~1 ETP d'absence à couvrir** — soit la totalité du temps disponible d'un manager.
+    Au-delà de **8 agents par métier**, prévoir un **agent volant** (~766 €/mois) plutôt que
+    de dégrader la supervision. En équipe salariée, l'absence est payée : c'est un coût de
+    **capacité**, pas de paie.
 
 ---
 
@@ -686,6 +738,12 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
 | **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
 | **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
+| **Statut de l'équipe (2026-08-14)** | 100 % freelances, fee 3 250 000 Ar, effectif de référence 8 agents + 2 managers | **100 % salariés** : brut 3 250 000 Ar **+ charges patronales CNaPS/OSTIE** (~86 €/tête, plafonnées) ⇒ coût employeur **~736 €/agent** ; **aucun plafond d'effectif**, dimensionné sur les positions fermes (§3.e, `FINANCE-PREVISIONNEL.md §1/§2`) |
+| **Plancher absolu (2026-08-14)** | **840 €/ETP** (coût marginal freelance 700 € + 20 %) | **920 €/ETP** (coût direct salarié 766 € + 20 %) — recodé dans `tools/deal-build.mjs` (§3) |
+| **Rate card MB (2026-08-14)** | paliers **1 / 3 / 5+ ETP** ; prix plancher 1 350 € accordé dès **5** positions — **sous le point mort** au coût salarié | paliers **1-4 / 5-8 / 9+ ETP** (standard / volume / stratégique) ; prix plancher accordé à **9** positions ; **volume ferme facturable généralisé à tous les paliers** (§3) |
+| **Accroche prix MB (2026-08-14)** | aucune | **« à partir de 1 350 € / 1 550 €/ETP »**, autorisée **en espace partenaire et one-pager MB uniquement** — jamais public, doctrine §0/§9 inchangée (§3) |
+| **Point mort de référence (2026-08-14)** | « ~7 ETP placés », chiffre unique | **2 à 6 ETP selon le palier et le nombre de métiers actifs** ; un deal de **3-4 positions au tarif standard** suffit (`FINANCE-PREVISIONNEL.md §4`) |
+| **Kit d'autonomie & hub (2026-08-14)** | ligne de charges à chiffrer (capex kits) + hub de repli | **sortis des charges** ; le kit reste dû à l'agent, **réputé couvert par le salaire** (4,5× le marché) — à inscrire au contrat de travail et au PCA (§10) |
 
 ---
 
@@ -708,19 +766,25 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 
 ---
 
-## 10. Modèle d'exécution & infra (freelance / BYOD, SaaS-first)
+## 10. Modèle d'exécution & infra (salariat / BYOD, SaaS-first)
 
-> Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **freelances + équipes dédiées** est
+> Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **salariés + équipes dédiées** est
 > viable sous conditions. Détail (tableaux par domaine) dans `RAPPORT-PRIX.html §10`.
 
 - **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **kit d'autonomie
-  individuel par agent (solaire ou batterie) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
+  individuel par agent (solaire ou batterie)** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
   **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **continuité
   de service selon la doctrine §3.e** ; documentation écrite dès le client n°1.
+  > ⚠️ **Financement du kit et du hub (2026-08-14)** : le **hub de repli** et la ligne
+  > « kits d'autonomie » **sortent des charges** du prévisionnel (`FINANCE §2.c`). Le kit
+  > reste dû à l'agent, mais son coût est **réputé couvert par le salaire** — fixé à 4,5× le
+  > marché local précisément pour absorber énergie et connexion domicile. **À écrire noir
+  > sur blanc dans le contrat de travail et dans `01-PLAN-CONTINUITE.md`**, faute de quoi
+  > une promesse remise aux partenaires en avant-vente n'a plus de financement identifiable.
   > La règle « un agent de remplacement en plus par client » est **abandonnée** (2026-08-14) :
   > elle doublait le coût de chaque compte pour couvrir ~13 % d'absences. Remplacée par la
   > doctrine de continuité à trois niveaux (§3.e), qui s'appuie sur l'encadrement déjà financé.
-- **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
+- **BYOD & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
   pour un **logiciel lourd installé** (ex. Médistory local).
@@ -729,4 +793,4 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
   en **direct**, hébergeur HDS dédié (OVHcloud/Scaleway), **coût d'hébergement absorbé dans le forfait**
   (ordre de grandeur interne ~100-500 €/mois, **à absorber, pas un prix client**). Cadre conformité :
   `CONFORMITE-HDS-RGPD.md §2`.
-- **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement et prévoir des remplaçants.
+- **Depuis la bascule en salariat (2026-08-14)**, l'angle mort « disponibilité garantie ≠ freelance pur » **disparaît** : le lien de subordination rend la disponibilité opposable. Il est remplacé par un risque symétrique — la **rigidité de l'effectif** (préavis + indemnité de licenciement sur un contrat perdu, `FINANCE-PREVISIONNEL.md §7.1`), qui se couvre par la clause de **volume ferme facturable** (§3).

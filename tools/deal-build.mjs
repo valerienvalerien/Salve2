@@ -27,13 +27,16 @@ const ITER = 310000;
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 /* Garde-fous economiques — FINANCE-PREVISIONNEL.md §2/§3 fait foi.
- * Cout marginal d'un agent : ~700 €/mois. Plancher absolu = cout + ~20 % = 840 €/ETP.
- * (PRICING.md §3 annoncait 540 €, valeur heritee du modele salarie v1 abandonne le
- * 2026-06-10 : negocier avec ce chiffre en tete permet de signer a perte.)
+ * Modele salarie (decision direction 2026-08-14) : brut 3 250 000 Ar (650 €) + charges
+ * patronales CNaPS/OSTIE plafonnees a 8 x SME (~86 €/tete) = 736 € de cout employeur,
+ * + VoIP ~30 € => cout direct 766 €/ETP. Plancher absolu = cout + ~20 % = 920 €/ETP.
+ * (Historique : 840 € sous le modele 100 % freelance jusqu'au 2026-08-14 ; 540 € avant le
+ * 2026-07-29, valeur heritee du modele salarie v1 abandonne le 2026-06-10. Negocier avec
+ * un plancher perime permet de signer a perte.)
  * Le builder refuse de produire un document sous le plancher : on ne peut pas, sous
  * pression en closing, generer une proposition qui met l'entreprise en perte. */
-const COUT_AGENT = 700;
-const PLANCHER_ETP = 840;
+const COUT_AGENT = 766;
+const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
 /* Depot d'activation MB (PRICING.md §3.a, decide 2026-08-03) : 900 €/position, plafond
@@ -45,11 +48,14 @@ const DEPOT_PLAFOND = 2700;
 const DEPOT_IMPUTATION_MENSUELLE = 300;
 const DEPOT_MOIS_IMPUTATION = 3;
 
-/* Palier 5+ conditionne a un volume ferme facture (PRICING.md §3, decide 2026-08-03) :
- * le prix le plus bas de la grille s'achete avec un volume engage, pas avec une intention.
- * Sans minimum facturable, le palier le moins marge (~48 %) porterait en plus le risque de
- * sous-consommation du partenaire. */
-const MINIMUM_FACTURABLE_SEUIL = 5;
+/* Volume ferme facturable — generalise a TOUS les paliers (PRICING.md §3, revise 2026-08-14) :
+ * chaque tarif s'achete avec un volume engage, pas avec une intention. Sans minimum
+ * facturable, Salverys porterait le risque de sous-consommation du partenaire (il annonce
+ * 9 positions pour obtenir 1 350 €, en consomme 5, et le banc est a notre charge). En equipe
+ * salariee ce banc coute plus cher qu'avant : preavis + indemnite de licenciement s'ajoutent
+ * au salaire (FINANCE-PREVISIONNEL.md §7.1). Seuil a 1 = tout palier retenu doit le porter.
+ * Paliers en vigueur : 1-4 ETP (standard) · 5-8 ETP (volume) · 9+ ETP (strategique). */
+const MINIMUM_FACTURABLE_SEUIL = 1;
 
 /* Plus de remise de lancement en marque blanche (PRICING.md §3.b, decide 2026-08-03) :
  * sur 3 positions, le mois pilote a -50 % coutait ~2 625 € pour un onboarding reel de
@@ -372,16 +378,18 @@ for (const r of deal.grille) {
   }
 }
 
-/* Palier a volume ferme (PRICING.md §3) : un deal retenu a 5 positions ou plus doit porter
- * un minimum facturable, sinon le palier le moins marge encaisse en plus le risque de
- * sous-consommation du partenaire (5 annoncees, 3 consommees, banc a notre charge). */
+/* Palier a volume ferme (PRICING.md §3, generalise le 2026-08-14) : tout palier retenu doit
+ * porter un minimum facturable, sinon Salverys encaisse le risque de sous-consommation du
+ * partenaire (positions annoncees pour obtenir le prix, moins consommees, banc a notre
+ * charge — et en salariat le banc porte un cout de sortie). */
 {
   const retenue = deal.grille.find((r) => r.retenu);
   const n = deal.etpRetenus || 0;
   if (n >= MINIMUM_FACTURABLE_SEUIL && retenue && !retenue.minimumFacturable) {
-    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §3, decision 2026-08-03).`);
-    console.error(`  Ajouter "minimumFacturable": ${MINIMUM_FACTURABLE_SEUIL} sur la ligne « ${retenue.engagement} »,`);
-    console.error('  ou retenir le palier inferieur. Le prix de volume s\'achete avec un volume ferme.');
+    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §3, revise 2026-08-14).`);
+    console.error(`  Ajouter "minimumFacturable" sur la ligne « ${retenue.engagement} » — le minimum du palier`);
+    console.error('  (1-4 ETP : 1 · 5-8 ETP : 5 · 9+ ETP : 9), ou retenir le palier inferieur.');
+    console.error('  Chaque tarif s\'achete avec un volume ferme, pas avec une intention.');
     process.exit(1);
   }
   for (const r of deal.grille) {
