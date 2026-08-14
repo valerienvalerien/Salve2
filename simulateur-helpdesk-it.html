@@ -21,7 +21,7 @@
 <meta name="twitter:title" content="Salverys — Helpdesk IT N1 externalisé pour entreprises : simulateur d'équipe" />
 <meta name="twitter:description" content="Helpdesk IT N1 externalisé : agents francophones dédiés, escalade N2 cadrée vers vos équipes, KPI partagés. Simulez le tarif de votre équipe." />
 <meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<link rel="stylesheet" href="assets/site.css?v=3" />
+<link rel="stylesheet" href="assets/site.css?v=4" />
 </head>
 <body class="theme-helpdesk">
 
@@ -140,7 +140,7 @@
             <span class="control-label-text">Nombre d'agents</span>
             <span class="control-value" data-mirror="posts-value">1 agent</span>
           </div>
-          <div class="slider-wrap"><input type="range" data-sync="posts" aria-label="Nombre d'agents" /></div>
+          <div class="slider-wrap"><input type="range" data-sync="posts" min="1" max="10" value="1" step="1" aria-label="Nombre d'agents" /></div>
         </div>
 
         <div class="control-group">
@@ -148,7 +148,7 @@
             <span class="control-label-text">Heures / semaine / agent</span>
             <span class="control-value" data-mirror="hours-value">35 h</span>
           </div>
-          <div class="slider-wrap"><input type="range" data-sync="hours" aria-label="Heures par semaine et par agent" /></div>
+          <div class="slider-wrap"><input type="range" data-sync="hours" min="10" max="40" value="35" step="5" aria-label="Heures par semaine et par agent" /></div>
         </div>
 
         <div class="control-group">
@@ -249,7 +249,7 @@
 <section class="section" id="forfaits">
   <div class="container">
     <div class="section-head reveal">
-      <div class="kicker">Forfaits</div>
+      <div class="kicker">Variante A — cartes</div>
       <h2>Trois forfaits, une logique simple</h2>
       <p>Choisissez l'offre packagée, ou configurez sur mesure ci-dessus.</p>
       <p class="pkg-legend"><span class="lg-on">Inclus dans le forfait</span><span class="lg-off"><s>Barré</s> : se débloque au forfait supérieur</span></p>
@@ -334,6 +334,56 @@
     </p>
   </div>
   <a class="scroll-next" href="#comparaison" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+</section>
+
+<!-- FORFAITS — VARIANTE B : tableau à encoches -->
+<section class="section soft" id="forfaits-tableau">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Variante B — tableau</div>
+      <h2>Le même contenu, ligne par ligne</h2>
+      <p>Une ligne par fonctionnalité, une encoche là où elle est incluse. Les prix suivent le simulateur.</p>
+    </div>
+    <div class="ptable-wrap reveal d1">
+      <table class="ptable">
+        <thead>
+        <tr>
+          <th class="pt-corner" scope="col"><span class="sr-only">Fonctionnalité</span></th>
+          <th scope="col">
+            <span class="pt-name">Débordement</span>
+            <span class="pt-price" data-pkg-price="debordement">1 105 – 1 324</span><span class="pt-unit">€/mois</span>
+            <a href="#contact" class="pt-cta pkg-cta" data-devis>Démarrer</a>
+          </th>
+          <th scope="col" class="pt-featured">
+            <span class="pt-name">Poste dédié</span>
+            <span class="pt-price" data-pkg-price="poste-dedie">2 275 – 2 725</span><span class="pt-unit">€/mois</span>
+            <a href="#contact" class="pt-cta pkg-cta" data-devis>Choisir le poste dédié</a>
+          </th>
+          <th scope="col">
+            <span class="pt-name">Non-stop</span>
+            <span class="pt-price" data-pkg-price="non-stop">dès 11 000</span><span class="pt-unit">€/mois</span>
+            <a href="#contact" class="pt-cta pkg-cta" data-devis data-min-agents="4" data-tooltip="Le forfait Non-stop démarre à 4 agents — remontez le curseur « Nombre d'agents ».">Passer au Non-stop</a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><th scope="row">Tickets + email</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Gestion structurée des tickets</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Reporting hebdomadaire + KPI support</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Opérationnel en 3 à 4 semaines</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">1er mois à -50 %, sans engagement</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Agent 100 % dédié · en 35 h ou 40 h / semaine</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Téléphone + chat en plus des tickets</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Agent formé sur votre parc et vos procédures</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Escalade N2 cadrée vers vos techniciens</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Absence ponctuelle reprise par votre manager métier</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Superviseur dédié à votre équipe</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Horaires étendus (6 h – 20 h) ou rotation en 3×8</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Plage horaire tenue même en cas d'absence</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
 <!-- COMPARAISON -->
@@ -452,7 +502,7 @@
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
   window.SIM_CONFIG = { baseDirect: 2500, frBench: 3700 };
 </script>
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=4"></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

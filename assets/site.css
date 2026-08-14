@@ -1137,3 +1137,29 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
    correspond au profil de l'agent affecté. */
 .result-band-note { margin-top: 12px; font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.65); }
 .result-band-note b { color: rgba(255,255,255,.9); }
+
+/* ================= TABLEAU DE FORFAITS (variante B) =================
+   Une ligne par fonctionnalité, une encoche là où elle est incluse — le
+   scan vertical remplace la lecture carte par carte. */
+.ptable-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ptable { width: 100%; min-width: 720px; border-collapse: collapse; background: var(--bg); }
+.ptable th, .ptable td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+.ptable thead th { border-bottom: 1px solid var(--line); vertical-align: top; }
+.ptable thead th.pt-corner { border-bottom-color: transparent; }
+.ptable tbody th { font-size: 14px; font-weight: 500; color: var(--text-soft); width: 38%; }
+.ptable tbody td { text-align: center; width: 20.6%; }
+.ptable tbody tr:last-child th, .ptable tbody tr:last-child td { border-bottom: 0; }
+.ptable thead th.pt-featured { background: var(--accent-tint); border-radius: 12px 12px 0 0; }
+.theme-it .ptable thead th.pt-featured, .theme-helpdesk .ptable thead th.pt-featured { background: rgba(10,110,150,.07); }
+.pt-name { display: block; font-size: 17px; font-weight: 800; color: var(--primary); }
+.pt-price { display: inline-block; margin: 8px 6px 0 0; font-size: 21px; font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
+.pt-unit { font-size: 12.5px; color: var(--text-mute); }
+.pt-cta { display: block; width: 100%; margin-top: 12px; padding: 10px 12px; border-radius: 100px; font-size: 13px; font-weight: 700; text-align: center; background: var(--primary); border: 1.5px solid var(--primary); color: #fff; transition: filter .15s; }
+.pt-cta:hover { filter: brightness(1.12); }
+/* Encoche / absence : l'icône porte la couleur, le texte lisible est en sr-only. */
+.pt-on::before, .pt-off::before { content: ""; display: inline-block; width: 20px; height: 20px; }
+.pt-on::before { background: #1F9D55; -webkit-mask: var(--pkg-icon-check) no-repeat center / 20px 20px; mask: var(--pkg-icon-check) no-repeat center / 20px 20px; }
+.pt-off::before { width: 14px; height: 2px; background: var(--line); border-radius: 2px; vertical-align: middle; }
+/* Le CTA du tableau porte un fond plein : le style « verrouillé » générique
+   ne doit pas le vider de sa couleur. */
+.pt-cta.is-locked, .pt-cta.is-locked:hover { background: var(--primary); border-color: var(--primary); color: #fff; filter: none; }

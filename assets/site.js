@@ -436,6 +436,9 @@
 
         const priceEl = card.querySelector('.pkg-price');
         if (priceEl) priceEl.textContent = range(total);
+        // Le tableau comparatif (variante B) rejoue le même prix.
+        document.querySelectorAll('[data-pkg-price="' + card.dataset.pkg + '"]')
+          .forEach(el => { el.textContent = range(total); });
         const equivEl = card.querySelector('.pkg-equiv');
         if (equivEl) {
           const s = agents > 1 ? 's' : '';
