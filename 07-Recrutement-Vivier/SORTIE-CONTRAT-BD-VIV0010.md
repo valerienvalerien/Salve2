@@ -338,21 +338,24 @@ sont parfaitement compatibles : l'une exige l'exécution, l'autre ouvre une port
 
 Vololoniaina,
 
-Je viens de t'envoyer un courrier formel par mail, que je te demande de lire.
+Je suis sans nouvelles depuis une semaine, j'espère que tout va bien de ton côté.
 
-Indépendamment de ça, je préfère te dire les choses simplement : je pense que la mission ne
-fonctionne pas, et j'ai l'impression que tu le penses aussi. Plutôt que de laisser traîner,
-je te propose qu'on y mette fin d'un commun accord, avec effet immédiat.
+Je viens de t'envoyer un mail important, prends le temps de le lire.
 
-Concrètement : je te verse 1 000 000 Ar pour solde de tout compte, tu n'as rien à
-rembourser, tu me restitues les accès et les fichiers de la mission, et on se quitte
-proprement — sans faute imputée d'un côté ni de l'autre.
+En dehors de ça, je préfère te parler directement. Je pense que la mission ne fonctionne
+pas, et j'ai l'impression que tu le penses aussi. Plutôt que de laisser traîner, je te
+propose qu'on arrête d'un commun accord, tout de suite.
 
-Si ça te va, réponds-moi simplement « d'accord » et je t'envoie le document à signer dans la
-foulée. Si tu préfères reprendre la mission, le courrier que je viens de t'envoyer te dit ce
-que j'attends et dans quel délai.
+Ce que je te propose : je te verse 1 000 000 Ar pour solde de tout compte, tu n'as rien à
+rembourser, tu me rends les accès et les fichiers de la mission, et on se quitte sans faute
+ni reproche d'un côté ni de l'autre.
 
-Dis-moi.
+Si ça te va, réponds-moi juste « d'accord » et je t'envoie le document à signer dans la
+foulée.
+
+Si tu préfères reprendre la mission, le mail t'explique ce que j'attends et sous quel délai.
+
+Dis-moi. Et si tu préfères qu'on s'appelle, je suis dispo.
 
 ---
 
