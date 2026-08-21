@@ -103,8 +103,8 @@ qu'elle ne fait plus depuis une semaine. **La voie B devient la voie principale.
 
 | Voie | Départ | Sortie effective | Coût total (juillet + solde) | Risque |
 |---|---|---|---|---|
-| **A — Accord amiable, demi-mois** (§5) | proposition le 15/08 | **15-18 août** | **4 200 000 Ar** | ✅ nul si elle signe — mais probabilité d'acceptation plus faible |
-| **A′ — Accord amiable, août entier** (§5) | proposition le 15/08 | **15-18 août** | 5 600 000 Ar | ✅ quasi nul — recours éteints, acceptation probable |
+| **A — Accord amiable, forfait 1 M** (§5) | proposition le 21/08 | **immédiate** | **3 800 000 Ar** | ✅ nul si elle signe — probabilité d'acceptation plus faible |
+| **A′ — Accord amiable, paliers de repli** (§5) | proposition le 21/08 | **immédiate** | 4 200 000 à 5 600 000 Ar | ✅ quasi nul — recours éteints, acceptation probable |
 | **B — Manquement grave art. 6.4** (§6) | mise en demeure le 15/08 | **23 août** | 5 600 000 Ar | ⚠️ contestable — phase amiable 30 j puis tribunal (art. 11) |
 | **C — Non-reconduction art. 2.4** (§7) | notification avant le 15/09 | 30 septembre | 8 400 000 Ar | ✅ nul, mais 6 semaines de plus |
 
@@ -206,9 +206,9 @@ Bon rétablissement à ton petit.
 
 ### 5.0. Combien proposer : la structure de négociation
 
-**Oui, tu peux proposer un demi-mois** — dans un protocole amiable, le montant est celui
-dont les Parties conviennent, il n'y a aucun plancher légal. Mais trois contraintes
-encadrent la marge.
+**Oui, tu peux proposer moins qu'un mois entier — et même moins qu'un demi-mois.** Dans un
+protocole amiable, le montant est celui dont les Parties conviennent : il n'y a aucun
+plancher légal. Mais trois contraintes encadrent la marge.
 
 **1. Elle tient la facture.** L'art. 5.1 prévoit que *« la Prestataire émet une facture
 mensuelle »*, et l'art. 4.1 fixe un **forfait mensuel** de 2 800 000 Ar sans clause de
@@ -217,10 +217,15 @@ contractuellement due. **Le demi-mois n'existe que par sa signature** — il ne 
 imposé.
 
 **2. Son alternative vaut 5 600 000 Ar.** Refuser de signer lui rapporte août + septembre
-en entier. Proposer 1 400 000 Ar contre une alternative à 5 600 000 Ar, c'est demander de
-renoncer à 4 200 000 Ar sans contrepartie. Une offre trop basse ne fait pas gagner de
+en entier. Proposer 1 000 000 Ar contre une alternative à 5 600 000 Ar, c'est demander de
+renoncer à 4 600 000 Ar sans contrepartie. Une offre trop basse ne fait pas gagner de
 l'argent : elle fait échouer l'accord, et l'échec coûte 2 800 000 Ar de plus (voie C) ou un
 contentieux (voie B).
+
+> **Ce calcul date du 12 août et ne vaut plus tel quel.** Depuis la mise en demeure du
+> 21 août, son alternative n'est plus le contrat couru jusqu'au 30 septembre mais une
+> résiliation pour faute au 29 août. C'est ce qui rend une ouverture à 1 000 000 Ar
+> raisonnable aujourd'hui alors qu'elle ne l'était pas il y a dix jours (§5.0 quater).
 
 **3. Le motif de la réduction est un piège.** Ne jamais justifier le demi-mois par
 « tu n'as quasi rien fait depuis le début du mois ». Réduire la rémunération à proportion du
@@ -247,9 +252,16 @@ tout autre** — et bien meilleur.
   forfait rémunère une prestation ; là où il n'y a plus aucune prestation, le forfait n'a
   plus d'objet.
 
-**Position à tenir** : régler la période du 1ᵉʳ au 15 août (**1 400 000 Ar**), ne pas régler
-la seconde quinzaine. C'est cohérent avec une résiliation au 29 août pour cessation
-d'exécution.
+**Position à tenir en voie B** (résiliation unilatérale) : régler la période du 1ᵉʳ au
+15 août (**1 400 000 Ar**), ne pas régler la seconde quinzaine. C'est cohérent avec une
+résiliation au 29 août pour cessation d'exécution.
+
+> ⚠️ **À ne pas confondre avec la voie A.** En voie B, tu paies unilatéralement ce que tu
+> estimes dû : le raisonnement est arithmétique et se rattache à une période, d'où les
+> 1 400 000 Ar. En voie A (accord amiable), le montant n'est pas un dû mais un **prix
+> transactionnel** librement fixé — d'où les 1 000 000 Ar, qui n'ont pas à correspondre à
+> quoi que ce soit. Deux logiques distinctes : ne mélange jamais les deux argumentaires
+> dans un même écrit.
 
 ⚠️ **Reste que c'est une position, pas une certitude** : le contrat ne comporte pas de
 clause de prorata (art. 4.1) et c'est elle qui émet la facture (art. 5.1). Si elle facture
@@ -260,17 +272,25 @@ contentieux pour ce montant**. Si elle réapparaît et pousse, paie et referme.
 
 | | Montant | Total (juillet inclus) |
 |---|---|---|
-| **Ouverture** | demi-mois — **1 400 000 Ar**, effet au 15/08 | 4 200 000 Ar |
-| **Point de bascule** — si elle résiste, hésite, ou parle d'en discuter avec quelqu'un | **août entier — 2 800 000 Ar**, effet immédiat | 5 600 000 Ar |
-| **Plancher** | ne jamais descendre sous 1 400 000 Ar | — |
+| **Ouverture** *(décision direction, 21/08)* | forfait transactionnel — **1 000 000 Ar**, effet immédiat | 3 800 000 Ar |
+| **Premier palier** — si elle discute le montant | **1 400 000 Ar** | 4 200 000 Ar |
+| **Point de bascule** — si elle bloque, tergiverse, ou parle d'en discuter avec quelqu'un | **2 800 000 Ar**, pour fermer le jour même | 5 600 000 Ar |
 | **Plafond** | ne jamais dépasser 2 800 000 Ar — au-delà, la voie C est moins chère | — |
 
-Ouvre au demi-mois : si elle accepte, tu économises 1 400 000 Ar de plus. Mais **bascule
-vite** — l'écart entre les deux offres (1 400 000 Ar) est bien plus faible que le coût d'un
-refus (2 800 000 Ar minimum). La signature vaut plus que le dernier demi-mois.
+**Bascule vite.** L'écart entre les paliers (400 000 à 1 800 000 Ar) reste inférieur au coût
+d'un refus, qui te renvoie soit au contentieux, soit à la voie C — 2 800 000 Ar de plus et
+six semaines d'attente. La signature vaut plus que le dernier palier.
 
-Phrase de bascule, à garder en réserve : *« Écoute, pour qu'on se quitte bien : je te règle
-août en entier et on s'arrête aujourd'hui. »*
+Phrase de bascule, à garder en réserve : *« Écoute, pour qu'on se quitte bien : je monte à
+[montant] et on s'arrête aujourd'hui. »*
+
+> ⚠️ **1 000 000 Ar ne correspond à aucune période.** Le 1ᵉʳ-15 août vaut 1 400 000 Ar au
+> forfait de l'art. 4.1. Ne présente donc **jamais** ce montant comme un prorata : elle
+> referait le calcul en trente secondes et tu perdrais la main sur toute la discussion.
+> Présente-le pour ce qu'il est — une **somme forfaitaire et transactionnelle, pour solde
+> de tout compte**, prix de la renonciation réciproque à recours. Une transaction fixe
+> librement son montant : c'est précisément ce qui rend ce chiffre défendable là où un faux
+> prorata ne le serait pas.
 
 ### 5.0 bis. Le faire maintenant ou vendredi ?
 
@@ -292,10 +312,10 @@ exactement ce qu'il faut : envoie-le aujourd'hui, garde l'offre pour l'appel.
 négociation était vivante et que la pression risquait de l'empoisonner. Face à une semaine
 de silence, le risque n'est plus de durcir la discussion mais de n'obtenir aucune réponse.
 
-**C'est même la mise en demeure qui rend le demi-mois acceptable** : tant qu'elle pouvait
-laisser courir le contrat, son alternative valait 5 600 000 Ar ; une fois la mise en demeure
-partie, son horizon est une résiliation pour faute au 29 août. Signer lui rapporte
-1 400 000 Ar et une sortie sans faute ; ne pas signer lui rapporte un litige.
+**C'est même la mise en demeure qui rend l'offre acceptable** : tant qu'elle pouvait laisser
+courir le contrat, son alternative valait 5 600 000 Ar ; une fois la mise en demeure partie,
+son horizon est une résiliation pour faute au 29 août. Signer lui rapporte 1 000 000 Ar
+immédiatement et une sortie sans faute ; ne pas signer lui rapporte un litige.
 
 **Structure impérative : deux documents distincts, envoyés le même jour.**
 
@@ -324,7 +344,7 @@ Indépendamment de ça, je préfère te dire les choses simplement : je pense qu
 fonctionne pas, et j'ai l'impression que tu le penses aussi. Plutôt que de laisser traîner,
 je te propose qu'on y mette fin d'un commun accord, avec effet immédiat.
 
-Concrètement : je te règle la période du 1ᵉʳ au 15 août, soit 1 400 000 Ar, tu n'as rien à
+Concrètement : je te verse 1 000 000 Ar pour solde de tout compte, tu n'as rien à
 rembourser, tu me restitues les accès et les fichiers de la mission, et on se quitte
 proprement — sans faute imputée d'un côté ni de l'autre.
 
@@ -336,9 +356,9 @@ Dis-moi.
 
 ---
 
-**Si elle répond et négocie** : tu as de la marge jusqu'à 2 800 000 Ar (§5.0), mais tiens
-d'abord le demi-mois — sa position est faible et elle le sait. **Si elle ne répond pas** :
-rien n'est perdu, l'horloge de la mise en demeure tourne et tu résilies le 29 août.
+**Si elle répond et négocie** : tu as de la marge jusqu'à 2 800 000 Ar par paliers (§5.0),
+mais tiens d'abord le million — sa position est faible et elle le sait. **Si elle ne répond
+pas** : rien n'est perdu, l'horloge de la mise en demeure tourne et tu résilies le 29 août.
 
 ### 5.1. Comment amener la conversation (script du 15/08 — archive)
 
@@ -395,21 +415,23 @@ protocole**. À compter de cette date, la Prestataire est déliée de toute obli
 d'exécution au titre de la mission, et la Société de toute obligation de rémunération autre
 que celles prévues à l'article 3.
 
-**Article 3 — Règlement final.** La Société règle à la Prestataire, sur émission de sa
-facture et dans les conditions de l'article 5.2 du contrat, la somme de **1 400 000 Ar**
-(un million quatre cent mille ariary) au titre de la **période du 1ᵉʳ au 15 août 2026**,
-les honoraires du mois de juillet 2026 ayant déjà été réglés.
+**Article 3 — Règlement final.** La Société verse à la Prestataire, sur émission de sa
+facture et dans les conditions de l'article 5.2 du contrat, une **indemnité transactionnelle
+forfaitaire et définitive de 1 000 000 Ar** (un million d'ariary), les honoraires du mois de
+juillet 2026 ayant déjà été réglés.
 
-Les Parties conviennent expressément que ce montant, arrêté d'un commun accord, **solde
-l'intégralité des sommes dues** au titre du contrat, toutes causes confondues, et qu'aucune
+Les Parties conviennent expressément que cette somme, arrêtée d'un commun accord et à titre
+transactionnel, **solde l'intégralité des sommes dues** au titre du contrat, toutes causes
+confondues — honoraires, commissions, frais et indemnités de toute nature — et qu'aucune
 autre somme ne pourra être réclamée de part ni d'autre.
 
 Les Parties constatent qu'aucun « Contrat gagné » au sens de l'article 3 du contrat n'a été
 réalisé et qu'**aucune commission de performance n'est due**.
 
-> **Variante « août entier »** (à n'utiliser que si elle bloque et que tu veux fermer vite) —
-> remplacer le montant par **2 800 000 Ar** au titre du mois d'août 2026 en totalité, sans
-> proratisation. Plafond absolu : au-delà, la voie C (§7) coûte moins cher.
+> **Paliers de repli** — remplacer le montant par **1 400 000 Ar** si elle discute, puis
+> **2 800 000 Ar** si elle bloque et que tu veux fermer le jour même. Plafond absolu : au-delà,
+> la voie C (§7) coûte moins cher. Garder dans tous les cas la qualification d'indemnité
+> transactionnelle : ne jamais rattacher le montant à une période travaillée.
 
 > **Modalité de signature.** Elle ne répond plus depuis une semaine : réduis la friction au
 > maximum. Un simple courriel ou message de sa part portant « bon pour accord sur le
@@ -655,9 +677,9 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
 - [ ] Si elle livre réellement → la mise en demeure a fait son office, tu réévalues
 - [ ] Si elle répond sans livrer → bascule sur l'accord amiable (§5), elle est en position
-      faible : ouverture au demi-mois, effet immédiat
-- [ ] Si elle invoque une difficulté personnelle documentée → accord amiable, août entier,
-      sortie propre : le contentieux ne vaut pas 1 400 000 Ar
+      faible : ouverture au forfait de 1 000 000 Ar, effet immédiat
+- [ ] Si elle invoque une difficulté personnelle documentée → accord amiable, monte
+      directement au palier haut, sortie propre : le contentieux ne vaut pas 1 800 000 Ar
 
 ### Le 29 août — si le silence a duré
 
