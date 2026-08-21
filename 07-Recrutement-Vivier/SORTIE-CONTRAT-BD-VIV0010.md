@@ -11,6 +11,71 @@
 
 ---
 
+## 0. Situation au 21 août 2026 — le grief a changé de nature
+
+**Faits** : silence total depuis le 14 août — aucun message WhatsApp, aucun message Teams,
+aucun dépôt sur les espaces cloud. L'absence de 3 jours annoncée le 12 août n'a jamais été
+suivie d'une reprise ni d'une explication.
+
+**Vérification tenant (21/08)** : la dernière modification relevée sur les espaces
+`BusinessDev` / `BusinessDev-Prospection` date du **7 août 2026**. Rien depuis. *(Recherche
+partielle, sur mots-clés — à confirmer par le journal d'audit M365, voir §0.3.)*
+
+### 0.1. Ce que ça change : le grief mute, et il devient beaucoup plus solide
+
+| | Avant le 14/08 | Depuis le 14/08 |
+|---|---|---|
+| Nature du grief | **Insuffisance** de livrables | **Cessation totale d'exécution** |
+| Terrain | glissant — l'art. 2.4 al. 1 (obligation de moyens) protège la qualité et le volume du travail | net — l'obligation de moyens ne protège pas celui qui **n'exécute plus du tout** |
+| Risque de requalification | réel, si on parle compétence ou rendement | nul : constater une cessation d'exécution ne dit rien de la personne |
+
+**L'abandon de mission est le manquement grave le plus simple à établir qui soit.** On ne
+discute plus de la qualité d'un travail : on constate qu'il n'y en a plus. C'est désormais
+le seul terrain sur lequel construire la mise en demeure.
+
+### 0.2. ⚠️ Correction de la consigne précédente sur l'absence
+
+Je t'avais dit de ne jamais invoquer l'absence ni l'enfant malade. **La première moitié ne
+tient plus, la seconde reste absolue.**
+
+- ✅ **Utilisable** : « sans nouvelles depuis le 14 août », « la mission n'a pas repris à
+  l'issue de la période d'indisponibilité que vous nous aviez indiquée ». C'est un fait
+  neutre, daté, vérifiable.
+- ⛔ **Toujours interdit** : toute mention de l'enfant, de sa santé, du motif de l'absence
+  initiale. Le grief n'est pas qu'elle se soit absentée — c'est qu'elle **n'a pas repris et
+  n'a donné aucune nouvelle**.
+
+### 0.3. ⚠️ À vérifier aujourd'hui, avant d'écrire
+
+**Le fichier `Guide refonte profil LK Valérien.pdf`, modifié le 6 août**, se trouve sur
+`BusinessDev-Prospection`. Le personal branding du gérant est **dans son périmètre**
+(art. 2.2, tiret 3). **Vérifie qui en est l'auteur.**
+
+Si c'est elle, ne jamais écrire « aucun livrable ne nous a été remis » : elle répondrait avec
+ce document et ferait tomber la crédibilité de toute la mise en demeure. Il faudrait alors
+écrire « à l'exception du guide de refonte de profil LinkedIn du 6 août, aucun des livrables
+suivants… ». **Un seul grief faux décrédibilise tous les autres** — c'est le seul vrai risque
+de la voie B.
+
+Même logique pour `Tous les prospsects 20260727.xlsx` (modifié le 7/08) : si c'est elle qui
+l'a alimenté, ce n'est plus « aucune liste de prospects », mais « une liste non qualifiée et
+non mise à jour depuis le 7 août ».
+
+> **Comment vérifier** : Microsoft 365 → centre d'administration → Conformité → Recherche
+> dans le journal d'audit, filtré sur son compte, du 30/06 au 21/08. Exporte le résultat en
+> CSV : c'est la pièce la plus solide du dossier — activité horodatée, non contestable, et
+> elle établit à la fois ce qu'elle a fait et la date à laquelle elle a cessé.
+
+### 0.4. 🔴 Ne coupe aucun accès avant la date d'effet
+
+CRM, Emelia, Teams, SharePoint : **tout doit rester ouvert** jusqu'à la résiliation
+effective. Si tu révoques avant, elle répond « je n'ai pas pu livrer, les accès étaient
+coupés » — et la mise en demeure s'effondre avec la résiliation qui en découle.
+
+Sauvegarde et exporte autant que tu veux. Ne révoque rien.
+
+---
+
 ## 1. Réponse directe : y a-t-il un préavis ?
 
 **Non, il n'y a pas de préavis** au sens de l'art. 6.3 — cette clause n'est **pas ouverte**
@@ -21,9 +86,16 @@ l'art. 6.4 impose une **mise en demeure écrite + sept (7) jours** avant de pouv
 de plein droit. Ce délai n'est pas négociable : le sauter rend la résiliation elle-même
 fautive et ouvre droit à dommages-intérêts contre la Société.
 
-**Conclusion : une sortie unilatérale « d'ici la fin de la semaine » est impossible.**
-La seule voie qui permet une sortie sous 3-4 jours est la **résiliation d'un commun accord**
-(§3), que rien dans le contrat n'interdit et qui ne suppose aucun délai.
+**Conclusion : une rupture immédiate reste impossible, même après une semaine de silence.**
+Le contrat ne contient aucune clause de résiliation sans mise en demeure préalable, quelle
+que soit la gravité du manquement. Passer outre rendrait la résiliation elle-même fautive.
+
+**Mais le calendrier se raccourcit fortement** : mise en demeure envoyée le **21 août** →
+expiration des 7 jours le **28 août** → résiliation de plein droit au **29 août**. Soit
+huit jours, sans risque.
+
+L'accord amiable (§5) reste plus rapide sur le papier — mais il suppose qu'elle réponde, ce
+qu'elle ne fait plus depuis une semaine. **La voie B devient la voie principale.**
 
 ---
 
@@ -162,6 +234,27 @@ pas.
 > ça ne dit rien de sa performance. C'est aussi pour ça que la **date d'effet doit être le
 > 15 août** si tu veux tenir le demi-mois — un demi-mois avec une sortie le 20 ne tient pas
 > debout.
+
+### 5.0 ter. Mise à jour au 21 août — le demi-mois est devenu défendable
+
+Le silence depuis le 14 août te donne le demi-mois que tu cherchais, mais **sur un fondement
+tout autre** — et bien meilleur.
+
+- Le motif n'est plus « elle n'a pas assez travaillé » (insuffisance → salariat → exclu par
+  l'art. 2.4 al. 1) ;
+- Le motif devient l'**exception d'inexécution** : sur la seconde quinzaine d'août, la
+  prestation n'a pas été **partiellement** exécutée, elle ne l'a **pas été du tout**. Un
+  forfait rémunère une prestation ; là où il n'y a plus aucune prestation, le forfait n'a
+  plus d'objet.
+
+**Position à tenir** : régler la période du 1ᵉʳ au 15 août (**1 400 000 Ar**), ne pas régler
+la seconde quinzaine. C'est cohérent avec une résiliation au 29 août pour cessation
+d'exécution.
+
+⚠️ **Reste que c'est une position, pas une certitude** : le contrat ne comporte pas de
+clause de prorata (art. 4.1) et c'est elle qui émet la facture (art. 5.1). Si elle facture
+août en entier et conteste, l'écart en jeu est de 1 400 000 Ar — **ne va jamais au
+contentieux pour ce montant**. Si elle réapparaît et pousse, paie et referme.
 
 ### 🎯 Structure recommandée
 
@@ -335,38 +428,51 @@ Règle : on ne reproche jamais *ce qu'elle est* ni *ce qu'elle n'a pas obtenu*, 
 
 Madame,
 
-Nous faisons suite à l'exécution du contrat de prestation de services de développement
-commercial B2B conclu entre VJUS (nom commercial Salverys) et vous-même le 30 juin 2026.
+Nous sommes sans nouvelles de votre part depuis le 14 août 2026. Nous espérons avant tout
+que votre situation personnelle s'est arrangée et vous invitons, si une difficulté vous
+empêche d'exécuter votre mission, à nous en informer sans délai afin que nous puissions en
+tenir compte.
 
-À la date des présentes, soit six semaines après le début de la mission, nous constatons
-que les livrables et diligences suivants, expressément prévus au contrat, n'ont pas été
-exécutés :
+Nous constatons cependant qu'à la date des présentes :
 
-1. **Constitution de listes de prospects qualifiées** (art. 2.2) — aucune liste ne nous a
-   été remise à ce jour ;
+- **la mission n'a pas repris** à l'issue de la période d'indisponibilité que vous nous
+  aviez indiquée le 12 août ;
+- **aucune communication** ne nous est parvenue depuis cette date, ni par courriel, ni par
+  Teams, ni par tout autre canal ;
+- **aucun dépôt ni aucune mise à jour** n'a été enregistré sur les espaces de travail mis à
+  votre disposition depuis le 7 août 2026.
+
+Cette interruption s'ajoute à l'inexécution, depuis le début de la mission, des obligations
+suivantes expressément prévues au contrat :
+
+1. **Constitution de listes de prospects qualifiées** (art. 2.2) — aucune liste qualifiée
+   ne nous a été remise ;
 2. **Suivi et mise à jour du CRM** (art. 2.2) — l'outil mis à votre disposition n'est pas
-   alimenté ni tenu à jour, et le fichier de suivi ne nous a pas été rendu accessible
-   malgré notre demande écrite du 12 août 2026 ;
+   alimenté, et le fichier de suivi ne nous a pas été rendu accessible malgré notre demande
+   écrite du 12 août 2026 ;
 3. **Reporting d'activité périodique** (art. 2.2) — aucun reporting (volumes contactés,
    taux de réponse, rendez-vous obtenus, état du pipeline) ne nous a été transmis depuis le
-   début de la mission ;
+   30 juin 2026 ;
 4. **Document de cadrage initial** (art. 2.3) — la réflexion stratégique et le
    rétroplanning opérationnel, dus « au cours des premières semaines » de la mission, ne
    nous sont pas parvenus ;
 5. **Veille concurrentielle** (art. 2.2) — aucune analyse ne nous a été communiquée.
 
-Ces éléments ne relèvent pas de l'appréciation d'un résultat commercial, que le contrat ne
-garantit pas (art. 2.4), mais de l'exécution d'obligations contractuelles précises et
-vérifiables.
+Ces constats ne portent pas sur l'appréciation d'un résultat commercial, que le contrat ne
+garantit pas (art. 2.4), mais sur l'exécution même de la mission et sur des obligations
+contractuelles précises et vérifiables.
 
 En conséquence, et conformément à l'article 6.4 du contrat, nous vous mettons en demeure de
-remédier à ces manquements dans un délai de **sept (7) jours calendaires** à compter de la
-réception de la présente, en nous adressant :
+reprendre l'exécution de votre mission et de remédier à ces manquements dans un délai de
+**sept (7) jours calendaires** à compter de la réception de la présente, en nous adressant :
 
 - la liste des prospects qualifiés constituée à ce jour, au format exploitable ;
 - un accès à un CRM à jour reflétant l'intégralité des actions de prospection menées ;
 - un reporting d'activité couvrant la période du 30 juin à ce jour ;
 - le document de cadrage prévu à l'article 2.3.
+
+Nous vous précisons que l'ensemble de vos accès (CRM, Emelia, Teams, SharePoint) demeurent
+ouverts et opérationnels, de sorte que rien ne fait obstacle à cette exécution.
 
 À défaut d'exécution complète dans ce délai, nous serons contraints de constater la
 résiliation du contrat de plein droit dans les conditions de l'article 6.4, sans préjudice
@@ -469,7 +575,38 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 
 ## 8. Plan d'action
 
-### Aujourd'hui — 12 août
+### 🔴 Aujourd'hui — 21 août (plan en vigueur)
+
+- [ ] **Vérifier l'auteur** de `Guide refonte profil LK Valérien.pdf` (06/08) et de
+      `Tous les prospsects 20260727.xlsx` (07/08) — §0.3. Adapter la mise en demeure si ces
+      fichiers sont d'elle.
+- [ ] **Exporter le journal d'audit M365** filtré sur son compte, 30/06 → 21/08 (§0.3)
+- [ ] Export daté du CRM et d'Emelia · capture WhatsApp et Teams montrant l'absence de
+      message depuis le 14/08
+- [ ] **Envoyer la mise en demeure §6.2** par courriel avec accusé de réception, doublée
+      d'un envoi WhatsApp/Teams (dernier canal actif connu) pour maximiser la preuve de
+      réception
+- [ ] ⚠️ **Ne révoquer aucun accès** (§0.4)
+- [ ] Poser dans l'agenda : **28 août** (expiration) · **29 août** (résiliation §6.3) ·
+      **10 septembre** (filet de sécurité §7)
+
+### Si elle réapparaît pendant les 7 jours
+
+- [ ] Si elle livre réellement → la mise en demeure a fait son office, tu réévalues
+- [ ] Si elle répond sans livrer → bascule sur l'accord amiable (§5), elle est en position
+      faible : ouverture au demi-mois, effet immédiat
+- [ ] Si elle invoque une difficulté personnelle documentée → accord amiable, août entier,
+      sortie propre : le contentieux ne vaut pas 1 400 000 Ar
+
+### Le 29 août — si le silence a duré
+
+- [ ] Envoyer le constat de résiliation §6.3
+- [ ] **Alors seulement** révoquer les accès
+- [ ] Régler la première quinzaine d'août (§5.0) ; ne pas régler la seconde
+
+---
+
+### Archive — plan du 12 août (dépassé)
 
 - [ ] Répondre au message WhatsApp avec le texte du §4 — **ne pas employer le mot « congé »**
 - [ ] Exporter la conversation WhatsApp complète (avec médias) et l'archiver hors téléphone
