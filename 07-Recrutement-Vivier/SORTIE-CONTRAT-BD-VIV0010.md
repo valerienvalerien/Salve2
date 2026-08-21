@@ -356,6 +356,50 @@ Dis-moi.
 
 ---
 
+### 5.1 ter. Version courriel de la proposition amiable
+
+> Même contenu, registre légèrement plus posé. À envoyer **après** la mise en demeure —
+> compte 15 à 30 minutes d'écart pour que l'ordre de réception ne prête pas à confusion.
+>
+> **Destinataire** : randrianasinoro@gmail.com · **Objet** : Proposition — fin de mission
+> d'un commun accord
+>
+> ⚠️ **Ne pas joindre le protocole à ce stade.** Deux documents juridiques le même jour la
+> pousseraient à faire relire l'ensemble — et c'est exactement ce qui tue une offre à
+> 1 000 000 Ar. On veut un « d'accord » en une ligne, le formalisme vient après.
+
+---
+
+Vololoniaina,
+
+Je viens de t'adresser par ailleurs un courrier formel concernant l'exécution du contrat, que
+je te demande de lire attentivement.
+
+Indépendamment de ce courrier, je préfère te dire les choses simplement. Je pense que la
+mission ne fonctionne pas, et j'ai l'impression que tu le penses aussi. Plutôt que de laisser
+la situation s'enliser, je te propose que nous y mettions fin d'un commun accord, avec effet
+immédiat.
+
+Ce que je te propose :
+
+- une indemnité transactionnelle de **1 000 000 Ar**, pour solde de tout compte ;
+- aucun remboursement, aucune somme à ta charge ;
+- de ton côté, la restitution des accès et des fichiers de la mission ;
+- une fin de contrat **sans faute imputée d'un côté ni de l'autre**.
+
+Si cela te convient, réponds-moi simplement « d'accord » et je t'adresse le document à signer
+dans la foulée. Si tu préfères reprendre la mission, le courrier que je viens de t'envoyer
+précise ce que j'attends et dans quel délai.
+
+Je reste disponible si tu veux qu'on en parle de vive voix.
+
+Bien à toi,
+
+*Valérien Rakotosalama*
+*VJUS — Salverys*
+
+---
+
 **Si elle répond et négocie** : tu as de la marge jusqu'à 2 800 000 Ar par paliers (§5.0),
 mais tiens d'abord le million — sa position est faible et elle le sait. **Si elle ne répond
 pas** : rien n'est perdu, l'horloge de la mise en demeure tourne et tu résilies le 29 août.
