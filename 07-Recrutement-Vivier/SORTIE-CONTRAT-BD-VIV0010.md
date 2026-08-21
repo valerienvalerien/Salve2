@@ -286,7 +286,61 @@ rend ton demi-mois cohérent.
 Le message du §4 réserve déjà le point de vendredi sans annoncer la couleur. C'est
 exactement ce qu'il faut : envoie-le aujourd'hui, garde l'offre pour l'appel.
 
-### 5.1. Comment amener la conversation (vendredi 15/08)
+### 5.0 quater. Mise à jour au 21/08 — envoyer les deux le même jour
+
+**La consigne du 12/08 (« jamais les deux ensemble ») est levée.** Elle valait quand une
+négociation était vivante et que la pression risquait de l'empoisonner. Face à une semaine
+de silence, le risque n'est plus de durcir la discussion mais de n'obtenir aucune réponse.
+
+**C'est même la mise en demeure qui rend le demi-mois acceptable** : tant qu'elle pouvait
+laisser courir le contrat, son alternative valait 5 600 000 Ar ; une fois la mise en demeure
+partie, son horizon est une résiliation pour faute au 29 août. Signer lui rapporte
+1 400 000 Ar et une sortie sans faute ; ne pas signer lui rapporte un litige.
+
+**Structure impérative : deux documents distincts, envoyés le même jour.**
+
+| | Document | Canal | Registre |
+|---|---|---|---|
+| 1 | Mise en demeure §6.2 | courriel avec AR | formel, aucune mention de l'offre |
+| 2 | Proposition amiable §5.1 bis | WhatsApp + courriel | humain, court, sans reproche |
+
+**Ne jamais fondre l'offre dans la mise en demeure.** Une mise en demeure qui propose une
+sortie dans le même souffle montre qu'on ne cherchait pas l'exécution — c'est l'angle
+d'attaque le plus simple contre la résiliation qui en découlera. Séparées, les deux pièces
+sont parfaitement compatibles : l'une exige l'exécution, l'autre ouvre une porte consentie.
+
+### 5.1 bis. Message de proposition amiable — au 21/08
+
+> À envoyer juste après la mise en demeure, sur WhatsApp **et** par courriel. Ton neutre,
+> aucun reproche, aucune menace : la mise en demeure dit déjà ce qu'il faut.
+
+---
+
+Vololoniaina,
+
+Je viens de t'envoyer un courrier formel par mail, que je te demande de lire.
+
+Indépendamment de ça, je préfère te dire les choses simplement : je pense que la mission ne
+fonctionne pas, et j'ai l'impression que tu le penses aussi. Plutôt que de laisser traîner,
+je te propose qu'on y mette fin d'un commun accord, avec effet immédiat.
+
+Concrètement : je te règle la période du 1ᵉʳ au 15 août, soit 1 400 000 Ar, tu n'as rien à
+rembourser, tu me restitues les accès et les fichiers de la mission, et on se quitte
+proprement — sans faute imputée d'un côté ni de l'autre.
+
+Si ça te va, réponds-moi simplement « d'accord » et je t'envoie le document à signer dans la
+foulée. Si tu préfères reprendre la mission, le courrier que je viens de t'envoyer te dit ce
+que j'attends et dans quel délai.
+
+Dis-moi.
+
+---
+
+**Si elle répond et négocie** : tu as de la marge jusqu'à 2 800 000 Ar (§5.0), mais tiens
+d'abord le demi-mois — sa position est faible et elle le sait. **Si elle ne répond pas** :
+rien n'est perdu, l'horloge de la mise en demeure tourne et tu résilies le 29 août.
+
+### 5.1. Comment amener la conversation (script du 15/08 — archive)
 
 Par téléphone, pas par écrit. Trois messages, dans cet ordre :
 
@@ -336,26 +390,31 @@ Ensemble « les Parties ».
 ne soit imputée à l'une ou à l'autre, de mettre fin par anticipation au contrat de
 prestation de services de développement commercial B2B conclu entre elles le 30 juin 2026.
 
-**Article 2 — Date d'effet.** Le contrat prend fin le **15 août 2026** à minuit. À compter
-de cette date, la Prestataire est déliée de toute obligation d'exécution au titre de la
-mission, et la Société de toute obligation de rémunération autre que celles prévues à
-l'article 3.
+**Article 2 — Date d'effet.** Le contrat prend fin **à la date de signature du présent
+protocole**. À compter de cette date, la Prestataire est déliée de toute obligation
+d'exécution au titre de la mission, et la Société de toute obligation de rémunération autre
+que celles prévues à l'article 3.
 
 **Article 3 — Règlement final.** La Société règle à la Prestataire, sur émission de sa
-facture et dans les conditions de l'article 5.2 du contrat, les honoraires dus au titre de
-la **période du 1ᵉʳ au 15 août 2026**, soit **1 400 000 Ar** (un million quatre cent mille
-ariary), les honoraires du mois de juillet 2026 ayant déjà été réglés.
+facture et dans les conditions de l'article 5.2 du contrat, la somme de **1 400 000 Ar**
+(un million quatre cent mille ariary) au titre de la **période du 1ᵉʳ au 15 août 2026**,
+les honoraires du mois de juillet 2026 ayant déjà été réglés.
 
-Les Parties conviennent expressément que ce montant, arrêté d'un commun accord au regard de
-la date d'effet retenue à l'article 2, solde l'intégralité des honoraires dus au titre du
-contrat.
+Les Parties conviennent expressément que ce montant, arrêté d'un commun accord, **solde
+l'intégralité des sommes dues** au titre du contrat, toutes causes confondues, et qu'aucune
+autre somme ne pourra être réclamée de part ni d'autre.
 
-> **Variante « août entier »** — remplacer l'article 3 par : *« La Société règle à la
-> Prestataire, sur émission de sa facture et dans les conditions de l'article 5.2 du
-> contrat, les honoraires fixes du mois d'août 2026 en totalité, soit 2 800 000 Ar (deux
-> millions huit cent mille ariary), sans proratisation, les honoraires du mois de juillet
-> 2026 ayant déjà été réglés. »* — et porter la date d'effet de l'article 2 au jour de la
-> signature.
+Les Parties constatent qu'aucun « Contrat gagné » au sens de l'article 3 du contrat n'a été
+réalisé et qu'**aucune commission de performance n'est due**.
+
+> **Variante « août entier »** (à n'utiliser que si elle bloque et que tu veux fermer vite) —
+> remplacer le montant par **2 800 000 Ar** au titre du mois d'août 2026 en totalité, sans
+> proratisation. Plafond absolu : au-delà, la voie C (§7) coûte moins cher.
+
+> **Modalité de signature.** Elle ne répond plus depuis une semaine : réduis la friction au
+> maximum. Un simple courriel ou message de sa part portant « bon pour accord sur le
+> protocole du [date] » suffit à former l'accord ; la signature formelle suit. Ne
+> conditionne pas le règlement à un original papier — tu ne l'obtiendrais pas.
 
 Les Parties constatent qu'aucun « Contrat gagné » au sens de l'article 3 du contrat n'a été
 réalisé et qu'**aucune commission de performance n'est due**.
