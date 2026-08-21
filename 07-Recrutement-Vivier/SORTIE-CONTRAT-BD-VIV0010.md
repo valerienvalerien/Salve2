@@ -448,8 +448,10 @@ suivantes expressément prévues au contrat :
 1. **Constitution de listes de prospects qualifiées** (art. 2.2) — aucune liste qualifiée
    ne nous a été remise ;
 2. **Suivi et mise à jour du CRM** (art. 2.2) — l'outil mis à votre disposition n'est pas
-   alimenté, et le fichier de suivi ne nous a pas été rendu accessible malgré notre demande
-   écrite du 12 août 2026 ;
+   alimenté. Le fichier de suivi de votre activité ne nous a jamais été rendu accessible,
+   alors que nous vous en avions fait la demande écrite le 12 août 2026 et que vous nous
+   aviez répondu le même jour, à 15h18, « je le fais de suite ». Neuf jours plus tard,
+   aucun dépôt n'a été enregistré ;
 3. **Reporting d'activité périodique** (art. 2.2) — aucun reporting (volumes contactés,
    taux de réponse, rendez-vous obtenus, état du pipeline) ne nous a été transmis depuis le
    30 juin 2026 ;
