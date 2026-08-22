@@ -7,6 +7,12 @@
 > Ce document est le **plan de mobilisation** : quoi faire, dans quel ordre, avec quelles
 > dépendances et quels jalons. Vue timeline : `gantt-econocom-m6.html`.
 >
+> ⚠️ **Audité et complété** — voir `AUDIT-PLAN-MOBILISATION-ECONOCOM-M6.md` (comparaison avec
+> un plan directeur type transition ESN). Neuf modifications à intégrer, dont deux
+> matérielles : **le dimensionnement de ce document oublie le shrinkage** (16 ETP → **18**,
+> marge 20 % → 13 % si non facturé, audit §3.1) et les jalons J1-J10 doivent devenir des
+> **gates avec critère de sortie** (audit §3.2).
+>
 > Sources internes qui font foi et ne sont pas réécrites ici : `PRICING.md` (prix, paliers,
 > volume ferme, amplitude en ETP), `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (coûts,
 > point mort, trésorerie), `04-Closing/ONBOARDING-CLIENT.md` (phases d'onboarding),

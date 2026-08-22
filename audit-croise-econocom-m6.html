@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit croisé Econocom × M6 — Salverys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F8F5F0; --card:#FFFFFF; --card-2:#FDFBF7;
+  --ink:#20303F; --text:#2A2620; --soft:#5C5448; --mute:#8A8275;
+  --line:#E7DFD1; --line-2:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B;
+  --accent:#6F8770; --gold:#B89968; --danger:#B6604D;
+  --grid:#EFE8DC; --grid-strong:#E2D9C9;
+  --a:#2E3B4E; --b:#B89968;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(32,48,63,.05),0 10px 28px rgba(32,48,63,.07);
+  --colw:34px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A20; --card:#1D242C; --card-2:#212932;
+    --ink:#EDE7DC; --text:#E4DED3; --soft:#B3ABA0; --mute:#8B8579;
+    --line:#2F3841; --line-2:#283038;
+    --primary:#8FA6C4; --primary-deep:#0F1419;
+    --accent:#8FA98F; --gold:#D2B078; --danger:#D0846E;
+    --grid:#262E37; --grid-strong:#313A44;
+    --a:#7E9AC0; --b:#D2B078;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.32);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A20; --card:#1D242C; --card-2:#212932;
+  --ink:#EDE7DC; --text:#E4DED3; --soft:#B3ABA0; --mute:#8B8579;
+  --line:#2F3841; --line-2:#283038;
+  --primary:#8FA6C4; --primary-deep:#0F1419;
+  --accent:#8FA98F; --gold:#D2B078; --danger:#D0846E;
+  --grid:#262E37; --grid-strong:#313A44;
+  --a:#7E9AC0; --b:#D2B078;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{text-wrap:balance;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+.hero{background:var(--primary-deep);color:#fff;padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:720px;height:720px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,153,104,.20),transparent 68%);top:-340px;left:48%;transform:translateX(-50%)}
+.hero::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(111,135,112,.20),transparent 70%);bottom:-260px;right:-90px}
+.hero>*{position:relative}
+.kicker{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
+  padding:6px 14px;border-radius:100px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:clamp(28px,4.4vw,44px);
+  letter-spacing:-.02em;line-height:1.07;margin:18px 0 12px;color:#fff}
+.hero p{max-width:66ch;color:rgba(255,255,255,.75);font-size:16px;margin:0}
+
+section{padding:44px 0 4px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+h2.sec{font-family:Georgia,serif;font-weight:600;font-size:26px;letter-spacing:-.01em;margin:8px 0 6px;color:var(--ink)}
+.lede{color:var(--soft);max-width:74ch;margin:0 0 22px}
+
+/* verdict */
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.vc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+  box-shadow:var(--shadow);border-top:3px solid var(--vc)}
+.vc .lab{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--vc)}
+.vc h3{font-family:Georgia,serif;font-size:20px;font-weight:600;color:var(--ink);margin:9px 0 8px;line-height:1.25}
+.vc p{margin:0;font-size:14px;color:var(--soft)}
+.vc p+p{margin-top:9px}
+
+/* timeline comparée */
+.tl{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:24px 22px 18px;overflow-x:auto}
+.tlgrid{min-width:940px;position:relative;padding-top:24px}
+.tlrow{display:grid;grid-template-columns:132px repeat(24,var(--colw));align-items:center;min-height:46px}
+.tlrow .lb{font-size:12.5px;font-weight:700;color:var(--ink);padding-right:12px;line-height:1.25}
+.tlrow .lb small{display:block;font-weight:500;color:var(--mute);font-size:11px}
+.axis{display:grid;grid-template-columns:132px repeat(24,var(--colw));border-bottom:1px solid var(--grid-strong);
+  padding-bottom:5px;margin-bottom:8px}
+.axis .w{font-size:9.5px;color:var(--mute);text-align:center;font-variant-numeric:tabular-nums}
+.seg{height:22px;border-radius:4px;display:flex;align-items:center;padding:0 9px;font-size:11px;font-weight:650;
+  color:#fff;white-space:nowrap;overflow:hidden}
+.seg.a{background:var(--a)} .seg.b{background:var(--b);color:#3A2E12}
+:root[data-theme="dark"] .seg.b{color:#20303F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .seg.b{color:#20303F}}
+.seg.pre{background:transparent;border:1.5px dashed var(--a);color:var(--a)}
+.seg.blind{background:repeating-linear-gradient(135deg,rgba(182,96,77,.13) 0 6px,transparent 6px 12px);
+  border:1px solid rgba(182,96,77,.30);color:var(--danger)}
+.sig{position:absolute;top:20px;bottom:6px;width:0;border-left:2px solid var(--danger);z-index:3}
+.siglab{position:absolute;font-size:10.5px;font-weight:700;color:var(--danger);white-space:nowrap;
+  letter-spacing:.03em;transform:translateX(-50%)}
+.tlnote{font-size:13px;color:var(--soft);margin:16px 0 0;max-width:74ch}
+
+/* tableaux */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th{text-align:left;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);font-weight:700;
+  padding:13px 16px;border-bottom:1px solid var(--line);background:var(--card-2);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid var(--line-2);color:var(--soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.k{color:var(--ink);font-weight:650}
+td.sc{font-variant-numeric:tabular-nums;text-align:center;white-space:nowrap;font-weight:700;width:96px}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;color:var(--ink);font-weight:650}
+.win{color:var(--ink)} .lose{color:var(--mute);font-weight:500}
+tr.hl td{background:rgba(184,153,104,.10)}
+
+/* listes de constats */
+.finds{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.f{background:var(--card);padding:18px 20px;display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
+.f .n{font-family:Georgia,serif;font-size:19px;font-weight:700;color:var(--danger);line-height:1.15}
+.f .n.ok{color:var(--accent)}
+.f h4{margin:0 0 5px;font-size:15.5px;font-weight:650;color:var(--ink);line-height:1.3}
+.f p{margin:0;font-size:13.8px;color:var(--soft)}
+.f p+p{margin-top:7px}
+.f .src{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;background:rgba(111,135,112,.16);color:var(--ink);margin-left:8px;vertical-align:2px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:19px;box-shadow:var(--shadow)}
+.card h3{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.card .big{font-family:Georgia,serif;font-size:30px;font-weight:600;color:var(--ink);margin:9px 0 4px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.card .big.warn{color:var(--danger)} .card .big.good{color:var(--accent)}
+.card p{margin:0;font-size:13.4px;color:var(--soft)}
+.note{font-size:13px;color:var(--mute);max-width:78ch;margin:18px 0 0}
+footer{padding:36px 0 52px;color:var(--mute);font-size:12.5px;border-top:1px solid var(--line);margin-top:44px}
+@media (max-width:640px){
+  .tlrow,.axis{grid-template-columns:96px repeat(24,26px)}
+  :root{--colw:26px}
+}
+</style>
+
+</head>
+<body>
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">Audit croisé · deux plans de mobilisation</span>
+    <h1>Le plan qui sait piloter<br>et le plan qui sait payer</h1>
+    <p>Même scénario — helpdesk IT N1 en marque blanche pour Econocom, client final M6.
+    Deux plans produits séparément. Ils échouent dans des directions opposées et sont
+    complémentaires presque terme à terme.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <span class="eyebrow">Verdict</span>
+  <h2 class="sec">Ni l'un ni l'autre n'est exécutable seul</h2>
+  <div class="verdict">
+    <div class="vc" style="--vc:var(--a)">
+      <span class="lab">Plan A · séquencé en semaines</span>
+      <h3>Un plan d'entreprise sous contrainte</h3>
+      <p>Juste sur les verrous juridiques, le plateau et le cash : il sait que 19 salaires
+      courent avant la première facture et il chiffre le trou.</p>
+      <p><b>Faible sur la méthode de transition</b> — jalons sans critère de sortie, pas de
+      Transition Pack, pas de courbe de bascule, et un dimensionnement qui oublie
+      l'absentéisme.</p>
+    </div>
+    <div class="vc" style="--vc:var(--b)">
+      <span class="lab">Plan B · 50 tâches, 8 phases, 6 gates</span>
+      <h3>Une excellente méthode de transition</h3>
+      <p>Gates, Transition Pack, ramp-up par paliers, hypercare, dimensionnement sur le pic :
+      c'est la grammaire d'une vraie transition ESN.</p>
+      <p><b>Appliquée à une entreprise qui n'a ni la trésorerie ni l'effectif pour
+      l'exécuter</b> — zéro euro dans tout le document, et un démarrage à la signature qui
+      laisse l'autorisation de M6 hors du périmètre.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">La découverte de l'audit</span>
+  <h2 class="sec">Les deux plans sont d'accord sur la durée</h2>
+  <p class="lede">Ramenés au même point d'ancrage — la signature — ils tombent à deux ou
+  trois jours près sur le même horizon : <b>~17 semaines jusqu'au régime nominal</b>.
+  L'écart apparent vient entièrement de ce que le plan B ne compte pas : les six semaines
+  qui <i>précèdent</i> la signature.</p>
+  <div class="tl">
+    <div class="tlgrid">
+      <div class="sig" style="left:calc(132px + var(--colw) * 6)"></div>
+      <div class="siglab" style="left:calc(132px + var(--colw) * 6);top:0">signature / bon de commande</div>
+      <div class="axis">
+        <div></div>
+        <div class="w">S1</div><div class="w">2</div><div class="w">3</div><div class="w">4</div>
+        <div class="w">5</div><div class="w">6</div><div class="w">7</div><div class="w">8</div>
+        <div class="w">9</div><div class="w">10</div><div class="w">11</div><div class="w">12</div>
+        <div class="w">13</div><div class="w">14</div><div class="w">15</div><div class="w">16</div>
+        <div class="w">17</div><div class="w">18</div><div class="w">19</div><div class="w">20</div>
+        <div class="w">21</div><div class="w">22</div><div class="w">23</div><div class="w">24</div>
+      </div>
+      <div class="tlrow">
+        <div class="lb">Plan A<small>S1 → S23</small></div>
+        <div class="seg pre" style="grid-column:2 / span 6">Sécurisation amont · verrous 1 à 4</div>
+        <div class="seg a" style="grid-column:8 / span 17">Cadrage · plateau · 3 vagues · pilote S13 · pleine capacité S23</div>
+      </div>
+      <div class="tlrow">
+        <div class="lb">Plan B<small>J0 → J120</small></div>
+        <div class="seg blind" style="grid-column:2 / span 6">angle mort — non couvert</div>
+        <div class="seg b" style="grid-column:8 / span 17">Cadrage · build · staffing · pilote J56 · go-live J73 · BAU J120</div>
+      </div>
+    </div>
+    <p class="tlnote">Le plan B place le référencement fournisseur, la vérification de
+    l'autorisation de sous-traitance hors UE et le montage financier dans un angle mort :
+    ils sont supposés réglés au moment où son compteur démarre. Ils ne le sont jamais.</p>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Comparaison</span>
+  <h2 class="sec">Huit critères, deux profils inverses</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Critère</th><th class="sc">Plan A</th><th class="sc">Plan B</th><th>Commentaire</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Méthode de transition</td><td class="sc lose">5</td><td class="sc win">9</td>
+        <td>Gates, Transition Pack, ramp-up, hypercare : tout vient de B.</td></tr>
+      <tr><td class="k">Sécurisation juridique amont</td><td class="sc win">8</td><td class="sc lose">3</td>
+        <td>B traite l'autorisation M6 comme une tâche projet, pas comme une condition de validité.</td></tr>
+      <tr class="hl"><td class="k">Réalisme financier</td><td class="sc win">7</td><td class="sc lose">0</td>
+        <td>B ne contient aucun montant : ni coût, ni trésorerie, ni prix, ni condition de paiement.</td></tr>
+      <tr><td class="k">Dimensionnement de l'équipe</td><td class="sc lose">5</td><td class="sc win">6</td>
+        <td>B pose la bonne méthode sans la chiffrer ; A chiffre une méthode fausse (shrinkage oublié).</td></tr>
+      <tr><td class="k">Infrastructure physique</td><td class="sc win">8</td><td class="sc lose">2</td>
+        <td>Aucune ligne « plateau » chez B : ni bail, ni énergie, ni redondance opérateur.</td></tr>
+      <tr><td class="k">Obligations du donneur d'ordre</td><td class="sc lose">3</td><td class="sc win">7</td>
+        <td>Le Transition Pack de B est opposable ; A suppose qu'Econocom fournira.</td></tr>
+      <tr><td class="k">Rigueur du planning</td><td class="sc win">6</td><td class="sc lose">4</td>
+        <td>56 des 85 liens de B sont violés par ses propres dates.</td></tr>
+      <tr><td class="k">Exécutable tel quel par Salverys</td><td class="sc win">6</td><td class="sc lose">3</td>
+        <td>B suppose 8 rôles projet ; l'effectif réel est d'une salariée.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">À reprendre du plan B</span>
+  <h2 class="sec">Cinq apports supérieurs</h2>
+  <div class="finds">
+    <div class="f"><span class="n ok">1</span><div>
+      <h4>Le « Transition Pack »<span class="src">meilleure idée des deux plans</span></h4>
+      <p>Une liste unique, datée et opposable de ce qu'Econocom doit fournir : volumétrie,
+      SLA, catalogue, priorités, escalade, outils, accès, KB, sécurité, reporting, planning,
+      contacts, continuité.</p>
+      <p>Deux vertus au-delà de la commodité : c'est un <b>filtre d'intention</b> — qui ne
+      peut pas produire ce pack en deux semaines n'est pas prêt à sous-traiter — et c'est la
+      base d'une <b>clause de décalage</b> : un jour de retard du pack, un jour de go-live.</p>
+    </div></div>
+    <div class="f"><span class="n ok">2</span><div>
+      <h4>Les 6 gates, supérieurs aux jalons du plan A</h4>
+      <p>Un jalon est une date, et une date se rate en silence. Un gate est une question à
+      laquelle il faut répondre oui, avec un décideur. La règle « go-live impossible tant que
+      G1 → G5 ne sont pas franchis » est exactement le garde-fou qui manque au plan A.</p>
+    </div></div>
+    <div class="f"><span class="n ok">3</span><div>
+      <h4>Le ramp-up de charge 25 / 50 / 75 / 100 %</h4>
+      <p>Le plan A monte par vagues d'embauche ; B monte par paliers de volume basculé. Ce
+      sont <b>deux courbes différentes</b> et A les confond. Econocom et M6 basculeront le
+      périmètre par lots — la seconde courbe se négocie, elle ne se subit pas.</p>
+    </div></div>
+    <div class="f"><span class="n ok">4</span><div>
+      <h4>L'hypercare borné</h4>
+      <p>Une phase distincte, datée, avec sortie formelle vers le RUN. C'est le vocabulaire
+      qu'attend un service delivery manager — et ce qui évite que le mode projet dure
+      indéfiniment.</p>
+    </div></div>
+    <div class="f"><span class="n ok">5</span><div>
+      <h4>Dimensionner sur pic + SLA + absentéisme + shrinkage</h4>
+      <p>C'est la critique la plus juste adressée au plan A. B ne la chiffre pas, mais il pose
+      la bonne méthode. Chiffrage ci-dessous.</p>
+    </div></div>
+  </div>
+  <p class="note">À reprendre également : les <b>background checks</b> du personnel avant
+  accès aux environnements M6, et le principe qu'un contrat de cette taille ne peut pas être
+  porté par le dirigeant seul.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Ce que le plan B rate</span>
+  <h2 class="sec">Par ordre de gravité</h2>
+  <div class="finds">
+    <div class="f"><span class="n">1</span><div>
+      <h4>Aucun euro, nulle part</h4>
+      <p>50 tâches, 8 phases, 6 gates, un organigramme à 8 rôles — et zéro montant : ni coût,
+      ni trésorerie, ni prix, ni condition de paiement, ni tâche de facturation.</p>
+      <p>Le plan fait démarrer le recrutement à J20 sans dire <b>avec quel argent</b> ni
+      <b>quand tombe la première facture</b>. Pour une entreprise d'une salariée, c'est
+      exactement là que ce contrat peut tuer — pas dans la qualité du runbook.</p>
+    </div></div>
+    <div class="f"><span class="n">2</span><div>
+      <h4>Il démarre à la signature</h4>
+      <p>En sous-traitance de rang 2, l'autorisation de M6 pour un traitement hors UE n'est
+      pas une tâche projet : c'est une <b>condition de validité du contrat</b>. Si l'on
+      découvre à J20 qu'une clause de localisation UE/EEE existe, le contrat signé à J0 est
+      inexécutable — et le recrutement est lancé depuis la tâche 29.</p>
+      <p>Le gate G1 ne protège pas de ça : sa question est « contrat signé ? », à laquelle on
+      répond oui en ayant signé. Même angle mort pour le <b>référencement fournisseur</b> :
+      chez un grand compte, on ne signe pas avant d'être référencé — 4 à 6 semaines invisibles
+      dans le J0 → J120.</p>
+    </div></div>
+    <div class="f"><span class="n">3</span><div>
+      <h4>Les dépendances contredisent les dates</h4>
+      <p>Vérification ligne à ligne : <b>56 des 85 liens déclarés sont violés</b> si on les
+      lit en fin-début. Certification (35) démarre J45 alors que la formation (32/33) finit
+      J50 ; préparation du pilote (36) démarre J45 pour une certification qui finit J50 ;
+      comptes SSO (22) démarrent J30 pour un réseau (21) livré J40.</p>
+      <p>Ce n'est pas forcément une faute — un plan de transition chevauche volontairement.
+      Mais alors les liens sont des début-début avec décalage, et cela doit être déclaré.
+      Saisi tel quel dans MS Project en fin-début, <b>le go-live passe de J73 à J112</b> et le
+      régime nominal <b>de J120 à J163</b>. Le J120 n'est pas le résultat du réseau de
+      dépendances : c'est une cible posée à côté.</p>
+    </div></div>
+    <div class="f"><span class="n">4</span><div>
+      <h4>Aucun plateau</h4>
+      <p>Architecture IT, postes, VPN, ITSM, téléphonie — mais aucune ligne pour le local :
+      bail, cloisonnement, contrôle d'accès physique, onduleurs et groupe électrogène,
+      redondance opérateur. À Antananarivo, c'est le poste <b>le plus long</b> (5 à 9 semaines)
+      et une condition d'homologation.</p>
+    </div></div>
+    <div class="f"><span class="n">5</span><div>
+      <h4>Aucune gestion du risque d'entreprise</h4>
+      <p>Rien sur ce qui se passe si Econocom perd M6 (19 CDI à porter), rien sur le plafond
+      des pénalités alors que les SLA sont contractualisés en tâche 5, rien sur la
+      réversibilité, rien sur la concentration à ~100 % du CA. C'est un plan de projet, pas un
+      plan d'entreprise — à cette taille, les deux ne se séparent pas.</p>
+    </div></div>
+    <div class="f"><span class="n">6</span><div>
+      <h4>Deux réflexes à désactiver</h4>
+      <p><b>Tâche 30, « pool de remplacement » J25 → J50</b> : en équipe 100 % salariée, un
+      pool est un banc payé — ~736 €/mois par tête inoccupée. La doctrine maison résout la
+      continuité autrement (manager métier en premier backup, rotation au Non-stop, capacité
+      réservée facturée en Priority).</p>
+      <p><b>Tâche 37, pilote de trois semaines avec l'équipe complète</b> : le plan ne dit pas
+      s'il est facturé. ~9 000 € de masse salariale. En marque blanche, le pilote est un
+      périmètre restreint <b>facturé</b>, protégé par un dépôt et des contreparties de risque.</p>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Ce que le plan A rate</span>
+  <h2 class="sec">La correction du dimensionnement</h2>
+  <p class="lede"><b>Sur ce point, le plan A est faux et le plan B a raison.</b> Le plan A
+  calcule 12 positions × 1,33 d'amplitude = 16 ETP, et s'arrête là. Il manque l'absentéisme —
+  congés (30 j/an), maladie, formation continue, pauses : <b>~13 %</b>, valeur déjà retenue
+  par la maison. Couvrir 16 ETP de présence effective demande <b>~18 ETP recrutés</b>.</p>
+  <div class="cards">
+    <div class="card"><h3>Plan A tel qu'écrit</h3><div class="big">20 %</div>
+      <p>16 recrutés, 16 facturés — <b>+4 990 €/mois</b>. Ce chiffre suppose zéro absence.</p></div>
+    <div class="card"><h3>Corrigé, shrinkage non facturé</h3><div class="big warn">13 %</div>
+      <p>18 recrutés, 16 facturés — <b>+3 310 €/mois</b>. Les deux têtes de couverture sortent
+      directement de la marge.</p></div>
+    <div class="card"><h3>Corrigé, couverture facturée</h3><div class="big good">23 %</div>
+      <p>18 recrutés, 18 facturés — <b>+6 410 €/mois</b>. La bonne réponse commerciale :
+      facturer la couverture, pas la présence.</p></div>
+  </div>
+  <p class="note"><b>Proposition de doctrine pour <code>PRICING.md §3.c</code></b> :
+  <code>ETP facturés = positions × coefficient d'amplitude × coefficient de shrinkage</code>,
+  avec shrinkage = <b>1,15</b>. Le §3.c traite déjà l'amplitude en ETP plutôt qu'en
+  majoration ; l'absentéisme doit l'être pour la même raison — il impose des têtes, pas un
+  pourcentage de confort.</p>
+  <p class="note">Trois autres manques du plan A, tous repris du plan B : ses jalons n'ont
+  <b>ni critère de sortie ni décideur</b> ; il n'exige <b>aucun livrable daté d'Econocom</b> ;
+  il n'a <b>ni courbe de bascule, ni hypercare nommé, ni background check</b>. Et un défaut
+  que les deux plans partagent : <b>toutes les tâches sont portées par Salverys</b>, alors
+  qu'une transition rate presque toujours du côté du donneur d'ordre.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Décision</span>
+  <h2 class="sec">Le plan retenu — squelette A, méthode B</h2>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Modification</th><th class="sc">Origine</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="k">Phase −1 : conditions suspensives — signature conditionnée à l'autorisation écrite de M6 et au référencement fournisseur abouti</td><td class="sc">A+</td></tr>
+      <tr><td class="num">2</td><td class="k">Convertir J1-J10 en G1-G6, avec critère de sortie et décideur ; go-live impossible sans G1 → G5</td><td class="sc">B</td></tr>
+      <tr><td class="num">3</td><td class="k">Transition Pack exigé à J+10, avec clause de décalage : un jour de retard du pack = un jour de go-live</td><td class="sc">B</td></tr>
+      <tr class="hl"><td class="num">4</td><td class="k">Shrinkage 1,15 ⇒ 18 ETP recrutés, 18 facturés — et porter la formule dans PRICING §3.c</td><td class="sc">B</td></tr>
+      <tr><td class="num">5</td><td class="k">Deux courbes distinctes : vagues d'embauche et paliers de bascule du volume, négociés avec Econocom</td><td class="sc">B</td></tr>
+      <tr><td class="num">6</td><td class="k">Hypercare borné à 4 semaines, sortie formelle vers le RUN, audit SLA à J+90</td><td class="sc">B</td></tr>
+      <tr><td class="num">7</td><td class="k">Background checks avant accès aux environnements M6</td><td class="sc">B</td></tr>
+      <tr><td class="num">8</td><td class="k">Lignes de Gantt à propriétaire Econocom, distinguées visuellement, échéances opposables</td><td class="sc">—</td></tr>
+      <tr><td class="num">9</td><td class="k">Conserver intégralement : financement 60 k€, plateau sur le chemin critique, acompte de mobilisation 25 k€, paiement à 30 j, volume ferme, plafond de pénalités 5 %, réversibilité, provision de sortie, re-prospection</td><td class="sc">A</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note"><b>Deux horizons à afficher, et ne jamais communiquer le second seul.</b>
+  Interne : <b>~24 semaines</b>, en comptant la sécurisation amont. Contractuel :
+  <b>~17 semaines après bon de commande</b>, pilote à S+7, pleine capacité à S+17 — sous
+  réserve de la remise du Transition Pack dans les délais. Et avant tout engagement de date :
+  recalculer le réseau de dépendances. Les 10 à 20 % de marge de sécurité proposés par le
+  plan B sont à retenir comme <b>marge de délai</b>, jamais comme sur-effectif payé.</p>
+</section>
+
+<footer><div>Audit croisé des plans de mobilisation Econocom × M6.
+Détail complet : <b>AUDIT-PLAN-MOBILISATION-ECONOCOM-M6.md</b>. Plan A :
+<b>05-Process-Delivery/PLAN-MOBILISATION-ECONOCOM-M6.md</b> et <b>gantt-econocom-m6.html</b>.
+Règles de prix et de coûts : <b>PRICING.md</b> et <b>FINANCE-PREVISIONNEL.md</b>, qui font foi.</div></footer>
+
+</div>
+
+</body>
+</html>
