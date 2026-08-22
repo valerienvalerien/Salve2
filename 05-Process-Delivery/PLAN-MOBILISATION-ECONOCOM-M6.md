@@ -1,333 +1,405 @@
-# PLAN-MOBILISATION-ECONOCOM-M6.md — Mobilisation d'un contrat IT en marque blanche de rang 2
+# PLAN-MOBILISATION-ECONOCOM-M6.md — Plan retenu (v2)
 
-> **Scénario** : Salverys décroche un contrat de sous-traitance **helpdesk IT N1** auprès de
-> l'ESN **Econocom** (donneur d'ordre), opéré **sous la marque Econocom** pour son client
-> final **M6**. Chaîne de rang 2 : **M6 → Econocom → Salverys**.
+> **Scénario** : contrat **helpdesk IT N1** en marque blanche pour l'ESN **Econocom**, opéré
+> **sous sa marque** pour son client final **M6**. Chaîne de rang 2 : **M6 → Econocom →
+> Salverys**.
 >
-> Ce document est le **plan de mobilisation** : quoi faire, dans quel ordre, avec quelles
-> dépendances et quels jalons. Vue timeline : `gantt-econocom-m6.html`.
+> **v2 — 2026-08-22.** Remplace la v1 (dans l'historique git). Issue de
+> `AUDIT-PLAN-MOBILISATION-ECONOCOM-M6.md`, qui compare la v1 à un plan directeur type
+> transition ESN. La v2 garde la **séquence et les verrous** de la v1 et reprend la
+> **méthode de transition** du plan directeur.
 >
-> ⚠️ **Audité et complété** — voir `AUDIT-PLAN-MOBILISATION-ECONOCOM-M6.md` (comparaison avec
-> un plan directeur type transition ESN). Neuf modifications à intégrer, dont deux
-> matérielles : **le dimensionnement de ce document oublie le shrinkage** (16 ETP → **18**,
-> marge 20 % → 13 % si non facturé, audit §3.1) et les jalons J1-J10 doivent devenir des
-> **gates avec critère de sortie** (audit §3.2).
+> **Trois corrections matérielles par rapport à la v1** :
+> 1. **Dimensionnement** — la v1 oubliait le shrinkage : **16 ETP → 18**.
+> 2. **Financement** — la v1 annonçait 60 k€ sans mettre l'investissement dans la courbe de
+>    trésorerie : le besoin nu est de **85 k€**, ramené à **~28 k€** avec les trois leviers.
+> 3. **Jalons → gates** — six portes avec critère de sortie et décideur, au lieu de dix dates.
 >
-> Sources internes qui font foi et ne sont pas réécrites ici : `PRICING.md` (prix, paliers,
-> volume ferme, amplitude en ETP), `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (coûts,
-> point mort, trésorerie), `04-Closing/ONBOARDING-CLIENT.md` (phases d'onboarding),
-> `05-Process-Delivery/GOUVERNANCE-CHAINE-COMMANDEMENT.md` (canal unique, art. 8 bis),
-> `PROCESS-QA-DOUBLE-ECOUTE.md`, `01-Strategie-Offre/CONFORMITE-HDS-RGPD.md`.
+> **Quatre ajouts** : Transition Pack opposable · courbe de bascule du volume distincte de la
+> courbe d'effectif · hypercare borné · lignes de planning **à la charge d'Econocom**.
+>
+> Vue timeline : `gantt-econocom-m6.html`. Sources qui font foi et ne sont pas réécrites ici :
+> `PRICING.md`, `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`,
+> `05-Process-Delivery/GOUVERNANCE-CHAINE-COMMANDEMENT.md`, `PROCESS-QA-DOUBLE-ECOUTE.md`,
+> `04-Closing/ONBOARDING-CLIENT.md`.
 
 ---
 
-## 1. Hypothèse de dimensionnement (à valider — tout le plan en dépend)
+## 1. Dimensionnement (hypothèse à valider — tout le plan en dépend)
 
-Aucune volumétrie n'ayant été fournie, le plan est chiffré sur l'hypothèse suivante. Si elle
-bouge, **le nombre de vagues bouge, pas la séquence**.
-
-| Paramètre | Hypothèse retenue | Source de la règle |
+| Paramètre | Valeur | Règle |
 |---|---|---|
-| Métier | Helpdesk IT N1 (ITIL), utilisateurs internes M6 | `PRICING.md §3` |
 | Positions de service simultanées | **12** | hypothèse |
-| Amplitude | **8h-20h** (60 h/sem) ⇒ **×1,33 ETP par position** | `PRICING.md §3.c` |
-| **ETP facturés** | **16** | 12 × 1,33 |
-| Palier tarifaire | **9+ ETP — tarif stratégique : 1 550 €/ETP/mois** | `PRICING.md §3` |
-| **CA de régime** | **24 800 €/mois ≈ 298 k€/an** | 16 × 1 550 € |
-| Encadrement | 2 référents d'exploitation IT (1 par tranche de 8 agents) + 1 coordinateur planning | `PRICING.md §3.e` |
-| Effectif total à recruter | **19 personnes** (16 agents + 2 managers + 1 coordinateur) | — |
+| Amplitude | 8h-20h (60 h/sem) ⇒ **×1,33** | `PRICING.md §3.c` |
+| **Shrinkage** (congés 30 j/an, maladie ~3 %, formation, pauses) | **×1,15** | ~13 % d'absence, `PRICING.md §3.e` |
+| **ETP facturés** | **18** | 12 × 1,33 × 1,15 = 18,4 |
+| Palier tarifaire | **9+ ETP — 1 550 €/ETP/mois** | `PRICING.md §3` |
+| **CA de régime** | **27 900 €/mois ≈ 335 k€/an** | 18 × 1 550 € |
+| Encadrement | 2 référents d'exploitation IT + 1 coordinateur planning | 1 par métier +1 par tranche de 8, `PRICING.md §3.e` |
+| **Effectif total** | **21 personnes** | 18 + 3 |
 
-**Ordre de grandeur à garder en tête** : ce seul contrat vaut **~1,8 × le scénario ambitieux
-à M12** du prévisionnel (30 500 €/mois avec 22 agents, `FINANCE §5`) — et l'effectif actuel
-est de **1 salariée**. Ce n'est pas un onboarding client, c'est un **changement d'échelle de
-l'entreprise**.
+> **Formule à porter dans `PRICING.md §3.c`** :
+> `ETP facturés = positions × coefficient d'amplitude × coefficient de shrinkage (1,15)`.
+> Le §3.c traite déjà l'amplitude en ETP plutôt qu'en majoration ; l'absentéisme relève de la
+> même logique — il impose des têtes, pas un pourcentage de confort. La v1, qui s'arrêtait à
+> l'amplitude, sortait une marge de 20 % qui n'existait qu'en supposant zéro absence.
+
+**Ordre de grandeur** : ce seul contrat vaut **~2× le scénario ambitieux à M12** du
+prévisionnel, pour un effectif actuel d'**une salariée**. Ce n'est pas un onboarding client,
+c'est un changement d'échelle de l'entreprise.
 
 ### Ce que ça déplace dans la doctrine maison
 
 | Règle habituelle | Ce que ce contrat en fait |
 |---|---|
-| Séquence **Prospection → Équipe → Infrastructure** (`CLAUDE.md`) | La prospection est faite. **Équipe et Infrastructure passent en parallèle** — un grand compte n'homologue pas 16 agents en télétravail sans plateau contrôlé. |
-| Dépôt d'activation 900 €/position **plafonné à 2 700 €** (`PRICING.md §3.a`) | Plafond **sans rapport avec la taille** : 2 700 € contre ~36 k€ d'investissement. À remplacer par un **acompte de mobilisation** (§5). |
-| « Opérationnel en 3 à 4 semaines » (`PRICING.md §3.c`) | Vrai **par vague, après embauche**. Faux pour 16 ETP : la promesse tenable est **pilote à S13, pleine capacité à S23**. |
-| Mise en service **offerte** | Reste offerte en tant que ligne de devis. L'**investissement plateau** (~36 k€), lui, se finance — il n'est pas dans le prix du palier. |
+| Séquence **Prospection → Équipe → Infrastructure** (`CLAUDE.md`) | La prospection est faite. **Équipe et Infrastructure en parallèle** — un grand compte n'homologue pas 18 agents sans plateau contrôlé. |
+| Dépôt d'activation 900 €/position, **plafond 2 700 €** (`PRICING.md §3.a`) | Plafond calibré pour 3 positions. Remplacé par un **acompte de mobilisation de 50 k€** (§6). |
+| « Opérationnel en 3 à 4 semaines » (`PRICING.md §3.c`) | Vrai **par vague, après embauche**. Faux pour 18 ETP : **go-live S16, 100 % du volume S26**. |
+| Mise en service **offerte** | Reste offerte comme ligne de devis. L'**investissement plateau** se finance — il n'est pas dans le prix du palier. |
 
 ---
 
-## 2. Les quatre verrous amont — rien ne démarre sans eux
+## 2. Les six gates
 
-L'ordre ci-dessous n'est pas une préférence, c'est une chaîne de dépendances. Chaque verrou
-sauté se paie plus tard, plus cher.
+Un jalon est une date, et une date se rate en silence. Un gate est une **question à laquelle
+il faut répondre oui**, avec un décideur. **Le go-live est impossible tant que G1 → G5 ne sont
+pas franchis.**
 
-**Verrou 1 — L'autorisation de sous-traitance de rang 2 (juridique, bloquant absolu).**
-Le contrat Econocom ↔ M6 prévoit-il une **autorisation générale** de sous-traitance (une
-information préalable suffit) ou un **accord spécifique préalable** (Econocom doit l'obtenir
-avant notre démarrage) ? Existe-t-il une **clause de localisation UE/EEE** ? La question est
-déjà au cadrage MB standard (`ONBOARDING-CLIENT.md` phase 0) ; ici elle est vitale, parce
-qu'un refus de M6 six semaines après la signature laisse 19 CDI sur les bras.
-**Exiger l'écrit d'Econocom. Aucun recrutement avant.**
+| Gate | Quand | Décideur | Ce qu'il faut pouvoir affirmer | Ce qu'il ouvre |
+|---|---|---|---|---|
+| **G1 — Contract Ready** | fin S6 · 02/10 | Direction | Autorisation **écrite** de M6 (sous-traitance rang 2 + traitement hors UE) · référencement fournisseur abouti · contrat, DPA et CCT signés · bon de commande émis · **acompte encaissé** | Toute embauche et tout engagement de dépense |
+| **G2 — Scope Ready** | fin S9 · 23/10 | Direction + Econocom | **Transition Pack** reçu et complet · périmètre et exclusions figés · SLA, KPI et plafond de pénalités actés · dimensionnement validé · **plan de bascule du volume convenu par écrit** | La formation métier et la suite du build |
+| **G3 — Production Ready** | fin S12 · 13/11 | Direction + sécurité Econocom | Plateau homologué · réseau et énergie redondés et **testés** · postes et accès nominatifs opérationnels · ITSM et téléphonie recettés · **PCA testé** · financement disponible | Le pilote |
+| **G4 — People Ready** | fin S12 · 13/11 | Référent d'exploitation | Vague 1 **certifiée** (go/no-go individuel) · background checks passés · encadrement en poste · dispositif QA armé | Le pilote |
+| **G5 — Pilot Accepted** | fin S15 · 04/12 | Econocom | KPI du pilote tenus sur 3 semaines · écarts corrigés · **PV d'acceptation signé** | Le go-live et l'opposabilité des SLA |
+| **G6 — BAU Ready** | S30 · 15/03 | Direction + Econocom | 100 % du volume basculé · SLA tenus 4 semaines consécutives hors hypercare · audit SLA passé · plan de réversibilité remis · comitologie en régime | La clôture du mode projet |
 
-**Verrou 2 — Le financement du BFR.** 19 salaires courent **~1 à 2 mois avant** la première
-facture, encaissée 30 à 60 jours plus tard (`FINANCE §5/§6`). Le creux estimé dépasse
-largement les **30 k€** provisionnés au prévisionnel (§5 ci-dessous). Un contrat de cette
-taille sans ligne de financement est **plus dangereux que pas de contrat du tout** : le burn
-d'attente est de 755 €/mois, celui d'une mobilisation ratée se compte en dizaines de k€.
-
-**Verrou 3 — Le référencement fournisseur et la due diligence sécurité.** Chez un grand
-compte, aucun bon de commande n'est émis avant le passage aux achats (pièces légales,
-assurances, KYC) et à la sécurité (questionnaire, PSSI, PCA, RGPD). Compter **4 à 6
-semaines**, à lancer **en S1**, pas après la poignée de main. Une entité malgache ne peut pas
-fournir d'attestation de vigilance URSSAF : préparer les **équivalents locaux** avant qu'on
-les demande.
-
-**Verrou 4 — Les termes de sortie.** 16 CDI en face d'un contrat qui dépend d'un contrat
-(Econocom ↔ M6) sur lequel on n'a aucune prise. Préavis, indemnité de rupture et **volume
-ferme facturable** (`PRICING.md §3`) ne sont pas du confort de marge — ils couvrent un **coût
-de sortie** réel.
+> **G3 et G4 tombent la même semaine.** Deux chaînes critiques — le **plateau** et le
+> **recrutement** — convergent en S12 sans marge. C'est contre-intuitif et c'est là que les
+> plans de ce type déraillent : on surveille le recrutement et on découvre que le bail n'est
+> pas signé.
 
 ---
 
 ## 3. Plan par étapes
 
 Semaine 1 = **lundi 24/08/2026**. Responsables : **DIR** direction · **EXP** référent
-d'exploitation IT · **RH** recrutement · **FIN** finance/administratif · **COM** Vololona.
+d'exploitation IT · **RH** recrutement · **FIN** finance/administratif · **INF**
+infrastructure · **COM** Vololona · **ECO** *Econocom — tâche à la charge du donneur d'ordre,
+avec échéance opposable*.
 
-### Phase 0 — Verrouiller le deal · S1 → S6 · *Juridique & contrat*
+### Phase 1 — Conditions suspensives & contrat · S1 → S6 · *Juridique*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 0.1 | Qualifier la chaîne de sous-traitance : autorisation M6 (générale/spécifique), clause de localisation UE/EEE | S1-S2 | DIR | — | Réponse écrite d'Econocom **(bloquant)** |
-| 0.2 | Dossier de référencement fournisseur : RCS malgache, statuts, attestations CNaPS/fiscale, RIB, KYC, références | S1-S4 | FIN | — | Dossier déposé (plateforme achats) |
-| 0.3 | RC professionnelle : vérifier/étendre la couverture (activité en France, montant exigé par Econocom) | S2-S4 | FIN | 0.2 | Attestation d'assurance conforme |
-| 0.4 | Questionnaire sécurité Econocom/M6 : PSSI, PCA/PRA, contrôle d'accès, journalisation, zéro download | S2-S5 | DIR | 0.2 | Dossier sécurité — base : `04-Closing/DOSSIER-AVANT-VENTE/` |
-| 0.5 | Volet RGPD : DPA art. 28 en cascade + clauses contractuelles types (transfert hors UE) + analyse de transfert | S2-S5 | DIR + conseil | 0.1 | DPA + CCT signés |
-| 0.6 | Négociation financière : palier 9+ tenu à 1 550 €, **acompte de mobilisation**, paiement 30 j, volume ferme 16 ETP, indexation annuelle | S3-S5 | DIR | 0.1 | Grille et conditions actées |
-| 0.7 | Négociation des termes de sortie : préavis 6 mois, indemnité couvrant le coût de sortie CDI, **plafond de pénalités 5 %**, exclusions, réversibilité | S3-S5 | DIR | 0.1 | Clauses actées |
-| 0.8 | Contrat-cadre + annexes (périmètre, SLA, prix, sécurité, réversibilité) et **bon de commande** | S5-S6 | DIR | 0.5-0.7 | Contrat signé + BdC |
+| 1.1 | Qualifier la chaîne rang 2 : autorisation M6 (générale/spécifique), clause de localisation UE/EEE | S1-S2 | DIR | — | Réponse **écrite** d'Econocom **(condition suspensive)** |
+| 1.2 | Référencement fournisseur : RCS malgache, statuts, attestations CNaPS/fiscale, RIB, KYC | S1-S4 | FIN | — | Dossier déposé (plateforme achats) |
+| 1.3 | RC professionnelle : couverture France, montant exigé | S2-S4 | FIN | 1.2 | Attestation conforme |
+| 1.4 | Dossier sécurité : PSSI, PCA/PRA, contrôle d'accès, journalisation, zéro download | S2-S5 | DIR | 1.2 | Base : `04-Closing/DOSSIER-AVANT-VENTE/` |
+| 1.5 | DPA art. 28 en cascade + CCT hors UE + analyse de transfert | S2-S5 | DIR + conseil | 1.1 | DPA + CCT signés |
+| 1.6 | Négociation économique : 1 550 €/ETP, **18 ETP fermes**, acompte 2 mois, paiement 30 j, facturation à échoir, **postes fournis ou loués par Econocom** | S3-S5 | DIR | 1.1 | Conditions actées |
+| 1.7 | Termes de sortie : préavis 6 mois, indemnité, **plafond de pénalités 5 %**, exclusions, réversibilité | S3-S5 | DIR | 1.1 | Clauses actées |
+| 1.8 | Contrat-cadre + annexes + bon de commande | S5-S6 | DIR | 1.5 | Contrat signé + BdC |
 
-> ⬥ **J1 — Bon de commande signé et acompte encaissé — fin S6 (02/10).** C'est le seul
-> événement qui autorise à embaucher.
+**◆ G1 — CONTRACT READY — fin S6.**
 
-### Phase 1 — Sécuriser le financement · S1 → S8 · *Finance*
+### Phase 2 — Financement · S1 → S8 · *Finance*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 1.1 | Modèle de trésorerie vague par vague (salaires vs facturation vs encaissement) | S1-S2 | FIN | — | Simulation (base `tresorerie-salverys.html`) |
-| 1.2 | Mobiliser la ligne de financement : fonds propres, prêt, ou apport | S2-S8 | DIR | 1.1 | **60 k€ disponibles** |
-| 1.3 | Affacturage / escompte sur créances Econocom (créance grand compte = finançable) | S5-S8 | FIN | 0.8 | Convention signée |
-| 1.4 | Provision « coût de sortie » (préavis + indemnités 19 CDI), dotée dès la 1re facture | S14 → continu | FIN | 9.3 | Provision au bilan |
+| 2.1 | Modèle de trésorerie par palier d'effectif | S1-S2 | FIN | — | Simulation (base `tresorerie-salverys.html`) |
+| 2.2 | Mobiliser la ligne de financement | S2-S8 | DIR | 2.1 | **50 k€ disponibles** (§5) |
+| 2.3 | Affacturage / escompte sur créance Econocom | S5-S8 | FIN | 1.8 | Convention signée |
+| 2.4 | Provision « coût de sortie » (préavis + indemnités, 21 CDI) | S17 → | FIN | 9.3 | Provision au bilan |
 
-> ⬥ **J2 — Financement disponible — fin S8 (16/10).**
+**◇ F — Financement disponible — fin S8.** Autorise l'investissement plateau.
 
-### Phase 2 — Cadrage opérationnel avec Econocom · S5 → S9 · *Delivery*
+### Phase 3 — Transition Pack & cadrage · S5 → S9 · *Delivery*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 2.1 | Atelier périmètre : catalogue N1, **exclusions écrites**, volumétrie, saisonnalité M6 | S5-S6 | DIR | 0.6 | Annexe périmètre |
-| 2.2 | Dimensionnement : 12 positions 8h-20h ⇒ 16 ETP, plan de rotation, plan de charge par vague | S6 | DIR | 2.1 | Plan de charge |
-| 2.3 | SLA & KPI opposables : délai de prise en charge, résolution N1, décroché, backlog — seuils **figés** | S6-S7 | DIR | 2.1 | Annexe SLA + plafond de pénalités |
-| 2.4 | Matrice d'escalade N1 Salverys → N2 Econocom → M6 + **règle du canal unique** | S7 | EXP | 2.3 | Procédure d'escalade (`GOUVERNANCE §2`) |
-| 2.5 | Accès ITSM (ServiceNow / EasyVista / Ivanti) : comptes **nominatifs**, MFA, rôles, cloisonnement des données M6 | S7-S9 | EXP | 0.4 | Accès ouverts et testés |
-| 2.6 | Runbook, arbre de qualification, base de connaissance (dérivés de la KB Econocom/M6) | S7-S9 | EXP | 2.1, 2.5 | Runbook v1 |
-| 2.7 | Armement QA : grille de scoring, planning de double écoute, gabarit de reporting hebdo | S8-S9 | EXP | 2.6 | Dispositif QA armé |
+| **3.1** | **Remise du Transition Pack complet** (contenu au §4) | S5-S7 | **ECO** | G1 | Pack reçu — **clause de décalage attachée** |
+| 3.2 | Atelier périmètre : catalogue N1, **exclusions écrites**, volumétrie, saisonnalité M6 | S6-S7 | DIR | 3.1 | Annexe périmètre |
+| 3.3 | Dimensionnement : 12 positions × 1,33 × 1,15 = 18 ETP, plan de rotation | S7 | DIR | 3.2 | Plan de charge |
+| 3.4 | SLA & KPI opposables, seuils **figés**, plafond de pénalités | S7-S8 | DIR | 3.2 | Annexe SLA |
+| 3.5 | **Plan de bascule du volume** : paliers, dates, préavis de changement | S7-S8 | DIR + ECO | 3.4 | Annexe ramp-up |
+| 3.6 | Matrice d'escalade N1 → N2 Econocom → M6 + **canal unique** | S8 | EXP | 3.4 | Procédure (`GOUVERNANCE §2`) |
+| **3.7** | **Ouverture des accès ITSM nominatifs + MFA** | S8-S9 | **ECO** | 1.4 | Accès ouverts et testés |
+| 3.8 | Runbook, arbre de qualification, base de connaissance | S8-S9 | EXP | 3.7 | Runbook v1 |
+| 3.9 | Armement QA : scoring, double écoute, gabarit de reporting | S9 | EXP | 3.8 | Dispositif QA armé |
 
-> ⬥ **J3 — Dossier d'exploitation validé par Econocom — fin S9 (23/10).**
+**◆ G2 — SCOPE READY — fin S9.**
 
-### Phase 3 — Infrastructure & sécurité · S5 → S12 · *Infra*
+### Phase 4 — Build : plateau, infrastructure, sécurité · S6 → S12 · *Infra*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 3.1 | Plateau dédié Antananarivo (~150 m²) : bail, cloisonnement, contrôle d'accès badge, salle de formation | S5-S9 | DIR | 0.6 | Bail signé + aménagement |
-| 3.2 | Double liaison internet (2 opérateurs) + secours 4G + QoS voix | S7-S10 | INFRA | 3.1 | Liaisons recettées |
-| 3.3 | Énergie : onduleurs + groupe électrogène (coupures réseau) | S7-S10 | INFRA | 3.1 | Autonomie testée |
-| 3.4 | 20 postes masterisés (disque chiffré, EDR, **zéro download**) + casques | S8-S11 | INFRA | 1.2 | Parc livré et inventorié |
-| 3.5 | VPN nominatif + MFA + journalisation des accès | S9-S11 | INFRA | 3.4, 2.5 | Accès conformes au dossier sécurité |
-| 3.6 | Téléphonie / CTI sous marque Econocom : SDA, routage, supervision temps réel | S9-S11 | INFRA | 3.2 | Chaîne voix recettée |
-| 3.7 | **PCA testé** : bascule plateau → kits d'autonomie, test réel documenté | S11-S12 | EXP | 3.2-3.6 | PV de test |
-| 3.8 | Audit à blanc + visite d'homologation Econocom/M6 sur site | S12 | DIR | 3.7 | Rapport d'homologation |
+| 4.1 | Plateau dédié Antananarivo (~170 m²) : bail, cloisonnement, contrôle d'accès badge, salle de formation | S6-S9 | DIR | 1.6 | Bail signé + aménagement |
+| 4.2 | Double liaison internet (2 opérateurs) + secours 4G + QoS voix | S8-S10 | INF | 4.1 | Liaisons recettées |
+| 4.3 | Énergie : onduleurs + groupe électrogène | S8-S10 | INF | 4.1 | Autonomie testée |
+| 4.4 | 22 postes masterisés (chiffrés, EDR, zéro download) + casques — **loués via Econocom** | S9-S11 | INF | F | Parc livré et inventorié |
+| 4.5 | VPN nominatif + MFA + journalisation | S10-S11 | INF | 4.4 | Accès conformes au dossier sécurité |
+| 4.6 | Téléphonie / CTI sous marque Econocom : SDA, routage, supervision | S10-S11 | INF | 4.2 | Chaîne voix recettée |
+| 4.7 | **PCA testé** : bascule plateau → kits d'autonomie, test réel documenté | S11-S12 | EXP | 4.6 | PV de test |
+| **4.8** | **Audit et visite d'homologation sur site** | S12 | **ECO** | 4.7 | Rapport d'homologation |
 
-> ⬥ **J4 — Plateau homologué — fin S12 (13/11).** ⚠️ **Zéro marge** : ce jalon et J6
-> (agents certifiés) tombent la même semaine et conditionnent tous deux le go-live. Le
-> chemin critique passe **autant par le plateau que par le recrutement** — c'est
-> contre-intuitif et c'est là que les plans de ce type déraillent.
+**◆ G3 — PRODUCTION READY — fin S12.**
 
-### Phase 4 — Recrutement & encadrement, vague 1 · S3 → S9 · *Équipe*
+### Phase 5 — Staffing & certification, vague 1 · S3 → S12 · *Équipe*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 4.1 | Sourcing du vivier — **sans engagement, coût ~0** (aucune promesse envoyée) | S3-S6 | RH | — | Vivier 60+ candidats (`07-Recrutement-Vivier/`) |
-| 4.2 | Recruter le **référent d'exploitation IT n°1** — première embauche, avant les agents | S3-S6 | DIR | 4.1 | Manager en poste **S6** |
-| 4.3 | Campagne V1 : 6 agents N1 (mini-test, entretien, test technique + français) | S6-S8 | RH + EXP | **J1** | 6 candidats retenus + 2 en réserve |
-| 4.4 | Promesses d'embauche, CDI, clause de confidentialité (le DPA individuel n'a plus lieu d'être en salariat, `FINANCE §1.b`) | S8-S9 | FIN | 4.3 | 6 CDI signés |
+| 5.1 | Sourcing du vivier — **sans engagement, coût ~0** | S3-S6 | RH | — | Vivier 60+ (`07-Recrutement-Vivier/`) |
+| 5.2 | Recruter le **référent d'exploitation IT n°1** — avant les agents | S3-S6 | DIR | 5.1 | En poste **S6** |
+| 5.3 | Campagne V1 : 6 agents N1 **+ 2 en réserve** | S6-S8 | RH | **G1** | Candidats retenus |
+| 5.4 | CDI, clause de confidentialité, **background checks** | S8-S9 | FIN | 5.3 | 6 CDI signés, checks passés |
+| 5.5 | Formation socle : marque blanche Econocom, RGPD, sécurité M6 | S9-S10 | EXP | 5.4 | Attestations |
+| 5.6 | Formation métier : ITSM, catalogue, runbook, escalade | S10-S11 | EXP | 3.8 | Agents opérationnels sur l'outil |
+| 5.7 | Simulation, double écoute, scoring à blanc | S11-S12 | EXP | 5.6 | Scores QA ≥ seuil |
+| 5.8 | **Certification individuelle** — go/no-go par agent | S12 | EXP | 5.7 | PV de certification |
 
-> ⬥ **J5 — Vague 1 embauchée — fin S9 (23/10).** À partir d'ici, **les salaires courent**.
-
-### Phase 5 — Formation & certification, vague 1 · S9 → S12 · *Formation*
-
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
-|---|---|---|---|---|---|
-| 5.1 | Socle : posture marque blanche Econocom, RGPD, sécurité M6, confidentialité | S9-S10 | EXP | J5 | Attestations signées |
-| 5.2 | Métier : ITSM, catalogue, runbook, arbre de qualification, escalade | S10-S11 | EXP | 2.6, 2.5 | Agents opérationnels sur l'outil |
-| 5.3 | Simulation : tickets et appels fictifs, double écoute, scoring à blanc | S11-S12 | EXP | 5.2, 3.6 | Scores QA ≥ seuil |
-| 5.4 | Certification individuelle — **go/no-go par agent**, partagée avec Econocom | S12 | EXP | 5.3 | PV de certification |
-
-> ⬥ **J6 — 6 agents certifiés — fin S12 (13/11).**
+**◆ G4 — PEOPLE READY — fin S12.** À partir de 5.4, **les salaires courent**.
 
 ### Phase 6 — Pilote à périmètre restreint · S13 → S15 · *Delivery*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 6.1 | **Go-live pilote** : un périmètre M6 délimité, 200-400 tickets, 6 positions | S13 | EXP | J4 + J6 | Premier ticket traité sous marque Econocom |
-| 6.2 | Double écoute renforcée + point quotidien J1→J5 puis hebdo | S13-S14 | EXP | 6.1 | Comptes rendus quotidiens |
-| 6.3 | Ajustements : runbook, arbre de qualification, seuils, plan de charge | S14-S15 | EXP | 6.2 | Runbook v2 |
-| 6.4 | Bilan pilote + décision de bascule **conjointe** Econocom/Salverys | S15 | DIR | 6.3 | PV de bascule |
+| 6.1 | **Pilote** : un périmètre M6, 200-400 tickets, 6 positions — **facturé** (`PRICING §3.b`) | S13-S15 | EXP | G3 + G4 | Premier ticket sous marque Econocom |
+| 6.2 | Monitoring quotidien + double écoute renforcée | S13-S15 | EXP | 6.1 | Comptes rendus quotidiens |
+| 6.3 | Correction des écarts : runbook, seuils, plan de charge | S14-S15 | EXP | 6.2 | Runbook v2 |
+| **6.4** | **Recette et PV d'acceptation** | S15 | **ECO** | 6.3 | PV signé |
 
-> ⬥ **J7 — Go-live pilote — S13 (16/11).**  ⬥ **J8 — Bascule en régime, SLA opposables — fin S15 (04/12).**
+**◆ G5 — PILOT ACCEPTED — fin S15.**
 
-### Phase 7 — Vague 2 : +6 ETP et manager n°2 · S10 → S16 · *Équipe*
+### Phase 7 — Staffing & certification, vagues 2 et 3 · S10 → S21 · *Équipe*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 7.1 | Campagne V2 (lancée pendant la formation V1, pas après) | S10-S12 | RH | 4.1 | 6 candidats retenus |
-| 7.2 | Embauches V2 + **référent d'exploitation n°2** (seuil de 8 agents, `PRICING §3.e`) | S13 | FIN | 7.1, J1 | 7 CDI signés |
-| 7.3 | Formation V2 — socle, métier, simulation, **tutorat par la V1** | S13-S15 | EXP | 7.2 | Certification V2 |
-| 7.4 | Go-live V2 — **calé avant le gel de changement de fin d'année** | S16 | EXP | 7.3, J8 | 12 ETP en production |
+| 7.1 | Campagne V2 — lancée **pendant** la formation V1 | S10-S12 | RH | 5.1 | 6 candidats + réserve |
+| 7.2 | Embauches V2 + **référent d'exploitation n°2** (seuil de 8 agents) | S13 | FIN | 7.1 | 7 CDI signés |
+| 7.3 | Formation et certification V2 — **tutorat par la V1** | S13-S15 | EXP | 7.2 | 12 agents certifiés à S16 |
+| 7.4 | Campagne V3 | S14-S17 | RH | 5.1 | 6 candidats + réserve |
+| 7.5 | Embauches V3 + coordinateur planning | S18 | FIN | 7.4 | 7 CDI signés |
+| 7.6 | Formation et certification V3 — **conduite pendant le gel de changement** | S19-S21 | EXP | 7.5 | 18 agents certifiés à S22 |
 
-> ⬥ **J9 — 12 ETP en production — S16 (07/12).**
+### Phase 8 — Go-live, ramp-up et hypercare · S16 → S26 · *Delivery*
 
-### Phase 8 — Vague 3 : +4 ETP et coordinateur planning · S15 → S23 · *Équipe*
-
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 8.1 | Campagne V3 | S15-S18 | RH | 4.1 | 4 candidats retenus |
-| 8.2 | Embauches V3 + coordinateur planning / superviseur de plateau | S19 | FIN | 8.1 | 5 CDI signés |
-| 8.3 | Formation V3 — **conduite pendant le gel de changement**, sans impact production | S20-S22 | EXP | 8.2 | Certification V3 |
-| 8.4 | Go-live V3 | S23 | EXP | 8.3 | **16 ETP** |
+| 8.1 | **GO LIVE** : bascule officielle, SLA opposables, **palier 25 %** du volume | S16 | EXP | G5 | Mise en service |
+| 8.2 | **Hypercare** : supervision renforcée, point quotidien, **sortie formelle** vers le RUN | S16-S20 | EXP | 8.1 | PV de sortie d'hypercare |
+| 8.3 | *Gel de changement M6 — aucun palier de volume possible* | S17-S19 | ECO | — | contrainte client |
+| 8.4 | Palier **50 %** du volume | S20 | EXP + ECO | 8.2 | — |
+| 8.5 | Palier **75 %** du volume — exige les 18 ETP certifiés | S23 | EXP + ECO | 7.6 | — |
+| 8.6 | Palier **100 %** du volume | S26 | EXP + ECO | 8.5 | Production nominale |
 
-> ⬥ **J10 — Pleine capacité, 16 ETP facturés — S23 (25/01/2027).**
+**◇ GL — Go-live — S16 · 07/12.**
 
-### Phase 9 — Régime, pilotage et couverture du risque · S13 → continu · *Pilotage*
+### Phase 9 — Régime, pilotage et couverture du risque · S13 → S30 · *Pilotage*
 
-| N° | Tâche | Sem. | Resp. | Dépend de | Livrable |
+| N° | Tâche | Sem. | Resp. | Ant. | Livrable |
 |---|---|---|---|---|---|
-| 9.1 | Reporting hebdomadaire Econocom + revue de service mensuelle écrite (incluse partout, `PRICING §3.d`) | S13 → | EXP | J7 | Rapports |
-| 9.2 | QA en régime : double écoute, scoring, plans de coaching individuels | S13 → | EXP | 2.7 | Scores mensuels |
-| 9.3 | Facturation mensuelle, imputation de l'acompte, suivi des encaissements et relances | S14 → | FIN | J7 | Factures + échéancier |
-| 9.4 | Plan de réversibilité documenté et tenu à jour (exigence grand compte) | S16-S18 | DIR | J8 | Plan de réversibilité v1 |
-| 9.5 | **Relancer la prospection MB** — objectif : un 2e donneur d'ordre pour casser la concentration | S17 → | COM | — | Pipeline actif |
-| 9.6 | Revue trimestrielle de contrat : volumes, SLA, indexation, extension de périmètre | S24 | DIR | J10 | PV de revue |
+| 9.1 | Reporting hebdomadaire + revue de service mensuelle (`PRICING §3.d`) | S13-S30 | EXP | 6.1 | Rapports |
+| 9.2 | QA en régime : double écoute, scoring, coaching | S13-S30 | EXP | 3.9 | Scores mensuels |
+| 9.3 | **Facturation par palier d'effectif certifié** + imputation de l'acompte | S13-S30 | FIN | 6.1 | Factures + échéancier |
+| 9.4 | Plan de réversibilité documenté et remis | S18-S21 | DIR | G5 | Plan v1 |
+| 9.5 | **Relance de la prospection MB** — viser un 2e donneur d'ordre | S17-S30 | COM | — | Pipeline actif |
+| 9.6 | Audit SLA à J+90 du go-live | S28-S29 | DIR | 8.6 | Rapport d'audit |
+| 9.7 | Capacity plan v2 et revue de contrat | S29-S30 | DIR | 9.6 | PV de revue |
+
+**◆ G6 — BAU READY — S30 · 15/03/2027.**
+
+**Chemin critique** : 1.1 → 1.5 → 1.8 → **G1** → 5.3 → 5.4 → 5.6 → 5.7 → 5.8 → **G4** →
+6.1 → 6.4 → **G5** → 8.1 → 8.4 → 8.5 → 8.6 → **G6**.
+**Chaîne critique parallèle** : 4.1 → 4.2 → 4.6 → 4.7 → 4.8 → **G3** — même échéance, aucune
+marge.
+**Chaîne critique côté Econocom** : 3.1 → 3.7 → 3.8 → 5.6. Un retard sur ces trois lignes
+décale le go-live d'autant — d'où la clause de décalage (§4).
 
 ---
 
-## 4. Jalons — vue synthétique
+## 4. Le Transition Pack — à exiger d'Econocom
 
-| Jalon | Date | Ce qu'il conditionne |
-|---|---|---|
-| **J1** Bon de commande signé + acompte encaissé | fin S6 — 02/10/2026 | Autorise **toute** embauche |
-| **J2** Financement disponible (60 k€) | fin S8 — 16/10/2026 | Autorise l'investissement plateau |
-| **J3** Dossier d'exploitation validé | fin S9 — 23/10/2026 | Autorise la formation métier |
-| **J4** Plateau homologué par Econocom | fin S12 — 13/11/2026 | Autorise le go-live |
-| **J5** Vague 1 embauchée | fin S9 — 23/10/2026 | Démarrage des salaires |
-| **J6** Vague 1 certifiée | fin S12 — 13/11/2026 | Autorise le go-live |
-| **J7** Go-live pilote | S13 — 16/11/2026 | Premier ticket sous marque Econocom |
-| **J8** Bascule en régime, SLA opposables | fin S15 — 04/12/2026 | Déclenche les pénalités et la facturation pleine |
-| **J9** 12 ETP en production | S16 — 07/12/2026 | Avant le gel de changement M6 |
-| **J10** Pleine capacité 16 ETP | S23 — 25/01/2027 | CA de régime 24 800 €/mois |
+Livrable unique, daté, **opposable**, dû à **S7** (soit J+10 après le bon de commande).
+Deux fonctions au-delà de la commodité : c'est un **filtre d'intention** — un donneur d'ordre
+incapable de le produire en deux semaines n'est pas prêt à sous-traiter — et c'est la base de
+la **clause de décalage**.
 
-**Chemin critique** : 0.1 → 0.5 → 0.8 (**J1**) → 4.3 → 4.4 (**J5**) → 5.2 → 5.3 → 5.4
-(**J6**) → 6.1 (**J7**) → 6.4 (**J8**) → 7.4 → 8.4 (**J10**).
-**Chaîne critique parallèle** : 3.1 → 3.2 → 3.6 → 3.7 → 3.8 (**J4**) — même échéance, aucune
-marge. Un retard de bail ou de liaison décale le go-live autant qu'un retard de recrutement.
+| Domaine | À obtenir |
+|---|---|
+| Volumétrie | Tickets/jour, appels, mails, saisonnalité, historique 12 mois |
+| SLA | Prise en charge, résolution, escalade, mesure, exclusions |
+| Catalogue | Types de demandes prises en charge et **exclues** |
+| Priorités | Définition et critères P1 / P2 / P3 / P4 |
+| Escalade | Qui appeler, dans quel cas, sous quel délai |
+| Outils | ITSM, téléphonie, monitoring, prise en main à distance |
+| Accès | VPN, SSO, MFA, comptes nominatifs, procédure de création/révocation |
+| Documentation | Base de connaissance, procédures, scripts existants |
+| Sécurité | Politiques M6 et Econocom, exigences de contrôle, droit d'audit |
+| Reporting | KPI attendus, format, fréquence, destinataires |
+| Qualité | Dispositif QA, scoring, audits, fréquence |
+| Planning | Horaires, jours fériés, astreintes, **gel de changement** |
+| Organisation | N1 / N2 / N3, managers, interfaces |
+| Contacts | Nominatifs M6 / Econocom / Salverys, avec suppléants |
+| Formation | Parcours, examens, habilitations exigées |
+| Continuité | Attentes PCA / PRA, scénarios de crise |
+
+> **Clause de décalage** : tout jour de retard sur une ligne à la charge d'Econocom (3.1, 3.7,
+> 4.8, 6.4) décale le go-live d'un jour, **sans pénalité pour Salverys**. Sans cette clause,
+> le retard du donneur d'ordre devient une pénalité pour le sous-traitant.
 
 ---
 
-## 5. Chiffrage — ordres de grandeur
+## 5. Les trois courbes
 
-### Économie de régime (à 16 ETP)
+L'effectif, la facturation et le volume **ne montent pas ensemble**. La v1 ne connaissait que
+les vagues d'embauche ; le plan directeur ESN ne connaissait que le ramp-up de charge.
+
+| | S13-S15 | S16-S19 | S20-S22 | S23-S25 | S26 → |
+|---|---|---|---|---|---|
+| **Effectif certifié** | 6 agents | 12 agents | 12 → **18** (S22) | 18 | 18 + 3 encadrants |
+| **ETP facturés** | 6 · 9 300 € | 12 · 18 600 € | 18 · 27 900 € (S22) | 18 · 27 900 € | 18 · 27 900 € |
+| **Volume basculé** | pilote (200-400 tickets) | **25 %** | **50 %** (S20) | **75 %** (S23) | **100 %** (S26) |
+
+> **La règle : la facturation suit la courbe d'effectif certifié, pas celle du volume
+> basculé.** Sinon Salverys finance la montée en charge d'Econocom — 18 ETP payés dès S22 pour
+> un volume qui n'atteint 100 % qu'en S26. C'est exactement ce que couvre la clause de
+> **volume ferme facturable** (`PRICING.md §3`), et c'est le point de négociation le plus
+> rentable du dossier.
+
+Le palier 25 % est calé en **S16, avant le gel de changement** de fin d'année ; aucun palier
+n'est possible entre S17 et S19. La formation de la vague 3 est conduite **pendant** le gel,
+sans impact production.
+
+---
+
+## 6. Chiffrage
+
+### Économie de régime (18 ETP)
 
 | Poste | Montant mensuel |
 |---|---|
-| **CA** — 16 ETP × 1 550 € | **+24 800 €** |
-| Coût variable des agents placés — 16 × 843 € (`FINANCE §2.a`) | −13 490 € |
-| Encadrement — 2 managers + 1 coordinateur × 736 € | −2 210 € |
+| **CA** — 18 ETP × 1 550 € | **+27 900 €** |
+| Coût variable des agents placés — 18 × 843 € (`FINANCE §2.a`) | −15 170 € |
+| Encadrement — 3 × 736 € | −2 210 € |
 | Socle fixe existant (`FINANCE §2`) | −2 110 € |
-| **Plateau, liaisons, énergie** — poste absent du modèle actuel | −2 000 € |
-| **Marge nette estimée** | **≈ +5 000 €/mois (≈ 20 %)** |
+| Plateau, liaisons, énergie — poste absent du modèle actuel | −2 000 € |
+| **Marge nette** | **≈ +6 400 €/mois (23 %)** |
 
-> ⚠️ **Le palier 9+ n'intègre pas le coût d'un plateau sécurisé.** À 1 550 €/ETP, un grand
-> compte exigeant plateau cloisonné, redondance et homologation coûte ~125 €/ETP/mois de
-> plus que le modèle standard. **Ne jamais descendre sous 1 550 €** sur ce dossier, et faire
-> financer les exigences spécifiques (amplitude, astreinte) en **ETP supplémentaires**, pas
-> en pourcentage de majoration (`PRICING.md §3.c`).
+> **Le palier intermédiaire est le moment tendu** : à 12 ETP facturés (S16 → S21), la marge
+> tombe à **≈ 2 900 €/mois (16 %)** — le socle fixe et le plateau ne se divisent pas.
+>
+> ⚠️ Le palier 9+ **n'intègre pas** le coût d'un plateau sécurisé : ~110 €/ETP/mois de plus
+> que le modèle standard. **Ne jamais descendre sous 1 550 €** sur ce dossier, et chiffrer
+> toute exigence d'amplitude en **ETP supplémentaires**, jamais en pourcentage de majoration
+> (`PRICING.md §3.c`).
 
-### Investissement de démarrage (non récurrent)
+### Investissement de démarrage
 
-| Poste | Estimation |
-|---|---|
-| 20 postes masterisés + casques | ~12 000 € |
-| Aménagement plateau, cloisonnement, contrôle d'accès | ~8 000 € |
-| Onduleurs + groupe électrogène | ~5 000 € |
-| Caution et premiers loyers | ~3 000 € |
-| Recrutement + formation (19 personnes) | ~8 000 € |
-| **Total** | **~36 000 €** |
-
-### Trésorerie — le vrai sujet
-
-19 salaires courent avant la première facture, encaissée 30 à 60 jours plus tard.
-
-| Scénario | Creux estimé |
-|---|---|
-| **Sans acompte, paiement à 60 j** | **−55 à −70 k€** vers M4-M5 |
-| **Avec acompte de mobilisation, paiement à 30 j, affacturage** | **−30 à −40 k€** |
-
-Les 30 k€ recommandés au prévisionnel (`FINANCE §6`) sont calibrés sur une montée en charge
-diffuse, **pas sur un contrat unique de 16 ETP**. Provisionner **60 k€**.
-
-### Ce qu'il faut obtenir à la négociation (§0.6/0.7)
-
-| Demande | Montant / terme | Justification à opposer |
+| Poste | Acheté | Loué via Econocom |
 |---|---|---|
-| **Acompte de mobilisation** | **25 000 €** (≈ 1 mois de régime), imputable ~4 200 €/mois sur 6 factures | 19 CDI engagés sur la foi du bon de commande. Le dépôt standard (900 €/position, plafond 2 700 €) est calibré pour 3 positions, pas 12. Imputable = **coût nul** pour Econocom qui va au bout (`PRICING §3.a`). |
-| **Paiement à 30 jours date de facture** | au lieu de 45-60 j fin de mois | Chaque mois de délai vaut ~25 k€ de BFR supplémentaire. |
-| **Facturation à échoir** des positions fermes | mensuelle, en début de mois | Position ferme = capacité réservée, payée d'avance comme un abonnement. |
-| **Volume ferme facturable 16 ETP** | dus consommés ou non | `PRICING.md §3` — le banc en équipe salariée est un coût de sortie, pas un manque à gagner. |
-| **Préavis 6 mois + indemnité de rupture** | couvrant préavis et indemnités des CDI | La rigidité de l'effectif remplace le risque de requalification (`CLAUDE.md`). |
-| **Plafond de pénalités 5 %** de la facture mensuelle | + exclusions écrites : indisponibilité Econocom/M6, hors périmètre, dépassement de volumétrie, force majeure documentée | `PRICING.md §7` prévoit un avoir de 20 % plafonné à 1 mois sur 12 ; un grand compte demandera plus, ce plafond est la contrepartie. |
+| 22 postes masterisés + casques | 13 000 € | ~0 € (≈ 350 €/mois) |
+| Aménagement plateau, cloisonnement, contrôle d'accès | 9 000 € | 9 000 € |
+| Onduleurs + groupe électrogène | 5 000 € | 5 000 € |
+| Caution et premiers loyers | 4 000 € | 4 000 € |
+| Recrutement + formation (21 personnes) | 9 000 € | 9 000 € |
+| **Total** | **~40 000 €** | **~27 000 €** |
+
+### Trésorerie — l'échelle des leviers
+
+Modèle hebdomadaire : 21 salaires, investissement, facturation par palier d'effectif,
+encaissement décalé, acompte imputé sur six factures.
+
+| Configuration | Creux | Besoin (+30 %) | Retour à l'équilibre |
+|---|---|---|---|
+| **Nu** — capex 40 k€ acheté, acompte 1 mois, paiement 30 j | −65 k€ (S28) | **85 k€** | S57 |
+| + **postes loués via Econocom** (capex 22 k€) | −49 k€ | 63 k€ | S49 |
+| + **acompte porté à 2 mois** (50 k€ imputables) | −37 k€ | 48 k€ | S49 |
+| + **affacturage** sur créance Econocom | **−22 k€** | **28 k€** | **S38** |
+
+> **Le premier levier est le plus facile et le moins évident : Econocom est un loueur et
+> financeur d'actifs informatiques — c'est son métier historique.** Lui demander de fournir ou
+> de louer les 22 postes n'est pas une faveur, c'est une ligne de son catalogue.
+>
+> **Recommandation : provisionner 50 k€ et obtenir au minimum deux leviers sur trois.**
+> Aucun des trois obtenu ⇒ le contrat se renégocie ou se réduit, il ne se signe pas.
+>
+> La v1 annonçait 60 k€ : le chiffre couvrait le BFR salarial mais pas l'investissement, qui
+> n'était pas dans la courbe.
+
+### Ce qu'il faut obtenir à la négociation (1.6 / 1.7)
+
+| Demande | Terme | Argument à opposer |
+|---|---|---|
+| **Volume ferme facturable** | **18 ETP** | Dus consommés ou non, **par palier d'effectif certifié**. En équipe salariée, le banc est un coût de sortie, pas un manque à gagner (`PRICING §3`). |
+| **Acompte de mobilisation** | **50 000 €** | Deux mois de régime, imputables sur six factures — **coût nul** pour Econocom qui va au bout. Le dépôt standard (plafond 2 700 €) est calibré pour 3 positions. |
+| **Fourniture ou location des postes** | 22 postes | Le métier d'Econocom. Retire 18 k€ du creux sans rien coûter à personne. |
+| **Délai de paiement** | **30 j** date de facture | Pas 45-60 j fin de mois. Chaque mois de délai vaut ~28 k€ de BFR. |
+| **Facturation à échoir** | mensuelle | Une position ferme est une capacité réservée : elle se paie d'avance. |
+| **Clause de décalage** | 1 j / 1 j | Un jour de retard sur une ligne ECO décale le go-live d'un jour, sans pénalité. |
+| **Préavis + indemnité de rupture** | **6 mois** | Couvrant préavis et indemnités de 21 CDI engagés sur la foi du bon de commande. |
+| **Plafond de pénalités SLA** | **5 %** de la facture mensuelle | + exclusions écrites : indisponibilité Econocom/M6, hors périmètre, dépassement de volumétrie, force majeure documentée. Sans plafond, la marge de 23 % disparaît en un mois. |
 
 ---
 
-## 6. Risques & parades
+## 7. Risques & parades
 
 | # | Risque | Impact | Parade |
 |---|---|---|---|
-| 1 | **M6 n'a pas autorisé la sous-traitance hors UE** | Arrêt brutal, 19 CDI sur les bras | Écrit d'Econocom **avant** tout recrutement (0.1). Bloquant, sans exception. |
-| 2 | **Trésorerie** : salaires payés avant facturation | Défaillance | Acompte + paiement 30 j + affacturage + montée en **3 vagues** (1.2, 1.3, 0.6) |
-| 3 | **Rythme de recrutement irréaliste** | SLA raté dès J1 | Vagues de 6 max, sourcing dès S3, **+2 candidats en réserve** par vague (4.1, 4.3) |
-| 4 | **Requalification en prêt de main-d'œuvre / marchandage** | Requalification, sanctions | Canal unique, obligation de résultat sur SLA, aucun lien hiérarchique direct M6/agent (`GOUVERNANCE §1-§2`, art. 8 bis) |
-| 5 | **Concentration : ~100 % du CA sur un donneur d'ordre** | Dépendance économique | Préavis 6 mois + indemnité (0.7) **et** prospection maintenue (9.5) |
-| 6 | **Coupures électricité / internet à Antananarivo** | SLA raté, pénalités | Double liaison + 4G + groupe électrogène + **PCA testé** (3.2, 3.3, 3.7) |
-| 7 | **Pénalités SLA non plafonnées** | Marge (20 %) effacée en un mois | Plafond 5 % + exclusions écrites (0.7) |
-| 8 | **Gel de changement M6 en fin d'année** | Vague 2 bloquée 4 semaines | Go-live V2 calé **avant le 12/12** ; formation V3 pendant le gel (7.4, 8.3) |
-| 9 | **Dérive de périmètre** (N1 → N2, projets, VIP) | Marge et SLA dégradés | Catalogue fermé + exclusions écrites ; toute extension par **avenant** (2.1) |
-| 10 | **Perte du contrat Econocom ↔ M6** | 19 CDI à porter | Provision de sortie dotée dès la 1re facture (1.4) + volume ferme (0.6) |
+| 1 | **M6 n'a pas autorisé la sous-traitance hors UE** | Contrat inexécutable, 21 CDI sur les bras | Écrit d'Econocom **avant signature** (1.1). Condition suspensive, pas tâche projet. |
+| 2 | **Trésorerie** : 21 salaires avant facturation pleine | Défaillance | Les trois leviers, **deux au minimum**. Provision 50 k€. Sinon on ne signe pas. |
+| 3 | **Transition Pack en retard ou incomplet** | Formation impossible ⇒ pilote impossible | Clause de décalage jour pour jour (3.1) + G2 bloquant |
+| 4 | **Rythme de recrutement irréaliste** | SLA raté dès le pilote | Vagues de 6, sourcing dès S3, **+2 candidats en réserve** par vague |
+| 5 | **Requalification en prêt de main-d'œuvre** | Sanctions | Canal unique, obligation de résultat sur SLA, aucun lien hiérarchique direct M6 → agent (`GOUVERNANCE §1-§2`, art. 8 bis) |
+| 6 | **Econocom facture au volume basculé, pas à l'effectif** | Salverys finance le ramp-up | Volume ferme par palier d'effectif certifié (3.5, 9.3) |
+| 7 | **~100 % du CA sur un seul donneur d'ordre** | Dépendance économique | Préavis 6 mois + indemnité (1.7) **et** prospection maintenue (9.5) |
+| 8 | **Coupures électricité / internet à Antananarivo** | SLA raté, pénalités | Double liaison + 4G + groupe électrogène + **PCA testé** (4.2, 4.3, 4.7) |
+| 9 | **Pénalités SLA non plafonnées** | Marge effacée en un mois | Plafond 5 % + exclusions écrites (1.7) |
+| 10 | **Dérive de périmètre** (N1 → N2, projets, VIP) | Marge et SLA dégradés | Catalogue fermé + exclusions écrites ; extension par **avenant** (3.2) |
+| 11 | **Gel de changement M6** | Vague de volume bloquée 4 semaines | Palier 25 % calé en S16 ; formation V3 pendant le gel (8.1, 7.6) |
+| 12 | **Perte du contrat Econocom ↔ M6** | 21 CDI à porter | Provision de sortie dès la 1re facture (2.4) + volume ferme (1.6) |
+
+**Marge de sécurité** : prévoir **10 à 20 %** sur le recrutement, la mise à disposition des
+accès, la formation et le pilote — en **marge de délai**, jamais en sur-effectif payé. En
+équipe salariée, un pool de remplaçants est un banc à 736 €/tête ; la continuité passe par le
+shrinkage intégré au dimensionnement, le manager métier et la rotation (`PRICING §3.e`).
 
 ---
 
-## 7. Garde-fous — ce qu'il ne faut pas faire
+## 8. Garde-fous — ce qu'il ne faut pas faire
 
-- **Ne pas recruter avant le bon de commande signé et l'acompte encaissé.** Le sourcing (4.1)
-  est gratuit, l'embauche ne l'est pas (`ONBOARDING-CLIENT.md`, garde-fou trésorerie).
-- **Ne pas accepter le dépôt standard de 2 700 €** sur un contrat de cette taille.
-- **Ne pas remiser le prix de gros** (`PRICING.md §3.b`). Si Econocom pousse : concéder une
-  **contrepartie de risque**, une seule (sortie à 30 j les 3 premiers mois, exclusivité
+- **Ne pas signer avant l'écrit de M6** sur la sous-traitance de rang 2 et le traitement hors
+  UE. Condition suspensive, pas chantier d'exécution.
+- **Ne pas recruter avant G1.** Le sourcing (5.1) est gratuit, l'embauche ne l'est pas.
+- **Ne pas laisser la facturation suivre le volume basculé** — elle suit l'effectif certifié.
+- **Ne pas accepter le dépôt standard de 2 700 €** ni des pénalités non plafonnées.
+- **Ne pas remiser le prix de gros** (`PRICING.md §3.b`). Si Econocom pousse : une
+  **contrepartie de risque**, une seule (sortie à 30 j les 3 premiers mois, exclusivité de
   segment, appui avant-vente sous 48 h).
-- **Ne pas promettre le 24·7** : ×3,73 ETP par position, non staffable ici (`PRICING §3.c`).
-  Si M6 l'exige, c'est un **avenant chiffré en ETP**, pas une extension d'amplitude.
-- **Ne pas promettre « opérationnel en 3-4 semaines »** pour l'ensemble : c'est vrai **par
-  vague**. Annoncer le pilote à S13 et la pleine capacité à S23.
+- **Ne pas constituer un pool de remplaçants payés.** Voir §7.
+- **Ne pas promettre le 24·7** (×3,73 ETP par position, non staffable ici — `PRICING §3.c`)
+  **ni « opérationnel en 3-4 semaines » pour l'ensemble.** C'est vrai par vague : go-live S16,
+  100 % du volume S26.
 - **Ne pas laisser Econocom ou M6 encadrer directement les agents** (planning, priorités,
-  recadrage, compte rendu individuel) — c'est la ligne entre prestation et mise à disposition
-  de personnel (`GOUVERNANCE §2`).
-- **Ne jamais opposer un plafond de capacité** à Econocom (`CLAUDE.md`). Ce qui s'annonce
-  est un **rythme** : 6 ETP par vague, une vague toutes les 6 à 7 semaines.
-- **Ne pas arrêter la prospection** pendant la mobilisation. Un donneur d'ordre unique qui
-  représente 100 % du CA fixe le prix au renouvellement.
+  recadrage, compte rendu individuel) — c'est la ligne entre prestation de services et mise à
+  disposition de personnel (`GOUVERNANCE §2`).
+- **Ne jamais opposer un plafond de capacité** (`CLAUDE.md`). Ce qui s'annonce est un
+  **rythme** : 6 ETP par vague, une vague toutes les 5 à 6 semaines.
+- **Ne pas arrêter la prospection** pendant la mobilisation. Un donneur d'ordre qui pèse 100 %
+  du CA fixe le prix au renouvellement.
+
+---
+
+## 9. Deux horizons — et ne jamais communiquer le second seul
+
+| | Durée | Contenu |
+|---|---|---|
+| **Interne** | **~30 semaines** (S1 → S30) | Y compris les 6 semaines de conditions suspensives, de référencement et de financement qui précèdent la signature |
+| **Contractuel** | **~24 semaines après bon de commande** | Pilote à S+7, go-live à S+10, **effectif complet à S+16**, 100 % du volume à S+20, clôture projet à S+24 — **sous réserve de la remise du Transition Pack dans les délais** |
+
+> **Pourquoi S+24 et non les ~17 semaines des deux plans d'origine.** Les 17 semaines
+> mesuraient la **montée en effectif** — ici S+16, inchangée. La clôture projet y ajoute trois
+> choses que ni la v1 ni le plan directeur ne comptaient : le **gel de changement** de fin
+> d'année (3 semaines sans palier possible), un **ramp-up de volume étalé** au lieu d'une
+> bascule d'un coup, et l'**audit SLA à J+90**. C'est le prix de la prudence, et il se
+> communique tel quel — un go-live annoncé trop tôt se paie en pénalités.

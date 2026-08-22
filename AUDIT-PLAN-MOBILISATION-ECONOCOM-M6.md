@@ -291,9 +291,15 @@ fournit la **méthode** (pack, gates, ramp-up, hypercare, dimensionnement). Neuf
 nominal. Le plan retenu doit donc afficher **deux horizons distincts**, et ne jamais
 communiquer le second seul à Econocom :
 
-- **Horizon interne : ~24 semaines**, en comptant les 6 semaines de sécurisation amont.
-- **Horizon contractuel : ~17 semaines après bon de commande**, dont pilote à S+7 et pleine
-  capacité à S+17 — sous réserve de la remise du Transition Pack dans les délais.
+- **Horizon interne**, en comptant les semaines de sécurisation amont que le plan B ne compte pas.
+- **Horizon contractuel après bon de commande** : pilote à S+7, **montée en effectif achevée à
+  S+16** — c'est la valeur comparable aux ~17 semaines des deux plans.
+
+> **Note (plan retenu v2)** : une fois le ramp-up de volume, le gel de changement de fin
+> d'année et l'audit SLA à J+90 intégrés, la **clôture projet** tombe à **S+24**, et l'horizon
+> interne à **30 semaines**. Les 17 semaines restent justes pour l'effectif ; elles ne
+> mesuraient simplement pas la même chose que le « BAU » du plan B. Détail :
+> `05-Process-Delivery/PLAN-MOBILISATION-ECONOCOM-M6.md §9`.
 
 Deux réserves à porter dans le plan, l'une et l'autre issues de cet audit : le réseau de
 dépendances doit être **recalculé et cohérent** avant tout engagement de date (§2.3), et les
