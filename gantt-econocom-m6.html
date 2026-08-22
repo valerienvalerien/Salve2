@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobilisation Econocom × M6 — Salverys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+<style>
+:root{
+  --bg:#F8F5F0; --card:#FFFFFF; --card-2:#FDFBF7;
+  --ink:#20303F; --text:#2A2620; --soft:#5C5448; --mute:#8A8275;
+  --line:#E7DFD1; --line-2:#F0EADE;
+  --primary:#2E3B4E; --primary-deep:#222C3B;
+  --accent:#6F8770; --gold:#B89968; --danger:#B6604D;
+  --grid:#EFE8DC; --grid-strong:#E2D9C9; --band:rgba(182,96,77,.07); --band-line:rgba(182,96,77,.38);
+  --c-jur:#2E3B4E; --c-fin:#B89968; --c-del:#6F8770;
+  --c-inf:#5B7A99; --c-equ:#A8628C; --c-pil:#8A8275;
+  --on-dark:#FFFFFF;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(32,48,63,.05),0 10px 28px rgba(32,48,63,.07);
+  --colw:32px; --leftw:474px; --rowh:27px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A20; --card:#1D242C; --card-2:#212932;
+    --ink:#EDE7DC; --text:#E4DED3; --soft:#B3ABA0; --mute:#8B8579;
+    --line:#2F3841; --line-2:#283038;
+    --primary:#8FA6C4; --primary-deep:#0F1419;
+    --accent:#8FA98F; --gold:#D2B078; --danger:#D0846E;
+    --grid:#262E37; --grid-strong:#313A44; --band:rgba(208,132,110,.13); --band-line:rgba(208,132,110,.48);
+    --c-jur:#7E9AC0; --c-fin:#D2B078; --c-del:#8FA98F;
+    --c-inf:#7FA3C6; --c-equ:#C486A9; --c-pil:#9C958A;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.32);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A20; --card:#1D242C; --card-2:#212932;
+  --ink:#EDE7DC; --text:#E4DED3; --soft:#B3ABA0; --mute:#8B8579;
+  --line:#2F3841; --line-2:#283038;
+  --primary:#8FA6C4; --primary-deep:#0F1419;
+  --accent:#8FA98F; --gold:#D2B078; --danger:#D0846E;
+  --grid:#262E37; --grid-strong:#313A44; --band:rgba(208,132,110,.13); --band-line:rgba(208,132,110,.48);
+  --c-jur:#7E9AC0; --c-fin:#D2B078; --c-del:#8FA98F;
+  --c-inf:#7FA3C6; --c-equ:#C486A9; --c-pil:#9C958A;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:Georgia,'Times New Roman',serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:inherit}
+
+/* ── En-tête ─────────────────────────────── */
+.hero{background:var(--primary-deep);color:#fff;padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:720px;height:720px;border-radius:50%;
+  background:radial-gradient(circle,rgba(111,135,112,.26),transparent 68%);top:-330px;left:52%;transform:translateX(-50%)}
+.hero::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,153,104,.16),transparent 70%);bottom:-260px;right:-90px}
+.hero>*{position:relative}
+.kicker{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
+  padding:6px 14px;border-radius:100px}
+.hero h1{font-family:Georgia,serif;font-weight:600;font-size:clamp(29px,4.6vw,46px);letter-spacing:-.02em;
+  line-height:1.06;margin:18px 0 10px;color:#fff}
+.hero h1 em{font-style:normal;color:#9FBBA0}
+.hero p{max-width:64ch;color:rgba(255,255,255,.74);font-size:16px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;
+  padding:11px 16px;min-width:132px}
+.chip b{display:block;font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.chip span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:3px}
+
+section{padding:44px 0 4px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+h2.sec{font-family:Georgia,serif;font-weight:600;font-size:26px;letter-spacing:-.01em;margin:8px 0 6px;color:var(--ink)}
+.lede{color:var(--soft);max-width:72ch;margin:0 0 22px}
+
+/* ── Verrous ─────────────────────────────── */
+.locks{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px}
+.lock{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 18px 16px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.lock .n{font-family:Georgia,serif;font-size:13px;font-weight:700;color:var(--danger);letter-spacing:.04em}
+.lock h3{font-size:15.5px;font-weight:650;color:var(--ink);line-height:1.3}
+.lock p{margin:0;font-size:13.5px;color:var(--soft)}
+
+/* ── Gantt ───────────────────────────────── */
+.gantt-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:14px 18px;border-bottom:1px solid var(--line);
+  background:var(--card-2);font-size:12.5px;color:var(--soft);align-items:center}
+.lg{display:inline-flex;align-items:center;gap:7px}
+.sw{width:22px;height:9px;border-radius:2px;display:inline-block}
+.sw.dia{width:11px;height:11px;transform:rotate(45deg);border-radius:2px;background:var(--ink)}
+.sw.crt{background:transparent;outline:1.5px solid var(--danger);outline-offset:1px;height:8px}
+.scroll{overflow-x:auto;overflow-y:visible}
+.gantt{width:max-content;min-width:100%;position:relative}
+.row{display:grid;grid-template-columns:var(--leftw) max-content;min-height:var(--rowh)}
+.row:hover .cells{background:rgba(111,135,112,.06)}
+.left{position:sticky;left:0;z-index:3;background:var(--card);border-right:1px solid var(--grid-strong);
+  display:grid;grid-template-columns:46px 1fr 54px 46px 66px;align-items:center;gap:0;
+  border-bottom:1px solid var(--line-2)}
+.row:hover .left{background:var(--card-2)}
+.left>*{padding:4px 8px;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wbs{color:var(--mute);font-variant-numeric:tabular-nums;font-weight:600}
+.nm{color:var(--text)}
+.ant{color:var(--mute);font-size:11px;text-align:center;font-variant-numeric:tabular-nums}
+.rs{color:var(--mute);font-size:10.5px;font-weight:700;letter-spacing:.05em;text-align:center}
+.dur{color:var(--soft);font-variant-numeric:tabular-nums;font-size:11.5px;text-align:right}
+.cells{position:relative;display:grid;grid-template-columns:repeat(24,var(--colw));
+  border-bottom:1px solid var(--line-2);align-items:center;
+  background-image:repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px var(--colw))}
+.bar{height:13px;border-radius:3px;background:var(--bc);position:relative;z-index:2;
+  box-shadow:inset 0 -1px 0 rgba(0,0,0,.10)}
+.bar.crit{outline:1.5px solid var(--danger);outline-offset:1.5px}
+.row.phase .left{background:var(--card-2);border-bottom:1px solid var(--line)}
+.row.phase .cells{background-color:var(--card-2);border-bottom:1px solid var(--line)}
+.row.phase .nm{font-weight:700;color:var(--ink);font-size:13px}
+.row.phase .wbs{color:var(--ink);font-weight:700}
+.sum{height:7px;background:var(--bc);position:relative;z-index:2;border-radius:1px}
+.sum::before,.sum::after{content:'';position:absolute;top:100%;border-top:7px solid var(--bc);width:0;height:0}
+.sum::before{left:0;border-right:6px solid transparent}
+.sum::after{right:0;border-left:6px solid transparent}
+.row.ms .left{background:var(--card)}
+.row.ms .nm{font-weight:650;color:var(--ink)}
+.row.ms .wbs{color:var(--danger);font-weight:800}
+.dia{width:13px;height:13px;background:var(--ink);transform:rotate(45deg);border-radius:2px;
+  position:relative;z-index:4;margin:0 -6px}
+.dia.key{background:var(--danger)}
+.band{position:absolute;top:0;bottom:0;background:var(--band);z-index:1;pointer-events:none}
+.sw.gel{background:var(--band);box-shadow:inset 0 0 0 1px var(--band-line)}
+
+/* en-tête du calendrier */
+.head{position:sticky;top:0;z-index:6}
+.head .left{background:var(--card-2);align-items:stretch;border-bottom:1px solid var(--grid-strong)}
+.head .left>*{display:flex;align-items:flex-end;padding-bottom:6px;font-size:10.5px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}
+.head .cells{background-color:var(--card-2);border-bottom:1px solid var(--grid-strong);
+  grid-template-rows:auto auto;background-image:none;align-items:stretch}
+.mrow,.wrow{display:grid;grid-template-columns:repeat(24,var(--colw));grid-column:1/-1}
+.mcell{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);
+  padding:7px 0 5px 7px;border-left:1px solid var(--grid-strong);white-space:nowrap;overflow:hidden}
+.wcell{font-size:9.5px;color:var(--mute);text-align:center;padding:3px 0 5px;
+  border-left:1px solid var(--grid);font-variant-numeric:tabular-nums;line-height:1.25}
+.wcell b{display:block;font-size:10px;color:var(--soft);font-weight:700}
+
+/* ── Tableaux ────────────────────────────── */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{text-align:left;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);
+  font-weight:700;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--card-2);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid var(--line-2);color:var(--soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.k{color:var(--ink);font-weight:650}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink);font-weight:650}
+td.date{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink);font-weight:600}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;white-space:nowrap}
+.tag.hi{background:rgba(182,96,77,.13);color:var(--danger)}
+.tag.md{background:rgba(184,153,104,.18);color:#8A6E3E}
+.tag.lo{background:rgba(111,135,112,.16);color:#4E6650}
+:root[data-theme="dark"] .tag.md,
+:root[data-theme="dark"] .tag.lo{color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.md,
+:root:not([data-theme="light"]) .tag.lo{color:var(--ink)}}
+
+/* ── Cartes chiffres ─────────────────────── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;
+  box-shadow:var(--shadow)}
+.card h3{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.card .big{font-family:Georgia,serif;font-size:31px;font-weight:600;color:var(--ink);margin:10px 0 4px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.card .big.warn{color:var(--danger)}
+.card p{margin:0;font-size:13.5px;color:var(--soft)}
+.card ul{margin:10px 0 0;padding-left:17px;font-size:13px;color:var(--soft)}
+.card li{margin-bottom:5px}
+
+/* ── Garde-fous ──────────────────────────── */
+.rules{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden}
+.rule{background:var(--card);padding:15px 18px;display:flex;gap:13px;align-items:flex-start;font-size:14px}
+.rule .x{color:var(--danger);font-weight:800;flex:none;line-height:1.5}
+.rule b{color:var(--ink)}
+.note{font-size:13px;color:var(--mute);max-width:78ch;margin:18px 0 0}
+footer{padding:38px 0 52px;color:var(--mute);font-size:12.5px;border-top:1px solid var(--line);margin-top:44px}
+@media (max-width:640px){
+  :root{--leftw:250px;--colw:28px}
+  .left{grid-template-columns:42px 1fr 0 0 0}
+  .ant{display:none}
+  .rs,.dur{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">Plan de mobilisation · marque blanche de rang 2</span>
+    <h1>Econocom <em>×</em> M6</h1>
+    <p>Helpdesk IT N1 opéré sous la marque Econocom pour son client final M6.
+    Chaîne&nbsp;: M6 → Econocom → Salverys. Du bon de commande à la pleine capacité,
+    en trois vagues de recrutement.</p>
+    <div class="chips">
+      <div class="chip"><b>16 ETP</b><span>12 positions · 8h-20h</span></div>
+      <div class="chip"><b>24 800 €</b><span>CA mensuel de régime</span></div>
+      <div class="chip"><b>16/11/26</b><span>Go-live pilote (S13)</span></div>
+      <div class="chip"><b>25/01/27</b><span>Pleine capacité (S23)</span></div>
+      <div class="chip"><b>60 k€</b><span>Financement à provisionner</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <span class="eyebrow">Avant tout le reste</span>
+  <h2 class="sec">Quatre verrous, dans cet ordre</h2>
+  <p class="lede">Ce n'est pas une préférence de séquencement&nbsp;: c'est une chaîne de
+  dépendances. Chaque verrou sauté se paie plus tard, et plus cher. L'effectif actuel est
+  d'<b>une salariée</b>&nbsp;; ce contrat vaut à lui seul ~1,8× le scénario ambitieux à M12
+  du prévisionnel. Ce n'est pas un onboarding client, c'est un changement d'échelle.</p>
+  <div class="locks">
+    <div class="lock"><span class="n">VERROU 1</span>
+      <h3>L'autorisation de sous-traitance</h3>
+      <p>Le contrat Econocom ↔ M6 autorise-t-il la sous-traitance de rang 2 et le traitement
+      hors UE&nbsp;? Autorisation générale ou accord spécifique&nbsp;? Clause de localisation
+      UE/EEE&nbsp;? <b>Exiger l'écrit. Aucun recrutement avant.</b></p></div>
+    <div class="lock"><span class="n">VERROU 2</span>
+      <h3>Le financement du BFR</h3>
+      <p>19 salaires courent 1 à 2 mois avant la première facture, encaissée 30 à 60 jours
+      plus tard. Sans ligne de financement, <b>ce contrat est plus dangereux que pas de
+      contrat</b>&nbsp;: le burn d'attente est de 755 €/mois.</p></div>
+    <div class="lock"><span class="n">VERROU 3</span>
+      <h3>Référencement et sécurité</h3>
+      <p>Aucun bon de commande avant le passage aux achats et à la sécurité. Compter 4 à 6
+      semaines, à lancer en S1. Une entité malgache n'a pas d'attestation URSSAF&nbsp;:
+      préparer les <b>équivalents locaux</b> avant qu'on les demande.</p></div>
+    <div class="lock"><span class="n">VERROU 4</span>
+      <h3>Les termes de sortie</h3>
+      <p>16 CDI adossés à un contrat qui dépend d'un contrat sur lequel on n'a aucune prise.
+      Préavis, indemnité et <b>volume ferme facturable</b> ne sont pas du confort de
+      marge&nbsp;: ils couvrent un coût de sortie réel.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Planning</span>
+  <h2 class="sec">Diagramme de Gantt — S1 à S24</h2>
+  <p class="lede">Semaine 1 = lundi 24/08/2026. Deux chaînes critiques courent en
+  parallèle et convergent en S12&nbsp;: le <b>recrutement</b> et le <b>plateau</b>. C'est
+  contre-intuitif — et c'est là que les plans de ce type déraillent. La bande ombrée marque
+  le <b>gel de changement de fin d'année</b> côté client final.</p>
+  <div class="gantt-card">
+<div class="legend">
+<span class="lg"><i class="sw" style="background:var(--c-jur)"></i>Juridique & contrat</span>
+<span class="lg"><i class="sw" style="background:var(--c-fin)"></i>Finance</span>
+<span class="lg"><i class="sw" style="background:var(--c-del)"></i>Cadrage & delivery</span>
+<span class="lg"><i class="sw" style="background:var(--c-inf)"></i>Infrastructure</span>
+<span class="lg"><i class="sw" style="background:var(--c-equ)"></i>Équipe & formation</span>
+<span class="lg"><i class="sw" style="background:var(--c-pil)"></i>Pilotage</span>
+<span class="lg"><i class="sw dia"></i>Jalon</span>
+<span class="lg"><i class="sw crt"></i>Chemin critique</span>
+<span class="lg"><i class="sw gel"></i>Gel de changement M6 (14/12 → 03/01)</span>
+</div>
+<div class="scroll"><div class="gantt">
+<div class="row head"><div class="left"><div>N°</div><div>Tâche</div><div>Ant.</div><div>Resp.</div><div>Semaines</div></div><div class="cells"><div class="mrow"><div class="mcell" style="grid-column:span 2">Août</div><div class="mcell" style="grid-column:span 4">Sept.</div><div class="mcell" style="grid-column:span 4">Oct.</div><div class="mcell" style="grid-column:span 5">Nov.</div><div class="mcell" style="grid-column:span 4">Déc.</div><div class="mcell" style="grid-column:span 4">Janv. 27</div><div class="mcell" style="grid-column:span 1">Fév.</div></div><div class="wrow"><div class="wcell"><b>S1</b>24/08</div><div class="wcell"><b>S2</b>31/08</div><div class="wcell"><b>S3</b>07/09</div><div class="wcell"><b>S4</b>14/09</div><div class="wcell"><b>S5</b>21/09</div><div class="wcell"><b>S6</b>28/09</div><div class="wcell"><b>S7</b>05/10</div><div class="wcell"><b>S8</b>12/10</div><div class="wcell"><b>S9</b>19/10</div><div class="wcell"><b>S10</b>26/10</div><div class="wcell"><b>S11</b>02/11</div><div class="wcell"><b>S12</b>09/11</div><div class="wcell"><b>S13</b>16/11</div><div class="wcell"><b>S14</b>23/11</div><div class="wcell"><b>S15</b>30/11</div><div class="wcell"><b>S16</b>07/12</div><div class="wcell"><b>S17</b>14/12</div><div class="wcell"><b>S18</b>21/12</div><div class="wcell"><b>S19</b>28/12</div><div class="wcell"><b>S20</b>04/01</div><div class="wcell"><b>S21</b>11/01</div><div class="wcell"><b>S22</b>18/01</div><div class="wcell"><b>S23</b>25/01</div><div class="wcell"><b>S24</b>01/02</div></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">0</div><div class="nm">Verrouiller le deal</div><div class="ant"></div><div class="rs"></div><div class="dur">S1–S6</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:1 / span 6;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.1</div><div class="nm" title="Qualifier la chaîne de sous-traitance rang 2 — autorisation M6, clause UE/EEE">Qualifier la chaîne de sous-traitance rang 2 — autorisation M6, clause UE/EEE</div><div class="ant">—</div><div class="rs">DIR</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:1 / span 2;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.2</div><div class="nm" title="Dossier de référencement fournisseur Econocom">Dossier de référencement fournisseur Econocom</div><div class="ant">—</div><div class="rs">FIN</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:1 / span 4;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.3</div><div class="nm" title="RC professionnelle — couverture France, montant exigé">RC professionnelle — couverture France, montant exigé</div><div class="ant">0.2</div><div class="rs">FIN</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:2 / span 3;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.4</div><div class="nm" title="Questionnaire sécurité — PSSI, PCA/PRA, journalisation">Questionnaire sécurité — PSSI, PCA/PRA, journalisation</div><div class="ant">0.2</div><div class="rs">DIR</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:2 / span 4;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.5</div><div class="nm" title="DPA art. 28 en cascade + CCT transfert hors UE + analyse de transfert">DPA art. 28 en cascade + CCT transfert hors UE + analyse de transfert</div><div class="ant">0.1</div><div class="rs">DIR</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:2 / span 4;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.6</div><div class="nm" title="Négociation financière — prix, acompte, paiement 30 j, volume ferme">Négociation financière — prix, acompte, paiement 30 j, volume ferme</div><div class="ant">0.1</div><div class="rs">DIR</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:3 / span 3;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.7</div><div class="nm" title="Négociation des termes de sortie — préavis, indemnité, plafond de pénalités">Négociation des termes de sortie — préavis, indemnité, plafond de pénalités</div><div class="ant">0.1</div><div class="rs">DIR</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:3 / span 3;--bc:var(--c-jur)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">0.8</div><div class="nm" title="Contrat-cadre, annexes et bon de commande">Contrat-cadre, annexes et bon de commande</div><div class="ant">0.5</div><div class="rs">DIR</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:5 / span 2;--bc:var(--c-jur)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J1</div><div class="nm">Bon de commande signé + acompte encaissé</div><div class="ant"></div><div class="rs"></div><div class="dur">02/10</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:6;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">1</div><div class="nm">Sécuriser le financement</div><div class="ant"></div><div class="rs"></div><div class="dur">S1–S8</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:1 / span 8;--bc:var(--c-fin)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">1.1</div><div class="nm" title="Modèle de trésorerie vague par vague">Modèle de trésorerie vague par vague</div><div class="ant">—</div><div class="rs">FIN</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:1 / span 2;--bc:var(--c-fin)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">1.2</div><div class="nm" title="Mobiliser la ligne de financement (60 k€)">Mobiliser la ligne de financement (60 k€)</div><div class="ant">1.1</div><div class="rs">DIR</div><div class="dur">7 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:2 / span 7;--bc:var(--c-fin)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">1.3</div><div class="nm" title="Affacturage / escompte sur créances Econocom">Affacturage / escompte sur créances Econocom</div><div class="ant">0.8</div><div class="rs">FIN</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:5 / span 4;--bc:var(--c-fin)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">1.4</div><div class="nm" title="Provision « coût de sortie » des CDI, dotée dès la 1re facture">Provision « coût de sortie » des CDI, dotée dès la 1re facture</div><div class="ant">9.3</div><div class="rs">FIN</div><div class="dur">11 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:14 / span 11;--bc:var(--c-fin)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J2</div><div class="nm">Financement disponible</div><div class="ant"></div><div class="rs"></div><div class="dur">16/10</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia" style="grid-column:8;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">2</div><div class="nm">Cadrage opérationnel avec Econocom</div><div class="ant"></div><div class="rs"></div><div class="dur">S5–S9</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:5 / span 5;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.1</div><div class="nm" title="Atelier périmètre — catalogue N1, exclusions, volumétrie, saisonnalité M6">Atelier périmètre — catalogue N1, exclusions, volumétrie, saisonnalité M6</div><div class="ant">0.6</div><div class="rs">DIR</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:5 / span 2;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.2</div><div class="nm" title="Dimensionnement — 12 positions 8h-20h ⇒ 16 ETP, plan de rotation">Dimensionnement — 12 positions 8h-20h ⇒ 16 ETP, plan de rotation</div><div class="ant">2.1</div><div class="rs">DIR</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:6 / span 1;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.3</div><div class="nm" title="SLA & KPI opposables, seuils figés, plafond de pénalités">SLA & KPI opposables, seuils figés, plafond de pénalités</div><div class="ant">2.1</div><div class="rs">DIR</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:6 / span 2;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.4</div><div class="nm" title="Matrice d'escalade N1 → N2 Econocom → M6, règle du canal unique">Matrice d'escalade N1 → N2 Econocom → M6, règle du canal unique</div><div class="ant">2.3</div><div class="rs">EXP</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:7 / span 1;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.5</div><div class="nm" title="Accès ITSM — comptes nominatifs, MFA, rôles, cloisonnement M6">Accès ITSM — comptes nominatifs, MFA, rôles, cloisonnement M6</div><div class="ant">0.4</div><div class="rs">EXP</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:7 / span 3;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.6</div><div class="nm" title="Runbook, arbre de qualification, base de connaissance">Runbook, arbre de qualification, base de connaissance</div><div class="ant">2.5</div><div class="rs">EXP</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:7 / span 3;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">2.7</div><div class="nm" title="Armement QA — grille de scoring, double écoute, gabarit de reporting">Armement QA — grille de scoring, double écoute, gabarit de reporting</div><div class="ant">2.6</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:8 / span 2;--bc:var(--c-del)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J3</div><div class="nm">Dossier d'exploitation validé</div><div class="ant"></div><div class="rs"></div><div class="dur">23/10</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia" style="grid-column:9;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">3</div><div class="nm">Infrastructure & sécurité</div><div class="ant"></div><div class="rs"></div><div class="dur">S5–S12</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:5 / span 8;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.1</div><div class="nm" title="Plateau dédié Antananarivo — bail, cloisonnement, contrôle d'accès">Plateau dédié Antananarivo — bail, cloisonnement, contrôle d'accès</div><div class="ant">0.6</div><div class="rs">DIR</div><div class="dur">5 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:5 / span 5;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.2</div><div class="nm" title="Double liaison internet + secours 4G + QoS voix">Double liaison internet + secours 4G + QoS voix</div><div class="ant">3.1</div><div class="rs">INF</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:7 / span 4;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.3</div><div class="nm" title="Énergie — onduleurs et groupe électrogène">Énergie — onduleurs et groupe électrogène</div><div class="ant">3.1</div><div class="rs">INF</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:7 / span 4;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.4</div><div class="nm" title="20 postes masterisés, chiffrés, zéro download + casques">20 postes masterisés, chiffrés, zéro download + casques</div><div class="ant">1.2</div><div class="rs">INF</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:8 / span 4;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.5</div><div class="nm" title="VPN nominatif, MFA, journalisation des accès">VPN nominatif, MFA, journalisation des accès</div><div class="ant">3.4</div><div class="rs">INF</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:9 / span 3;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.6</div><div class="nm" title="Téléphonie / CTI sous marque Econocom — SDA, routage, supervision">Téléphonie / CTI sous marque Econocom — SDA, routage, supervision</div><div class="ant">3.2</div><div class="rs">INF</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:9 / span 3;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.7</div><div class="nm" title="PCA testé — bascule plateau → kits d'autonomie">PCA testé — bascule plateau → kits d'autonomie</div><div class="ant">3.6</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:11 / span 2;--bc:var(--c-inf)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">3.8</div><div class="nm" title="Audit à blanc + visite d'homologation Econocom/M6 sur site">Audit à blanc + visite d'homologation Econocom/M6 sur site</div><div class="ant">3.7</div><div class="rs">DIR</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:12 / span 1;--bc:var(--c-inf)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J4</div><div class="nm">Plateau homologué</div><div class="ant"></div><div class="rs"></div><div class="dur">13/11</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:12;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">4</div><div class="nm">Recrutement & encadrement — vague 1</div><div class="ant"></div><div class="rs"></div><div class="dur">S3–S9</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:3 / span 7;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">4.1</div><div class="nm" title="Sourcing du vivier — sans engagement, coût ~0">Sourcing du vivier — sans engagement, coût ~0</div><div class="ant">—</div><div class="rs">RH</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:3 / span 4;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">4.2</div><div class="nm" title="Recruter le référent d'exploitation IT n°1 — avant les agents">Recruter le référent d'exploitation IT n°1 — avant les agents</div><div class="ant">4.1</div><div class="rs">DIR</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:3 / span 4;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">4.3</div><div class="nm" title="Campagne vague 1 — 6 agents N1 + 2 en réserve">Campagne vague 1 — 6 agents N1 + 2 en réserve</div><div class="ant">J1</div><div class="rs">RH</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:6 / span 3;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">4.4</div><div class="nm" title="Promesses d'embauche, CDI, clause de confidentialité">Promesses d'embauche, CDI, clause de confidentialité</div><div class="ant">4.3</div><div class="rs">FIN</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:8 / span 2;--bc:var(--c-equ)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J5</div><div class="nm">Vague 1 embauchée — les salaires courent</div><div class="ant"></div><div class="rs"></div><div class="dur">23/10</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:9;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">5</div><div class="nm">Formation & certification — vague 1</div><div class="ant"></div><div class="rs"></div><div class="dur">S9–S12</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:9 / span 4;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">5.1</div><div class="nm" title="Socle — marque blanche Econocom, RGPD, sécurité M6, confidentialité">Socle — marque blanche Econocom, RGPD, sécurité M6, confidentialité</div><div class="ant">J5</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:9 / span 2;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">5.2</div><div class="nm" title="Métier — ITSM, catalogue, runbook, arbre de qualification">Métier — ITSM, catalogue, runbook, arbre de qualification</div><div class="ant">2.6</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:10 / span 2;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">5.3</div><div class="nm" title="Simulation — tickets et appels fictifs, double écoute, scoring">Simulation — tickets et appels fictifs, double écoute, scoring</div><div class="ant">5.2</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:11 / span 2;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">5.4</div><div class="nm" title="Certification individuelle — go/no-go par agent">Certification individuelle — go/no-go par agent</div><div class="ant">5.3</div><div class="rs">EXP</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:12 / span 1;--bc:var(--c-equ)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J6</div><div class="nm">Vague 1 certifiée</div><div class="ant"></div><div class="rs"></div><div class="dur">13/11</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:12;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">6</div><div class="nm">Pilote à périmètre restreint</div><div class="ant"></div><div class="rs"></div><div class="dur">S13–S15</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:13 / span 3;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">6.1</div><div class="nm" title="Go-live pilote — 1 périmètre M6, 200-400 tickets, 6 positions">Go-live pilote — 1 périmètre M6, 200-400 tickets, 6 positions</div><div class="ant">J4+J6</div><div class="rs">EXP</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:13 / span 1;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">6.2</div><div class="nm" title="Double écoute renforcée, point quotidien J1→J5">Double écoute renforcée, point quotidien J1→J5</div><div class="ant">6.1</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:13 / span 2;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">6.3</div><div class="nm" title="Ajustements runbook, seuils, plan de charge">Ajustements runbook, seuils, plan de charge</div><div class="ant">6.2</div><div class="rs">EXP</div><div class="dur">2 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:14 / span 2;--bc:var(--c-del)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">6.4</div><div class="nm" title="Bilan pilote et décision de bascule conjointe">Bilan pilote et décision de bascule conjointe</div><div class="ant">6.3</div><div class="rs">DIR</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:15 / span 1;--bc:var(--c-del)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J7</div><div class="nm">Go-live pilote</div><div class="ant"></div><div class="rs"></div><div class="dur">16/11</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:13;justify-self:start"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J8</div><div class="nm">Bascule en régime — SLA opposables</div><div class="ant"></div><div class="rs"></div><div class="dur">04/12</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:15;justify-self:end"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">7</div><div class="nm">Vague 2 — +6 ETP et manager n°2</div><div class="ant"></div><div class="rs"></div><div class="dur">S10–S16</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:10 / span 7;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">7.1</div><div class="nm" title="Campagne vague 2, lancée pendant la formation V1">Campagne vague 2, lancée pendant la formation V1</div><div class="ant">4.1</div><div class="rs">RH</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:10 / span 3;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">7.2</div><div class="nm" title="Embauches V2 + référent d'exploitation n°2 (seuil de 8 agents)">Embauches V2 + référent d'exploitation n°2 (seuil de 8 agents)</div><div class="ant">7.1</div><div class="rs">FIN</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:13 / span 1;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">7.3</div><div class="nm" title="Formation V2 — tutorat par la vague 1">Formation V2 — tutorat par la vague 1</div><div class="ant">7.2</div><div class="rs">EXP</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:13 / span 3;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">7.4</div><div class="nm" title="Go-live V2 — calé avant le gel de changement">Go-live V2 — calé avant le gel de changement</div><div class="ant">7.3</div><div class="rs">EXP</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:16 / span 1;--bc:var(--c-equ)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J9</div><div class="nm">12 ETP en production</div><div class="ant"></div><div class="rs"></div><div class="dur">07/12</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:16;justify-self:start"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">8</div><div class="nm">Vague 3 — +4 ETP et coordinateur planning</div><div class="ant"></div><div class="rs"></div><div class="dur">S15–S23</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:15 / span 9;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">8.1</div><div class="nm" title="Campagne vague 3">Campagne vague 3</div><div class="ant">4.1</div><div class="rs">RH</div><div class="dur">4 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:15 / span 4;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">8.2</div><div class="nm" title="Embauches V3 + coordinateur planning">Embauches V3 + coordinateur planning</div><div class="ant">8.1</div><div class="rs">FIN</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:19 / span 1;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">8.3</div><div class="nm" title="Formation V3 — conduite pendant le gel, sans impact production">Formation V3 — conduite pendant le gel, sans impact production</div><div class="ant">8.2</div><div class="rs">EXP</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:20 / span 3;--bc:var(--c-equ)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">8.4</div><div class="nm" title="Go-live V3">Go-live V3</div><div class="ant">8.3</div><div class="rs">EXP</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar crit" style="grid-column:23 / span 1;--bc:var(--c-equ)"></div></div></div>
+<div class="row ms"><div class="left"><div class="wbs">J10</div><div class="nm">Pleine capacité — 16 ETP facturés</div><div class="ant"></div><div class="rs"></div><div class="dur">25/01</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="dia key" style="grid-column:23;justify-self:start"></div></div></div>
+<div class="row phase"><div class="left"><div class="wbs">9</div><div class="nm">Régime, pilotage et couverture du risque</div><div class="ant"></div><div class="rs"></div><div class="dur">S13–S24</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="sum" style="grid-column:13 / span 12;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.1</div><div class="nm" title="Reporting hebdomadaire + revue de service mensuelle">Reporting hebdomadaire + revue de service mensuelle</div><div class="ant">J7</div><div class="rs">EXP</div><div class="dur">12 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:13 / span 12;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.2</div><div class="nm" title="QA en régime — double écoute, scoring, coaching">QA en régime — double écoute, scoring, coaching</div><div class="ant">2.7</div><div class="rs">EXP</div><div class="dur">12 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:13 / span 12;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.3</div><div class="nm" title="Facturation, imputation de l'acompte, suivi des encaissements">Facturation, imputation de l'acompte, suivi des encaissements</div><div class="ant">J7</div><div class="rs">FIN</div><div class="dur">11 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:14 / span 11;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.4</div><div class="nm" title="Plan de réversibilité documenté">Plan de réversibilité documenté</div><div class="ant">J8</div><div class="rs">DIR</div><div class="dur">3 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:16 / span 3;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.5</div><div class="nm" title="Relance de la prospection MB — viser un 2e donneur d'ordre">Relance de la prospection MB — viser un 2e donneur d'ordre</div><div class="ant">—</div><div class="rs">COM</div><div class="dur">8 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:17 / span 8;--bc:var(--c-pil)"></div></div></div>
+<div class="row"><div class="left"><div class="wbs">9.6</div><div class="nm" title="Revue trimestrielle de contrat">Revue trimestrielle de contrat</div><div class="ant">J10</div><div class="rs">DIR</div><div class="dur">1 sem.</div></div><div class="cells"><div class="band" style="left:calc(var(--colw) * 16);width:calc(var(--colw) * 3)"></div><div class="bar" style="grid-column:24 / span 1;--bc:var(--c-pil)"></div></div></div>
+</div></div></div>
+
+  <p class="note">DIR direction · EXP référent d'exploitation IT · RH recrutement ·
+  FIN finance &amp; administratif · INF infrastructure · COM développement commercial.
+  <b>Ant.</b> = tâche antécédente.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Points de contrôle</span>
+  <h2 class="sec">Les dix jalons</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Jalon</th><th>Date</th><th>Sem.</th><th>Ce qu'il conditionne</th></tr></thead>
+    <tbody>
+      <tr><td class="k">J1 · Bon de commande signé + acompte encaissé</td><td class="date">02/10/2026</td><td class="date">S6</td><td>Autorise <b>toute</b> embauche</td></tr>
+      <tr><td class="k">J2 · Financement disponible</td><td class="date">16/10/2026</td><td class="date">S8</td><td>Autorise l'investissement plateau</td></tr>
+      <tr><td class="k">J3 · Dossier d'exploitation validé</td><td class="date">23/10/2026</td><td class="date">S9</td><td>Autorise la formation métier</td></tr>
+      <tr><td class="k">J5 · Vague 1 embauchée</td><td class="date">23/10/2026</td><td class="date">S9</td><td>Démarrage des salaires</td></tr>
+      <tr><td class="k">J4 · Plateau homologué</td><td class="date">13/11/2026</td><td class="date">S12</td><td>Autorise le go-live</td></tr>
+      <tr><td class="k">J6 · Vague 1 certifiée</td><td class="date">13/11/2026</td><td class="date">S12</td><td>Autorise le go-live</td></tr>
+      <tr><td class="k">J7 · Go-live pilote</td><td class="date">16/11/2026</td><td class="date">S13</td><td>Premier ticket sous marque Econocom</td></tr>
+      <tr><td class="k">J8 · Bascule en régime</td><td class="date">04/12/2026</td><td class="date">S15</td><td>SLA opposables, facturation pleine</td></tr>
+      <tr><td class="k">J9 · 12 ETP en production</td><td class="date">07/12/2026</td><td class="date">S16</td><td>Avant le gel de changement</td></tr>
+      <tr><td class="k">J10 · Pleine capacité 16 ETP</td><td class="date">25/01/2027</td><td class="date">S23</td><td>CA de régime 24 800 €/mois</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Chiffrage — ordres de grandeur</span>
+  <h2 class="sec">Ce que le contrat rapporte, ce qu'il coûte d'abord</h2>
+  <div class="cards">
+    <div class="card"><h3>Marge de régime</h3><div class="big">≈ 5 000 €<span style="font-size:16px;color:var(--mute)">/mois</span></div>
+      <p>24 800 € de CA − 13 490 € de coût variable − 2 210 € d'encadrement − 2 110 € de socle
+      fixe − ~2 000 € de plateau. Soit <b>≈ 20 %</b>.</p></div>
+    <div class="card"><h3>Investissement de démarrage</h3><div class="big">≈ 36 000 €</div>
+      <ul><li>20 postes masterisés + casques — 12 k€</li><li>Aménagement et contrôle d'accès — 8 k€</li>
+      <li>Onduleurs et groupe électrogène — 5 k€</li><li>Caution et loyers — 3 k€</li>
+      <li>Recrutement et formation de 19 personnes — 8 k€</li></ul></div>
+    <div class="card"><h3>Creux de trésorerie</h3><div class="big warn">−55 à −70 k€</div>
+      <p>Sans acompte et à 60 jours de paiement, vers M4-M5. Ramené à <b>−30/−40 k€</b> avec
+      acompte de mobilisation, paiement à 30 j et affacturage. Les 30 k€ du prévisionnel sont
+      calibrés sur une montée en charge diffuse, pas sur 16 ETP d'un coup.</p></div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>À obtenir en négociation</th><th>Terme</th><th>Argument à opposer</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Acompte de mobilisation</td><td class="num">25 000 €</td>
+        <td>Imputable ~4 200 €/mois sur 6 factures — <b>coût nul</b> pour Econocom qui va au bout.
+        Le dépôt standard (900 €/position, plafond 2 700 €) est calibré pour 3 positions, pas 12.</td></tr>
+      <tr><td class="k">Délai de paiement</td><td class="num">30 j</td>
+        <td>Date de facture, pas 45-60 j fin de mois. Chaque mois de délai vaut ~25 k€ de BFR.</td></tr>
+      <tr><td class="k">Facturation à échoir</td><td class="num">mensuelle</td>
+        <td>Une position ferme est une capacité réservée&nbsp;: elle se paie d'avance.</td></tr>
+      <tr><td class="k">Volume ferme facturable</td><td class="num">16 ETP</td>
+        <td>Dus consommés ou non. En équipe salariée, le banc est un coût de sortie, pas un manque à gagner.</td></tr>
+      <tr><td class="k">Préavis + indemnité de rupture</td><td class="num">6 mois</td>
+        <td>Couvrant préavis et indemnités des CDI engagés sur la foi du bon de commande.</td></tr>
+      <tr><td class="k">Plafond de pénalités SLA</td><td class="num">5 %</td>
+        <td>De la facture mensuelle, avec exclusions écrites&nbsp;: indisponibilité Econocom/M6,
+        hors périmètre, dépassement de volumétrie, force majeure documentée. Sans plafond, la
+        marge de 20 % disparaît en un mois.</td></tr>
+      <tr><td class="k">Prix plancher du dossier</td><td class="num">1 550 €</td>
+        <td>Palier 9+ helpdesk IT. Le palier n'intègre pas le coût d'un plateau sécurisé
+        (~125 €/ETP/mois de plus). Ne jamais descendre en dessous sur ce dossier.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Ce qui peut faire tomber le contrat</span>
+  <h2 class="sec">Risques et parades</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Risque</th><th>Gravité</th><th>Parade</th></tr></thead>
+    <tbody>
+      <tr><td class="k">M6 n'a pas autorisé la sous-traitance hors UE</td><td><span class="tag hi">Critique</span></td>
+        <td>Écrit d'Econocom avant tout recrutement (0.1). Bloquant, sans exception.</td></tr>
+      <tr><td class="k">Salaires payés avant facturation</td><td><span class="tag hi">Critique</span></td>
+        <td>Acompte + paiement 30 j + affacturage + montée en trois vagues.</td></tr>
+      <tr><td class="k">Rythme de recrutement irréaliste</td><td><span class="tag hi">Critique</span></td>
+        <td>Vagues de 6 maximum, sourcing dès S3, +2 candidats en réserve par vague.</td></tr>
+      <tr><td class="k">Requalification en prêt de main-d'œuvre</td><td><span class="tag hi">Critique</span></td>
+        <td>Canal unique, obligation de résultat sur SLA, aucun lien hiérarchique direct M6 → agent.</td></tr>
+      <tr><td class="k">~100 % du CA sur un seul donneur d'ordre</td><td><span class="tag md">Élevée</span></td>
+        <td>Préavis 6 mois et indemnité, <b>et</b> prospection maintenue en parallèle (9.5).</td></tr>
+      <tr><td class="k">Coupures électricité / internet à Antananarivo</td><td><span class="tag md">Élevée</span></td>
+        <td>Double liaison, secours 4G, groupe électrogène, PCA testé et documenté.</td></tr>
+      <tr><td class="k">Pénalités SLA non plafonnées</td><td><span class="tag md">Élevée</span></td>
+        <td>Plafond 5 % et exclusions écrites au contrat.</td></tr>
+      <tr><td class="k">Dérive de périmètre — N1 vers N2, projets, VIP</td><td><span class="tag md">Élevée</span></td>
+        <td>Catalogue fermé, exclusions écrites, toute extension par avenant.</td></tr>
+      <tr><td class="k">Gel de changement M6 en fin d'année</td><td><span class="tag lo">Modérée</span></td>
+        <td>Go-live V2 calé avant le 12/12&nbsp;; formation V3 conduite pendant le gel.</td></tr>
+      <tr><td class="k">Perte du contrat Econocom ↔ M6</td><td><span class="tag lo">Modérée</span></td>
+        <td>Provision de sortie dotée dès la première facture, volume ferme au contrat.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Garde-fous</span>
+  <h2 class="sec">Ce qu'il ne faut pas faire</h2>
+  <div class="rules">
+    <div class="rule"><span class="x">✕</span><span><b>Recruter avant le bon de commande signé et l'acompte encaissé.</b> Le sourcing est gratuit, l'embauche ne l'est pas.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Accepter le dépôt standard de 2 700 €</b> sur un contrat de cette taille.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Remiser le prix de gros.</b> Si Econocom pousse&nbsp;: concéder une contrepartie de risque — sortie à 30 j les trois premiers mois, exclusivité de segment, ou appui avant-vente sous 48 h. Une seule.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Promettre le 24·7.</b> ×3,73 ETP par position, non staffable ici. Si M6 l'exige, c'est un avenant chiffré en ETP, pas une extension d'amplitude.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Promettre « opérationnel en 3-4 semaines » pour l'ensemble.</b> C'est vrai par vague. Annoncer le pilote à S13 et la pleine capacité à S23.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Laisser Econocom ou M6 encadrer directement les agents</b> — planning, priorités, recadrage, compte rendu individuel. C'est la ligne entre prestation de services et mise à disposition de personnel.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Opposer un plafond de capacité.</b> Ce qui s'annonce est un rythme&nbsp;: 6 ETP par vague, une vague toutes les 6 à 7 semaines.</span></div>
+    <div class="rule"><span class="x">✕</span><span><b>Arrêter la prospection pendant la mobilisation.</b> Un donneur d'ordre qui pèse 100 % du CA fixe le prix au renouvellement.</span></div>
+  </div>
+</section>
+
+<footer><div>Plan de mobilisation Econocom × M6 — hypothèse de dimensionnement à valider
+(12 positions, amplitude 8h-20h, palier 9+ ETP). Détail des tâches, dépendances et
+livrables&nbsp;: <b>05-Process-Delivery/PLAN-MOBILISATION-ECONOCOM-M6.md</b>. Règles de prix
+et de coûts&nbsp;: <b>PRICING.md</b> et <b>FINANCE-PREVISIONNEL.md</b>, qui font foi.</div></footer>
+
+</div>
+
+</body>
+</html>
