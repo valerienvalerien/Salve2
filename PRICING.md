@@ -676,6 +676,33 @@ catalogue public (§3.c, motif de **livrabilité** à l'effectif de démarrage).
 médical**. Les deux fiches passent au **thème IT** : navy `#013C58`, jaune pastel `#FCE27C`
 en accent, **Inter**, comme `.theme-it` dans `assets/site.css`.
 
+**8. Propagation au site (2026-08-24) — deux promesses non financées y subsistaient.**
+L'audit de la fiche a révélé que la doctrine §3.e n'avait jamais été propagée à la page
+d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` non.
+
+- **« 1 backup dédié par compte »** — abandonné le 2026-08-14 (§3.e : la règle doublait le
+  coût d'un compte pour couvrir ~13 % d'absences). Il restait affiché en **KPI de la page
+  d'accueil**, dans la carte service Helpdesk, dans le bloc « Le bon calcul » et dans les
+  engagements — assorti d'un **« pas de jour d'arrêt »** que seul le tier Priority tient.
+  Remplacé partout par la doctrine à trois niveaux : *absence ponctuelle reprise par le
+  manager métier* (Poste dédié) · *rotation qui tient la plage* (Non-stop) · *capacité
+  réservée* (Priority). Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
+  turnover visé »**, qui est vrai, chiffré et différenciant.
+- **« Hub de repli alimenté (groupe électrogène, onduleurs) »** — le hub et sa ligne
+  d'énergie **sont sortis des charges** (`FINANCE §2.c`, −500 €) et le rétroplanning le
+  classe « **à cadrer, pas à déployer** ». Le promettre comme capacité existante n'était
+  plus finançable. Retiré de `index.html`, des trois espaces client
+  (`tools/espace-contenu-*.html`) et des deux fiches. **Le kit d'autonomie individuel par
+  agent reste promis** : il est dû à l'agent et réputé couvert par le salaire (§3.e).
+- Tables comparatives : « Oui + backup » ⇒ **« Oui + reprise manager »** (deux simulateurs
+  IT) · « Équipe + backup » ⇒ **« Reprise par le pool »** (médical, où l'agent n'est pas
+  nominatif).
+- ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
+  `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
+  **régénérés avec leur mot de passe** pour embarquer la correction du hub :
+  `node tools/espace-client-build.mjs <espace> "<mot-de-passe>" --verify`. Tant que ce n'est
+  pas fait, les espaces partenaires servent encore l'ancienne promesse.
+
 ---
 
 ## 4. Bailleurs sociaux & grandes structures — relation client de toutes sortes (futur non déterminé) — **INTERNE**
