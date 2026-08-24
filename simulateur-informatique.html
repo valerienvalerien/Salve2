@@ -21,7 +21,7 @@
 <meta name="twitter:title" content="Salverys — Support N1 pour éditeurs SaaS : simulateur d'équipe" />
 <meta name="twitter:description" content="Support applicatif N1 francophone pour éditeurs SaaS : agents dédiés formés à votre produit, escalade N2 cadrée. Simulez le tarif de votre équipe." />
 <meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<link rel="stylesheet" href="assets/site.css?v=4" />
+<link rel="stylesheet" href="assets/site.css?v=5" />
 </head>
 <body class="theme-it">
 
@@ -171,18 +171,17 @@
           <div class="pill-group" data-group="channels">
             <button class="pill active" data-value="single" data-multiplier="1.0">Ticket / email</button>
             <button class="pill" data-value="multi" data-multiplier="1.08">Tél + ticket</button>
-            <button class="pill" data-value="omni" data-multiplier="1.15">Omnicanal</button>
           </div>
-          <div class="option-help">Téléphone, tickets, emails et chat</div>
+          <div class="option-help">Tickets et emails, ou téléphone en plus</div>
         </div>
 
         <div class="control-group">
           <div class="control-label"><span class="control-label-text">Langue</span></div>
           <div class="pill-group" data-group="language">
             <button class="pill active" data-value="fr" data-multiplier="1.0">FR</button>
-            <button class="pill" data-value="en" data-multiplier="1.12">EN</button>
-            <button class="pill" data-value="bi" data-multiplier="1.22">Bilingue</button>
+            <button class="pill" data-value="fren" data-multiplier="1.12">FR+EN</button>
           </div>
+          <div class="option-help">Pour les utilisateurs anglophones de votre base.</div>
         </div>
       </div>
 
@@ -217,26 +216,51 @@
   <a class="scroll-next" href="#forfaits" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- COMPARATIF MUTUALISÉ / DÉDIÉ / PRIORITY -->
+<!-- COMPARATIF POSTE DÉDIÉ vs NON-STOP -->
 <section class="section" id="priority-compare">
   <div class="container">
     <div class="section-head reveal">
-      <div class="kicker">Mutualisé · Dédié · Priority</div>
+      <div class="kicker">Poste dédié vs Non-stop</div>
       <h2>Le vrai coût de la continuité de service</h2>
-      <p>En <strong>Mutualisé</strong>, vous achetez une capacité de traitement (SLA garanti, pas des têtes nominatives). En <strong>Dédié</strong>, vous achetez des agents à vous — mais éviter toute rupture impose de payer un backup en plus. En <strong>Priority</strong>, ce backup est réservé et géré par nous : son coût s'amortit à mesure que l'équipe grandit.</p>
+      <p>Le choix ne dépend pas de votre volume de tickets : il dépend des <strong>heures où vos utilisateurs se connectent</strong>. Le <strong>Poste dédié</strong> couvre une journée de travail, 9h–18h — au-delà, un ticket attend l'ouverture du lendemain. Le <strong>Non-stop</strong> fait tourner une rotation qui tient une plage plus large, jusqu'au 24·7 sur devis — elle ne se staffe qu'à partir de 4 agents.</p>
     </div>
     <div class="chart-card reveal d1">
       <div class="chart-toggle pill-group">
-        <button class="pill active" data-chart-view="brut">Coût brut</button>
-        <button class="pill" data-chart-view="resilience">À résilience égale</button>
+        <button class="pill active" data-chart-view="office">Heures de bureau</button>
+        <button class="pill" data-chart-view="extended">Amplitude 8h–20h</button>
       </div>
       <div id="priority-chart" class="priority-chart"></div>
       <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-swatch sw-dedie"></span>Dédié</span>
-        <span class="chart-legend-item"><span class="chart-swatch sw-priority"></span>Priority</span>
+        <span class="chart-legend-item"><span class="chart-swatch sw-dedie"></span>Poste dédié</span>
+        <span class="chart-legend-item"><span class="chart-swatch sw-nonstop"></span>Non-stop</span>
       </div>
       <p id="priority-chart-caption" class="chart-caption"></p>
+      <p class="chart-foot">Zéro rupture sans attendre 4 agents ? C'est le niveau de service <strong>Priority</strong> — capacité réservée, sélectionnable dès 1 agent dans le simulateur.</p>
     </div>
+
+    <div class="verdict-grid reveal d2">
+      <div class="verdict">
+        <div class="verdict-head">Restez au <strong>Poste dédié</strong> si…</div>
+        <ul>
+          <li>Vos utilisateurs sont actifs <b>de 9h à 18h</b>, pas après — c'est déjà la totalité de votre trafic.</li>
+          <li>Un ticket ouvert un soir ou un week-end <b>peut attendre l'ouverture</b> du lendemain matin, sans réclamation.</li>
+          <li>Vous couvrez <b>1 à 3 positions</b> — sous 4 agents, une rotation ne peut de toute façon pas tourner.</li>
+          <li>Une absence isolée <b>glisse le traitement de quelques heures</b> dans la journée ; elle ne ferme jamais la plage.</li>
+          <li>Vous cherchez le prix le plus juste sur une plage classique : c'est le forfait qui porte le <b>−40 à −60 %</b>.</li>
+        </ul>
+      </div>
+      <div class="verdict">
+        <div class="verdict-head">Passez au <strong>Non-stop</strong> si…</div>
+        <ul>
+          <li>Des utilisateurs se connectent <b>après 18h, le week-end ou la nuit</b> — hors 9h–18h, un poste dédié ne répond pas : il faut quelqu'un en poste.</li>
+          <li>Un ticket ouvert <b>vendredi 19h</b> ne peut pas attendre <b>lundi 9h</b> : 62 heures de silence, ce n'est pas un délai, c'est une rupture.</li>
+          <li>Chaque heure sans réponse a un <b>coût chiffrable</b> — pénalité de SLA contractuel, client qui churn : dès qu'une heure se facture, la rotation devient l'option économique.</li>
+          <li>Votre couverture dépasse <b>45 h/semaine</b> : 6h–20h, 3×8 ou 24·7 — au-delà d'une journée de travail, il faut des équipes qui se relaient, pas des agents qui s'épuisent.</li>
+          <li>Vous ouvrez <b>4 positions ou plus</b> : c'est le plancher physique de la rotation, en dessous elle ne tourne pas.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="verdict-note" id="verdict-crossover"></p>
   </div>
 </section>
 
@@ -494,7 +518,7 @@
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
   window.SIM_CONFIG = { baseDirect: 2300, frBench: 3700 };
 </script>
-<script src="assets/site.js?v=4"></script>
+<script src="assets/site.js?v=5"></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

@@ -474,37 +474,50 @@
       cta.addEventListener('click', e => { if (cta.classList.contains('is-locked')) e.preventDefault(); });
     });
 
-    /* ----- Graphe comparatif Dédié vs Priority (SVG sans dépendance) ----- */
+    /* ----- Graphe comparatif Poste dédié vs Non-stop (SVG sans dépendance) -----
+       Ce que le graphe démontre (cf. PRICING.md §3.d/§3.e) : le choix entre les
+       deux forfaits ne se joue pas sur le volume mais sur l'AMPLITUDE.
+       — En heures de bureau, le Poste dédié est moins cher partout : la rotation
+         du Non-stop (+ superviseur dédié) se paie sans rien couvrir de plus.
+       — En 8h–20h, le Poste dédié doit staffer ×1,333 têtes par position pour
+         tenir la plage (l'amplitude coûte des ETP, §3.c), alors que le Non-stop
+         la tient par sa rotation : il repasse devant dès qu'il est staffable.
+       Le Non-stop n'existe pas sous NONSTOP_MIN agents — la zone est grisée
+       plutôt que tracée, pour ne pas suggérer un devis impossible. */
     const chart = $('priority-chart');
     if (chart) {
       const W = 640, H = 300, PADL = 56, PADR = 18, PADT = 18, PADB = 38;
       const NMAX = 10;
-      let chartView = 'brut'; // 'brut' | 'resilience'
+      // Surcoût du Non-stop à effectif égal : rotation + superviseur dédié.
+      // Calé sur les « à partir de » publiés (§3.d) : 4 agents ⇒ ~11 000 €
+      // (helpdesk, base 2 500) et ~10 000 € (support SaaS, base 2 300).
+      const NONSTOP_MULT = 1.15;
+      // Têtes à staffer par position pour tenir 8h–20h en Poste dédié (§3.c).
+      const EXT_COVERAGE = 1.333;
+      let chartView = 'office'; // 'office' | 'extended'
 
-      // Coût mensuel pour n agents, multiplicateur de service donné, config courante.
-      const cost = (n, svc) => {
-        const m = svc * st.channels * st.language * st.scope;
-        return st.mode * (st.hours / 35) * m * n * st.coverage * vol(n);
+      // Coût mensuel pour n agents à la config courante, hors amplitude :
+      // chaque vue impose la sienne, sinon l'amplitude serait comptée deux fois.
+      const cost = (n, mult, coverage) => {
+        const m = mult * st.channels * st.language * st.scope;
+        return st.mode * (st.hours / 35) * m * n * coverage * vol(n);
       };
-      // Vue « coût brut » : un point par nombre d'agents.
-      const costDedie = n => cost(n, 1.0);
-      const costPriority = n => cost(n, priorityMult(n));
-      // Vue « résilience égale » : garantir g agents productifs sans rupture.
-      // Priority = g agents (backup inclus). Dédié = g + ceil(g/3) têtes (sur-staffing).
-      const resilDedie = g => cost(g + Math.ceil(g / 3), 1.0);
-      const resilPriority = g => costPriority(g);
+      // Poste dédié : en bureau 1 tête par position, en 8h–20h ×1,333 têtes.
+      const costDedie = n => cost(n, 1.0, chartView === 'extended' ? EXT_COVERAGE : 1.0);
+      // Non-stop : la rotation tient la plage, l'amplitude ne rajoute pas de têtes.
+      const costNonstop = n => cost(n, NONSTOP_MULT, 1.0);
 
       const sx = i => PADL + (i - 1) / (NMAX - 1) * (W - PADL - PADR);
       const fmtK = v => (v / 1000).toFixed(v < 10000 ? 1 : 0).replace('.', ',') + ' k€';
 
       function renderChart() {
-        const dedFn = chartView === 'brut' ? costDedie : resilDedie;
-        const priFn = chartView === 'brut' ? costPriority : resilPriority;
         const xs = []; for (let n = 1; n <= NMAX; n++) xs.push(n);
-        const maxV = Math.max(...xs.map(dedFn), ...xs.map(priFn)) * 1.08;
+        // Le Non-stop ne se trace qu'à partir de son plancher d'effectif.
+        const ns = xs.filter(n => n >= NONSTOP_MIN);
+        const maxV = Math.max(...xs.map(costDedie), ...ns.map(costNonstop)) * 1.08;
         const sy = v => H - PADB - (v / maxV) * (H - PADT - PADB);
-        const path = fn => xs.map((n, i) => (i ? 'L' : 'M') + sx(n).toFixed(1) + ' ' + sy(fn(n)).toFixed(1)).join(' ');
-        const dots = (fn, cls) => xs.map(n => '<circle class="' + cls + '" cx="' + sx(n).toFixed(1) + '" cy="' + sy(fn(n)).toFixed(1) + '" r="3"><title>' + n + ' agent' + (n > 1 ? 's' : '') + ' : ' + euro(fn(n)) + ' €/mois</title></circle>').join('');
+        const path = (fn, pts) => pts.map((n, i) => (i ? 'L' : 'M') + sx(n).toFixed(1) + ' ' + sy(fn(n)).toFixed(1)).join(' ');
+        const dots = (fn, pts, cls, label) => pts.map(n => '<circle class="' + cls + '" cx="' + sx(n).toFixed(1) + '" cy="' + sy(fn(n)).toFixed(1) + '" r="3"><title>' + label + ' · ' + n + ' agent' + (n > 1 ? 's' : '') + ' : ' + euro(fn(n)) + ' €/mois</title></circle>').join('');
 
         // Grille horizontale + libellés Y
         let grid = '', steps = 4;
@@ -517,29 +530,45 @@
         let xlab = '';
         xs.forEach(n => { xlab += '<text class="pc-axis" x="' + sx(n).toFixed(1) + '" y="' + (H - PADB + 20) + '" text-anchor="middle">' + n + '</text>'; });
 
-        // Annotation : point de bascule réel (1er g où Priority devient moins cher à garantie égale)
+        // Zone où le Non-stop n'est pas staffable — dite, pas dessinée en courbe.
+        const zx = sx(NONSTOP_MIN);
+        const zone = '<rect class="pc-zone" x="' + PADL + '" y="' + PADT + '" width="' + (zx - PADL).toFixed(1) + '" height="' + (H - PADT - PADB) + '"/>' +
+                     '<text class="pc-zone-txt" x="' + (PADL + 8) + '" y="' + (PADT + 14) + '">Non-stop non staffable — pas de rotation sous ' + NONSTOP_MIN + ' agents</text>';
+
+        // Annotation : 1er effectif où le Non-stop passe sous le Poste dédié.
         let note = '', crossover = 0;
-        if (chartView === 'resilience') {
-          for (let g = 1; g <= NMAX; g++) { if (priFn(g) < dedFn(g)) { crossover = g; break; } }
-          if (crossover) {
-            const gx = sx(crossover).toFixed(1);
-            note = '<line class="pc-note" x1="' + gx + '" y1="' + PADT + '" x2="' + gx + '" y2="' + (H - PADB) + '"/>' +
-                   '<text class="pc-note-txt" x="' + (parseFloat(gx) + 6) + '" y="' + (PADT + 14) + '">Dès ' + crossover + ' agents garantis : Priority &lt; dédié sur-staffé</text>';
-          }
+        for (let n = NONSTOP_MIN; n <= NMAX; n++) { if (costNonstop(n) < costDedie(n)) { crossover = n; break; } }
+        if (crossover) {
+          const gx = sx(crossover).toFixed(1);
+          note = '<line class="pc-note" x1="' + gx + '" y1="' + PADT + '" x2="' + gx + '" y2="' + (H - PADB) + '"/>' +
+                 '<text class="pc-note-txt" x="' + (parseFloat(gx) + 6) + '" y="' + (PADT + 30) + '">Dès ' + crossover + ' agents : Non-stop &lt; Poste dédié sur-staffé</text>';
         }
 
         chart.innerHTML =
-          '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Comparaison coût Dédié vs Priority selon le nombre d\'agents">' +
-          grid + xlab + note +
-          '<path class="pc-line pc-dedie" d="' + path(dedFn) + '"/>' +
-          '<path class="pc-line pc-priority" d="' + path(priFn) + '"/>' +
-          dots(dedFn, 'pc-dot pc-dot-dedie') + dots(priFn, 'pc-dot pc-dot-priority') +
+          '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Comparaison du coût mensuel Poste dédié et Non-stop selon le nombre d\'agents">' +
+          grid + zone + xlab + note +
+          '<path class="pc-line pc-dedie" d="' + path(costDedie, xs) + '"/>' +
+          '<path class="pc-line pc-nonstop" d="' + path(costNonstop, ns) + '"/>' +
+          dots(costDedie, xs, 'pc-dot pc-dot-dedie', 'Poste dédié') +
+          dots(costNonstop, ns, 'pc-dot pc-dot-nonstop', 'Non-stop') +
           '<text class="pc-axis pc-axis-x" x="' + ((W + PADL) / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Nombre d\'agents</text>' +
           '</svg>';
+
         const cap = $('priority-chart-caption');
-        if (cap) cap.textContent = chartView === 'brut'
-          ? 'Coût mensuel brut à effectif égal : Priority coûte plus (le backup réservé est inclus), mais l\'écart se resserre quand l\'équipe grandit — le backup s\'amortit.'
-          : 'À garantie égale (zéro rupture). En dédié il faut sur-staffer un backup que vous gérez ; en Priority il est inclus et géré par nous — et au-delà du point marqué, Priority revient même moins cher.';
+        if (cap) cap.textContent = chartView === 'office'
+          ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur du Non-stop se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
+          : 'Dès que la plage s\'étend à 8h–20h, il faut 1,33 tête par position en Poste dédié pour couvrir les mêmes heures — l\'amplitude coûte des personnes, pas un pourcentage. Le Non-stop tient la même plage par sa rotation : dès qu\'il est staffable, il revient moins cher que le dédié sur-staffé.';
+
+        // Ligne de bascule chiffrée sous les deux colonnes de verdict.
+        const vn = $('verdict-crossover');
+        if (vn) {
+          const n = NONSTOP_MIN;
+          const office = st.mode * (st.hours / 35) * st.channels * st.language * st.scope * n * vol(n);
+          vn.innerHTML = 'Le basculement se joue sur les heures à couvrir, pas sur le volume de tickets. À ' + n + ' agents sur 9h–18h : '
+            + '<b>' + euro(office) + ' €/mois</b> en Poste dédié contre <b>' + euro(office * NONSTOP_MULT) + ' €/mois</b> en Non-stop — restez au dédié. '
+            + 'Dès que la même équipe doit tenir 8h–20h, il faut ' + (n * EXT_COVERAGE).toFixed(1).replace('.', ',') + ' têtes en Poste dédié — '
+            + '<b>' + euro(office * EXT_COVERAGE) + ' €/mois</b> — et le Non-stop repasse devant.';
+        }
       }
 
       document.querySelectorAll('[data-chart-view]').forEach(btn => {

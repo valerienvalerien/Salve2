@@ -4,7 +4,18 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
+> Dernière révision : 2026-08-24 (**audit de la fiche offre France — décision direction** :
+> les trois montants de la fiche (690 € / 1 450 € / 5 400 €) étaient **sous la rate card MB**
+> et sont **réalignés** §3.g · fiche **scindée en deux versions** — publique sans tarif,
+> cadrage sous NDA avec la grille §3.g · SLA ramenés à la **doctrine §7** (90 % et non 95 %,
+> remède « avoir 20 % » rendu explicite) · « binômage + rotation plafonnée à 25 %/an »
+> **supprimé**, remplacé par la doctrine de continuité §3.e) ·
+> précédente 2026-08-14 (**nettoyage des axes du simulateur & module de choix
+> de forfait — décision direction** : axes **« Omnicanal » et « Bilingue » supprimés** des
+> simulateurs IT, option « EN » renommée **« FR+EN »** §3.f · le module public
+> « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Non-stop**
+> (choix de forfait réel) et non plus Dédié vs Priority §3.f) ·
+> précédente 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
 > décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
 > CNaPS/OSTIE), fondateur unique non rémunéré, effectif **sans plafond**, dimensionné sur
 > les contrats · **plancher absolu porté de 840 € à 920 €/ETP** §3 · **rate card refondue en
@@ -530,6 +541,140 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
     Au-delà de **8 agents par métier**, prévoir un **agent volant** (~766 €/mois) plutôt que
     de dégrader la supervision. En équipe salariée, l'absence est payée : c'est un coût de
     **capacité**, pas de paie.
+
+### 3.f Axes du simulateur & module de choix de forfait (décidé 2026-08-14)
+
+**Deux axes supprimés des simulateurs IT — ils gonflaient le prix sans contrepartie.**
+
+| Axe retiré | Ancien effet | Motif du retrait |
+|---|---|---|
+| Canaux → **« Omnicanal »** | ×1,15 | Ne décrivait aucun travail supplémentaire réel : au-delà de « Tél + ticket », il n'y a pas de troisième canal que nous facturons différemment. Le curseur ajoutait +15 % à une case cochée. |
+| Langue → **« Bilingue »** | ×1,22 | Doublon de « EN » : un agent qui traite l'anglais traite déjà le français. Deux libellés pour une seule réalité, dont l'un facturé 10 points de plus. |
+
+- **L'option « EN » devient « FR+EN »**, multiplicateur **inchangé à ×1,12**. Le libellé dit ce
+  qui est réellement vendu (un agent qui tient les deux langues) ; le prix ne bouge pas — la
+  correction est de nommage, pas de tarif.
+- Axes conservés côté canaux : **Ticket / email** (×1,00) et **Tél + ticket** (×1,08). Le
+  téléphone est le seul canal qui change vraiment la charge de l'agent.
+- **Règle générale** : un axe de simulateur ne se justifie que s'il correspond à une charge
+  ou une compétence que nous **payons différemment**. Sinon c'est de la majoration décorative,
+  et elle se retourne contre nous au moment du devis — le prospect découvre que l'option
+  n'était adossée à rien.
+
+**Le module public « Le vrai coût de la continuité de service » compare Poste dédié vs
+Non-stop.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
+question que se pose réellement l'acheteur est un choix de **forfait**. Priority reste
+sélectionnable et garde sa démonstration propre (badge « Continuité de N postes, sans en
+recruter N », §3) ; il est renvoyé en note sous le graphe.
+
+- **Ce que le graphe démontre : le choix se joue sur l'amplitude, pas sur le volume.**
+
+  | Vue | Poste dédié | Non-stop | Lecture |
+  |---|---|---|---|
+  | **Heures de bureau** | 1 tête par position | rotation + superviseur, **×1,15** | Le dédié est **moins cher à tous les effectifs** — la rotation se paie sans couvrir une minute de plus |
+  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | la rotation tient la plage, **sans tête en plus** | Le Non-stop **repasse devant dès qu'il est staffable** (4 agents) |
+
+- **Calage du multiplicateur `NONSTOP_MULT = 1,15`** sur les « à partir de » publiés (§3.d) :
+  4 agents × 2 500 € × dégressif 0,95 × 1,15 = **10 925 €** (helpdesk, annoncé « dès 11 000 »)
+  et 4 × 2 300 × 0,95 × 1,15 = **10 051 €** (support SaaS, annoncé « dès 10 000 »). Le graphe
+  et la carte de forfait racontent donc le même prix.
+- **La zone sous 4 agents est grisée, jamais tracée en courbe** : le Non-stop n'y est pas
+  staffable (§3.d) et une courbe l'y ferait exister.
+- **Deux colonnes de verdict** accompagnent le graphe (« Restez au Poste dédié si… » /
+  « Passez au Non-stop si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
+  qui rend le conseil crédible quand on recommande l'inverse. Plaquette commerciale
+  correspondante : `04-Closing/PLAQUETTE-DEDIE-VS-NONSTOP.pptx`.
+- **Révision 2026-08-14 (2) — arguments recentrés sur les heures, pas l'abstraction
+  « amplitude ».** Premier jet jugé pas assez convaincant en interne : seuls 2 des 5
+  critères de chaque colonne référençaient une heure concrète, le reste étant générique
+  (« prix », « superviseur », « même interlocuteur »). Les deux colonnes sont réécrites en
+  ancrant **chaque ligne sur une heure ou une plage d'horloge** :
+  - Poste dédié : *9h–18h*, *un ticket du soir attend le lendemain matin*, *1 à 3
+    positions*, *une absence glisse le traitement de quelques heures*, *prix le plus
+    juste sur une plage classique*.
+  - Non-stop : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
+    62 h de silence*, *coût chiffrable de l'heure sans réponse*, *couverture > 45 h/semaine
+    (6h-20h, 3×8, 24·7)*, *4 positions ou plus*.
+  - L'intro de section et les légendes du graphe (`assets/site.js`) sont réécrites dans
+    la même logique : « le choix dépend des heures où on vous sollicite », pas de
+    « l'amplitude ». La phrase de bascule chiffrée mène désormais par la plage (« 9h–18h »
+    / « 8h–20h ») avant le prix, pas l'inverse.
+  - Objectif : qu'un lecteur qui hésite puisse trancher en se demandant une seule chose —
+    *à quelle heure mon dernier ticket peut-il arriver ?* — plutôt que de comparer des
+    arguments de nature différente (prix, interlocuteur, SLA, horaires) sans hiérarchie.
+- Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
+  Non-stop »), sections `#priority-compare` des deux simulateurs IT.
+
+
+### 3.g Fiche offre France — audit et réalignement (décidé 2026-08-24)
+
+> Audit de `ficheoffrefrance.pdf` (one-pager marque blanche pour ESN / éditeurs / MSP).
+> Le document était bon sur le fond — positionnement, périmètre, sécurité — mais **six
+> écarts** le rendaient inutilisable en l'état. Livrables :
+> `04-Closing/FICHE-OFFRE-FRANCE-publique.html` et `-cadrage.html`.
+
+**1. Les trois montants étaient sous la rate card — corrigés.**
+
+| Modèle | Fiche d'origine | Retenu | Motif |
+|---|---|---|---|
+| **A — Débordement mutualisé** | 690 €/mois | **1 120 €/mois**, 400 tickets inclus (2,80 €/ticket) | 690 € est **sous le plancher absolu de 920 €** (§3) et sous le coût direct d'un agent (766 €). Le nouveau prix applique le haut de la fourchette « à l'interaction » MB (1,8-2,8 €/ticket, §3) au lot pilote de 400 tickets (§3.b) |
+| **B — Capacité dédiée** | 1 450 €/ETP | **rate card §3 intégrale** — 1 700 / 1 500 / 1 350 € (SaaS) · 2 000 / 1 750 / 1 550 € (helpdesk) | 1 450 € est **sous le tarif stratégique 9+ du helpdesk** (1 550 €) : le meilleur prix de la grille était consenti d'entrée, sans contrepartie de volume. La fiche porte désormais les trois paliers et la **clause de volume ferme facturable** |
+| **C — Équipe managée** | 5 400 €/mois | **à partir de 7 820 €/mois** | Un service desk encadré suppose le **plancher de 4 positions** (§3.d). Calcul : 4 ETP au tarif du palier 1-4 + **15 % d'encadrement** (`NONSTOP_MULT`, §3.f) ⇒ 4 × 1 700 × 1,15 = **7 820 €** (SaaS) · 4 × 2 000 × 1,15 = **9 200 €** (helpdesk). À 5 400 €, la fiche vendait une équipe complète **sous le tarif d'une seule position × 4** |
+
+**2. Deux versions au lieu d'une — la doctrine §0/§9 l'imposait.** Un document intitulé
+« fiche offre » circule ; or **aucun tarif marque blanche ne sort hors cadrage sous NDA**,
+le prix de gros étant l'input de marge du revendeur.
+
+- **`FICHE-OFFRE-FRANCE-publique.html`** (2 pages) — périmètre, engagements, modèles décrits
+  **sans montant**, plages, sécurité, démarrage. Diffusable en prospection, salon, cold email.
+- **`FICHE-OFFRE-FRANCE-cadrage.html`** (3 pages, bandeau « ne pas rediffuser ») — la même
+  offre plus la **grille complète**, la clause de volume ferme, le **dépôt d'activation**
+  (§3.a) et les **trois contreparties de risque** (§3.b).
+
+**3. SLA ramenés à la doctrine §7.** La fiche promettait plus que ce qui est arbitré :
+
+- « Prise en compte — **≥ 95 %** » ⇒ **≥ 90 %**. Le 95 % avait été **explicitement écarté**
+  au §7 comme « trop ambitieux en phase de démarrage ».
+- « **≥ 90 % des appels décrochés en moins de 60 secondes** » ⇒ **≥ 90 % des appels
+  présentés** sur les plages couvertes. Le qualificatif « en moins de 60 s » durcissait
+  unilatéralement un engagement déjà calibré, sans contrepartie tarifaire.
+- **Le remède manquait** — un engagement sans remède défini est une responsabilité ouverte.
+  Ajouté : **avoir de 20 %** sur la facture suivante, automatique, **plafonné à 1 mois sur 12**,
+  hors indisponibilité côté client et hors volume au-delà du forfait (§7).
+- Ajout de la borne temporelle : l'engagement **ne court qu'à partir du 1er mois plein en
+  régime** ; pendant la transition la mesure est publiée mais **pas opposable**.
+
+**4. « Binômage systématique, rotation plafonnée à 25 % par an » — supprimé.** Deux
+problèmes : le **binômage** est un backup permanent non financé, alors que §3.e pose que
+le remplacement est **dans le prix et jamais en ligne d'option** ; et **annoncer 25 % de
+rotation** contredit frontalement l'objectif **zéro turnover** du modèle salarié (§3.e).
+Remplacé par la doctrine à trois niveaux — **pool** (A) · **manager métier** (B) ·
+**rotation d'équipe** (C) — et par l'argument qui la finance : agents en CDI rémunérés
+**~4,5× le marché local**, ce qui rend l'absence *prévue* plutôt que subie.
+
+**5. Plages — samedi conservé, le reste sur devis.** Le samedi 8h-13h est **maintenu comme
+plage standard vendable** (décision direction). Soirée, jours fériés et couverture continue
+passent **en modules sur devis**, cohérent avec le retrait de l'astreinte et du 24·7 du
+catalogue public (§3.c, motif de **livrabilité** à l'effectif de démarrage).
+
+**6. Libellés et mentions.**
+
+- `contact@salverys.com` ⇒ **`contact@salverys.fr`** (domaine réellement utilisé par le site).
+- **Deux placeholders jamais remplis** subsistaient : « Prénom Nom » et « +261 00 00 000 00 ».
+  Ils sont laissés en **marqueurs explicites** `[Prénom Nom]` / `[+261 XX XX XXX XX]` — à
+  compléter avant tout envoi.
+- ⚠️ Le titre « **Directeur des opérations** » est retiré au profit de « **Direction** » :
+  à **un fondateur et une salariée**, un organigramme suggéré est invérifiable — et le
+  garde-fou de `CLAUDE.md` proscrit tout argument fondé sur le parcours de la direction.
+- **Délai de démarrage : 6 semaines maintenu en marque blanche**, alors que le public
+  annonce « opérationnel en 3 à 4 semaines » (§3.c). L'écart est **assumé et non une
+  incohérence** : un déploiement partenaire ajoute transition, shadowing et doublon inversé,
+  et `FINANCE-PREVISIONNEL.md §5` donne 4 à 7 semaines (recrutement 2-4 + formation 2-3).
+  Le chiffre le plus prudent est celui qu'on écrit dans un document contractuel.
+
+**7. Charte graphique.** Le PDF d'origine était en vert sombre — le registre du **thème
+médical**. Les deux fiches passent au **thème IT** : navy `#013C58`, jaune pastel `#FCE27C`
+en accent, **Inter**, comme `.theme-it` dans `assets/site.css`.
 
 ---
 
