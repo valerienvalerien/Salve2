@@ -697,6 +697,33 @@ d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` n
 - Tables comparatives : « Oui + backup » ⇒ **« Oui + reprise manager »** (deux simulateurs
   IT) · « Équipe + backup » ⇒ **« Reprise par le pool »** (médical, où l'agent n'est pas
   nominatif).
+**9. Vocabulaire de la continuité — réécrit en français d'acheteur (2026-08-24).** Le
+tableau de continuité de la fiche était **illisible pour un prospect** : la colonne
+« Qui remplace » ne disait jamais **dans quelle situation** (rien n'annonçait qu'on parlait
+d'absence), « le pool, **par construction** » était du jargon, et « **le manager métier** »
+désignait un rôle que la fiche n'avait jamais présenté — il vient de §3.e, pas de la lecture
+du document. Corrigé partout :
+
+| Avant | Après |
+|---|---|
+| Titre « Continuité de service — qui prend le relais » | « **Continuité — le jour où votre agent est absent** », avec une phrase qui pose la question |
+| Colonnes « Qui remplace » / « Ce que nous garantissons » | « **Qui prend le relais** » / « **Ce que vous constatez** » |
+| « Le pool, par construction » | « N'importe quel agent du pool — vous n'avez pas d'agent attitré » |
+| « Le manager métier, déjà affecté à votre compte » | « Le manager qui supervise déjà votre compte : il connaît vos procédures et **n'occupe aucune position que vous payez** » |
+| « La rotation de l'équipe » | « Les autres agents de la rotation » |
+
+- Même correction sur le site, où le terme avait été introduit le même jour : « Absence
+  ponctuelle reprise par **votre manager métier** » ⇒ « …par **le manager de votre compte** »
+  (listes de forfaits et tableau comparatif des deux simulateurs IT, carte service et
+  engagements de `index.html`).
+- **Règle retenue** : un document client ne cite jamais un rôle interne sans le décrire dans
+  la même phrase. « Manager métier » reste le terme **interne** (§3.e, `FINANCE §1`) ; côté
+  client on écrit **ce qu'il fait** — il supervise déjà le compte et n'est pas facturé.
+- L'encadré passe de « Nous ne vendons pas de binôme de secours » (une négation) à
+  « **Pourquoi nous n'avons pas besoin de vous facturer un remplaçant** » (le mécanisme) :
+  à 4,5× le marché local, l'absence est un **congé posé à l'avance**, qui s'anticipe au
+  planning au lieu de se rattraper avec une tête de plus.
+
 - ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
   `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
   **régénérés avec leur mot de passe** pour embarquer la correction du hub :
