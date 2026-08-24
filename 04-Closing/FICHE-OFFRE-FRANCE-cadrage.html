@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salverys — Fiche offre France · Version cadrage (confidentiel)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ===========================================================
+   Salverys — Fiche offre France (VERSION CADRAGE, CONFIDENTIELLE)
+   Charte thème IT : navy #013C58 + jaune pastel #FCE27C, Inter.
+   Porte la rate card marque blanche complète (PRICING.md §3).
+   ⚠️ Ne jamais diffuser hors cadrage / NDA (doctrine §0/§9) :
+   le prix de gros est l'input de marge du revendeur.
+   =========================================================== */
+:root{
+  --navy:#013C58; --navy-deep:#012C42; --gold:#FCE27C; --gold-soft:#FFE9A0;
+  --ink:#1A2B35; --text:#33454F; --soft:#5E6F78; --mute:#8A979E;
+  --line:#DCE4E8; --line-soft:#EDF1F3; --bg:#FFFFFF; --tint:#F5F8FA;
+  --warn:#B4531F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:#E9EDF0;color:var(--text);font-size:8.9pt;line-height:1.42;
+  -webkit-font-smoothing:antialiased}
+.page{width:210mm;min-height:297mm;margin:14px auto;background:var(--bg);
+  padding:12mm 15mm 12mm;box-shadow:0 6px 28px rgba(1,60,88,.13)}
+.page + .page{margin-top:20px}
+
+/* --- Bandeau confidentiel --- */
+.confid{background:var(--navy);color:#fff;font-size:7.4pt;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;text-align:center;
+  padding:5px 10px;margin-bottom:11px}
+.confid span{color:var(--gold)}
+
+.head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid var(--navy);padding-bottom:6px;margin-bottom:10px}
+.brand{font-size:12.5pt;font-weight:800;letter-spacing:.16em;color:var(--navy)}
+.head-meta{font-size:7pt;letter-spacing:.11em;color:var(--mute);text-transform:uppercase;font-weight:600}
+
+h1{font-size:15pt;font-weight:800;letter-spacing:-.02em;color:var(--navy);
+  line-height:1.16;margin-bottom:4px}
+.targets{font-size:6.9pt;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--soft);font-weight:600;margin-bottom:9px}
+
+.lede{background:var(--tint);border-left:3px solid var(--gold);
+  padding:8px 11px;margin-bottom:11px;font-size:9.1pt;color:var(--ink);line-height:1.45}
+.lede b{color:var(--navy);font-weight:700}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:10px}
+h2{font-size:7pt;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);
+  font-weight:700;border-bottom:1px solid var(--line);padding-bottom:3px;margin-bottom:6px}
+h3{font-size:9.1pt;font-weight:700;color:var(--navy);margin-bottom:2px}
+p{margin-bottom:6px}
+.blk{margin-bottom:8px}
+.blk:last-child{margin-bottom:0}
+
+ul{list-style:none}
+li{position:relative;padding-left:11px;margin-bottom:3px;line-height:1.4}
+li::before{content:"";position:absolute;left:0;top:5.5px;width:3.5px;height:3.5px;
+  border-radius:50%;background:var(--gold)}
+li b{color:var(--navy);font-weight:700}
+.inline{color:var(--soft);line-height:1.5}
+
+table{width:100%;border-collapse:collapse;margin-bottom:6px}
+th,td{text-align:left;padding:4.2px 7px;border-bottom:1px solid var(--line-soft);
+  vertical-align:top;font-size:8.5pt}
+thead th{font-size:6.7pt;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mute);font-weight:700;border-bottom:1px solid var(--line);padding-bottom:4px}
+tbody th{width:34%;font-weight:700;color:var(--navy)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+td b{color:var(--navy);font-weight:700}
+
+/* --- Rate card --- */
+.rate{margin-bottom:8px}
+.rate th,.rate td{padding:5px 8px;font-size:8.8pt}
+.rate thead th{text-align:right;color:var(--navy);font-size:7.4pt}
+.rate thead th:first-child{text-align:left}
+.rate tbody th{width:auto;color:var(--navy)}
+.rate td{text-align:right;font-weight:700;color:var(--navy);
+  font-variant-numeric:tabular-nums}
+.rate tbody tr{border-bottom:1px solid var(--line-soft)}
+.rate .tierlab{font-size:8.2pt;font-weight:500;color:var(--soft);display:block;margin-top:1px}
+.rate tr.best{background:var(--tint)}
+
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:7px}
+.model{border:1px solid var(--line);padding:11px 12px;display:flex;flex-direction:column}
+.model .tag{display:inline-block;background:var(--navy);color:#fff;font-size:7pt;
+  font-weight:700;letter-spacing:.09em;padding:2.5px 7px;margin-bottom:7px;align-self:flex-start}
+.model .name{font-size:9.4pt;font-weight:800;color:var(--navy);margin-bottom:3px;line-height:1.18}
+.model .desc{font-size:8.2pt;color:var(--soft);line-height:1.38;margin-bottom:6px;flex:1}
+.model .from{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
+  font-weight:700;border-top:1px solid var(--line-soft);padding-top:6px}
+.model .price{font-size:12pt;font-weight:800;color:var(--navy);
+  font-variant-numeric:tabular-nums;line-height:1.15;margin-top:2px}
+.model .unit{font-size:8.4pt;font-weight:600;color:var(--soft)}
+
+.callout{background:var(--tint);border-left:3px solid var(--navy);padding:8px 11px;margin-top:7px}
+.callout .ct{font-size:8.8pt;font-weight:700;color:var(--navy);margin-bottom:3px}
+.callout p{font-size:8.4pt;color:var(--text);margin:0;line-height:1.42}
+.callout.lock{border-left-color:var(--warn)}
+.callout.lock .ct{color:var(--warn)}
+
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:7px 0 6px}
+.phase{border-top:2px solid var(--gold);padding-top:6px}
+.phase .pl{font-size:7.2pt;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:var(--navy);margin-bottom:3px}
+.phase .pd{font-size:7.9pt;color:var(--soft);line-height:1.34}
+
+.foot{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+  border-top:2px solid var(--navy);padding-top:7px;margin-top:11px}
+.sign .sn{font-size:9.6pt;font-weight:800;color:var(--navy)}
+.sign .sc{font-size:8.1pt;color:var(--soft);margin-top:2px;line-height:1.45}
+.legal{font-size:7pt;color:var(--mute);text-align:right;max-width:62mm;line-height:1.4}
+
+.section{margin-bottom:10px}
+.note{font-size:7.9pt;color:var(--mute);font-style:italic;margin-top:4px}
+
+@media print{
+  body{background:#fff}
+  table,.callout,.models,.phases,.cols,.rate{page-break-inside:avoid}
+  .page{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
+  .page + .page{margin-top:0;page-break-before:always}
+  @page{size:A4;margin:10mm 12mm}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+
+  <div class="confid">Confidentiel · remis au cadrage sous accord de confidentialité — <span>ne pas rediffuser</span></div>
+
+  <div class="head">
+    <div class="brand">SALVERYS</div>
+    <div class="head-meta">Fiche offre — France · Antananarivo, Madagascar · UTC+3</div>
+  </div>
+
+  <h1>Support IT N1 et support applicatif N1, opérés en marque blanche.</h1>
+  <div class="targets">Pour ESN, éditeurs de logiciels, MSP et centres de services</div>
+
+  <div class="lede">
+    Nous sommes le <b>centre de production N1</b> de votre service support. Vous gardez votre marque,
+    votre client et votre expertise N2/N3. Nous opérons le premier niveau avec vos outils,
+    vos procédures et vos SLA.
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="blk">
+        <h2>Le constat</h2>
+        <p>Le N1 est le maillon le plus consommateur de ressources de votre centre de services,
+        et le moins valorisé : il absorbe vos techniciens, plafonne votre marge au forfait
+        et vous impose des plages que personne ne veut staffer.</p>
+      </div>
+      <div class="blk">
+        <h2>Ce que nous faisons</h2>
+        <p>Nous ne vous vendons pas notre méthode : nous appliquons la vôtre.</p>
+        <ul>
+          <li>Nos agents travaillent <b>dans votre ITSM</b>, avec vos catégories et votre matrice d'escalade</li>
+          <li>Nous appliquons <b>vos procédures</b> et alimentons <b>votre</b> base de connaissance</li>
+          <li>Vos clients finaux ne changent ni de numéro, ni d'interlocuteur, ni de portail</li>
+          <li>Vous gardez le pilotage, la relation client et la marque</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2>Périmètre couvert</h2>
+      <div class="blk">
+        <h3>Support IT N1</h3>
+        <p class="inline">Poste de travail · Messagerie et collaboratif M365 · Connectivité et VPN ·
+        Impression · Comptes et accès (AD, Entra ID, MFA, licences) · Mobilité et MDM ·
+        Onboarding / offboarding · Prise en main à distance · Parc et CMDB.</p>
+      </div>
+      <div class="blk">
+        <h3>Support applicatif N1</h3>
+        <p class="inline">Assistance fonctionnelle · Habilitations · Déblocage de flux et
+        corrections de données sur périmètre tracé · Qualification des anomalies avant
+        escalade éditeur · Renfort sur clôtures, paie et inventaires.</p>
+      </div>
+      <div class="blk">
+        <h3>Canaux</h3>
+        <p class="inline">Téléphone · Mail · Portail ITSM · Chat / Teams · Formulaire de demande.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Nos engagements</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Prise en compte des tickets</th>
+          <td>Selon votre grille de priorités — <b>≥ 90 %</b> dans le délai convenu</td>
+        </tr>
+        <tr>
+          <th>Taux de décroché</th>
+          <td><b>≥ 90 % des appels présentés</b> sur les plages couvertes</td>
+        </tr>
+        <tr>
+          <th>Si un seuil n'est pas tenu</th>
+          <td><b>Avoir de 20 %</b> sur la facture du mois suivant, appliqué automatiquement —
+          vous n'avez rien à réclamer. Plafonné à un mois sur douze ; hors indisponibilité
+          de votre côté et hors volume dépassant le forfait souscrit.</td>
+        </tr>
+        <tr>
+          <th>Qualité des escalades</th>
+          <td>Dossier normé et complet — <b>zéro renvoi pour requalification</b></td>
+        </tr>
+        <tr>
+          <th>Taux de résolution N1</th>
+          <td>Mesuré et publié pendant le pilote, contractualisé ensuite</td>
+        </tr>
+        <tr>
+          <th>Continuité de service</th>
+          <td>Trois niveaux selon le modèle souscrit — détail page 2</td>
+        </tr>
+        <tr>
+          <th>Reporting</th>
+          <td>Hebdomadaire, dans votre format, avant le mardi 12h</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">Les seuils exacts se figent au cadrage, sur votre grille de priorités.
+    L'engagement court à partir du premier mois plein en régime : pendant la transition,
+    la mesure est publiée mais pas opposable.</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>Plages et modalités</h2>
+      <p>6h00 – 20h00 heure de Paris, du lundi au vendredi. <b>Samedi 8h – 13h.</b>
+      Soirée, jours fériés français et couverture continue : en modules, sur devis.
+      Les plages sont contractualisées <b>en heure de Paris</b>, jamais en heure locale.</p>
+      <p><b>Profils</b> — techniciens francophones, formés à votre périmètre pendant la
+      transition. Anglais professionnel disponible.</p>
+      <div class="callout">
+        <div class="ct">Les plages que personne ne veut staffer</div>
+        <p>Madagascar est à UTC+3 toute l'année : une équipe qui démarre à 8h00 à Antananarivo
+        est en ligne à 6h00 à Paris l'hiver, 7h00 l'été. Vos prises de poste matinales sont
+        couvertes sans heures de nuit.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>Sécurité et conformité</h2>
+      <ul>
+        <li>Locaux à accès contrôlé, politique « poste nu », production exclusivement sur site.
+        Comptes nominatifs, MFA, coffre-fort à secret partagé, journalisation des actions</li>
+        <li>Double liaison internet sur opérateurs distincts, onduleurs et groupe électrogène,
+        plan de continuité testé</li>
+        <li>Sous-traitance conforme à l'<b>article 28 du RGPD</b>, clauses contractuelles types
+        module 3 (décision (UE) 2021/914), analyse d'impact du transfert, notification de
+        violation sous 24 heures. Madagascar dispose de sa propre loi sur la protection des
+        données (n° 2014-038) et de son autorité de contrôle, la CMIL</li>
+        <li><b>Audit sur site ou à distance : offert, à tout moment.</b> Nous ne sommes pas
+        certifiés ISO 27001 et nous ne le prétendons pas</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 2 — TARIFS ============ -->
+<div class="page">
+
+  <div class="confid">Confidentiel · grille tarifaire marque blanche — <span>ne pas rediffuser</span></div>
+
+  <div class="head">
+    <div class="brand">SALVERYS</div>
+    <div class="head-meta">Grille tarifaire partenaire · marque blanche</div>
+  </div>
+
+  <div class="section">
+    <h2>Trois modèles d'achat</h2>
+    <div class="models">
+      <div class="model">
+        <span class="tag">MODÈLE A</span>
+        <div class="name">Débordement mutualisé</div>
+        <div class="desc">Un volume de tickets sur un pool partagé. Vous absorbez vos pics
+        sans ouvrir de position.</div>
+        <div class="from">À partir de</div>
+        <div class="price">1 120 €<span class="unit"> / mois</span></div>
+        <div class="unit">400 tickets inclus — 2,80 € le ticket au-delà</div>
+      </div>
+      <div class="model">
+        <span class="tag">MODÈLE B</span>
+        <div class="name">Capacité dédiée</div>
+        <div class="desc">Des agents nommés, formés à votre périmètre, facturés à la position.
+        Vous pilotez.</div>
+        <div class="from">À partir de</div>
+        <div class="price">1 700 €<span class="unit"> / ETP / mois</span></div>
+        <div class="unit">Selon métier et volume ferme — grille ci-dessous</div>
+      </div>
+      <div class="model">
+        <span class="tag">MODÈLE C</span>
+        <div class="name">Équipe managée</div>
+        <div class="desc">Un service desk complet avec son encadrement, à partir de quatre
+        positions. Nous pilotons.</div>
+        <div class="from">À partir de</div>
+        <div class="price">7 820 €<span class="unit"> / mois</span></div>
+        <div class="unit">4 positions au tarif de votre palier, + 15 % d'encadrement</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Modèle B — grille par volume d'engagement</h2>
+    <table class="rate">
+      <thead>
+        <tr>
+          <th>Engagement ferme mensuel</th>
+          <th>Support applicatif N1</th>
+          <th>Helpdesk IT N1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1 – 4 positions <span class="tierlab">Tarif standard</span></th>
+          <td>1 700 €</td><td>2 000 €</td>
+        </tr>
+        <tr>
+          <th>5 – 8 positions <span class="tierlab">Tarif volume</span></th>
+          <td>1 500 €</td><td>1 750 €</td>
+        </tr>
+        <tr class="best">
+          <th>9 positions et plus <span class="tierlab">Tarif stratégique</span></th>
+          <td>1 350 €</td><td>1 550 €</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">Montants en euros hors taxes, par position et par mois. Tarifs établis pour
+    des profils confirmés, déjà rodés aux exigences de comptes européens.</p>
+
+    <div class="callout lock">
+      <div class="ct">Chaque palier est un prix de volume engagé</div>
+      <p>Le tarif d'un palier n'est accordé que contre le <b>minimum de positions facturables</b>
+      de ce palier, dues qu'elles soient consommées ou non. En deçà, c'est le tarif du palier
+      inférieur en volume qui s'applique. Nos agents sont salariés : une position réservée puis
+      non consommée reste payée par nous. Un palier s'achète avec un volume ferme, pas avec une
+      intention.</p>
+    </div>
+  </div>
+
+</div><!-- /page 2 -->
+
+<div class="page">
+  <div class="confid">Confidentiel · conditions de démarrage — <span>ne pas rediffuser</span></div>
+
+  <div class="head">
+    <div class="brand">SALVERYS</div>
+    <div class="head-meta">Démarrage et conditions · page 3 / 3</div>
+  </div>
+
+  <div class="section">
+    <h2>Continuité de service — qui prend le relais</h2>
+    <table>
+      <thead>
+        <tr><th>Modèle</th><th>Qui remplace</th><th>Ce que nous garantissons</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>A — Débordement</th>
+          <td>Le pool, par construction</td>
+          <td>Le volume souscrit est absorbé ; l'agent n'est pas nominatif</td>
+        </tr>
+        <tr>
+          <th>B — Capacité dédiée</th>
+          <td>Le manager métier, déjà affecté à votre compte</td>
+          <td>Les absences ponctuelles sont reprises ; le délai de traitement peut s'allonger
+          sur la journée, la plage ne ferme pas</td>
+        </tr>
+        <tr>
+          <th>C — Équipe managée</th>
+          <td>La rotation de l'équipe</td>
+          <td>La plage horaire reste tenue : quatre positions couvrent 140 h/semaine pour
+          une amplitude de 70 h. Un absent en laisse encore 105</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <div class="ct">Nous ne vendons pas de « binôme de secours » en ligne d'option</div>
+      <p>Le remplacement est le coût de l'engagement, pas un supplément : il est déjà dans le prix.
+      Nos agents sont salariés en CDI et rémunérés très au-dessus du marché local — c'est ce qui
+      rend l'absence à couvrir prévisible plutôt que subie, et ce qui nous permet de ne pas vous
+      facturer une tête de plus pour la couvrir.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Démarrage — six semaines, trois jalons go / no-go</h2>
+    <div class="phases">
+      <div class="phase"><div class="pl">S1 – S2 · Cadrage</div>
+        <div class="pd">Périmètre, volumétrie et grille de priorités</div></div>
+      <div class="phase"><div class="pl">S3 – S5 · Transition</div>
+        <div class="pd">Formation, shadowing puis doublon inversé</div></div>
+      <div class="phase"><div class="pl">S6 · Mise en production</div>
+        <div class="pd">Bascule canal par canal, retour arrière possible</div></div>
+      <div class="phase"><div class="pl">M1 – M3 · Calibrage</div>
+        <div class="pd">Mesure avant contractualisation des SLA</div></div>
+    </div>
+
+    <div class="cols" style="margin-top:10px">
+      <div>
+        <h3>Dépôt d'activation</h3>
+        <p class="inline"><b>900 € par position, plafonné à 2 700 €</b>, encaissé à la signature
+        et <b>entièrement imputable</b> : déduit de vos trois premières factures. Il couvre le
+        recrutement et la formation engagés avant votre premier euro facturé.</p>
+      </div>
+      <div>
+        <h3>Ce que nous vous accordons</h3>
+        <ul>
+          <li><b>Sortie à 30 jours</b> pendant les trois premiers mois, au lieu du préavis de 60</li>
+          <li><b>Exclusivité</b> territoire ou segment, 12 mois</li>
+          <li><b>Appui avant-vente sous 48 h</b> : PCA, DPA, CV anonymisés, dispositif QA et
+          engagement SLA écrit — réutilisables tels quels dans vos réponses d'appels d'offres</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Pilote de trois mois sur un périmètre restreint — un seul client final, lot
+    de 200 à 400 tickets. Les contreparties se concèdent une à la fois et sont tracées au dossier.</p>
+  </div>
+
+  <div class="foot">
+    <div class="sign">
+      <div class="sn">[Prénom Nom] — Direction</div>
+      <div class="sc">contact@salverys.fr · [+261 XX XX XXX XX] ·
+      linkedin.com/company/salverys</div>
+    </div>
+    <div class="legal">
+      Prix hors taxes, hors options et hors frais de mise en place. Facturation mensuelle
+      à terme échu, à 30 jours, indexation annuelle plafonnée. Grille valable pour la durée
+      du cadrage. Document confidentiel — ne pas rediffuser.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
