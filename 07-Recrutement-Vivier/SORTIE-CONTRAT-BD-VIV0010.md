@@ -66,6 +66,102 @@ non mise à jour depuis le 7 août ».
 > CSV : c'est la pièce la plus solide du dossier — activité horodatée, non contestable, et
 > elle établit à la fois ce qu'elle a fait et la date à laquelle elle a cessé.
 
+### 0.5. Sa réponse du 24 août — lecture et conduite à tenir
+
+Elle répond au courrier du 21 août sans le mentionner : elle reconnaît le mois manqué,
+invoque des déplacements et l'absence de babysitter, annonce un retour mercredi 26 et une
+reprise jeudi 27, et **demande un mois supplémentaire** avec de nouveaux objectifs.
+
+#### Ce que ça t'apporte
+
+Un **aveu écrit, spontané, non sollicité** : *« ce mois n'a pas été à la hauteur »*,
+*« il n'y a pas eu l'avancée que j'espérais »*, *« je prends ma part de responsabilité »*.
+Aucune mise en demeure ne vaut ça.
+
+**La phrase la plus utile** est celle-ci : *« plusieurs déplacements et l'absence de
+babysitter avec moi ont fortement réduit **le temps que je pouvais consacrer au projet** »*.
+C'est un aveu de **diligences insuffisantes**, pas seulement de résultats manquants — et
+l'art. 2.4 impose précisément « les diligences d'un professionnel avisé ». Le reste de son
+message est cadré sur les **résultats**, terrain que l'obligation de moyens protège : c'est
+la seule phrase qui sort de cette protection.
+
+> ⚠️ **Ne lui réponds jamais sur le terrain des résultats.** Elle y est protégée et elle s'y
+> place spontanément. Le seul terrain qui tient reste celui de l'exécution.
+
+#### Ce que ça ne fait pas
+
+**Sa réponse ne purge pas la mise en demeure.** Elle ne remet aucun des quatre livrables
+exigés, n'accuse pas réception, et annonce une reprise *future*. Annoncer qu'on reprendra
+n'est pas « l'exécution complète dans ce délai ». **L'échéance du 28 août tient.**
+
+#### 🔴 Le piège : la renonciation tacite
+
+Si tu réponds en discutant son plan — objectifs, méthode, organisation, « on en reparle à
+ton retour » — tu **renonces implicitement au bénéfice de la mise en demeure**. L'horloge
+repart, le 29 août tombe, et tu te retrouves à septembre avec 2 800 000 Ar de plus et le
+même dossier à reconstruire.
+
+Toute réponse doit donc **réserver expressément** les effets du courrier du 21 août.
+
+**Second piège, superposé** : elle propose de « revoir notre organisation, nos objectifs ou
+notre méthode de travail ». L'art. 1.3 lui laisse la **maîtrise de l'organisation et des
+méthodes** ; l'art. 1.4 ne te permet que de communiquer des objectifs. Négocier sa méthode
+de travail, c'est diriger une salariée. Ne rentre pas dedans, même pour refuser.
+
+#### ⏰ Réponds aujourd'hui (lundi 24)
+
+Elle est opérationnelle jeudi 27, soit **avant l'échéance du 28**. Si elle se met à déposer
+des fichiers les 27 et 28, la question de savoir si elle a régularisé devient discutable.
+**Un refus clair aujourd'hui prévient une régularisation ambiguë jeudi.**
+
+#### Le calcul, pour mémoire
+
+Reconduire coûte **2 800 000 Ar par mois** avec un historique à zéro rendez-vous en huit
+semaines, et sur des contraintes — déplacements, garde d'enfant — qu'un mois de plus ne
+résout pas. Sortir coûte **1 000 000 Ar une fois**. Sa demande est, en valeur, l'option la
+plus chère et la moins probable.
+
+#### Réponse à envoyer — 24 août
+
+---
+
+Vololoniaina,
+
+Merci pour ce message, et merci surtout pour sa franchise. Ce que tu écris rejoint ce que
+j'observe de mon côté, et je préfère te répondre avec la même clarté.
+
+Je ne vais pas repartir sur un mois supplémentaire. Ce n'est pas une question de bonne
+volonté — je ne doute pas de la tienne — mais les contraintes que tu décris sont réelles et
+elles ne se règlent pas en un mois. De mon côté, je ne peux pas immobiliser la prospection
+plus longtemps.
+
+Je te propose donc qu'on mette fin au contrat d'un commun accord, avec effet immédiat : je
+te verse 1 000 000 Ar pour solde de tout compte, tu n'as rien à rembourser, tu me rends les
+accès et les fichiers de la mission, et on se quitte sans faute ni reproche d'un côté ni de
+l'autre.
+
+Si tu es d'accord, réponds-moi simplement « d'accord » et je t'envoie le document à signer.
+
+Pour être complet et transparent avec toi : le courrier que je t'ai adressé le 21 août reste
+en vigueur et son délai continue de courir. La proposition ci-dessus est indépendante et ne
+l'annule pas.
+
+Bien à toi,
+
+*Valérien*
+
+---
+
+**Ce que cette réponse fait, ligne par ligne** : elle accueille son honnêteté sans la
+commenter ; elle refuse le mois supplémentaire sans discuter ni objectifs ni méthode
+(ni renonciation, ni marqueur de subordination) ; elle motive le refus par **tes** contraintes
+et non par son insuffisance ; elle place l'offre ; et elle réserve la mise en demeure en
+dernier, une fois le ton posé.
+
+**Ne lui rappelle pas les livrables exigés.** Le courrier du 21 les a demandés, c'est
+suffisant. Le lui redire aujourd'hui l'inviterait à produire quelque chose jeudi pour se
+mettre en règle.
+
 ### 0.4. 🔴 Ne coupe aucun accès avant la date d'effet
 
 CRM, Emelia, Teams, SharePoint : **tout doit rester ouvert** jusqu'à la résiliation
