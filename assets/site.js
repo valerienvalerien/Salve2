@@ -383,10 +383,10 @@
       // Le palier se déduit de ce qui le définit : le niveau de service d'abord
       // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
       // plus dans le tri — elles font varier le prix, pas la nature du forfait.
-      // Non-stop suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
+      // Le palier haut suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
       let pkg;
       if (st.service <= 0.85 && st.serviceTier !== 'priority') pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
-      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Non-stop', why: 'rotation d\'équipe et couverture continue.' };
+      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Équipe managée', why: 'la plage reste couverte, même quand quelqu\'un manque.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
@@ -474,21 +474,25 @@
       cta.addEventListener('click', e => { if (cta.classList.contains('is-locked')) e.preventDefault(); });
     });
 
-    /* ----- Graphe comparatif Poste dédié vs Non-stop (SVG sans dépendance) -----
-       Ce que le graphe démontre (cf. PRICING.md §3.d/§3.e) : le choix entre les
-       deux forfaits ne se joue pas sur le volume mais sur l'AMPLITUDE.
-       — En heures de bureau, le Poste dédié est moins cher partout : la rotation
-         du Non-stop (+ superviseur dédié) se paie sans rien couvrir de plus.
-       — En 8h–20h, le Poste dédié doit staffer ×1,333 têtes par position pour
-         tenir la plage (l'amplitude coûte des ETP, §3.c), alors que le Non-stop
-         la tient par sa rotation : il repasse devant dès qu'il est staffable.
-       Le Non-stop n'existe pas sous NONSTOP_MIN agents — la zone est grisée
-       plutôt que tracée, pour ne pas suggérer un devis impossible. */
+    /* ----- Graphe comparatif Poste dédié vs Équipe managée (SVG sans dépendance) -----
+       Ce que le graphe démontre (cf. PRICING.md §3.d/§3.f) : le choix entre les
+       deux forfaits se joue sur les HEURES à couvrir, pas sur le volume.
+       — De 9h à 18h, le Poste dédié est moins cher partout : la rotation
+         (+ superviseur dédié) se paie sans rien couvrir de plus.
+       — En 8h–20h, le Poste dédié staffe ×1,333 têtes par position pour tenir
+         la plage avec ce nombre de positions EN SIMULTANÉ (§3.c). L'Équipe
+         managée couvre la même plage pour moins cher — mais avec moins d'agents
+         en ligne à la fois : c'est de là que vient l'écart, pas d'une efficacité
+         supérieure (§3.f, correction du 2026-08-24).
+       L'Équipe managée n'existe pas sous NONSTOP_MIN agents — la zone est grisée
+       plutôt que tracée, pour ne pas suggérer un devis impossible.
+       NB : les identifiants techniques (slug 'non-stop', NONSTOP_*, classes
+       pc-nonstop) gardent l'ancien nom — ils couplent HTML, JS et CSS. */
     const chart = $('priority-chart');
     if (chart) {
       const W = 640, H = 300, PADL = 56, PADR = 18, PADT = 18, PADB = 38;
       const NMAX = 10;
-      // Surcoût du Non-stop à effectif égal : rotation + superviseur dédié.
+      // Surcoût de l'Équipe managée à effectif égal : rotation + superviseur dédié.
       // Calé sur les « à partir de » publiés (§3.d) : 4 agents ⇒ ~11 000 €
       // (helpdesk, base 2 500) et ~10 000 € (support SaaS, base 2 300).
       const NONSTOP_MULT = 1.15;
@@ -502,22 +506,40 @@
         const m = mult * st.channels * st.language * st.scope;
         return st.mode * (st.hours / 35) * m * n * coverage * vol(n);
       };
-      // Poste dédié : en bureau 1 tête par position, en 8h–20h ×1,333 têtes.
+      // ⚠️ L'axe X ne désigne pas la même chose sur les deux courbes, et c'est tout
+      // l'objet de la comparaison :
+      //   — Poste dédié : n POSITIONS tenues, qui coûtent n × EXT_COVERAGE têtes en 8h–20h ;
+      //   — Équipe managée : n TÊTES en rotation, qui couvrent la plage avec moins d'agents
+      //     présents à la fois (n × 35 h répartis sur la fenêtre).
+      // L'écart de prix vient de là — pas d'une efficacité magique. Les libellés de points
+      // et les légendes doivent donc TOUJOURS afficher la simultanéité (cf. PRICING.md §3.f).
       const costDedie = n => cost(n, 1.0, chartView === 'extended' ? EXT_COVERAGE : 1.0);
-      // Non-stop : la rotation tient la plage, l'amplitude ne rajoute pas de têtes.
       const costNonstop = n => cost(n, NONSTOP_MULT, 1.0);
+      // Heures d'ouverture de la fenêtre courante, pour exprimer la simultanéité.
+      const windowH = () => chartView === 'extended' ? 60 : 45;
+      // Têtes réellement mobilisées par le Poste dédié pour tenir n positions.
+      const headsDedie = n => n * (chartView === 'extended' ? EXT_COVERAGE : 1.0);
+      // Agents présents en moyenne à un instant donné, en Équipe managée (35 h/agent).
+      const seatsNonstop = n => n * 35 / windowH();
+      const fr1 = v => v.toFixed(1).replace('.', ',');
 
       const sx = i => PADL + (i - 1) / (NMAX - 1) * (W - PADL - PADR);
       const fmtK = v => (v / 1000).toFixed(v < 10000 ? 1 : 0).replace('.', ',') + ' k€';
 
       function renderChart() {
         const xs = []; for (let n = 1; n <= NMAX; n++) xs.push(n);
-        // Le Non-stop ne se trace qu'à partir de son plancher d'effectif.
+        // L'Équipe managée ne se trace qu'à partir de son plancher d'effectif.
         const ns = xs.filter(n => n >= NONSTOP_MIN);
         const maxV = Math.max(...xs.map(costDedie), ...ns.map(costNonstop)) * 1.08;
         const sy = v => H - PADB - (v / maxV) * (H - PADT - PADB);
         const path = (fn, pts) => pts.map((n, i) => (i ? 'L' : 'M') + sx(n).toFixed(1) + ' ' + sy(fn(n)).toFixed(1)).join(' ');
-        const dots = (fn, pts, cls, label) => pts.map(n => '<circle class="' + cls + '" cx="' + sx(n).toFixed(1) + '" cy="' + sy(fn(n)).toFixed(1) + '" r="3"><title>' + label + ' · ' + n + ' agent' + (n > 1 ? 's' : '') + ' : ' + euro(fn(n)) + ' €/mois</title></circle>').join('');
+        // Chaque point dit ce qu'il achète réellement : des positions tenues d'un côté,
+        // des têtes en rotation de l'autre — sinon les deux courbes semblent comparables
+        // à prestation égale, ce qu'elles ne sont pas.
+        const detail = (kind, n) => kind === 'dedie'
+          ? n + ' position' + (n > 1 ? 's' : '') + ' tenue' + (n > 1 ? 's' : '') + ' (' + fr1(headsDedie(n)) + ' agents)'
+          : n + ' agents en rotation (~' + fr1(seatsNonstop(n)) + ' présents à la fois)';
+        const dots = (fn, pts, cls, label, kind) => pts.map(n => '<circle class="' + cls + '" cx="' + sx(n).toFixed(1) + '" cy="' + sy(fn(n)).toFixed(1) + '" r="3"><title>' + label + ' · ' + detail(kind, n) + ' : ' + euro(fn(n)) + ' €/mois</title></circle>').join('');
 
         // Grille horizontale + libellés Y
         let grid = '', steps = 4;
@@ -530,34 +552,34 @@
         let xlab = '';
         xs.forEach(n => { xlab += '<text class="pc-axis" x="' + sx(n).toFixed(1) + '" y="' + (H - PADB + 20) + '" text-anchor="middle">' + n + '</text>'; });
 
-        // Zone où le Non-stop n'est pas staffable — dite, pas dessinée en courbe.
+        // Zone où l'Équipe managée n'est pas staffable — dite, pas dessinée en courbe.
         const zx = sx(NONSTOP_MIN);
         const zone = '<rect class="pc-zone" x="' + PADL + '" y="' + PADT + '" width="' + (zx - PADL).toFixed(1) + '" height="' + (H - PADT - PADB) + '"/>' +
-                     '<text class="pc-zone-txt" x="' + (PADL + 8) + '" y="' + (PADT + 14) + '">Non-stop non staffable — pas de rotation sous ' + NONSTOP_MIN + ' agents</text>';
+                     '<text class="pc-zone-txt" x="' + (PADL + 8) + '" y="' + (PADT + 14) + '">Équipe managée non staffable — pas de rotation sous ' + NONSTOP_MIN + ' agents</text>';
 
-        // Annotation : 1er effectif où le Non-stop passe sous le Poste dédié.
+        // Annotation : 1er effectif où l'Équipe managée passe sous le Poste dédié.
         let note = '', crossover = 0;
         for (let n = NONSTOP_MIN; n <= NMAX; n++) { if (costNonstop(n) < costDedie(n)) { crossover = n; break; } }
         if (crossover) {
           const gx = sx(crossover).toFixed(1);
           note = '<line class="pc-note" x1="' + gx + '" y1="' + PADT + '" x2="' + gx + '" y2="' + (H - PADB) + '"/>' +
-                 '<text class="pc-note-txt" x="' + (parseFloat(gx) + 6) + '" y="' + (PADT + 30) + '">Dès ' + crossover + ' agents : Non-stop &lt; Poste dédié sur-staffé</text>';
+                 '<text class="pc-note-txt" x="' + (parseFloat(gx) + 6) + '" y="' + (PADT + 30) + '">Dès ' + crossover + ' agents : moins cher, avec moins d\'agents simultanés</text>';
         }
 
         chart.innerHTML =
-          '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Comparaison du coût mensuel Poste dédié et Non-stop selon le nombre d\'agents">' +
+          '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Comparaison du coût mensuel du Poste dédié et de l\'Équipe managée selon le nombre d\'agents">' +
           grid + zone + xlab + note +
           '<path class="pc-line pc-dedie" d="' + path(costDedie, xs) + '"/>' +
           '<path class="pc-line pc-nonstop" d="' + path(costNonstop, ns) + '"/>' +
-          dots(costDedie, xs, 'pc-dot pc-dot-dedie', 'Poste dédié') +
-          dots(costNonstop, ns, 'pc-dot pc-dot-nonstop', 'Non-stop') +
+          dots(costDedie, xs, 'pc-dot pc-dot-dedie', 'Poste dédié', 'dedie') +
+          dots(costNonstop, ns, 'pc-dot pc-dot-nonstop', 'Équipe managée', 'nonstop') +
           '<text class="pc-axis pc-axis-x" x="' + ((W + PADL) / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Nombre d\'agents</text>' +
           '</svg>';
 
         const cap = $('priority-chart-caption');
         if (cap) cap.textContent = chartView === 'office'
-          ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur du Non-stop se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
-          : 'Dès que la plage s\'étend à 8h–20h, il faut 1,33 tête par position en Poste dédié pour couvrir les mêmes heures — l\'amplitude coûte des personnes, pas un pourcentage. Le Non-stop tient la même plage par sa rotation : dès qu\'il est staffable, il revient moins cher que le dédié sur-staffé.';
+          ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur de l\'Équipe managée se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
+          : 'Attention à ce que compare ce graphe : à effectif affiché égal, le Poste dédié tient ce nombre de positions en simultané (1,33 tête chacune), là où l\'Équipe managée répartit ces agents sur toute la plage — donc moins de monde en ligne à un instant donné. Elle coûte moins cher pour cette raison, pas par magie. Ce que vous achetez n\'est pas un nombre de sièges : c\'est la garantie que la plage ne ferme pas quand quelqu\'un manque, et une rotation que vous n\'avez pas à organiser.';
 
         // Ligne de bascule chiffrée sous les deux colonnes de verdict.
         const vn = $('verdict-crossover');
@@ -565,9 +587,10 @@
           const n = NONSTOP_MIN;
           const office = st.mode * (st.hours / 35) * st.channels * st.language * st.scope * n * vol(n);
           vn.innerHTML = 'Le basculement se joue sur les heures à couvrir, pas sur le volume de tickets. À ' + n + ' agents sur 9h–18h : '
-            + '<b>' + euro(office) + ' €/mois</b> en Poste dédié contre <b>' + euro(office * NONSTOP_MULT) + ' €/mois</b> en Non-stop — restez au dédié. '
-            + 'Dès que la même équipe doit tenir 8h–20h, il faut ' + (n * EXT_COVERAGE).toFixed(1).replace('.', ',') + ' têtes en Poste dédié — '
-            + '<b>' + euro(office * EXT_COVERAGE) + ' €/mois</b> — et le Non-stop repasse devant.';
+            + '<b>' + euro(office) + ' €/mois</b> en Poste dédié contre <b>' + euro(office * NONSTOP_MULT) + ' €/mois</b> en Équipe managée — restez au dédié. '
+            + 'Pour tenir 8h–20h avec ' + n + ' positions en simultané, il faut ' + (n * EXT_COVERAGE).toFixed(1).replace('.', ',') + ' têtes en Poste dédié, soit '
+            + '<b>' + euro(office * EXT_COVERAGE) + ' €/mois</b>. L\'Équipe managée couvre la même plage pour moins cher, avec moins d\'agents en ligne à la fois : '
+            + 'à vous de dire si c\'est le nombre de sièges ou la continuité de la plage que vous achetez.';
         }
       }
 

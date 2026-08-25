@@ -4,7 +4,13 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-24 (**audit de la fiche offre France — décision direction** :
+> Dernière révision : 2026-08-24 (**palier haut recentré — décision direction** : le palier 3
+> est renommé **« Équipe managée »** (le nom « Non-stop » de 2026-08-14 est abandonné) §3.d ·
+> ce palier devient **direct uniquement** et **sort des fiches marque blanche** §3.g · en MB
+> l'amplitude devient un **dimensionnement du modèle B** (~2 ETP/position en 6h-20h) §3.g ·
+> ⚠️ **correction d'une imprécision publique** : la rotation ne tient pas la plage « sans tête
+> en plus », elle la tient avec **moins d'agents simultanés** §3.f) ·
+> précédente 2026-08-24 (**audit de la fiche offre France — décision direction** :
 > les trois montants de la fiche (690 € / 1 450 € / 5 400 €) étaient **sous la rate card MB**
 > et sont **réalignés** §3.g · fiche **scindée en deux versions** — publique sans tarif,
 > cadrage sous NDA avec la grille §3.g · SLA ramenés à la **doctrine §7** (90 % et non 95 %,
@@ -13,7 +19,7 @@
 > précédente 2026-08-14 (**nettoyage des axes du simulateur & module de choix
 > de forfait — décision direction** : axes **« Omnicanal » et « Bilingue » supprimés** des
 > simulateurs IT, option « EN » renommée **« FR+EN »** §3.f · le module public
-> « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Non-stop**
+> « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Équipe managée**
 > (choix de forfait réel) et non plus Dédié vs Priority §3.f) ·
 > précédente 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
 > décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
@@ -26,12 +32,12 @@
 > source » du 2026-08-14 matin est **annulée** — elle était contredite par les 8 citations
 > actives de ce fichier, cf. `AUDIT-FINANCE-PREVISIONNEL.md §M`) ·
 > précédente 2026-08-14 (**palier haut IT & axes du simulateur — décision direction** :
-> palier 3 renommé **Non-stop** avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
-> **supprimé** du simulateur public §3.d · **backup réservé au Non-stop** §3.d · revue de
+> palier 3 renommé **Non-stop** (renommé **Équipe managée** le 2026-08-24) avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
+> **supprimé** du simulateur public §3.d · **backup réservé au palier haut** §3.d · revue de
 > service mensuelle **incluse partout**, donc hors différenciation §3.d · fourchette
 > d'estimation rattachée au **profil de l'agent**, bande portée à **±9 %** §3.d ·
 > **doctrine de continuité à 3 niveaux §3.e** — le manager métier est le backup du Poste
-> dédié, la rotation celui du Non-stop. *(La mention « `FINANCE-PREVISIONNEL.md` n'est plus
+> dédié, la rotation celui de l'Équipe managée. *(La mention « `FINANCE-PREVISIONNEL.md` n'est plus
 > une source » portée ici a été **annulée** le même jour — voir en tête.)*) ·
 > précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
@@ -424,7 +430,7 @@ mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
 |---|---|---|
 | 1 | **Débordement** | 1 agent mutualisé · 20 h/sem · tickets + email |
 | 2 | **Poste dédié** | 1 agent 100 % dédié · 35 h/sem · escalade N2 cadrée |
-| 3 | **Centre de services** | 2 agents dédiés · superviseur · couverture étendue |
+| 3 | **Équipe managée** | ≥ 4 agents en rotation · superviseur dédié · couverture étendue |
 
 - Vocabulaire des acheteurs ESN / MSP / DSI, cohérent avec l'argument n°1 de la marque
   (**français langue maternelle**) — « Starter / Pro / Scale » disait l'inverse.
@@ -456,19 +462,26 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 10 jours » et « onboarding 5 jours », intenables face à `FINANCE-PREVISIONNEL.md §5`
 (recrutement 2-4 sem. + formation 2-3 sem.). Aligne l'IT sur le médical (§1.c).
 
-### 3.d Palier haut « Non-stop » & axes du simulateur (décidé 2026-08-14)
+### 3.d Palier haut « Équipe managée » & axes du simulateur (décidé 2026-08-14, renommé 2026-08-24)
 
-**Le palier 3 « Centre de services » devient « Non-stop »** (§3.c mis à jour) : le nom dit
-la promesse achetée — la continuité — au lieu de décrire une organisation interne.
+**Le palier 3 s'appelle « Équipe managée »** (§3.c mis à jour).
+
+> ⚠️ **Renommage révisé le 2026-08-24.** Le 2026-08-14, « Centre de services » était devenu
+> **« Non-stop »** au motif que *« le nom dit la promesse achetée — la continuité — au lieu de
+> décrire une organisation interne »*. Ce raisonnement **tombe** : la promesse de continuité
+> s'est révélée **imprécise sur la simultanéité** (§3.f) — la rotation tient la plage avec
+> *moins d'agents en ligne à la fois*, ce que « Non-stop » laissait entendre l'inverse. Un nom
+> qui décrit l'organisation est ici **plus honnête** qu'un nom qui promet un résultat qu'on ne
+> tient pas au sens où le prospect l'entend. Retour donc à un nom descriptif.
 
 | Palier | Nom | Contenu type |
 |---|---|---|
 | 1 | **Débordement** | 1 agent mutualisé · base 20 h/sem · tickets + email |
 | 2 | **Poste dédié** | agent 100 % dédié, 35 h ou 40 h/sem · escalade N2 cadrée · se vend à la position |
-| 3 | **Non-stop** | **≥ 4 agents** en rotation · superviseur dédié · 6h-20h ou 3×8 · backup inclus |
+| 3 | **Équipe managée** | **≥ 4 agents** en rotation · superviseur dédié · 6h-20h ou 3×8 |
 
 - **Plancher de 4 agents, opposable.** En dessous, la rotation n'existe pas : le forfait
-  n'est ni staffable ni tenable. Le simulateur **verrouille le bouton** du Non-stop sous
+  n'est ni staffable ni tenable. Le simulateur **verrouille le bouton** du palier haut sous
   4 agents et affiche la raison au survol, plutôt que d'ouvrir un devis impossible.
 - **Prix : pas d'estimation, un « à partir de » sur devis** — 11 000 €/mois (helpdesk IT) ·
   10 000 €/mois (support N1 SaaS). Base : 4 agents au tarif direct (§3), dégressif volume
@@ -478,7 +491,7 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
 - **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
   relais » se contredisent, et le backup permanent est ce que facture le tier Priority
   (`priorityMult`, §3). Ce que chaque palier garantit réellement est fixé par la **doctrine
-  de continuité §3.e** : manager métier au Poste dédié, rotation au Non-stop, capacité
+  de continuité §3.e** : manager métier au Poste dédié, rotation à l'Équipe managée, capacité
   réservée en Priority.
 - **Axe « Périmètre N2 » supprimé du simulateur.** Il majorait le prix (+8 % / +22 %) pour
   une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
@@ -523,14 +536,14 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
 |---|---|---|---|
 | **Débordement** (mutualisé) | le pool, par nature | continuité sans objet — l'agent n'est pas nominatif | un interlocuteur constant |
 | **Poste dédié** | le **manager métier** (1 médical, 1 IT — non facturables, formés, ils supervisent déjà le compte) | reprise des **absences ponctuelles** : congés isolés, arrêt court | deux absences simultanées, ni un arrêt long — on prévient et on ajuste le SLA au cadrage |
-| **Non-stop** (≥ 4 agents) | la **rotation** | la **plage horaire reste tenue** : 4 × 35 h = 140 h/sem pour 70 h d'amplitude, un absent laisse encore 105 h | la capacité à l'identique — elle baisse de ~25 % |
+| **Équipe managée** (≥ 4 agents) | la **rotation** | la **plage horaire reste tenue** : 4 × 35 h = 140 h/sem pour 70 h d'amplitude, un absent laisse encore 105 h | la capacité à l'identique — elle baisse de ~25 % |
 | **Priority** (orthogonal) | un **backup nominatif réservé**, facturé par `priorityMult` (§3) | capacité **inchangée**, zéro rupture | — |
 
 - **Le manager métier comme premier backup est finançable par construction** : il est payé,
   il connaît les comptes qu'il supervise (double écoute, QA), et il n'est affecté à aucune
   position facturée. Aucune tête supplémentaire à recruter.
 - **Corollaire commercial** : « backup inclus » disparaît des listes de fonctionnalités. Le
-  Poste dédié affiche « absence ponctuelle reprise par votre manager métier », le Non-stop
+  Poste dédié affiche « absence ponctuelle reprise par le manager de votre compte », l'Équipe managée
   « plage horaire tenue même en cas d'absence ». Deux promesses vraies, aux périmètres
   distincts, qui laissent à Priority son argument exclusif : la capacité réservée.
 - **Limite à connaître en rendez-vous** : au-delà d'un manager mobilisé sur un compte, la
@@ -562,26 +575,36 @@ la promesse achetée — la continuité — au lieu de décrire une organisation
   n'était adossée à rien.
 
 **Le module public « Le vrai coût de la continuité de service » compare Poste dédié vs
-Non-stop.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
+Équipe managée.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
 question que se pose réellement l'acheteur est un choix de **forfait**. Priority reste
 sélectionnable et garde sa démonstration propre (badge « Continuité de N postes, sans en
 recruter N », §3) ; il est renvoyé en note sous le graphe.
 
 - **Ce que le graphe démontre : le choix se joue sur l'amplitude, pas sur le volume.**
 
-  | Vue | Poste dédié | Non-stop | Lecture |
+  | Vue | Poste dédié | Équipe managée | Lecture |
   |---|---|---|---|
   | **Heures de bureau** | 1 tête par position | rotation + superviseur, **×1,15** | Le dédié est **moins cher à tous les effectifs** — la rotation se paie sans couvrir une minute de plus |
-  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | la rotation tient la plage, **sans tête en plus** | Le Non-stop **repasse devant dès qu'il est staffable** (4 agents) |
+  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | couvre la plage avec **moins d'agents simultanés** | L'Équipe managée **coûte moins cher — parce qu'elle met moins de monde en ligne à la fois**, pas par efficacité |
+
+  > 🔴 **Correction du 2026-08-24 — l'ancienne formulation était fausse.** On écrivait « la
+  > rotation tient la plage **sans tête en plus** ». C'est impossible : **couvrir une plage,
+  > c'est acheter des ETP.** 4 agents × 35 h = 140 h réparties sur une fenêtre de 60 h font
+  > **~2,3 agents présents à la fois**, pas 4. Le graphe comparait donc **4 positions tenues**
+  > (soit 5,33 têtes en dédié) à **4 têtes en rotation** — deux prestations différentes.
+  > L'écart de prix vient de là. Ce qui est vendu n'est pas un nombre de sièges, c'est **la
+  > garantie que la plage ne ferme pas** quand quelqu'un manque, plus une rotation que le
+  > client n'a pas à organiser. Les infobulles du graphe affichent désormais la simultanéité
+  > des deux côtés, et les légendes le disent explicitement.
 
 - **Calage du multiplicateur `NONSTOP_MULT = 1,15`** sur les « à partir de » publiés (§3.d) :
   4 agents × 2 500 € × dégressif 0,95 × 1,15 = **10 925 €** (helpdesk, annoncé « dès 11 000 »)
   et 4 × 2 300 × 0,95 × 1,15 = **10 051 €** (support SaaS, annoncé « dès 10 000 »). Le graphe
   et la carte de forfait racontent donc le même prix.
-- **La zone sous 4 agents est grisée, jamais tracée en courbe** : le Non-stop n'y est pas
+- **La zone sous 4 agents est grisée, jamais tracée en courbe** : l'Équipe managée n'y est pas
   staffable (§3.d) et une courbe l'y ferait exister.
 - **Deux colonnes de verdict** accompagnent le graphe (« Restez au Poste dédié si… » /
-  « Passez au Non-stop si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
+  « Passez à l'Équipe managée si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
   qui rend le conseil crédible quand on recommande l'inverse. Plaquette commerciale
   correspondante : `04-Closing/PLAQUETTE-DEDIE-VS-NONSTOP.pptx`.
 - **Révision 2026-08-14 (2) — arguments recentrés sur les heures, pas l'abstraction
@@ -592,7 +615,7 @@ recruter N », §3) ; il est renvoyé en note sous le graphe.
   - Poste dédié : *9h–18h*, *un ticket du soir attend le lendemain matin*, *1 à 3
     positions*, *une absence glisse le traitement de quelques heures*, *prix le plus
     juste sur une plage classique*.
-  - Non-stop : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
+  - Équipe managée : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
     62 h de silence*, *coût chiffrable de l'heure sans réponse*, *couverture > 45 h/semaine
     (6h-20h, 3×8, 24·7)*, *4 positions ou plus*.
   - L'intro de section et les légendes du graphe (`assets/site.js`) sont réécrites dans
@@ -603,7 +626,7 @@ recruter N », §3) ; il est renvoyé en note sous le graphe.
     *à quelle heure mon dernier ticket peut-il arriver ?* — plutôt que de comparer des
     arguments de nature différente (prix, interlocuteur, SLA, horaires) sans hiérarchie.
 - Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
-  Non-stop »), sections `#priority-compare` des deux simulateurs IT.
+  Équipe managée »), sections `#priority-compare` des deux simulateurs IT.
 
 
 ### 3.g Fiche offre France — audit et réalignement (décidé 2026-08-24)
@@ -685,7 +708,7 @@ d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` n
   d'accueil**, dans la carte service Helpdesk, dans le bloc « Le bon calcul » et dans les
   engagements — assorti d'un **« pas de jour d'arrêt »** que seul le tier Priority tient.
   Remplacé partout par la doctrine à trois niveaux : *absence ponctuelle reprise par le
-  manager métier* (Poste dédié) · *rotation qui tient la plage* (Non-stop) · *capacité
+  manager métier* (Poste dédié) · *rotation qui tient la plage* (Équipe managée) · *capacité
   réservée* (Priority). Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
   turnover visé »**, qui est vrai, chiffré et différenciant.
 - **« Hub de repli alimenté (groupe électrogène, onduleurs) »** — le hub et sa ligne
@@ -723,6 +746,31 @@ du document. Corrigé partout :
   « **Pourquoi nous n'avons pas besoin de vous facturer un remplaçant** » (le mécanisme) :
   à 4,5× le marché local, l'absence est un **congé posé à l'avance**, qui s'anticipe au
   planning au lieu de se rattraper avec une tête de plus.
+
+**10. Le palier haut sort de la marque blanche (décidé 2026-08-24).** Le modèle C
+« Équipe managée » est retiré des deux fiches MB. Il reste **un modèle direct uniquement**.
+
+- **Motif commercial** : la fiche s'adresse à des ESN, éditeurs et MSP — des acteurs **dont le
+  pilotage est le fonds de commerce**. Leur vendre « nous pilotons, clé en main » attaque ce
+  qu'ils revendent. Et c'est **factuellement faux** : une ESN reste contractuellement
+  responsable du SLA devant son client final, donc elle gardera un contrôle quoi qu'on écrive.
+  On vendait une dépossession qui n'aurait pas lieu.
+- **Motif structurel — C se confondait avec B.** Une fois retirés le superviseur dédié (dont
+  l'ESN ne veut pas) et l'idée que la rotation coûterait moins de têtes (§3.f : elle n'en coûte
+  pas moins), il ne restait que des positions, un référent d'exploitation partagé et un client
+  qui garde SLA et priorités — soit **la définition de B**.
+- **Ce qui remplace C en MB : un dimensionnement de B.** Couvrir une plage, c'est acheter des
+  ETP. Tenir **6h-20h** en présence continue (70 h/semaine) demande **~2 ETP par position**
+  (un agent couvre 35 h). Au tarif MB helpdesk, une position tenue 6h-20h revient à ~3 100 €,
+  contre 5 000-6 500 € pour le même besoin en France : **l'écart de prix absorbe le
+  sur-effectif**, le partenaire n'a aucune raison de payer une surcouche pour optimiser ce
+  qu'il peut simplement acheter. Les deux fiches portent désormais cette ligne.
+- **Corollaire de copy** : « Vous pilotez » seul, sur le modèle B, se lisait comme de la régie.
+  Remplacé par *« Vous pilotez le périmètre et les priorités ; nous encadrons les agents et
+  tenons le SLA »* — la séparation **autorité fonctionnelle / autorité d'exploitation** de
+  `GOUVERNANCE-CHAINE-COMMANDEMENT.md`, qui est aussi la ligne anti-requalification.
+- Les fiches MB comptent donc **deux modèles, A et B**. Le direct en garde trois
+  (Débordement / Poste dédié / Équipe managée, §3.c).
 
 - ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
   `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
@@ -931,8 +979,8 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Priority sous 3 agents (2026-08-13)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | **aucun % d'économie affiché** sous 3 agents ⇒ « Continuité de N postes, sans en recruter N » ; l'offre reste vendable à 1-2 agents (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
 | **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
-| **Palier 3 IT (2026-08-14)** | « Centre de services », sans effectif minimum | **« Non-stop »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
-| **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation Non-stop (plage tenue) · Priority (capacité réservée). Aucune tête supplémentaire à recruter |
+| **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
+| **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation de l'Équipe managée (plage tenue) · Priority (capacité réservée). Aucune tête supplémentaire à recruter |
 | **Source prévisionnel (2026-08-14)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **plus une source** — seul le **tableau d'effectif** (8 agents + 2 managers à 650 €) est repris, en §3.e |
 | **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
 | **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |

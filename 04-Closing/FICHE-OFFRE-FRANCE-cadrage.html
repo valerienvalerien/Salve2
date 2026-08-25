@@ -86,6 +86,7 @@ td b{color:var(--navy);font-weight:700}
 .rate tr.best{background:var(--tint)}
 
 .models{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:7px}
+.models-2{grid-template-columns:repeat(2,1fr)}
 .model{border:1px solid var(--line);padding:11px 12px;display:flex;flex-direction:column}
 .model .tag{display:inline-block;background:var(--navy);color:#fff;font-size:7pt;
   font-weight:700;letter-spacing:.09em;padding:2.5px 7px;margin-bottom:7px;align-self:flex-start}
@@ -276,8 +277,8 @@ td b{color:var(--navy);font-weight:700}
   </div>
 
   <div class="section">
-    <h2>Trois modèles d'achat</h2>
-    <div class="models">
+    <h2>Deux modèles d'achat</h2>
+    <div class="models models-2">
       <div class="model">
         <span class="tag">MODÈLE A</span>
         <div class="name">Débordement mutualisé</div>
@@ -291,22 +292,17 @@ td b{color:var(--navy);font-weight:700}
         <span class="tag">MODÈLE B</span>
         <div class="name">Capacité dédiée</div>
         <div class="desc">Des agents nommés, formés à votre périmètre, facturés à la position.
-        Vous pilotez.</div>
+        Vous pilotez le périmètre et les priorités ; nous encadrons les agents et tenons le SLA.</div>
         <div class="from">À partir de</div>
         <div class="price">1 700 €<span class="unit"> / ETP / mois</span></div>
         <div class="unit">Selon métier et volume ferme — grille ci-dessous</div>
       </div>
-      <div class="model">
-        <span class="tag">MODÈLE C</span>
-        <div class="name">Équipe managée</div>
-        <div class="desc">Un service desk complet avec son encadrement, à partir de quatre
-        positions. Nous pilotons.</div>
-        <div class="from">À partir de</div>
-        <div class="price">7 820 €<span class="unit"> / mois</span></div>
-        <div class="unit">4 positions au tarif de votre palier, + 15 % d'encadrement</div>
-      </div>
     </div>
   </div>
+
+  <p><b>Votre plage détermine le nombre de positions.</b> Tenir 6h-20h en présence continue
+  demande environ <b>2 ETP par position</b> — un agent couvre 35 h, la plage en fait 70. Nous
+  le chiffrons au cadrage, sur vos horaires réels.</p>
 
   <div class="section">
     <h2>Modèle B — grille par volume d'engagement</h2>
@@ -359,7 +355,7 @@ td b{color:var(--navy);font-weight:700}
   <div class="section">
     <h2>Continuité — le jour où votre agent est absent</h2>
     <p>C'est la question que pose tout acheteur de support, et la réponse change selon le modèle.
-    Aucun des trois ne vous facture de « binôme de secours » : le remplacement est déjà dans le prix.</p>
+    Aucun des deux ne vous facture de « binôme de secours » : le remplacement est déjà dans le prix.</p>
     <table>
       <thead>
         <tr><th>Modèle</th><th>Qui prend le relais</th><th>Ce que vous constatez</th></tr>
@@ -376,12 +372,6 @@ td b{color:var(--navy);font-weight:700}
           n'occupe aucune position que vous payez</td>
           <td>Le service continue. Sur une absence isolée, le traitement peut prendre quelques
           heures de plus dans la journée — la plage n'est jamais fermée</td>
-        </tr>
-        <tr>
-          <th>C — Équipe managée</th>
-          <td>Les autres agents de la rotation</td>
-          <td>La plage tient à l'identique : 4 positions couvrent 140 h/semaine pour 70 h
-          d'amplitude, un absent en laisse encore 105</td>
         </tr>
       </tbody>
     </table>
