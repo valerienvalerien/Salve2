@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Construit le dossier publié sur Netlify (_site) en ne copiant QUE les
+# Construit le dossier publié (_site), mis en ligne sur OVH, en ne copiant QUE les
 # fichiers publics. Tout le reste (fichiers .md stratégiques, CRM, trésorerie,
 # tools/ — dont la source en clair de l'espace client) n'est JAMAIS servi.
 set -euo pipefail
@@ -23,6 +23,8 @@ rm -rf _site
 mkdir -p _site/assets
 cp "${PUBLIC_PAGES[@]}" _site/
 cp -r assets/. _site/assets/
+# En-têtes de protection des espaces partenaires et des pages de deal (Apache/OVH).
+cp .htaccess _site/
 
 # Pages de closing chiffrées, une par deal (générées par tools/deal-build.mjs).
 # Leur URL contient un token non devinable : elles ne sont listées nulle part.

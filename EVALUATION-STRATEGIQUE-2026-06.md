@@ -177,8 +177,8 @@ contre lui.
   du client final est le coût complet d'un support IT N1 en CDI FR (3 200-4 200 €/mois) →
   le « -40 à -60 % » tient.
   **Risque** : un éditeur SaaS qui a déjà benchmarké Madagascar verra l'écart. Défense =
-  même logique que §2.3 (encadrement, backup, SLA contractuel, conformité) + le tier
-  Priority pour monter en gamme. **Ne pas publier de prix ferme** (la règle des 3 paliers
+  même logique que §2.3 (encadrement, backup, SLA contractuel, conformité) + le niveau
+  de service Dédié pour monter en gamme. **Ne pas publier de prix ferme** (la règle des 3 paliers
   de `PRICING.md §9` est la bonne).
 - Le tarif horaire interne (12-15 €/h direct, 8-11 €/h MB) est au-dessus du 9-10 €/h
   marché : acceptable en direct, **serré en MB** — préférer systématiquement le modèle
@@ -243,7 +243,7 @@ appels décrochés en français, sans recruter », le -40 % restant dans le corp
 ### 4.4 Bien aligné (à ne pas toucher)
 
 Grille 350/590/950 € cohérente partout (simulateur, one-pager, outreach médical) · offre
-« 1er mois -50 % » propagée · tier Priority correctement renommé · marque Salverys propre
+« 1er mois -50 % » propagée · marque Salverys propre
 (Nesvalo/Vinlo limités au localStorage) · simulateurs publics sans fuite MB · benchmarks
 RH révisés utilisés partout · « forfait » (jamais « abonnement ») respecté côté client.
 

@@ -5,9 +5,7 @@
 > **ce fichier fait foi.**
 >
 > Dernière révision : 2026-08-24 (**simplification du catalogue — décision direction** :
-> le niveau de service **Priority est retiré** du catalogue §3 (il contredisait le claim
-> −40/−60 %, coûtait plus cher que la France sous 3 agents, exigeait une tête en réserve non
-> financée et était invendable en MB) ⇒ **deux niveaux de service, Mutualisé et Dédié**, alignés
+> catalogue ramené à **deux niveaux de service, Mutualisé et Dédié** §3, alignés
 > sur les modèles MB A et B) ·
 > précédente 2026-08-24 (**palier haut recentré — décision direction** : le palier 3
 > est renommé **« Équipe managée »** (le nom « Non-stop » de 2026-08-14 est abandonné) §3.d ·
@@ -25,7 +23,7 @@
 > de forfait — décision direction** : axes **« Omnicanal » et « Bilingue » supprimés** des
 > simulateurs IT, option « EN » renommée **« FR+EN »** §3.f · le module public
 > « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Équipe managée**
-> (choix de forfait réel) et non plus Dédié vs Priority §3.f) ·
+> (choix de forfait réel) et non plus deux niveaux de service §3.f) ·
 > précédente 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
 > décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
 > CNaPS/OSTIE), fondateur unique non rémunéré, effectif **sans plafond**, dimensionné sur
@@ -46,8 +44,8 @@
 > une source » portée ici a été **annulée** le même jour — voir en tête.)*) ·
 > précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
-> horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
-> argument d'économie sous 3 agents** §3 · badge médical recadré sur le **coût/jour ouvré**
+> horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · badge médical
+> recadré sur le **coût/jour ouvré**
 > §1 · mise en route IT **3 à 4 semaines** §3.c. **Reste ouvert : arbitrage n°3** — benchmark
 > coût complet IT et claim −40 à −60 %, cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §C`) ·
 > précédente 2026-08-03 (**recalibrage marque blanche — décision direction** :
@@ -380,34 +378,11 @@ jetée sur un acheteur qui revend.
   `OUTREACH-IT-N1-marque-blanche.md`, `OUTREACH-telesec-marque-blanche.md`,
   `ONEPAGER-PARTENAIRE-MB.md`, espaces partenaires.
 
-### Tier « Priority » — **RETIRÉ du catalogue (2026-08-24)**
+### Niveaux de service — **Mutualisé et Dédié**
 
-> Le niveau de service **Priority** (capacité réservée, backup nominatif, `priorityMult`)
-> est **supprimé** des simulateurs, du site et de la grille. Il n'est plus vendable ni
-> chiffrable. Cette section conserve la trace de la décision ; l'historique complet du tier
-> reste dans l'historique git (dernière version active : commit du 2026-08-24).
-
-**Pourquoi il est retiré** — quatre motifs qui se cumulaient :
-
-1. **Il contredisait le claim public.** Le claim **−40 à −60 %** est un claim du **tier
-   Dédié**. Priority ne ressortait qu'à **~10-17 %** d'économie faciale, même au-delà de
-   3 agents. Un même site portait donc deux promesses inconciliables.
-2. **Sous 3 agents, il coûtait plus cher qu'un recrutement en France** (`priorityMult` valait
-   ×2,00 à 1 agent, ×1,55 à 2). Le simulateur devait **masquer le pourcentage d'économie**
-   dans cette zone et le remplacer par un badge de continuité — un correctif d'affichage pour
-   compenser un problème d'offre.
-3. **Il exigeait une tête dédiée en réserve**, c'est-à-dire exactement ce que la doctrine de
-   continuité **§3.e** a retiré du reste du catalogue faute de financement identifiable.
-4. **Il était invendable en marque blanche** — priorité GTM n°1 : doubler le prix de gros
-   d'une position est impensable pour un revendeur qui doit construire sa marge dessus.
-
-**Ce qui reste** — deux niveaux de service, **Mutualisé** et **Dédié**, qui correspondent
-terme à terme aux deux modèles marque blanche **A** et **B** (§3.g). Un seul vocabulaire pour
-les deux marchés.
-
-**Conséquences appliquées** : boutons retirés des deux simulateurs IT · `priorityMult()`,
-`serviceTier` et le badge `badge-resilience` supprimés de `assets/site.js` et
-`assets/site.css` · la doctrine de continuité **§3.e** passe de trois à **deux** niveaux.
+> Le catalogue tient en **deux niveaux de service**, **Mutualisé** et **Dédié**, qui
+> correspondent terme à terme aux deux modèles marque blanche **A** et **B** (§3.g).
+> Un seul vocabulaire pour les deux marchés.
 
 ### 3.c Forfaits IT publics — nommage & amplitude (décidé 2026-08-13)
 
@@ -483,8 +458,7 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 - **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
   relais » se contredisent. Ce que chaque palier garantit réellement est fixé par la
   **doctrine de continuité §3.e** : manager métier au Poste dédié, rotation à l'Équipe
-  managée. *(Le tier Priority, qui portait la capacité réservée, est retiré depuis le
-  2026-08-24 — cf. §3.)*
+  managée.
 - **Axe « Périmètre N2 » supprimé du simulateur.** Il majorait le prix (+8 % / +22 %) pour
   une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
 - **La fourchette d'estimation (±5 %) porte désormais le profil de l'agent** : bas de
@@ -566,10 +540,8 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
   n'était adossée à rien.
 
 **Le module public « Le vrai coût de la continuité de service » compare Poste dédié vs
-Équipe managée.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
-question que se pose réellement l'acheteur est un choix de **forfait**. *(Priority était
-alors renvoyé en note sous le graphe ; le tier a depuis été **retiré du catalogue** le
-2026-08-24 — cf. §3, et la note a disparu avec lui.)*
+Équipe managée.** Il opposait auparavant deux **niveaux de service** : or la question que se
+pose réellement l'acheteur est un choix de **forfait**.
 
 - **Ce que le graphe démontre : le choix se joue sur l'amplitude, pas sur le volume.**
 
@@ -617,7 +589,7 @@ alors renvoyé en note sous le graphe ; le tier a depuis été **retiré du cata
     *à quelle heure mon dernier ticket peut-il arriver ?* — plutôt que de comparer des
     arguments de nature différente (prix, interlocuteur, SLA, horaires) sans hiérarchie.
 - Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
-  Équipe managée »), sections `#priority-compare` des deux simulateurs IT.
+  Équipe managée »), sections `#continuite-compare` des deux simulateurs IT.
 
 
 ### 3.g Fiche offre France — audit et réalignement (décidé 2026-08-24)
@@ -697,11 +669,10 @@ d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` n
 - **« 1 backup dédié par compte »** — abandonné le 2026-08-14 (§3.e : la règle doublait le
   coût d'un compte pour couvrir ~13 % d'absences). Il restait affiché en **KPI de la page
   d'accueil**, dans la carte service Helpdesk, dans le bloc « Le bon calcul » et dans les
-  engagements — assorti d'un **« pas de jour d'arrêt »** que seul le tier Priority tient.
+  engagements — assorti d'un **« pas de jour d'arrêt »** qu'aucun forfait ne tient.
   Remplacé partout par la doctrine de continuité : *absence ponctuelle reprise par le
-  manager métier* (Poste dédié) · *rotation qui tient la plage* (Équipe managée). *(Un
-  troisième niveau, la capacité réservée du tier Priority, existait alors ; il a été retiré
-  le 2026-08-24 — cf. §3.)* Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
+  manager métier* (Poste dédié) · *rotation qui tient la plage* (Équipe managée).
+  Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
   turnover visé »**, qui est vrai, chiffré et différenciant.
 - **« Hub de repli alimenté (groupe électrogène, onduleurs) »** — le hub et sa ligne
   d'énergie **sont sortis des charges** (`FINANCE §2.c`, −500 €) et le rétroplanning le
@@ -968,7 +939,6 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
 | **Forfaits IT (2026-08-13)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Centre de services**, identiques dans les deux simulateurs et **définis en §3.c** |
 | **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
-| **Priority sous 3 agents (2026-08-13, clos 2026-08-24)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | correctif d'affichage en 2026-08-13, puis **tier entièrement retiré** le 2026-08-24 : le problème était l'offre, pas le badge (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
 | **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
 | **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |

@@ -174,7 +174,6 @@ s.addText("Aucun de nos forfaits ne vend un « agent de backup » en ligne d'opt
 const rows = [
   ['Poste dédié', 'Le manager métier', 'Les absences ponctuelles sont reprises : congés isolés, arrêt court.', "Deux absences simultanées ni un arrêt long : on prévient et on ajuste le SLA au cadrage.", BLUE],
   ['Équipe managée', 'La rotation', "La plage reste tenue : 4 × 35 h couvrent 70 h d'amplitude, un absent en laisse 105.", "Le nombre d'agents en ligne à la fois : ~2,3 sur 8h-20h, et environ 25 % de moins pendant l'absence.", CORAL],
-  ['Priority', 'Un backup nominatif réservé', "La capacité reste inchangée : zéro rupture, dès 1 agent.", "Option de niveau de service, cumulable avec le Poste dédié — pas un quatrième forfait.", '7A8B94'],
 ];
 [['Forfait', M + 0.25, 1.45], ['Qui remplace', 2.65, 1.75], ["Ce qu'on promet", 4.6, 3.3], ["Ce qu'on ne promet pas", 8.1, 3.9]].forEach(([t, x, w]) => {
   s.addText(t.toUpperCase(), { x, y: 2.35, w, h: 0.3, fontSize: 10, bold: true, charSpacing: 1, color: GREY, fontFace: BODY, margin: 0 });
@@ -191,7 +190,7 @@ rows.forEach((r, i) => {
 });
 s.addText("Le manager métier est déjà payé et supervise déjà votre compte : aucune tête supplémentaire à recruter, donc aucune ligne en plus sur votre facture.",
   { x: M, y: 6.72, w: 11.9, h: 0.4, fontSize: 11, italic: true, color: GREY, fontFace: BODY, margin: 0 });
-s.addNotes("Répond à l'objection « et si votre agent est malade ? ». Les trois promesses sont distinctes et toutes tenables — ne jamais promettre la capacité inchangée hors Priority.");
+s.addNotes("Répond à l'objection « et si votre agent est malade ? ». Les deux promesses sont distinctes et toutes deux tenables — ne jamais promettre une capacité inchangée pendant l'absence.");
 
 /* ---------- 7. Les deux erreurs de casting ---------- */
 s = pptx.addSlide();
@@ -201,7 +200,7 @@ const errors = [
   { t: "Prendre l'Équipe managée « pour être tranquille »", c: BLUE,
     p: "Un support sollicité de 9h à 18h, 3 positions, aucun SLA opposable — et un forfait à rotation acheté par précaution.",
     r: "Vous payez +15 % pour une continuité que votre manager métier assure déjà, et vous diluez la connaissance de votre parc entre 4 agents au lieu de 3.",
-    f: "Le bon réflexe : rester au Poste dédié, et n'ajouter Priority que si une rupture est réellement inacceptable." },
+    f: "Le bon réflexe : rester au Poste dédié, et ne passer à l'Équipe managée que si la plage à tenir dépasse une journée de travail." },
   { t: "Tenir une plage large avec des postes dédiés", c: CORAL,
     p: "Un engagement 8h-20h honoré en empilant des agents dédiés, sans rotation organisée ni superviseur.",
     r: "Il faut 5,3 têtes pour tenir 4 positions en simultané — et la plage tombe dès la première absence, précisément le jour où le SLA se joue.",

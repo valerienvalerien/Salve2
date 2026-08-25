@@ -355,9 +355,8 @@
         noteEl.hidden = heads <= st.posts;
       }
 
-      // Deux niveaux de service seulement (Mutualisé / Dédié) : l'économie est
-      // toujours positive et toujours affichable — plus de cas particulier.
-      // Le tier Priority a été retiré le 2026-08-24 (cf. PRICING.md §3).
+      // Deux niveaux de service (Mutualisé / Dédié) : l'économie est toujours
+      // positive et toujours affichable — pas de cas particulier.
       const badge = $('savings-badge');
       badge.textContent = 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
 
@@ -472,7 +471,7 @@
        plutôt que tracée, pour ne pas suggérer un devis impossible.
        NB : les identifiants techniques (slug 'non-stop', NONSTOP_*, classes
        pc-nonstop) gardent l'ancien nom — ils couplent HTML, JS et CSS. */
-    const chart = $('priority-chart');
+    const chart = $('continuite-chart');
     if (chart) {
       const W = 640, H = 300, PADL = 56, PADR = 18, PADT = 18, PADB = 38;
       const NMAX = 10;
@@ -560,7 +559,7 @@
           '<text class="pc-axis pc-axis-x" x="' + ((W + PADL) / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Nombre d\'agents</text>' +
           '</svg>';
 
-        const cap = $('priority-chart-caption');
+        const cap = $('continuite-chart-caption');
         if (cap) cap.textContent = chartView === 'office'
           ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur de l\'Équipe managée se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
           : 'Attention à ce que compare ce graphe : à effectif affiché égal, le Poste dédié tient ce nombre de positions en simultané (1,33 tête chacune), là où l\'Équipe managée répartit ces agents sur toute la plage — donc moins de monde en ligne à un instant donné. Elle coûte moins cher pour cette raison, pas par magie. Ce que vous achetez n\'est pas un nombre de sièges : c\'est la garantie que la plage ne ferme pas quand quelqu\'un manque, et une rotation que vous n\'avez pas à organiser.';

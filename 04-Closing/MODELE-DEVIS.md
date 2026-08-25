@@ -130,8 +130,8 @@ KPI engagé : **taux de décroché**. Plancher : jamais sous coût chargé agent
 > bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
 > 3 ETP, soit 1 500 € par position utilisée**.
 
-KPI engagé : **SLA de première réponse**. Option **Priority** (capacité réservée non
-mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3`).
+KPI engagé : **SLA de première réponse**. Continuité de service : remplacement des
+absences assuré par le manager métier, sans ligne supplémentaire (`PRICING.md §3`).
 
 ## B.3 — Helpdesk IT N1 (ITIL, ETP par position, dégressif)
 
@@ -147,7 +147,7 @@ mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3
 > bas. Un mois où moins de cinq positions sont facturées repasse au tarif du **palier
 > 3 ETP, soit 1 750 € par position utilisée**.
 
-KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
+KPI engagé : **SLA de prise en charge**. Continuité de service idem B.2.
 
 ## B.4 Mise en service & dépôt d'activation (MB)
 

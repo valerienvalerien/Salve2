@@ -1,0 +1,18 @@
+# En-têtes de protection — hébergement OVH (Apache).
+# Copié dans _site/ par tools/build-site.sh : c'est _site/ qui est mis en ligne.
+#
+# Les espaces partenaires ne doivent être ni indexés ni mis en cache par des
+# intermédiaires. Les pages de closing nominatives (/espace/, une par deal) ont
+# la même règle en plus strict : leur URL contient le token qui donne accès au
+# document, elle ne doit donc jamais fuiter dans un referer sortant.
+<IfModule mod_headers.c>
+  SetEnvIf Request_URI "^/espace-client[^/]*\.html$" SLV_ESPACE_CLIENT
+  SetEnvIf Request_URI "^/espace/"                   SLV_PAGE_DEAL
+
+  Header set X-Robots-Tag  "noindex, nofollow" env=SLV_ESPACE_CLIENT
+  Header set Cache-Control "no-store"          env=SLV_ESPACE_CLIENT
+
+  Header set X-Robots-Tag   "noindex, nofollow, noarchive, nosnippet" env=SLV_PAGE_DEAL
+  Header set Cache-Control  "no-store"                                env=SLV_PAGE_DEAL
+  Header set Referrer-Policy "no-referrer"                            env=SLV_PAGE_DEAL
+</IfModule>

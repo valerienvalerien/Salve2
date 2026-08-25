@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rentabilité horaire Salverys — forfaits Mutualisé · Dédié · Priority (base 35 h Tél+ticket FR)</title>
+<title>Rentabilité horaire Salverys — forfaits Mutualisé · Dédié (base 35 h Tél+ticket FR)</title>
 <style>
   :root{
     --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
@@ -88,7 +88,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>Rentabilité horaire — forfaits Mutualisé · Dédié · Priority</h1>
+  <h1>Rentabilité horaire — forfaits Mutualisé · Dédié</h1>
   <p class="sub">Interne · v2 du 2026-06-20 · « <b>euro de l'heure par euro de l'heure</b> » · prix de vente <b>dérivés des simulateurs</b> (base 35 h/sem · Tél+ticket · FR) · balayage du tarif freelance de <b>2,5 € à 25 €/h</b> · aligné sur <b>PRICING.md</b> &amp; <b>simulateur-informatique.html</b> / <b>simulateur-helpdesk-it.html</b></p>
 
   <!-- TAUX EUR → MGA -->
@@ -133,7 +133,6 @@
       <div class="pills" id="grpNiveau">
         <button class="pillbtn" data-k="niveau" data-v="mutualise">Mutualisé<span class="mlt">×0,85</span></button>
         <button class="pillbtn active" data-k="niveau" data-v="dedie">Dédié<span class="mlt">×1,0</span></button>
-        <button class="pillbtn" data-k="niveau" data-v="priority">Priority<span class="mlt">×1,25</span></button>
       </div>
 
       <div class="basebox">
@@ -211,7 +210,6 @@
         <th>Métier</th>
         <th>Mutualisé ×0,85</th>
         <th>Dédié ×1,0</th>
-        <th>Priority ×1,25</th>
       </tr></thead>
       <tbody id="refBody"></tbody>
     </table>
@@ -220,7 +218,7 @@
 
   <p class="note">
     <b>Mécanique (€/h par €/h)</b> :
-    <b>Prix mensuel direct</b> = base métier (2 300 Support / 2 500 IT) × niveau (Mutualisé 0,85 · Dédié 1,0 · Priority 1,25) × canal Tél+ticket (1,08) × FR (1,0).
+    <b>Prix mensuel direct</b> = base métier (2 300 Support / 2 500 IT) × niveau (Mutualisé 0,85 · Dédié 1,0) × canal Tél+ticket (1,08) × FR (1,0).
     <b>Vente direct €/h</b> = prix mensuel ÷ 152 h · <b>Vente MB €/h</b> = direct × (1 − décote).
     <b>Vente retenue</b> = MB × %MB + direct × (1−%MB).
     <b>Coût total €/h</b> = tarif freelance (curseur) + charges indirectes/h.
@@ -231,11 +229,10 @@
   <div class="card">
     <h2>Repères &amp; garde-fous</h2>
     <p style="font-size:.82rem;line-height:1.6">
-      • <b>Concordance simulateurs</b> : les multiplicateurs Mutualisé/Dédié/Priority (0,85 / 1,0 / 1,25), le canal Tél+ticket (×1,08) et la langue FR (×1,0) viennent directement de <code>simulateur-informatique.html</code> et <code>simulateur-helpdesk-it.html</code>. Bases mensuelles : Support 2 300 € · IT 2 500 € (1 agent dédié 35 h).<br>
+      • <b>Concordance simulateurs</b> : les multiplicateurs Mutualisé/Dédié (0,85 / 1,0), le canal Tél+ticket (×1,08) et la langue FR (×1,0) viennent directement de <code>simulateur-informatique.html</code> et <code>simulateur-helpdesk-it.html</code>. Bases mensuelles : Support 2 300 € · IT 2 500 € (1 agent dédié 35 h).<br>
       • <b>Modèle actuel</b> : freelance ~450 €/mois ≈ <b>3 €/h</b> (à 152 h) = borne basse du curseur.<br>
       • <b>Plancher absolu</b> (PRICING §7) : jamais sous le coût chargé + ~20 %. Le seuil ajustable matérialise cette règle (zone orange).<br>
-      • <b>Lecture MB-first</b> : en marque blanche (décote 30 %), même un forfait Priority redescend autour de 14-15 €/h de vente — la rentabilité tient surtout par un <b>coût freelance bas</b> (2,5-4 €/h).<br>
-      • <b>Note Priority</b> : ici Priority = ×1,25 (multiplicateur plat des simulateurs). PRICING.md prévoit aussi un multiplicateur dégressif <code>priorityMult(n)=1,10+0,90/n</code> selon le nombre d'agents — non appliqué dans ce comparateur horaire mono-poste.
+      • <b>Lecture MB-first</b> : en marque blanche (décote 30 %), même un forfait Dédié redescend autour de 11-12 €/h de vente — la rentabilité tient surtout par un <b>coût freelance bas</b> (2,5-4 €/h).<br>
     </p>
     <p class="garde"><b>Garde-fou</b> — ce simulateur raisonne « à l'heure » (modèle 2 de PRICING). Pour le pilotage trésorerie complet (acquisition, encaissement J+30, 3 métiers), garder <b>tresorerie-salverys.html</b>. Ici on isole une seule question : à partir de quel tarif horaire un freelance cesse d'être rentable, forfait par forfait.</p>
   </div>
@@ -249,12 +246,12 @@ const fmtPct=n=>n.toLocaleString('fr-FR',{maximumFractionDigits:0})+' %';
 
 // --- Paramètres dérivés des simulateurs publics ---
 const BASE   = {support:2300, helpdesk:2500};            // €/mois, 1 agent dédié 35 h
-const NIVEAU = {mutualise:0.85, dedie:1.0, priority:1.25};
+const NIVEAU = {mutualise:0.85, dedie:1.0};
 const CANAL  = 1.08;   // Tél + ticket (vs ticket/email 1,0)
 const LANGUE = 1.0;    // FR
 const HBASE  = 152;    // 35 h/sem ≈ 152 h/mois
 const LBL    = {support:'Support N1 SaaS', helpdesk:'Helpdesk IT N1',
-                mutualise:'Mutualisé', dedie:'Dédié', priority:'Priority'};
+                mutualise:'Mutualisé', dedie:'Dédié'};
 
 // état des toggles
 const state={metier:'support', niveau:'dedie'};
@@ -367,7 +364,7 @@ function compute(){
   ['support','helpdesk'].forEach(met=>{
     const tr=document.createElement('tr');
     let cells=`<td class="rowhdr">${LBL[met]}<br><span style="font-weight:400;color:#9ca3af;font-size:.66rem">base ${fmtE0(BASE[met])}/mois</span></td>`;
-    ['mutualise','dedie','priority'].forEach(niv=>{
+    ['mutualise','dedie'].forEach(niv=>{
       const mo=moisDirect(met,niv), dh=mo/HBASE, mbh=dh*(1-decote);
       const isCur=(met===state.metier&&niv===state.niveau);
       cells+=`<td${isCur?' style="background:rgba(91,127,158,.12);font-weight:700"':''}>`

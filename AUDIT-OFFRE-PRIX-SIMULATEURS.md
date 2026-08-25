@@ -14,7 +14,6 @@
 | Bloc | Gravité | Constat central | Statut |
 |---|---|---|---|
 | **A. Coefficients de couverture horaire** | 🔴 **critique** | Le 24·7 est vendu **+45 %** alors qu'il demande **×3,7 de présence**. Un devis 24·7 sort **à perte** et n'est **pas livrable**. | ✅ **corrigé** — modèle ETP + astreinte/24·7 sur devis (`PRICING.md §3.c`) |
-| **B. Tier Priority à 1-2 agents** | 🔴 **critique** | Le simulateur affiche publiquement **« Économie : −24 % »** et **« Économie annuelle : −10 800 € »**. On vend plus cher que d'embaucher en France. | ✅ **corrigé** — badge de continuité sous 3 agents, offre inchangée (`PRICING.md §3`) |
 | **C. Claim « −40 à −60 % » vs simulateur** | 🔴 **critique** | Les pages promettent −40 à −60 % ; le badge du simulateur calcule **−32 %** (helpdesk) et **−38 %** (SaaS). La page se contredit elle-même à 30 cm d'écart. | ⏳ **ouvert** — cf. §I.3 ci-dessous |
 | **D. Badge médical −87 %** | 🟠 majeur | Hors doctrine `PRICING.md` (claim public = −40 à −60 %) et non crédible : compare un forfait 250 appels à une secrétaire à temps plein. | ✅ **corrigé** — recadrage coût/jour ouvré (`PRICING.md §1`) |
 | **E. Noms des offres** | 🟠 majeur | 3 systèmes de nommage différents, **absents de `PRICING.md`**, mélange FR/EN sur une marque qui vend « français langue maternelle ». | ✅ **corrigé** — Débordement / Poste dédié / Centre de services (`PRICING.md §3.c`) |
@@ -58,30 +57,6 @@ Base implicite « Bureau » ≈ 45 h/semaine de fenêtre couverte par 1 agent à
 
 > `FR_PEN = 1.35` est un exposant magique : aucune trace dans `PRICING.md`, aucune
 > justification dans le code. Il pilote pourtant tout le discours « économie ».
-
----
-
-## B. 🔴 Tier Priority à 1-2 agents — le simulateur affiche une économie négative
-
-La formule `priorityMult(n) = 1,10 + 0,90/n` est **économiquement correcte** et documentée
-(`PRICING.md §3`, `ARGUMENTS-APPEL-priority.md`). Le problème n'est pas la formule, c'est
-son **rendu public** aux petits effectifs.
-
-| n agents | ×base | Estimation SaaS | Badge affiché | Estimation Helpdesk | Badge affiché |
-|---|---|---|---|---|---|
-| **1** | ×2,00 | 4 600 € | **« Économie : −24 % »** | 5 000 € | **« Économie : −35 % »** |
-| **2** | ×1,55 | 7 130 € | « Économie : 4 % » | 7 750 € | **« Économie : −5 % »** |
-| 3 | ×1,40 | 9 177 € | 17 % | 9 975 € | 10 % |
-| 6 | ×1,25 | 15 525 € | 30 % | 16 875 € | 24 % |
-| 10 | ×1,19 | 24 633 € | 33 % | 26 775 € | 28 % |
-
-Un prospect qui clique « Priority » — le tier haut de gamme, donc **le plus désirable** —
-lit littéralement : *« Économie annuelle estimée : −10 800 € »*, en vert, dans l'encart
-`accent`. La page vend elle-même l'idée qu'il vaut mieux embaucher en France.
-
-`PRICING.md §3` l'admet d'ailleurs noir sur blanc : *« Priority bascule moins cher à partir
-de ~4 agents garantis »*. **Le simulateur expose donc publiquement une zone où l'offre perd
-son propre argumentaire**, sans le garde-fou correspondant.
 
 ---
 
@@ -171,11 +146,7 @@ différencie le prix, soit il dégrade la confiance dans le simulateur.
 
 ### E.2 Les niveaux de service
 
-`Mutualisé · Dédié · Priority` — deux mots français, un anglais. « Priority » est un choix
-**acté** (`PRICING.md §3`, renommage de « Premium ITIL+ »), donc défendable ; mais il n'a
-jamais été confronté à ses deux voisins.
-
-Par ailleurs **« Mutualisé » n'est défini nulle part dans `PRICING.md`** — ni ce qu'il
+**« Mutualisé » n'est défini nulle part dans `PRICING.md`** — ni ce qu'il
 recouvre, ni pourquoi **−15 %** (`data-multiplier="0.85"`). Or c'est le palier d'entrée :
 il porte les forfaits « Starter » des deux simulateurs IT.
 
@@ -183,8 +154,7 @@ il porte les forfaits « Starter » des deux simulateurs IT.
 
 « **Dédié** » désigne à la fois un **niveau de service** (pill) et une **caractéristique de
 forfait** (« 1 agent 100 % dédié » dans Support Pro / Helpdesk Pro, qui sont pourtant des
-packages, pas des tiers). Le graphe comparatif parle lui de « Dédié vs Priority » — donc du
-tier. Trois usages, un mot.
+packages, pas des tiers). Deux usages, un mot.
 
 ---
 
@@ -241,8 +211,6 @@ Autres points de cohérence :
   La rate card partenaire (`PRICING.md §3`) est construite sur des paliers **1 / 3 / 5+**.
   Deux grilles de dégressivité, deux jeux de seuils, aucun lien documenté.
 - **Contrôle « Intégration agenda » (médical)** : multiplicateurs tous à 1,0 (cf. §D).
-- **Pills `Priority`** : portent `data-multiplier="1.25"`, valeur **morte** (surchargée par
-  `priorityMult()`). Vestige de l'ancien tarif plat « Premium ×1,25 ».
 
 ---
 
@@ -266,9 +234,6 @@ sur un deal 5 positions.
    l'astreinte et du 24·7 du simulateur public (« sur devis »). Motif du retrait :
    **livrabilité**, pas marge — un contrat 24·7 = ~4,8 ETP, soit toute la capacité de la
    phase 1. `FR_PEN` supprimé au passage.
-2. ✅ **Priority** — **pas de verrou** : l'offre reste sélectionnable et vendable à 1-2
-   agents. C'est le **badge économie** qui disparaît sous 3 agents, remplacé par
-   « Continuité de N postes, sans en recruter N ». L'argument juste à cette taille est la faisabilité.
 3. ⏳ **Claim −40 à −60 %** — **ouvert.** Hypothèses de brut révisées (direction) :
    **30-36 k€** au lieu de 26-34 k€ ⇒ coût complet **44-53 k€/an (3 650-4 400 €/mois)**.
    Effet à prix inchangés : SaaS −37/−43/−48 %, helpdesk −31/−38/−43 % selon qu'on retient
@@ -304,10 +269,9 @@ sur un deal 5 positions.
 | Fichier | Rôle |
 |---|---|
 | `PRICING.md` | source de vérité — §1, §3, §5, §9 à reprendre |
-| `assets/site.js` | moteur commun des 3 simulateurs (coefficients, `priorityMult`, `vol`, `FR_PEN`, `BAND`) |
+| `assets/site.js` | moteur commun des 3 simulateurs (coefficients, `vol`, `FR_PEN`, `BAND`) |
 | `simulateur-salverys.html` | médical — forfaits, badge, tableau comparatif |
 | `simulateur-informatique.html` | Support N1 SaaS — `SIM_CONFIG`, forfaits, comparatif, CTA |
 | `simulateur-helpdesk-it.html` | Helpdesk IT N1 — `SIM_CONFIG`, forfaits, comparatif, CTA |
 | `index.html` | claims chiffrés (hero, FAQ, bloc « 40 à 60 % ») |
 | `RAPPORT-PRIX.html` | rapport de réflexion à re-synchroniser après arbitrage |
-| `ARGUMENTS-APPEL-priority.md` | argumentaire Priority, dépend de l'arbitrage n°2 |

@@ -252,7 +252,6 @@ Garder le(s) bloc(s) de niche concerné(s).
   (`PRICING.md §3.b`). Le pilote éventuel est un **périmètre restreint** (débordement, un
   client final, lot de 200-400 tickets), **au tarif du palier retenu**.
 - Contreparties de risque concédées : cf. **art. 10 bis**.
-- Option **Priority** (capacité réservée non mutualisée + backup intégré) le cas échéant.
 - **Reporting** : hebdomadaire par niche — cf. `MODELE-REPORTING-CLIENT.md`.
 
 ---

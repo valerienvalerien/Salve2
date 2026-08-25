@@ -228,7 +228,6 @@
               <div class="mini-pills" data-group="service">
                 <button class="pill" data-m="0.85">Mutualisé</button>
                 <button class="pill active" data-m="1.0">Dédié</button>
-                <button class="pill" data-m="1.25">Priority</button>
               </div>
             </div>
             <div class="cg">
@@ -306,7 +305,6 @@
               <div class="mini-pills" data-group="service">
                 <button class="pill" data-m="0.85">Mutualisé</button>
                 <button class="pill active" data-m="1.0">Dédié</button>
-                <button class="pill" data-m="1.25">Priority</button>
               </div>
             </div>
             <div class="cg">
@@ -397,7 +395,6 @@
                   <div class="mini-pills" data-group="service">
                     <button class="pill" data-m="0.85">Mutualisé</button>
                     <button class="pill active" data-m="1.0">Dédié</button>
-                    <button class="pill" data-m="1.25">Priority</button>
                   </div>
                 </div>
                 <div class="cg">
@@ -459,15 +456,14 @@ document.querySelectorAll('.pv-btn').forEach(b => b.addEventListener('click', ()
 const CFG = { baseDirect: 2300, frBench: 3700 }, BAND = .05, FR_PEN = 1.35;
 const euro = n => Math.round(n).toLocaleString('fr-FR').replace(/ | /g, ' ');
 const vol = p => p >= 6 ? .90 : (p >= 3 ? .95 : 1);
-const priorityMult = n => 1.10 + .90 / n;
 
 document.querySelectorAll('[data-sim]').forEach(root => {
-  const st = { posts: 1, hours: 35, service: 1, priority: false, schedule: 1 };
+  const st = { posts: 1, hours: 35, service: 1, schedule: 1 };
   const out = k => root.querySelector('[data-out="' + k + '"]');
 
   function calc() {
     const ratio = st.hours / 35;
-    const serviceMult = st.priority ? priorityMult(st.posts) : st.service;
+    const serviceMult = st.service;
     const total = CFG.baseDirect * ratio * serviceMult * st.schedule * st.posts * vol(st.posts);
     const frCost = CFG.frBench * ratio * st.posts * Math.pow(st.schedule, FR_PEN);
     out('price').textContent = euro(total * (1 - BAND)) + ' – ' + euro(total * (1 + BAND));
@@ -484,7 +480,7 @@ document.querySelectorAll('[data-sim]').forEach(root => {
     g.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
     p.classList.add('active');
     const m = parseFloat(p.dataset.m);
-    if (g.dataset.group === 'service') { st.service = m; st.priority = (m === 1.25); }
+    if (g.dataset.group === 'service') { st.service = m; }
     else st.schedule = m;
     calc();
   }));

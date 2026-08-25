@@ -440,8 +440,8 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .result-strikethrough .old { text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 2px; }
 .savings-badge { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 800; }
 .theme-it .savings-badge { background: var(--accent); color: var(--primary); }
-/* Variante « résilience » : Priority sous 3 agents n'a pas d'argument d'économie
-   (le backup permanent est une tête de plus). Badge neutre, pas accentué. */
+/* Note de couverture sous le badge d'économie : nombre de têtes réellement
+   mobilisées en amplitude étendue. Ton neutre, pas accentué. */
 .coverage-note { margin-top: 10px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.72); }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
 .result-stat { background: rgba(255,255,255,.07); border-radius: 12px; padding: 15px; }
@@ -601,17 +601,17 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 /* ===== Graphe comparatif Poste dédié vs Non-stop ===== */
 .chart-card { max-width: 760px; margin: 0 auto; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 22px 18px; box-shadow: var(--shadow-md); }
 .chart-toggle { display: inline-flex; gap: 6px; margin-bottom: 16px; }
-.priority-chart { width: 100%; }
-.priority-chart svg { width: 100%; height: auto; display: block; }
+.continuite-chart { width: 100%; }
+.continuite-chart svg { width: 100%; height: auto; display: block; }
 .pc-grid { stroke: var(--line-soft); stroke-width: 1; }
 .pc-axis { fill: var(--text-soft); font-size: 11px; font-family: 'Inter', sans-serif; }
 .pc-axis-x { font-weight: 700; fill: var(--primary); }
 .pc-line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .pc-dedie { stroke: #9AA7B0; stroke-dasharray: 6 5; }
-.pc-nonstop, .pc-priority { stroke: var(--accent); }
+.pc-nonstop { stroke: var(--accent); }
 .pc-dot { stroke: var(--bg); stroke-width: 1.5; }
 .pc-dot-dedie { fill: #9AA7B0; }
-.pc-dot-nonstop, .pc-dot-priority { fill: var(--accent); }
+.pc-dot-nonstop { fill: var(--accent); }
 .pc-note { stroke: var(--accent-soft); stroke-width: 1; stroke-dasharray: 3 4; }
 .pc-note-txt { fill: var(--accent); font-size: 11px; font-weight: 700; font-family: 'Inter', sans-serif; }
 /* Zone d'effectif où le Non-stop ne se staffe pas : dite, jamais tracée en courbe. */
@@ -621,7 +621,7 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .chart-legend-item { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--primary); }
 .chart-swatch { width: 22px; height: 3px; border-radius: 2px; }
 .chart-swatch.sw-dedie { background: #9AA7B0; }
-.chart-swatch.sw-nonstop, .chart-swatch.sw-priority { background: var(--accent); }
+.chart-swatch.sw-nonstop { background: var(--accent); }
 .chart-caption { margin-top: 14px; font-size: 14px; color: var(--text-soft); text-align: center; }
 .chart-foot { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line-soft); font-size: 13px; color: var(--text-soft); text-align: center; }
 
