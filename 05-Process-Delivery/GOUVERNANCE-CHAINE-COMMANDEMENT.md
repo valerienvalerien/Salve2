@@ -106,25 +106,53 @@ et les deux sont en faute vis-à-vis d'un contrat qui prévoyait déjà la sous-
 
 Vrai, poli, et ça renvoie la question à celui à qui elle appartient.
 
-## 6. Point de vigilance — le modèle 100 % freelances
+## 6. Point de vigilance — un seul risque depuis le passage en salariat
 
-Tension à connaître, entre deux risques opposés :
+> Réécrit le 2026-08-25. La version précédente raisonnait sur le modèle « 100 % freelances »,
+> abandonné le **2026-08-14** au profit d'une **équipe 100 % salariée en CDI** (`CLAUDE.md`).
+> Elle décrivait une tension entre deux risques opposés ; **il n'en reste qu'un**.
 
-- **Trop peu d'encadrement Salverys** → la prestation ressemble à une mise à disposition,
-  requalifiable en prêt de main-d'œuvre illicite vis-à-vis du client (art. L.8241-1 et
-  L.8231-1 du Code du travail français).
-- **Trop d'encadrement Salverys** → contradiction avec la clause « **aucun lien de
-  subordination** » des contrats freelances (`07-Recrutement-Vivier/CONTRAT-PRESTATION-BD-*.md`
-  art. 1.2), et risque de requalification de l'indépendant en salarié.
+**Ce qui a disparu.** Le risque de requalification d'un indépendant en salarié n'existe plus :
+les agents *sont* salariés, déclarés CNaPS/OSTIE. La contrainte « ne pas trop encadrer, sinon
+lien de subordination » tombe — le lien de subordination est désormais **voulu, assumé et
+interne à Salverys**. Il est même l'actif qui tient le montage.
 
-Le modèle « 100 % freelances + 2 référents » (`CLAUDE.md`) est assis entre les deux. Ligne de
-conduite : **encadrer le résultat et la qualité, pas le pointage ni les ordres individuels** —
-ce que fait déjà le dispositif QA, explicitement positionné comme « **coaching, pas
-contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`).
+**Ce qui reste, et devient le seul sujet.** Trop peu d'autorité exercée par Salverys → la
+prestation ressemble à une **mise à disposition de personnel**, requalifiable en **prêt de
+main-d'œuvre illicite** vis-à-vis du client français (art. **L.8241-1** du Code du travail),
+voire en **marchandage** (art. **L.8231-1**) si le montage cause un préjudice au salarié ou
+contourne le droit applicable. Le prêt de main-d'œuvre **à but lucratif** est interdit hors
+des cadres autorisés — intérim, portage salarial, groupement d'employeurs, travail à temps
+partagé — dont **aucun** ne correspond à Salverys.
 
-**À faire valider par un conseil (FR + MG) avant le premier contrat cadre.**
+Le juge raisonne sur les **faits**, pas sur l'intitulé du contrat. Trois marqueurs pèsent :
+
+| Marqueur | Qui doit le détenir | Où c'est verrouillé |
+|---|---|---|
+| Choix des personnes affectées | Salverys | CV anonymisés (art. 10 bis) · §4 ci-dessus |
+| Ordres quotidiens, horaires, priorités individuelles | Salverys | Canal unique (§2) · art. 8 bis |
+| Discipline, évaluation, rémunération | Salverys | Autorité d'exploitation (§1) |
+
+**Ligne de conduite, inchangée sur le fond :** encadrer le **résultat et la qualité**, pas le
+pointage du client sur l'agent. Le dispositif QA reste positionné en « **coaching, pas
+contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`) — mais désormais parce que c'est du
+bon management, plus pour esquiver une requalification.
+
+**Deux éléments qui jouent en faveur du montage**, à connaître sans s'y reposer :
+
+- Les agents sont **salariés d'une société malgache et travaillent depuis Antananarivo** :
+  jamais de badge, de bureau ni de réunion d'équipe chez le client. L'**intégration à la
+  communauté de travail** du client — un des marqueurs les plus lourds en jurisprudence — est
+  structurellement absente, à la différence d'une régie sur site.
+- Salverys s'engage sur un **résultat opposable** (SLA, art. 6), pas sur du temps passé. Un
+  engagement de résultat est l'antithèse de la mise à disposition.
+
+⚠️ **À faire valider par un conseil (FR + MG) avant le premier contrat cadre.** Les deux
+éléments ci-dessus sont un raisonnement, pas une garantie.
 
 ## 7. Vocabulaire
+
+### 7.a Nommer l'encadrement
 
 | Terme | Où l'employer |
 |---|---|
@@ -132,3 +160,35 @@ contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`).
 | **« référent d'exploitation »** | **contrat et DPA uniquement** — c'est le mot qui engage, il décrit un pilotage de prestation et non une hiérarchie salariale |
 
 Ne pas mélanger les deux registres dans un même document remis au client.
+
+### 7.b Nommer ce qu'on vend — mots à tenir, mots à bannir
+
+Deux plans à ne jamais confondre : **comment on facture** (plan commercial) et **qui détient
+l'autorité sur l'agent** (plan juridique). Les mots ci-dessous appartiennent à des plans
+différents, et c'est ce qui fait qu'on les mélange.
+
+| Terme | Plan | Ce qu'il désigne vraiment | Usage chez Salverys |
+|---|---|---|---|
+| **Position dédiée** / capacité dédiée | commercial | un agent affecté à 100 % au compte, facturé à la position, sous engagement de résultat | ✅ **le mot à tenir**, à l'oral comme à l'écrit |
+| **Prestation de services** | juridique | engagement sur un résultat ; l'autorité reste chez le prestataire | ✅ mot du contrat (art. 8 bis) |
+| **Régie** / assistance technique | commercial | facturation **au temps passé**, sans engagement de résultat, pilotage fonctionnel par le client | ❌ **jamais** — ce n'est pas notre modèle de facturation |
+| **Mise à disposition** / prêt de main-d'œuvre | **juridique** | l'autorité d'employeur **bascule** vers le client — interdit à but lucratif hors cadres autorisés (L.8241-1) | ❌ **jamais**, y compris pour décrire ce qu'on ne fait pas dans un document remis au client |
+| **Détachement**, « on vous met quelqu'un », « notre techos chez vous » | oral | même chose, en plus flou | ❌ à corriger dès qu'un commercial l'emploie |
+
+**Le piège à comprendre une fois pour toutes.** « Régie » n'est pas illicite : c'est un mode
+de facturation, parfaitement légal tant que le prestataire garde l'autorité. « Mise à
+disposition » n'est pas un mode de facturation : c'est la **qualification** que retient un
+juge quand l'autorité a basculé. Le lien entre les deux : **la régie est le format qui fait
+glisser vers la mise à disposition**, parce qu'un consultant facturé au temps passé, sans
+résultat opposable, finit en pratique piloté par le client.
+
+Salverys ne vend ni l'un ni l'autre : **position dédiée, au forfait, avec SLA opposable.**
+
+**En rendez-vous**, si le prospect demande « c'est de la mise à dispo ? » :
+
+> « Non — vous achetez une position dédiée avec un engagement de service. L'agent est notre
+> salarié, c'est nous qui l'encadrons, et c'est précisément ce qui rend le SLA opposable :
+> vous avez un résultat garanti, pas une personne à gérer. »
+
+S'il insiste pour choisir le CV, fixer les horaires ou piloter l'agent directement, il
+demande une **mise à disposition** : c'est cela qu'on refuse (cf. §4), pas le vocabulaire.

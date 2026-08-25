@@ -86,8 +86,8 @@ obtenus / points possibles, ramené sur 100.
 
 ### Lien anti-turnover
 La double écoute est positionnée comme **coaching**, pas comme contrôle-sanction : feedback
-régulier, valorisation, montée en compétence. Cohérent avec le modèle « freelances payés
-~4,5× le marché, zéro turnover visé » (`CLAUDE.md`).
+régulier, valorisation, montée en compétence. Cohérent avec le modèle « **salariés en CDI**
+payés ~4,5× le marché, zéro turnover visé » (`CLAUDE.md`).
 
 ---
 
