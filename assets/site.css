@@ -442,8 +442,6 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .theme-it .savings-badge { background: var(--accent); color: var(--primary); }
 /* Variante « résilience » : Priority sous 3 agents n'a pas d'argument d'économie
    (le backup permanent est une tête de plus). Badge neutre, pas accentué. */
-.savings-badge.badge-resilience,
-.theme-it .savings-badge.badge-resilience { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.3); }
 .coverage-note { margin-top: 10px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.72); }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
 .result-stat { background: rgba(255,255,255,.07); border-radius: 12px; padding: 15px; }

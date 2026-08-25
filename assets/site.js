@@ -312,7 +312,7 @@
     const NONSTOP_MIN = 4;          // rotation impossible en dessous (cf. PRICING.md §3.c)
     const st = {
       posts: 1, hours: 35,
-      service: 1.0, serviceTier: 'dedicated', channels: 1.0, language: 1.0, scope: 1.0,
+      service: 1.0, channels: 1.0, language: 1.0, scope: 1.0,
       coverage: 1.0,
       mode: CFG.baseDirect,
     };
@@ -320,14 +320,10 @@
     const hourly = n => n.toFixed(1).replace('.', ',') + ' €';
     const range = n => euro(n * (1 - BAND)) + ' – ' + euro(n * (1 + BAND));
     const vol = p => p >= 6 ? 0.90 : (p >= 3 ? 0.95 : 1.0);
-    // Tier Priority = service critique avec backup permanent réservé.
-    // Le surcoût n'est pas plat : un agent seul porte un backup quasi complet
-    // (~×2), qui s'amortit quand l'équipe grandit (cf. PRICING.md, ARGUMENTS-APPEL-priority.md).
-    const priorityMult = n => 1.10 + 0.90 / n;
 
     function calc() {
       const ratio = st.hours / 35;
-      const serviceMult = st.serviceTier === 'priority' ? priorityMult(st.posts) : st.service;
+      const serviceMult = st.service;
       // Axes d'offre communs aux deux simulateurs IT (décision 6a) : ils renchérissent
       // aussi un recrutement interne (un technicien bilingue ou N2 coûte plus cher en
       // France), donc ils s'appliquent des deux côtés de la comparaison.
@@ -359,33 +355,22 @@
         noteEl.hidden = heads <= st.posts;
       }
 
-      // 2a-bis — sous 3 agents, Priority inclut un backup permanent : c'est
-      // littéralement une tête de plus. L'économie n'est pas l'argument à cet
-      // endroit (elle est négative), la faisabilité l'est : en interne on ne
-      // recrute pas un demi-backup. Cf. PRICING.md §3, ARGUMENTS-APPEL-priority.md.
-      const priorityLowN = st.serviceTier === 'priority' && st.posts < 3;
-      const equivHeads = st.posts + Math.ceil(st.posts / 3);
+      // Deux niveaux de service seulement (Mutualisé / Dédié) : l'économie est
+      // toujours positive et toujours affichable — plus de cas particulier.
+      // Le tier Priority a été retiré le 2026-08-24 (cf. PRICING.md §3).
       const badge = $('savings-badge');
-      badge.classList.toggle('badge-resilience', priorityLowN);
-      badge.textContent = priorityLowN
-        ? 'Continuité de ' + equivHeads + ' postes, sans en recruter ' + equivHeads
-        : 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
+      badge.textContent = 'Économie : ' + Math.round((savings / frCost) * 100) + ' %';
 
       const annualEl = $('annual-savings'), annualLabel = $('annual-savings-label');
-      if (priorityLowN) {
-        annualEl.textContent = equivHeads + ' postes';
-        if (annualLabel) annualLabel.textContent = 'Pour faire pareil en interne';
-      } else {
-        annualEl.textContent = euro(savings * 12) + ' €';
-        if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
-      }
+      annualEl.textContent = euro(savings * 12) + ' €';
+      if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
 
       // Le palier se déduit de ce qui le définit : le niveau de service d'abord
       // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
       // plus dans le tri — elles font varier le prix, pas la nature du forfait.
       // Le palier haut suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
       let pkg;
-      if (st.service <= 0.85 && st.serviceTier !== 'priority') pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
+      if (st.service <= 0.85) pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
       else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Équipe managée', why: 'la plage reste couverte, même quand quelqu\'un manque.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
@@ -430,7 +415,7 @@
         const agents = rule === 'solo' ? 1 : rule === 'team' ? Math.max(2, st.posts) : st.posts;
         const cap = parseInt(card.dataset.pkgHours || '0', 10);
         const hours = (!isActive && cap) ? Math.min(st.hours, cap) : st.hours;
-        const serviceMult = shared ? 0.85 : (st.serviceTier === 'priority' ? priorityMult(agents) : 1.0);
+        const serviceMult = shared ? 0.85 : 1.0;
         const etp = agents * st.coverage;
         const total = st.mode * (hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
 
@@ -465,8 +450,7 @@
       calc();
     });
 
-    bindPills((name, m, value) => {
-      if (name === 'service') st.serviceTier = value;
+    bindPills((name, m) => {
       if (name !== 'mode') { st[name] = m; calc(); }
     });
     bindRangeMirrors();
