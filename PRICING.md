@@ -771,6 +771,46 @@ du document. Corrigé partout :
   `node tools/espace-client-build.mjs <espace> "<mot-de-passe>" --verify`. Tant que ce n'est
   pas fait, les espaces partenaires servent encore l'ancienne promesse.
 
+
+### 3.h Site public réorienté donneur d'ordre — bascule réversible (décidé 2026-08-24)
+
+> Le GTM est **marque blanche d'abord** (`CLAUDE.md`), mais le site public affichait des
+> **tarifs directs** et poussait vers trois simulateurs de prix. Deux problèmes : ça
+> **concurrence les partenaires** sur leur propre marché, et ça publie un plafond de prix que
+> leur client final peut découvrir. La bascule corrige cela **sans détruire l'actif direct**.
+
+**Ce qui change sur `index.html`** — la page s'adresse désormais au donneur d'ordre :
+
+| | Avant | Après |
+|---|---|---|
+| Navigation | 3 liens vers les simulateurs | *Ce que nous opérons · Nos engagements · Nous contacter* |
+| Hero | 3 boutons « simuler » | **Recevoir la fiche offre** + *Ce que nous opérons* |
+| Cartes métier & tuiles | lien simulateur, « Simuler mon équipe » | lien `#contact`, « **Demander la fiche offre** » |
+| Bandeau haut & étape 2 | « **1er mois à −50 %** » | « **pilote cadré, sortie à 30 jours** » |
+| Prix affichés | « dès 350 €/mois », « 350 € → 175 € » | **aucun** — le chiffrage se fait au cadrage |
+
+- ⚠️ **Le « 1er mois à −50 % » n'avait rien à faire sur une page orientée partenaire** : `§7`
+  le réserve **au direct**, et `§3.b` l'a supprimé en MB au profit du pilote à périmètre
+  restreint (200-400 tickets) et des trois contreparties de risque. La page vendait donc une
+  promesse que le contrat MB ne porte pas.
+- **Aucun tarif ne subsiste sur la page d'accueil**, conformément à `§0/§9` : en marque
+  blanche, le prix de gros ne sort qu'au cadrage sous NDA.
+
+**Ce qui est conservé — le délistage n'est pas une suppression.** Les trois simulateurs
+restent **déployés** (ils sont toujours dans `tools/build-site.sh`) et **atteignables par URL
+directe**. Ils portent un `<meta name="robots" content="noindex, follow">` : ils sortent de
+l'index, ce qui évite qu'un client final tombe sur nos tarifs directs par une recherche, mais
+ils restent utilisables comme support de rendez-vous ou pour un prospect direct entrant.
+
+**Comment revenir en arrière.** La bascule est **un seul commit atomique** :
+`git revert <commit>` rétablit la navigation, les CTA, les prix et retire les `noindex`.
+C'est le mécanisme de réversibilité — il n'y a pas de drapeau de configuration à maintenir.
+
+**Quand supprimer définitivement le direct.** Pas maintenant : à **1 salariée et 0 contrat
+signé**, supprimer une option non testée est la décision la plus chère possible. Le point de
+décision est **après le 1er ou 2e contrat MB signé** — si la marque blanche convertit, on
+supprime ; si elle cale, on rétablit en une commande.
+
 ---
 
 ## 4. Bailleurs sociaux & grandes structures — relation client de toutes sortes (futur non déterminé) — **INTERNE**
