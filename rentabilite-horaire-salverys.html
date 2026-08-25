@@ -89,7 +89,7 @@
 <body>
 <div class="wrap">
   <h1>Rentabilité horaire — forfaits Mutualisé · Dédié</h1>
-  <p class="sub">Interne · v2 du 2026-06-20 · « <b>euro de l'heure par euro de l'heure</b> » · prix de vente <b>dérivés des simulateurs</b> (base 35 h/sem · Tél+ticket · FR) · balayage du tarif freelance de <b>2,5 € à 25 €/h</b> · aligné sur <b>PRICING.md</b> &amp; <b>simulateur-informatique.html</b> / <b>simulateur-helpdesk-it.html</b></p>
+  <p class="sub">Interne · v2 du 2026-06-20 · « <b>euro de l'heure par euro de l'heure</b> » · prix de vente <b>dérivés des simulateurs</b> (base 35 h/sem · Tél+ticket · FR) · balayage du coût employeur horaire d'un agent de <b>2,5 € à 25 €/h</b> · aligné sur <b>PRICING.md</b> &amp; <b>simulateur-informatique.html</b> / <b>simulateur-helpdesk-it.html</b></p>
 
   <!-- TAUX EUR → MGA -->
   <div class="rate-bar">
@@ -101,16 +101,16 @@
 
   <!-- CURSEUR PRINCIPAL -->
   <div class="hero">
-    <label>Tarif demandé par le freelance <b id="vTarifFL">3,0 €/h</b></label>
-    <input type="range" id="tarifFL" min="2.5" max="25" step="0.5" value="3">
-    <div class="hint">Le curseur-vedette : faites-le glisser de 2,5 € (proche du modèle actuel ~450 €/mois) jusqu'à 25 €/h. <span class="ar-equiv" id="vTarifFLAr"></span></div>
+    <label>Coût employeur d'un agent <b id="vTarifFL">5,0 €/h</b></label>
+    <input type="range" id="tarifFL" min="2.5" max="25" step="0.5" value="5">
+    <div class="hint">Le curseur-vedette : le modèle salarié coûte ~736 €/mois de coût employeur ≈ <b>4,84 €/h</b> à 152 h — soit le cran de 5 €/h. Balayage jusqu'à 25 €/h pour tester la sensibilité. <span class="ar-equiv" id="vTarifFLAr"></span></div>
   </div>
 
   <div class="kpis">
     <div class="kpi" id="kpiMargeH"><div class="v">—</div><div class="l">Marge nette / heure</div></div>
     <div class="kpi" id="kpiMargePct"><div class="v">—</div><div class="l">Marge nette %</div></div>
     <div class="kpi" id="kpiMargeMois"><div class="v">—</div><div class="l">Marge nette / mois / ETP</div></div>
-    <div class="kpi" id="kpiPlancher"><div class="v">—</div><div class="l">Tarif freelance max rentable</div></div>
+    <div class="kpi" id="kpiPlancher"><div class="v">—</div><div class="l">Coût horaire max rentable</div></div>
   </div>
 
   <div class="grid2">
@@ -156,15 +156,15 @@
 
     <!-- COÛTS -->
     <div class="hyp-col c-cout" style="margin-top:18px">
-      <h3>Charges indirectes (au-delà du freelance)</h3>
-      <span class="coltag">Ce qui s'ajoute au tarif freelance pour la marge nette</span>
+      <h3>Charges indirectes (au-delà du salaire chargé)</h3>
+      <span class="coltag">Ce qui s'ajoute au coût employeur pour la marge nette</span>
       <div class="ctl"><label>Charges indirectes / heure <b id="vOverhead"></b></label>
         <input type="range" id="overhead" min="0" max="6" step="0.25" value="1">
         <div class="hint">Prorata manager + SaaS (CloudTalk, M365, Emelia…) + VoIP, ramené à l'heure. <span class="ar-equiv" id="vOverheadAr"></span></div></div>
       <div class="ctl"><label>Seuil de marge nette « plancher » <b id="vSeuil"></b></label>
         <input type="range" id="seuil" min="0" max="50" step="5" value="20">
         <div class="hint">PRICING.md : jamais sous coût + ~20 %. En-dessous = zone orange.</div></div>
-      <div class="ctl"><label>Nb d'ETP / freelances facturés <b id="vNbEtp"></b></label>
+      <div class="ctl"><label>Nb d'ETP facturés <b id="vNbEtp"></b></label>
         <input type="range" id="nbEtp" min="1" max="10" step="1" value="4">
         <div class="hint">Pour projeter la marge nette mensuelle totale de l'équipe.</div></div>
     </div>
@@ -172,7 +172,7 @@
 
   <!-- ============ RÉSULTATS ============ -->
   <div class="card">
-    <h2>Marge nette / heure selon le tarif freelance (2,5 → 25 €/h)</h2>
+    <h2>Marge nette / heure selon le coût employeur horaire (2,5 → 25 €/h)</h2>
     <div class="chart" id="chart"></div>
     <div class="legend">Vert = marge ≥ seuil plancher · Orange = marge positive mais sous le seuil · Rouge = perte · Contour bleu = position du curseur · Survoler une barre pour le détail.</div>
 
@@ -184,7 +184,7 @@
     <div style="max-height:340px;overflow:auto;margin-top:10px">
     <table id="tbl">
       <thead><tr>
-        <th>Freelance €/h</th>
+        <th>Coût agent €/h</th>
         <th>≈ €/mois</th>
         <th>Coût total €/h</th>
         <th>Vente €/h</th>
@@ -197,7 +197,7 @@
       <tbody></tbody>
     </table>
     </div>
-    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">« Coût total €/h » = tarif freelance + charges indirectes. « Vente €/h » = mix MB/direct du forfait courant. Ligne or = bascule sous le seuil plancher · ligne en gras = position du curseur.</p>
+    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">« Coût total €/h » = coût employeur horaire + charges indirectes. « Vente €/h » = mix MB/direct du forfait courant. Ligne or = bascule sous le seuil plancher · ligne en gras = position du curseur.</p>
   </div>
   </div><!-- /grid2 -->
 
@@ -221,20 +221,20 @@
     <b>Prix mensuel direct</b> = base métier (2 300 Support / 2 500 IT) × niveau (Mutualisé 0,85 · Dédié 1,0) × canal Tél+ticket (1,08) × FR (1,0).
     <b>Vente direct €/h</b> = prix mensuel ÷ 152 h · <b>Vente MB €/h</b> = direct × (1 − décote).
     <b>Vente retenue</b> = MB × %MB + direct × (1−%MB).
-    <b>Coût total €/h</b> = tarif freelance (curseur) + charges indirectes/h.
+    <b>Coût total €/h</b> = coût employeur horaire (curseur) + charges indirectes/h.
     <b>Marge nette €/h</b> = vente − coût · <b>Mensuel/ETP</b> = marge × 152 h · <b>Équipe</b> = × nb ETP.
-    Le <b>tarif freelance max rentable</b> = vente × (1 − seuil%) − charges : au-delà on passe sous le plancher PRICING (coût + ~20 %).
+    Le <b>coût horaire max rentable</b> = vente × (1 − seuil%) − charges : au-delà on passe sous le plancher PRICING (coût + ~20 %).
   </p>
 
   <div class="card">
     <h2>Repères &amp; garde-fous</h2>
     <p style="font-size:.82rem;line-height:1.6">
       • <b>Concordance simulateurs</b> : les multiplicateurs Mutualisé/Dédié (0,85 / 1,0), le canal Tél+ticket (×1,08) et la langue FR (×1,0) viennent directement de <code>simulateur-informatique.html</code> et <code>simulateur-helpdesk-it.html</code>. Bases mensuelles : Support 2 300 € · IT 2 500 € (1 agent dédié 35 h).<br>
-      • <b>Modèle actuel</b> : freelance ~450 €/mois ≈ <b>3 €/h</b> (à 152 h) = borne basse du curseur.<br>
+      • <b>Modèle actuel</b> : agent salarié, coût employeur ~736 €/mois ≈ <b>4,84 €/h</b> (à 152 h) — cran de 5 €/h sur le curseur.<br>
       • <b>Plancher absolu</b> (PRICING §7) : jamais sous le coût chargé + ~20 %. Le seuil ajustable matérialise cette règle (zone orange).<br>
-      • <b>Lecture MB-first</b> : en marque blanche (décote 30 %), même un forfait Dédié redescend autour de 11-12 €/h de vente — la rentabilité tient surtout par un <b>coût freelance bas</b> (2,5-4 €/h).<br>
+      • <b>Lecture MB-first</b> : en marque blanche (décote 30 %), même un forfait Dédié redescend autour de 11-12 €/h de vente — la rentabilité tient surtout par un <b>coût employeur bas</b> (~4,8 €/h).<br>
     </p>
-    <p class="garde"><b>Garde-fou</b> — ce simulateur raisonne « à l'heure » (modèle 2 de PRICING). Pour le pilotage trésorerie complet (acquisition, encaissement J+30, 3 métiers), garder <b>tresorerie-salverys.html</b>. Ici on isole une seule question : à partir de quel tarif horaire un freelance cesse d'être rentable, forfait par forfait.</p>
+    <p class="garde"><b>Garde-fou</b> — ce simulateur raisonne « à l'heure » (modèle 2 de PRICING). Pour le pilotage trésorerie complet (acquisition, encaissement J+30, 3 métiers), garder <b>tresorerie-salverys.html</b>. Ici on isole une seule question : à partir de quel coût horaire par agent une position cesse d'être rentable, forfait par forfait.</p>
   </div>
 </div>
 
@@ -292,7 +292,7 @@ function compute(){
   document.querySelectorAll('#grpMetier .pillbtn').forEach(b=>b.classList.toggle('active',b.dataset.v===state.metier));
   document.querySelectorAll('#grpNiveau .pillbtn').forEach(b=>b.classList.toggle('active',b.dataset.v===state.niveau));
 
-  // marge pour un tarif freelance donné
+  // marge pour un coût employeur horaire donné
   const M=t=>{const coutTot=t+overhead; const marge=vente-coutTot;
     return {t,coutTot,marge,pct:marge/vente,mois:marge*HBASE,equipe:marge*HBASE*nbEtp};};
 

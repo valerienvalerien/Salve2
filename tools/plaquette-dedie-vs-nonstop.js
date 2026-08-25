@@ -178,15 +178,21 @@ const rows = [
 [['Forfait', M + 0.25, 1.45], ['Qui remplace', 2.65, 1.75], ["Ce qu'on promet", 4.6, 3.3], ["Ce qu'on ne promet pas", 8.1, 3.9]].forEach(([t, x, w]) => {
   s.addText(t.toUpperCase(), { x, y: 2.35, w, h: 0.3, fontSize: 10, bold: true, charSpacing: 1, color: GREY, fontFace: BODY, margin: 0 });
 });
+/* Hauteur de ligne calée sur le nombre de paliers, pour que le bloc occupe la
+   zone entre les en-têtes (2,75) et la note de bas de slide (6,72) quel que
+   soit le nombre de lignes. Textes centrés verticalement via valign. */
+const ROW_TOP = 2.75, ROW_BOTTOM = 6.5, ROW_GAP = 0.18;
+const ROW_H = (ROW_BOTTOM - ROW_TOP - ROW_GAP * (rows.length - 1)) / rows.length;
 rows.forEach((r, i) => {
-  const y = 2.75 + i * 1.32;
-  s.addShape(pptx.ShapeType.roundRect, { x: M, y, w: 11.9, h: 1.18, rectRadius: 0.12,
+  const y = ROW_TOP + i * (ROW_H + ROW_GAP);
+  const inner = { y: y + 0.15, h: ROW_H - 0.3, valign: 'middle', fontFace: BODY, margin: 0 };
+  s.addShape(pptx.ShapeType.roundRect, { x: M, y, w: 11.9, h: ROW_H, rectRadius: 0.12,
     fill: { color: WHITE }, line: { color: LINE, width: 1 }, shadow: shadow() });
-  s.addShape(pptx.ShapeType.roundRect, { x: M + 0.25, y: y + 0.38, w: 1.45, h: 0.42, rectRadius: 0.21, fill: { color: r[4] } });
-  s.addText(r[0], { x: M + 0.25, y: y + 0.38, w: 1.45, h: 0.42, align: 'center', valign: 'middle', fontSize: 12, bold: true, color: WHITE, fontFace: BODY, margin: 0 });
-  s.addText(r[1], { x: 2.65, y: y + 0.3, w: 1.75, h: 0.6, fontSize: 13, bold: true, color: NAVY, fontFace: BODY, lineSpacing: 15, margin: 0 });
-  s.addText(r[2], { x: 4.6, y: y + 0.24, w: 3.3, h: 0.75, fontSize: 11.5, color: '32424C', fontFace: BODY, lineSpacing: 14, margin: 0 });
-  s.addText(r[3], { x: 8.1, y: y + 0.24, w: 3.9, h: 0.75, fontSize: 11.5, color: GREY, fontFace: BODY, italic: true, lineSpacing: 14, margin: 0 });
+  s.addShape(pptx.ShapeType.roundRect, { x: M + 0.25, y: y + ROW_H / 2 - 0.21, w: 1.45, h: 0.42, rectRadius: 0.21, fill: { color: r[4] } });
+  s.addText(r[0], { x: M + 0.25, y: y + ROW_H / 2 - 0.21, w: 1.45, h: 0.42, align: 'center', valign: 'middle', fontSize: 12, bold: true, color: WHITE, fontFace: BODY, margin: 0 });
+  s.addText(r[1], { ...inner, x: 2.65, w: 1.75, fontSize: 13, bold: true, color: NAVY, lineSpacing: 15 });
+  s.addText(r[2], { ...inner, x: 4.6, w: 3.3, fontSize: 11.5, color: '32424C', lineSpacing: 14 });
+  s.addText(r[3], { ...inner, x: 8.1, w: 3.9, fontSize: 11.5, color: GREY, italic: true, lineSpacing: 14 });
 });
 s.addText("Le manager métier est déjà payé et supervise déjà votre compte : aucune tête supplémentaire à recruter, donc aucune ligne en plus sur votre facture.",
   { x: M, y: 6.72, w: 11.9, h: 0.4, fontSize: 11, italic: true, color: GREY, fontFace: BODY, margin: 0 });
