@@ -1,10 +1,10 @@
-/* Plaquette commerciale Salverys — Poste dédié vs Non-stop
+/* Plaquette commerciale Salverys — Poste dédié vs Équipe managée
    Chiffres : PRICING.md §3.d / §3.e / §3.f (base helpdesk IT 2 500 €/ETP). */
 const pptx = new (require('pptxgenjs'))();
 pptx.layout = 'LAYOUT_WIDE'; // 13.3 x 7.5
 pptx.author = 'Salverys';
 pptx.company = 'Salverys';
-pptx.title = 'Poste dédié ou Non-stop';
+pptx.title = 'Poste dédié ou Équipe managée';
 
 const NAVY = '0E3D4E', BLUE = '1A5F7A', CORAL = 'E06B52', TINT = 'FDEEE9';
 const GREY = '6E7A82', LIGHT = 'F4F6F7', WHITE = 'FFFFFF', LINE = 'DCE3E6';
@@ -33,7 +33,7 @@ s.addShape(pptx.ShapeType.ellipse, { x: 9.4, y: -1.5, w: 6, h: 6, fill: { color:
 s.addShape(pptx.ShapeType.ellipse, { x: 11.2, y: 4.4, w: 3.4, h: 3.4, fill: { color: CORAL, transparency: 75 } });
 s.addText('SALVERYS · HELPDESK IT N1 & SUPPORT APPLICATIF', { x: M, y: 1.35, w: 9, h: 0.3,
   fontSize: 12, bold: true, charSpacing: 2, color: CORAL, fontFace: BODY, margin: 0 });
-s.addText('Poste dédié ou Non-stop ?', { x: M, y: 1.8, w: 10.6, h: 0.85,
+s.addText('Poste dédié ou Équipe managée ?', { x: M, y: 1.8, w: 10.6, h: 0.85,
   fontSize: 44, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
 s.addText('Le vrai coût de la continuité de service', { x: M, y: 2.75, w: 9.6, h: 0.55,
   fontSize: 24, color: 'BFD0D8', fontFace: HEAD, italic: true, margin: 0 });
@@ -42,7 +42,7 @@ s.addText('Le choix entre nos deux forfaits ne se joue pas sur le nombre de tick
 s.addShape(pptx.ShapeType.roundRect, { x: M, y: 5.35, w: 5.7, h: 0.62, rectRadius: 0.31, fill: { color: CORAL } });
 s.addText('Support francophone · Antananarivo → France', { x: M, y: 5.35, w: 5.7, h: 0.62,
   align: 'center', valign: 'middle', fontSize: 13, bold: true, color: WHITE, fontFace: BODY, margin: 0 });
-s.addNotes("Plaquette d'aide au choix entre le forfait Poste dédié et le forfait Non-stop. À utiliser en rendez-vous quand le prospect hésite entre les deux, ou quand il demande le Non-stop alors que son besoin ne le justifie pas.");
+s.addNotes("Plaquette d'aide au choix entre le forfait Poste dédié et le forfait Équipe managée. À utiliser en rendez-vous quand le prospect hésite entre les deux, ou quand il demande l'Équipe managée alors que son besoin ne le justifie pas.");
 
 /* ---------- 2. Deux promesses différentes ---------- */
 s = pptx.addSlide();
@@ -54,7 +54,7 @@ const promises = [
   { t: 'Poste dédié', sub: 'Vous achetez des personnes',
     b: ['Un agent 100 % à vous, 35 ou 40 h/semaine, sur une plage classique.', 'Il connaît votre parc, vos procédures, vos utilisateurs récurrents.', "Une absence isolée est reprise par le manager métier : le service continue, le délai de traitement s'allonge."],
     foot: 'La contrepartie : passé 18h ou le week-end, personne ne répond avant le lendemain matin.', c: BLUE },
-  { t: 'Non-stop', sub: 'Vous achetez une plage horaire',
+  { t: 'Équipe managée', sub: 'Vous achetez une plage horaire',
     b: ['4 agents minimum en rotation sur 6h-20h, 3×8 ou 24·7, plus un superviseur dédié.', "L'équipe est dimensionnée pour que la plage tienne, pas pour qu'une personne soit là.", 'Un absent fait baisser la capacité d\'environ 25 % — il ne ferme jamais la plage.'],
     foot: "La contrepartie : la rotation se paie, même les heures où personne ne manque.", c: CORAL },
 ];
@@ -82,7 +82,7 @@ title(s, 'Cas n°1', 'Restez au Poste dédié si…');
 const dedie = [
   ['Vos utilisateurs sont là de 9h à 18h', "Pas après : c'est déjà la totalité de votre trafic. Payer une rotation nocturne pour zéro appel après 18h ne rembourse jamais son surcoût."],
   ['Un ticket du soir attend le lendemain', "Nuit ou week-end sans réponse : le ticket part à l'ouverture, sans pénalité ni client qui décroche."],
-  ['Vous couvrez 1 à 3 positions', "Sous 4 agents, une rotation ne peut de toute façon pas tourner : le sujet Non-stop ne se pose même pas."],
+  ['Vous couvrez 1 à 3 positions', "Sous 4 agents, une rotation ne peut de toute façon pas tourner : le sujet Équipe managée ne se pose même pas."],
   ['Une absence glisse le traitement', "de quelques heures dans la journée, pas d'un jour : le manager métier reprend, le ticket part juste un peu plus tard."],
   ['Vous cherchez le prix au plus juste', "sur une plage classique : c'est le forfait qui porte l'écart de −40 à −60 % face à un poste interne en France."],
 ];
@@ -96,19 +96,19 @@ dedie.forEach((d, i) => {
 });
 s.addShape(pptx.ShapeType.roundRect, { x: M + 6.15, y: 4.79, w: 5.75, h: 1.34, rectRadius: 0.12, fill: { color: NAVY } });
 s.addText('9 500 €', { x: M + 6.42, y: 4.94, w: 2.2, h: 0.55, fontSize: 30, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
-s.addText("par mois pour 4 agents sur 9h–18h, soit 1 425 € de moins que le même effectif en Non-stop.",
+s.addText("par mois pour 4 agents sur 9h–18h, soit 1 425 € de moins que le même effectif en Équipe managée.",
   { x: M + 8.65, y: 4.95, w: 3.1, h: 0.95, fontSize: 11, color: 'C6D5DC', fontFace: BODY, lineSpacing: 13.5, margin: 0 });
-s.addText("Dans ces cinq cas, monter au Non-stop revient à payer une garantie dont vos horaires n'ont pas l'usage — et nous vous le dirons.",
+s.addText("Dans ces cinq cas, monter à l'Équipe managée revient à payer une garantie dont vos horaires n'ont pas l'usage — et nous vous le dirons.",
   { x: M, y: 6.45, w: 11.9, h: 0.4, fontSize: 12, italic: true, color: GREY, fontFace: BODY, margin: 0 });
-s.addNotes("À utiliser quand le prospect demande spontanément le Non-stop : lui montrer qu'il paierait une garantie dont son besoin n'a pas l'usage.");
+s.addNotes("À utiliser quand le prospect demande spontanément l'Équipe managée : lui montrer qu'il paierait une garantie dont son besoin n'a pas l'usage.");
 
-/* ---------- 4. Passez au Non-stop si… ---------- */
+/* ---------- 4. Passez à l'Équipe managée si… ---------- */
 s = pptx.addSlide();
 s.background = { color: LIGHT };
-title(s, 'Cas n°2', 'Passez au Non-stop si…');
+title(s, 'Cas n°2', "Passez à l'Équipe managée si…");
 const nonstop = [
   ['Des demandes arrivent après 18h', "le week-end ou la nuit. Hors 9h–18h, un poste dédié ne répond pas : il faut quelqu'un en poste, physiquement, sur ces heures-là."],
-  ['Vendredi 19h ne peut pas attendre lundi 9h', "62 heures de silence, ce n'est pas un délai : c'est une rupture. Un ticket dédié attend l'ouverture ; un ticket Non-stop est pris en charge dans l'heure."],
+  ['Vendredi 19h ne peut pas attendre lundi 9h', "62 heures de silence, ce n'est pas un délai : c'est une rupture. Un ticket dédié attend l'ouverture ; un ticket en Équipe managée est pris en charge dans l'heure."],
   ['Chaque heure sans réponse coûte cher', "Pénalité de SLA, escalade client, appel d'offres à défendre : dès qu'une heure se facture, la rotation devient l'option économique."],
   ['Votre couverture dépasse 45 h/semaine', "6h-20h, 3×8 ou 24·7 : au-delà d'une journée de travail, il faut des équipes qui se relaient, pas des agents qui s'épuisent."],
   ['Vous ouvrez 4 positions ou plus', "C'est le plancher physique de la rotation : 4 × 35 h = 140 h/semaine pour 70 h d'amplitude. En dessous, elle ne tourne pas."],
@@ -125,9 +125,9 @@ s.addShape(pptx.ShapeType.roundRect, { x: M + 6.15, y: 4.79, w: 5.75, h: 1.34, r
 s.addText('−1 739 €', { x: M + 6.42, y: 4.94, w: 2.3, h: 0.55, fontSize: 30, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
 s.addText("par mois face au Poste dédié sur-staffé, dès lors que la plage à tenir est 8h-20h.",
   { x: M + 8.75, y: 5.0, w: 3.0, h: 0.9, fontSize: 11, color: 'FCE4DE', fontFace: BODY, lineSpacing: 13.5, margin: 0 });
-s.addText("Un seul de ces cinq critères suffit à justifier le Non-stop, dès lors qu'il touche les heures — sauf le plancher de 4 positions, qui, lui, est non négociable.",
+s.addText("Un seul de ces cinq critères suffit à justifier l'Équipe managée, dès lors qu'il touche les heures — sauf le plancher de 4 positions, qui, lui, est non négociable.",
   { x: M, y: 6.45, w: 11.9, h: 0.4, fontSize: 12, italic: true, color: GREY, fontFace: BODY, margin: 0 });
-s.addNotes("Le 4e critère est le verrou : sous 4 positions, on ne vend pas le Non-stop, même si le client le demande. Ce n'est pas un choix commercial, c'est une contrainte de staffing.");
+s.addNotes("Le 4e critère est le verrou : sous 4 positions, on ne vend pas l'Équipe managée, même si le client le demande. Ce n'est pas un choix commercial, c'est une contrainte de staffing.");
 
 /* ---------- 5. Le chiffre qui tranche (graphe natif) ---------- */
 s = pptx.addSlide();
@@ -137,7 +137,7 @@ s.addText("À effectif identique — 4 agents — le forfait le moins cher chang
 
 s.addChart(pptx.ChartType.bar, [
   { name: 'Poste dédié', labels: ['Heures de bureau\n(~45 h/semaine)', 'Amplitude 8h-20h\n(60 h/semaine)'], values: [9500, 12664] },
-  { name: 'Non-stop', labels: ['Heures de bureau\n(~45 h/semaine)', 'Amplitude 8h-20h\n(60 h/semaine)'], values: [10925, 10925] },
+  { name: 'Équipe managée', labels: ['Heures de bureau\n(~45 h/semaine)', 'Amplitude 8h-20h\n(60 h/semaine)'], values: [10925, 10925] },
 ], {
   x: M, y: 2.15, w: 7.5, h: 4.3,
   barDir: 'col', barGapWidthPct: 60,
@@ -152,8 +152,8 @@ s.addChart(pptx.ChartType.bar, [
 });
 
 const reads = [
-  ['De 9h à 18h, le dédié gagne', "La rotation et le superviseur du Non-stop coûtent +15 % sans couvrir une minute de plus, tant que personne ne sollicite le support hors de ces heures. Le surcoût n'achète pas du temps : il achète une garantie."],
-  ['Dès 8h-20h, le Non-stop repasse devant', "Tenir 60 h/semaine en Poste dédié demande 1,33 tête par position, soit 5,3 personnes pour 4 postes. Chaque heure de plus à couvrir coûte une tête, pas un pourcentage."],
+  ['De 9h à 18h, le dédié gagne', "La rotation et le superviseur de l'Équipe managée coûtent +15 % sans couvrir une minute de plus, tant que personne ne sollicite le support hors de ces heures. Le surcoût n'achète pas du temps : il achète une garantie."],
+  ['Dès 8h-20h, la comparaison change', "Tenir 60 h/semaine avec 4 positions en simultané demande 5,3 têtes en dédié. L'Équipe managée couvre la même plage avec 4 agents — donc ~2,3 en ligne à la fois. Moins cher pour cette raison, pas par efficacité."],
 ];
 reads.forEach((r, i) => {
   const y = 2.35 + i * 1.75;
@@ -163,7 +163,7 @@ reads.forEach((r, i) => {
 });
 s.addText("Base helpdesk IT N1 (2 500 €/ETP, dégressif volume inclus). Support applicatif N1 SaaS : 8 740 € · 10 051 € · 11 650 €. Estimations indicatives — devis ferme sous 24 h.",
   { x: M, y: 6.62, w: 11.9, h: 0.45, fontSize: 10, italic: true, color: GREY, fontFace: BODY, margin: 0 });
-s.addNotes("Chiffres issus du simulateur public (PRICING.md §3.f). Le Non-stop à 4 agents (10 925 €) correspond au « à partir de 11 000 € » affiché sur le site.");
+s.addNotes("Chiffres issus du simulateur public (PRICING.md §3.f). L'Équipe managée à 4 agents (10 925 €) correspond au « à partir de 11 000 € » affiché sur le site.");
 
 /* ---------- 6. Qui remplace qui ---------- */
 s = pptx.addSlide();
@@ -173,7 +173,7 @@ s.addText("Aucun de nos forfaits ne vend un « agent de backup » en ligne d'opt
 
 const rows = [
   ['Poste dédié', 'Le manager métier', 'Les absences ponctuelles sont reprises : congés isolés, arrêt court.', "Deux absences simultanées ni un arrêt long : on prévient et on ajuste le SLA au cadrage.", BLUE],
-  ['Non-stop', 'La rotation', "La plage horaire reste tenue : 4 × 35 h couvrent 70 h d'amplitude, un absent en laisse 105.", "La capacité à l'identique — elle baisse d'environ 25 % le temps de l'absence.", CORAL],
+  ['Équipe managée', 'La rotation', "La plage reste tenue : 4 × 35 h couvrent 70 h d'amplitude, un absent en laisse 105.", "Le nombre d'agents en ligne à la fois : ~2,3 sur 8h-20h, et environ 25 % de moins pendant l'absence.", CORAL],
   ['Priority', 'Un backup nominatif réservé', "La capacité reste inchangée : zéro rupture, dès 1 agent.", "Option de niveau de service, cumulable avec le Poste dédié — pas un quatrième forfait.", '7A8B94'],
 ];
 [['Forfait', M + 0.25, 1.45], ['Qui remplace', 2.65, 1.75], ["Ce qu'on promet", 4.6, 3.3], ["Ce qu'on ne promet pas", 8.1, 3.9]].forEach(([t, x, w]) => {
@@ -198,14 +198,14 @@ s = pptx.addSlide();
 s.background = { color: LIGHT };
 title(s, 'À éviter', 'Les deux façons de se tromper de forfait');
 const errors = [
-  { t: 'Prendre le Non-stop « pour être tranquille »', c: BLUE,
+  { t: "Prendre l'Équipe managée « pour être tranquille »", c: BLUE,
     p: "Un support sollicité de 9h à 18h, 3 positions, aucun SLA opposable — et un forfait à rotation acheté par précaution.",
     r: "Vous payez +15 % pour une continuité que votre manager métier assure déjà, et vous diluez la connaissance de votre parc entre 4 agents au lieu de 3.",
     f: "Le bon réflexe : rester au Poste dédié, et n'ajouter Priority que si une rupture est réellement inacceptable." },
   { t: "Tenir une plage large avec des postes dédiés", c: CORAL,
     p: "Un engagement 8h-20h honoré en empilant des agents dédiés, sans rotation organisée ni superviseur.",
-    r: "Il faut 5,3 têtes pour 4 positions — plus cher que le Non-stop — et la plage tombe dès la première absence, précisément le jour où le SLA se joue.",
-    f: "Le bon réflexe : passer au Non-stop dès que la plage dépasse une journée de travail." },
+    r: "Il faut 5,3 têtes pour tenir 4 positions en simultané — et la plage tombe dès la première absence, précisément le jour où le SLA se joue.",
+    f: "Le bon réflexe : passer à l'Équipe managée dès que la plage dépasse une journée de travail." },
 ];
 errors.forEach((e, i) => {
   const x = M + i * 6.15;
@@ -232,12 +232,12 @@ s.addShape(pptx.ShapeType.ellipse, { x: 11.6, y: -1.2, w: 3.6, h: 3.6, fill: { c
 s.addText('LA RÈGLE EN UNE PHRASE', { x: M, y: 1.0, w: 11.9, h: 0.3, fontSize: 12, bold: true, charSpacing: 2, color: CORAL, fontFace: BODY, margin: 0 });
 s.addText("Comptez vos heures, pas vos tickets.", { x: M, y: 1.42, w: 11.9, h: 0.7,
   fontSize: 36, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
-s.addText("Tant que vos demandes arrivent entre 9h et 18h, le Poste dédié les couvre au meilleur prix. Dès qu'elles arrivent après 18h, le week-end ou la nuit — et que vous avez 4 positions à ouvrir — le Non-stop les couvre pour moins cher que des postes dédiés empilés.",
+s.addText("Tant que vos demandes arrivent entre 9h et 18h, le Poste dédié les couvre au meilleur prix. Dès qu'elles arrivent après 18h, le week-end ou la nuit — et que vous avez 4 positions à ouvrir — l'Équipe managée les couvre pour moins cher que des postes dédiés empilés.",
   { x: M, y: 2.32, w: 10.4, h: 1.0, fontSize: 15, color: 'D8E2E7', fontFace: BODY, lineSpacing: 23, margin: 0 });
 
 const steps = [
   ['1', 'Vous décrivez vos horaires', "Heures à couvrir, volume, SLA en vigueur, et ce qui se passe aujourd'hui quand un ticket arrive hors plage."],
-  ['2', 'On chiffre les deux scénarios', "Poste dédié et Non-stop côte à côte, sur vos chiffres — y compris quand la réponse est de rester au dédié."],
+  ['2', 'On chiffre les deux scénarios', "Poste dédié et Équipe managée côte à côte, sur vos chiffres — y compris quand la réponse est de rester au dédié."],
   ['3', 'Devis ferme sous 24 h', "Contrat dès 3 mois, 1er mois à −50 %, opérationnel en 3 à 4 semaines."],
 ];
 steps.forEach((st, i) => {

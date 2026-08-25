@@ -86,6 +86,7 @@ td b{color:var(--navy);font-weight:700}
 .rate tr.best{background:var(--tint)}
 
 .models{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:7px}
+.models-2{grid-template-columns:repeat(2,1fr)}
 .model{border:1px solid var(--line);padding:11px 12px;display:flex;flex-direction:column}
 .model .tag{display:inline-block;background:var(--navy);color:#fff;font-size:7pt;
   font-weight:700;letter-spacing:.09em;padding:2.5px 7px;margin-bottom:7px;align-self:flex-start}
@@ -251,8 +252,8 @@ td b{color:var(--navy);font-weight:700}
       <ul>
         <li>Locaux à accès contrôlé, politique « poste nu », production exclusivement sur site.
         Comptes nominatifs, MFA, coffre-fort à secret partagé, journalisation des actions</li>
-        <li>Double liaison internet sur opérateurs distincts, onduleurs et groupe électrogène,
-        plan de continuité testé</li>
+        <li>Double liaison internet sur opérateurs distincts, kit d'autonomie par agent
+        (solaire ou batterie), plan de continuité écrit et testé</li>
         <li>Sous-traitance conforme à l'<b>article 28 du RGPD</b>, clauses contractuelles types
         module 3 (décision (UE) 2021/914), analyse d'impact du transfert, notification de
         violation sous 24 heures. Madagascar dispose de sa propre loi sur la protection des
@@ -276,8 +277,8 @@ td b{color:var(--navy);font-weight:700}
   </div>
 
   <div class="section">
-    <h2>Trois modèles d'achat</h2>
-    <div class="models">
+    <h2>Deux modèles d'achat</h2>
+    <div class="models models-2">
       <div class="model">
         <span class="tag">MODÈLE A</span>
         <div class="name">Débordement mutualisé</div>
@@ -291,22 +292,17 @@ td b{color:var(--navy);font-weight:700}
         <span class="tag">MODÈLE B</span>
         <div class="name">Capacité dédiée</div>
         <div class="desc">Des agents nommés, formés à votre périmètre, facturés à la position.
-        Vous pilotez.</div>
+        Vous pilotez le périmètre et les priorités ; nous encadrons les agents et tenons le SLA.</div>
         <div class="from">À partir de</div>
         <div class="price">1 700 €<span class="unit"> / ETP / mois</span></div>
         <div class="unit">Selon métier et volume ferme — grille ci-dessous</div>
       </div>
-      <div class="model">
-        <span class="tag">MODÈLE C</span>
-        <div class="name">Équipe managée</div>
-        <div class="desc">Un service desk complet avec son encadrement, à partir de quatre
-        positions. Nous pilotons.</div>
-        <div class="from">À partir de</div>
-        <div class="price">7 820 €<span class="unit"> / mois</span></div>
-        <div class="unit">4 positions au tarif de votre palier, + 15 % d'encadrement</div>
-      </div>
     </div>
   </div>
+
+  <p><b>Votre plage détermine le nombre de positions.</b> Tenir 6h-20h en présence continue
+  demande environ <b>2 ETP par position</b> — un agent couvre 35 h, la plage en fait 70. Nous
+  le chiffrons au cadrage, sur vos horaires réels.</p>
 
   <div class="section">
     <h2>Modèle B — grille par volume d'engagement</h2>
@@ -357,37 +353,34 @@ td b{color:var(--navy);font-weight:700}
   </div>
 
   <div class="section">
-    <h2>Continuité de service — qui prend le relais</h2>
+    <h2>Continuité — le jour où votre agent est absent</h2>
+    <p>C'est la question que pose tout acheteur de support, et la réponse change selon le modèle.
+    Aucun des deux ne vous facture de « binôme de secours » : le remplacement est déjà dans le prix.</p>
     <table>
       <thead>
-        <tr><th>Modèle</th><th>Qui remplace</th><th>Ce que nous garantissons</th></tr>
+        <tr><th>Modèle</th><th>Qui prend le relais</th><th>Ce que vous constatez</th></tr>
       </thead>
       <tbody>
         <tr>
           <th>A — Débordement</th>
-          <td>Le pool, par construction</td>
-          <td>Le volume souscrit est absorbé ; l'agent n'est pas nominatif</td>
+          <td>N'importe quel agent du pool — vous n'avez pas d'agent attitré</td>
+          <td>Rien ne change : le volume souscrit est traité comme d'habitude</td>
         </tr>
         <tr>
           <th>B — Capacité dédiée</th>
-          <td>Le manager métier, déjà affecté à votre compte</td>
-          <td>Les absences ponctuelles sont reprises ; le délai de traitement peut s'allonger
-          sur la journée, la plage ne ferme pas</td>
-        </tr>
-        <tr>
-          <th>C — Équipe managée</th>
-          <td>La rotation de l'équipe</td>
-          <td>La plage horaire reste tenue : quatre positions couvrent 140 h/semaine pour
-          une amplitude de 70 h. Un absent en laisse encore 105</td>
+          <td>Le manager qui supervise déjà votre compte : il connaît vos procédures et
+          n'occupe aucune position que vous payez</td>
+          <td>Le service continue. Sur une absence isolée, le traitement peut prendre quelques
+          heures de plus dans la journée — la plage n'est jamais fermée</td>
         </tr>
       </tbody>
     </table>
     <div class="callout">
-      <div class="ct">Nous ne vendons pas de « binôme de secours » en ligne d'option</div>
-      <p>Le remplacement est le coût de l'engagement, pas un supplément : il est déjà dans le prix.
-      Nos agents sont salariés en CDI et rémunérés très au-dessus du marché local — c'est ce qui
-      rend l'absence à couvrir prévisible plutôt que subie, et ce qui nous permet de ne pas vous
-      facturer une tête de plus pour la couvrir.</p>
+      <div class="ct">Pourquoi nous n'avons pas besoin de vous facturer un remplaçant</div>
+      <p>Nos agents sont salariés en CDI et rémunérés environ <b>4,5 fois le marché local</b>. À ce
+      niveau de rémunération, l'absence à couvrir est un congé posé à l'avance, pas un départ
+      surprise : elle s'anticipe au planning au lieu de se rattraper avec une tête de plus,
+      facturée en option.</p>
     </div>
   </div>
 
