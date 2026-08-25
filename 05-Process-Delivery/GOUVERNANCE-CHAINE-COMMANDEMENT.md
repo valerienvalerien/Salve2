@@ -106,22 +106,33 @@ et les deux sont en faute vis-à-vis d'un contrat qui prévoyait déjà la sous-
 
 Vrai, poli, et ça renvoie la question à celui à qui elle appartient.
 
-## 6. Point de vigilance — le modèle 100 % freelances
+## 6. Point de vigilance — depuis la bascule en équipe salariée (2026-08-14)
 
-Tension à connaître, entre deux risques opposés :
+**Ce qui a disparu.** Le modèle 100 % freelances imposait de tenir deux risques opposés à la
+fois : trop peu d'encadrement ⇒ la prestation ressemble à une mise à disposition ; trop
+d'encadrement ⇒ contradiction avec la clause « aucun lien de subordination » des contrats
+freelances, et requalification de l'indépendant en salarié. **Cette seconde branche n'existe
+plus** : l'équipe est en CDI (`CLAUDE.md`), le lien de subordination est assumé — et il est
+avec **Salverys**.
 
-- **Trop peu d'encadrement Salverys** → la prestation ressemble à une mise à disposition,
-  requalifiable en prêt de main-d'œuvre illicite vis-à-vis du client (art. L.8241-1 et
-  L.8231-1 du Code du travail français).
-- **Trop d'encadrement Salverys** → contradiction avec la clause « **aucun lien de
-  subordination** » des contrats freelances (`07-Recrutement-Vivier/CONTRAT-PRESTATION-BD-*.md`
-  art. 1.2), et risque de requalification de l'indépendant en salarié.
+**Ce qui reste.** Un seul risque, et il est unidirectionnel : **trop peu d'encadrement
+Salverys** ⇒ la prestation ressemble à une mise à disposition de personnel, requalifiable en
+prêt de main-d'œuvre illicite ou marchandage vis-à-vis du client (art. L.8241-1 et L.8231-1
+du Code du travail français). La ligne de conduite se simplifie donc : **plus on encadre,
+mieux c'est** — il n'y a plus de plafond à l'encadrement, seulement un plancher.
 
-Le modèle « 100 % freelances + 2 référents » (`CLAUDE.md`) est assis entre les deux. Ligne de
-conduite : **encadrer le résultat et la qualité, pas le pointage ni les ordres individuels** —
-ce que fait déjà le dispositif QA, explicitement positionné comme « **coaching, pas
-contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`).
+**Ce que ça change à l'oral.** L'argument devient franc et se dit sans réserve : *« ces gens
+sont nos salariés, en CDI, et c'est nous qui les managons »*. On n'a plus à ménager
+l'autonomie contractuelle d'un indépendant en même temps qu'on promet un pilotage au client.
+Exploitation commerciale de ce point : `04-Closing/ORAL-DIFFERENCIATION-ENCADREMENT.md`.
 
+Le dispositif QA reste positionné comme « **coaching, pas contrôle-sanction** »
+(`PROCESS-QA-DOUBLE-ECOUTE.md §5`) — c'est désormais un choix de management, plus une
+précaution juridique.
+
+**Vigilance résiduelle** : la question territoriale (salariés malgaches, travail exécuté
+depuis Madagascar, client français) et la chaîne de rang 2 — le risque de requalification
+porte d'abord sur le **donneur d'ordre** et sur son propre contrat avec son client final.
 **À faire valider par un conseil (FR + MG) avant le premier contrat cadre.**
 
 ## 7. Vocabulaire
