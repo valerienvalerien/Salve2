@@ -312,7 +312,7 @@ montants sont connus :
 
 | Poste | Nature | Statut |
 |---|---|---|
-| Impôt sur les sociétés (entité malgache) | % du résultat | à chiffrer |
+| Impôt sur les revenus (entité malgache) | **20 %** du résultat en droit commun · minimum de perception ~0,5 % du CA | à chiffrer — arbitrage régime franc : `ZONE-FRANCHE.md` |
 | Prestation de paie / expert-comptable | récurrent | à chiffrer |
 | Frais de change et transfert EUR→MGA (Wise Business) | ~0,5-1 % de la masse transférée | ~10-30 €/mois aujourd'hui |
 | Assurance RC professionnelle | récurrent — **souvent exigée en appel d'offres MB** | à chiffrer |
@@ -330,3 +330,5 @@ hub de repli, kits d'autonomie) remplacée le 2026-08-14 par décision direction
 effectif dimensionné sur les contrats. Sources coûts locaux : lagazette-madagascar.com,
 lexpress.mg, newsmada.com — cf. `EVALUATION-STRATEGIQUE-2026-06.md`. Taux et plafonds
 CNaPS/OSTIE à confirmer avec un conseil social local (§1.a).*
+
+*Régime fiscal : ce prévisionnel est établi **hors régime d'entreprise franche**. L'arbitrage sur l'agrément EDBM (loi n° 2007-037) et son déclencheur sont traités dans `ZONE-FRANCHE.md` — décision au 2026-08-25 : **rester en droit commun**, ne rien recalculer en anticipant l'agrément.*
