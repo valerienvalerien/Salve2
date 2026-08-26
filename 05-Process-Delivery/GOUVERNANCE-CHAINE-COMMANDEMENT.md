@@ -4,7 +4,9 @@
 > qu'on accepte ou refuse quand le client final veut entrer en contact direct avec les
 > agents. Complète `PROCESS-QA-DOUBLE-ECOUTE.md` (qui traite du *contrôle qualité*, pas de
 > la *chaîne d'autorité*) et donne la contrepartie opérationnelle de l'**art. 8 bis** du
-> `MODELE-CONTRAT-PRESTATION.md`.
+> `MODELE-CONTRAT-PRESTATION.md`. Pour la **rédaction des engagements** (comment écrire un
+> objectif pour qu'il prouve la prestation au lieu de décrire une régie), voir
+> `MATRICE-REGIE-PRESTATION-SMART.md`.
 >
 > Audience : direction, référents d'exploitation (ex-« managers de niche » : 1 médical,
 > 1 IT), et brief agent au §5. **Ne se transmet pas au client.**
