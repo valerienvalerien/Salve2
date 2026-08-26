@@ -207,13 +207,6 @@ html:has(.site-head) { scroll-padding-top: 110px; }
 .float-card.fc1 { left: -22px; bottom: 40px; animation: floaty 9s ease-in-out infinite; }
 .float-card.fc2 { right: -16px; top: 36px; animation: floaty 11s ease-in-out infinite; animation-delay: -4s; }
 @media (max-width: 920px) { .float-card.fc1 { left: 8px; } .float-card.fc2 { right: 8px; } }
-/* Photo hero en 5/4 : sous 920px les bulles sont compactees pour ne pas
-   recouvrir le visage ni l'ecran externe. */
-@media (max-width: 920px) {
-  .hero-visual .float-card { padding: 12px 14px; gap: 10px; }
-  .hero-visual .float-card .fc-num { font-size: 22px; }
-  .hero-visual .float-card .fc-lab { font-size: 11.5px; max-width: 112px; }
-}
 
 /* ================= HERO IMMERSIF (pages simulateurs) =================
    La photo devient le décor plein cadre du hero (sous un voile profond) et
