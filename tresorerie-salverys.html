@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trésorerie Salverys — simulateur 24 mois (3 métiers · freelances)</title>
+<title>Trésorerie Salverys — simulateur 24 mois (3 métiers · salariés)</title>
 <style>
   :root{
     --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
@@ -117,9 +117,9 @@
         <div class="ctl"><label>Forfait médical moyen <b id="vForfait"></b></label>
           <input type="range" id="forfait" min="300" max="950" step="10" value="590">
           <div class="hint">€/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
-        <div class="ctl"><label>Cabinets / freelance <b id="vRatio"></b></label>
+        <div class="ctl"><label>Cabinets / salarié <b id="vRatio"></b></label>
           <input type="range" id="ratio" min="1" max="20" step="1" value="4">
-          <div class="hint">Plancher Erlang : min 2 freelances dès le 1er cabinet</div></div>
+          <div class="hint">Plancher Erlang : min 2 salariés dès le 1er cabinet</div></div>
         <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
           <input type="range" id="cab0" min="0" max="10" step="1" value="0">
           <div class="hint">Déjà signés au lancement</div></div>
@@ -141,9 +141,9 @@
         <div class="ctl"><label>% mutualisé (vs dédié) <b id="vSupPctMut"></b></label>
           <input type="range" id="supPctMut" min="0" max="100" step="10" value="20">
           <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
-        <div class="ctl"><label>Freelances / client mutualisé <b id="vSupRatioMut"></b></label>
+        <div class="ctl"><label>Salariés / client mutualisé <b id="vSupRatioMut"></b></label>
           <input type="range" id="supRatioMut" min="0.5" max="3" step="0.5" value="0.5">
-          <div class="hint">Combien de freelances couvrent 1 client (max 3)</div></div>
+          <div class="hint">Combien de salariés couvrent 1 client (max 3)</div></div>
         <div class="ctl"><label>Forfait mutualisé moyen <b id="vSupForfaitMut"></b></label>
           <input type="range" id="supForfaitMut" min="300" max="1500" step="50" value="700">
           <div class="hint">€/mois/client · SLA N1 partagé</div></div>
@@ -162,9 +162,9 @@
         <div class="ctl"><label>% mutualisé (vs dédié) <b id="vItPctMut"></b></label>
           <input type="range" id="itPctMut" min="0" max="100" step="10" value="20">
           <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
-        <div class="ctl"><label>Freelances / client mutualisé <b id="vItRatioMut"></b></label>
+        <div class="ctl"><label>Salariés / client mutualisé <b id="vItRatioMut"></b></label>
           <input type="range" id="itRatioMut" min="0.5" max="3" step="0.5" value="0.5">
-          <div class="hint">Combien de freelances couvrent 1 client (max 3)</div></div>
+          <div class="hint">Combien de salariés couvrent 1 client (max 3)</div></div>
         <div class="ctl"><label>Forfait mutualisé moyen <b id="vItForfaitMut"></b></label>
           <input type="range" id="itForfaitMut" min="300" max="1500" step="50" value="700">
           <div class="hint">€/mois/client · SLA N1 partagé</div></div>
@@ -190,7 +190,7 @@
         <div class="ctl"><label>Coût employeur / agent <b id="vCostFL"></b></label>
           <input type="range" id="costFL" min="300" max="1500" step="1" value="736">
           <div class="hint"><span class="ar-equiv" id="vCostFLAr"></span> · brut <b>3,25 M Ar (650 €)</b> + charges CNaPS/OSTIE <b>~86 €</b> (18 % plafonnés à 8× SME)</div></div>
-        <div class="ctl"><label>VoIP médical / freelance <b id="vVoip"></b></label>
+        <div class="ctl"><label>VoIP médical / salarié <b id="vVoip"></b></label>
           <input type="range" id="voip" min="0" max="150" step="10" value="50">
           <div class="hint">€/mois par poste médical (IT/Support : ACD client)</div></div>
         <div class="ctl"><label>Superviseur / manager <b id="vMgr"></b></label>
@@ -237,10 +237,10 @@
       <thead><tr>
         <th title="Mois de simulation (M1 à M24)">M</th>
         <th title="Cabinets médicaux actifs ce mois (signés moins churn éventuel)">Cab</th>
-        <th title="Freelances médical = ceil(cabinets / cabinets-par-freelance), avec plancher Erlang minimum 2">Free</th>
+        <th title="Salariés médical = ceil(cabinets / cabinets-par-salarié), avec plancher Erlang minimum 2">Sal.</th>
         <th title="Sup = nombre d'ETP (équivalents temps plein) Support N1 SaaS facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP Support / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">Sup</th>
         <th title="IT = nombre d'ETP (équivalents temps plein) Helpdesk IT N1 facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP IT / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">IT</th>
-        <th title="Masse salariale : freelances médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
+        <th title="Masse salariale : salariés médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
         <th title="Chiffre d'affaires Télésecrétariat médical = cabinets × forfait (remises fondateurs incluses)">CA méd</th>
         <th title="Chiffre d'affaires Support N1 SaaS = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA Sup</th>
         <th title="Chiffre d'affaires Helpdesk IT N1 = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA IT</th>
@@ -259,10 +259,10 @@
 
   <p class="note">
     <b>Mécanique du modèle (v5 · 3 métiers séparés)</b> :
-    <b>① Médical</b> = cabinets × forfait (remises fondateurs) ; freelances = ceil(cabinets/ratio), plancher Erlang min 2 ; coût = (freelance + VoIP) par poste, superviseur dès 3 freelances médical.
-    <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 500 € / direct 2 150 €) ; <b>mutualisé</b> = (freelances pool ÷ freelances-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
-    <b>Staffing IT &amp; Support</b> : chaque ETP/freelance coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool). <b>Encadrement technique</b> : 1 superviseur partagé IT+Support dès 3 technicians cumulés, +1 par tranche de 8 (ceil((Sup+IT)/8)).
-    <b>Décalages</b> : agent payé dès l'embauche (M+1 après signature), facturé à M+2, <b>encaissement</b> à 30 j. <b>Charges</b> : salaire brut + charges patronales CNaPS/OSTIE (plafonnées), commercial, SaaS, puis imprévus en %. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× freelances méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
+    <b>① Médical</b> = cabinets × forfait (remises fondateurs) ; salariés = ceil(cabinets/ratio), plancher Erlang min 2 ; coût = (salaire + VoIP) par poste, superviseur dès 3 salariés médical.
+    <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 500 € / direct 2 150 €) ; <b>mutualisé</b> = (salariés pool ÷ salariés-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
+    <b>Staffing IT &amp; Support</b> : chaque ETP/salarié coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool). <b>Encadrement technique</b> : 1 superviseur partagé IT+Support dès 3 technicians cumulés, +1 par tranche de 8 (ceil((Sup+IT)/8)).
+    <b>Décalages</b> : agent payé dès l'embauche (M+1 après signature), facturé à M+2, <b>encaissement</b> à 30 j. <b>Charges</b> : salaire brut + charges patronales CNaPS/OSTIE (plafonnées), commercial, SaaS, puis imprévus en %. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× salariés méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
   </p>
 
   <!-- ============ STACK INTERNE VALIDÉE ============ -->
@@ -277,7 +277,7 @@
           <li><b>Cold email — domaine</b> — <code>salverys-bpo.fr</code> isolé · <b>2 inboxes</b> dès le départ · SPF+DKIM+DMARC <b>avant</b> 1er envoi.</li>
           <li><b>Outreach</b> — Emelia (99 €/mois, warm-up auto inclus) · montée 5→10→20→30/jour.</li>
           <li><b>CRM commercial</b> — <b>HubSpot Free</b> (0 €, décision tranchée).</li>
-          <li><b>Coordination freelances</b> — Teams (même outil que la collab interne).</li>
+          <li><b>Coordination de l'équipe</b> — Teams (même outil que la collab interne).</li>
           <li><b>Facturation</b> — VJUS (société malgache), HT en autoliquidation (art. 283-2 CGI) · modèle PDF jusqu'à ~10 clients · Wise Business pour EUR→MGA.</li>
           <li><b>Dev &amp; assets</b> — GitHub (repo <code>Salve2</code>) + Netlify + Claude Code.</li>
           <li><b>Modèles IA</b> — Opus (stratégique) · Sonnet/Haiku (volume).</li>

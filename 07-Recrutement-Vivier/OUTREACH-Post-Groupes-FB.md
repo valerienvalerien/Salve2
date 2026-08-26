@@ -1,9 +1,11 @@
-# Post de sourcing — groupes Facebook freelances (Madagascar)
+# Post de sourcing — groupes Facebook recrutement IT (Madagascar)
 
 > **Point d'entrée du funnel recrutement.** Post public publié dans plusieurs groupes
-> FB de freelances à Mada. Angle **sourcing / vivier** (pas d'embauche immédiate).
+> FB fréquentés par des profils IT/support à Mada (y compris des groupes de freelances —
+> c'est un bassin de sourcing, **l'offre proposée est un poste salarié en CDI**, pas une
+> mission freelance). Angle **sourcing / vivier** (pas d'embauche immédiate).
 > Les réponses (commentaire ou MP) sont ensuite traitées en MP avec la boîte à phrases
-> `Script-MP-Screening-Freelances-N1.html`, puis appel → mini-test → vivier.
+> `Script-MP-Screening-Candidats-N1.html`, puis appel → mini-test → vivier.
 >
 > Funnel : **CE POST** → commentaires / MP → screening → appel → `MINI-TEST` → vivier.
 
@@ -14,22 +16,22 @@
 ```
 Bonjour à tous,
 
-Juste un message pour sonder s'il y a ici des freelances disponibles pour des
-missions de support helpdesk N1 et support logiciel N1, pour travailler avec des
+Juste un message pour sonder s'il y a ici des profils disponibles pour un poste
+salarié (CDI) de support helpdesk N1 et support logiciel N1, pour travailler avec des
 clients en France.
 
 ⚠️ Précision importante : ce n'est pas une offre d'embauche immédiate. C'est juste
 pour identifier les profils intéressés et disponibles, afin de pouvoir vous
-recontacter dès qu'une mission concrète se présente.
+recontacter dès qu'un poste concret s'ouvre.
 
 Je cherche des profils avec :
 • Expérience en support technique N1 (prise d'appels, tickets, diagnostic de premier niveau)
 • Habitués des outils de ticketing / téléphonie
 • Niveau de français oral et écrit C1 souhaité, B2 minimum accepté selon test oral
 • 100% remote
-• En freelance uniquement
+• Recherche un poste salarié (CDI), pas une mission freelance
 
-Si ce type de mission t'intéresse, mets un commentaire ou MP pour discuter
+Si ce type de poste t'intéresse, mets un commentaire ou MP pour discuter
 (expérience, dispo/préavis, etc.)
 ```
 
@@ -37,7 +39,7 @@ Si ce type de mission t'intéresse, mets un commentaire ou MP pour discuter
 
 - **Réponse aux commentaires** : faire basculer en MP rapidement (« Je t'envoie un MP 👍 »)
   pour ne pas étaler le screening en public.
-- **Tutoiement** assumé (cohérent avec les groupes freelances Mada et la boîte à phrases).
+- **Tutoiement** assumé (cohérent avec les groupes Mada où l'on sourc et la boîte à phrases).
 - **Rotation** : si republié, varier légèrement l'accroche pour éviter le flag « spam » des
   groupes ; espacer les posts entre groupes.
 - **RGPD / transparence** : l'angle « je note les profils pour recontacter » est annoncé dès
@@ -47,5 +49,5 @@ Si ce type de mission t'intéresse, mets un commentaire ou MP pour discuter
   du claim « direction issue d'une structure de 1 000 collaborateurs ».
 
 > 💡 **IT = priorité n°1, médical = n°2** (`CLAUDE.md`, révisé 2026-06-22). Ce post cible
-> l'IT (freelances N1). Une déclinaison **télésecrétariat médical** (+ une boîte à phrases
-> médicale) reste à produire pour sourcer la niche n°2.
+> l'IT (candidats N1 pour un poste salarié). Une déclinaison **télésecrétariat médical**
+> (+ une boîte à phrases médicale) reste à produire pour sourcer la niche n°2.
