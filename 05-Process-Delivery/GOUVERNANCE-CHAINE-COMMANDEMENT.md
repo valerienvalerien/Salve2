@@ -91,12 +91,14 @@ Deux choses à ne pas confondre :
 - **Nier avoir un employeur si on le lui demande frontalement** → mensonge. **On ne le
   demande jamais à un agent.**
 
-Parce que la chaîne n'est pas censée être secrète : le **DPA** (`MODELE-DPA-RGPD.md art. 6`)
-repose sur une **autorisation générale du Client** pour les sous-traitants ultérieurs, avec
-information préalable à 5 jours ouvrés et droit d'opposition — obligation RGPD (art. 28 §2),
-pas option commerciale. **Au niveau contractuel, le client final sait qu'il y a un
-sous-traitant.** Ce qui est invisible, c'est la marque affichée à l'utilisateur final, pas
-l'existence de la chaîne.
+Parce que la chaîne n'est pas censée être secrète : le contrat dit noir sur blanc que
+Salverys, **sous-traitant RGPD** (art. 28), opère depuis Madagascar **avec ses propres
+salariés** (`MODELE-DPA-RGPD.md` art. 1 et 7 — transfert hors UE). Les agents étant des
+**salariés de Salverys** et non des tiers indépendants, il n'y a **pas de sous-traitant
+ultérieur** à déclarer au Client à leur sujet (`MODELE-DPA-RGPD.md art. 6`) : la chaîne
+s'arrête à Salverys. **Au niveau contractuel, le client final sait qu'il confie sa
+prestation à une équipe salariée basée à Madagascar.** Ce qui est invisible, c'est la
+marque affichée à l'utilisateur final, pas l'existence de la chaîne.
 
 Coût du mensonge, s'il se découvre : on perd le compte, le donneur d'ordre perd son client,
 et les deux sont en faute vis-à-vis d'un contrat qui prévoyait déjà la sous-traitance.
@@ -108,23 +110,33 @@ et les deux sont en faute vis-à-vis d'un contrat qui prévoyait déjà la sous-
 
 Vrai, poli, et ça renvoie la question à celui à qui elle appartient.
 
-## 6. Point de vigilance — le modèle 100 % freelances
+## 6. Point de vigilance — modèle salarié : le risque a changé de camp
 
-Tension à connaître, entre deux risques opposés :
+Depuis le passage à une équipe **100 % salariée** (CDI, décision direction 2026-08-14,
+`CLAUDE.md`), le risque de requalification **côté Salverys a disparu** : un salarié est,
+par nature, subordonné à son employeur — l'autorité d'exploitation de Salverys sur ses
+agents (§1) n'est plus une zone grise à protéger, c'est l'objet même du contrat de travail.
+La tension à deux risques opposés qui existait avec le modèle freelance (trop peu
+d'encadrement vs trop d'encadrement) n'a plus lieu d'être en interne.
 
-- **Trop peu d'encadrement Salverys** → la prestation ressemble à une mise à disposition,
-  requalifiable en prêt de main-d'œuvre illicite vis-à-vis du client (art. L.8241-1 et
-  L.8231-1 du Code du travail français).
-- **Trop d'encadrement Salverys** → contradiction avec la clause « **aucun lien de
-  subordination** » des contrats freelances (`07-Recrutement-Vivier/CONTRAT-PRESTATION-BD-*.md`
-  art. 1.2), et risque de requalification de l'indépendant en salarié.
+Le risque restant est **entièrement du côté du client** : que la prestation, vue depuis lui,
+ressemble à une **mise à disposition de personnel** plutôt qu'à un service — requalifiable
+en **prêt de main-d'œuvre illicite** vis-à-vis du Code du travail français (art. L.8241-1 et
+L.8231-1), *quand bien même* Salverys encadre correctement ses salariés en interne. C'est
+exactement ce que couvrent l'**art. 8 bis** du contrat et le **canal unique** (§2 ci-dessus) :
+si le client donne des ordres individuels, fixe les horaires ou choisit les personnes,
+l'opération devient requalifiable **indépendamment** du fait que Salverys soit un bon
+employeur.
 
-Le modèle « 100 % freelances + 2 référents » (`CLAUDE.md`) est assis entre les deux. Ligne de
-conduite : **encadrer le résultat et la qualité, pas le pointage ni les ordres individuels** —
-ce que fait déjà le dispositif QA, explicitement positionné comme « **coaching, pas
-contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`).
+Ligne de conduite : **le client achète un résultat sur un périmètre, jamais des heures d'une
+personne nommée** — voir `MATRICE-REGIE-PRESTATION-SMART.md` pour la formulation des
+objectifs contractuels (SLA, remède, agrégation). Le dispositif QA reste positionné comme
+« **coaching, pas contrôle-sanction** » (`PROCESS-QA-DOUBLE-ECOUTE.md §5`) — ce n'est plus
+une prudence anti-requalification interne, c'est un choix de management au service de
+l'objectif **zéro turnover**.
 
-**À faire valider par un conseil (FR + MG) avant le premier contrat cadre.**
+**À faire valider par un conseil (FR + MG) avant le premier contrat cadre en équipe
+salariée.**
 
 ## 7. Vocabulaire
 

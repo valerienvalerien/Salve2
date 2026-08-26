@@ -35,8 +35,10 @@ brique HDS payante** en évitant de produire de la donnée de santé côté Salv
   **aucune brique d'hébergement à construire ni à payer**.
 
 **CRM maison** : il ne contient que des **données B2B cabinets** (prospects/clients
-professionnels), **jamais de donnée patient**. Les **freelances signent des DPA**
-(accords de sous-traitance RGPD).
+professionnels), **jamais de donnée patient**. Les agents sont des **salariés** de
+Salverys : ils n'ont pas de DPA individuel à signer (ils n'agissent pas comme
+sous-traitants ultérieurs, cf. `MODELE-DPA-RGPD.md art. 6`), mais s'engagent
+individuellement au **secret professionnel et à la confidentialité**.
 
 ### Option enregistrement (sur demande, selon la stack client)
 

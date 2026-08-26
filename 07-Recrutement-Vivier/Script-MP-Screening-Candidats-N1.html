@@ -1,5 +1,5 @@
 <!--
-  Outil de screening freelances Support N1 — boîte à phrases pour MP Facebook.
+  Outil de screening candidats Support N1 (recrutement CDI) — boîte à phrases pour MP Facebook.
   Source de vérité : ce fichier. Ouvrir dans un navigateur (tout tourne en local,
   rien n'est enregistré). Saisir le prénom du candidat à gauche → [Prénom] est
   remplacé automatiquement à la copie. Toggle Tu/Vous pour le registre.
@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Script MP — Screening freelances Support N1</title>
+<title>Script MP — Screening candidats Support N1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -186,7 +186,7 @@
   <aside class="sidebar">
     <div class="brand">
       <p class="eyebrow">Boîte à phrases · MP</p>
-      <h1>Screening freelances<br><span class="accent">Support N1</span></h1>
+      <h1>Screening candidats<br><span class="accent">Support N1</span></h1>
     </div>
 
     <div class="ctl-row">
@@ -268,9 +268,10 @@ const DATA = [
     ]
   },
   {
-    title:"Statut freelance déclaré",
+    title:"Statut recherché (CDI)",
     phrases:[
-      "Tu es bien déclaré en freelance, avec tes impôts à jour ?"
+      "On recrute en poste salarié (CDI), pas en mission freelance — ça te va comme format ?",
+      "T'es plutôt à la recherche d'un CDI, ou tu cherches surtout des missions freelance ponctuelles ?"
     ]
   },
   {
@@ -385,13 +386,13 @@ const DATA = [
     ]
   },
   {
-    title:"Statut & facturation",
+    title:"Statut & disponibilité (CDI)",
     phrases:[
-      "T'es en freelance déclaré, tu peux facturer ?",
-      "Tu peux faire des factures en tant qu'indépendant ?",
-      "Tu bosses sous quel statut pour les missions freelance ?",
-      "Côté paperasse, tu factures comment ? (statut local, auto-entreprise, etc.)",
-      "T'es déjà en règle pour facturer, ou c'est un truc à voir ?"
+      "T'as ta CIN et tes papiers à jour pour signer un contrat salarié (CDI) ?",
+      "T'es déjà salarié ailleurs en ce moment, ou libre pour un CDI ?",
+      "Le format ici c'est un contrat salarié classique (CDI, CNaPS/OSTIE), pas de la prestation — c'est ce que tu cherches ?",
+      "T'as déjà été salarié en CDI, ou tu as surtout fait du freelance/des missions jusqu'ici ?",
+      "Pas de souci côté paperasse pour un contrat salarié ?"
     ]
   },
   {
