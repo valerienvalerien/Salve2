@@ -11,6 +11,45 @@
 
 ---
 
+## 00. Arbre de décision — les trois seules issues
+
+Deux documents très différents circulent dans ce dossier. Ne pas les confondre :
+
+| | **Protocole de résiliation amiable** (§5.2) | **Constat de résiliation** (§6.3) |
+|---|---|---|
+| Nature | **contrat** — bilatéral | **notification** — unilatérale |
+| Qui signe | les deux Parties | toi seul |
+| Suppose son accord | **oui** | **non** |
+| Base | liberté contractuelle | art. 6.4 |
+| Effet sur les recours | **éteints** (renonciation réciproque) | ouverts |
+| Montant | 1 000 000 Ar (→ 1 400 000 Ar en repli) | 1 400 000 Ar |
+
+**À partir du vendredi 28 août au soir, trois branches et trois seulement :**
+
+**A — Elle accepte.** → tu envoies le protocole → elle signe, ou renvoie un simple
+« bon pour accord » par écrit → tu verses **1 000 000 Ar** → tu coupes les accès.
+Fin d'un commun accord, recours éteints.
+
+**B — Elle répond mais conteste le montant.** → tu montes **en une seule fois** à
+**1 400 000 Ar**, même protocole, même jour → versement → coupure. Toujours un commun
+accord, recours éteints. Pas de palier intermédiaire : marchander lui donne le temps
+d'aller consulter.
+
+**C — Elle ne répond pas.** → **il n'y a rien à signer.** Samedi 29 : tu établis le constat
+de résiliation, tu le signes seul, tu l'envoies. Puis coupure des accès. Puis versement de
+**1 400 000 Ar** accompagné du courrier de qualification (§5.0 ter).
+
+> **La branche C est la branche par défaut.** Elle ne dépend d'aucune action de sa part :
+> ton contrat prend fin le 29 août qu'elle réponde ou non. C'est tout l'intérêt d'avoir
+> envoyé la mise en demeure le 21 — elle a rendu ta sortie indépendante de sa coopération.
+
+**Et si elle réapparaît après le 29 ?** La résiliation est acquise, mais une transaction
+reste signable après coup. Si elle revient en contestant, un protocole à 1 400 000 Ar (le
+montant que tu dois de toute façon) reste un bon échange : tu ne paies rien de plus et tu
+éteins les recours. Au-delà de 2 800 000 Ar, refuse — la voie C (§7) coûte moins cher.
+
+---
+
 ## 0. Situation au 21 août 2026 — le grief a changé de nature
 
 **Faits** : silence total depuis le 14 août — aucun message WhatsApp, aucun message Teams,
