@@ -54,13 +54,21 @@ d'exécuter la prestation (télésecrétariat médical / support / helpdesk). Au
 - Gouvernance d'accès : droits au strict nécessaire, révocation immédiate à la sortie d'un agent.
 - Détail en **Annexe 2**.
 
-## Article 6 — Sous-traitants ultérieurs
+## Article 6 — Absence de sous-traitance ultérieure
 
-- Salverys recourt à des **freelances (Antananarivo)** comme sous-traitants ultérieurs.
-  Chacun signe un **DPA** et un engagement de **secret professionnel**.
-- **Autorisation générale** du Client, assortie d'une **information préalable** de tout
-  ajout/remplacement avec un préavis de **5 jours ouvrés**, ouvrant un **droit
-  d'opposition** motivé au Client.
+- Les intervenants de Salverys sont des **salariés (CDI)**, agissant sous l'**autorité et
+  la responsabilité exclusives de Salverys** (`GOUVERNANCE-CHAINE-COMMANDEMENT.md`). Ce ne
+  sont pas des tiers indépendants : le traitement reste, au sens du RGPD, celui du
+  **sous-traitant Salverys lui-même** — il n'y a **pas de sous-traitant ultérieur** à
+  déclarer au titre de l'art. 28 §2.
+- Chaque salarié est néanmoins soumis à un **engagement individuel de confidentialité et
+  de secret professionnel** (`GOUVERNANCE-CHAINE-COMMANDEMENT.md §5`), en complément des
+  mesures de l'art. 5.
+- Si Salverys recourt à un **véritable sous-traitant ultérieur externe** (hébergeur,
+  téléphonie, outil tiers traitant la donnée), celui-ci est listé en **Annexe 3** et fait
+  l'objet de l'**autorisation générale** du Client, avec **information préalable** (5 jours
+  ouvrés) et **droit d'opposition** motivé — mécanisme de l'art. 28 §2, applicable à ces
+  seuls tiers, pas aux salariés de Salverys.
 
 ## Article 7 — Transfert hors-UE (art. 46 RGPD)
 

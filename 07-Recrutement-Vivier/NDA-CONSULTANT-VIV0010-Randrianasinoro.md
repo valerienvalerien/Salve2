@@ -1,5 +1,30 @@
 # Engagement de confidentialité, de non-sollicitation et de cession des livrables
 
+> 🔴 **CADUC POUR TOUTE NOUVELLE ENTRÉE — décision direction du 2026-08-14.** Salverys
+> est passé à une **équipe 100 % salariée** (`01-Strategie-Offre/FINANCE-PREVISIONNEL.md`
+> v3, `CLAUDE.md`). Le montage en prestation indépendante n'est **plus le modèle de
+> référence** : les nouvelles entrées relèvent du **contrat de travail de droit malgache**
+> (CDI, brut + charges patronales CNaPS/OSTIE, congés payés, préavis et indemnité de
+> licenciement).
+>
+> **Ce document reste la référence pour le contrat déjà en cours**, jusqu'à sa
+> transformation. **Ce qu'il faut refaire, avec un conseil social local — pas par
+> recherche-remplace :**
+> - basculer le vocabulaire de la prestation (« honoraires », « facturation ») vers celui
+>   du salariat (« salaire brut », « bulletin de paie »), c'est-à-dire **supprimer le
+>   verrou anti-requalification** qui structure tout le document ;
+> - ajouter les mentions obligatoires d'un contrat de travail malgache : période d'essai,
+>   durée du travail, congés payés (2,5 j ouvrables/mois), affiliation CNaPS et OSTIE,
+>   convention collective applicable, préavis ;
+> - convertir la **commission de performance** en prime variable de salarié (assiette,
+>   périodicité, conditions de versement) ;
+> - inscrire la contrepartie **« kit d'autonomie / énergie / connexion domicile couvert par
+>   le salaire »** (`FINANCE-PREVISIONNEL.md §2.c`), faute de quoi la promesse de continuité
+>   remise aux partenaires n'a pas de support contractuel.
+>
+> ⚠️ La version **`.docx`** de ce fichier n'a **pas** été mise à jour et ne porte pas cet
+> avertissement.
+
 > **Consultant / Business Developer — Vololoniaina Randrianasinoro.**
 > Document **prêt à signer**. Sert aussi de **modèle réutilisable** pour les futurs
 > consultants / freelances (remplacer le bloc « Le Consultant » et les `[à compléter]`).
@@ -10,7 +35,7 @@
 > ⚠️ Support opérationnel, **pas un avis juridique** : faire valider par un conseil local
 > avant signature — en particulier la **clause pénale** (art. 10) et le verrou
 > **anti-requalification** (art. 8), point de vigilance identifié dans
-> `01-Strategie-Offre/FINANCE-PREVISIONNEL.md §1`.
+> le bandeau en tête de ce document.
 
 ---
 

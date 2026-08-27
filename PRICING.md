@@ -4,7 +4,53 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-03 (**recalibrage marque blanche — décision direction** :
+> Dernière révision : 2026-08-24 (**simplification du catalogue — décision direction** :
+> le niveau de service **Priority est retiré** du catalogue §3 (il contredisait le claim
+> −40/−60 %, coûtait plus cher que la France sous 3 agents, exigeait une tête en réserve non
+> financée et était invendable en MB) ⇒ **deux niveaux de service, Mutualisé et Dédié**, alignés
+> sur les modèles MB A et B) ·
+> précédente 2026-08-24 (**palier haut recentré — décision direction** : le palier 3
+> est renommé **« Équipe managée »** (le nom « Non-stop » de 2026-08-14 est abandonné) §3.d ·
+> ce palier devient **direct uniquement** et **sort des fiches marque blanche** §3.g · en MB
+> l'amplitude devient un **dimensionnement du modèle B** (~2 ETP/position en 6h-20h) §3.g ·
+> ⚠️ **correction d'une imprécision publique** : la rotation ne tient pas la plage « sans tête
+> en plus », elle la tient avec **moins d'agents simultanés** §3.f) ·
+> précédente 2026-08-24 (**audit de la fiche offre France — décision direction** :
+> les trois montants de la fiche (690 € / 1 450 € / 5 400 €) étaient **sous la rate card MB**
+> et sont **réalignés** §3.g · fiche **scindée en deux versions** — publique sans tarif,
+> cadrage sous NDA avec la grille §3.g · SLA ramenés à la **doctrine §7** (90 % et non 95 %,
+> remède « avoir 20 % » rendu explicite) · « binômage + rotation plafonnée à 25 %/an »
+> **supprimé**, remplacé par la doctrine de continuité §3.e) ·
+> précédente 2026-08-14 (**nettoyage des axes du simulateur & module de choix
+> de forfait — décision direction** : axes **« Omnicanal » et « Bilingue » supprimés** des
+> simulateurs IT, option « EN » renommée **« FR+EN »** §3.f · le module public
+> « Le vrai coût de la continuité de service » compare désormais **Poste dédié vs Équipe managée**
+> (choix de forfait réel) et non plus Dédié vs Priority §3.f) ·
+> précédente 2026-08-14 (**bascule en équipe salariée & refonte des paliers MB —
+> décision direction** : équipe **100 % salariée** (brut 3 250 000 Ar + charges patronales
+> CNaPS/OSTIE), fondateur unique non rémunéré, effectif **sans plafond**, dimensionné sur
+> les contrats · **plancher absolu porté de 840 € à 920 €/ETP** §3 · **rate card refondue en
+> 1-4 / 5-8 / 9+ ETP** — le prix plancher s'achète désormais à **9** positions fermes et non
+> 5 §3 · **volume ferme facturable généralisé à tous les paliers** §3 · accroche
+> « à partir de » autorisée **en espace partenaire et one-pager MB uniquement** §3 ·
+> ⚠️ `FINANCE-PREVISIONNEL.md` **redevient une source** (v3) : la mention « n'est plus une
+> source » du 2026-08-14 matin est **annulée** — elle était contredite par les 8 citations
+> actives de ce fichier, cf. `AUDIT-FINANCE-PREVISIONNEL.md §M`) ·
+> précédente 2026-08-14 (**palier haut IT & axes du simulateur — décision direction** :
+> palier 3 renommé **Non-stop** (renommé **Équipe managée** le 2026-08-24) avec **plancher de 4 agents** §3.d · axe « Périmètre N2 »
+> **supprimé** du simulateur public §3.d · **backup réservé au palier haut** §3.d · revue de
+> service mensuelle **incluse partout**, donc hors différenciation §3.d · fourchette
+> d'estimation rattachée au **profil de l'agent**, bande portée à **±9 %** §3.d ·
+> **doctrine de continuité à 3 niveaux §3.e** — le manager métier est le backup du Poste
+> dédié, la rotation celui de l'Équipe managée. *(La mention « `FINANCE-PREVISIONNEL.md` n'est plus
+> une source » portée ici a été **annulée** le même jour — voir en tête.)*) ·
+> précédente 2026-08-13 (**cohérence offre / simulateurs — décision direction** :
+> forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
+> horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
+> argument d'économie sous 3 agents** §3 · badge médical recadré sur le **coût/jour ouvré**
+> §1 · mise en route IT **3 à 4 semaines** §3.c. **Reste ouvert : arbitrage n°3** — benchmark
+> coût complet IT et claim −40 à −60 %, cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §C`) ·
+> précédente 2026-08-03 (**recalibrage marque blanche — décision direction** :
 > dépôt d'activation MB 900 €/position §3.a · **fin du mois pilote −50 % en MB** remplacé par
 > 3 contreparties de risque §3.b · palier 5+ ETP conditionné à un volume ferme facturé §3) ·
 > précédente 2026-07-12 (**benchmark coût à battre différencié par métier §3 :
@@ -67,6 +113,17 @@ au palier supérieur, **jamais de surfacturation à l'appel**.
 - **Recadrage ROI (à utiliser partout)** : 350 €/mois ≈ **16 €/jour ouvré** — moins d'une
   demi-consultation par jour ; **2 à 3 RDV récupérés** sur des appels manqués paient le
   forfait. C'est le recadrage anti-objection prix le moins cher qui existe.
+  - **C'est ce recadrage qui occupe le badge du simulateur (décidé 2026-08-13)**, à la place
+    du **−87 %** qui y figurait — hors doctrine (claim public −40 à −60 %) et non crédible
+    (il comparait un forfait 250 appels à une secrétaire **temps plein**). Le badge affiche
+    le **coût/jour ouvré** et la ligne d'appui « N RDV récupérés paient le forfait », mise à
+    l'échelle du forfait : Essentiel **2 à 3** · Confort **4 à 6** · Intensif **6 à 9**.
+    Valeur implicite d'un RDV récupéré ≈ **117-175 €** (ancre : « 350 € = 2 à 3 RDV »).
+  - ⚠️ **Ne jamais diviser en public au-delà du jour.** 350 € ÷ 250 appels = **1,40 €/appel**,
+    soit exactement le haut de la grille de gros marque blanche (§1.b) : un prospect qui
+    pousse la division atterrit sur ton prix de revente et se replace mentalement dans une
+    logique à l'acte, écartée en §0. On divise **une fois**, par jour, puis on bascule
+    aussitôt sur le ROI.
 
 ### 1.a Options d'amplitude — add-ons nommés (décidé 2026-06-12)
 
@@ -155,47 +212,79 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 
 \* Le donneur d'ordre établi prend ~25-35 % de marge : on capte moins par ETP, mais le
 coût d'acquisition est ~nul et le volume est apporté. **Plancher absolu** : jamais sous
-le coût marginal agent + ~20 %, soit **840 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
-coût marginal 700 €/mois au fee freelance de 3 250 000 Ar).
+le coût direct agent + ~20 %, soit **920 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
+coût direct 766 €/mois — salaire brut 3 250 000 Ar + charges patronales + VoIP).
 
-> ⚠️ **Correction 2026-07-29** : ce plancher était annoncé à **540 €** ci-dessous — valeur
-> héritée du **modèle salarié v1, abandonné le 2026-06-10**. Négocier avec 540 € en tête
-> permet de signer à perte. **Le plancher est 840 €.** Il est désormais codé en dur dans
-> `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
+> ⚠️ **Révisé 2026-08-14 — bascule en équipe salariée.** Le plancher passe de **840 €**
+> (modèle 100 % freelance, coût marginal 700 €) à **920 €** (modèle salarié, coût direct
+> 766 €). Historique : il était annoncé à **540 €** avant le 2026-07-29 — valeur héritée
+> du modèle salarié v1 abandonné le 2026-06-10. **Le plancher est 920 €.** Il est codé en
+> dur dans `tools/deal-build.mjs`, qui refuse de générer une proposition en dessous.
 
-**Rate card partenaire MB — dégressif par engagement (décidé 2026-06-12)**
+**Rate card partenaire MB — paliers par volume ferme (révisé 2026-08-14)**
 
 Remplace le « prix donné en cadrage » au cas par cas : un donneur d'ordre qui revend a
 besoin de **visibilité** pour construire sa propre marge — le flou rallonge le cycle de
 closing. Grille **confidentielle** (PDF remis au cadrage, sous NDA — jamais en email),
-où le dégressif **achète du volume** au lieu d'être concédé en négociation :
+où le dégressif **achète du volume** au lieu d'être concédé en négociation.
 
-| Engagement | Support N1 SaaS MB (€/mois/ETP) | Helpdesk IT N1 MB (€/mois/ETP) |
+> **Tarif applicable selon le nombre minimum de positions fermes facturables
+> mensuellement.**
+
+| Engagement ferme | Support N1 SaaS | Helpdesk IT N1 |
 |---|---|---|
-| 1 ETP | 1 700 € | 2 000 € |
-| 3 ETP | 1 500 € | 1 750 € |
-| **5+ ETP** — *sous volume ferme facturé* | 1 350 € | 1 550 € |
+| **1-4 ETP** — tarif standard | 1 700 € | 2 000 € |
+| **5-8 ETP** — tarif volume | 1 500 € | 1 750 € |
+| **9+ ETP** — tarif stratégique | 1 350 € | 1 550 € |
+
+*Tarifs €/mois/ETP, pour les profils de la fourchette haute (agent confirmé, déjà rodé aux
+exigences de comptes européens — cf. la bande d'estimation ±9 %, §3.d).*
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
-  on ne baisse rien. **Plancher : 840 €** (coût marginal 700 € + ~20 %), cf. encadré ci-dessus.
-- Aligné sur le point mort (`FINANCE-PREVISIONNEL.md §4` : **~7 ETP placés**) : le palier 5+
-  est conçu pour qu'un seul donneur d'ordre type Metaline/Thelem puisse l'atteindre.
-- 🔒 **Palier 5+ conditionné à un volume ferme facturé (décidé 2026-08-03)** — le prix de
-  1 350 € / 1 550 € n'est accordé **que** contre un **minimum facturable de 5 positions**,
-  dues **qu'elles soient consommées ou non**. En deçà de 5 positions facturées, le prix
-  appliqué est celui du **palier 3 ETP** (1 500 € / 1 750 €). À défaut, le palier le moins
-  margé de la grille — **~48 % de marge brute** à 1 350 € (`FINANCE-PREVISIONNEL.md §3`) —
-  supporterait en plus le **risque de sous-consommation du partenaire** : il annoncerait
-  5 positions pour obtenir le prix, en consommerait 3, et Salverys porterait le banc.
-  Le minimum facturable remet ce risque chez celui qui le crée.
-  - **Ce que ça engage vraiment** : 5 positions, ce sont **~5 à 7 semaines** entre la
-    signature et la première facture (recrutement freelance 2-4 sem. + formation 2-3 sem.,
-    `FINANCE-PREVISIONNEL.md §5`) et **~3 500 €/mois de fees engagés** avant le premier euro
-    encaissé. La contrainte n'est pas un plafond d'effectif — le modèle 100 % freelance est
-    élastique (effectif M12 : 8 / 11-12 / 16-18 selon scénario) — c'est la **trésorerie**
-    (creux 35-45 k€ vers M+7-8, `FINANCE §6`) et le **délai de montée en charge**.
-  - Formulation partenaire : « le palier 5+ est un **prix de volume engagé** — il s'achète
+  on ne baisse rien. **Plancher : 920 €** (coût direct 766 € + ~20 %), cf. encadré ci-dessus.
+- **Ce qui change vs la grille 1 / 3 / 5+ (2026-06-12)** : le prix plancher n'est plus
+  accordé à **5** positions mais à **9**. Motif — au coût salarié, un deal de 5 positions
+  à 1 350 € sortait **sous le point mort** (`AUDIT-FINANCE-PREVISIONNEL.md §A`) ; à 9
+  positions il dégage **~+2 450 €/mois**. Le palier le plus bas est désormais adossé à un
+  volume qui le finance.
+- **Rapport au point mort** (`FINANCE-PREVISIONNEL.md §4` : **2 à 6 ETP** selon le palier
+  et le nombre de métiers activés) : **un seul deal de 3-4 positions au tarif standard
+  fait atteindre le point mort.** C'est l'argument de prospection MB à tenir.
+- 🔒 **Volume ferme facturable — sur tous les paliers (généralisé le 2026-08-14).** Le tarif
+  d'un palier n'est accordé **que** contre le **minimum de positions facturables** de ce
+  palier, dues **qu'elles soient consommées ou non**. En deçà, le prix appliqué est celui
+  du palier inférieur en volume. À défaut, Salverys porterait le **risque de
+  sous-consommation du partenaire** : il annoncerait 9 positions pour obtenir 1 350 €, en
+  consommerait 5, et porterait le banc. Le minimum facturable remet ce risque chez celui
+  qui le crée.
+  - ⚠️ **Le banc coûte désormais plus cher qu'avant.** En équipe salariée, un agent non
+    consommé ne se désactive pas : préavis et indemnité de licenciement s'ajoutent au
+    salaire (`FINANCE-PREVISIONNEL.md §7.1`). La clause de volume ferme n'est plus un
+    confort de marge, c'est une **protection contre un coût de sortie**.
+  - **Ce que ça engage vraiment** : ~**5 à 7 semaines** entre la signature et la première
+    facture (recrutement 2-4 sem. + formation 2-3 sem., `FINANCE-PREVISIONNEL.md §5`),
+    salaires payés dès l'embauche soit ~**1 mois avant** la première facture. Sur 5
+    positions : ~3 800 €/mois engagés avant le premier euro encaissé. La contrainte n'est
+    pas l'effectif — il n'y a plus de plafond — c'est le **rythme de recrutement et de
+    formation** (`FINANCE §5`), et accessoirement la trésorerie (creux ~23 k€, `FINANCE §6`).
+  - Formulation partenaire : « chaque palier est un **prix de volume engagé** — il s'achète
     avec un volume ferme, pas avec une intention. »
+
+**Affichage « à partir de » — espaces partenaires et one-pager MB uniquement**
+
+Accroche autorisée **après cadrage / NDA**, dans les espaces partenaires protégés et le
+`ONEPAGER-PARTENAIRE-MB.md` :
+
+> **Support N1 SaaS — à partir de 1 350 €/ETP/mois**
+> **Helpdesk IT N1 — à partir de 1 550 €/ETP/mois**
+
+- ⚠️ **Jamais sur le site public ni en cold email.** La doctrine §0/§9 est inchangée :
+  toute marque blanche reste privée (score 35 %), parce que le prix de gros est l'**input
+  de marge du revendeur**. Un « à partir de » publié deviendrait l'ancre de négociation de
+  tous les partenaires — y compris ceux qui ne prendront jamais 9 positions — et serait
+  lisible par les concurrents.
+- Les **paliers complets 1-4 / 5-8 / 9+** restent dans la **rate card confidentielle**
+  remise au cadrage. Le « à partir de » sert d'accroche, la grille sert de négociation.
 
 ### 3.a Dépôt d'activation — marque blanche uniquement (décidé 2026-08-03)
 
@@ -291,37 +380,395 @@ jetée sur un acheteur qui revend.
   `OUTREACH-IT-N1-marque-blanche.md`, `OUTREACH-telesec-marque-blanche.md`,
   `ONEPAGER-PARTENAIRE-MB.md`, espaces partenaires.
 
-### Tier « Priority » (ex-« Premium ITIL+ ») — service critique
+### Tier « Priority » — **RETIRÉ du catalogue (2026-08-24)**
 
-Le niveau de service haut de gamme des simulateurs Support N1 / Helpdesk IT est
-renommé **Priority** (remplace « Premium »/« Premium ITIL+ »). Ce n'est plus
-« un dédié en mieux » mais un **service critique** : capacité **réservée non
-mutualisée**, **traitement prioritaire systématique**, **redondance intégrée
-(backup permanent)**, **supervision renforcée**, **tolérance zéro rupture**.
+> Le niveau de service **Priority** (capacité réservée, backup nominatif, `priorityMult`)
+> est **supprimé** des simulateurs, du site et de la grille. Il n'est plus vendable ni
+> chiffrable. Cette section conserve la trace de la décision ; l'historique complet du tier
+> reste dans l'historique git (dernière version active : commit du 2026-08-24).
 
-- **Tarification — multiplicateur dégressif** (le backup réservé s'amortit avec la taille) :
+**Pourquoi il est retiré** — quatre motifs qui se cumulaient :
 
-  ```
-  priorityMult(n) = 1,10 + 0,90 / n      (n = nombre d'agents)
-  ```
-  | n | 1 | 2 | 3 | 4 | 6 | 10 |
-  |---|---|---|---|---|---|----|
-  | ×base | 2,00 | 1,55 | 1,40 | 1,33 | 1,25 | 1,19 |
+1. **Il contredisait le claim public.** Le claim **−40 à −60 %** est un claim du **tier
+   Dédié**. Priority ne ressortait qu'à **~10-17 %** d'économie faciale, même au-delà de
+   3 agents. Un même site portait donc deux promesses inconciliables.
+2. **Sous 3 agents, il coûtait plus cher qu'un recrutement en France** (`priorityMult` valait
+   ×2,00 à 1 agent, ×1,55 à 2). Le simulateur devait **masquer le pourcentage d'économie**
+   dans cette zone et le remplacer par un badge de continuité — un correctif d'affichage pour
+   compenser un problème d'offre.
+3. **Il exigeait une tête dédiée en réserve**, c'est-à-dire exactement ce que la doctrine de
+   continuité **§3.e** a retiré du reste du catalogue faute de financement identifiable.
+4. **Il était invendable en marque blanche** — priorité GTM n°1 : doubler le prix de gros
+   d'une position est impensable pour un revendeur qui doit construire sa marge dessus.
 
-  Un agent **seul** porte un backup quasi complet (~×2, zéro rupture même en solo) ;
-  à 6+ agents le surcoût retombe vers ~×1,2 (≈ ancien plat ×1,25, d'où la continuité).
-  Plancher **1,10** = priorité de traitement + supervision renforcée, jamais nul.
+**Ce qui reste** — deux niveaux de service, **Mutualisé** et **Dédié**, qui correspondent
+terme à terme aux deux modèles marque blanche **A** et **B** (§3.g). Un seul vocabulaire pour
+les deux marchés.
 
-- **Équivalence résilience** (argument d'appel) : pour garantir `g` agents productifs
-  **sans rupture**, le **Dédié** doit sur-staffer ≈ **1 backup pour 3** (`g + ⌈g/3⌉`
-  têtes payées plein pot), alors que **Priority** inclut le backup. À garantie égale,
-  **`g` Priority ≡ `g + ⌈g/3⌉` Dédiés** (ex. 2 Priority ≡ 3 Dédiés, 6 Priority ≡ 8 Dédiés).
-  Sur le **coût**, Priority bascule **moins cher à partir de ~4 agents garantis** ;
-  en dessous, l'avantage est ailleurs : backup **géré par nous** (zéro planning) et
-  surtout **faisabilité** — à 1-2 agents, se sur-assurer en dédié revient à embaucher
-  un backup à temps plein (×2), impossible à demi-doser.
-- Source d'implémentation : `priorityMult()` dans `assets/site.js` ; arguments
-  d'appel détaillés dans `ARGUMENTS-APPEL-priority.md`.
+**Conséquences appliquées** : boutons retirés des deux simulateurs IT · `priorityMult()`,
+`serviceTier` et le badge `badge-resilience` supprimés de `assets/site.js` et
+`assets/site.css` · la doctrine de continuité **§3.e** passe de trois à **deux** niveaux.
+
+### 3.c Forfaits IT publics — nommage & amplitude (décidé 2026-08-13)
+
+> Comble un trou de la source de vérité : les packages IT existaient **sur le site
+> uniquement** (« Support Starter / Pro / Centre N1 Scale » côté SaaS, « Helpdesk
+> Starter / Pro / Scale » côté helpdesk), sans arbitrage tracé, en anglais, et
+> différents d'un simulateur à l'autre. Ils sont désormais définis ici.
+
+**Nommage retenu — trio FR métier, identique dans les deux simulateurs IT :**
+
+| Palier | Nom | Contenu type |
+|---|---|---|
+| 1 | **Débordement** | 1 agent mutualisé · 20 h/sem · tickets + email |
+| 2 | **Poste dédié** | 1 agent 100 % dédié · 35 h/sem · escalade N2 cadrée |
+| 3 | **Équipe managée** | ≥ 4 agents en rotation · superviseur dédié · couverture étendue |
+
+- Vocabulaire des acheteurs ESN / MSP / DSI, cohérent avec l'argument n°1 de la marque
+  (**français langue maternelle**) — « Starter / Pro / Scale » disait l'inverse.
+- Règle au passage la **collision de vocabulaire** : « Dédié » ne désignait à la fois un
+  niveau de service et un forfait que parce que le forfait s'appelait « Pro ».
+- Le médical **ne change pas** (Essentiel / Confort / Intensif, §1).
+
+**Amplitude horaire = multiplicateur de présence, pas majoration (décidé 2026-08-13).**
+L'amplitude impose des **têtes supplémentaires** ; la traiter en pourcentage de confort
+produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
+
+| Amplitude | Fenêtre | ETP par position | Affichage public |
+|---|---|---|---|
+| Bureau | ~45 h/sem | ×1,00 | **public** |
+| Étendu 8h-20h | 60 h/sem | **×1,33** | **public** |
+| Astreinte soir + WE | ~90 h/sem | ×2,00 | **sur devis** |
+| 24·7 | 168 h/sem | **×3,73** | **sur devis** |
+
+- Astreinte et 24·7 sont **retirés du simulateur public**. Motif : **non staffables** à
+  l'effectif de démarrage (un contrat 24·7 = ~4,8 ETP, soit toute la capacité de la
+  phase 1), et un panier à ~12 000 €/mois relève du devis négocié, pas du curseur.
+  Le prix, lui, est sain (~−40 % vs une équipe interne 24·7 à 17,5-21 k€/mois) : c'est
+  la **livrabilité** qui commande le retrait, pas la marge.
+- L'exposant correctif `FR_PEN = 1,35` du benchmark France est **supprimé** : l'amplitude
+  coûte des ETP **des deux côtés** de la comparaison, donc le % d'économie est désormais
+  **invariant à l'amplitude** — ce qui est le comportement correct.
+
+**Promesse de mise en route — « opérationnel en 3 à 4 semaines ».** Remplace « lancé en
+10 jours » et « onboarding 5 jours », intenables face à `FINANCE-PREVISIONNEL.md §5`
+(recrutement 2-4 sem. + formation 2-3 sem.). Aligne l'IT sur le médical (§1.c).
+
+### 3.d Palier haut « Équipe managée » & axes du simulateur (décidé 2026-08-14, renommé 2026-08-24)
+
+**Le palier 3 s'appelle « Équipe managée »** (§3.c mis à jour).
+
+> ⚠️ **Renommage révisé le 2026-08-24.** Le 2026-08-14, « Centre de services » était devenu
+> **« Non-stop »** au motif que *« le nom dit la promesse achetée — la continuité — au lieu de
+> décrire une organisation interne »*. Ce raisonnement **tombe** : la promesse de continuité
+> s'est révélée **imprécise sur la simultanéité** (§3.f) — la rotation tient la plage avec
+> *moins d'agents en ligne à la fois*, ce que « Non-stop » laissait entendre l'inverse. Un nom
+> qui décrit l'organisation est ici **plus honnête** qu'un nom qui promet un résultat qu'on ne
+> tient pas au sens où le prospect l'entend. Retour donc à un nom descriptif.
+
+| Palier | Nom | Contenu type |
+|---|---|---|
+| 1 | **Débordement** | 1 agent mutualisé · base 20 h/sem · tickets + email |
+| 2 | **Poste dédié** | agent 100 % dédié, 35 h ou 40 h/sem · escalade N2 cadrée · se vend à la position |
+| 3 | **Équipe managée** | **≥ 4 agents** en rotation · superviseur dédié · 6h-20h ou 3×8 |
+
+- **Plancher de 4 agents, opposable.** En dessous, la rotation n'existe pas : le forfait
+  n'est ni staffable ni tenable. Le simulateur **verrouille le bouton** du palier haut sous
+  4 agents et affiche la raison au survol, plutôt que d'ouvrir un devis impossible.
+- **Prix : pas d'estimation, un « à partir de » sur devis** — 11 000 €/mois (helpdesk IT) ·
+  10 000 €/mois (support N1 SaaS). Base : 4 agents au tarif direct (§3), dégressif volume
+  inclus, plus la réserve de rotation (§3.e) et la supervision dédiée. Au-delà,
+  l'amplitude (6h-20h, 3×8) se chiffre au devis — cohérent avec le retrait des paliers
+  astreinte / 24·7 du simulateur public (§3.c).
+- **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
+  relais » se contredisent. Ce que chaque palier garantit réellement est fixé par la
+  **doctrine de continuité §3.e** : manager métier au Poste dédié, rotation à l'Équipe
+  managée. *(Le tier Priority, qui portait la capacité réservée, est retiré depuis le
+  2026-08-24 — cf. §3.)*
+- **Axe « Périmètre N2 » supprimé du simulateur.** Il majorait le prix (+8 % / +22 %) pour
+  une évidence : un N1 escalade toujours. La vraie variable est le **profil de l'agent**.
+- **La fourchette d'estimation (±5 %) porte désormais le profil de l'agent** : bas de
+  fourchette = profil formé chez nous aux process du client ; haut = profil confirmé, déjà
+  rodé aux exigences de comptes européens. **Bande portée de ±5 % à ±9 %** (décidé
+  2026-08-14) : ±5 % ne pouvait pas représenter un écart junior → confirmé.
+- **Revue de service mensuelle (compte rendu écrit) : incluse dans tous les forfaits**, donc
+  retirée des lignes de différenciation. Le suivi commercial et les évolutions de périmètre
+  sont assurés par la direction pour tous les comptes — ce n'est pas un poste qui se
+  débloque au palier 3.
+
+### 3.e Continuité de service — doctrine de remplacement (décidé 2026-08-14)
+
+> Remplace la règle « un agent de remplacement en plus par client » (§10), qui doublait le
+> coût d'un compte pour couvrir ~13 % d'absences (5 semaines de congés + ~3 % de maladie).
+> **Le remplacement n'est pas un produit à vendre : c'est le coût de l'engagement SLA (§7).**
+> Il est donc dans le prix, jamais en ligne d'option.
+
+**Effectif de référence (`FINANCE-PREVISIONNEL.md §1/§2`, v3 — équipe salariée)**
+
+| Rôle | Effectif | Brut mensuel | Coût employeur |
+|---|---|---|---|
+| Agents productifs (facturables) | **dimensionné sur les contrats, sans plafond** | 3 250 000 Ar (650 €) | ~736 € |
+| Manager métier (1 médical, 1 IT) | 1 par métier actif, +1 par tranche de 8 agents | 3 250 000 Ar (650 €) | ~736 € |
+
+> Lecture marché : salaire moyen d'un agent de call center à Tana ~700 000 Ar ; profils
+> expérimentés 900 000 Ar - 2 M Ar. À 3 250 000 Ar **de brut**, Salverys paie **~4,5× le
+> marché** — aucune offre concurrente équivalente (Intelcia & co. recrutent à 600-800 k Ar).
+> **Hypothèse zéro turnover crédible à ce niveau.** C'est aussi ce qui rend la doctrine
+> ci-dessous tenable : l'absence à couvrir est une absence *prévue* (congés), pas un départ
+> surprise.
+>
+> ⚠️ **Depuis la bascule en salariat (2026-08-14), l'effectif n'est plus un plafond du tout** :
+> il n'y a pas d'équipe de 8 agents à saturer, il y a des embauches déclenchées par des
+> positions fermes facturables. Ne jamais opposer un plafond de capacité à un partenaire —
+> la contrainte réelle est le **rythme de recrutement et de formation** (`FINANCE §5`).
+
+**Trois niveaux, adossés à ce qui est déjà payé :**
+
+| Palier | Qui remplace | Ce qu'on promet | Ce qu'on ne promet pas |
+|---|---|---|---|
+| **Débordement** (mutualisé) | le pool, par nature | continuité sans objet — l'agent n'est pas nominatif | un interlocuteur constant |
+| **Poste dédié** | le **manager métier** (1 médical, 1 IT — non facturables, formés, ils supervisent déjà le compte) | reprise des **absences ponctuelles** : congés isolés, arrêt court | deux absences simultanées, ni un arrêt long — on prévient et on ajuste le SLA au cadrage |
+| **Équipe managée** (≥ 4 agents) | la **rotation** | la **plage horaire reste tenue** : 4 × 35 h = 140 h/sem pour 70 h d'amplitude, un absent laisse encore 105 h | la capacité à l'identique — elle baisse de ~25 % |
+
+- **Le manager métier comme premier backup est finançable par construction** : il est payé,
+  il connaît les comptes qu'il supervise (double écoute, QA), et il n'est affecté à aucune
+  position facturée. Aucune tête supplémentaire à recruter.
+- **Corollaire commercial** : « backup inclus » disparaît des listes de fonctionnalités. Le
+  Poste dédié affiche « absence ponctuelle reprise par le manager de votre compte », l'Équipe managée
+  « plage horaire tenue même en cas d'absence ». Deux promesses vraies, aux périmètres
+  distincts, et qui n'ont plus besoin d'un troisième tier pour être tenues.
+- **Limite à connaître en rendez-vous** : au-delà d'un manager mobilisé sur un compte, la
+  supervision des autres comptes se dégrade. Le seuil pratique est d'**un remplacement long
+  à la fois** par métier ; au-delà, c'est un recrutement, pas un backup.
+  - **Chiffrage du plafond (`FINANCE-PREVISIONNEL.md §7.2`)** : à ~13 % d'absence, **8 agents
+    génèrent ~1 ETP d'absence à couvrir** — soit la totalité du temps disponible d'un manager.
+    Au-delà de **8 agents par métier**, prévoir un **agent volant** (~766 €/mois) plutôt que
+    de dégrader la supervision. En équipe salariée, l'absence est payée : c'est un coût de
+    **capacité**, pas de paie.
+
+### 3.f Axes du simulateur & module de choix de forfait (décidé 2026-08-14)
+
+**Deux axes supprimés des simulateurs IT — ils gonflaient le prix sans contrepartie.**
+
+| Axe retiré | Ancien effet | Motif du retrait |
+|---|---|---|
+| Canaux → **« Omnicanal »** | ×1,15 | Ne décrivait aucun travail supplémentaire réel : au-delà de « Tél + ticket », il n'y a pas de troisième canal que nous facturons différemment. Le curseur ajoutait +15 % à une case cochée. |
+| Langue → **« Bilingue »** | ×1,22 | Doublon de « EN » : un agent qui traite l'anglais traite déjà le français. Deux libellés pour une seule réalité, dont l'un facturé 10 points de plus. |
+
+- **L'option « EN » devient « FR+EN »**, multiplicateur **inchangé à ×1,12**. Le libellé dit ce
+  qui est réellement vendu (un agent qui tient les deux langues) ; le prix ne bouge pas — la
+  correction est de nommage, pas de tarif.
+- Axes conservés côté canaux : **Ticket / email** (×1,00) et **Tél + ticket** (×1,08). Le
+  téléphone est le seul canal qui change vraiment la charge de l'agent.
+- **Règle générale** : un axe de simulateur ne se justifie que s'il correspond à une charge
+  ou une compétence que nous **payons différemment**. Sinon c'est de la majoration décorative,
+  et elle se retourne contre nous au moment du devis — le prospect découvre que l'option
+  n'était adossée à rien.
+
+**Le module public « Le vrai coût de la continuité de service » compare Poste dédié vs
+Équipe managée.** Il opposait Dédié et Priority, c'est-à-dire deux **niveaux de service** : la
+question que se pose réellement l'acheteur est un choix de **forfait**. *(Priority était
+alors renvoyé en note sous le graphe ; le tier a depuis été **retiré du catalogue** le
+2026-08-24 — cf. §3, et la note a disparu avec lui.)*
+
+- **Ce que le graphe démontre : le choix se joue sur l'amplitude, pas sur le volume.**
+
+  | Vue | Poste dédié | Équipe managée | Lecture |
+  |---|---|---|---|
+  | **Heures de bureau** | 1 tête par position | rotation + superviseur, **×1,15** | Le dédié est **moins cher à tous les effectifs** — la rotation se paie sans couvrir une minute de plus |
+  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | couvre la plage avec **moins d'agents simultanés** | L'Équipe managée **coûte moins cher — parce qu'elle met moins de monde en ligne à la fois**, pas par efficacité |
+
+  > 🔴 **Correction du 2026-08-24 — l'ancienne formulation était fausse.** On écrivait « la
+  > rotation tient la plage **sans tête en plus** ». C'est impossible : **couvrir une plage,
+  > c'est acheter des ETP.** 4 agents × 35 h = 140 h réparties sur une fenêtre de 60 h font
+  > **~2,3 agents présents à la fois**, pas 4. Le graphe comparait donc **4 positions tenues**
+  > (soit 5,33 têtes en dédié) à **4 têtes en rotation** — deux prestations différentes.
+  > L'écart de prix vient de là. Ce qui est vendu n'est pas un nombre de sièges, c'est **la
+  > garantie que la plage ne ferme pas** quand quelqu'un manque, plus une rotation que le
+  > client n'a pas à organiser. Les infobulles du graphe affichent désormais la simultanéité
+  > des deux côtés, et les légendes le disent explicitement.
+
+- **Calage du multiplicateur `NONSTOP_MULT = 1,15`** sur les « à partir de » publiés (§3.d) :
+  4 agents × 2 500 € × dégressif 0,95 × 1,15 = **10 925 €** (helpdesk, annoncé « dès 11 000 »)
+  et 4 × 2 300 × 0,95 × 1,15 = **10 051 €** (support SaaS, annoncé « dès 10 000 »). Le graphe
+  et la carte de forfait racontent donc le même prix.
+- **La zone sous 4 agents est grisée, jamais tracée en courbe** : l'Équipe managée n'y est pas
+  staffable (§3.d) et une courbe l'y ferait exister.
+- **Deux colonnes de verdict** accompagnent le graphe (« Restez au Poste dédié si… » /
+  « Passez à l'Équipe managée si… »). Elles disent aussi quand **ne pas** monter en gamme — c'est ce
+  qui rend le conseil crédible quand on recommande l'inverse. Plaquette commerciale
+  correspondante : `04-Closing/PLAQUETTE-DEDIE-VS-NONSTOP.pptx`.
+- **Révision 2026-08-14 (2) — arguments recentrés sur les heures, pas l'abstraction
+  « amplitude ».** Premier jet jugé pas assez convaincant en interne : seuls 2 des 5
+  critères de chaque colonne référençaient une heure concrète, le reste étant générique
+  (« prix », « superviseur », « même interlocuteur »). Les deux colonnes sont réécrites en
+  ancrant **chaque ligne sur une heure ou une plage d'horloge** :
+  - Poste dédié : *9h–18h*, *un ticket du soir attend le lendemain matin*, *1 à 3
+    positions*, *une absence glisse le traitement de quelques heures*, *prix le plus
+    juste sur une plage classique*.
+  - Équipe managée : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
+    62 h de silence*, *coût chiffrable de l'heure sans réponse*, *couverture > 45 h/semaine
+    (6h-20h, 3×8, 24·7)*, *4 positions ou plus*.
+  - L'intro de section et les légendes du graphe (`assets/site.js`) sont réécrites dans
+    la même logique : « le choix dépend des heures où on vous sollicite », pas de
+    « l'amplitude ». La phrase de bascule chiffrée mène désormais par la plage (« 9h–18h »
+    / « 8h–20h ») avant le prix, pas l'inverse.
+  - Objectif : qu'un lecteur qui hésite puisse trancher en se demandant une seule chose —
+    *à quelle heure mon dernier ticket peut-il arriver ?* — plutôt que de comparer des
+    arguments de nature différente (prix, interlocuteur, SLA, horaires) sans hiérarchie.
+- Source d'implémentation : `assets/site.js` (bloc « Graphe comparatif Poste dédié vs
+  Équipe managée »), sections `#priority-compare` des deux simulateurs IT.
+
+
+### 3.g Fiche offre France — audit et réalignement (décidé 2026-08-24)
+
+> Audit de `ficheoffrefrance.pdf` (one-pager marque blanche pour ESN / éditeurs / MSP).
+> Le document était bon sur le fond — positionnement, périmètre, sécurité — mais **six
+> écarts** le rendaient inutilisable en l'état. Livrables :
+> `04-Closing/FICHE-OFFRE-FRANCE-publique.html` et `-cadrage.html`.
+
+**1. Les trois montants étaient sous la rate card — corrigés.**
+
+| Modèle | Fiche d'origine | Retenu | Motif |
+|---|---|---|---|
+| **A — Débordement mutualisé** | 690 €/mois | **1 120 €/mois**, 400 tickets inclus (2,80 €/ticket) | 690 € est **sous le plancher absolu de 920 €** (§3) et sous le coût direct d'un agent (766 €). Le nouveau prix applique le haut de la fourchette « à l'interaction » MB (1,8-2,8 €/ticket, §3) au lot pilote de 400 tickets (§3.b) |
+| **B — Capacité dédiée** | 1 450 €/ETP | **rate card §3 intégrale** — 1 700 / 1 500 / 1 350 € (SaaS) · 2 000 / 1 750 / 1 550 € (helpdesk) | 1 450 € est **sous le tarif stratégique 9+ du helpdesk** (1 550 €) : le meilleur prix de la grille était consenti d'entrée, sans contrepartie de volume. La fiche porte désormais les trois paliers et la **clause de volume ferme facturable** |
+| **C — Équipe managée** | 5 400 €/mois | **à partir de 7 820 €/mois** | Un service desk encadré suppose le **plancher de 4 positions** (§3.d). Calcul : 4 ETP au tarif du palier 1-4 + **15 % d'encadrement** (`NONSTOP_MULT`, §3.f) ⇒ 4 × 1 700 × 1,15 = **7 820 €** (SaaS) · 4 × 2 000 × 1,15 = **9 200 €** (helpdesk). À 5 400 €, la fiche vendait une équipe complète **sous le tarif d'une seule position × 4** |
+
+**2. Deux versions au lieu d'une — la doctrine §0/§9 l'imposait.** Un document intitulé
+« fiche offre » circule ; or **aucun tarif marque blanche ne sort hors cadrage sous NDA**,
+le prix de gros étant l'input de marge du revendeur.
+
+- **`FICHE-OFFRE-FRANCE-publique.html`** (2 pages) — périmètre, engagements, modèles décrits
+  **sans montant**, plages, sécurité, démarrage. Diffusable en prospection, salon, cold email.
+- **`FICHE-OFFRE-FRANCE-cadrage.html`** (3 pages, bandeau « ne pas rediffuser ») — la même
+  offre plus la **grille complète**, la clause de volume ferme, le **dépôt d'activation**
+  (§3.a) et les **trois contreparties de risque** (§3.b).
+
+**3. SLA ramenés à la doctrine §7.** La fiche promettait plus que ce qui est arbitré :
+
+- « Prise en compte — **≥ 95 %** » ⇒ **≥ 90 %**. Le 95 % avait été **explicitement écarté**
+  au §7 comme « trop ambitieux en phase de démarrage ».
+- « **≥ 90 % des appels décrochés en moins de 60 secondes** » ⇒ **≥ 90 % des appels
+  présentés** sur les plages couvertes. Le qualificatif « en moins de 60 s » durcissait
+  unilatéralement un engagement déjà calibré, sans contrepartie tarifaire.
+- **Le remède manquait** — un engagement sans remède défini est une responsabilité ouverte.
+  Ajouté : **avoir de 20 %** sur la facture suivante, automatique, **plafonné à 1 mois sur 12**,
+  hors indisponibilité côté client et hors volume au-delà du forfait (§7).
+- Ajout de la borne temporelle : l'engagement **ne court qu'à partir du 1er mois plein en
+  régime** ; pendant la transition la mesure est publiée mais **pas opposable**.
+
+**4. « Binômage systématique, rotation plafonnée à 25 % par an » — supprimé.** Deux
+problèmes : le **binômage** est un backup permanent non financé, alors que §3.e pose que
+le remplacement est **dans le prix et jamais en ligne d'option** ; et **annoncer 25 % de
+rotation** contredit frontalement l'objectif **zéro turnover** du modèle salarié (§3.e).
+Remplacé par la doctrine à trois niveaux — **pool** (A) · **manager métier** (B) ·
+**rotation d'équipe** (C) — et par l'argument qui la finance : agents en CDI rémunérés
+**~4,5× le marché local**, ce qui rend l'absence *prévue* plutôt que subie.
+
+**5. Plages — samedi conservé, le reste sur devis.** Le samedi 8h-13h est **maintenu comme
+plage standard vendable** (décision direction). Soirée, jours fériés et couverture continue
+passent **en modules sur devis**, cohérent avec le retrait de l'astreinte et du 24·7 du
+catalogue public (§3.c, motif de **livrabilité** à l'effectif de démarrage).
+
+**6. Libellés et mentions.**
+
+- `contact@salverys.com` ⇒ **`contact@salverys.fr`** (domaine réellement utilisé par le site).
+- **Deux placeholders jamais remplis** subsistaient : « Prénom Nom » et « +261 00 00 000 00 ».
+  Ils sont laissés en **marqueurs explicites** `[Prénom Nom]` / `[+261 XX XX XXX XX]` — à
+  compléter avant tout envoi.
+- ⚠️ Le titre « **Directeur des opérations** » est retiré au profit de « **Direction** » :
+  à **un fondateur et une salariée**, un organigramme suggéré est invérifiable — et le
+  garde-fou de `CLAUDE.md` proscrit tout argument fondé sur le parcours de la direction.
+- **Délai de démarrage : 6 semaines maintenu en marque blanche**, alors que le public
+  annonce « opérationnel en 3 à 4 semaines » (§3.c). L'écart est **assumé et non une
+  incohérence** : un déploiement partenaire ajoute transition, shadowing et doublon inversé,
+  et `FINANCE-PREVISIONNEL.md §5` donne 4 à 7 semaines (recrutement 2-4 + formation 2-3).
+  Le chiffre le plus prudent est celui qu'on écrit dans un document contractuel.
+
+**7. Charte graphique.** Le PDF d'origine était en vert sombre — le registre du **thème
+médical**. Les deux fiches passent au **thème IT** : navy `#013C58`, jaune pastel `#FCE27C`
+en accent, **Inter**, comme `.theme-it` dans `assets/site.css`.
+
+**8. Propagation au site (2026-08-24) — deux promesses non financées y subsistaient.**
+L'audit de la fiche a révélé que la doctrine §3.e n'avait jamais été propagée à la page
+d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` non.
+
+- **« 1 backup dédié par compte »** — abandonné le 2026-08-14 (§3.e : la règle doublait le
+  coût d'un compte pour couvrir ~13 % d'absences). Il restait affiché en **KPI de la page
+  d'accueil**, dans la carte service Helpdesk, dans le bloc « Le bon calcul » et dans les
+  engagements — assorti d'un **« pas de jour d'arrêt »** que seul le tier Priority tient.
+  Remplacé partout par la doctrine de continuité : *absence ponctuelle reprise par le
+  manager métier* (Poste dédié) · *rotation qui tient la plage* (Équipe managée). *(Un
+  troisième niveau, la capacité réservée du tier Priority, existait alors ; il a été retiré
+  le 2026-08-24 — cf. §3.)* Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
+  turnover visé »**, qui est vrai, chiffré et différenciant.
+- **« Hub de repli alimenté (groupe électrogène, onduleurs) »** — le hub et sa ligne
+  d'énergie **sont sortis des charges** (`FINANCE §2.c`, −500 €) et le rétroplanning le
+  classe « **à cadrer, pas à déployer** ». Le promettre comme capacité existante n'était
+  plus finançable. Retiré de `index.html`, des trois espaces client
+  (`tools/espace-contenu-*.html`) et des deux fiches. **Le kit d'autonomie individuel par
+  agent reste promis** : il est dû à l'agent et réputé couvert par le salaire (§3.e).
+- Tables comparatives : « Oui + backup » ⇒ **« Oui + reprise manager »** (deux simulateurs
+  IT) · « Équipe + backup » ⇒ **« Reprise par le pool »** (médical, où l'agent n'est pas
+  nominatif).
+**9. Vocabulaire de la continuité — réécrit en français d'acheteur (2026-08-24).** Le
+tableau de continuité de la fiche était **illisible pour un prospect** : la colonne
+« Qui remplace » ne disait jamais **dans quelle situation** (rien n'annonçait qu'on parlait
+d'absence), « le pool, **par construction** » était du jargon, et « **le manager métier** »
+désignait un rôle que la fiche n'avait jamais présenté — il vient de §3.e, pas de la lecture
+du document. Corrigé partout :
+
+| Avant | Après |
+|---|---|
+| Titre « Continuité de service — qui prend le relais » | « **Continuité — le jour où votre agent est absent** », avec une phrase qui pose la question |
+| Colonnes « Qui remplace » / « Ce que nous garantissons » | « **Qui prend le relais** » / « **Ce que vous constatez** » |
+| « Le pool, par construction » | « N'importe quel agent du pool — vous n'avez pas d'agent attitré » |
+| « Le manager métier, déjà affecté à votre compte » | « Le manager qui supervise déjà votre compte : il connaît vos procédures et **n'occupe aucune position que vous payez** » |
+| « La rotation de l'équipe » | « Les autres agents de la rotation » |
+
+- Même correction sur le site, où le terme avait été introduit le même jour : « Absence
+  ponctuelle reprise par **votre manager métier** » ⇒ « …par **le manager de votre compte** »
+  (listes de forfaits et tableau comparatif des deux simulateurs IT, carte service et
+  engagements de `index.html`).
+- **Règle retenue** : un document client ne cite jamais un rôle interne sans le décrire dans
+  la même phrase. « Manager métier » reste le terme **interne** (§3.e, `FINANCE §1`) ; côté
+  client on écrit **ce qu'il fait** — il supervise déjà le compte et n'est pas facturé.
+- L'encadré passe de « Nous ne vendons pas de binôme de secours » (une négation) à
+  « **Pourquoi nous n'avons pas besoin de vous facturer un remplaçant** » (le mécanisme) :
+  à 4,5× le marché local, l'absence est un **congé posé à l'avance**, qui s'anticipe au
+  planning au lieu de se rattraper avec une tête de plus.
+
+**10. Le palier haut sort de la marque blanche (décidé 2026-08-24).** Le modèle C
+« Équipe managée » est retiré des deux fiches MB. Il reste **un modèle direct uniquement**.
+
+- **Motif commercial** : la fiche s'adresse à des ESN, éditeurs et MSP — des acteurs **dont le
+  pilotage est le fonds de commerce**. Leur vendre « nous pilotons, clé en main » attaque ce
+  qu'ils revendent. Et c'est **factuellement faux** : une ESN reste contractuellement
+  responsable du SLA devant son client final, donc elle gardera un contrôle quoi qu'on écrive.
+  On vendait une dépossession qui n'aurait pas lieu.
+- **Motif structurel — C se confondait avec B.** Une fois retirés le superviseur dédié (dont
+  l'ESN ne veut pas) et l'idée que la rotation coûterait moins de têtes (§3.f : elle n'en coûte
+  pas moins), il ne restait que des positions, un référent d'exploitation partagé et un client
+  qui garde SLA et priorités — soit **la définition de B**.
+- **Ce qui remplace C en MB : un dimensionnement de B.** Couvrir une plage, c'est acheter des
+  ETP. Tenir **6h-20h** en présence continue (70 h/semaine) demande **~2 ETP par position**
+  (un agent couvre 35 h). Au tarif MB helpdesk, une position tenue 6h-20h revient à ~3 100 €,
+  contre 5 000-6 500 € pour le même besoin en France : **l'écart de prix absorbe le
+  sur-effectif**, le partenaire n'a aucune raison de payer une surcouche pour optimiser ce
+  qu'il peut simplement acheter. Les deux fiches portent désormais cette ligne.
+- **Corollaire de copy** : « Vous pilotez » seul, sur le modèle B, se lisait comme de la régie.
+  Remplacé par *« Vous pilotez le périmètre et les priorités ; nous encadrons les agents et
+  tenons le SLA »* — la séparation **autorité fonctionnelle / autorité d'exploitation** de
+  `GOUVERNANCE-CHAINE-COMMANDEMENT.md`, qui est aussi la ligne anti-requalification.
+- Les fiches MB comptent donc **deux modèles, A et B**. Le direct en garde trois
+  (Débordement / Poste dédié / Équipe managée, §3.c).
+
+- ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
+  `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
+  **régénérés avec leur mot de passe** pour embarquer la correction du hub :
+  `node tools/espace-client-build.mjs <espace> "<mot-de-passe>" --verify`. Tant que ce n'est
+  pas fait, les espaces partenaires servent encore l'ancienne promesse.
 
 ---
 
@@ -519,6 +966,23 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Activation MB (2026-08-03)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, plafond 2 700 €**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a) |
 | **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
 | **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
+| **Forfaits IT (2026-08-13)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Centre de services**, identiques dans les deux simulateurs et **définis en §3.c** |
+| **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
+| **Priority sous 3 agents (2026-08-13, clos 2026-08-24)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | correctif d'affichage en 2026-08-13, puis **tier entièrement retiré** le 2026-08-24 : le problème était l'offre, pas le badge (§3) |
+| **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
+| **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
+| **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
+| **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation de l'Équipe managée (plage tenue). Aucune tête supplémentaire à recruter |
+| **Source prévisionnel (2026-08-14)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **plus une source** — seul le **tableau d'effectif** (8 agents + 2 managers à 650 €) est repris, en §3.e |
+| **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
+| **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
+| **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
+| **Statut de l'équipe (2026-08-14)** | 100 % freelances, fee 3 250 000 Ar, effectif de référence 8 agents + 2 managers | **100 % salariés** : brut 3 250 000 Ar **+ charges patronales CNaPS/OSTIE** (~86 €/tête, plafonnées) ⇒ coût employeur **~736 €/agent** ; **aucun plafond d'effectif**, dimensionné sur les positions fermes (§3.e, `FINANCE-PREVISIONNEL.md §1/§2`) |
+| **Plancher absolu (2026-08-14)** | **840 €/ETP** (coût marginal freelance 700 € + 20 %) | **920 €/ETP** (coût direct salarié 766 € + 20 %) — recodé dans `tools/deal-build.mjs` (§3) |
+| **Rate card MB (2026-08-14)** | paliers **1 / 3 / 5+ ETP** ; prix plancher 1 350 € accordé dès **5** positions — **sous le point mort** au coût salarié | paliers **1-4 / 5-8 / 9+ ETP** (standard / volume / stratégique) ; prix plancher accordé à **9** positions ; **volume ferme facturable généralisé à tous les paliers** (§3) |
+| **Accroche prix MB (2026-08-14)** | aucune | **« à partir de 1 350 € / 1 550 €/ETP »**, autorisée **en espace partenaire et one-pager MB uniquement** — jamais public, doctrine §0/§9 inchangée (§3) |
+| **Point mort de référence (2026-08-14)** | « ~7 ETP placés », chiffre unique | **2 à 6 ETP selon le palier et le nombre de métiers actifs** ; un deal de **3-4 positions au tarif standard** suffit (`FINANCE-PREVISIONNEL.md §4`) |
+| **Kit d'autonomie & hub (2026-08-14)** | ligne de charges à chiffrer (capex kits) + hub de repli | **sortis des charges** ; le kit reste dû à l'agent, **réputé couvert par le salaire** (4,5× le marché) — à inscrire au contrat de travail et au PCA (§10) |
 
 ---
 
@@ -541,16 +1005,25 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
 
 ---
 
-## 10. Modèle d'exécution & infra (freelance / BYOD, SaaS-first)
+## 10. Modèle d'exécution & infra (salariat / BYOD, SaaS-first)
 
-> Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **freelances + équipes dédiées** est
+> Réflexe : **SaaS-first**, aucune infra télécom maison. Le modèle **salariés + équipes dédiées** est
 > viable sous conditions. Détail (tableaux par domaine) dans `RAPPORT-PRIX.html §10`.
 
 - **Infra transversale** : VoIP cloud (Aircall/Ringover/3CX, pas de standard physique) ; **kit d'autonomie
-  individuel par agent (solaire ou batterie) + hub de repli avec onduleur/groupe électrogène** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
-  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **backfill +1
-  agent/compte** ; documentation écrite dès le client n°1.
-- **BYOD freelance & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
+  individuel par agent (solaire ou batterie)** (point dur Tana) ; gouvernance d'accès (comptes nommés, MFA,
+  **zéro download**) ; RGPD art. 28 (DPA, registre) ; WFM/Erlang ; QA/double écoute ; **continuité
+  de service selon la doctrine §3.e** ; documentation écrite dès le client n°1.
+  > ⚠️ **Financement du kit et du hub (2026-08-14)** : le **hub de repli** et la ligne
+  > « kits d'autonomie » **sortent des charges** du prévisionnel (`FINANCE §2.c`). Le kit
+  > reste dû à l'agent, mais son coût est **réputé couvert par le salaire** — fixé à 4,5× le
+  > marché local précisément pour absorber énergie et connexion domicile. **À écrire noir
+  > sur blanc dans le contrat de travail et dans `01-PLAN-CONTINUITE.md`**, faute de quoi
+  > une promesse remise aux partenaires en avant-vente n'a plus de financement identifiable.
+  > La règle « un agent de remplacement en plus par client » est **abandonnée** (2026-08-14) :
+  > elle doublait le coût de chaque compte pour couvrir ~13 % d'absences. Remplacée par la
+  > doctrine de continuité à trois niveaux (§3.e), qui s'appuie sur l'encadrement déjà financé.
+- **BYOD & santé** : viable façon **SECRETEL** — l'agent consulte des **SaaS HDS dans un
   navigateur** (Doctolib Pro → Ubicentrex) ; les données restent chez l'hébergeur HDS, jamais sur le
   poste ; Salverys est **sous-traitant (art. 28)**, pas hébergeur. Le VDI strict ne devient nécessaire que
   pour un **logiciel lourd installé** (ex. Médistory local).
@@ -559,4 +1032,4 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
   en **direct**, hébergeur HDS dédié (OVHcloud/Scaleway), **coût d'hébergement absorbé dans le forfait**
   (ordre de grandeur interne ~100-500 €/mois, **à absorber, pas un prix client**). Cadre conformité :
   `CONFORMITE-HDS-RGPD.md §2`.
-- **Angle mort** : disponibilité garantie ≠ freelance pur → cadrer juridiquement + backfill.
+- **Depuis la bascule en salariat (2026-08-14)**, l'angle mort « disponibilité garantie ≠ freelance pur » **disparaît** : le lien de subordination rend la disponibilité opposable. Il est remplacé par un risque symétrique — la **rigidité de l'effectif** (préavis + indemnité de licenciement sur un contrat perdu, `FINANCE-PREVISIONNEL.md §7.1`), qui se couvre par la clause de **volume ferme facturable** (§3).

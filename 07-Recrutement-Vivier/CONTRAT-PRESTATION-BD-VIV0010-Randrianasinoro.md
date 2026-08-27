@@ -1,5 +1,30 @@
 # CONTRAT DE PRESTATION DE SERVICES — Business Development (VIV-0010)
 
+> 🔴 **CADUC POUR TOUTE NOUVELLE ENTRÉE — décision direction du 2026-08-14.** Salverys
+> est passé à une **équipe 100 % salariée** (`01-Strategie-Offre/FINANCE-PREVISIONNEL.md`
+> v3, `CLAUDE.md`). Le montage en prestation indépendante n'est **plus le modèle de
+> référence** : les nouvelles entrées relèvent du **contrat de travail de droit malgache**
+> (CDI, brut + charges patronales CNaPS/OSTIE, congés payés, préavis et indemnité de
+> licenciement).
+>
+> **Ce document reste la référence pour le contrat déjà en cours**, jusqu'à sa
+> transformation. **Ce qu'il faut refaire, avec un conseil social local — pas par
+> recherche-remplace :**
+> - basculer le vocabulaire de la prestation (« honoraires », « facturation ») vers celui
+>   du salariat (« salaire brut », « bulletin de paie »), c'est-à-dire **supprimer le
+>   verrou anti-requalification** qui structure tout le document ;
+> - ajouter les mentions obligatoires d'un contrat de travail malgache : période d'essai,
+>   durée du travail, congés payés (2,5 j ouvrables/mois), affiliation CNaPS et OSTIE,
+>   convention collective applicable, préavis ;
+> - convertir la **commission de performance** en prime variable de salarié (assiette,
+>   périodicité, conditions de versement) ;
+> - inscrire la contrepartie **« kit d'autonomie / énergie / connexion domicile couvert par
+>   le salaire »** (`FINANCE-PREVISIONNEL.md §2.c`), faute de quoi la promesse de continuité
+>   remise aux partenaires n'a pas de support contractuel.
+>
+> ⚠️ La version **`.docx`** de ce fichier n'a **pas** été mise à jour et ne porte pas cet
+> avertissement.
+
 > ⚠️ **Support opérationnel, pas un avis juridique.** Ce modèle est un outil de cadrage
 > interne. Il doit être **relu et validé par un conseil juridique local** (droit malgache)
 > avant signature, notamment sur le volet anti-requalification (statut indépendant).
@@ -8,7 +33,7 @@
 > Le vocabulaire est volontairement celui de la prestation de services (« honoraires »,
 > « commission de performance », « facturation »), jamais celui du salariat
 > (« salaire », « prime », « horaires », « congés »). Toute reformulation devra préserver
-> ce verrou (cf. `01-Strategie-Offre/FINANCE-PREVISIONNEL.md §1`).
+> ce verrou tant que le contrat en cours n'est pas transformé (cf. le bandeau ci-dessus).
 >
 > Modèle réutilisable : remplacer les `[...]` pour un autre prestataire BD.
 
@@ -167,9 +192,10 @@ contrat, les Parties s'accordent de bonne foi sur la base des traces du CRM.
 
 ## Article 4 — Rémunération (profil ① Sécurité)
 
-> **Repère interne** : le fee freelance standard Salverys est de **3 250 000 Ar/mois**
-> (cf. `FINANCE-PREVISIONNEL.md §1`). Le présent profil ① « Sécurité » combine un fixe
-> modéré et une commission **déplafonnée**.
+> **Repère interne** : la rémunération de référence Salverys est de **3 250 000 Ar/mois
+> de brut** (`FINANCE-PREVISIONNEL.md §1` — depuis le 2026-08-14 il s'agit d'un **salaire
+> brut**, charges patronales en sus, et non plus d'un fee de prestation). Le présent
+> profil ① « Sécurité » combine un fixe modéré et une commission **déplafonnée**.
 
 4.1. **Honoraires fixes** : **2 800 000 Ar par mois** (deux millions huit cent mille
 ariary), facturés mensuellement par la Prestataire.

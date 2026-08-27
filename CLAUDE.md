@@ -28,11 +28,25 @@ de donneurs d'ordre : télésecrétariats médicaux FR, éditeurs/prestataires s
 ESN/MSP). Le direct (client final) vient en 2e temps. Toute priorisation de prospection,
 de copy ou de chiffrage doit refléter ce MB-first.
 
-### Modèle d'équipe (décision direction, 2026-06-10)
-Démarrage **100 % freelances**, payés **3 250 000 Ar/mois chacun** (650 € — ~4,5× le marché local),
-y compris les **2 managers** (1 médical, 1 IT). Objectif : **zéro turnover**. Démarrage à
-4 agents + 2 managers, montée à 8+ au rythme des contrats. Rentabilité vérifiée :
-`01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v2).
+### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
+Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
+**3 250 000 Ar/mois** (650 € — ~4,5× le marché local), **charges patronales CNaPS/OSTIE en
+sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/agent**. Objectif :
+**zéro turnover**.
+
+- **Aucun plafond d'effectif** : on embauche sur **positions fermes facturables**, pas sur
+  une cible d'équipe. Ne jamais opposer une limite de capacité à un prospect.
+- **Effectif à ce jour : 1 salariée** (Vololona, développement commercial).
+- **Un seul fondateur, non rémunéré** au lancement.
+- Le **hub de repli** et la ligne **kits d'autonomie** sont sortis des charges : le kit
+  reste dû à l'agent, son coût est réputé couvert par le salaire.
+- Rentabilité, point mort et trésorerie : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v3).
+  Audit de ce prévisionnel : `AUDIT-FINANCE-PREVISIONNEL.md`.
+
+> ⚠️ Le vocabulaire « freelance », « fee », « prestataire » ne s'applique plus à l'équipe.
+> Le risque de requalification disparaît ; il est remplacé par la **rigidité de l'effectif**
+> (préavis + indemnité de licenciement), couverte par la clause de **volume ferme
+> facturable** sur tous les paliers (`PRICING.md §3`).
 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
