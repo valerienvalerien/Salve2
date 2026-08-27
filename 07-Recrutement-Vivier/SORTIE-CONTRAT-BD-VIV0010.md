@@ -824,11 +824,37 @@ Veuillez agréer, Madame, l'expression de nos salutations distinguées.
 - [ ] Si elle invoque une difficulté personnelle documentée → accord amiable, monte
       directement au palier haut, sortie propre : le contentieux ne vaut pas 1 800 000 Ar
 
-### Le 29 août — si le silence a duré
+### Vendredi 28 août — dernier jour du délai
 
-- [ ] Envoyer le constat de résiliation §6.3
-- [ ] **Alors seulement** révoquer les accès
-- [ ] Régler la première quinzaine d'août (§5.0) ; ne pas régler la seconde
+Ne rien couper, ne rien notifier. **Le délai court jusqu'au 28 à minuit** : jusque-là elle a
+le droit de régulariser, et ses accès doivent rester ouverts.
+
+- [ ] Surveiller les dépôts / connexions et **horodater** tout ce qui arrive
+- [ ] Si elle livre : comparer aux quatre points du courrier du 21. Un dépôt partiel n'est
+      pas « l'exécution complète dans ce délai » — le noter par écrit le jour même
+- [ ] Ne répondre sur rien au fond
+
+### Samedi 29 août — dans cet ordre strict
+
+⚠️ **Ne pas couper le vendredi à 23h59.** L'art. 6.4 dit que la Société « **peut** résilier » :
+la résiliation n'est pas automatique, elle doit être **exercée**. Couper les accès avant
+d'avoir notifié, c'est agir sur une résiliation non déclarée — et lui offrir de soutenir
+qu'elle a été empêchée d'exécuter dans son délai.
+
+1. [ ] **Vérifier** ce qui s'est passé le vendredi (audit log, dépôts, connexions)
+2. [ ] **Envoyer le constat de résiliation** §6.3, effet au 29 août
+3. [ ] **Puis seulement**, dans l'heure, révoquer — dans cet ordre :
+   - **LinkedIn** en premier (identité personnelle) : changer le mot de passe, déconnecter
+     toutes les sessions actives, vérifier la 2FA et les adresses/numéros de récupération
+   - **Microsoft 365** : **désactiver** le compte et révoquer les sessions — ne pas
+     supprimer avant 30 jours, une suppression détruit OneDrive et complique l'accès aux
+     traces
+   - **CRM**, puis **Emelia**, puis boîtes partagées et domaines de chauffe
+4. [ ] Demander confirmation écrite de la destruction des données détenues localement
+5. [ ] Régler **1 400 000 Ar** spontanément, sans attendre sa facture (§5.0 ter)
+6. [ ] Reprendre en direct les prospects contactés en son nom (onglet « Suivi », 9 lignes
+       on-niche : Izencia, Apixit, ComputerLand, Nowteam, OCI, Itak-IT, Next2i, VDI Telecom,
+       Acti-One) et répondre à Olivier de Iris
 
 ---
 
