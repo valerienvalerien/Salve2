@@ -17,7 +17,7 @@
 | VIV-0007 | Miranto Itokiana Razafindrabe (« Ialy ») | Relation Clients | A | Repéré | ⚠️ à relancer | — |
 | VIV-0008 | Soafinaritra Rasoloarijaona | Télésecrétariat médical (potentiel Manager) | B | Repéré | ⚠️ à relancer | Antananarivo |
 | VIV-0009 | « Maman Mi » (vrai nom à obtenir) | Helpdesk IT N1 | C | Repéré | ⚠️ à relancer | Madagascar (à confirmer) |
-| VIV-0010 | Vololoniaina Randrianasinoro (« Vloul Niaina ») | Relation Clients / prospection | A | Repéré | ⚠️ à relancer | Tamatave (remote) |
+| VIV-0010 | Vololoniaina Randrianasinoro (« Vloul Niaina ») | Relation Clients / prospection | — | ⛔ **Clôturé** (contrat terminé le 2026-08-27) | **ne pas relancer** | Tamatave (remote) |
 | VIV-0011 | Eva Manantenasoa Patricia Rakotonirina (« Ye Va ») | Helpdesk IT N1 | B | En discussion | ⚠️ à relancer | Antananarivo |
 | VIV-0012 | Tsaroan'Iavo Ikorianantsoa Rafalimanana (« Iavo ») | Helpdesk IT N1 | A | En discussion | ⚠️ à relancer | Antananarivo |
 | VIV-0013 | Erantsoa (nom complet à obtenir) | Support N1 SaaS | B | En discussion | ⚠️ à relancer | Madagascar |
@@ -82,8 +82,16 @@
 - **Vigilance** : pas de CV ; identité réelle inconnue ; dispo + dernier employeur + secteur non communiqués ; tarif inconnu. Info trop mince pour qualifier.
 - **Prochaine action** : relancer pour dispo, dernier employeur+secteur, CV, tarif, localisation, vrai nom.
 
-### VIV-0010 — Vololoniaina Randrianasinoro (« Vloul Niaina ») — A / Relation Clients-prospection / Repéré
-- randrianasinoro@gmail.com · +261 32 07 042 29 / +261 34 28 533 24 · Tamatave (remote) · français Bilingue · ⚠️ à relancer
+### VIV-0010 — Vololoniaina Randrianasinoro (« Vloul Niaina ») — ⛔ CLÔTURÉ / ne pas relancer
+
+> **Mise à jour 2026-08-28 : a occupé le poste de développement commercial ; le contrat a
+> pris fin le 2026-08-27.** Fiche conservée pour l'historique. **Ne pas la recontacter comme
+> candidate** au vivier. Rappels : l'**engagement de confidentialité survit à la fin du
+> contrat** (`NDA-CONSULTANT-VIV0010-Randrianasinoro.md`) ; vérifier que **tous les accès ont
+> été révoqués** (Airtable, boîte GWS sur les domaines cold, page LinkedIn entreprise,
+> OneDrive, fichiers CRM) — voir la checklist de sortie dans `PLAYBOOK-SALES-NAVIGATOR.md` §0.
+
+- randrianasinoro@gmail.com · +261 32 07 042 29 / +261 34 28 533 24 · Tamatave (remote) · français Bilingue
 - CV : OneDrive /CV/CV RANDRIANASINORO Vololoniaina.pdf
 - **Points forts** : profil setter/SDR + relation client confirmé (qualification leads, RDV, scripts ; Gravity Digital 10-30 RDV/mois, SILVR 30 % conversion) ; maîtrise CRM (HubSpot, Go High Level, Boostlead, Capsule) ; B2B tel+email ; bilingue FR, anglais avancé ; honnête (dit ne pas avoir l'étoffe IT). → atout prospection Salverys.
 - **Vigilance** : tarif « à partir de 10 €/h » (~2,5-3× marché Mada) ; hors niches cœur (médical/IT) ; en poste (BALTIC immobilier Annecy/Paris depuis oct. 2025) → dispo à vérifier ; basée à Tamatave (remote).

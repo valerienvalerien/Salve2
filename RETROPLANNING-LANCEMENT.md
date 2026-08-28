@@ -1,5 +1,26 @@
 # RÉTROPLANNING — Lancement commercial Salverys
 
+> ## ⛔ CADUC AU 2026-08-28 — document d'archive
+>
+> Ce rétroplanning n'est plus exécutable. Trois de ses hypothèses fondatrices sont tombées :
+>
+> | Hypothèse du plan | Réalité au 2026-08-28 |
+> |---|---|
+> | J0 (1er contrat MB) = semaine du 17 août | **Dépassé.** Aucune campagne cold n'est partie. |
+> | Un business dev [BD] exécute la moitié des tâches | **Poste terminé le 2026-08-27.** Le fondateur est seul. |
+> | Emelia souscrit dès S0 (chemin critique T1) | **Jamais souscrit** — et volontairement reporté (`CLAUDE.md`). |
+>
+> **Ce qui reste valable et ne doit pas être refait** : le §2 « ce qui est DÉJÀ fait »
+> (stratégie, pricing, séquences, scripts, closing, delivery, conformité) et l'ordre
+> directeur **Prospection → Équipe → Infrastructure**.
+>
+> **Le plan en vigueur est `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md`** (mode solo,
+> téléphone d'abord, 20 comptes travaillés en profondeur). Le simulateur
+> `retroplanning-salverys.html` porte les mêmes hypothèses caduques (rôles 👤/💼,
+> NDA, chauffe Emelia) et n'est plus à jour.
+>
+> ---
+>
 > Établi le **2026-06-23**, mis à jour le **2026-06-24** (synchro `main` : niches IT-first,
 > 2 domaines cold en place, vivier réel à 14, NDA Vololona prête, ajout chantier branding).
 > Horizon **6 semaines (jalon) / 2 mois (cible)**.

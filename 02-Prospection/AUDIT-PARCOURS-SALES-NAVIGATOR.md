@@ -4,6 +4,11 @@
 > Sales Navigator en 10 étapes + fichier Excel 2 onglets + démarrage mono-segment).
 > Verdict global : **la méthode est saine, le point de départ est faux.**
 > Le plan corrigé est dans `PLAYBOOK-SALES-NAVIGATOR.md`.
+>
+> **Révisé le même jour** après trois décisions de direction : inversion des niches IT
+> (option A, §6), **fin du poste de développement commercial** au 2026-08-27, et **report
+> de la souscription Emelia**. Les sections §3.6, §4 et §6-7 portent ces effets ; le reste
+> de l'audit (constats sur la base, le CRM, Kaspr) est inchangé et reste valable.
 
 ---
 
@@ -128,13 +133,20 @@ Le calcul à rebours du point mort (§4) donne **~210 comptes travaillés** pour
 
 ### 3.6 ⚠️ Trois angles morts
 
-- **Emelia et la délivrabilité** ne sont pas mentionnés. C'est pourtant le chemin critique
+- **Le canal email et la délivrabilité** ne sont pas mentionnés. C'était le chemin critique
   identifié depuis juin (`RETROPLANNING-LANCEMENT.md` T1) : deux domaines chauffés, séquences
-  écrites, mais campagne jamais lancée. Un plan de prospection qui ignore le canal email de
-  l'entreprise n'est pas un plan.
-- **Qui exécute ?** Le plan est écrit au « tu ». L'entreprise a **1 salariée** (Vololona,
-  développement commercial) et **1 fondateur non rémunéré**. Chaque étape doit être assignée,
-  sinon tout retombe sur le fondateur qui a déjà l'infra, le juridique et le recrutement.
+  écrites, mais campagne jamais lancée.
+  ⚠️ **Résolu autrement le 2026-08-28 : Emelia n'a jamais été souscrit et le sera plus tard.**
+  Avec un seul opérateur, l'outil sert une capacité (200 envois/jour) dont on n'a pas
+  l'usage — le volume réellement personnalisable seul est de 10-20 emails/jour, envoyables
+  à la main depuis les boîtes GWS. La prospection passe **téléphone d'abord**.
+  ⚠️ Point de vigilance créé par ce choix : la chauffe s'est arrêtée mi-juillet, **une
+  re-chauffe de 2 semaines est nécessaire** avant tout envoi (`PLAYBOOK` §8).
+- **Qui exécute ?** Le plan est écrit au « tu » sans jamais nommer d'exécutant.
+  ⚠️ **Depuis le 2026-08-27, la réponse est : le fondateur, seul** (fin du poste de
+  développement commercial). Il porte déjà l'infra, le juridique, le recrutement et la
+  future delivery. **C'est la contrainte n°1 du plan corrigé** — tout dimensionnement en
+  découle (§4).
 - **Le filtre disqualifiant propre à Salverys est absent :** une ESN qui a déjà une filiale
   à Tunis, Casablanca, Maurice ou Bangalore est une porte fermée (`ESN-TARGETS.md`
   §disqualification), tout comme un discours « souveraineté / 100 % France » frontal.
@@ -152,20 +164,40 @@ devient la note, HOT/WARM/NURTURE devient l'étiquette d'action qui en découle.
 
 ## 4. Le chiffrage qui manquait
 
-**À rebours du point mort** (`FINANCE-PREVISIONNEL.md` §4 : **2 à 6 ETP placés selon le
-palier**, soit 4 000 à 8 100 € de CA mensuel ; un contrat MB place 2 à 5 ETP) :
+> 🔴 **Révisé le 2026-08-28** après la fin du poste de développement commercial. Le calcul
+> initial (ci-dessous en encadré) supposait une commerciale à temps plein. Les deux
+> paramètres ont bougé **en sens inverse** : la capacité s'effondre, mais l'objectif aussi.
 
-| Étage du tunnel | Taux retenu (hypothèse) | Volume nécessaire |
+**Le point mort a été divisé par trois.** Sans salaire commercial et sans Emelia, le socle
+fixe passe de 2 114 € à **~920 €** et le point mort de 2-6 ETP à **1-2 ETP placés**
+(`FINANCE-PREVISIONNEL.md` §2.b et §4). **Un seul contrat MB de 2 positions met la structure
+à l'équilibre** — contre 3 contrats visés auparavant.
+
+**La capacité, elle, est tombée à ~10 h/semaine** (fondateur seul, qui porte aussi le
+juridique, le recrutement et l'infra). À 45 minutes par compte correctement travaillé :
+**8-10 comptes par semaine**, pas 20.
+
+**Conséquence : on change de levier — le taux de transformation remplace le volume.**
+
+| Étage du tunnel | Taux retenu (hypothèse) | Volume |
 |---|---|---|
-| Contrats MB signés | — | **3** (2 suffisent au point mort, 3 donne de la marge) |
-| Propositions envoyées | 30 % → signature | **10** |
-| RDV de découverte | 45 % → proposition | **22** |
-| Conversations décideur | 30 % → RDV | **74** |
-| Comptes réellement travaillés | 35 % → conversation | **~210** |
+| Comptes travaillés en profondeur | 8-10/semaine sur 12 semaines | **~45** |
+| Conversations décideur | 55 % *(décideur nommé + préparation forte + dirigeant qui décide seul)* | **~25** |
+| RDV de découverte | 35 % | **~9** |
+| Propositions | 50 % | **~4** |
+| **Contrats MB signés** | 35 % | **1 à 2 = le point mort** |
 
-**Conséquence : il manque ~135 comptes** (75 en base aujourd'hui). La construction de liste
-n'est donc pas inutile — elle est **le chantier de fond parallèle**, pas le point de départ.
-On travaille les 75 existants pendant qu'on complète la liste.
+**La construction de liste n'est plus le chantier de fond : elle est inutile à court terme.**
+La base contient 58 ESN/MSP qualifiées pour 45 comptes à travailler — il y a de la matière
+pour 12 semaines sans chercher un seul compte nouveau.
+
+> <details><summary><b>Calcul initial (périmé) — pour mémoire</b></summary>
+>
+> Avec une commerciale à temps plein et un point mort à 2-6 ETP : 3 contrats → 10
+> propositions → 22 RDV → 74 conversations → **~210 comptes travaillés**, soit ~135 comptes
+> à ajouter à la base. Ce dimensionnement redeviendra le bon le jour où un commercial sera
+> ré-embauché.
+> </details>
 
 > Ces taux sont des **hypothèses de départ, pas des mesures**. Les trois premières semaines
 > servent à les remplacer par les vrais chiffres. Les seuils d'alerte sont dans le playbook.
@@ -189,22 +221,39 @@ On travaille les 75 existants pendant qu'on complète la liste.
 
 ---
 
-## 6. La seule décision qui reste à prendre (direction)
+## 6. Décision prise — inversion officielle des niches IT (2026-08-28)
 
-**Faut-il inverser l'ordre des niches IT ?**
+**La direction a retenu l'option (A) : inversion officielle.**
+**1) Helpdesk IT N1 ESN/MSP · 2) Support applicatif N1 éditeurs SaaS · 3) Télésecrétariat
+médical · 4) relation client (futur non déterminé).**
 
-L'ordre officiel (2026-06-22) est : 1) Support N1 éditeurs SaaS · 2) Helpdesk IT ESN/MSP.
-Le terrain et l'analyse auditée disent l'inverse : les ESN/MSP achètent plus vite, la base
-en contient 4 fois plus, et plusieurs éditeurs cibles sont notés « capacité à internaliser ».
+Motifs retenus : cycle d'achat plus court, douleur capacitaire plus vive (tickets récurrents
++ astreintes contractuelles), et matière disponible sans commune mesure — **58 ESN/MSP
+qualifiées contre 15 éditeurs**, dont plusieurs notés « forte capacité à internaliser »
+(Pennylane, Skello) ou « cycle long » (Septeo, Orisha).
 
-Deux options propres :
+**Documents mis à jour en conséquence :** `CLAUDE.md` (niches + rappels clés),
+`IDEAL-CUSTOMER-PROFILE.md` (§1.a / §1.b permutés), `OUTREACH-SEQUENCE.md` (ordre de
+lancement), `BRANDING-Salverys.md` (architecture de marque), `MENTIONS-LEGALES.md`
+(ordre des activités), `PLAYBOOK-SALES-NAVIGATOR.md` (vague 1 = 100 % ESN/MSP).
 
-- **(A) Inverser officiellement** : ESN/MSP devient la niche n°1, éditeurs SaaS n°2. Il faut
-  alors mettre à jour `CLAUDE.md`, `IDEAL-CUSTOMER-PROFILE.md` et `RETROPLANNING-LANCEMENT.md`.
-- **(B) Garder l'ordre, changer la séquence d'attaque** : le support N1 SaaS reste la niche
-  stratégique n°1, mais **on démarre l'exécution sur les ESN/MSP** parce que le cycle y est
-  plus court et que la matière est prête. Aucun document à changer.
+**Effet de bord favorable, à ne pas manquer :** le point mort étant retombé à 1-2 ETP (§4),
+les **MSP régionaux de 11-50 personnes** deviennent des cibles rentables à part entière —
+un contrat de 2 positions suffit. Ce sont aussi les structures où le dirigeant décide seul,
+donc les plus courtes à closer pour un fondateur seul. Une recherche Sales Navigator leur
+est dédiée (`PLAYBOOK` §5, recherche B).
 
-**Recommandation : (B).** Elle ne coûte rien, elle est réversible, et elle ne fige pas une
-décision de positionnement sur la base de 6 semaines d'exécution qui n'ont pas encore eu lieu.
-Le playbook est écrit dans cette hypothèse.
+---
+
+## 7. Ce qui a changé le 2026-08-28 (récapitulatif)
+
+| Décision | Effet principal | Documents touchés |
+|---|---|---|
+| **Inversion des niches IT** (option A) | Vague 1 de prospection = 100 % ESN/MSP | `CLAUDE.md`, ICP, OUTREACH-SEQUENCE, BRANDING, MENTIONS-LEGALES, PLAYBOOK |
+| **Fin du poste de développement commercial** (27/08) | Burn 755 € → **65 €/mois** · point mort 2-6 ETP → **1-2 ETP** · capacité 20 → **8-10 comptes/semaine** | `CLAUDE.md`, FINANCE-PREVISIONNEL (v3.1), AUDIT-FINANCE, VIVIER-EXPORT, RETROPLANNING (caduc), PLAYBOOK, fiches HTML |
+| **Emelia non souscrit, reporté** | Prospection **téléphone d'abord**, email manuel 10-20/j, re-chauffe des boîtes GWS nécessaire | `CLAUDE.md`, OUTREACH-SEQUENCE, PLAYBOOK §8 |
+
+**Le risque à surveiller n'est plus le cash, c'est le trou de pipeline après la première
+signature** — quand le fondateur basculera sur la delivery et cessera de prospecter.
+Mitigation à décider *avant* de signer : `FINANCE-PREVISIONNEL.md` §7 risque n°0 et
+`PLAYBOOK-SALES-NAVIGATOR.md` §18.

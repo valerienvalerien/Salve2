@@ -1,9 +1,13 @@
 # Fiche Client Idéal — Salverys
 
-> Mise à jour le 2026-06-22 | **Alignée sur le GTM marque-blanche-first** (décision
-> direction 2026-06-10, cf. `CLAUDE.md`). **Priorité niches revue 2026-06-22 : l'IT
-> (Support N1 SaaS + Helpdesk IT) passe en n°1, le médical en n°2 ; les bailleurs, élargis
-> à « relation client de toutes sortes », sont repoussés à un futur non déterminé.**
+> Mise à jour le **2026-08-28** | **Alignée sur le GTM marque-blanche-first** (décision
+> direction 2026-06-10, cf. `CLAUDE.md`). **Ordre des niches IT inversé le 2026-08-28 :
+> Helpdesk IT ESN/MSP n°1, Support N1 SaaS n°2** (§1.a / §1.b). L'IT reste devant le
+> médical (décision 2026-06-22) ; les bailleurs, élargis à « relation client de toutes
+> sortes », restent repoussés à un futur non déterminé.
+> ⚠️ **Contrainte d'exécution depuis le 2026-08-27 : le fondateur prospecte seul** (fin du
+> poste de développement commercial). Le ciblage ci-dessous reste valable ; les **volumes**
+> ne le sont plus — voir `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md` §10.
 > Remplace la version du 2026-05-27 (qui classait les bailleurs en n°2 et ignorait les
 > donneurs d'ordre MB).
 > Salverys fournit des **agents francophones depuis Antananarivo, qui travaillent sous la
@@ -16,8 +20,8 @@
 Salverys ne vend pas un logiciel : Salverys **décroche le téléphone et traite les tickets
 à la place d'organisations françaises**, sous leur nom. Le GTM prioritaire est la
 **marque blanche** : on se vend d'abord à des **donneurs d'ordre déjà établis**
-(télésecrétariats médicaux FR, éditeurs/prestataires de support, ESN/MSP) qui placent
-plusieurs ETP d'un coup. Le **direct** (cabinets, chaînes, bailleurs) vient en 2e temps.
+(ESN/MSP, éditeurs/prestataires de support, télésecrétariats médicaux FR — dans cet ordre)
+qui placent plusieurs ETP d'un coup. Le **direct** (cabinets, chaînes, bailleurs) vient en 2e temps.
 
 ---
 
@@ -27,7 +31,30 @@ plusieurs ETP d'un coup. Le **direct** (cabinets, chaînes, bailleurs) vient en 
 > — le point mort (~5 ETP, cf. `FINANCE-PREVISIONNEL.md §4`) est atteignable avec
 > 2-3 donneurs d'ordre, contre 10-15 clients finaux en direct.
 
-### 1.a Éditeurs SaaS & prestataires de support (Support N1) — **priorité IT n°1**
+### 1.a ESN / MSP (Helpdesk IT N1) — **priorité n°1** *(promue le 2026-08-28)*
+
+**Qui :** ESN et MSP françaises 50-300 personnes (cf. `ESN-TARGETS.md`), surtout celles
+avec des postes helpdesk ouverts ou une offre 24/7 affichée. Les MSP régionaux de 11-50
+personnes sont une seconde poche : contrat plus petit, mais le dirigeant décide seul et
+le cycle est court.
+
+**Sa douleur :** le créneau 7h-9h avant l'arrivée des équipes, l'overflow, les pics ;
+recruter un technicien N1 = 60-90 jours sur un marché tendu.
+
+**Pourquoi Salverys :** soupape helpdesk sous leur marque, process ITIL, UTC+3 (le 7h-9h
+français = pleine heure de bureau à Tana, sans prime de nuit), SLA de prise en charge
+contractuel.
+
+**Qui contacter :** fondateur/DG (< 100 pers.), Directeur des Opérations / Directeur
+Delivery (au-delà). **Jamais** la direction commerciale ni les RH.
+
+> **Pourquoi cette niche est passée devant les éditeurs SaaS** (décision direction
+> 2026-08-28) : cycle d'achat plus court, douleur capacitaire plus vive (volumes de tickets
+> récurrents + astreintes contractuelles), et matière disponible sans commune mesure —
+> **58 ESN/MSP qualifiées** contre 15 éditeurs. Raisonnement complet :
+> `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md` §6.
+
+### 1.b Éditeurs SaaS & prestataires de support (Support N1) — **priorité n°2**
 
 **Qui :** éditeurs SaaS français en croissance et prestataires de support qui n'arrivent
 plus à staffer le N1.
@@ -41,20 +68,10 @@ remise au cadrage (`PRICING.md §3`).
 
 **Qui contacter :** Head of Support / Customer Care / COO (pas le CEO sauf < 50 personnes).
 
-### 1.b ESN / MSP (Helpdesk IT N1) — **priorité IT**
-
-**Qui :** ESN et MSP françaises 50-300 personnes (cf. `ESN-TARGETS.md`), surtout celles
-avec des postes helpdesk ouverts ou une offre 24/7 affichée.
-
-**Sa douleur :** le créneau 7h-9h avant l'arrivée des équipes, l'overflow, les pics ;
-recruter un technicien N1 = 60-90 jours sur un marché tendu.
-
-**Pourquoi Salverys :** soupape helpdesk sous leur marque, process ITIL, UTC+3 (le 7h-9h
-français = pleine heure de bureau à Tana, sans prime de nuit), SLA de prise en charge
-contractuel.
-
-**Qui contacter :** fondateur/DG (< 100 pers.), Directeur des Opérations / Directeur
-Delivery (au-delà). **Jamais** la direction commerciale ni les RH.
+**⚠️ Vigilance make-or-buy :** sous 50 personnes, l'éditeur fait souvent traiter le N1 par
+ses développeurs ou son équipe Customer Success — il n'y a pas de budget support à
+externaliser. Au-dessus, les structures très financées (hypercroissance, levées récentes)
+ont la capacité d'internaliser. **Qualifier le make-or-buy dès le 1er échange.**
 
 ### 1.c Télésecrétariats médicaux français (niche médicale — n°2)
 
