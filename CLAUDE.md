@@ -12,10 +12,14 @@ Structure volontairement resserrée, en démarrage.
 > écoute, reporting), pilote mesuré, SLA chiffré.
 
 ### Niches cibles (par priorité)
-> ⚠️ **Priorité revue (décision direction 2026-06-22) : l'IT devient la priorité n°1**,
-> avant le médical (qui passe n°2). 
-1. **Support applicatif N1 pour éditeurs SaaS français** (priorité absolue — IT)
-2. **Helpdesk IT N1 distant** (IT)
+> ⚠️ **Ordre révisé (décision direction 2026-08-28) : le helpdesk IT N1 pour ESN/MSP passe
+> n°1, le support applicatif N1 pour éditeurs SaaS passe n°2.** Motif : cycle d'achat plus
+> court, douleur capacitaire plus vive (volumes de tickets récurrents + astreintes), et
+> base de cibles 4× plus fournie (58 ESN/MSP qualifiées contre 15 éditeurs, dont plusieurs
+> notés « forte capacité à internaliser »). L'IT reste devant le médical (décision 2026-06-22).
+> Détail du raisonnement : `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md` §6.
+1. **Helpdesk IT N1 distant pour ESN / MSP** (priorité absolue — IT)
+2. **Support applicatif N1 pour éditeurs SaaS français** (IT)
 3. Télésecrétariat médical
 4. *Relation client de toutes sortes* — dans un futur non déterminé
 
@@ -36,7 +40,11 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 
 - **Aucun plafond d'effectif** : on embauche sur **positions fermes facturables**, pas sur
   une cible d'équipe. Ne jamais opposer une limite de capacité à un prospect.
-- **Effectif à ce jour : 1 salariée** (Vololona, développement commercial).
+- **Effectif à ce jour : 0 salarié.** Le poste de développement commercial a pris fin le
+  **2026-08-27**. **Le fondateur est seul et assure lui-même la prospection** — toute
+  planification (cadence, volumes, objectifs) doit partir de cette contrainte et non d'une
+  équipe commerciale. Conséquence financière : le burn avant premier contrat tombe à
+  **~65 €/mois** et le point mort à **1-2 ETP placés** (`FINANCE-PREVISIONNEL.md` §2.b/§4).
 - **Un seul fondateur, non rémunéré** au lancement.
 - Le **hub de repli** et la ligne **kits d'autonomie** sont sortis des charges : le kit
   reste dû à l'agent, son coût est réputé couvert par le salaire.
@@ -64,7 +72,17 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 > seed (180 leads + décideurs vérifiés sont définis dans le code).
 
 ## Outils retenus
-- **Cold mailing : Emelia** (outil de prospection email retenu)
+- **Base de prospection : Airtable** (« Prospection Salverys » — comptes + contacts liés).
+  Les CRM HTML (`CRM_Salverys*.html`) sont **hors production** depuis le 2026-08-28
+  (stockage `localStorage` : non partagé, non sauvegardé, pertes constatées).
+- **Cold mailing : Emelia** — outil retenu, **abonnement NON souscrit et volontairement
+  reporté (décision 2026-08-28)**. Motif : l'outil sert le volume, or la contrainte est le
+  temps du fondateur seul ; il impose 3-4 semaines de chauffe et un coût fixe avant le
+  premier envoi. **En attendant, la prospection est téléphone + LinkedIn d'abord**, avec
+  un envoi email **manuel** depuis les boîtes GWS existantes (10-20/jour max).
+  Souscrire Emelia quand l'une de ces deux conditions est remplie : un 2e opérateur
+  commercial existe, ou le besoin dépasse durablement 20 emails/jour.
+  Cadre complet : `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md`.
 
 ## Source de vérité tarifaire
 
@@ -73,9 +91,9 @@ définis dans **`PRICING.md`** — c'est la **source unique de vérité**. Toute
 (emails `OUTREACH-*`, CRM, simulateurs, `index.html`) doit s'aligner dessus ; en cas
 de divergence, `PRICING.md` fait foi. Réflexion détaillée : `RAPPORT-PRIX.html`.
 
-Rappels clés : priorités niches = **1) Support N1 SaaS & Helpdesk IT (IT) · 2) médical ·
-3) relation client de toutes sortes (futur non déterminé)** ; offre de lancement = **1er mois
-à -50 %** (et non plus essai gratuit) ;
+Rappels clés : priorités niches = **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS ·
+3) médical · 4) relation client de toutes sortes (futur non déterminé)** ; offre de lancement
+= **1er mois à -50 %** (et non plus essai gratuit) ;
 modèles de tarification = **ETP par position > à l'heure > à l'interaction**.
 
 ## Règle d'arbitrage : SaaS-first avant tout code maison

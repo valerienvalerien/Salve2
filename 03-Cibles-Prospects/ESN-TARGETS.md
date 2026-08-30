@@ -3,6 +3,15 @@
 **Objectif :** Identifier des prestataires IT français (50-300 personnes) sans filiale offshore qui sous-traitent réellement leur overflow N1
 **Usage :** Base de prospection Salverys — partenariat sous-traitance marque blanche helpdesk IT N1
 
+> ⚠️ **Correction 2026-08-28 — où sont réellement ces comptes.** Les mentions « intégré au
+> CRM, leads `l196` à `l249` » plus bas sont **inexactes** : le seed committé de
+> `CRM_Salverys.html` s'arrête à `l195`. Ces comptes n'existaient que dans le `localStorage`
+> d'un navigateur et dans `exports/`. Ils ont été récupérés et versés dans la
+> **base Airtable « Prospection Salverys »** (75 comptes MB France), sauvegardée dans le dépôt
+> sous `exports/PROSPECTION-comptes-MB-France.csv`.
+> **Les CRM HTML ne sont plus l'outil de production** — voir `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md` §2
+> et `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md` §1.
+
 ---
 
 ## Règle de cadrage — QUI viser selon la taille

@@ -5,17 +5,21 @@ campagnes sont exécutées dans **Emelia**. Le CRM (`CRM_Salverys.html`) sert au
 pipeline post-réponse, aux décideurs vérifiés et aux scripts d'appel — pas à
 l'envoi des séquences.
 
-**Outil d'envoi :** Emelia (mail-merge CSV)
-**Date :** 2026-06-02
-**Niches couvertes (ordre CLAUDE.md — priorité revue 2026-06-22 : IT n°1, médical n°2) :**
-1. **Support N1 — Éditeurs SaaS FR** — priorité n°1 (IT)
-2. **Helpdesk IT N1 — ESN & MSP** — priorité n°1 (IT) (séquence dédiée : `OUTREACH-IT-N1-marque-blanche.md`)
-3. **Télésecrétariat médical** — priorité n°2 (séquence détaillée ci-dessous)
+**Outil d'envoi :** Emelia — ⚠️ **abonnement non souscrit, envoi automatisé reporté**
+(décision 2026-08-28, cf. `CLAUDE.md` §Outils retenus). D'ici là, les emails partent
+**manuellement** depuis les boîtes GWS, 10-20/jour maximum, et les relances sont suivies
+dans Airtable. **Les textes ci-dessous restent valables tels quels** — seul le mode d'envoi
+change.
+**Date :** 2026-06-02 · **Ordre des niches mis à jour le 2026-08-28**
+**Niches couvertes (ordre `CLAUDE.md`) :**
+1. **Helpdesk IT N1 — ESN & MSP** — **priorité n°1** (séquence dédiée : `OUTREACH-IT-N1-marque-blanche.md`)
+2. **Support N1 — Éditeurs SaaS FR** — priorité n°2 (IT)
+3. **Télésecrétariat médical** — priorité n°3 (séquence détaillée ci-dessous)
 4. **Relation client de toutes sortes** (ex-bailleurs) — futur non déterminé (séquence détaillée ci-dessous, conservée pour référence)
 
-> ⚠️ Les séquences ci-dessous restent rédigées médical-first (antériorité). L'ordre de
-> **lancement opérationnel** doit suivre la nouvelle priorité (IT d'abord) — à arbitrer
-> avec la direction avant la prochaine campagne.
+> ⚠️ Les séquences ci-dessous restent **rédigées médical-first** (antériorité de rédaction).
+> L'ordre de **lancement opérationnel** est celui ci-dessus : **ESN/MSP d'abord**.
+> La séquence à utiliser en premier est `OUTREACH-IT-N1-marque-blanche.md`.
 
 ---
 

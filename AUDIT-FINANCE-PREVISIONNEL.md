@@ -1,5 +1,12 @@
 # AUDIT — `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`
 
+> ⚠️ **Périmé sur les montants depuis le 2026-08-28.** Cet audit a été fait sur la v3, qui
+> intégrait une salariée au développement commercial. Le poste a pris fin le 2026-08-27 :
+> le socle fixe passe de **2 114 € à ~920 €**, le burn de **~755 € à ~65 €/mois** et le
+> point mort de **2-6 ETP à 1-2 ETP**. Les **constats de méthode** de cet audit restent
+> valables ; **tous les montants cités ci-dessous sont ceux de la v3** — se référer à
+> `FINANCE-PREVISIONNEL.md` (v3.1) pour les chiffres à jour.
+>
 > Audit de cohérence interne, de reproductibilité des chiffres et d'alignement avec
 > `PRICING.md`, `tresorerie-salverys.html`, `tools/deal-build.mjs`,
 > `03-Cibles-Prospects/IDEAL-CUSTOMER-PROFILE.md` et `EVALUATION-STRATEGIQUE-2026-06.md`.

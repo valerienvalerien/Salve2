@@ -33,9 +33,9 @@ juridiquement portée par la société **VJUS**.
 BPO basé à Antananarivo (Madagascar) ciblant des clients **professionnels français**
 (B2B uniquement) :
 
-1. Télésecrétariat médical
+1. Helpdesk IT N1 distant
 2. Support applicatif N1 pour éditeurs SaaS français
-3. Helpdesk IT N1 distant
+3. Télésecrétariat médical
 
 GTM prioritaire : **marque blanche** (sous-traitance de donneurs d'ordre français) ;
 le direct (client final) vient en second temps.

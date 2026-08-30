@@ -17,7 +17,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | Dossier | Contenu |
 |---|---|
 | `01-Strategie-Offre/` | Offre médicale, offre irrésistible, éval. stratégique, prévisionnel, branding, narratif callbot, arguments Priority, conformité HDS/RGPD |
-| `02-Prospection/` | Séquences cold (`OUTREACH-*`) + one-pagers (chaînes médical, partenaire MB) |
+| `02-Prospection/` | Séquences cold (`OUTREACH-*`), scripts d'appel, one-pagers, **`PLAYBOOK-SALES-NAVIGATOR.md`** (méthode de prospection en production) |
 | `03-Cibles-Prospects/` | Analyses prospects (`PROSPECT-ANALYSIS-*`), décideurs, cibles ESN/télésec, ICP |
 | `04-Closing/` | Devis, contrat de prestation, DPA/RGPD, onboarding client |
 | `05-Process-Delivery/` | Grille QA + double écoute, modèles de reporting client |
@@ -27,3 +27,9 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 
 `index.html`, `CRM_Salverys.html`, simulateurs, espaces client/candidat, chartes,
 `assets/`, `tools/`. Build : `tools/build-site.sh`.
+
+> ⚠️ **Les CRM HTML (`CRM_Salverys*.html`) ne sont plus l'outil de prospection en production**
+> (depuis le 2026-08-28). Ils stockent en `localStorage` : non partagés, non sauvegardés —
+> 60 comptes y avaient déjà été perdus. La base de prospection vit désormais dans **Airtable
+> (« Prospection Salverys »)**, sauvegardée dans `exports/PROSPECTION-comptes-MB-France.csv`.
+> Voir `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md`.

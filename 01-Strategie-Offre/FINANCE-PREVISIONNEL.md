@@ -1,12 +1,25 @@
-# FINANCE-PREVISIONNEL.md — Salverys (v3, refait le 2026-08-14)
+# FINANCE-PREVISIONNEL.md — Salverys (v3.1, mis à jour le 2026-08-28)
 
+> 🔴 **Mise à jour du 2026-08-28 — le poste de développement commercial a pris fin le
+> 2026-08-27. Effectif : 0 salarié.** Effets chiffrés, répercutés dans tout le document :
+> - **Burn avant premier contrat : ~710-755 € → ~65 €/mois** (§2.b). Sans salaire ni
+>   Emelia (non souscrit), il ne reste que M365/GWS, OVH et les imprévus.
+> - **Socle fixe après le 1er contrat : 2 114 € → ~920 €** (1 métier actif) (§2.c).
+> - **Point mort : 2-6 ETP → 1-2 ETP placés** (§4), soit **~2 000 à 3 400 €** de CA mensuel.
+> - **Conséquence commerciale : un seul contrat MB de 2 positions passe le point mort.**
+> - **Conséquence de pilotage : il n'y a plus d'horloge de trésorerie.** La contrainte
+>   n'est plus le cash, c'est le **temps d'une seule personne** (§7).
+> ⚠️ Les **trajectoires 12 mois (§5)** n'ont pas été recalculées : elles supposaient une
+> prospection à temps plein. Elles sont désormais **optimistes sur le rythme de signature**
+> et doivent être relues comme telles (voir l'avertissement en tête de §5).
+>
 > **Modèle acté par la direction (2026-08-14)** : bascule du 100 % freelance vers une
 > **équipe 100 % salariée**. Salaire **brut** d'un agent : **3 250 000 Ar/mois (650 €)**,
 > **charges patronales en sus** (CNaPS/OSTIE, §1). **Un seul fondateur**, **sans
 > rémunération** au lancement. **Aucun plafond d'effectif** : la structure se dimensionne
-> sur les contrats signés. **Effectif à ce jour : 1 salariée** (Vololona, développement
-> commercial). GTM prioritaire inchangé : **marque blanche d'abord** sur les 3 niches
-> (cf. `CLAUDE.md`). Simulateur : `tresorerie-salverys.html`.
+> sur les contrats signés. GTM prioritaire inchangé : **marque blanche d'abord**
+> (cf. `CLAUDE.md`). Simulateur : `tresorerie-salverys.html` — ⚠️ **son curseur
+> « Commercial » doit être mis à 0** tant qu'il n'y a pas de recrutement commercial.
 > Taux : ~5 000 Ar ≈ 1 €.
 >
 > *v2 (100 % freelances, 8 agents + 2 managers, direction rémunérée, hub de repli, kits
@@ -23,7 +36,7 @@
 |---|---|---|
 | Agent productif (facturable) | **3 250 000 Ar (650 €)** | CDI |
 | Manager métier (1 médical, 1 IT) | **3 250 000 Ar (650 €)** | CDI, non facturable |
-| Développement commercial (Vololona) | fixe ~500 € + variable, **OTE 1 000 €** | CDI — `remuneration-vololoniaina.html` |
+| ~~Développement commercial~~ | ~~fixe ~500 € + variable, OTE 1 000 €~~ | **Poste terminé le 2026-08-27 — non pourvu.** Grille conservée pour un futur recrutement : `remuneration-vololoniaina.html` |
 | Direction | **0 €** | fondateur unique, non rémunéré au lancement |
 
 **Lecture marché** : le salaire moyen d'un agent de call center à Tana est ~700 000 Ar ;
@@ -85,32 +98,40 @@ sur les contrats**. Trois blocs — coût unitaire, structure actuelle, règle d
 |---|---|---|
 | **Agent placé** (736 € + VoIP ~30 €) | **766 €** | **~843 €** |
 | **Manager métier** | 736 € | ~810 € |
-| **Vololona** — fixe seul / à l'OTE | 586 € / 1 086 € | ~645 € / ~1 195 € |
+| *Développement commercial (poste non pourvu depuis le 2026-08-27)* | *586 € / 1 086 € à l'OTE* | *~645 € / ~1 195 €* |
 
-### 2.b Charges de structure — situation au 2026-08-14
+### 2.b Charges de structure — situation au 2026-08-28
 
 | Poste | Détail | €/mois |
 |---|---|---|
-| Vololona | fixe seul, pas encore de variable déclenché | 586 |
-| SaaS socle | Emelia ~40 € · M365 + GWS ~20 € · OVH ~1 € · HubSpot Free 0 € · **+ facturation, à souscrire (§8)** | ~100 |
-| Divers / imprévus (10 %) | | ~69 |
-| **Total — burn actuel** | ~712 € sans outil de facturation, ~755 € avec | **≈ 710-755 €/mois** |
+| Salaires | **aucun** — 0 salarié, fondateur non rémunéré | **0** |
+| SaaS socle | M365 + GWS ~20 € · OVH ~1 € · Airtable Free 0 € · **+ facturation, à souscrire (§8)** | ~60 |
+| *Emelia* | *~40 € — **non souscrit**, reporté (décision 2026-08-28, cf. `CLAUDE.md`)* | *0* |
+| Divers / imprévus (10 %) | | ~6 |
+| **Total — burn actuel** | | **≈ 65 €/mois** |
+
+> **Ce que ça change vraiment.** À ~65 €/mois, **le temps ne coûte plus rien**. L'urgence
+> commerciale n'est plus financière : elle est stratégique (occuper le terrain, apprendre
+> vite). Toute décision qui achète du temps contre du cash — souscrire un outil, sous-traiter
+> — doit désormais se justifier par un gain de **temps fondateur**, pas par un gain de burn.
 
 ### 2.c Règle de montée
 
 | Déclencheur | Effet sur les charges |
 |---|---|
-| 1ᵉʳ contrat signé (quel que soit le métier) | + **manager métier** (810 €) · Vololona passe vers l'OTE (+550 €) |
+| 1ᵉʳ contrat signé (quel que soit le métier) | + **manager métier** (810 €) |
 | Chaque position ferme signée | + **843 €/mois**, à compter de **l'embauche**, soit ~1 mois **avant** la 1ʳᵉ facture |
 | 2ᵉ métier activé | + **1 manager métier** (810 €) |
 | Au-delà de **8 agents par manager** | + **1 manager** (810 €) |
+| Recrutement d'un commercial (non planifié) | + **645 € au fixe seul**, jusqu'à **~1 195 € à l'OTE** |
 
 **Socle fixe résultant** — c'est ce qui porte le point mort (§4) :
 
-| Configuration | Vololona | Manager(s) | SaaS | Imprévus | **Fixe** |
+| Configuration | Commercial | Manager(s) | SaaS | Imprévus | **Fixe** |
 |---|---|---|---|---|---|
-| **1 métier actif** (IT seul — priorité n°1) | 1 086 € | 736 € | 100 € | 192 € | **≈ 2 114 €** |
-| **2 métiers actifs** (IT + médical) | 1 086 € | 1 472 € | 100 € | 266 € | **≈ 2 924 €** |
+| **1 métier actif** (IT seul — priorité n°1) | 0 € | 736 € | 100 € | 84 € | **≈ 920 €** |
+| **2 métiers actifs** (IT + médical) | 0 € | 1 472 € | 100 € | 157 € | **≈ 1 730 €** |
+| *(rappel v3, avec un commercial à l'OTE — 1 métier)* | *1 086 €* | *736 €* | *100 €* | *192 €* | *≈ 2 114 €* |
 
 > **Ce qui a disparu de la v2** : rémunération de la direction (−1 400 €), hub de repli et
 > énergie (−500 €), indemnité de connexion domicile (−150 €), kits d'autonomie (capex).
@@ -164,26 +185,30 @@ Le point mort n'est pas un chiffre unique : il dépend du **prix du palier vendu
 **Point mort = fixe ÷ (prix ETP − 843 €)**, où 843 € est le coût variable d'un agent
 placé, imprévus compris (§2.a).
 
-| Palier (`PRICING.md §3`) | Prix ETP | Contribution | **1 métier actif** (fixe 2 114 €) | **2 métiers** (fixe 2 924 €) |
+| Palier (`PRICING.md §3`) | Prix ETP | Contribution | **1 métier actif** (fixe 920 €) | **2 métiers** (fixe 1 730 €) |
 |---|---|---|---|---|
-| Helpdesk 1-4 ETP | 2 000 € | 1 157 € | **2 ETP** | 3 ETP |
-| Helpdesk 5-8 ETP | 1 750 € | 907 € | **3 ETP** | 4 ETP |
-| Support 1-4 ETP | 1 700 € | 857 € | **3 ETP** | 4 ETP |
-| Helpdesk 9+ ETP | 1 550 € | 707 € | **3 ETP** | 5 ETP |
-| Support 5-8 ETP | 1 500 € | 657 € | **4 ETP** | 5 ETP |
-| Support 9+ ETP | 1 350 € | 507 € | **5 ETP** | 6 ETP |
+| Helpdesk 1-4 ETP | 2 000 € | 1 157 € | **1 ETP** | 2 ETP |
+| Helpdesk 5-8 ETP | 1 750 € | 907 € | **2 ETP** | 2 ETP |
+| Support 1-4 ETP | 1 700 € | 857 € | **2 ETP** | 3 ETP |
+| Helpdesk 9+ ETP | 1 550 € | 707 € | **2 ETP** | 3 ETP |
+| Support 5-8 ETP | 1 500 € | 657 € | **2 ETP** | 3 ETP |
+| Support 9+ ETP | 1 350 € | 507 € | **2 ETP** | 4 ETP |
 
-**Point mort réel : 2 à 6 ETP placés**, soit **4 000 à 8 100 € de CA mensuel** selon le
-mix et le nombre de métiers activés. C'est l'effet direct de la suppression de la
-rémunération de direction, du hub et de la double manager au démarrage : le socle fixe
-passe de ~3 830 € (v2) à **2 114 €**.
+**Point mort réel : 1 à 2 ETP placés** (1 métier actif), soit **~2 000 à 3 400 € de CA
+mensuel** ; 2 à 4 ETP si les deux métiers tournent. Le socle fixe est passé de ~3 830 €
+(v2, modèle freelance) à 2 114 € (v3) puis à **920 €** depuis la fin du poste commercial.
 
-**Deux lectures commerciales immédiates :**
+**Trois lectures commerciales immédiates :**
 
-1. **Un seul deal de 3-4 positions au tarif standard (palier 1-4) fait atteindre le point
-   mort.** C'est le message à tenir en prospection MB — plus besoin d'un donneur d'ordre
-   à 7 positions.
-2. **La nouvelle structure de paliers sécurise le bas de grille.** Le prix plancher
+1. **Un seul contrat MB de 2 positions au palier standard passe le point mort** — et même
+   **1 seule position** sur le palier helpdesk 1-4 ETP. C'est le message à tenir en
+   prospection MB : on n'a plus besoin d'un donneur d'ordre à 3-4 positions pour être à
+   l'équilibre, ce qui **ouvre les MSP régionaux de 11-50 personnes** (contrats de 1-2 ETP)
+   comme cibles rentables à part entière, et non plus comme lots de consolation.
+2. **Corollaire à ne pas oublier :** le point mort baisse parce qu'il n'y a plus personne
+   pour vendre. On a échangé du coût fixe contre de la capacité commerciale — le risque a
+   changé de nature, il n'a pas disparu (§7).
+3. **La nouvelle structure de paliers sécurise le bas de grille.** Le prix plancher
    (1 350 €) n'est plus accordé à 5 positions mais à **9**. Au coût salarié, 5 positions à
    1 350 € dégageraient **+421 €/mois** — soit +6 %, une marge de manœuvre nulle : une
    absence non couverte ou un mois de sous-consommation suffit à la faire basculer. À 9
@@ -193,6 +218,15 @@ passe de ~3 830 € (v2) à **2 114 €**.
 ---
 
 ## 5. Trajectoire 12 mois — 3 scénarios (MB-first)
+
+> ⚠️ **À relire avec le correctif du 2026-08-28.** Ces trois scénarios ont été construits
+> avec **une commerciale à temps plein**. Depuis le 2026-08-27, la prospection repose sur le
+> fondateur seul, qui porte aussi le juridique, le recrutement, l'infra et la delivery.
+> **Les rythmes de placement ci-dessous sont donc optimistes** — le scénario médian
+> (+1 ETP/mois dès M4) suppose une cadence commerciale qui n'existe plus.
+> Les **charges** et le **point mort**, eux, sont désormais plus favorables (§2.b, §4) :
+> le creux de trésorerie se creuse moins vite. À recalculer quand deux mois d'activité
+> réelle en solo auront donné un vrai taux de transformation.
 
 **Hypothèses communes** : prospection dès M1 (séquences prêtes) · **délai signature →
 1ʳᵉ facture intégré** : recrutement 2-4 sem. + formation 2-3 sem. ⇒ l'agent est **payé à
@@ -268,7 +302,22 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
 
 ## 7. Risques financiers spécifiques au modèle salarié
 
-1. 🔴 **Rigidité de l'effectif — le risque n°1, et il est nouveau.** En freelance, un agent
+> 🔴 **Risque n°0, ajouté le 2026-08-28 — capacité commerciale nulle en propre.**
+> Depuis la fin du poste de développement commercial, **la totalité de la prospection repose
+> sur le fondateur**, qui porte déjà le juridique, le recrutement, l'infrastructure et la
+> future delivery. Ce n'est pas un risque de coût — le burn tombe à ~65 €/mois (§2.b) — c'est
+> un **risque de calendrier** : chaque semaine sans contact décideur repousse le premier
+> contrat, et donc l'embauche du premier manager, et donc la delivery.
+> **Ce qui rend ce risque tenable :** avec 65 €/mois de burn, on peut absorber un
+> allongement de plusieurs mois sans mettre la structure en danger. **Ce qui le rend
+> dangereux :** au premier contrat signé, le fondateur devra basculer sur l'onboarding et la
+> delivery — et la prospection s'arrêtera net, créant un trou de pipeline juste après la
+> première signature. **Mitigation à décider avant le 1er contrat, pas après** : soit le
+> premier manager métier recruté prend une part de la relation client, soit un commercial
+> est ré-embauché sur le variable dès que le CA le finance (le poste coûte 645 € au fixe
+> seul, soit moins d'un ETP placé).
+
+1. 🔴 **Rigidité de l'effectif — le risque n°1 du modèle salarié.** En freelance, un agent
    non staffé se désactivait. Un salarié ne se désactive pas : il faut un motif, un
    **préavis** et une **indemnité de licenciement** (droit du travail malgache). Un contrat
    perdu ne coûte plus 766 €/mois pendant qu'on cherche à le remplacer — il coûte cela

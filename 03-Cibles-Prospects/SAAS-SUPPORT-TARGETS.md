@@ -1,7 +1,15 @@
 # Éditeurs SaaS & prestataires de support FR — Cibles support applicatif N1 (marque blanche)
 **Généré le :** 2026-07-13
 **Objectif :** Donneurs d'ordre français pour du support applicatif N1 opéré **sous leur marque** (MB-first, cf. `IDEAL-CUSTOMER-PROFILE.md §1.a`)
-**Usage :** Intégré au CRM (`CRM_Salverys.html` / `CRM_Salverys_Unifie.html`) — leads `l209` à `l220`, niche `support-n1`, notes préfixées « MB »
+**Usage :** Base de prospection Salverys — support applicatif N1 en marque blanche
+
+> ⚠️ **Correction 2026-08-28.** Ces comptes étaient annoncés comme « intégrés au CRM
+> (`CRM_Salverys.html`), leads `l209` à `l220` et `l233`-`l235` ». **Ils n'y sont pas** : le
+> seed committé s'arrête à `l195`. Ils ne vivaient que dans le `localStorage` d'un navigateur
+> et dans `exports/`. Récupérés et versés dans la **base Airtable « Prospection Salverys »**,
+> sauvegardés dans le dépôt sous `exports/PROSPECTION-comptes-MB-France.csv`.
+> **Les CRM HTML ne sont plus l'outil de production** — voir
+> `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md` §2.
 
 ---
 

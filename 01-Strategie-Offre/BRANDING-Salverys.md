@@ -46,15 +46,17 @@ une ampleur qui justifie sa propre identité (pas avant).
         │                                            │
   Support IT & Applicatif                  Télésecrétariat Médical
   (priorité n°1 commerciale —              (priorité n°2 commerciale)
-   Support N1 + Helpdesk IT N1)
+   Helpdesk IT N1 ESN/MSP d'abord,
+   puis Support N1 SaaS)
 ```
 
 - **Salverys** porte la marque, la promesse et la réputation.
 - Les deux lignes de service sont des **descripteurs**, jamais des marques :
   on écrit « Salverys — Télésecrétariat Médical », pas « Salverys Médical » en
   logo autonome.
-- Priorité commerciale revue (2026-06-22) : **support IT d'abord** (Support N1 SaaS +
-  Helpdesk IT N1), le **télésecrétariat médical en second**.
+- Priorité commerciale : **support IT d'abord** (2026-06-22), le **télésecrétariat médical
+  en second**. À l'intérieur de l'IT, ordre révisé le **2026-08-28** : **Helpdesk IT N1
+  ESN/MSP n°1**, Support N1 SaaS n°2.
 
 ---
 
