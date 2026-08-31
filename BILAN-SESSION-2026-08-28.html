@@ -1,0 +1,531 @@
+<title>Repartir à un</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ============================================================
+     Palette : charte Salverys (assets/site.css)
+     bleu profond #2E3B4E · sauge #6F8770 · or #B89968 · greige #F6F2EA
+     ============================================================ */
+  :root{
+    --ground:#F6F2EA;
+    --surface:#FFFFFF;
+    --surface-2:#FBF8F2;
+    --ink:#20303F;
+    --text:#2A2620;
+    --text-soft:#5C5448;
+    --text-mute:#8A8275;
+    --line:#E7DFD1;
+    --line-soft:#F0EADE;
+    --primary:#2E3B4E;
+    --accent:#6F8770;
+    --accent-tint:#EAF0EA;
+    --gold:#B89968;
+    --gold-tint:#F5EEDF;
+    --danger:#B6604D;
+    --danger-tint:#F7E9E4;
+    --shadow:0 1px 2px rgba(32,48,63,.05), 0 8px 24px rgba(32,48,63,.06);
+    --band:#2E3B4E;
+    --band-text:#EDE8DD;
+    --band-mute:#A9B4C0;
+    --band-line:rgba(237,232,221,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#1B2330;
+      --surface:#232D3B;
+      --surface-2:#28323F;
+      --ink:#EDE8DD;
+      --text:#E3DED3;
+      --text-soft:#B9B3A7;
+      --text-mute:#8F897E;
+      --line:#37414F;
+      --line-soft:#2E3846;
+      --primary:#C3D2DF;
+      --accent:#95AE96;
+      --accent-tint:#26332A;
+      --gold:#CBAE7C;
+      --gold-tint:#332E22;
+      --danger:#D98B76;
+      --danger-tint:#35251F;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+      --band:#151C26;
+      --band-text:#E3DED3;
+      --band-mute:#8F9AA6;
+      --band-line:rgba(227,222,211,.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#1B2330;
+    --surface:#232D3B;
+    --surface-2:#28323F;
+    --ink:#EDE8DD;
+    --text:#E3DED3;
+    --text-soft:#B9B3A7;
+    --text-mute:#8F897E;
+    --line:#37414F;
+    --line-soft:#2E3846;
+    --primary:#C3D2DF;
+    --accent:#95AE96;
+    --accent-tint:#26332A;
+    --gold:#CBAE7C;
+    --gold-tint:#332E22;
+    --danger:#D98B76;
+    --danger-tint:#35251F;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+    --band:#151C26;
+    --band-text:#E3DED3;
+    --band-mute:#8F9AA6;
+    --band-line:rgba(227,222,211,.14);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--text);
+    font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+  .col{max-width:730px}
+
+  h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:500;color:var(--ink);text-wrap:balance;margin:0}
+  h1{font-size:clamp(40px,6.4vw,66px);line-height:1.02;letter-spacing:-.022em;font-weight:600}
+  h2{font-size:clamp(26px,3.4vw,34px);line-height:1.14;letter-spacing:-.015em}
+  h3{font-size:19px;line-height:1.3;letter-spacing:-.008em;font-weight:600}
+  p{margin:0}
+  strong{font-weight:600;color:var(--ink)}
+  em{font-style:italic}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.855em;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:4px;padding:.1em .38em;color:var(--text-soft)}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);
+  }
+
+  /* ---------- rythme des sections ---------- */
+  section{padding:74px 0;border-top:1px solid var(--line)}
+  section.alt{background:var(--surface)}
+  .sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:34px;max-width:730px}
+  .sec-head p{color:var(--text-soft);font-size:17px}
+  .stack{display:flex;flex-direction:column;gap:20px}
+  .stack-lg{display:flex;flex-direction:column;gap:34px}
+
+  /* ---------- en-tête ---------- */
+  header{background:var(--band);color:var(--band-text);padding:64px 0 58px}
+  header .eyebrow{color:var(--band-mute)}
+  header h1{color:var(--band-text);margin:16px 0 0}
+  header .lede{color:var(--band-mute);font-size:19px;max-width:620px;margin-top:20px;line-height:1.55}
+  .decisions{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+  .decision{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.02em;
+    border:1px solid var(--band-line);border-radius:100px;padding:7px 15px;color:var(--band-text);
+  }
+  .decision b{font-weight:500;color:#C9D8C9}
+
+  /* ---------- le déclic ---------- */
+  .declic{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;padding:30px 32px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}
+  .declic .big{font-family:'Spectral',Georgia,serif;font-size:clamp(24px,3.1vw,31px);line-height:1.25;color:var(--ink);letter-spacing:-.01em}
+  .declic p{color:var(--text-soft)}
+
+  /* ---------- cartes acquis ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:10px}
+  section.alt .card{background:var(--surface-2)}
+  .card .eyebrow{color:var(--accent)}
+  .card p{font-size:15px;color:var(--text-soft);line-height:1.55}
+  .card ul{margin:0;padding-left:18px;font-size:15px;color:var(--text-soft);display:flex;flex-direction:column;gap:6px}
+  .metric{font-family:'Spectral',Georgia,serif;font-size:42px;line-height:1;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .metric small{font-size:15px;font-family:'IBM Plex Sans',sans-serif;font-weight:400;color:var(--text-mute);letter-spacing:0}
+
+  /* ---------- apprentissages : croyance → réalité ---------- */
+  .lesson{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1.25fr);gap:0 14px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+  .lesson:last-child{border-bottom:0}
+  .lesson .was{color:var(--text-mute);font-size:15px;line-height:1.5}
+  .lesson .was b{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:7px;font-weight:500}
+  .lesson .arrow{color:var(--accent);font-size:18px;line-height:1.5;padding-top:22px;text-align:center}
+  .lesson .now{font-size:15.5px;line-height:1.55;color:var(--text)}
+  .lesson .now b{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:7px;font-weight:500}
+  @media (max-width:640px){
+    .lesson{grid-template-columns:1fr;gap:12px}
+    .lesson .arrow{display:none}
+    .lesson .now{padding-left:14px;border-left:2px solid var(--accent)}
+  }
+
+  /* ---------- bascule financière ---------- */
+  .shift-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+  section.alt .shift-wrap{background:var(--surface-2)}
+  table{border-collapse:collapse;width:100%;min-width:530px;font-size:15px}
+  th,td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--line-soft)}
+  thead th{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--text-mute);border-bottom:1px solid var(--line);
+  }
+  tbody tr:last-child td{border-bottom:0}
+  td.lbl{color:var(--text-soft)}
+  td.before{color:var(--text-mute);font-variant-numeric:tabular-nums;text-decoration:line-through;text-decoration-color:var(--line)}
+  td.after{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+  .highlight td{background:var(--accent-tint)}
+
+  /* ---------- entonnoir ---------- */
+  .funnel{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+  section.alt .funnel{background:var(--surface-2)}
+  .step{display:flex;align-items:baseline;gap:18px;padding:17px 22px;border-bottom:1px solid var(--line-soft)}
+  .step:last-child{border-bottom:0;background:var(--accent-tint)}
+  .step .n{font-family:'Spectral',Georgia,serif;font-size:31px;font-weight:600;color:var(--ink);min-width:64px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .step .lab{flex:1;font-size:15.5px;color:var(--text)}
+  .step .rate{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-mute);white-space:nowrap}
+
+  /* ---------- listes de séquence / actions ---------- */
+  .rows{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line-soft)}
+  .row{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+  .row .when{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);min-width:132px;letter-spacing:.02em}
+  .row .what{flex:1;font-size:15.5px;color:var(--text)}
+  .row .what span{display:block;color:var(--text-mute);font-size:14px;margin-top:3px}
+  @media (max-width:640px){.row{flex-direction:column;gap:5px}.row .when{min-width:0}}
+
+  /* ---------- horizons ---------- */
+  .horizon{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:11px}
+  section.alt .horizon{background:var(--surface-2)}
+  .trigger{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:.02em;line-height:1.5}
+  .horizon p{font-size:15px;color:var(--text-soft);line-height:1.55}
+
+  /* ---------- encadré vigilance ---------- */
+  .warn{background:var(--danger-tint);border:1px solid var(--danger);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:11px}
+  .warn .eyebrow{color:var(--danger)}
+  .warn p{font-size:15.5px;color:var(--text)}
+
+  /* ---------- pied ---------- */
+  footer{background:var(--band);color:var(--band-mute);padding:52px 0 60px;font-size:14.5px}
+  footer .eyebrow{color:var(--band-mute)}
+  footer .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px 30px;margin-top:20px}
+  footer .files div{border-top:1px solid var(--band-line);padding-top:11px}
+  footer .files b{display:block;color:var(--band-text);font-weight:500;font-family:'IBM Plex Mono',monospace;font-size:12.5px;margin-bottom:3px;word-break:break-word}
+  footer a{color:#C9D8C9}
+  footer .sign{margin-top:34px;padding-top:20px;border-top:1px solid var(--band-line);font-size:13px}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Salverys · Session du 28 août 2026 · Prospection</div>
+    <h1>Repartir à un</h1>
+    <p class="lede">
+      Une session d'audit qui devait corriger un plan de prospection, et qui a fini par
+      réécrire le dimensionnement commercial de la structure.
+    </p>
+    <div class="decisions">
+      <span class="decision"><b>01</b> &nbsp;Niches IT inversées — ESN/MSP n°1</span>
+      <span class="decision"><b>02</b> &nbsp;Poste commercial terminé — effectif 0</span>
+      <span class="decision"><b>03</b> &nbsp;Emelia reporté — téléphone d'abord</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="col stack">
+      <div class="eyebrow">Le point de départ</div>
+      <div class="declic">
+        <p class="big">195 leads en base. 195 au statut « nouveau ». Zéro contacté.</p>
+        <p>
+          Le plan audité proposait de commencer par « construire une première liste de
+          50 comptes ». La liste existait déjà — trois fois. Le blocage n'était pas le
+          ciblage, c'était que personne n'avait décroché le téléphone. Tout le reste de la
+          session découle de ce constat.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Acquis</div>
+      <h2>Ce qui existe maintenant et n'existait pas ce matin</h2>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="eyebrow">Base de prospection</div>
+        <div class="metric">75 <small>comptes · 41 décideurs</small></div>
+        <p>
+          Base Airtable <strong>« Prospection Salverys »</strong> : deux tables liées
+          (Comptes ↔ Contacts), segment, effectif aligné sur les filtres Sales Navigator,
+          signal daté, filtre offshore disqualifiant, source des coordonnées.
+          Partagée, sauvegardée, exportable — contrairement au CRM HTML.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Sauvetage</div>
+        <div class="metric">60 <small>comptes récupérés</small></div>
+        <p>
+          Les comptes IT annoncés « intégrés au CRM le 13 juillet » n'étaient dans aucun
+          fichier du dépôt. Ils ne vivaient que dans le <code>localStorage</code> d'un
+          navigateur. Reconstitués depuis les exports, versés dans Airtable et sauvegardés
+          en CSV dans le dépôt.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Plan en vigueur</div>
+        <h3>Playbook mode solo</h3>
+        <p>
+          Cinq recherches Sales Navigator prêtes à copier, rituel d'alertes quotidien,
+          procédure « résoudre un décideur en 6 minutes », cadence 2 h/jour, KPI avec
+          seuils d'alerte, et une <strong>vague 1 de 20 comptes ESN/MSP</strong> déjà
+          constituée et taguée.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Documentation</div>
+        <h3>12 fichiers réalignés</h3>
+        <p>
+          Ordre des niches, effectif, structure de coûts, point mort, rétroplanning marqué
+          caduc, fiche vivier clôturée, bannières d'archive. Le dépôt ne contient plus de
+          chiffre qui contredit un autre chiffre.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Apprentissages</div>
+      <h2>Six croyances corrigées par les faits</h2>
+      <p>Chacune coûtait du temps, de l'argent ou de la crédibilité. Aucune n'était absurde.</p>
+    </div>
+    <div class="col">
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Il faut construire une liste de comptes pour démarrer.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b>La liste existe depuis des mois. Le goulot est l'exécution : <strong>195 leads, 0 contacté</strong>. Refaire une liste, c'était deux semaines perdues à reproduire un actif.</div>
+      </div>
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Le CRM contient la base de prospection.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b>Un fichier HTML qui stocke en <code>localStorage</code> n'est pas une base : non partagé, non sauvegardé. <strong>60 comptes avaient déjà disparu</strong> sans que personne ne le voie.</div>
+      </div>
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Excel suffit pour les premières centaines de prospects.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b>Excel a les mêmes défauts, plus l'absence de relation compte ↔ contact. Et <strong>Airtable était déjà en place</strong> pour le vivier : coût marginal nul.</div>
+      </div>
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Kaspr, Lusha ou Datagma pour l'enrichissement téléphonique.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b><strong>Kaspr a été sanctionné 240 000 € par la CNIL</strong> en décembre 2024 pour aspiration de coordonnées LinkedIn. Intenable quand on vend de la conformité RGPD à des donneurs d'ordre médicaux.</div>
+      </div>
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Les éditeurs SaaS sont la niche IT n°1.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b><strong>58 ESN/MSP qualifiées contre 15 éditeurs</strong>, cycle plus court, douleur capacitaire plus vive. Plusieurs éditeurs cibles sont notés « forte capacité à internaliser ». Ordre inversé.</div>
+      </div>
+      <div class="lesson">
+        <div class="was"><b>On pensait</b>Il faut un outil de cold mailing pour prospecter.</div>
+        <div class="arrow">→</div>
+        <div class="now"><b>En réalité</b>L'outil sert le volume ; la contrainte est le temps d'une personne. <strong>31 comptes ont déjà un numéro de standard, pour zéro appel passé.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Le basculement</div>
+      <h2>Le départ du poste commercial a divisé le point mort par trois</h2>
+      <p>
+        C'est le résultat le plus contre-intuitif de la session : la perte de capacité
+        commerciale s'accompagne d'un allègement tel que l'objectif devient plus facile
+        à atteindre qu'il ne l'était.
+      </p>
+    </div>
+    <div class="shift-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Indicateur</th><th scope="col">Avant</th><th scope="col">Après le 27 août</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="lbl">Burn mensuel avant premier contrat</td><td class="before">~755 €</td><td class="after">~65 €</td></tr>
+          <tr><td class="lbl">Socle de charges fixes (1 métier actif)</td><td class="before">2 114 €</td><td class="after">~920 €</td></tr>
+          <tr class="highlight"><td class="lbl"><strong>Point mort</strong></td><td class="before">2 à 6 ETP placés</td><td class="after">1 à 2 ETP placés</td></tr>
+          <tr><td class="lbl">CA mensuel à l'équilibre</td><td class="before">4 000 – 8 100 €</td><td class="after">2 000 – 3 400 €</td></tr>
+          <tr><td class="lbl">Contrats marque blanche à signer</td><td class="before">3</td><td class="after">1 à 2</td></tr>
+          <tr><td class="lbl">Capacité de prospection</td><td class="before">20 comptes / semaine</td><td class="after">8 à 10 / semaine</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col stack" style="margin-top:28px">
+      <p>
+        <strong>Un seul contrat de deux positions met la structure à l'équilibre.</strong>
+        Conséquence directe sur le ciblage : les <strong>MSP régionaux de 11 à 50 personnes</strong>
+        deviennent des cibles rentables à part entière — et ce sont justement celles où le
+        dirigeant décide seul, donc les plus courtes à closer pour une personne seule.
+      </p>
+      <p style="color:var(--text-soft)">
+        À 65 € de burn mensuel, il n'y a plus d'horloge de trésorerie. La contrainte n'est
+        plus le cash : c'est le temps d'une seule personne. Toute dépense doit désormais se
+        justifier par du temps gagné, pas par du burn économisé.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Objectifs</div>
+      <h2>Douze semaines, quarante-cinq comptes, un contrat</h2>
+      <p>
+        Le levier a changé : on ne joue plus le volume, on joue le taux de transformation.
+        Moins de comptes, préparés à fond, attaqués par téléphone, dirigeant à dirigeant.
+      </p>
+    </div>
+    <div class="col stack-lg">
+      <div>
+        <div class="funnel">
+          <div class="step"><span class="n">45</span><span class="lab">comptes travaillés en profondeur</span><span class="rate">8-10 / semaine</span></div>
+          <div class="step"><span class="n">25</span><span class="lab">conversations décideur</span><span class="rate">55 %</span></div>
+          <div class="step"><span class="n">9</span><span class="lab">rendez-vous de découverte</span><span class="rate">35 %</span></div>
+          <div class="step"><span class="n">4</span><span class="lab">propositions envoyées</span><span class="rate">50 %</span></div>
+          <div class="step"><span class="n">1-2</span><span class="lab"><strong>contrats marque blanche</strong> — le point mort</span><span class="rate">35 %</span></div>
+        </div>
+        <p style="margin-top:14px;font-size:14.5px;color:var(--text-mute)">
+          Un compte « travaillé » = décideur nommé, offshore vérifié, signal daté, un email
+          envoyé, au moins un appel tenté, tout consigné. Environ 45 minutes.
+          Ces taux sont des hypothèses : trois semaines suffiront à les remplacer par des mesures.
+        </p>
+      </div>
+
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px">La semaine type — 2 h par jour ouvré</div>
+        <div class="rows">
+          <div class="row"><span class="when">Tous les matins</span><span class="what">Revue des alertes Sales Navigator <span>10 minutes — une offre d'emploi publiée par une cible devient un déclencheur exploitable le jour même</span></span></div>
+          <div class="row"><span class="when">Mar · Mer · Jeu</span><span class="what">Session d'appels, 8h30–9h30 heure française <span>Avant les réunions, le dirigeant décroche lui-même</span></span></div>
+          <div class="row"><span class="when">Mar · Jeu</span><span class="what">Deuxième session d'appels, 17h30–18h30 <span>Créneau différent : c'est ce qui fait passer la joignabilité de 30 % à 55 %</span></span></div>
+          <div class="row"><span class="when">Lundi</span><span class="what">Résolution de décideurs par lot de dix <span>Six minutes par compte : effectif réel, offshore, décideur, signal</span></span></div>
+          <div class="row"><span class="when">Vendredi 16h</span><span class="what">Revue de pipeline <span>Trente minutes. Que disent les taux réels ?</span></span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px">La semaine 1, concrètement</div>
+        <div class="rows">
+          <div class="row"><span class="when">Objectif réel</span><span class="what"><strong>Dix appels passés</strong> sur les comptes déjà nominatifs <span>Metaline · Kincy · Izencia · Oxxodata · Tenexa · Apixit · NowServiceDesk · Quodagis · Infiny Link · Next2i</span></span></div>
+          <div class="row"><span class="when">En parallèle</span><span class="what">Re-chauffe des boîtes GWS, 5 à 10 mails/jour <span>La chauffe s'est arrêtée mi-juillet : deux semaines avant tout envoi de prospection</span></span></div>
+          <div class="row"><span class="when">Une fois pour toutes</span><span class="what">Vérification offshore sur les 20 comptes de la vague 1 <span>30 secondes par compte — évite 45 minutes de préparation sur un compte qui ne peut pas acheter</span></span></div>
+          <div class="row"><span class="when">À fermer</span><span class="what">Révocation des accès et sort de la boîte mail cold <span>Les deux seules choses de cette session qui ne peuvent être faites que par toi</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Horizons</div>
+      <h2>Ce qui s'ouvre, et à quelle condition</h2>
+      <p>
+        Aucun de ces chantiers n'est planifié. Chacun a un déclencheur précis — c'est ce qui
+        évite de les ouvrir trop tôt, le vrai risque quand on est seul.
+      </p>
+    </div>
+    <div class="grid">
+      <div class="horizon">
+        <div class="trigger">SI &nbsp;le premier contrat est signé</div>
+        <h3>Le trou de pipeline</h3>
+        <p>
+          Le fondateur bascule sur l'onboarding et la delivery, la prospection s'arrête net,
+          et six semaines plus tard il n'y a plus rien derrière. <strong>À arbitrer avant de
+          signer</strong> : le premier manager métier reprend une part de la relation client,
+          ou un commercial est ré-embauché — 645 €/mois au fixe, moins qu'un ETP placé.
+        </p>
+      </div>
+      <div class="horizon">
+        <div class="trigger">SI &nbsp;un 2ᵉ opérateur, OU &gt; 20 emails/jour</div>
+        <h3>Souscrire Emelia</h3>
+        <p>
+          Le report n'est pas un abandon. L'outil redevient rationnel le jour où il y a du
+          volume à traiter ou quelqu'un pour le traiter. D'ici là, il coûterait 3 à 4 semaines
+          de chauffe et un abonnement pour une capacité inutilisable.
+        </p>
+      </div>
+      <div class="horizon">
+        <div class="trigger">SI &nbsp;zéro RDV après six semaines</div>
+        <h3>Requalifier l'offre, pas la liste</h3>
+        <p>
+          Le réflexe naturel serait d'élargir le ciblage. Ce serait une erreur : à zéro RDV
+          sur 20 comptes bien préparés, le problème est l'accroche ou l'offre. La réserve
+          télésecrétariat (Callmed, Thelem, Vocallz) sert alors de test sur un autre marché.
+        </p>
+      </div>
+      <div class="horizon">
+        <div class="trigger">SI &nbsp;la vague 1 produit des rendez-vous</div>
+        <h3>Vague 2 — les gros comptes</h3>
+        <p>
+          Cyllene, Constellation, Ozitem, Helpline et les éditeurs SaaS ont été
+          <em>volontairement</em> repoussés : excellents comptes, mauvais premiers comptes
+          pour un fondateur seul. Ils demandent de trouver un directeur delivery puis de
+          convaincre un sponsor. Ils s'ouvrent avec une référence en poche.
+        </p>
+      </div>
+      <div class="horizon">
+        <div class="trigger">PAS AVANT &nbsp;un premier contrat français</div>
+        <h3>Le Canada</h3>
+        <p>
+          38 comptes québécois dorment dans la base, jamais travaillés. C'est un marché
+          entier, pas une extension — décalage horaire inverse, cycle de vente différent.
+          À n'ouvrir que quand la mécanique française tourne.
+        </p>
+      </div>
+      <div class="horizon">
+        <div class="trigger">APRÈS &nbsp;deux mois d'activité réelle</div>
+        <h3>Recalculer le prévisionnel</h3>
+        <p>
+          Les trajectoires 12 mois supposaient une prospection à temps plein : elles sont
+          marquées comme optimistes, pas recalculées. Deux mois de solo donneront un vrai
+          taux de transformation — c'est à ce moment-là qu'on refait les scénarios, pas avant.
+        </p>
+      </div>
+    </div>
+
+    <div class="col" style="margin-top:34px">
+      <div class="warn">
+        <div class="eyebrow">Le risque à garder en tête</div>
+        <p>
+          Le point mort a baissé parce qu'il n'y a plus personne pour vendre. On a échangé
+          du coût fixe contre de la capacité commerciale : <strong>le risque a changé de
+          nature, il n'a pas disparu</strong>. Ce qui rend la situation tenable, c'est
+          qu'à 65 €/mois on peut absorber plusieurs mois de décalage. Ce qui la rend
+          dangereuse, c'est qu'une seule personne ne peut pas vendre et livrer en même temps.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="eyebrow">Où retrouver le détail</div>
+    <div class="files">
+      <div><b>02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md</b>L'audit point par point, le chiffrage du tunnel, les décisions actées</div>
+      <div><b>02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md</b>Le plan en vigueur : recherches, alertes, cadence, KPI, vague 1</div>
+      <div><b>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</b>Version 3.1 — coûts, point mort, risque n°0</div>
+      <div><b>exports/PROSPECTION-comptes-MB-France.csv</b>Les 75 comptes avec leurs notes complètes, sauvegarde froide</div>
+      <div><b>Base Airtable « Prospection Salverys »</b>Comptes et contacts liés, vague 1 taguée</div>
+      <div><b>Pull request #112</b>Mergée dans <code style="background:transparent;border:0;color:#C9D8C9;padding:0">main</code> le 28 août 2026</div>
+    </div>
+    <p class="sign">
+      Salverys — VJUS · Antananarivo. Document interne, établi le 28 août 2026.
+      Les taux de conversion sont des hypothèses de départ ; les montants financiers
+      proviennent de <code style="background:transparent;border:0;color:#C9D8C9;padding:0">FINANCE-PREVISIONNEL.md</code> v3.1.
+    </p>
+  </div>
+</footer>
