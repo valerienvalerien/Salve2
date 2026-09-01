@@ -209,8 +209,10 @@ pour 12 semaines sans chercher un seul compte nouveau.
 - **Base Airtable « Prospection Salverys »** (workspace existant), 2 tables liées :
   - **Comptes** — 75 comptes MB France chargés (58 ESN/MSP · 15 éditeurs SaaS/support ·
     3 télésec MB donneurs d'ordre), avec segment, effectif (tranches alignées sur les
-    filtres Sales Navigator), score, priorité, type de signal, **champ « Offshore existant »**
-    (le filtre disqualifiant), statut, propriétaire, prochaine action + date, ID CRM d'origine.
+    filtres Sales Navigator), score, priorité, type de signal, **champ « Externalisation N1
+    en place »**, statut, propriétaire, prochaine action + date, ID CRM d'origine.
+    *(Ce champ s'appelait d'abord « Offshore existant » et traitait tout offshore comme
+    disqualifiant — corrigé le jour même, voir §8.)*
   - **Contacts** — 41 décideurs et sponsors déjà connus, rattachés à leur compte, avec rôle
     (Décideur / Sponsor / Introducteur), confiance de l'email, type de numéro et
     **source des coordonnées** (traçabilité RGPD art. 14).
@@ -257,3 +259,50 @@ est dédiée (`PLAYBOOK` §5, recherche B).
 signature** — quand le fondateur basculera sur la delivery et cessera de prospecter.
 Mitigation à décider *avant* de signer : `FINANCE-PREVISIONNEL.md` §7 risque n°0 et
 `PLAYBOOK-SALES-NAVIGATOR.md` §18.
+
+---
+
+## 8. Correction apportée après coup — l'offshore n'est pas un disqualifiant
+
+**Signalé par la direction le 2026-08-28, après la mise en production de la base.**
+
+Le champ Airtable `Offshore existant` classait « Oui » comme disqualifiant. C'était faux,
+et l'erreur venait de deux endroits :
+
+1. **La règle source était plus étroite que ce que j'en ai fait.** `ESN-TARGETS.md` (écrit
+   le 2026-05-31, avant même la décision GTM marque-blanche-first) disait « pas de **filiale
+   offshore propre** ». En encodant le champ sous le nom générique « offshore existant »,
+   j'ai fait tomber dans le même panier la **filiale captive** et le **sous-traitant tiers**
+   — deux situations opposées.
+2. **Le dépôt portait déjà la bonne doctrine, mais sur une seule niche.**
+   `TELESEC-TARGETS.md` dit depuis juin : *« Avez-vous déjà un partenaire offshore ? À quel
+   prix d'achat ? Si la réponse est oui, l'angle est la qualité et la redondance, pas la
+   découverte. »* Elle n'avait jamais été portée sur l'IT.
+
+**Le raisonnement qui emporte la décision :** un donneur d'ordre qui sous-traite déjà son
+N1 est, littéralement, la définition de la cible marque blanche. Le make-or-buy est tranché,
+la ligne budgétaire existe, la peur de l'offshore est passée, et le coût de sortie de son
+contrat actuel est un préavis — pas un plan social. **C'est le profil le mieux qualifié de
+toute la base.** Et même quand la vente ne se fait pas, l'appel reste la seule source
+d'intelligence de première main dont on dispose sur nos concurrents et sur le prix réel du
+marché — ce qui, avec zéro client, vaut cher.
+
+**Corrections appliquées :**
+
+| Où | Quoi |
+|---|---|
+| Airtable | Champ `Offshore existant` remplacé par **`Externalisation N1 en place`** à 4 cas typés (sous-traitant tiers · aucune · filiale propre · vend déjà en MB), + champ **`Prestataire actuel & échéance`** |
+| `SCRIPTS-APPEL.md` | Nouveau **§4 — Appel de déplacement** : les 5 questions, l'ordre à respecter, les 3 angles, le closing pré-échéance, le piège de l'ancrage prix |
+| `PLAYBOOK-SALES-NAVIGATOR.md` §7 | « Filtre disqualifiant » → **4 cas, 4 traitements** |
+| `ESN-TARGETS.md` | Règle source corrigée en tête et dans les critères |
+| `IDEAL-CUSTOMER-PROFILE.md` | Ligne retirée de « à ne pas viser » ; question d'externalisation généralisée aux 3 niches |
+
+**Ce qui reste vraiment disqualifiant**, après cette correction : clientèle finale non
+francophone · donneur d'ordre dont le prix de vente passe sous notre plancher · appel
+d'offres public récemment attribué. La liste est courte, et c'est normal.
+
+> **Le point de vigilance créé par cette ouverture :** un prospect qui achète déjà en
+> offshore connaît le prix du marché. L'argument « -40 à -60 % vs un poste interne en
+> France » ne fonctionne pas sur lui, et s'aligner sur le corridor offshore constaté
+> (0,50-1 €/appel côté médical) détruirait la marge. Sur ce profil, on vend la qualité,
+> la redondance et le SLA — jamais le prix.

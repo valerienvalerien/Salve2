@@ -144,7 +144,13 @@ presque jamais le Président/DG. ⚠️ Appels d'offres fréquents : cycle long,
 - Donneur d'ordre **pur low-cost** dont le prix de vente final est sous notre plancher
   (ex. : revendeur à 0,50 €/appel sans créneau premium à confier).
 - Cabinet isolé à très faible volume d'appels (contrat trop petit).
-- Structure déjà équipée d'un gros centre d'appels externalisé intégré.
+- ~~Structure déjà équipée d'un gros centre d'appels externalisé intégré.~~
+  🔄 **Retiré le 2026-08-28 — c'était une erreur de cadrage.** Une structure qui externalise
+  déjà est un **acheteur formé, au budget existant, au make-or-buy déjà tranché** : c'est le
+  profil le mieux qualifié de la base, pas un repoussoir. Seule la **filiale propre
+  (captive)** allonge réellement le cycle — et même là, l'angle débordement et la valeur de
+  découverte restent entiers. Méthode : `02-Prospection/SCRIPTS-APPEL.md` §4 (appel de
+  déplacement) et `PLAYBOOK-SALES-NAVIGATOR.md` §7.
 - Acteur dont la clientèle finale n'est pas francophone.
 - Organisation fermée par principe à l'externalisation, ou très contrainte sur la
   confidentialité sans budget pour être rassurée.
@@ -171,6 +177,19 @@ presque jamais le Président/DG. ⚠️ Appels d'offres fréquents : cycle long,
 
 7 oui = cible prioritaire · 5-6 = bonne piste · 2-4 = à creuser seulement si le reste est
 calme · 0-1 = laisser tomber.
+
+> **La question à poser en plus, dès le premier échange, sur toutes les niches**
+> *(généralisée le 2026-08-28 — elle n'existait jusque-là que pour le médical)* :
+> **« Votre N1 est déjà confié à quelqu'un, ou tenu en interne ? »**
+> Elle ne sert pas à trier — elle sert à **choisir l'angle** :
+> - **sous-traitant tiers** → qualité, redondance, SLA. Et **demander l'échéance du contrat** :
+>   c'est le seul vrai déclencheur d'un deal de déplacement ;
+> - **interne** → capacité sans CapEx, coût vs recrutement France ;
+> - **filiale propre** → débordement et créneaux non couverts uniquement.
+>
+> ⚠️ Sur un prospect qui achète déjà en offshore, **l'argument « -40 à -60 % vs un poste
+> interne en France » ne fonctionne pas** : sa référence n'est pas un salaire français, c'est
+> la facture de son prestataire actuel. Script complet : `02-Prospection/SCRIPTS-APPEL.md` §4.
 
 > **Pourquoi la Q7 est éliminatoire en pratique.** Un partenaire dont le contrat interdit la
 > sous-traitance ou impose un accord spécifique qu'il n'a pas obtenu nous fait perdre le
