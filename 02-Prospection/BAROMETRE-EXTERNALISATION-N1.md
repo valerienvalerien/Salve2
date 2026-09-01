@@ -204,7 +204,7 @@ bascule vers l'entretien (cas 1) ou vers la vente (cas 2, 3).
 **Coût réel :** ~15 min par entretien + ~3 h de synthèse. Sur les 10 h/semaine du plan solo
 (`PLAYBOOK-SALES-NAVIGATOR.md` §12), compter **2 à 3 semaines** en parallèle des appels.
 
-**Le moment est favorable, et il ne durera pas :** avec un burn à ~65 €/mois
+**Le moment est favorable, et il ne durera pas :** avec un burn à ~110-155 €/mois
 (`FINANCE-PREVISIONNEL.md` §2.b), il n'y a pas d'urgence de trésorerie à signer vite. C'est
 exactement la fenêtre où investir trois semaines à comprendre le marché coûte peu et
 rapporte longtemps. Après le premier contrat, ce temps n'existera plus.
