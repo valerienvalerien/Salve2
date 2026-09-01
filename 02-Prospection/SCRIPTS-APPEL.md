@@ -442,6 +442,35 @@ Conséquences directes :
   viable que sur **les créneaux que son plateau ne couvre pas**. Qualifier son prix d'achat
   cible **dès le premier échange**, sinon on entre dans un tunnel de négociation perdant.
 
+## Le cas du prospect satisfait — on n'insiste pas, on apprend
+
+Il a un sous-traitant, ça marche, il ne veut pas changer. **Ce n'est pas un échec d'appel :
+c'est l'interlocuteur le mieux informé de tout le marché.** Il sait exactement pourquoi son
+montage tient — donc ce qu'il faudra tenir pour gagner les autres.
+
+**Basculer immédiatement de la vente vers l'entretien, et le dire :**
+
+> « D'accord — et honnêtement, tant mieux pour vous, c'est un montage que beaucoup ratent.
+> Je ne vais pas essayer de vous faire changer. **En revanche, si vous avez cinq minutes,
+> ça m'intéresse de comprendre ce qui fait que ça marche chez vous** — je monte une étude
+> sur la façon dont les ESN françaises organisent leur N1, et je vous en enverrai la
+> synthèse. »
+
+Puis les quatre questions du protocole (`BAROMETRE-EXTERNALISATION-N1.md` §4), en terminant
+par celle qui rapporte le plus :
+
+> « Si vous deviez en changer un jour, ce serait pour quelle raison ? »
+
+**Ce qu'on obtient :** le standard de qualité et de prix à égaler, le déclencheur qui le
+ferait bouger, et une porte ouverte à l'échéance de son contrat.
+
+**Ce qu'on ne fait pas :** repitcher. Un prospect qui vient d'expliquer que tout va bien et
+qu'on relance quand même perd toute envie de répondre à la synthèse — et le milieu des
+dirigeants d'ESN français est petit. La sortie est un rappel daté, pas une insistance :
+
+> « Vous m'avez dit que le contrat courait jusqu'à {{mois}}. Je vous rappelle deux mois
+> avant, histoire que vous ayez une comparaison sous la main. Ça vous va ? »
+
 ## Le cas de la filiale propre (captive)
 
 S'il opère son propre plateau à Tunis, Casablanca ou Maurice, **on ne le déplace pas** :

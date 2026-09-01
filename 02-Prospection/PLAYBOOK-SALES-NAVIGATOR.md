@@ -299,6 +299,21 @@ art. 46 **avant** l'appel.
 > plancher, et l'appel d'offres public récemment attribué. Un prestataire déjà en place
 > n'en fait pas partie.
 
+### Le compte satisfait de son prestataire : on apprend, on ne force pas
+
+Le cas le plus fréquent parmi ceux qui externalisent déjà. Il ne se vend pas aujourd'hui —
+**il se mesure**, et il donne trois choses qu'on n'a nulle part ailleurs : le standard de
+qualité à égaler, la fourchette de prix réelle du marché, et la raison qui le ferait
+changer un jour.
+
+C'est aussi le seul moyen de combler le trou de données qui empêche de se positionner face
+à un prospect qui n'a jamais externalisé : **ce qu'une ESN française paie réellement son
+sous-traitant N1 n'est ni publié ni achetable.** Protocole complet, message de prise de
+contact et questions : **`BAROMETRE-EXTERNALISATION-N1.md`**.
+
+La sortie d'un compte satisfait n'est jamais une relance : c'est un **rappel daté deux mois
+avant l'échéance de son contrat**, à poser dans `Prochaine action`.
+
 ---
 
 ## 8. L'email sans Emelia
