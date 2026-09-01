@@ -257,23 +257,62 @@ France · 11-50 / 51-200 · mot-clé `télésecrétariat OR "permanence téléph
 
 ---
 
-## 7. Le filtre disqualifiant : l'offshore existant
+## 7. L'externalisation déjà en place : quatre cas, pas un filtre
 
-Une ESN qui a déjà une filiale à Tunis, Casablanca, Port-Louis, Dakar ou Bangalore
-n'achètera pas.
+> ⚠️ **Corrigé le 2026-08-28.** Ce paragraphe traitait auparavant tout offshore existant
+> comme disqualifiant. C'était faux, et le dépôt le savait déjà : `TELESEC-TARGETS.md`
+> pose depuis juin la bonne doctrine — *« si la réponse est oui, l'angle est la qualité et
+> la redondance, pas la découverte »*. Elle n'avait simplement jamais été portée sur l'IT.
 
-> Fiche du compte → **Informations sur l'entreprise** → **Répartition des effectifs par
-> région / pays**. Chercher Tunisie, Maroc, Maurice, Sénégal, Madagascar, Inde, Roumanie,
-> Portugal. Vérifier aussi les entités liées (« Groupe X Tunisie »).
+**Un prospect qui externalise déjà son N1 n'est pas un prospect perdu : c'est le mieux
+qualifié de la base.** Le make-or-buy est tranché, la ligne budgétaire existe, la peur de
+l'offshore est passée, et il sait exactement ce qui ne va pas chez son prestataire actuel.
+Le travail n'est plus de convaincre d'externaliser — il est de **prendre la place**.
 
-Renseigner **Offshore existant**. Aujourd'hui 4 comptes seulement sont vérifiés
-(Metaline, Tenexa, Cyllene, Infodis) — **71 restent à faire**, 30 secondes chacun. C'est
-le meilleur rapport temps/valeur de tout ce playbook : ça évite d'investir 45 minutes de
-préparation sur un compte qui ne peut pas acheter.
+Ce qui compte, c'est de distinguer **qui** opère aujourd'hui :
+
+| Cas | Ce que ça veut dire | Ce qu'on fait |
+|---|---|---|
+| **Sous-traitant tiers** *(un BPO comme nous)* | Acheteur formé, budget existant, coût de sortie = un préavis | 🟢 **Cible n°1.** Jeu de déplacement : qualité, SLA, continuité, RGPD. Le prix n'est plus l'argument, il est le point d'entrée |
+| **Aucune — 100 % interne** | Le besoin n'est peut-être pas conscientisé | 🔵 Pitch de découverte classique : capacité sans CapEx, coût vs recrutement France |
+| **Filiale propre (captive)** | Ils ont investi capex, effectifs et management dans leur propre plateau | 🟠 **Cycle long, pas porte fermée.** Nous remplacer signifierait licencier leurs salariés, souvent devant celui qui a monté la filiale. Ne pas prioriser — **mais appeler quand même** : personne ne connaît mieux le coût réel d'un plateau |
+| **Vend déjà en marque blanche** | Oxxodata, NowServiceDesk, Actual Systèmes, Partner Proximity, NeoOne | 🟣 **Partenaire, pas cible.** On ne leur vend pas de la sous-traitance : on leur propose d'être la couche humaine derrière leur offre |
+
+**Comment le voir en 30 secondes sur Sales Navigator :** fiche du compte →
+**Informations sur l'entreprise** → **Répartition des effectifs par région / pays**.
+Chercher Tunisie, Maroc, Maurice, Sénégal, Madagascar, Inde, Roumanie, Portugal, et les
+entités liées (« Groupe X Tunisie »). ⚠️ Attention : cela ne détecte que la **filiale
+propre**. Un sous-traitant tiers est invisible sur LinkedIn — **il ne se découvre qu'au
+téléphone**, ce qui est une raison de plus d'appeler avant de trancher.
+
+Renseigner **Externalisation N1 en place** et, dès qu'on sait quelque chose,
+**Prestataire actuel & échéance**. La date de fin ou de préavis du contrat est **le seul
+vrai déclencheur** d'un deal de déplacement : sans elle, on ne sait pas si on prépare un
+closing à 2 mois ou à 14.
 
 **Signal jumeau :** un discours frontal « 100 % français / souveraineté numérique »
 (Naitways, Groupe Asten) n'est pas éliminatoire mais impose de préparer la réponse RGPD
 art. 46 **avant** l'appel.
+
+> **Ce qui reste vraiment disqualifiant**, et c'est une liste courte : la clientèle finale
+> non francophone, le donneur d'ordre pur low-cost dont le prix de vente passe sous notre
+> plancher, et l'appel d'offres public récemment attribué. Un prestataire déjà en place
+> n'en fait pas partie.
+
+### Le compte satisfait de son prestataire : on apprend, on ne force pas
+
+Le cas le plus fréquent parmi ceux qui externalisent déjà. Il ne se vend pas aujourd'hui —
+**il se mesure**, et il donne trois choses qu'on n'a nulle part ailleurs : le standard de
+qualité à égaler, la fourchette de prix réelle du marché, et la raison qui le ferait
+changer un jour.
+
+C'est aussi le seul moyen de combler le trou de données qui empêche de se positionner face
+à un prospect qui n'a jamais externalisé : **ce qu'une ESN française paie réellement son
+sous-traitant N1 n'est ni publié ni achetable.** Protocole complet, message de prise de
+contact et questions : **`BAROMETRE-EXTERNALISATION-N1.md`**.
+
+La sortie d'un compte satisfait n'est jamais une relance : c'est un **rappel daté deux mois
+avant l'échéance de son contrat**, à poser dans `Prochaine action`.
 
 ---
 
@@ -342,7 +381,7 @@ possibilité de s'opposer. Le champ `Source coordonnées` existe pour pouvoir r�
 | **HOT** | Score ≥ 70 **ou** signal de moins de 30 jours | Dans la vague en cours, appel sous 5 jours |
 | **WARM** | Score 55-69, signal tiède | Vague suivante |
 | **NURTURE** | Score < 55 ou aucun signal | **Ne pas travailler.** Alerte Sales Navigator posée, on attend le signal |
-| **EXCLU** | Offshore · hors cible · prix plancher impossible | Ne jamais recontacter |
+| **EXCLU** | Clientèle non francophone · hors cible après requalification · prix plancher impossible | Ne jamais recontacter |
 
 > En solo, **NURTURE veut vraiment dire « ne rien faire »**. C'est le seul moyen de tenir
 > 45 comptes bien travaillés au lieu de 150 mal travaillés.
@@ -373,13 +412,13 @@ le plan audité ne prévoyait nulle part.
 | Tous les matins | 10 min | Revue des alertes Sales Navigator (§11) + vue « Aujourd'hui » |
 | **Mardi, mercredi, jeudi — 8h30-9h30 (FR)** | 3 h/sem | **Session d'appels n°1** — avant les réunions, le dirigeant décroche |
 | **Mardi, jeudi — 17h30-18h30 (FR)** | 2 h/sem | **Session d'appels n°2** — après le rush, deuxième créneau de décroché |
-| Lundi | 2 h | Résolution de décideurs + vérification offshore, par lot de 10 (§13) |
+| Lundi | 2 h | Résolution de décideurs + typage de l'externalisation, par lot de 10 (§13) |
 | Lundi + mercredi | 1 h | Emails manuels (10-20/jour max, texte brut) |
 | Tous les jours | 15 min | Invitations LinkedIn ciblées avec note courte — **10/jour**, jamais de pitch |
 | **Vendredi 16h** | 30 min | **Revue de pipeline** : que disent les taux réels ? |
 
 **Objectif hebdomadaire : 8-10 comptes réellement travaillés.**
-Un compte « travaillé » = décideur nommé + offshore vérifié + signal daté + 1 email envoyé
+Un compte « travaillé » = décideur nommé + externalisation typée + signal daté + 1 email envoyé
 + au moins 1 appel tenté + tout consigné dans Airtable. **~45 minutes par compte.**
 
 > **La règle qui protège le plan :** si une semaine ne permet pas 10 h de prospection,
@@ -391,7 +430,7 @@ Un compte « travaillé » = décideur nommé + offshore vérifié + signal dat�
 ## 13. Résoudre un « décideur à identifier » — 6 minutes, par lot de 10
 
 1. **(1 min)** Ouvrir la fiche compte dans Sales Navigator. Vérifier l'effectif réel et
-   l'offshore (§7). Corriger `Effectif` dans Airtable si l'estimation était fausse (fréquent :
+   la présence d'une filiale propre (§7). Corriger `Effectif` dans Airtable si l'estimation était fausse (fréquent :
    Edeal IT annoncé 20-50, réel 3-5).
 2. **(2 min)** Recherche C restreinte à ce compte. Appliquer la règle du §6. Prendre
    **2 personnes** : un décideur, un sponsor ou introducteur.
@@ -399,7 +438,7 @@ Un compte « travaillé » = décideur nommé + offshore vérifié + signal dat�
 4. **(1 min)** Chercher le déclencheur : onglet **Offres d'emploi** + **Actualités** de la
    fiche. Remplir `Signal` et `Type de signal`.
 5. **(1 min)** Passer en `Prêt à séquencer` **seulement si** : décideur nommé **+** signal
-   factuel **+** offshore vérifié. Sinon le compte reste `À qualifier`.
+   factuel **+** externalisation typée. Sinon le compte reste `À qualifier`.
 
 > **Sans signal, pas de premier email.** Règle déjà posée dans
 > `OUTREACH-IT-N1-marque-blanche.md` : `{{trigger_recrutement}}` est obligatoire.
@@ -437,7 +476,7 @@ Relevés le vendredi, sur la vue Pipeline.
 |---|---|---|
 | Comptes travaillés / semaine | 8-10 | **< 5** deux semaines de suite → le budget de 2 h/jour n'est pas tenu, réviser le plan plutôt que de faire semblant |
 | Comptes avec décideur nommé | > 80 % | **< 60 %** → trop peu de temps sur la recherche C |
-| Offshore vérifié | 100 % avant tout appel | tout compte non vérifié appelé = temps potentiellement gâché |
+| Champ « Prestataire actuel » rempli | > 70 % des conversations | **< 40 %** → on oublie de poser la question de qualification la plus rentable de l'appel (§7) |
 | Joignabilité décideur (après 3 tentatives) | 50-60 % | **< 30 %** → mauvais créneaux, ou barrage standard non traité |
 | Conversation → RDV | 35 % | **< 15 %** → l'accroche téléphonique est à revoir, pas la liste |
 | Bounce sur les envois manuels | 0-1 % | **le moindre bounce répété** → arrêter, vérifier les adresses à la main |
@@ -455,7 +494,7 @@ Relevés le vendredi, sur la vue Pipeline.
 - [ ] **Checklist de clôture du poste commercial** (§0) — accès, boîte cold, NDA
 - [ ] Créer les 5 vues Airtable (§4) — 5 min
 - [ ] Créer les recherches A, B, C + la liste « Comptes Salverys MB », activer les alertes — 1 h
-- [ ] Vérifier l'offshore sur les **20 meilleurs comptes ESN/MSP** (§7) — 15 min
+- [ ] Typer l'externalisation des **20 comptes de la vague 1** (§7) — 15 min · ⚠️ LinkedIn ne montre que la filiale propre : le sous-traitant tiers se découvre au téléphone
 - [ ] Résoudre les décideurs de ces 20 comptes (§13) — 2 h
 - [ ] **Passer les 10 premiers appels** sur les comptes déjà nominatifs : Metaline, Kincy,
       Izencia, Oxxodata, Tenexa, Apixit, NowServiceDesk, Quodagis, Infiny Link, Next2i

@@ -1,6 +1,6 @@
 # ESN & MSP France — Cibles prioritaires helpdesk IT N1 (marque blanche)
 **Généré le :** 2026-05-31 · **Mis à jour le :** 2026-06-01
-**Objectif :** Identifier des prestataires IT français (50-300 personnes) sans filiale offshore qui sous-traitent réellement leur overflow N1
+**Objectif :** Identifier des prestataires IT français (50-300 personnes) qui sous-traitent réellement leur overflow N1
 **Usage :** Base de prospection Salverys — partenariat sous-traitance marque blanche helpdesk IT N1
 
 > ⚠️ **Correction 2026-08-28 — où sont réellement ces comptes.** Les mentions « intégré au
@@ -11,6 +11,20 @@
 > sous `exports/PROSPECTION-comptes-MB-France.csv`.
 > **Les CRM HTML ne sont plus l'outil de production** — voir `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md` §2
 > et `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md` §1.
+
+> 🔄 **Correction 2026-08-28 — l'offshore existant n'est pas un disqualifiant.**
+> Ce document (écrit le 2026-05-31, soit **avant** la décision GTM marque-blanche-first du
+> 2026-06-10) écartait tout prestataire ayant de l'offshore. La règle confondait deux
+> situations opposées :
+> - **filiale propre (captive)** → cycle long, ils remplaceraient leurs propres salariés →
+>   déprioriser, mais l'angle **débordement** et la valeur de **découverte** restent entiers ;
+> - **sous-traitant tiers** → make-or-buy déjà tranché, budget existant, coût de sortie =
+>   un préavis → **c'est le profil le mieux qualifié de toute la base**, et c'est
+>   littéralement la définition d'un donneur d'ordre en marque blanche.
+>
+> `TELESEC-TARGETS.md` portait déjà la bonne doctrine depuis juin (*« si la réponse est oui,
+> l'angle est la qualité et la redondance, pas la découverte »*) — elle n'avait jamais été
+> appliquée à l'IT. Méthode d'appel : `02-Prospection/SCRIPTS-APPEL.md` §4.
 
 ---
 
@@ -33,7 +47,7 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 
 - Effectifs : 50-300 (idéal) ou jusqu'à 600 si division helpdesk dédiée identifiée
 - Secteur : ESN / MSP / infogérance / support IT
-- **Pas de filiale offshore propre** (filiales Tunis, Maroc, Inde → disqualifié)
+- **Filiale offshore propre** (Tunis, Maroc, Inde) → ⚠️ **cycle long, pas disqualifié** (correction 2026-08-28, voir encadré en tête). Un **sous-traitant tiers**, lui, est au contraire le meilleur profil : acheteur déjà formé, budget existant → `SCRIPTS-APPEL.md` §4 Appel de déplacement
 - Signal d'achat : recrutement helpdesk actif, croissance, offre 24/7, clients grands comptes
 - Géographie clients : France (francophone obligatoire)
 
@@ -93,7 +107,7 @@ La cible n'est pas la même selon la taille de la structure. Deux variables : (1
 **#5 Kincy** (analyse 75/100) — 65 personnes, 30 techs helpdesk = structure agile qui peut décider vite. Décideur : Karim Sani (Président) — taille petite, fondateur proche des opérations = contact direct justifié. Signal différenciant : offre d'emploi "technicien helpdesk profil expatrié" active + modèle follow-the-sun Papeete (UTC-10) = déjà à l'aise avec le travail distant. Salverys (UTC+3) couvre le créneau matin 7h-9h France que Papeete ne couvre pas. Angle : "Le complément de votre bureau Papeete sur le créneau matin France."
 
 ### À ÉVITER / DISQUALIFIER SI :
-- Filiale offshore identifiée sur LinkedIn (Tunis, Dakar, Casablanca, Bangalore)
+- ~~Filiale offshore identifiée sur LinkedIn (Tunis, Dakar, Casablanca, Bangalore)~~ → **n'est plus un motif de disqualification** (2026-08-28) : cycle long, mais l'angle débordement et la valeur de découverte restent entiers
 - Effectif > 600 sans division helpdesk séparée
 - Secteur principal = développement logiciel (pas de helpdesk)
 - Clients quasi-exclusivement TPE / secteur artisanat (volume insuffisant)

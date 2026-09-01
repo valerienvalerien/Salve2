@@ -337,6 +337,154 @@
 
 ---
 
+# 4. Appel de déplacement — « il a déjà un prestataire »
+
+> Ajouté le **2026-08-28**. Transversal aux trois niches. Applique à l'IT la doctrine que
+> `TELESEC-TARGETS.md` posait déjà pour le médical : *« si la réponse est oui, l'angle est
+> la qualité et la redondance, pas la découverte »*.
+>
+> **Ce n'est pas un cas de repli, c'est le meilleur cas.** Le make-or-buy est tranché, le
+> budget existe, la peur de l'offshore est passée. Et même si la vente ne se fait pas,
+> l'appel vaut d'être passé : c'est la seule source d'intelligence de première main qu'on
+> ait sur nos concurrents et sur le prix réel du marché.
+
+## Ce qu'on cherche à obtenir, dans l'ordre
+
+1. **Qui** opère aujourd'hui, **depuis quand**, **combien d'ETP**.
+2. **Ce qui marche** — à ne surtout pas dénigrer : c'est le socle de ce qu'il faudra égaler.
+3. **Ce qui ne marche pas** — la vraie matière.
+4. **L'échéance ou le préavis du contrat.** ← le seul déclencheur réel. Sans elle, on ne
+   sait pas si on prépare un closing à 2 mois ou à 14.
+5. **Le prix d'achat**, si l'échange le permet. Sinon, la fourchette.
+
+À reporter dans Airtable, champ **`Prestataire actuel & échéance`**.
+
+## `CALL_SCRIPTS.deplacement.opening` — Ouverture
+
+> « Bonjour {{prenom}}, Valérien Rakotosalama, Salverys. J'appelle des {{ESN / éditeurs}}
+> comme {{societe}} qui font tourner un N1 externalisé. Avant de vous proposer quoi que ce
+> soit — **est-ce que le vôtre est déjà confié à quelqu'un, ou tenu en interne ?** »
+
+**Pourquoi ça marche :** on annonce d'emblée qu'on ne va pas dérouler un pitch. La question
+est facile à répondre, elle ne l'engage à rien, et sa réponse oriente tout le reste.
+
+## `CALL_SCRIPTS.deplacement.qualif` — Les cinq questions
+
+> 1. « Vous travaillez avec eux depuis combien de temps, et sur combien de positions ? »
+> 2. « **Qu'est-ce qui marche bien** chez eux ? » ← *poser celle-ci en premier, toujours*
+> 3. « Et s'il y avait une chose à corriger demain matin, ce serait quoi ? »
+> 4. « Le contrat court jusqu'à quand ? Il y a un préavis ? »
+> 5. « Sur ce type de prestation, vous êtes plutôt sur quelle base tarifaire ? »
+
+**La question 2 avant la 3, sans exception.** Demander d'abord ce qui marche fait deux
+choses : ça désamorce le réflexe de défense (personne n'aime s'entendre dire qu'il a mal
+choisi), et ça donne le **standard à égaler**. Un dirigeant qui vient d'expliquer ce qu'il
+apprécie enchaîne presque toujours de lui-même sur ce qui le gêne.
+
+**Sur la question 5 :** s'il ne veut pas donner de chiffre, ne pas insister —
+proposer une fourchette à confirmer ou infirmer. Le refus est lui-même une information.
+
+## `CALL_SCRIPTS.deplacement.pitch` — Le positionnement
+
+**Ne jamais attaquer le prestataire en place.** On attaque un **risque**, jamais une
+personne, et on se positionne d'abord en second, pas en remplaçant :
+
+> « Je ne vais pas vous dire de les quitter — vous avez un truc qui tourne. Ce que je vois
+> souvent, c'est que sur ce type de prestation, tout repose sur **un seul plateau et un seul
+> pays**. S'ils tombent, ou si la qualité glisse sur un trimestre, vous n'avez pas de
+> plan B — et c'est vous que vos clients appellent, pas eux. »
+
+Trois angles, à choisir selon ce qui est ressorti de la qualification :
+
+| Ce qu'il a dit | L'angle |
+|---|---|
+| Qualité / turnover / accent | **Français langue maternelle + double écoute + reporting.** On mesure ce qu'ils ne mesurent pas |
+| Réactivité, créneaux non couverts | **UTC+3 : le 7h-9h France est une heure de bureau chez nous**, sans prime de nuit |
+| Prix | ⚠️ **Ne pas s'aligner par le bas.** Le prix est le point d'entrée, pas l'argument. Voir §Piège ci-dessous |
+| Rien de précis, tout va bien | **Second source / redondance** sur un périmètre restreint. On ne remplace rien, on sécurise |
+
+## `CALL_SCRIPTS.deplacement.closing` — La sortie
+
+**Le closing d'un appel de déplacement n'est pas un rendez-vous de vente**, c'est une porte
+laissée ouverte sur une date :
+
+> « Écoutez, vous êtes servis, c'est très bien. Je vous propose deux choses : je vous laisse
+> mes coordonnées pour le jour où ça coince — et si votre contrat arrive à échéance
+> en {{mois}}, je vous rappelle deux mois avant pour que vous ayez une comparaison sous la
+> main. Ça vous va ? »
+
+Puis, dans Airtable : `Prochaine action` = « rappel pré-échéance », **datée deux mois avant
+la fin de contrat**. C'est le rappel le plus rentable du pipeline — on arrive au moment
+exact où la question se pose vraiment.
+
+**Si une douleur nette est sortie**, ne pas attendre l'échéance :
+
+> « Sur {{la douleur citée}}, on peut faire un test sur un périmètre restreint — les
+> débordements, ou un créneau qu'ils ne couvrent pas — sans rien changer à votre contrat
+> actuel. Vous comparez sur pièces. »
+
+C'est le **second source** : le prospect n'a rien à résilier, donc rien à risquer. C'est
+la porte d'entrée la plus large sur un compte déjà servi.
+
+## Le piège à éviter — l'ancrage prix
+
+Un prospect qui achète déjà en offshore **connaît le prix du marché**. L'argument
+« -40 à -60 % vs un poste interne en France » (`CLAUDE.md`) **ne fonctionne pas sur lui** :
+sa référence n'est pas un salaire français, c'est la facture de son prestataire actuel.
+
+Conséquences directes :
+- **Ne jamais utiliser le comparatif France sur ce profil** — il sonne à côté de la plaque
+  et signale qu'on n'a pas écouté.
+- **Ne pas casser le prix pour prendre la place.** Le plancher reste le plancher
+  (`PRICING.md` §3) ; le corridor offshore constaté sur le médical est de 0,50-1 €/appel
+  (`TELESEC-TARGETS.md`), et s'y aligner détruirait la marge sans garantir le deal.
+- Le cas **Callmed** est l'exemple type : vend dès 0,50 €/appel, donc un partenariat n'est
+  viable que sur **les créneaux que son plateau ne couvre pas**. Qualifier son prix d'achat
+  cible **dès le premier échange**, sinon on entre dans un tunnel de négociation perdant.
+
+## Le cas du prospect satisfait — on n'insiste pas, on apprend
+
+Il a un sous-traitant, ça marche, il ne veut pas changer. **Ce n'est pas un échec d'appel :
+c'est l'interlocuteur le mieux informé de tout le marché.** Il sait exactement pourquoi son
+montage tient — donc ce qu'il faudra tenir pour gagner les autres.
+
+**Basculer immédiatement de la vente vers l'entretien, et le dire :**
+
+> « D'accord — et honnêtement, tant mieux pour vous, c'est un montage que beaucoup ratent.
+> Je ne vais pas essayer de vous faire changer. **En revanche, si vous avez cinq minutes,
+> ça m'intéresse de comprendre ce qui fait que ça marche chez vous** — je monte une étude
+> sur la façon dont les ESN françaises organisent leur N1, et je vous en enverrai la
+> synthèse. »
+
+Puis les quatre questions du protocole (`BAROMETRE-EXTERNALISATION-N1.md` §4), en terminant
+par celle qui rapporte le plus :
+
+> « Si vous deviez en changer un jour, ce serait pour quelle raison ? »
+
+**Ce qu'on obtient :** le standard de qualité et de prix à égaler, le déclencheur qui le
+ferait bouger, et une porte ouverte à l'échéance de son contrat.
+
+**Ce qu'on ne fait pas :** repitcher. Un prospect qui vient d'expliquer que tout va bien et
+qu'on relance quand même perd toute envie de répondre à la synthèse — et le milieu des
+dirigeants d'ESN français est petit. La sortie est un rappel daté, pas une insistance :
+
+> « Vous m'avez dit que le contrat courait jusqu'à {{mois}}. Je vous rappelle deux mois
+> avant, histoire que vous ayez une comparaison sous la main. Ça vous va ? »
+
+## Le cas de la filiale propre (captive)
+
+S'il opère son propre plateau à Tunis, Casablanca ou Maurice, **on ne le déplace pas** :
+nous choisir signifierait licencier ses propres salariés, souvent devant celui qui a monté
+la filiale. Deux angles restent ouverts, et l'appel garde toute sa valeur :
+
+- **Le débordement et les créneaux non couverts** — sa filiale a des horaires et un
+  plafond de capacité comme tout le monde.
+- **La découverte pure.** Personne ne connaît mieux le coût réel d'un plateau offshore que
+  quelqu'un qui en fait tourner un. Ce qu'il dira du recrutement, du turnover et du coût
+  par position vaut, pour nous, plus qu'un rendez-vous.
+
+---
+
 ## Garde-fous (rappel `CLAUDE.md`)
 
 - **Marque** : « Salverys » uniquement. Jamais Nesvalo / Vinlo.
