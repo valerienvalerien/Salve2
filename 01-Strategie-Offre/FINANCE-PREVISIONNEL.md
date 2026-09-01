@@ -3,7 +3,10 @@
 > 🔴 **Mise à jour du 2026-08-28 — le poste de développement commercial a pris fin le
 > 2026-08-27. Effectif : 0 salarié.** Effets chiffrés, répercutés dans tout le document :
 > - **Burn avant premier contrat : ~710-755 € → ~65 €/mois** (§2.b). Sans salaire ni
->   Emelia (non souscrit), il ne reste que M365/GWS, OVH et les imprévus.
+>   Emelia (non souscrit), il ne reste que les abonnements outils. ⚠️ **Chiffre corrigé
+>   en fin de journée à ~110-155 €/mois** : il omettait l'abonnement **Sales Navigator**,
+>   actif et non budgété — voir l'encadré rouge du §2.b. L'ordre de grandeur ne change pas
+>   la conclusion, mais Sales Navigator est le premier poste de dépense de la structure.
 > - **Socle fixe après le 1er contrat : 2 114 € → ~920 €** (1 métier actif) (§2.c).
 > - **Point mort : 2-6 ETP → 1-2 ETP placés** (§4), soit **~2 000 à 3 400 €** de CA mensuel.
 > - **Conséquence commerciale : un seul contrat MB de 2 positions passe le point mort.**
@@ -105,12 +108,33 @@ sur les contrats**. Trois blocs — coût unitaire, structure actuelle, règle d
 | Poste | Détail | €/mois |
 |---|---|---|
 | Salaires | **aucun** — 0 salarié, fondateur non rémunéré | **0** |
-| SaaS socle | M365 + GWS ~20 € · OVH ~1 € · Airtable Free 0 € · **+ facturation, à souscrire (§8)** | ~60 |
+| **LinkedIn Sales Navigator** | 🔴 **abonnement actif, jamais budgété jusqu'au 2026-08-28.** Ordre de 80-100 € en mensuel, moins en annuel — **à relever sur la facture** | **~80-100** |
+| Google Workspace (cold) | ~6 €/boîte · 2 domaines × 1-2 boîtes — **nombre exact de boîtes à confirmer** | ~12-24 |
+| Microsoft 365 (`salverys.fr`) | 1 boîte, Business Basic/Standard | ~6-12 |
+| Noms de domaine | `salverys.fr` + `salverys-bpo.fr` + `salverys-groupe.fr`, ~10-15 €/an chacun | ~3 |
+| Airtable · Netlify | offres gratuites, suffisantes à ce stade | 0 |
 | *Emelia* | *~40 € — **non souscrit**, reporté (décision 2026-08-28, cf. `CLAUDE.md`)* | *0* |
-| Divers / imprévus (10 %) | | ~6 |
-| **Total — burn actuel** | | **≈ 65 €/mois** |
+| *Frais de change Wise* | *~0,5-1 % de la masse transférée — **nul tant qu'il n'y a pas de salaire à verser*** | *0* |
+| Divers / imprévus (10 %) | | ~10-14 |
+| **Total — burn actuel** | | **≈ 110-155 €/mois** |
 
-> **Ce que ça change vraiment.** À ~65 €/mois, **le temps ne coûte plus rien**. L'urgence
+> 🔴 **Correction du 2026-08-28, en fin de journée.** Le chiffre de **~65 €/mois** publié
+> plus haut dans ce document **omettait l'abonnement Sales Navigator**, qui est actif et
+> qui est aujourd'hui — et de loin — **le premier poste de dépense de l'entreprise** : à lui
+> seul, il pèse plus que tout le reste réuni. La ligne « SaaS socle ~20 € » sous-estimait
+> par ailleurs GWS (facturé **par boîte**, pas par domaine).
+>
+> **Ce que ça ne change pas :** l'ordre de grandeur reste dérisoire face à un point mort à
+> 1-2 ETP, et la conclusion tient — il n'y a pas d'horloge de trésorerie.
+> **Ce que ça change :** Sales Navigator devient le seul arbitrage de dépense qui mérite
+> d'être posé. Il ne se justifie que s'il est **réellement utilisé** (alertes quotidiennes,
+> résolution des 42 décideurs manquants — `PLAYBOOK-SALES-NAVIGATOR.md` §11 et §13).
+> Un mois sans s'en servir coûte plus cher que tout le reste de la structure.
+>
+> **À faire :** relever les trois factures réelles (Sales Navigator, GWS, M365) et
+> remplacer les fourchettes ci-dessus par les montants exacts.
+
+> **Ce que ça change vraiment.** À ~110-155 €/mois, **le temps ne coûte presque plus rien**. L'urgence
 > commerciale n'est plus financière : elle est stratégique (occuper le terrain, apprendre
 > vite). Toute décision qui achète du temps contre du cash — souscrire un outil, sous-traiter
 > — doit désormais se justifier par un gain de **temps fondateur**, pas par un gain de burn.
@@ -305,10 +329,10 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
 > 🔴 **Risque n°0, ajouté le 2026-08-28 — capacité commerciale nulle en propre.**
 > Depuis la fin du poste de développement commercial, **la totalité de la prospection repose
 > sur le fondateur**, qui porte déjà le juridique, le recrutement, l'infrastructure et la
-> future delivery. Ce n'est pas un risque de coût — le burn tombe à ~65 €/mois (§2.b) — c'est
+> future delivery. Ce n'est pas un risque de coût — le burn tombe à ~110-155 €/mois (§2.b) — c'est
 > un **risque de calendrier** : chaque semaine sans contact décideur repousse le premier
 > contrat, et donc l'embauche du premier manager, et donc la delivery.
-> **Ce qui rend ce risque tenable :** avec 65 €/mois de burn, on peut absorber un
+> **Ce qui rend ce risque tenable :** avec ~110-155 €/mois de burn, on peut absorber un
 > allongement de plusieurs mois sans mettre la structure en danger. **Ce qui le rend
 > dangereux :** au premier contrat signé, le fondateur devra basculer sur l'onboarding et la
 > delivery — et la prospection s'arrêtera net, créant un trou de pipeline juste après la

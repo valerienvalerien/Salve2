@@ -44,7 +44,7 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
   **2026-08-27**. **Le fondateur est seul et assure lui-même la prospection** — toute
   planification (cadence, volumes, objectifs) doit partir de cette contrainte et non d'une
   équipe commerciale. Conséquence financière : le burn avant premier contrat tombe à
-  **~65 €/mois** et le point mort à **1-2 ETP placés** (`FINANCE-PREVISIONNEL.md` §2.b/§4).
+  **~110-155 €/mois** (Sales Navigator inclus) et le point mort à **1-2 ETP placés** (`FINANCE-PREVISIONNEL.md` §2.b/§4).
 - **Un seul fondateur, non rémunéré** au lancement.
 - Le **hub de repli** et la ligne **kits d'autonomie** sont sortis des charges : le kit
   reste dû à l'agent, son coût est réputé couvert par le salaire.

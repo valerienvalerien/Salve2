@@ -46,7 +46,7 @@ l'infrastructure et la future delivery.** Le budget réaliste de prospection est
 Deux conséquences, et elles vont dans des directions opposées :
 
 **La bonne nouvelle — il n'y a plus d'horloge.** Sans salaire à payer et sans Emelia, le
-burn est tombé à **~65 €/mois** (`FINANCE-PREVISIONNEL.md` §2.b) et le point mort à
+burn est tombé à **~110-155 €/mois** (`FINANCE-PREVISIONNEL.md` §2.b) et le point mort à
 **1-2 ETP placés** au lieu de 2-6 (§4). Concrètement : **un seul contrat marque blanche de
 2 positions met la structure à l'équilibre.** On n'est plus obligé de courir.
 

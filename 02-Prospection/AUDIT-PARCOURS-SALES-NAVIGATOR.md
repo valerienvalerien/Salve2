@@ -169,7 +169,8 @@ devient la note, HOT/WARM/NURTURE devient l'étiquette d'action qui en découle.
 > paramètres ont bougé **en sens inverse** : la capacité s'effondre, mais l'objectif aussi.
 
 **Le point mort a été divisé par trois.** Sans salaire commercial et sans Emelia, le socle
-fixe passe de 2 114 € à **~920 €** et le point mort de 2-6 ETP à **1-2 ETP placés**
+fixe passe de 2 114 € à **~920 €**, le burn courant à **~110-155 €/mois** et le point mort de
+2-6 ETP à **1-2 ETP placés**
 (`FINANCE-PREVISIONNEL.md` §2.b et §4). **Un seul contrat MB de 2 positions met la structure
 à l'équilibre** — contre 3 contrats visés auparavant.
 
@@ -252,7 +253,7 @@ est dédiée (`PLAYBOOK` §5, recherche B).
 | Décision | Effet principal | Documents touchés |
 |---|---|---|
 | **Inversion des niches IT** (option A) | Vague 1 de prospection = 100 % ESN/MSP | `CLAUDE.md`, ICP, OUTREACH-SEQUENCE, BRANDING, MENTIONS-LEGALES, PLAYBOOK |
-| **Fin du poste de développement commercial** (27/08) | Burn 755 € → **65 €/mois** · point mort 2-6 ETP → **1-2 ETP** · capacité 20 → **8-10 comptes/semaine** | `CLAUDE.md`, FINANCE-PREVISIONNEL (v3.1), AUDIT-FINANCE, VIVIER-EXPORT, RETROPLANNING (caduc), PLAYBOOK, fiches HTML |
+| **Fin du poste de développement commercial** (27/08) | Burn 755 € → **~110-155 €/mois** (Sales Navigator inclus, cf. correction §2.b du prévisionnel) · point mort 2-6 ETP → **1-2 ETP** · capacité 20 → **8-10 comptes/semaine** | `CLAUDE.md`, FINANCE-PREVISIONNEL (v3.1), AUDIT-FINANCE, VIVIER-EXPORT, RETROPLANNING (caduc), PLAYBOOK, fiches HTML |
 | **Emelia non souscrit, reporté** | Prospection **téléphone d'abord**, email manuel 10-20/j, re-chauffe des boîtes GWS nécessaire | `CLAUDE.md`, OUTREACH-SEQUENCE, PLAYBOOK §8 |
 
 **Le risque à surveiller n'est plus le cash, c'est le trou de pipeline après la première
