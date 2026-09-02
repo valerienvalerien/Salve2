@@ -72,6 +72,15 @@ ouverte le temps de l'onglet (sessionStorage, clé distincte par espace). Bouton
 - Les mots de passe en vigueur sont transmis hors dépôt (chat / gestionnaire de mots de
   passe de la direction).
 
+> 🔑 **Rotation complète le 2026-09-02.** Les trois espaces ont été régénérés avec des
+> mots de passe **entièrement nouveaux** (16 caractères base32 sans caractères ambigus,
+> format `XXXX-XXXX-XXXX-XXXX`, dictables au téléphone). **Les anciens mots de passe ne
+> fonctionnent plus.** Motif : republication du contenu après la révision de la bande
+> salariale (argument passé de 4,5× à ~3,5×, `CLAUDE.md`), les anciens mots de passe
+> n'étant plus disponibles. **Tout partenaire encore actif sur l'un de ces espaces doit
+> recevoir le nouveau mot de passe** — à défaut il perd l'accès sans préavis. Les valeurs
+> sont hors dépôt (à ranger dans le gestionnaire de mots de passe de la direction).
+
 ### Rotation d'un mot de passe (à chaque départ de partenaire, ou trimestriellement)
 ```bash
 node tools/espace-client-build.mjs medical "Nouveau-Mot-De-Passe-Fort" --verify

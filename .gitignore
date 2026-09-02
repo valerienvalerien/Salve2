@@ -1,2 +1,5 @@
 # Sortie de build Netlify (générée par tools/build-site.sh)
 _site/
+
+# Dépendances npm installées à la demande (plaquette PPTX)
+node_modules/
