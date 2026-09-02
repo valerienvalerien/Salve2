@@ -72,7 +72,11 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 > seed (180 leads + décideurs vérifiés sont définis dans le code).
 
 ## Outils retenus
-- **Base de prospection : Airtable** (« Prospection Salverys » — comptes + contacts liés).
+- **Base de prospection : Airtable** — **une seule base**, « Prospection Salverys »,
+  4 tables liées : `Comptes` · `Contacts` · `Appels` (journal, une ligne par appel composé) ·
+  `Objections` (réponses testées). La base « Prospection Salverys IT » a été fusionnée dedans
+  le 2026-09-02 et doit être supprimée. **Ne jamais créer une 2e base de prospection** : c'est
+  la duplication qu'on reproche à Excel, transposée dans Airtable.
   Les CRM HTML (`CRM_Salverys*.html`) sont **hors production** depuis le 2026-08-28
   (stockage `localStorage` : non partagé, non sauvegardé, pertes constatées).
 - **Cold mailing : Emelia** — outil retenu, **abonnement NON souscrit et volontairement
