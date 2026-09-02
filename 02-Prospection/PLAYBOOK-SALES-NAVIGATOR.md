@@ -153,7 +153,8 @@ n'ont pas tous un décideur nommé.**
 | Contenu | Où |
 |---|---|
 | Comptes, contacts, statuts, prochaines actions | **Airtable « Prospection Salverys »** |
-| Sauvegarde froide | `exports/PROSPECTION-comptes-MB-France.csv` (git) |
+| Appels passés, objections entendues | **Airtable** — tables `Appels` et `Objections` |
+| Sauvegarde froide | `exports/PROSPECTION-comptes-MB-France.csv` · `exports/PROSPECTION-objections.csv` (git) |
 | Intelligence marché, angles | `03-Cibles-Prospects/*.md` |
 | Envoi email | **Manuel**, boîtes GWS (voir §8) — Emelia reporté |
 
@@ -169,9 +170,32 @@ ID CRM · Source · Notes`
 email · Téléphone · Type de numéro · Source coordonnées · Statut · Tentatives d'appel ·
 Dernier contact · Résultat · Prochaine action · Date prochaine action`
 
+**Table Appels** (0 — nouvelle) : `Réf · Date · Compte · Contact · Issue · Décideur atteint ·
+Objection principale · Durée (min) · Verbatim objection · Correction du jour`
+
+Une ligne par appel composé, **y compris les appels non décrochés**. Sans elle, le compteur
+`Tentatives d'appel` de la table Contacts dit combien de fois on a appelé — jamais quand, ni
+ce qui s'est passé : aucun taux de décroché ni de passage de barrage n'est calculable. La date
+est saisie en **heure française**, pas en heure d'Antananarivo : c'est le créneau côté prospect
+qui explique un décroché.
+
+**Table Objections** (6) : `Objection · Niche · Réponse testée · Fois rencontrée ·
+Fois débloquée · Statut`
+
+Une ligne par objection type, pas par occurrence. Le rapport **rencontrée / débloquée** est le
+seul chiffre qui dit si une réponse marche ; les formulations viennent de `SCRIPTS-APPEL.md`.
+
 **Règle d'or : jamais un contact sans compte.**
 
-### Les 5 vues à créer (5 minutes)
+> **Une seule base — règle absolue.** Les tables `Appels` et `Objections` venaient d'une
+> seconde base « Prospection Salverys IT » créée le 2026-08-29, fusionnée dans
+> « Prospection Salverys » le **2026-09-02** : ses tables `Comptes` et `Appels` étaient vides
+> (rien de perdu), ses 6 objections ont été recopiées, son champ `Niche` réaligné sur le
+> vocabulaire `Segment`. Deux bases de prospection en parallèle, c'est exactement la
+> duplication qu'on reproche à Excel, transposée dans Airtable. La base IT est marquée
+> ⛔ MIGRÉ : **la supprimer**.
+
+### Les 6 vues à créer (5 minutes)
 
 | Vue | Table | Filtre | Sert à |
 |---|---|---|---|
@@ -180,6 +204,7 @@ Dernier contact · Résultat · Prochaine action · Date prochaine action`
 | **📞 À rappeler** | Contacts | `Statut` = Appelé — pas joint ET `Tentatives` < 3 | La session d'appels |
 | **⛔ Exclus** | Comptes | `Priorité` = EXCLU OU `Offshore` = Oui | Ne jamais y revenir par erreur |
 | **📊 Pipeline** | Comptes | Groupé par `Statut compte` | La revue du vendredi |
+| **📈 Appels de la semaine** | Appels | `Date` dans les 7 derniers jours, groupé par `Issue` | Le taux de décroché réel, pas celui qu'on croit |
 
 En solo, **la vue « Aujourd'hui » est le poste de pilotage**. Si une action n'a pas de date,
 elle n'existe pas — il n'y a plus personne pour se la rappeler mutuellement.
@@ -492,7 +517,10 @@ Relevés le vendredi, sur la vue Pipeline.
 
 ### Semaine 1 — fermer le passé, ouvrir le téléphone
 - [ ] **Checklist de clôture du poste commercial** (§0) — accès, boîte cold, NDA
-- [ ] Créer les 5 vues Airtable (§4) — 5 min
+- [ ] Créer les 6 vues Airtable (§4) — 5 min
+- [ ] **Supprimer la base Airtable « Prospection Salverys IT »** — fusionnée dans
+      « Prospection Salverys » le 2026-09-02, ses tables sont marquées ⛔ MIGRÉ. Tant
+      qu'elle existe, on risque d'y saisir un appel qui ne sera jamais relu — 1 min
 - [ ] Créer les recherches A, B, C + la liste « Comptes Salverys MB », activer les alertes — 1 h
 - [ ] Typer l'externalisation des **20 comptes de la vague 1** (§7) — 15 min · ⚠️ LinkedIn ne montre que la filiale propre : le sous-traitant tiers se découvre au téléphone
 - [ ] Résoudre les décideurs de ces 20 comptes (§13) — 2 h
