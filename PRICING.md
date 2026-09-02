@@ -4,7 +4,16 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-24 (**simplification du catalogue — décision direction** :
+> Dernière révision : 2026-09-02 (**nouvelle politique salariale — décision direction** :
+> le brut unique de 3 250 000 Ar devient une **bande 2 500 000 → 3 250 000 Ar, entrée à
+> 2 500 000 Ar (500 €)** ⇒ coût employeur **586 €**, coût direct **616 €/ETP**, marché
+> **×3,5** au lieu de ×4,5 §8 · motif : financer le **bloc infrastructure de site** —
+> loyer, double FAI, groupe électrogène — non budgété à ce jour
+> (`FINANCE-PREVISIONNEL.md §8.a`) · ⚠️ **aucun prix ne bouge** et le **plancher reste à
+> 920 €/ETP** : la baisse de salaire finance l'infrastructure, elle n'ouvre pas de marge de
+> négociation §3 · marges brutes 43-73 % → **54-78 %** · argument public à réaligner
+> partout sur **×3,5**) ·
+> précédente 2026-08-24 (**simplification du catalogue — décision direction** :
 > le niveau de service **Priority est retiré** du catalogue §3 (il contredisait le claim
 > −40/−60 %, coûtait plus cher que la France sous 3 agents, exigeait une tête en réserve non
 > financée et était invendable en MB) ⇒ **deux niveaux de service, Mutualisé et Dédié**, alignés
@@ -212,8 +221,9 @@ sont adressés par l'offre de lancement (-50 % le 1er mois) plutôt qu'un prix p
 
 \* Le donneur d'ordre établi prend ~25-35 % de marge : on capte moins par ETP, mais le
 coût d'acquisition est ~nul et le volume est apporté. **Plancher absolu** : jamais sous
-le coût direct agent + ~20 %, soit **920 €/ETP** (`FINANCE-PREVISIONNEL.md §2/§3` :
-coût direct 766 €/mois — salaire brut 3 250 000 Ar + charges patronales + VoIP).
+le coût direct agent + une marge de sécurité, soit **920 €/ETP** (`FINANCE-PREVISIONNEL.md
+§2/§3` : coût direct **616 €/mois** à l'entrée de bande — salaire brut 2 500 000 Ar +
+charges patronales + VoIP ; 766 € en haut de bande).
 
 > ⚠️ **Révisé 2026-08-14 — bascule en équipe salariée.** Le plancher passe de **840 €**
 > (modèle 100 % freelance, coût marginal 700 €) à **920 €** (modèle salarié, coût direct
@@ -241,7 +251,8 @@ où le dégressif **achète du volume** au lieu d'être concédé en négociatio
 exigences de comptes européens — cf. la bande d'estimation ±9 %, §3.d).*
 
 - Bornes identiques à la fourchette historique ci-dessus — on **structure** la fourchette,
-  on ne baisse rien. **Plancher : 920 €** (coût direct 766 € + ~20 %), cf. encadré ci-dessus.
+  on ne baisse rien. **Plancher : 920 €**, maintenu par décision malgré la baisse du coût
+  direct à 616 € (2026-09-02) — cf. encadré ci-dessus.
 - **Ce qui change vs la grille 1 / 3 / 5+ (2026-06-12)** : le prix plancher n'est plus
   accordé à **5** positions mais à **9**. Motif — au coût salarié, un deal de 5 positions
   à 1 350 € sortait **sous le point mort** (`AUDIT-FINANCE-PREVISIONNEL.md §A`) ; à 9
@@ -507,13 +518,17 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 
 | Rôle | Effectif | Brut mensuel | Coût employeur |
 |---|---|---|---|
-| Agents productifs (facturables) | **dimensionné sur les contrats, sans plafond** | 3 250 000 Ar (650 €) | ~736 € |
-| Manager métier (1 médical, 1 IT) | 1 par métier actif, +1 par tranche de 8 agents | 3 250 000 Ar (650 €) | ~736 € |
+| Agents productifs (facturables) | **dimensionné sur les contrats, sans plafond** | **à partir de 2 500 000 Ar (500 €)** — bande jusqu'à 3 250 000 Ar | **~586 €** (736 € en haut de bande) |
+| Référent d'exploitation (1 médical, 1 IT) | 1 par métier actif, +1 par tranche de 8 agents | **à partir de 2 500 000 Ar (500 €)** — bande jusqu'à 3 250 000 Ar | **~586 €** (736 € en haut de bande) |
 
 > Lecture marché : salaire moyen d'un agent de call center à Tana ~700 000 Ar ; profils
-> expérimentés 900 000 Ar - 2 M Ar. À 3 250 000 Ar **de brut**, Salverys paie **~4,5× le
-> marché** — aucune offre concurrente équivalente (Intelcia & co. recrutent à 600-800 k Ar).
-> **Hypothèse zéro turnover crédible à ce niveau.** C'est aussi ce qui rend la doctrine
+> expérimentés 900 000 Ar - 2 M Ar. À **2 500 000 Ar de brut à l'entrée** (bande révisée le
+> 2026-09-02), Salverys paie **~3,5× le marché** — au-dessus des meilleurs profils
+> expérimentés et de ce que recrutent Intelcia & co. (600-800 k Ar) ; **~4,5×** en haut de
+> bande. **Hypothèse zéro turnover crédible à ce niveau**, mais avec une marge plus étroite
+> qu'avant — la progression dans la bande (50 €/mois par tranche de 250 000 Ar, **sans
+> charge supplémentaire**) devient le levier de rétention à activer
+> (`FINANCE-PREVISIONNEL.md §1/§7.7`). C'est aussi ce qui rend la doctrine
 > ci-dessous tenable : l'absence à couvrir est une absence *prévue* (congés), pas un départ
 > surprise.
 >
@@ -664,7 +679,8 @@ le remplacement est **dans le prix et jamais en ligne d'option** ; et **annoncer
 rotation** contredit frontalement l'objectif **zéro turnover** du modèle salarié (§3.e).
 Remplacé par la doctrine à trois niveaux — **pool** (A) · **manager métier** (B) ·
 **rotation d'équipe** (C) — et par l'argument qui la finance : agents en CDI rémunérés
-**~4,5× le marché local**, ce qui rend l'absence *prévue* plutôt que subie.
+**~3,5× le marché local** (bande révisée le 2026-09-02), ce qui rend l'absence *prévue*
+plutôt que subie.
 
 **5. Plages — samedi conservé, le reste sur devis.** Le samedi 8h-13h est **maintenu comme
 plage standard vendable** (décision direction). Soirée, jours fériés et couverture continue
@@ -701,8 +717,8 @@ d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` n
   Remplacé partout par la doctrine de continuité : *absence ponctuelle reprise par le
   manager métier* (Poste dédié) · *rotation qui tient la plage* (Équipe managée). *(Un
   troisième niveau, la capacité réservée du tier Priority, existait alors ; il a été retiré
-  le 2026-08-24 — cf. §3.)* Le KPI libéré porte désormais **« × 4,5 le salaire local — zéro
-  turnover visé »**, qui est vrai, chiffré et différenciant.
+  le 2026-08-24 — cf. §3.)* Le KPI libéré porte désormais **« × 3,5 le salaire local — zéro
+  turnover visé »** (× 4,5 jusqu'au 2026-09-02), qui est vrai, chiffré et différenciant.
 - **« Hub de repli alimenté (groupe électrogène, onduleurs) »** — le hub et sa ligne
   d'énergie **sont sortis des charges** (`FINANCE §2.c`, −500 €) et le rétroplanning le
   classe « **à cadrer, pas à déployer** ». Le promettre comme capacité existante n'était
@@ -736,7 +752,7 @@ du document. Corrigé partout :
   client on écrit **ce qu'il fait** — il supervise déjà le compte et n'est pas facturé.
 - L'encadré passe de « Nous ne vendons pas de binôme de secours » (une négation) à
   « **Pourquoi nous n'avons pas besoin de vous facturer un remplaçant** » (le mécanisme) :
-  à 4,5× le marché local, l'absence est un **congé posé à l'avance**, qui s'anticipe au
+  à 3,5× le marché local, l'absence est un **congé posé à l'avance**, qui s'anticipe au
   planning au lieu de se rattraper avec une tête de plus.
 
 **10. Le palier haut sort de la marque blanche (décidé 2026-08-24).** Le modèle C
@@ -978,11 +994,15 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
 | **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
 | **Statut de l'équipe (2026-08-14)** | 100 % freelances, fee 3 250 000 Ar, effectif de référence 8 agents + 2 managers | **100 % salariés** : brut 3 250 000 Ar **+ charges patronales CNaPS/OSTIE** (~86 €/tête, plafonnées) ⇒ coût employeur **~736 €/agent** ; **aucun plafond d'effectif**, dimensionné sur les positions fermes (§3.e, `FINANCE-PREVISIONNEL.md §1/§2`) |
+| **Politique salariale (2026-09-02)** | brut **unique** de 3 250 000 Ar (650 €) pour agents et managers ⇒ coût employeur 736 €, coût direct 766 €, marché ×4,5 | **bande 2 500 000 → 3 250 000 Ar, entrée à 2 500 000 Ar (500 €)** ⇒ coût employeur **586 €**, coût direct **616 €**, marché **×3,5** (×4,5 en haut de bande). Motif : financer le **bloc infrastructure de site** (loyer, double FAI, groupe électrogène), `FINANCE-PREVISIONNEL.md §8.a`. **Prix et plancher inchangés** — la baisse finance l'infra, pas une baisse de prix |
 | **Plancher absolu (2026-08-14)** | **840 €/ETP** (coût marginal freelance 700 € + 20 %) | **920 €/ETP** (coût direct salarié 766 € + 20 %) — recodé dans `tools/deal-build.mjs` (§3) |
+| **Plancher absolu (2026-09-02)** | mécaniquement recalculé, il tomberait à **~740 €** (coût d'entrée 616 € + 20 %) | **maintenu à 920 €/ETP** — le plancher est une **digue de négociation**, pas une fonction du coût ; la marge de sécurité passe de +20 % à **+49 %**. `PLANCHER_ETP` inchangé dans `tools/deal-build.mjs` (§3) |
 | **Rate card MB (2026-08-14)** | paliers **1 / 3 / 5+ ETP** ; prix plancher 1 350 € accordé dès **5** positions — **sous le point mort** au coût salarié | paliers **1-4 / 5-8 / 9+ ETP** (standard / volume / stratégique) ; prix plancher accordé à **9** positions ; **volume ferme facturable généralisé à tous les paliers** (§3) |
 | **Accroche prix MB (2026-08-14)** | aucune | **« à partir de 1 350 € / 1 550 €/ETP »**, autorisée **en espace partenaire et one-pager MB uniquement** — jamais public, doctrine §0/§9 inchangée (§3) |
 | **Point mort de référence (2026-08-14)** | « ~7 ETP placés », chiffre unique | **2 à 6 ETP selon le palier et le nombre de métiers actifs** ; un deal de **3-4 positions au tarif standard** suffit (`FINANCE-PREVISIONNEL.md §4`) |
+| **Point mort (2026-09-02)** | 1 à 2 ETP (socle fixe 920 €) | **1 ETP placé** sur tous les paliers sauf Support 9+ (socle fixe **755 €**) — ⚠️ **hors bloc infrastructure**, non chiffré (`FINANCE-PREVISIONNEL.md §4/§8.a`) |
 | **Kit d'autonomie & hub (2026-08-14)** | ligne de charges à chiffrer (capex kits) + hub de repli | **sortis des charges** ; le kit reste dû à l'agent, **réputé couvert par le salaire** (4,5× le marché) — à inscrire au contrat de travail et au PCA (§10) |
+| **Kit d'autonomie (2026-09-02)** | « couvert par le salaire », argument adossé au 4,5× | ⚠️ **argument fragilisé à 3,5×** : on a retiré 150 €/mois à l'agent en lui laissant énergie et connexion. Il ne redevient cohérent que si la baisse finance réellement un **site** (groupe électrogène + double FAI) qui reprend la continuité à la charge de Salverys — `FINANCE-PREVISIONNEL.md §2.c/§8.a`. **À trancher avant les premières embauches** |
 
 ---
 
@@ -1017,7 +1037,10 @@ Système de points (8 critères pondérés, max 50). Détail et interprétation 
   > ⚠️ **Financement du kit et du hub (2026-08-14)** : le **hub de repli** et la ligne
   > « kits d'autonomie » **sortent des charges** du prévisionnel (`FINANCE §2.c`). Le kit
   > reste dû à l'agent, mais son coût est **réputé couvert par le salaire** — fixé à 4,5× le
-  > marché local précisément pour absorber énergie et connexion domicile. **À écrire noir
+  > marché local précisément pour absorber énergie et connexion domicile. ⚠️ **Depuis le
+  > 2026-09-02, l'entrée de bande est à 3,5× du marché** : cet argument ne tient plus seul,
+  > il suppose que la baisse finance un site qui reprend la continuité
+  > (`FINANCE-PREVISIONNEL.md §8.a`). **À écrire noir
   > sur blanc dans le contrat de travail et dans `01-PLAN-CONTINUITE.md`**, faute de quoi
   > une promesse remise aux partenaires en avant-vente n'a plus de financement identifiable.
   > La règle « un agent de remplacement en plus par client » est **abandonnée** (2026-08-14) :

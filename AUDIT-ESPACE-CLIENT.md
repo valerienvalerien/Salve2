@@ -82,6 +82,12 @@ Les 3 contenus annonçaient **2,5×** alors que la décision direction du 2026-0
 sous-vendu de moitié, et incohérent avec le reste du dossier. **Corrigé** dans les 3
 sources et dans `02-Prospection/ONEPAGER-PARTENAIRE-MB.md`.
 
+> ⚠️ **Périmé depuis le 2026-09-02.** La bande salariale a été révisée (entrée à
+> 2 500 000 Ar) : **le multiple à afficher partout est ~3,5×**, plus 4,5×. Les 3 contenus,
+> le one-pager, `index.html` et la fiche offre France ont été réalignés. **Les espaces
+> client chiffrés (`espace-client-*.html`) restent à régénérer** — voir le point 2 du plan
+> ci-dessous, toujours ouvert.
+
 ### 3.4 Les 3 contenus sont interchangeables
 
 Mêmes 6 bullets « pourquoi nous », mêmes conditions, seuls les prix et deux mots changent.

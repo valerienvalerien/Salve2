@@ -50,7 +50,7 @@ helpdesk). Plus simple, et recherche **transverse** aux 3 niches.
 | Expérience (années) | Number | |
 | **Compétences** | **Multiple select** | la conversion **découpe sur les virgules** → 1 option par compétence |
 | Disponibilité | Single select | `Immédiate`, `Sous préavis`, `À confirmer` |
-| Prétention (Ar/mois) | Number | repère vs grille **3 250 000 Ar (650 €)** |
+| Prétention (Ar/mois) | Number | repère vs bande **2 500 000 → 3 250 000 Ar (500-650 €)**, entrée à 2 500 000 |
 | **Note qualif** | Single select | `A`, `B`, `C` (+ couleurs : A vert, B orange, C gris) |
 | **Étape pipeline** | **Single select** | voir §5 (mets les couleurs, ça pilote le Kanban) |
 

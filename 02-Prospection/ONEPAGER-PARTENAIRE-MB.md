@@ -45,7 +45,7 @@ vos SLA, votre nom. Votre client final ne voit que vous.
 Parce que c'est **votre marque** qui décroche. À 0,50 € l'appel, l'agent est payé au
 minimum local et tourne en 6 mois — votre qualité part avec lui.
 
-- **Nos agents sont payés ~4,5× le marché local** : zéro turnover visé, les mêmes voix
+- **Nos agents sont payés ~3,5× le marché local** : zéro turnover visé, les mêmes voix
   sur votre compte dans la durée.
 - **Engagement de service contractuel** : taux de décroché ou SLA convenu au cadrage ;
   en deçà sur un mois, **20 % d'avoir automatique** — on met notre argent sur le résultat.

@@ -33,10 +33,22 @@ ESN/MSP). Le direct (client final) vient en 2e temps. Toute priorisation de pros
 de copy ou de chiffrage doit refléter ce MB-first.
 
 ### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
-Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
-**3 250 000 Ar/mois** (650 € — ~4,5× le marché local), **charges patronales CNaPS/OSTIE en
-sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/agent**. Objectif :
-**zéro turnover**.
+Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un référent
+d'exploitation : **à partir de 2 500 000 Ar/mois** (500 € — ~3,5× le marché local), **bande
+jusqu'à 3 250 000 Ar** (~4,5×), **charges patronales CNaPS/OSTIE en sus** (~86 €/tête,
+plafonnées à 8 × SME et donc **forfaitaires sur toute la bande**) ⇒ **coût employeur
+~586 €/agent** à l'entrée. Objectif : **zéro turnover**.
+
+> ⚠️ **Révision du 2026-09-02** : la grille unique à 3 250 000 Ar est remplacée par cette
+> bande. Motif — dégager la marge (~150 €/tête/mois) qui financera le **bloc infrastructure
+> de site** (loyer, double FAI, groupe électrogène), aujourd'hui non budgété
+> (`FINANCE-PREVISIONNEL.md §8.a`). Trois règles qui en découlent :
+> - **Aucun prix ne bouge** et le **plancher tarifaire reste à 920 €/ETP** : la baisse
+>   finance l'infrastructure, elle n'ouvre pas de marge de négociation.
+> - **L'argument public passe à « ~3,5× le marché local »** — plus jamais 4,5× dans une
+>   copy, un simulateur ou un espace client.
+> - **La progression dans la bande est le levier de rétention** : +250 000 Ar = 50 €/mois
+>   et **zéro charge supplémentaire** (plafond déjà atteint).
 
 - **Aucun plafond d'effectif** : on embauche sur **positions fermes facturables**, pas sur
   une cible d'équipe. Ne jamais opposer une limite de capacité à un prospect.
@@ -44,10 +56,13 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
   **2026-08-27**. **Le fondateur est seul et assure lui-même la prospection** — toute
   planification (cadence, volumes, objectifs) doit partir de cette contrainte et non d'une
   équipe commerciale. Conséquence financière : le burn avant premier contrat tombe à
-  **~110-155 €/mois** (Sales Navigator inclus) et le point mort à **1-2 ETP placés** (`FINANCE-PREVISIONNEL.md` §2.b/§4).
+  **~110-155 €/mois** (Sales Navigator inclus) et le point mort à **1 ETP placé** sur tous
+  les paliers sauf Support 9+ (`FINANCE-PREVISIONNEL.md` §2.b/§4).
 - **Un seul fondateur, non rémunéré** au lancement.
 - Le **hub de repli** et la ligne **kits d'autonomie** sont sortis des charges : le kit
-  reste dû à l'agent, son coût est réputé couvert par le salaire.
+  reste dû à l'agent, son coût est réputé couvert par le salaire. ⚠️ À 3,5× du marché, cet
+  argument ne tient que si la baisse de salaire finance effectivement un **site** qui
+  reprend la continuité (groupe électrogène, double FAI) — à trancher avant la 1ʳᵉ embauche.
 - Rentabilité, point mort et trésorerie : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v3).
   Audit de ce prévisionnel : `AUDIT-FINANCE-PREVISIONNEL.md`.
 

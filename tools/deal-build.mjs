@@ -27,15 +27,22 @@ const ITER = 310000;
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 /* Garde-fous economiques — FINANCE-PREVISIONNEL.md §2/§3 fait foi.
- * Modele salarie (decision direction 2026-08-14) : brut 3 250 000 Ar (650 €) + charges
- * patronales CNaPS/OSTIE plafonnees a 8 x SME (~86 €/tete) = 736 € de cout employeur,
- * + VoIP ~30 € => cout direct 766 €/ETP. Plancher absolu = cout + ~20 % = 920 €/ETP.
+ * Modele salarie (decision direction 2026-08-14, bande salariale revisee le 2026-09-02) :
+ * brut a partir de 2 500 000 Ar (500 €), bande jusqu'a 3 250 000 Ar, + charges patronales
+ * CNaPS/OSTIE plafonnees a 8 x SME (~86 €/tete, forfaitaires sur toute la bande)
+ * => cout employeur 586 € a l'entree, + VoIP ~30 € => cout direct 616 €/ETP
+ * (766 € en haut de bande).
+ * PLANCHER VOLONTAIREMENT DECORRELE DU COUT : le plancher mecanique tomberait a ~740 €
+ * (616 + 20 %), il est MAINTENU A 920 € par decision du 2026-09-02. Le plancher est une
+ * digue de negociation, pas une fonction du cout : la baisse de salaire finance le bloc
+ * infrastructure de site (FINANCE-PREVISIONNEL.md §8.a), elle n'ouvre pas de marge de
+ * negociation. Marge de securite : +49 % sur le cout d'entree de bande.
  * (Historique : 840 € sous le modele 100 % freelance jusqu'au 2026-08-14 ; 540 € avant le
  * 2026-07-29, valeur heritee du modele salarie v1 abandonne le 2026-06-10. Negocier avec
  * un plancher perime permet de signer a perte.)
  * Le builder refuse de produire un document sous le plancher : on ne peut pas, sous
  * pression en closing, generer une proposition qui met l'entreprise en perte. */
-const COUT_AGENT = 766;
+const COUT_AGENT = 616;
 const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
@@ -364,7 +371,7 @@ if (deal.niche === 'medical') {
 /* Plancher : aucune proposition sous le cout marginal + 20 %. */
 const sousPlancher = deal.grille.filter((r) => r.gros < PLANCHER_ETP);
 if (sousPlancher.length) {
-  console.error(`✗ Plancher viole (${PLANCHER_ETP} € = cout agent ${COUT_AGENT} € + 20 %, FINANCE-PREVISIONNEL.md §3) :`);
+  console.error(`✗ Plancher viole (${PLANCHER_ETP} € — digue commerciale maintenue au-dessus du cout agent ${COUT_AGENT} €, FINANCE-PREVISIONNEL.md §3) :`);
   for (const r of sousPlancher) console.error(`  · ${r.engagement} a ${EUR(r.gros)}`);
   console.error('  Document non genere. Remonter le prix, ou assumer la decision et ajuster PLANCHER_ETP.');
   process.exit(1);
