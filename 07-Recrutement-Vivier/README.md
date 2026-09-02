@@ -38,6 +38,7 @@ proposée est un contrat salarié dès le premier contact.
 | `MINI-TEST-Qualification.md` | Grille de test /20 → Note `A/B/C` |
 | `MINI-TEST-Scripts-Reponses.md` | Scripts de mise en situation + corrigé **A vs C** par niche |
 | `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
+| `FICHE-POSTE-Referent-Exploitation.md` | **Fiche de poste du premier encadrant** (ex-« manager de niche ») : missions, interdits, KPI, profil, process de recrutement |
 
 ## Le flux en 1 coup d'œil
 
