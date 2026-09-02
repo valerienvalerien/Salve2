@@ -15,6 +15,12 @@
 >
 > **Placeholders** : `{prenom}` = prénom de l'interlocuteur · `{structure}` =
 > nom du cabinet / de l'éditeur / de la DSI.
+>
+> ⚠️ **2026-09-02 — les ouvertures des §1/§2/§3 sont à corriger.** Elles sont écrites pour un
+> commercial (« Vous avez 2/3 minutes ? » suivi d'un pitch) et non pour un fondateur sans
+> référence client. La version à utiliser au téléphone est dans
+> **`SCRIPT-APPEL-J1.md`** §1 et §5 (demande bornée + spécificité prouvée, pitch reporté aux
+> 15 minutes obtenues). Le §4 ci-dessous et les arbres d'objections restent valables tels quels.
 
 ---
 
