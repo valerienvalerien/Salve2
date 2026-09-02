@@ -31,5 +31,6 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 > ⚠️ **Les CRM HTML (`CRM_Salverys*.html`) ne sont plus l'outil de prospection en production**
 > (depuis le 2026-08-28). Ils stockent en `localStorage` : non partagés, non sauvegardés —
 > 60 comptes y avaient déjà été perdus. La base de prospection vit désormais dans **Airtable
-> (« Prospection Salverys »)**, sauvegardée dans `exports/PROSPECTION-comptes-MB-France.csv`.
+> (« Prospection Salverys »)** — une seule base, 4 tables liées (`Comptes`, `Contacts`,
+> `Appels`, `Objections`) — sauvegardée dans `exports/PROSPECTION-comptes-MB-France.csv`.
 > Voir `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md`.

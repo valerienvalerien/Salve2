@@ -1,0 +1,7 @@
+﻿"Objection";"Niche";"Réponse testée";"Fois rencontrée";"Fois débloquée";"Statut"
+"Pas le moment";"Toutes niches IT";"« C'est un ""jamais"" ou un ""pas maintenant"" ? » → si pas maintenant : « C'est quoi qui doit se passer chez vous pour que ça le devienne ? » Noter le déclencheur + date de rappel.";"";"";"En test"
+"Pas le budget";"Toutes niches IT";"« Comparé à quoi ? Un technicien N1 en France, c'est 2 800 € chargés minimum. Sur quel montant vous vous basez ? »";"";"";"En test"
+"On a déjà un prestataire";"Toutes niches IT";"« Vous l'avez pris pour quel périmètre exactement ? » — le périmètre est souvent partiel. Enchaîner : « Et sur ce qu'il ne couvre pas, ça tombe sur qui ? »";"";"";"En test"
+"On a déjà une équipe support en interne";"Éditeur SaaS / support";"Ne pas contredire : c'est le prérequis. « Justement. On ne remplace pas votre équipe, on lui donne de l'élasticité. Elle absorbe les pics comment aujourd'hui ? »";"";"";"À travailler"
+"Madagascar / l'accent / la qualité";"Toutes niches IT";"« C'est la question que je poserais aussi. Équipes francophones formées à votre outil ; on paie environ 4x le salaire local donc turnover très bas — c'est ça qui tue la qualité chez la plupart des offshore ; et on démarre par un pilote sur périmètre limité. Vous auriez quel périmètre en tête pour tester ? »";"";"";"En test"
+"Envoyez une plaquette";"Toutes niches IT";"« Je vous l'envoie ce soir. Deux minutes avant que je raccroche : vous êtes à combien de tickets par mois ? Ça m'évite de vous envoyer un document générique. »";"";"";"En test"
