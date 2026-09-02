@@ -162,9 +162,24 @@ n'ont pas tous un décideur nommé.**
 > non partagé, non sauvegardé — 60 comptes y ont déjà été perdus (`AUDIT` §1).
 
 **Table Comptes** (75) : `Compte · Segment · Effectif · Ville · Site web · LinkedIn société ·
-Score · Priorité · Type de signal · Signal · Offshore existant · Statut compte ·
-Propriétaire · Prochaine action · Date prochaine action · Téléphone standard · Email société ·
-ID CRM · Source · Notes`
+Score · Priorité · Type de signal · Signal · Externalisation N1 en place · **Porte d'entrée** ·
+Statut compte · Propriétaire · Prochaine action · Date prochaine action · Téléphone standard ·
+Email société · ID CRM · Source · Notes`
+
+**Champ `Porte d'entrée`** (ajouté le 2026-09-02) — comment on attaque le compte, et par quel
+canal. C'est le champ qui traduit en action la règle du §6 :
+
+| Valeur | Comptes | Règle |
+|---|---|---|
+| `A — Vente · dirigeant · téléphone` | 49 | Effectif < 100 : le patron est **à la fois** celui qui sait et celui qui signe. Appel direct, dirigeant à dirigeant |
+| `B — Étude · delivery · écrit` | 17 | Effectif > 200 : l'interrogé n'est pas l'acheteur. On interroge le responsable delivery **par écrit** (baromètre), on vendra plus tard au dirigeant |
+| `Partenaire — vend déjà en MB` | 5 | Oxxodata, NowServiceDesk, Actual Systèmes, Partner Proximity, NeoOne |
+| `Hors portée` | 4 | Nowteam, ES Protect, Alteo, Edeal IT |
+
+⚠️ Une quarantaine de comptes ont encore `Effectif` = « À qualifier » : leur porte est déduite du
+descriptif, pas d'un effectif vérifié. À trancher en priorité sur pappers : Quodagis, AntemetA,
+Cheops Technology, Yousign, Agicap, Pennylane, Sarbacane, Orisha.
+Raisonnement complet et scripts : `SCRIPT-APPEL-J1.md` §2 et §3.
 
 **Table Contacts** (41) : `Nom · Compte · Fonction · Rôle · LinkedIn · Email · Confiance
 email · Téléphone · Type de numéro · Source coordonnées · Statut · Tentatives d'appel ·
@@ -195,7 +210,7 @@ seul chiffre qui dit si une réponse marche ; les formulations viennent de `SCRI
 > duplication qu'on reproche à Excel, transposée dans Airtable. La base IT est marquée
 > ⛔ MIGRÉ : **la supprimer**.
 
-### Les 6 vues à créer (5 minutes)
+### Les 8 vues à créer (5 minutes)
 
 | Vue | Table | Filtre | Sert à |
 |---|---|---|---|
@@ -205,6 +220,8 @@ seul chiffre qui dit si une réponse marche ; les formulations viennent de `SCRI
 | **⛔ Exclus** | Comptes | `Priorité` = EXCLU OU `Offshore` = Oui | Ne jamais y revenir par erreur |
 | **📊 Pipeline** | Comptes | Groupé par `Statut compte` | La revue du vendredi |
 | **📈 Appels de la semaine** | Appels | `Date` dans les 7 derniers jours, groupé par `Issue` | Le taux de décroché réel, pas celui qu'on croit |
+| **📞 Porte A — à appeler** | Comptes | `Porte d'entrée` = A ET `Statut compte` ≠ contacté | La file du téléphone |
+| **✉️ Porte B — à solliciter** | Comptes | `Porte d'entrée` = B | La file du baromètre, par écrit uniquement |
 
 En solo, **la vue « Aujourd'hui » est le poste de pilotage**. Si une action n'a pas de date,
 elle n'existe pas — il n'y a plus personne pour se la rappeler mutuellement.
@@ -517,7 +534,7 @@ Relevés le vendredi, sur la vue Pipeline.
 
 ### Semaine 1 — fermer le passé, ouvrir le téléphone
 - [ ] **Checklist de clôture du poste commercial** (§0) — accès, boîte cold, NDA
-- [ ] Créer les 6 vues Airtable (§4) — 5 min
+- [ ] Créer les 8 vues Airtable (§4) — 5 min
 - [ ] **Supprimer la base Airtable « Prospection Salverys IT »** — fusionnée dans
       « Prospection Salverys » le 2026-09-02, ses tables sont marquées ⛔ MIGRÉ. Tant
       qu'elle existe, on risque d'y saisir un appel qui ne sera jamais relu — 1 min
