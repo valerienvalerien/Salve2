@@ -139,7 +139,7 @@ trimestre »), ce qui est à la fois honnête et un levier de closing.
 
 | # | Constat | Gravité | État |
 |---|---|---|---|
-| 1 | **Le dépôt GitHub est public** : `PRICING.md` et `tools/espace-contenu-*.html` exposent les prix MB en clair. **Tout le chiffrement AES ne sert à rien tant que ce point n'est pas réglé.** | 🔴 bloquant | ⚠️ **à faire — passer le dépôt en privé** |
+| 1 | ~~**Le dépôt GitHub est public** : `PRICING.md` et `tools/espace-contenu-*.html` exposent les prix MB en clair.~~ **Constat erroné.** Vérifié le 2026-09-03 par l'API GitHub : le dépôt est **privé** (`visibility: private`, 0 fork). `tools/espace-contenu-*.html` a par ailleurs été supprimé le 2026-09-02. | ✅ sans objet | ✅ **clos** |
 | 2 | La page d'aiguillage était **publique et liée depuis le footer du site**, et annonçait les 3 niches (« débordement pour télésecrétariats français ») : elle révélait à n'importe quel visiteur que Salverys est sous-traitant marque blanche. Contradiction directe avec la promesse de discrétion. | 🔴 | ✅ corrigé (page neutralisée, lien retiré du footer) |
 | 3 | Un mot de passe par niche : pas de révocation individuelle, fuite latérale entre concurrents. | 🔴 | ✅ résolu par les pages par deal |
 | 4 | Le payload chiffré est servi à tous : attaque hors ligne possible, sans limite de tentatives. Le builder n'exigeait qu'**12 caractères**, sans contrainte d'entropie — un code humain type `Salverys2026!` est cassable. | 🟠 | ✅ le nouveau builder **génère** le code (alphabet de 31 caractères sans ambiguïtés, 12 caractères ⇒ ~59 bits, hors de portée d'un brute-force PBKDF2 310k) |
@@ -208,7 +208,7 @@ Démo générée : `espace/exemple-msp-M9vJj_ZqmYFf.html` (code `SLV-DEMO-2026-T
 
 | # | Action | Priorité |
 |---|---|---|
-| 1 | **Passer le dépôt GitHub en privé.** Rien d'autre ne compte tant que ce n'est pas fait. | 🔴 |
+| 1 | ~~**Passer le dépôt GitHub en privé.** Rien d'autre ne compte tant que ce n'est pas fait.~~ ✅ **Sans objet — le dépôt est privé**, vérifié le 2026-09-03 par l'API GitHub. Cette ligne affirmait le contraire depuis la rédaction de l'audit et a servi de prémisse à plusieurs raisonnements : elle est fausse. Seul contrôle restant : **GitHub Pages** — l'API renvoie `has_pages: true`, or sur le plan gratuit un site Pages est **public même quand le dépôt est privé**. À vérifier dans Settings → Pages : si un site est publié depuis la racine de `main`, alors `PRICING.md` et `tools/` sont lisibles publiquement. Si Pages ne sert rien (ou sert `_site/` via Netlify uniquement), il n'y a aucune exposition. | 🟠 |
 | 2 | ~~Régénérer les 3 espaces par niche, **ou** les retirer du build une fois les partenaires actifs basculés sur des pages par deal.~~ ✅ **Soldé le 2026-09-02** : les 3 espaces sont **décommissionnés** (pages, générateur et sources en clair supprimés du dépôt, retirés de `tools/build-site.sh`). Aucun partenaire à basculer — pas de contrat signé, le seul deal du dépôt est le gabarit de démonstration. Détail : `ESPACE-CLIENT-CANDIDAT.md §1`. | ✅ |
 | 3 | Renseigner `rdvUrl` dans le gabarit (Cal.com) — sans lien de réservation, le CTA repose sur un `mailto`. | 🟠 |
 | 4 | Produire les substituts de preuve (§3.7) : modèle de reporting hebdomadaire, extrait de procédure, profils anonymisés des 2 managers, plan d'onboarding daté. | 🟠 |

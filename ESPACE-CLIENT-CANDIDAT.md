@@ -74,10 +74,11 @@ recevra directement une page par deal (§0).
 Historique complet et motifs : `AUDIT-ESPACE-CLIENT.md`. Le code supprimé reste
 récupérable dans l'historique git si le dispositif devait être ressuscité.
 
-> ⚠️ **Ce que le décommissionnement ne corrige pas.** `PRICING.md` porte toujours la rate
-> card MB en clair dans le dépôt. **Tant que le dépôt GitHub est public, les prix de gros
-> fuient par le dépôt, pas par le site** — la checklist §4.2 (passer le dépôt en privé)
-> reste le vrai correctif.
+> ✅ **Point de fuite par le dépôt : réglé.** `PRICING.md` porte la rate card MB en clair,
+> mais **le dépôt GitHub est privé** — vérifié le 2026-09-03 par l'API
+> (`visibility: private`, 0 fork). L'avertissement « tant que le dépôt est public, les prix
+> fuient par le dépôt » qui figurait ici et dans `AUDIT-ESPACE-CLIENT.md` était **périmé**.
+> Reste un seul chemin à contrôler : voir la note GitHub Pages en §3.
 
 ---
 
@@ -120,9 +121,23 @@ récupérable dans l'historique git si le dispositif devait être ressuscité.
   `/espace/*` en plus en `Referrer-Policy: no-referrer` (l'URL contient le token).
 - Test local du build : `bash tools/build-site.sh && python3 -m http.server -d _site`.
 
+> ⚠️ **GitHub Pages — le seul chemin d'exposition qui reste à contrôler.** L'API GitHub
+> renvoie `has_pages: true` sur le dépôt. Or, sur le plan gratuit, **un site GitHub Pages
+> est public même quand le dépôt qui le porte est privé**. Deux cas :
+> - Pages publie **depuis la racine de `main`** ⇒ `PRICING.md`, `tools/` et tout le reste
+>   sont lisibles publiquement, et le fait que le dépôt soit privé n'y change rien.
+>   **C'est le seul scénario où la rate card fuit.**
+> - Pages est simplement activé sans site publié, ou publie un contenu maîtrisé
+>   ⇒ aucune exposition.
+>
+> **À vérifier en 30 secondes** : Settings → Pages. Si une source est configurée sur
+> `main / (root)`, la désactiver — le site est servi par **Netlify** depuis `_site/`
+> (§3), pas par Pages. Puis contrôler que `https://<compte>.github.io/Salve2/PRICING.md`
+> renvoie bien 404.
+
 ## 4. Checklist mise en ligne
 1. ☐ Brancher le dépôt sur Netlify (build auto via `netlify.toml`).
-2. ☐ **Passer le dépôt GitHub en privé.**
+2. ✅ **Dépôt GitHub privé** — vérifié le 2026-09-03 (`visibility: private`, 0 fork).
 3. ☐ Activer la notification email Netlify Forms → contact@salverys.fr.
 4. ☐ Tester une page de deal en HTTPS avec son code d'accès (§0) — les 3 espaces par niche sont décommissionnés (§1).
 5. ☐ Faire un dépôt de candidature test + vérifier la réception + le suivi.
