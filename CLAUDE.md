@@ -77,6 +77,9 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
   `Objections` (réponses testées). La base « Prospection Salverys IT » a été fusionnée dedans
   le 2026-09-02 et doit être supprimée. **Ne jamais créer une 2e base de prospection** : c'est
   la duplication qu'on reproche à Excel, transposée dans Airtable.
+  Audit des colonnes du 2026-09-03 : `02-Prospection/PLAYBOOK-SALES-NAVIGATOR.md` §4.
+  **Une valeur d'attente (« À qualifier », « À vérifier ») dans une colonne vaut pire
+  que du vide** : elle simule un remplissage et interdit de filtrer ce qui reste à faire.
   Les CRM HTML (`CRM_Salverys*.html`) sont **hors production** depuis le 2026-08-28
   (stockage `localStorage` : non partagé, non sauvegardé, pertes constatées).
 - **Cold mailing : Emelia** — outil retenu, **abonnement NON souscrit et volontairement
