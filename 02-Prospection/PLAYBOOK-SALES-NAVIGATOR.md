@@ -161,14 +161,15 @@ n'ont pas tous un décideur nommé.**
 > ⚠️ Les CRM HTML (`CRM_Salverys*.html`) sont **hors production** : stockage `localStorage`,
 > non partagé, non sauvegardé — 60 comptes y ont déjà été perdus (`AUDIT` §1).
 
-**Table Comptes** (75) : `Compte · Segment · Effectif · Ville · Site web · LinkedIn société ·
-Score · Priorité · Type de signal · Signal · Offshore existant · Statut compte ·
-Propriétaire · Prochaine action · Date prochaine action · Téléphone standard · Email société ·
-ID CRM · Source · Notes`
+**Table Comptes** (75) : `Compte · Segment · Pays · Effectif · Ville · LinkedIn société ·
+Compte parent · Score · Priorité (auto) · Type de signal · Signal · Date du signal ·
+Externalisation N1 en place · Prestataire actuel & échéance · Volume tickets/mois ·
+Statut compte · Prochaine action · Date prochaine action · Décideur nommé ? · Nb appels ·
+Dernier appel · Téléphone standard · Email société · Notes`
 
-**Table Contacts** (41) : `Nom · Compte · Fonction · Rôle · LinkedIn · Email · Confiance
-email · Téléphone · Type de numéro · Source coordonnées · Statut · Tentatives d'appel ·
-Dernier contact · Résultat · Prochaine action · Date prochaine action`
+**Table Contacts** (41) : `Nom · Compte · Fonction · Rôle · LinkedIn · Email · Téléphone ·
+Type de numéro · Source coordonnées · Statut · Nb appels · Dernier appel ·
+Brief avant appel`
 
 **Table Appels** (0 — nouvelle) : `Réf · Date · Compte · Contact · Issue · Décideur atteint ·
 Objection principale · Durée (min) · Verbatim objection · Correction du jour`
@@ -187,6 +188,36 @@ seul chiffre qui dit si une réponse marche ; les formulations viennent de `SCRI
 
 **Règle d'or : jamais un contact sans compte.**
 
+### Audit des colonnes du 2026-09-03
+
+Taux de remplissage mesuré colonne par colonne. Trois enseignements :
+
+1. **Les 6 colonnes de pilotage étaient à 0 %** (`Prochaine action` + `Date`, sur Comptes
+   *et* sur Contacts, plus `Tentatives d'appel` et `Dernier contact`). La vue
+   « 🎯 Aujourd'hui » ne pouvait donc rien afficher. Corrigé : le couple action/date ne vit
+   plus qu'au **niveau du compte**, `Prochaine action` est passée en **liste fermée** (un menu
+   se remplit, un champ libre non), et les compteurs d'appel sont devenus **automatiques**.
+2. **Trois colonnes affichaient 100 % de remplissage sans contenir d'information** :
+   `Effectif` (44 « À qualifier » sur 75), `Type de signal` (26 « Aucun signal identifié »),
+   `Offshore existant` (72 « À vérifier »). Une valeur d'attente est indistinguable d'une
+   donnée : elle interdit de filtrer ce qui reste à faire. **Laisser vide dit la vérité.**
+3. **`Priorité` était un simple découpage de `Score`** — HOT ≥ 71, WARM 55-68, NURTURE ≤ 52,
+   sans une exception sur 75 comptes. Elle est désormais **calculée** ; l'exclusion d'un
+   compte se lit dans `Statut compte = Exclu`, pas dans la priorité.
+
+**Colonnes marquées ⛔ — à supprimer à la main** (l'API ne peut pas supprimer un champ) :
+Comptes → `Site web` (0 %), `Propriétaire` (0 %, un seul opérateur), `Offshore existant`,
+`ID CRM` (les identifiants restent dans l'export CSV), `Priorité (manuelle)`,
+`Prochaine action (texte)`. Contacts → `Confiance email` (les 31 « Inconnu » = les 31 sans
+email), `Prochaine action` + `Date`, `Tentatives d'appel`, `Dernier contact`.
+⚠️ Avant de supprimer `Confiance email`, reporter dans `Brief avant appel` la mention
+« à vérifier » des 10 contacts qui ont un email.
+
+**Colonnes à remplir en priorité** — elles sont utiles mais vides :
+`Externalisation N1 en place` (11 % — c'est pourtant l'axe de qualification n°1),
+`LinkedIn` des contacts (0 % alors que l'approche est LinkedIn-first),
+`LinkedIn société` (19 % — c'est l'entrée Sales Navigator du §13).
+
 > **Une seule base — règle absolue.** Les tables `Appels` et `Objections` venaient d'une
 > seconde base « Prospection Salverys IT » créée le 2026-08-29, fusionnée dans
 > « Prospection Salverys » le **2026-09-02** : ses tables `Comptes` et `Appels` étaient vides
@@ -200,9 +231,9 @@ seul chiffre qui dit si une réponse marche ; les formulations viennent de `SCRI
 | Vue | Table | Filtre | Sert à |
 |---|---|---|---|
 | **🎯 Aujourd'hui** | Comptes | `Date prochaine action` ≤ aujourd'hui | La seule vue ouverte le matin |
-| **🔍 Décideur à identifier** | Comptes | `Statut` = Décideur à identifier, trié par Score ↓ | La file Sales Navigator |
-| **📞 À rappeler** | Contacts | `Statut` = Appelé — pas joint ET `Tentatives` < 3 | La session d'appels |
-| **⛔ Exclus** | Comptes | `Priorité` = EXCLU OU `Offshore` = Oui | Ne jamais y revenir par erreur |
+| **🔍 Décideur à identifier** | Comptes | `Décideur nommé ?` = ❌ Non, trié par Score ↓ | La file Sales Navigator — 43 comptes sur 75 au 2026-09-03 |
+| **📞 À rappeler** | Contacts | `Statut` = Appelé — pas joint ET `Nb appels` < 3 | La session d'appels |
+| **⛔ Exclus** | Comptes | `Statut compte` = Exclu | Ne jamais y revenir par erreur |
 | **📊 Pipeline** | Comptes | Groupé par `Statut compte` | La revue du vendredi |
 | **📈 Appels de la semaine** | Appels | `Date` dans les 7 derniers jours, groupé par `Issue` | Le taux de décroché réel, pas celui qu'on croit |
 
@@ -518,6 +549,9 @@ Relevés le vendredi, sur la vue Pipeline.
 ### Semaine 1 — fermer le passé, ouvrir le téléphone
 - [ ] **Checklist de clôture du poste commercial** (§0) — accès, boîte cold, NDA
 - [ ] Créer les 6 vues Airtable (§4) — 5 min
+- [ ] **Supprimer les 11 colonnes marquées ⛔** dans Comptes et Contacts (§4, audit du
+      2026-09-03) — l'API ne peut pas le faire, c'est 11 clics dans l'éditeur de champ.
+      Repointer d'abord les vues « 📞 À rappeler » et « ⛔ Exclus » — 10 min
 - [ ] **Supprimer la base Airtable « Prospection Salverys IT »** — fusionnée dans
       « Prospection Salverys » le 2026-09-02, ses tables sont marquées ⛔ MIGRÉ. Tant
       qu'elle existe, on risque d'y saisir un appel qui ne sera jamais relu — 1 min
