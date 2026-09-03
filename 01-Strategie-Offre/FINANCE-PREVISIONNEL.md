@@ -348,6 +348,14 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
    **plus** le coût de sortie. **Mitigation** : n'embaucher qu'**après** signature d'un
    volume ferme facturable (§2.c), utiliser la **période d'essai** comme fenêtre
    d'ajustement, et provisionner les indemnités dès 6 mois d'ancienneté.
+   > ⚠️ **Révision 2026-09-03 — voir `RISQUE-SOCIAL-CHURN.md`.** Deux corrections : (1) le
+   > code applicable est la **loi n° 2024-014 du 14 août 2024**, qui abroge la loi 2003-044 ;
+   > (2) l'indemnité de licenciement (10 j de salaire par **année complète**) est **nulle
+   > avant 1 an d'ancienneté** — le coût de sortie réel dans la fenêtre 0-12 mois est le
+   > **préavis + le solde de congés**, soit **~1 200 €/agent**. La provision doit donc être
+   > ouverte **dès l'embauche** (~61 €/mois/agent), pas à 6 mois. Sur un trou de charge
+   > court, le **chômage technique** (plafonné à ~1 mois de salaire, 6 mois max) coûte moins
+   > cher qu'une sortie et conserve l'agent.
 2. **Coût de capacité des absences** : 5 semaines de congés + ~3 % de maladie ≈ **13 %**
    d'absence (`PRICING.md §3.e`). Un salarié est payé 12 mois et produit ~10,4 mois. La
    doctrine de continuité fait porter ce remplacement par le **manager métier**, déjà
