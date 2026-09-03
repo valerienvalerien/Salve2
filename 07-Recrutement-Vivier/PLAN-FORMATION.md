@@ -113,6 +113,10 @@ dit « c'est inadmissible » perd la conversation — quel que soit son niveau t
 
 ### 4.b Programme année 1
 
+> ✅ **Les 12 fiches sont écrites** : `CULTURE-FRANCE/` (une fiche par séance — objectif,
+> contenu, pièges, mise en situation, quiz corrigé, « à retenir »). Index et règles
+> d'animation : `CULTURE-FRANCE/README.md`.
+
 | Mois | Séance | Ce que l'agent doit savoir faire après |
 |---|---|---|
 | 1 | **Géographie utile** — régions, grandes villes, IDF vs province, départements/codes postaux, DOM-TOM, décalage horaire Madagascar ↔ France | Situer un interlocuteur, comprendre « je suis sur le site de Lille », ne pas confondre un 974 avec une erreur de saisie |
@@ -197,7 +201,7 @@ Champs à ajouter sur la fiche salarié :
 | 2 | Qui anime le cycle culture avant le recrutement du premier référent — le fondateur est déjà saturé (`FINANCE §7 risque n°0`) | Direction |
 | 3 | Seuil de déclenchement de l'agent volant : maintenir 8/métier ou descendre à 6 avec des profils B | Direction, à l'arrivée du 5e agent |
 | 4 | Faut-il refuser un profil B sur le **bloc Voix & français** même sous contrainte de délai ? (§2 penche pour oui) | Direction |
-| 5 | Production des 12 fiches : à lancer maintenant (coût ~0 €, fondateur seul) ou à la première embauche | Direction |
+| 5 | ~~Production des 12 fiches~~ — **faites** (`CULTURE-FRANCE/`). Reste : la **banque d'extraits audio** de la séance 10 | Animateur, avant la séance 10 |
 
 ---
 

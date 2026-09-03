@@ -40,6 +40,8 @@ proposée est un contrat salarié dès le premier contact.
 | `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
 | `POLITIQUE-RH-CULTURE.md` | **Cadre RH** : attirer / intégrer / développer / engager / fidéliser — EVP, culture, onboarding 30 j, coûts, indicateurs |
 | `PLAN-FORMATION.md` | **Formation** : 7 modules de remise à niveau (profils B) + cycle **Culture France** mensuel, coûts et traçabilité |
+| `CULTURE-FRANCE/` | **Les 12 fiches** du cycle mensuel (1 h/séance) : géographie, calendrier, registres, calques, monde du travail, écosystème IT, mécontentement, références, administratif, accents, sécurité, Québec |
+| `PVE-PROPOSITION-VALEUR-EMPLOYEUR.md` | **La promesse RH** : socle (rémunération, avantages) · différenciant (carrière, bien-être) · raison d'être, avec la preuve exigée pour chaque promesse |
 
 ## Le flux en 1 coup d'œil
 

@@ -33,6 +33,11 @@ précède pas la vente, elle doit être **prête à s'exécuter le jour de la si
 
 ## 1. Ce qu'on propose (proposition de valeur employeur)
 
+> 📌 **La PVE structurée — socle / différenciant / raison d'être — est formalisée dans
+> `PVE-PROPOSITION-VALEUR-EMPLOYEUR.md`**, avec la preuve exigée pour chaque promesse et
+> les trois lignes rouges à ne pas promettre tant qu'elles ne sont pas tranchées. Ce qui
+> suit en est le résumé opérationnel.
+
 Le marché local paie un agent de centre d'appels ~700 000 Ar ; les profils expérimentés
 plafonnent à 900 000 Ar - 2 M Ar. Salverys paie **3 250 000 Ar brut/mois (650 €)** — environ
 **4,5× le marché**, managers inclus (`FINANCE §1`).
