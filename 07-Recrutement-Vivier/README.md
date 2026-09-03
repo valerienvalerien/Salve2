@@ -38,6 +38,7 @@ proposée est un contrat salarié dès le premier contact.
 | `MINI-TEST-Qualification.md` | Grille de test /20 → Note `A/B/C` |
 | `MINI-TEST-Scripts-Reponses.md` | Scripts de mise en situation + corrigé **A vs C** par niche |
 | `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
+| `POLITIQUE-RH-CULTURE.md` | **Cadre RH** : attirer / intégrer / développer / engager / fidéliser — EVP, culture, onboarding 30 j, coûts, indicateurs |
 
 ## Le flux en 1 coup d'œil
 
