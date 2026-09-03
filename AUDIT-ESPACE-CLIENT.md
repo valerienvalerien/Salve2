@@ -209,7 +209,7 @@ Démo générée : `espace/exemple-msp-M9vJj_ZqmYFf.html` (code `SLV-DEMO-2026-T
 | # | Action | Priorité |
 |---|---|---|
 | 1 | **Passer le dépôt GitHub en privé.** Rien d'autre ne compte tant que ce n'est pas fait. | 🔴 |
-| 2 | Régénérer les 3 espaces par niche pour propager la correction 4,5× (nécessite les mots de passe en cours), **ou** les retirer du build une fois les partenaires actifs basculés sur des pages par deal. | 🟠 |
+| 2 | ~~Régénérer les 3 espaces par niche, **ou** les retirer du build une fois les partenaires actifs basculés sur des pages par deal.~~ ✅ **Soldé le 2026-09-02** : les 3 espaces sont **décommissionnés** (pages, générateur et sources en clair supprimés du dépôt, retirés de `tools/build-site.sh`). Aucun partenaire à basculer — pas de contrat signé, le seul deal du dépôt est le gabarit de démonstration. Détail : `ESPACE-CLIENT-CANDIDAT.md §1`. | ✅ |
 | 3 | Renseigner `rdvUrl` dans le gabarit (Cal.com) — sans lien de réservation, le CTA repose sur un `mailto`. | 🟠 |
 | 4 | Produire les substituts de preuve (§3.7) : modèle de reporting hebdomadaire, extrait de procédure, profils anonymisés des 2 managers, plan d'onboarding daté. | 🟠 |
 | 5 | Décider si le seuil « 5+ ETP » se présente comme capacité rare et chiffrer les places ouvertes par trimestre. | 🟡 |

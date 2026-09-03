@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 # Construit le dossier publié sur Netlify (_site) en ne copiant QUE les
 # fichiers publics. Tout le reste (fichiers .md stratégiques, CRM, trésorerie,
-# tools/ — dont la source en clair de l'espace client) n'est JAMAIS servi.
+# tools/) n'est JAMAIS servi.
+#
+# Décommissionné le 2026-09-02 : les 3 espaces par niche
+# (espace-client-medical/support/helpdesk.html) sont retirés du build et du
+# dépôt. Le seul canal de remise des prix marque blanche est désormais la page
+# par deal, générée par tools/deal-build.mjs et publiée sous /espace/ avec une
+# URL non devinable et un code d'accès propre à chaque partenaire.
+# espace-client.html reste : c'est la page neutre qui explique ce dispositif.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -11,9 +18,6 @@ PUBLIC_PAGES=(
   simulateur-informatique.html
   simulateur-helpdesk-it.html
   espace-client.html
-  espace-client-medical.html
-  espace-client-support.html
-  espace-client-helpdesk.html
   espace-candidat.html
   suivi-candidature.html
   mentions-legales.html

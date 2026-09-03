@@ -44,62 +44,40 @@ footer public) : elle renvoie simplement vers le lien nominatif.
 
 ---
 
-## 1. Espaces partenaires par niche (3 pages chiffrées) — dispositif hérité
+## 1. Espaces partenaires par niche — ⛔ DÉCOMMISSIONNÉ le 2026-09-02
 
-> ⚠️ Conservé pour les partenaires déjà détenteurs d'un mot de passe. **Tout nouveau
-> partenaire passe par §0.** À retirer du build une fois les partenaires actifs basculés.
+> Les trois pages `espace-client-medical.html`, `espace-client-support.html` et
+> `espace-client-helpdesk.html`, leur générateur `tools/espace-client-build.mjs` et leurs
+> sources en clair `tools/espace-contenu-*.html` sont **supprimés du dépôt et retirés du
+> build** (`tools/build-site.sh`). Le dispositif est intégralement remplacé par les **pages
+> de closing par deal** (§0).
 
-### Architecture
-Trois espaces chiffrés, **un par niche, chacun avec son propre mot de passe** — un
-télésecrétariat ne voit jamais la rate card IT, et inversement :
+**Pourquoi maintenant.** Le dispositif était marqué « hérité » depuis le 2026-07-29 et
+n'était conservé que pour les partenaires déjà détenteurs d'un mot de passe.
+**Il n'y en a aucun** : effectif 0, aucun contrat signé, et le seul deal du dépôt
+(`tools/deals/exemple-msp.json`) est un gabarit de démonstration. La bascule des
+partenaires actifs était donc sans objet — il n'y avait personne à basculer.
 
-| Espace | Page | Source en clair | Contenu (PRICING.md) |
-|---|---|---|---|
-| Télésecrétariat médical | `espace-client-medical.html` | `tools/espace-contenu-medical.html` | grille à l'appel par créneau (§1.b) |
-| Support N1 SaaS | `espace-client-support.html` | `tools/espace-contenu-support.html` | rate card 1 700/1 500/1 350 (§3) |
-| Helpdesk IT N1 | `espace-client-helpdesk.html` | `tools/espace-contenu-helpdesk.html` | rate card 2 000/1 750/1 550 (§3) |
+**Ce que ça corrige**, au-delà du ménage :
 
-### Comment ça marche
-Le contenu est **chiffré AES-256-GCM** dans chaque page, clé dérivée du mot de passe par
-**PBKDF2-SHA256 (310 000 itérations)**. Rien n'est lisible dans le code source servi. Le
-déverrouillage se fait dans le navigateur (HTTPS ou localhost requis) ; la session reste
-ouverte le temps de l'onglet (sessionStorage, clé distincte par espace). Bouton
-**« Imprimer / PDF de cadrage »** : génère le PDF confidentiel à remettre sous NDA.
+| Défaut du dispositif par niche | Ce que la page par deal apporte |
+|---|---|
+| URL publique et devinable (`espace-client-helpdesk.html` était listée dans le build) | URL avec token aléatoire, listée nulle part |
+| **Un mot de passe partagé par tous les partenaires d'une niche** | Un code par partenaire |
+| Révoquer = couper toute la niche (ce qui s'est produit à la rotation du 2026-09-02) | Révoquer = supprimer une page, un partenaire |
+| Rate card complète exposée d'un bloc | Grille nominative, figée sur le prix arrêté en closing |
+| Source en clair dans le dépôt (`tools/espace-contenu-*.html`) | Données du deal en JSON, chiffrées à la génération |
 
-### Mots de passe
-- **Un mot de passe par espace**, remis aux partenaires de la niche **au cadrage, sous
-  NDA** — jamais par écrit dans un cold email, jamais committé dans le dépôt.
-- Les mots de passe en vigueur sont transmis hors dépôt (chat / gestionnaire de mots de
-  passe de la direction).
+**Rien à faire pour un partenaire existant** — il n'y en a pas. Le premier partenaire
+recevra directement une page par deal (§0).
 
-> 🔑 **Rotation complète le 2026-09-02.** Les trois espaces ont été régénérés avec des
-> mots de passe **entièrement nouveaux** (16 caractères base32 sans caractères ambigus,
-> format `XXXX-XXXX-XXXX-XXXX`, dictables au téléphone). **Les anciens mots de passe ne
-> fonctionnent plus.** Motif : republication du contenu après la révision de la bande
-> salariale (argument passé de 4,5× à ~3,5×, `CLAUDE.md`), les anciens mots de passe
-> n'étant plus disponibles. **Tout partenaire encore actif sur l'un de ces espaces doit
-> recevoir le nouveau mot de passe** — à défaut il perd l'accès sans préavis. Les valeurs
-> sont hors dépôt (à ranger dans le gestionnaire de mots de passe de la direction).
+Historique complet et motifs : `AUDIT-ESPACE-CLIENT.md`. Le code supprimé reste
+récupérable dans l'historique git si le dispositif devait être ressuscité.
 
-### Rotation d'un mot de passe (à chaque départ de partenaire, ou trimestriellement)
-```bash
-node tools/espace-client-build.mjs medical "Nouveau-Mot-De-Passe-Fort" --verify
-git add espace-client-medical.html && git commit -m "Rotation accès espace médical" && git push
-```
-(Idem avec `support` ou `helpdesk` — chaque espace tourne indépendamment.)
-
-### Mettre à jour les prix / le contenu
-1. Modifier `tools/espace-contenu-<espace>.html` (et d'abord `PRICING.md`, qui fait foi).
-2. Relancer la génération de l'espace concerné (même mot de passe ou nouveau).
-3. Committer la page générée (+ la source modifiée).
-
-### ⚠️ Sécurité — à lire
-- Les `tools/espace-contenu-*.html` sont les **sources en clair** : elles sont dans le
-  dépôt (comme `PRICING.md`, qui expose déjà ces prix). **Tant que le dépôt GitHub est
-  public, les prix MB fuient par le dépôt, pas par le site.** → **Passer le dépôt en
-  privé dès que le site est branché sur Netlify** (déjà prévu).
-- Le site servi, lui, est propre : `tools/build-site.sh` ne copie dans `_site/` que les
-  pages publiques + `assets/` — ni .md, ni `tools/`, ni CRM, ni trésorerie.
+> ⚠️ **Ce que le décommissionnement ne corrige pas.** `PRICING.md` porte toujours la rate
+> card MB en clair dans le dépôt. **Tant que le dépôt GitHub est public, les prix de gros
+> fuient par le dépôt, pas par le site** — la checklist §4.2 (passer le dépôt en privé)
+> reste le vrai correctif.
 
 ---
 
@@ -146,6 +124,6 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 1. ☐ Brancher le dépôt sur Netlify (build auto via `netlify.toml`).
 2. ☐ **Passer le dépôt GitHub en privé.**
 3. ☐ Activer la notification email Netlify Forms → contact@salverys.fr.
-4. ☐ Tester les 3 espaces partenaires en HTTPS, chacun avec son mot de passe.
+4. ☐ Tester une page de deal en HTTPS avec son code d'accès (§0) — les 3 espaces par niche sont décommissionnés (§1).
 5. ☐ Faire un dépôt de candidature test + vérifier la réception + le suivi.
 6. ☐ Retirer `SLV-DEMO1` de `assets/candidatures-statuts.json`.

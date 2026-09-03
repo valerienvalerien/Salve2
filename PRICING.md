@@ -342,11 +342,14 @@ jetée sur un acheteur qui revend.
 - Les contreparties se concèdent **une à la fois**, sont **affichées** au partenaire (bloc
   « Ce que nous vous accordons » des pages de deal) et **tracées** dans
   `tools/deals/*.json` (`concessions[]`) — cf. `AUDIT-ESPACE-CLIENT.md §10`.
-- **Canal de remise** : espaces partenaires protégés du site, **un par niche avec son
-  propre mot de passe** (`espace-client-support.html` / `espace-client-helpdesk.html` /
-  `espace-client-medical.html` pour la grille télésec §1.b — pages chiffrées, mot de
-  passe donné au cadrage) ou impression « PDF de cadrage » depuis la page — procédure
-  dans `ESPACE-CLIENT-CANDIDAT.md`.
+- **Canal de remise (révisé 2026-09-02)** : **une page de deal nominative par
+  partenaire**, générée par `tools/deal-build.mjs` et publiée sous `/espace/` — URL avec
+  token non devinable + code d'accès propre au partenaire, révocable seul. L'impression
+  « PDF de cadrage » se fait depuis cette page. Procédure : `ESPACE-CLIENT-CANDIDAT.md §0`.
+  ⛔ Les **3 espaces par niche** (`espace-client-medical/support/helpdesk.html`), qui
+  partageaient un mot de passe entre tous les partenaires d'une niche, sont
+  **décommissionnés** — supprimés du dépôt et du build (`ESPACE-CLIENT-CANDIDAT.md §1`).
+  Aucun partenaire n'était concerné : il n'y a pas encore de contrat signé.
 
 - **À l'heure** : ~12-15 €/h (direct) · ~8-11 €/h (marque blanche).
 - **À l'interaction** : ~2,5-4 €/ticket N1 (direct) · ~1,8-2,8 € (marque blanche).
@@ -780,11 +783,10 @@ du document. Corrigé partout :
 - Les fiches MB comptent donc **deux modèles, A et B**. Le direct en garde trois
   (Débordement / Poste dédié / Équipe managée, §3.c).
 
-- ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
-  `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
-  **régénérés avec leur mot de passe** pour embarquer la correction du hub :
-  `node tools/espace-client-build.mjs <espace> "<mot-de-passe>" --verify`. Tant que ce n'est
-  pas fait, les espaces partenaires servent encore l'ancienne promesse.
+- ✅ **Soldé le 2026-09-02** : les 3 espaces par niche ont d'abord été régénérés (correction
+  du hub + argument salarial à ~3,5×), puis **décommissionnés** au profit des pages de deal
+  (`ESPACE-CLIENT-CANDIDAT.md §1`). Il n'y a plus de contenu partenaire figé à régénérer :
+  chaque page de deal est construite au closing depuis `tools/deals/*.json`.
 
 ---
 
