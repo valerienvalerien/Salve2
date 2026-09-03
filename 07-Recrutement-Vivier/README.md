@@ -39,6 +39,7 @@ proposée est un contrat salarié dès le premier contact.
 | `MINI-TEST-Scripts-Reponses.md` | Scripts de mise en situation + corrigé **A vs C** par niche |
 | `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
 | `POLITIQUE-RH-CULTURE.md` | **Cadre RH** : attirer / intégrer / développer / engager / fidéliser — EVP, culture, onboarding 30 j, coûts, indicateurs |
+| `PLAN-FORMATION.md` | **Formation** : 7 modules de remise à niveau (profils B) + cycle **Culture France** mensuel, coûts et traçabilité |
 
 ## Le flux en 1 coup d'œil
 

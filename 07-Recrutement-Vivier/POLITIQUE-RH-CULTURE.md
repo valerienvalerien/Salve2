@@ -161,11 +161,19 @@ Deux exigences non négociables, parce qu'elles ont un coût direct si on les sa
 
 ## 6. DÉVELOPPER — la compétence se construit sur la grille QA
 
-Pas de catalogue de formation : le référentiel de compétences **est déjà** la grille QA
-(qualification, SLA, exactitude du diagnostic, process/macros, escalade, traçabilité, ton,
-clôture). On développe ce qu'on mesure.
+Le référentiel de compétences **est** la grille QA (qualification, SLA, exactitude du
+diagnostic, process/macros, escalade, traçabilité, ton, clôture) : on développe ce qu'on
+mesure. Mais la grille dit **où** est l'écart, pas **comment** on le comble — et la
+contrainte de délai commercial (« opérationnel en 3-4 semaines », `PRICING.md §3.c`)
+impose régulièrement de recruter un profil **B**, pas un A. Il faut donc un catalogue.
 
-**Le dispositif, en trois briques :**
+> **Le plan de formation est détaillé dans `PLAN-FORMATION.md`** : 7 modules de remise à
+> niveau individuelle déclenchés item par item sur le score du mini-test, plus un **cycle
+> « Culture France » mensuel** (géographie, calendrier, registres de langue, monde du
+> travail, gestion du mécontentement, Québec). Il précise aussi ce qui **ne se rattrape
+> pas** : accent incompréhensible, posture non professionnelle, connexion non fiable.
+
+**Le dispositif, en quatre briques :**
 
 1. **Coaching continu** — ≥ 2 doubles écoutes/agent/semaine en régime, restitution 48 h,
    plan d'action si orange/rouge, re-contrôle sous une semaine.
@@ -173,7 +181,10 @@ clôture). On développe ce qu'on mesure.
    qui produit le backup, absorbe les 13 % d'absence (congés + maladie, `FINANCE §7.2`) et
    évite l'ennui du mono-compte. Se suit dans une **matrice de polyvalence** (agents ×
    comptes), à tenir dans Airtable.
-3. **Progression** — trois marches réalistes, pas cinq :
+3. **Remise à niveau & culture client** — `PLAN-FORMATION.md` : 10-15 h de rattrapage
+   ciblé sur les 8 premières semaines d'un profil B, re-test à J+60, et 1 h/mois de cycle
+   Culture France en équipe (≈ 26 €/mois pour 6 agents, en heures payées).
+4. **Progression** — trois marches réalistes, pas cinq :
    `Agent N1` → `Agent référent de compte` (forme les nouveaux, tient la matrice) →
    `Référent d'exploitation` (encadre une niche).
    La marche est **ouverte par la croissance**, pas promise à date. Le premier référent
@@ -183,7 +194,9 @@ clôture). On développe ce qu'on mesure.
 
 **Limite de capacité à connaître** : au-delà de **~8 agents par métier**, le référent ne peut
 plus absorber les absences en plus de la supervision. Il faut alors un **agent volant
-(+766 €/mois)** plutôt que dégrader la QA (`FINANCE §7.2`).
+(+766 €/mois)** plutôt que dégrader la QA (`FINANCE §7.2`). ⚠️ Ce plafond de 8 supposait un
+référent **sans charge de formation** : avec des profils B à rattraper, il descend vers
+**~6** (`PLAN-FORMATION.md` §5) — l'agent volant se déclenche donc plus tôt que prévu.
 
 ---
 
@@ -255,6 +268,8 @@ pas économiquement rationnel pour le salarié.
 | Agent placé, VoIP incluse | **766 €/mois** | ✅ budgété |
 | Absences (5 sem. congés + ~3 % maladie ≈ **13 %**) | pas de surcoût direct, **coût de capacité** absorbé par le référent jusqu'à ~8 agents/métier | ✅ arbitré |
 | Formation initiale sur un compte | 5-10 jours, inclus dans l'onboarding deal (~1 600 €) | ✅ couvert par le dépôt d'activation |
+| Remise à niveau d'un profil B (10-15 h) | **~45-65 €** par agent, one-shot | ✅ marginal (`PLAN-FORMATION.md` §5) |
+| Cycle Culture France (1 h/mois, équipe de 6) | **~26 €/mois**, soit ~315 €/an | ✅ marginal |
 | Conseil social local (cadrage des contrats de travail) | ~500 € one-shot | ⚠️ non engagé — **prérequis à la 1re embauche** |
 | Prestation de paie / expert-comptable | récurrent | ⚠️ à chiffrer (`FINANCE §8`) |
 | Provision indemnités de licenciement | dès 6 mois d'ancienneté | ⚠️ à chiffrer |
@@ -314,6 +329,8 @@ regarder mensuellement suffit.
 | 4 | Revalorisation annuelle : taux et date d'effet | Direction + prévisionnel |
 | 5 | Qui manage si le fondateur est indisponible (suppléance R5 du plan de continuité) | Direction — à nommer dès le 1er référent recruté |
 | 6 | Amplitudes horaires et traitement des astreintes/soirées côté droit du travail malgache | Conseil social local |
+| 7 | Production des 12 fiches du cycle Culture France : maintenant (coût ~0 €) ou à la 1re embauche | Direction (`PLAN-FORMATION.md` §7) |
+| 8 | Refuse-t-on un profil B sur le bloc **Voix & français**, même sous contrainte de délai ? | Direction (`PLAN-FORMATION.md` §2) |
 
 ---
 
