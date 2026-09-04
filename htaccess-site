@@ -1,0 +1,30 @@
+# .htaccess du site publié — déployé tel quel à la racine de l'hébergement OVH
+# (copié en `.htaccess` dans _site/ par tools/build-site.sh).
+#
+# Remplace l'ancien netlify.toml : sur OVH (Apache), les en-têtes qui protègent
+# les pages non publiques doivent être posés ici, sinon elles sont indexables.
+
+# Les espaces partenaires ne doivent être ni indexés ni mis en cache par des intermédiaires.
+<FilesMatch "^espace-client.*\.html$">
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set Cache-Control "no-store"
+</FilesMatch>
+
+# Pages de closing nominatives (une par deal). Même règle, plus stricte :
+# pas d'indexation, pas de cache, et pas de referer fuité vers un tiers —
+# l'URL contient le token qui donne accès au document.
+<Directory "espace">
+  Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+  Header set Cache-Control "no-store"
+  Header set Referrer-Policy "no-referrer"
+</Directory>
+
+# En mutualisé OVH, <Directory> n'est pas toujours autorisé en .htaccess :
+# le repli ci-dessous couvre le même périmètre par le nom de fichier.
+<FilesMatch "\.html$">
+  <If "%{REQUEST_URI} =~ m#^/espace/#">
+    Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+    Header set Cache-Control "no-store"
+    Header set Referrer-Policy "no-referrer"
+  </If>
+</FilesMatch>

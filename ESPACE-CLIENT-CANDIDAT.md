@@ -2,7 +2,7 @@
 
 > Créé le 2026-06-12. Couvre : l'**espace client** (page chiffrée des prix marque
 > blanche), l'**espace candidat** (dépôt + suivi de candidature), et le **déploiement
-> Netlify** qui garantit que rien d'interne n'est servi. Chiffres : `PRICING.md` fait foi.
+> sur l'hébergement OVH** qui garantit que rien d'interne n'est servi. Chiffres : `PRICING.md` fait foi.
 
 ---
 
@@ -36,7 +36,7 @@ git rm tools/deals/ardenor.json espace/ardenor-*.html && git commit && git push
 ```
 
 Le `token` est écrit dans le JSON au premier build : **ne jamais le modifier**, le lien
-déjà envoyé en dépend. Le build Netlify publie `espace/*.html` en
+déjà envoyé en dépend. Le build publie `espace/*.html` en
 `noindex / no-store / no-referrer` et **échoue** si un contenu non chiffré s'y glisse.
 
 `espace-client.html` est désormais une **page neutre** (aucune niche nommée, retirée du
@@ -88,7 +88,7 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 - Les `tools/espace-contenu-*.html` sont les **sources en clair** : elles sont dans le
   dépôt (comme `PRICING.md`, qui expose déjà ces prix). **Tant que le dépôt GitHub est
   public, les prix MB fuient par le dépôt, pas par le site.** → **Passer le dépôt en
-  privé dès que le site est branché sur Netlify** (déjà prévu).
+  privé dès la mise en ligne du site** (déjà prévu).
 - Le site servi, lui, est propre : `tools/build-site.sh` ne copie dans `_site/` que les
   pages publiques + `assets/` — ni .md, ni `tools/`, ni CRM, ni trésorerie.
 
@@ -97,16 +97,18 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 ## 2. Espace candidat (`espace-candidat.html` + `suivi-candidature.html`)
 
 ### Dépôt de candidature
-- Formulaire **Netlify Forms** (`name="candidature"`, honeypot anti-spam). À activer :
-  au premier deploy, vérifier dans Netlify → **Forms** que « candidature » est détecté ;
-  configurer la **notification email** vers contact@salverys.fr (Forms → Notifications).
-- Tier gratuit : **100 soumissions/mois** (largement assez). Pas d'upload de fichier :
-  le CV est demandé en **lien** (Drive/Dropbox).
-- **Repli automatique** : si le POST échoue (site pas encore sur Netlify, Forms
-  inactif), le candidat reçoit un lien **email pré-rempli** vers contact@salverys.fr —
-  aucune candidature perdue.
-- Alternative si on quitte Netlify : Formspree — remplacer l'attribut du `<form>` par
-  `action="https://formspree.io/f/<ID>"` et retirer `data-netlify`.
+- Formulaire **Formspree** (`action="https://formspree.io/f/xjgdkblp"`, honeypot
+  anti-spam) — **le même endpoint que les formulaires contact et devis**. L'hébergement
+  OVH ne fournit aucun service de formulaires : ne jamais faire POSTer un formulaire vers
+  la page elle-même, Apache répond **200 sur un POST vers un `.html` statique** et la
+  candidature serait perdue en silence.
+- Tier gratuit Formspree : **50 soumissions/mois**, toutes destinations confondues —
+  contact, devis **et** candidatures partagent ce quota. À surveiller quand la
+  prospection montera. Pas d'upload de fichier : le CV est demandé en **lien**
+  (Drive/Dropbox).
+- **Repli automatique** : si le POST échoue (Formspree injoignable ou quota atteint), le
+  candidat reçoit un lien **email pré-rempli** vers contact@salverys.fr — aucune
+  candidature perdue.
 
 ### Code candidat & suivi
 - Chaque dépôt génère un code **SLV-XXXXX** (affiché au candidat + inclus dans la
@@ -114,7 +116,9 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 - Le suivi lit `assets/candidatures-statuts.json` : mapping `code → statut` parmi
   `recue · entretien · test · acceptee · refusee`. **Tout code absent = « reçue »**
   (donc rien à faire pour les nouveaux dépôts).
-- **Mise à jour d'un statut** : éditer le JSON, committer, pousser (Netlify redéploie).
+- **Mise à jour d'un statut** : éditer le JSON, committer, puis **rejouer le build et
+  téléverser** (`bash tools/build-site.sh` + FTP/SFTP) — il n'y a pas de redéploiement
+  automatique.
   ```json
   { "SLV-7K2MQ": "entretien" }
   ```
@@ -123,20 +127,26 @@ git add espace-client-medical.html && git commit -m "Rotation accès espace méd
 
 ---
 
-## 3. Déploiement Netlify
+## 3. Déploiement (hébergement OVH)
 
-- `netlify.toml` : build = `bash tools/build-site.sh`, publish = `_site/`.
+- **Pas de build automatique** : `bash tools/build-site.sh` produit `_site/`, dont le
+  **contenu** est ensuite téléversé en **FTP/SFTP** à la racine web de l'hébergement OVH.
 - Pages servies : index, 3 simulateurs, espace-client, espace-candidat,
   suivi-candidature, `espace/*.html` (pages de deal) + `assets/`. **Tout le reste est
   exclu** (le script échoue si un .md ou `tools/` se retrouve dans `_site/`).
-- En-têtes : `espace-client*.html` en `noindex` + `Cache-Control: no-store` ;
-  `/espace/*` en plus en `Referrer-Policy: no-referrer` (l'URL contient le token).
+- En-têtes : posés par **`htaccess-site`**, copié en `.htaccess` dans `_site/` par le
+  script — `espace-client*.html` en `noindex` + `Cache-Control: no-store` ; `/espace/*`
+  en plus en `Referrer-Policy: no-referrer` (l'URL contient le token). **Vérifier après
+  le premier téléversement que les en-têtes sortent bien** (`curl -I`) : selon l'offre
+  OVH, `mod_headers` ou les blocs `<Directory>` peuvent être restreints. Sans eux, les
+  pages de deal tokenisées sont indexables.
 - Test local du build : `bash tools/build-site.sh && python3 -m http.server -d _site`.
 
 ## 4. Checklist mise en ligne
-1. ☐ Brancher le dépôt sur Netlify (build auto via `netlify.toml`).
+1. ☐ Construire (`bash tools/build-site.sh`) et téléverser `_site/` sur l'hébergement OVH.
 2. ☐ **Passer le dépôt GitHub en privé.**
-3. ☐ Activer la notification email Netlify Forms → contact@salverys.fr.
+3. ☐ Vérifier la notification email Formspree → contact@salverys.fr, et contrôler les
+   en-têtes des pages protégées (`curl -I https://salverys.fr/espace-client.html`).
 4. ☐ Tester les 3 espaces partenaires en HTTPS, chacun avec son mot de passe.
 5. ☐ Faire un dépôt de candidature test + vérifier la réception + le suivi.
 6. ☐ Retirer `SLV-DEMO1` de `assets/candidatures-statuts.json`.

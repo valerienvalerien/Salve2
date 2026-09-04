@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-# Construit le dossier publié sur Netlify (_site) en ne copiant QUE les
-# fichiers publics. Tout le reste (fichiers .md stratégiques, CRM, trésorerie,
-# tools/ — dont la source en clair de l'espace client) n'est JAMAIS servi.
+# Construit le dossier à téléverser sur l'hébergement OVH (_site) en ne copiant
+# QUE les fichiers publics. Tout le reste (fichiers .md stratégiques, CRM,
+# trésorerie, tools/ — dont la source en clair de l'espace client) n'est JAMAIS
+# servi.
+#
+# Déploiement : pas de build automatique côté OVH. On construit ici, puis on
+# téléverse le CONTENU de _site/ en FTP/SFTP à la racine web de l'hébergement.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -23,6 +27,10 @@ rm -rf _site
 mkdir -p _site/assets
 cp "${PUBLIC_PAGES[@]}" _site/
 cp -r assets/. _site/assets/
+
+# En-têtes de protection des pages non publiques (Apache/OVH). Sans ce fichier,
+# les espaces client et les pages de deal tokenisées deviennent indexables.
+cp htaccess-site _site/.htaccess
 
 # Pages de closing chiffrées, une par deal (générées par tools/deal-build.mjs).
 # Leur URL contient un token non devinable : elles ne sont listées nulle part.

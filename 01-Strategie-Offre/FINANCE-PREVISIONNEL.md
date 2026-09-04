@@ -112,7 +112,8 @@ sur les contrats**. Trois blocs — coût unitaire, structure actuelle, règle d
 | Google Workspace (cold) | ~6 €/boîte · 2 domaines × 1-2 boîtes — **nombre exact de boîtes à confirmer** | ~12-24 |
 | Microsoft 365 (`salverys.fr`) | 1 boîte, Business Basic/Standard | ~6-12 |
 | Noms de domaine | `salverys.fr` + `salverys-bpo.fr` + `salverys-groupe.fr`, ~10-15 €/an chacun | ~3 |
-| Airtable · Netlify | offres gratuites, suffisantes à ce stade | 0 |
+| Airtable · Formspree | offres gratuites, suffisantes à ce stade | 0 |
+| **Hébergement OVH** | mutualisé — **montant exact à relever sur la facture OVH**, ordre de 3-6 €/mois selon l'offre. Ce poste était **absent** du burn tant que le site était réputé hébergé gratuitement | **~3-6** |
 | *Emelia* | *~40 € — **non souscrit**, reporté (décision 2026-08-28, cf. `CLAUDE.md`)* | *0* |
 | *Frais de change Wise* | *~0,5-1 % de la masse transférée — **nul tant qu'il n'y a pas de salaire à verser*** | *0* |
 | Divers / imprévus (10 %) | | ~10-14 |

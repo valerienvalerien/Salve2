@@ -138,7 +138,7 @@ trimestre »), ce qui est à la fois honnête et un levier de closing.
 | 3 | Un mot de passe par niche : pas de révocation individuelle, fuite latérale entre concurrents. | 🔴 | ✅ résolu par les pages par deal |
 | 4 | Le payload chiffré est servi à tous : attaque hors ligne possible, sans limite de tentatives. Le builder n'exigeait qu'**12 caractères**, sans contrainte d'entropie — un code humain type `Salverys2026!` est cassable. | 🟠 | ✅ le nouveau builder **génère** le code (alphabet de 31 caractères sans ambiguïtés, 12 caractères ⇒ ~59 bits, hors de portée d'un brute-force PBKDF2 310k) |
 | 5 | Le mot de passe était stocké **en clair dans `sessionStorage`**. | 🟡 | ⚠️ inchangé (même origine, risque faible ; à traiter si on ajoute du JS tiers) |
-| 6 | Pas de `Referrer-Policy` : l'URL pouvait fuiter vers un tiers via un clic sortant. Critique maintenant que l'URL contient un token. | 🟠 | ✅ `no-referrer` en meta + en-tête Netlify |
+| 6 | Pas de `Referrer-Policy` : l'URL pouvait fuiter vers un tiers via un clic sortant. Critique maintenant que l'URL contient un token. | 🟠 | ✅ `no-referrer` en meta + en-tête `.htaccess` |
 | 7 | Le PDF imprimé sortait sans marque du destinataire : une fois diffusé, intraçable. | 🟠 | ✅ filigrane nominatif répété sur chaque page imprimée |
 | 8 | Aucune date d'expiration. | 🟡 | ✅ validité affichée, bandeau « conditions à reconfirmer » au-delà |
 
@@ -171,7 +171,7 @@ node tools/deal-build.mjs tools/deals/ardenor.json "SLV-XXXX-XXXX-XXXX"
 git rm tools/deals/ardenor.json espace/ardenor-*.html && git commit && git push
 ```
 
-Le build Netlify publie `espace/*.html` avec `noindex/no-store/no-referrer`, et **échoue**
+Le build publie `espace/*.html` avec `noindex/no-store/no-referrer`, et **échoue**
 si un contenu de deal non chiffré s'y retrouve.
 
 ### Contenu du nouveau gabarit

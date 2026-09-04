@@ -88,29 +88,43 @@ Prestation de services **B2B** d'une société **malgache** (hors UE) vers des c
 
 ## Hébergement du site
 
-Le site `salverys.fr` est hébergé par **Netlify, Inc.**, San Francisco, Californie,
-États-Unis — `netlify.com`. Diffusion via un réseau de distribution mondial : les contenus
-peuvent être servis depuis des serveurs situés **hors de l'Union européenne**.
+Le site `salverys.fr` est hébergé par **OVH SAS**, **2 rue Kellermann, 59100 Roubaix,
+France**, RCS Lille Métropole **424 761 419** — `ovhcloud.com`. **Hébergement en Union
+européenne** : aucun transfert hors UE au titre de l'hébergement.
 
-_(à compléter avant publication : l'**adresse postale exacte** de Netlify, Inc., à relever
-sur `netlify.com/legal` le jour de la mise en ligne. Ne pas recopier une adresse trouvée
-dans un vieux modèle de mentions légales : Netlify a déménagé et les adresses qui circulent
-sont périmées.)_
+_(à vérifier une fois avant publication sur `ovhcloud.com` : raison sociale et RCS
+exacts. L'adresse de Roubaix est stable, le reste peut évoluer.)_
+
+> ⚠️ **L'hébergeur est OVH, pas Netlify.** Ne jamais réintroduire Netlify dans un document,
+> une mention légale ou un fichier de configuration : le repo a porté un `netlify.toml` et
+> un formulaire Netlify Forms, tous deux supprimés. Conséquences opérationnelles de
+> l'hébergement OVH, à ne pas perdre de vue :
+> - les en-têtes HTTP (`noindex`, `no-store`, `no-referrer`) qui protègent les espaces
+>   client et les pages de deal tokenisées passent par **`.htaccess`** (Apache), plus par
+>   un fichier de configuration de plateforme ;
+> - il n'y a **pas de build automatique** : `tools/build-site.sh` produit `_site/`, qui est
+>   ensuite **téléversé en FTP/SFTP** vers l'hébergement OVH ;
+> - il n'y a **pas de service de formulaires intégré** : tous les formulaires passent par
+>   **Formspree**.
 
 ### Traitants tiers du site (à refléter dans la politique de confidentialité)
 
 | Prestataire | Rôle | Localisation |
 |---|---|---|
-| Netlify, Inc. | Hébergement, CDN, logs serveur | USA / CDN mondial |
-| Formspree | Formulaires contact et devis (`formspree.io/f/xjgdkblp`) | USA |
-| Netlify Forms | Formulaire de candidature | USA |
+| OVH SAS | Hébergement, logs serveur | France (UE) |
+| Formspree | Formulaires contact, devis et candidature (`formspree.io/f/xjgdkblp`) | USA |
 | Unsplash | Photos chargées depuis `images.unsplash.com` | USA |
 
 > Aucun outil de mesure d'audience, aucun cookie, aucun `localStorage` sur le site public à
 > ce jour → **pas de bannière de consentement nécessaire**. Si une mesure d'audience devient
 > utile : prendre **Plausible** (sans cookie, exempté de consentement CNIL) plutôt que GA4,
-> pour rester sans bannière. Héberger les photos Unsplash en local supprime le dernier
-> transfert d'IP vers un tiers.
+> pour rester sans bannière.
+>
+> Depuis le passage à OVH, l'hébergement ne sort plus de l'UE. **Les deux seuls transferts
+> hors UE restants sont Formspree et Unsplash** : héberger les photos Unsplash en local, et
+> remplacer Formspree par un formulaire traité côté OVH (ou un service européen type
+> Tally/Formbricks), supprimerait tout transfert hors UE — argument utile face à un donneur
+> d'ordre médical.
 
 ## Rappels de cohérence
 
