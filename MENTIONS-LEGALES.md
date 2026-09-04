@@ -7,26 +7,45 @@
 
 ## Entité juridique (éditeur / facturation)
 
-L'activité commercialisée sous la marque **Salverys** est exploitée, facturée et
-juridiquement portée par la société **VJUS**.
+L'activité commercialisée sous la marque **Salverys** est exploitée par une **entreprise
+individuelle de droit malgache** — celle de **RAKOTOSALAMA Andriambato Valérien**, exerçant
+sous le nom commercial déclaré **VJUS**. **Il n'existe aucune personne morale** : ni société,
+ni SARL, ni capital social.
+
+Source : carte fiscale DGI n° **0265771/DGI-L**, exercice 2024.
 
 | Champ | Valeur |
 |---|---|
-| Dénomination / entité de facturation | **VJUS** |
-| Marque commerciale exploitée | **Salverys** (nom commercial de VJUS) |
+| Titulaire (personne physique) | **RAKOTOSALAMA Andriambato Valérien** |
+| Forme juridique | **Entreprise individuelle** de droit malgache |
+| Nom commercial déclaré | **VJUS** |
+| Marque commerciale exploitée | **Salverys** (non déclarée à ce jour — cf. alerte ci-dessous) |
+| Capital social | **Sans objet** (entreprise individuelle) |
 | NIF | **6018198778** |
 | STAT | **74908 11 2023 0 06077** |
-| RCS | **102071032469** |
-| Siège social | Antananarivo, Madagascar _(adresse complète à compléter)_ |
-| Forme juridique | _(à compléter — ex. SARL malgache)_ |
-| Représentant légal / gérant | _(à compléter)_ |
-| Email de contact | _(à compléter — adresse professionnelle, pas personnelle)_ |
-| Téléphone | _(à compléter)_ |
+| RCS | **102 071 032 469** |
+| Siège social | **Lot C 47 Ter Andafiavaratra, Ankadikely Ilafy, Antananarivo, Madagascar** |
+| Activité déclarée (DGI) | « Mise en place de système d'information » |
+| Date de création | 11/08/2023 |
+| Directeur de la publication | RAKOTOSALAMA Andriambato Valérien |
+| Email de contact | **contact@salverys.fr** |
+| Téléphone | _(à trancher — `+33 6 48 91 84 50` est le numéro des signatures d'outreach ; l'afficher ou non sur le site est une décision ouverte)_ |
 
-> ⚠️ **Marque ≠ entité.** « Salverys » est une **marque / nom commercial**. Les documents
-> contractuels et les factures doivent mentionner **VJUS** comme cocontractant, en
-> précisant que Salverys est un nom commercial exploité par VJUS. Ne jamais contracter ou
-> facturer « au nom de Salverys » seul.
+> ⚠️ **Marque ≠ entité, et le nom commercial déclaré est VJUS — pas Salverys.**
+> Factures et contrats doivent porter **« RAKOTOSALAMA Andriambato Valérien — VJUS »**,
+> en précisant que **Salverys** est la marque commerciale exploitée. Ne jamais contracter
+> ni facturer « au nom de Salverys » seul, ni présenter VJUS comme une société : un service
+> comptable français qui compare la facture aux pièces d'identification refuse le paiement.
+> Pour nettoyer : déclarer **Salverys** comme nom commercial auprès du guichet unique / DGI.
+
+> ⚠️ **Deux régularisations à faire avant de signer :**
+> 1. **Carte fiscale périmée** — celle en main couvre 2024 et était valable jusqu'au
+>    **31/03/2025**. Obtenir la carte de l'exercice en cours : c'est la pièce demandée au
+>    closing par tout donneur d'ordre français.
+> 2. **Activité déclarée trop étroite** — « mise en place de système d'information » couvre
+>    le helpdesk IT N1 et le support applicatif, **mais ni le télésecrétariat médical ni le
+>    centre de contacts**. Faire élargir l'objet auprès de la DGI/RCS **avant** de signer du
+>    médical : la due diligence sous-traitant est obligatoire pour les données de santé.
 
 ## Activité
 
@@ -69,8 +88,29 @@ Prestation de services **B2B** d'une société **malgache** (hors UE) vers des c
 
 ## Hébergement du site
 
-_(à compléter — ex. hébergeur, raison sociale, adresse. Si déploiement Netlify : indiquer
-Netlify, Inc. + adresse.)_
+Le site `salverys.fr` est hébergé par **Netlify, Inc.**, San Francisco, Californie,
+États-Unis — `netlify.com`. Diffusion via un réseau de distribution mondial : les contenus
+peuvent être servis depuis des serveurs situés **hors de l'Union européenne**.
+
+_(à compléter avant publication : l'**adresse postale exacte** de Netlify, Inc., à relever
+sur `netlify.com/legal` le jour de la mise en ligne. Ne pas recopier une adresse trouvée
+dans un vieux modèle de mentions légales : Netlify a déménagé et les adresses qui circulent
+sont périmées.)_
+
+### Traitants tiers du site (à refléter dans la politique de confidentialité)
+
+| Prestataire | Rôle | Localisation |
+|---|---|---|
+| Netlify, Inc. | Hébergement, CDN, logs serveur | USA / CDN mondial |
+| Formspree | Formulaires contact et devis (`formspree.io/f/xjgdkblp`) | USA |
+| Netlify Forms | Formulaire de candidature | USA |
+| Unsplash | Photos chargées depuis `images.unsplash.com` | USA |
+
+> Aucun outil de mesure d'audience, aucun cookie, aucun `localStorage` sur le site public à
+> ce jour → **pas de bannière de consentement nécessaire**. Si une mesure d'audience devient
+> utile : prendre **Plausible** (sans cookie, exempté de consentement CNIL) plutôt que GA4,
+> pour rester sans bannière. Héberger les photos Unsplash en local supprime le dernier
+> transfert d'IP vers un tiers.
 
 ## Rappels de cohérence
 

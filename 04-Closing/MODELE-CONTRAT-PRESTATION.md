@@ -22,9 +22,11 @@
 
 ## Entre les soussignés
 
-**Le Prestataire** : [Salverys — raison sociale], [forme juridique + immatriculation],
-sise [adresse — Antananarivo, Madagascar], représentée par Valérien Rakotosalama
-(« **Salverys** »).
+**Le Prestataire** : **RAKOTOSALAMA Andriambato Valérien**, entrepreneur individuel de
+droit malgache exerçant sous le nom commercial **VJUS**, RCS **102 071 032 469**,
+NIF **6018198778**, STAT **74908 11 2023 0 06077**, domicilié **Lot C 47 Ter
+Andafiavaratra, Ankadikely Ilafy, Antananarivo (Madagascar)**, exploitant la marque
+commerciale **Salverys** (ci-après « **Salverys** »).
 
 **Le Client** : [CLIENT — raison sociale], [forme + SIREN/SIRET], sise [adresse],
 représentée par [nom — fonction] (« **le Client** »).
