@@ -4,7 +4,14 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-08-24 (**simplification du catalogue — décision direction** :
+> Dernière révision : 2026-09-07 (**gel du go-to-market direct — décision direction** :
+> tout l'effort commercial passe en **marque blanche** ; le direct est encore **servi en
+> entrant** mais **plus prospecté ni développé**. Quatre éléments deviennent **dormants** —
+> **Équipe managée**, offre **1er mois à −50 %**, affichage « mise en service 490 € offerte »,
+> deal **clients fondateurs** — de sorte que le catalogue actif retombe aux deux modèles
+> **A et B** de la marque blanche. Aucun démontage du site ni de la grille médicale. Portée,
+> conséquences et **conditions de dégel** : nouvelle section **§0.a**) ·
+> précédente 2026-08-24 (**simplification du catalogue — décision direction** :
 > le niveau de service **Priority est retiré** du catalogue §3 (il contredisait le claim
 > −40/−60 %, coûtait plus cher que la France sous 3 agents, exigeait une tête en réserve non
 > financée et était invendable en MB) ⇒ **deux niveaux de service, Mutualisé et Dédié**, alignés
@@ -93,7 +100,75 @@
 
 ---
 
-## 1. Médical — télésecrétariat (priorité 2) — **GRILLE PUBLIQUE**
+## 0.a Gel du direct — **décision direction 2026-09-07**
+
+> **Le go-to-market direct (client final) est gelé. Tout l'effort commercial va à la
+> marque blanche.** Le direct n'était déjà plus qu'« en 2e temps » depuis le 2026-06-10 ;
+> il passe à **zéro ressource investie**.
+
+**Motif.** À un fondateur seul assurant lui-même la prospection (`CLAUDE.md`), le temps
+commercial est la ressource rare — pas le prix, pas la capacité. Or les deux marchés ne
+rendent pas le même effort :
+
+| | Direct | Marque blanche |
+|---|---|---|
+| Ce qu'un deal gagné apporte | **un** client final, 1 à 2 positions | un donneur d'ordre qui apporte **du volume récurrent** et ses propres clients |
+| Base de cibles qualifiées | dispersée (cabinets, PME, éditeurs) | **58 ESN/MSP** + 15 éditeurs + télésecrétariats FR |
+| Coût d'acquisition ensuite | à refaire à chaque client | **~nul** — le partenaire vend pour nous |
+| Rapport au point mort (1-2 positions, `FINANCE §4`) | plusieurs signatures | **un seul deal de 3-4 positions suffit** |
+
+Le direct demande donc *n* fois l'effort pour le même résultat. Ce n'est pas un jugement
+sur sa rentabilité unitaire — un forfait médical reste sain — c'est un arbitrage
+d'allocation du seul temps disponible.
+
+**Portée exacte du gel :**
+
+| Gelé | Maintenu |
+|---|---|
+| Toute **prospection sortante** en direct : séquences, appels, listes, cold email | Le **traitement des entrants** : un cabinet ou une PME qui arrive seul est servi normalement, au tarif en vigueur |
+| Tout **nouveau chantier** en direct : copy, page, simulateur, offre, plaquette | Le **site public en l'état** : il ne coûte rien à laisser et il sert de **preuve de sérieux** — une ESN qui reçoit un cold email vérifie le site avant de répondre |
+| Toute **évolution tarifaire** du catalogue direct | Les **grilles telles quelles**, pour pouvoir servir un entrant sans rouvrir un arbitrage |
+
+> ⚠️ **Le gel est interne. Il ne se dit jamais à un prospect.** On ne présente pas Salverys
+> comme « fermé au direct » : c'est une décision d'allocation de temps, pas une restriction
+> d'offre, et l'annoncer ferait perdre des entrants gratuits.
+
+**Conséquences sur le catalogue — quatre éléments deviennent dormants** (conservés, non
+supprimés, réactivables en l'état au dégel) :
+
+| Élément | Référence | Statut |
+|---|---|---|
+| **Équipe managée** (palier 3, ≥ 4 agents) | §3.d, §3.g.10 | **Dormant.** Il est *direct uniquement* depuis le 2026-08-24. Conséquence à noter : **le catalogue actif retombe à deux formats — Débordement et Poste dédié — soit exactement les modèles MB A et B.** La simplification que §3.g.10 avait amorcée est achevée par le gel. |
+| **Offre de lancement 1er mois à −50 %** | §7 | **Dormante** — *direct uniquement* depuis le 2026-08-03. En MB, la mécanique d'entrée reste le **dépôt d'activation** (§3.a) + les **3 contreparties de risque** (§3.b). |
+| **« Mise en service : 490 € — offerte »** | §1.c | **Dormante en tant qu'affichage de devis direct.** En MB la mise en service reste affichée à 0 €, couverte par le dépôt imputable. |
+| **Deal « clients fondateurs »** (5 logos, dégressif 3 mois) | §7 | **Dormant.** L'amorçage de preuve sociale passe désormais par le **premier partenaire MB** et son autorisation de le citer. |
+| **Grille médicale publique 350/590/950** | §1 | **Maintenue et affichée**, mais **plus prospectée**. Le médical se travaille par les **télésecrétariats FR qui sous-traitent** (§1.b), pas par les cabinets. |
+
+**Ce qu'on ne fait PAS — et pourquoi.** Le gel **n'entraîne aucun démontage** : ni retrait
+des simulateurs, ni dépublication de la grille médicale, ni réécriture d'`index.html`.
+Démonter coûterait plusieurs jours au fondateur, supprimerait la capture d'entrants et
+priverait la prospection MB de sa vitrine — pour zéro euro gagné. **Un actif dormant ne se
+détruit pas, il s'arrête d'être alimenté.**
+
+**Conditions de dégel** — le direct se rouvre si **l'une** de ces trois conditions est
+remplie, et la décision se trace ici :
+
+1. **Un 2e opérateur commercial existe** (salarié ou fondateur associé) — le direct redevient
+   finançable en temps.
+2. **Le flux entrant direct dépasse durablement ~2 demandes qualifiées par mois** — le marché
+   paie alors lui-même son coût d'acquisition.
+3. **La marque blanche est bloquée** : plus de 60 comptes ESN/MSP travaillés sans un seul
+   cadrage obtenu — signal que la thèse MB-first est fausse, et qu'il faut rouvrir l'autre voie.
+
+**Propagation.** `CLAUDE.md` (stratégie GTM, niches, rappels clés) ·
+`01-Strategie-Offre/PRODUIT-ET-OFFRES.md` §3 (axe C) et §4 (pitchs). Les documents de vente
+en direct (`OUTREACH-cabinets-medicaux.md`, `ONEPAGER-CHAINES-MEDICAL.md`,
+`espace-client-medical.html`) sont **conservés en l'état, non maintenus** — ils ne sont ni
+à corriger ni à envoyer tant que le gel tient.
+
+---
+
+## 1. Médical — télésecrétariat (priorité 3) — **GRILLE PUBLIQUE** · direct **gelé** (§0.a)
 
 Facturation au **forfait mensuel** selon le volume d'appels. Dépassement = bascule
 au palier supérieur, **jamais de surfacturation à l'appel**.
@@ -109,7 +184,11 @@ au palier supérieur, **jamais de surfacturation à l'appel**.
 - Intégration **Doctolib / Maiia / Médistory / Cegedim**.
 - **Prix fermes** (alignés marché FR 2025 : forfaits 300-900 €/mois temps plein — cf.
   §5). On retire la mention « indicatifs à valider ».
-- **Offre de lancement** : voir §7 (1er mois à -50 %).
+- **Offre de lancement** : voir §7 (1er mois à -50 %) — **dormante** depuis le gel du direct
+  (§0.a), comme toute la mécanique d'entrée en direct.
+- ⚠️ **Cette grille ne se prospecte plus** (§0.a) : elle sert à **traiter un cabinet qui
+  arrive de lui-même**. La prospection médicale se fait en **§1.b**, auprès des
+  télésecrétariats FR qui sous-traitent leur débordement.
 - **Recadrage ROI (à utiliser partout)** : 350 €/mois ≈ **16 €/jour ouvré** — moins d'une
   demi-consultation par jour ; **2 à 3 RDV récupérés** sur des appels manqués paient le
   forfait. C'est le recadrage anti-objection prix le moins cher qui existe.
@@ -457,6 +536,11 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 ### 3.d Palier haut « Équipe managée » & axes du simulateur (décidé 2026-08-14, renommé 2026-08-24)
 
 **Le palier 3 s'appelle « Équipe managée »** (§3.c mis à jour).
+
+> ⚠️ **Palier dormant depuis le 2026-09-07 (§0.a).** Il est *direct uniquement* depuis le
+> 2026-08-24 ; le gel du direct le met donc hors catalogue actif. **Le catalogue vendu
+> aujourd'hui compte deux formats : Débordement et Poste dédié** — les modèles MB A et B.
+> La section reste la référence de chiffrage pour un entrant et pour le dégel.
 
 > ⚠️ **Renommage révisé le 2026-08-24.** Le 2026-08-14, « Centre de services » était devenu
 > **« Non-stop »** au motif que *« le nom dit la promesse achetée — la continuité — au lieu de
@@ -852,7 +936,12 @@ GoCardless ; si priorité **facturation + compta FR intégrée** → Pennylane +
 
 ---
 
-## 7. Offre de lancement — **1er mois à -50 %** (remplace l'essai gratuit) — **EN DIRECT UNIQUEMENT**
+## 7. Offre de lancement — **1er mois à -50 %** — **EN DIRECT UNIQUEMENT** ⇒ **DORMANTE (§0.a)**
+
+> ⚠️ **Dormante depuis le gel du direct (2026-09-07, §0.a).** Cette section reste la
+> référence pour **servir un entrant** et pour le jour du dégel ; elle ne décrit plus
+> aucune offre prospectée. En marque blanche, la mécanique d'entrée est le **dépôt
+> d'activation** (§3.a) + les **trois contreparties de risque** (§3.b).
 
 > ⚠️ **Portée restreinte le 2026-08-03** : cette offre s'applique **au direct** (médical,
 > support N1 & helpdesk client final). **En marque blanche, elle est supprimée** et

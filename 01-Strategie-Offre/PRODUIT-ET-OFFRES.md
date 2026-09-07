@@ -37,6 +37,23 @@ telle quelle que face à un donneur d'ordre :
 > Devant une ESN, la formule s'entend comme de la location de matériel. On dit **agent**,
 > **capacité**, ou **équipe**.
 
+### 1.a Banque de formulations — cinq angles validés
+
+Toutes disent le même produit ; elles n'attaquent pas par le même endroit. **Choisir selon
+l'interlocuteur, pas selon l'humeur** — et ne jamais en mélanger deux dans la même phrase.
+
+| # | Angle | Formulation | Quand l'employer |
+|---|---|---|---|
+| **1** | **Prise en charge** | « Salverys **prend en charge le support de niveau 1** des entreprises françaises — équipes francophones à Madagascar, sous votre marque, à vos horaires. » | La plus **sûre juridiquement** : le verbe dit la prestation de service, pas la mise à disposition de personnel. À privilégier à l'écrit, en proposition commerciale et partout où un juriste peut lire. |
+| **2** | **Capacité** *(définition officielle)* | « Salverys est **la capacité de support francophone que les acteurs français activent en quelques semaines au lieu de recruter** — sur leur fuseau, sous leur marque. » | Face à un **donneur d'ordre** (ESN, MSP, éditeur, télésecrétariat). Attaque la douleur n°1 : le délai de recrutement, pas le prix. |
+| **3** | **Équipe** | « Salverys **constitue et encadre**, à Madagascar, les équipes de support francophones qui répondent au nom de ses clients. » | Quand la conversation porte sur la **qualité et la durée** : c'est la formulation qui ouvre naturellement sur le turnover, la formation et la QA. |
+| **4** | **Prolongement** | « Salverys est **le prolongement francophone de vos équipes de support** : nos agents travaillent dans vos outils, sous votre nom, depuis Antananarivo. » | Quand l'enjeu est l'**intégration** (un prospect qui craint la rupture avec son équipe interne). ⚠️ Frôle l'idée d'extension d'effectif : à éviter dans un écrit contractuel. |
+| **5** | **Recrutement délégué** | « Salverys **recrute, forme et encadre** à Madagascar les agents de support que ses clients n'ont pas le temps de recruter en France. » | Face à quelqu'un qui vient de **rater un recrutement** ou qui compare à une embauche. La plus concrète, la plus facile à re-raconter. |
+
+> **Comment les combiner** : une seule accroche (2 ou 5 à l'oral, 1 à l'écrit), puis les
+> autres angles viennent en **réponses** aux questions qui suivent — la 3 quand on
+> demande la qualité, la 4 quand on demande comment ça s'articule avec l'équipe en place.
+
 Trois précisions qui font tout le sens, à ajouter dès que l'interlocuteur creuse :
 
 1. **On s'engage à l'agent et au mois** — pas à la minute, pas au ticket, pas à l'appel.
@@ -162,7 +179,11 @@ Toute offre Salverys est un point dans cet espace.
 |---|---|---|
 | **Débordement** | 1 agent **mutualisé**, base ~20 h/sem, tickets + email | n'importe quel agent du pool — pas d'interlocuteur attitré |
 | **Poste dédié** | 1 agent **100 % dédié**, 35-40 h/sem, escalade N2 cadrée — *le format principal* | le manager qui supervise déjà le compte reprend les absences ponctuelles ; il n'occupe aucune position facturée |
-| **Équipe managée** | **≥ 4 agents** en rotation + superviseur dédié, 6h-20h ou 3×8 | la plage horaire reste tenue même en cas d'absence (capacité −25 %, pas iso) |
+| **Équipe managée** *(dormant)* | **≥ 4 agents** en rotation + superviseur dédié, 6h-20h ou 3×8 | la plage horaire reste tenue même en cas d'absence (capacité −25 %, pas iso) |
+
+> 🔒 **Deux formats actifs, pas trois.** L'Équipe managée étant *direct uniquement*, le gel
+> du 2026-09-07 la rend **dormante** : ce qui se vend aujourd'hui, c'est **Débordement** et
+> **Poste dédié** — soit exactement les modèles marque blanche **A** et **B**.
 
 > ⚠️ **L'Équipe managée est vendable en direct uniquement.** Elle est sortie des fiches
 > marque blanche le 2026-08-24 : proposer « nous pilotons, clé en main » à une ESN attaque
@@ -180,17 +201,26 @@ Toute offre Salverys est un point dans cet espace.
 | Mise en route annoncée | **3 à 4 semaines** | **6 semaines** (transition + shadowing + doublon inversé) |
 | Marge du partenaire | — | il prend ~25-35 % ; on capte moins par poste mais le coût d'acquisition est ~nul |
 
-> ⚠️ **Statut du direct — à ne pas confondre avec un abandon.** La décision du 2026-06-10
-> place la marque blanche en **priorité n°1** et le direct « en 2e temps ». Il n'a jamais
-> été supprimé, et il structure encore la grille médicale publique (§1), l'offre de
-> lancement −50 % (§7), l'Équipe managée (§3.d) et tout le site public. **Mais il ne se
-> prospecte pas activement aujourd'hui** : à un fondateur seul, avec 58 ESN/MSP qualifiées
-> contre 15 éditeurs et un point mort à 1-2 positions placées, le temps commercial va à la
-> marque blanche. En clair : **le direct se sert, il ne se chasse pas.** Un cabinet qui
-> arrive par le site se traite ; on ne monte pas de séquence sortante pour lui.
+> ⚠️ **Le direct est GELÉ (décision direction 2026-09-07, `PRICING.md` §0.a).** Il n'était
+> déjà plus qu'« en 2e temps » depuis le 2026-06-10 ; il passe à **zéro ressource investie**.
+> **Le direct se sert, il ne se chasse pas** : aucune prospection sortante, aucun nouveau
+> chantier, mais un entrant qui arrive seul est traité normalement — et le site public reste
+> en l'état, parce qu'il sert de preuve de sérieux à la prospection marque blanche.
+> Le gel est **interne** : on ne dit jamais à un prospect que Salverys « ne fait pas de
+> direct ».
 >
-> Conséquence sur les pitchs (§4) : **le pitch de référence est celui de la marque blanche.**
-> Les deux autres sont là pour l'entrant et pour le jour où le direct s'active.
+> **Deux conséquences directes sur ce document** :
+> - **Le catalogue actif retombe à deux formats** — Débordement et Poste dédié, soit
+>   exactement les modèles MB A et B. L'**Équipe managée** est *direct uniquement* depuis le
+>   2026-08-24, donc dormante (avec l'offre −50 %, la mise en service affichée et le deal
+>   « clients fondateurs »).
+> - **Le pitch de référence est celui de la marque blanche** (§4.2). Les pitchs éditeur et
+>   médical (§4.3, §4.4) servent l'entrant et le jour du dégel — ils ne portent aucun effort
+>   de prospection.
+>
+> **Conditions de dégel** (`PRICING.md` §0.a) : un 2e opérateur commercial · ou un flux
+> entrant direct > ~2 demandes qualifiées/mois · ou une thèse MB invalidée (60 comptes
+> ESN/MSP travaillés sans un seul cadrage).
 
 **Les trois contreparties de risque en MB** (à la place de toute remise, `PRICING.md` §3.b) :
 sortie à 30 jours pendant 3 mois · exclusivité territoire ou segment 12 mois · **appui
@@ -215,19 +245,27 @@ forfait : samedi matin +90 €/mois · soirée étendue +120 € · samedi compl
 C'est aussi le meilleur « give » de closing : offrir une option 3 mois (~270 €) plutôt
 que remiser le forfait — le prix de référence reste intact.
 
-### Le catalogue vendable aujourd'hui, en un tableau
+### Le catalogue en un tableau — ce qui se prospecte, ce qui se sert
 
-| Offre | Canal | Prix | Où c'est écrit |
-|---|---|---|---|
-| Télésec médical **Essentiel / Confort / Intensif** | direct | **350 / 590 / 950 €/mois** (250 / 500 / 900 appels) | public, grille ferme + simulateur |
-| Télésec médical **> 900 appels** | direct | sur devis | — |
-| Télésec **marque blanche**, à l'appel traité par créneau | MB | jour 0,90-1,10 € · soir & samedi 1,20-1,40 € · pics réservés +15-20 % | interne, remis au cadrage |
-| **Support N1 SaaS** — poste dédié | direct | 1 900 - 2 400 €/ETP/mois | estimation publique en fourchette + devis 24 h |
-| **Helpdesk IT N1** — poste dédié | direct | 2 200 - 2 800 €/ETP/mois | idem |
-| **Support N1 SaaS** — rate card partenaire | MB | 1 700 / 1 500 / 1 350 € selon 1-4 / 5-8 / 9+ positions fermes | confidentiel, NDA |
-| **Helpdesk IT N1** — rate card partenaire | MB | 2 000 / 1 750 / 1 550 € selon 1-4 / 5-8 / 9+ positions fermes | confidentiel, NDA |
-| **Équipe managée** (≥ 4 agents) | direct | à partir de **10 000 €** (support) · **11 000 €** (helpdesk) | « à partir de », sur devis |
-| **Débordement mutualisé** IT | MB | 1 120 €/mois, 400 tickets inclus (2,80 €/ticket) | fiche de cadrage |
+**Ce qui se prospecte activement** (marque blanche — tout l'effort commercial y va) :
+
+| Offre | Prix | Où c'est écrit |
+|---|---|---|
+| **Helpdesk IT N1** — rate card partenaire *(cible n°1)* | 2 000 / 1 750 / 1 550 € selon 1-4 / 5-8 / 9+ positions fermes | confidentiel, NDA |
+| **Support N1 SaaS** — rate card partenaire | 1 700 / 1 500 / 1 350 € selon 1-4 / 5-8 / 9+ positions fermes | confidentiel, NDA |
+| **Débordement mutualisé** IT | 1 120 €/mois, 400 tickets inclus (2,80 €/ticket) | fiche de cadrage |
+| Télésec **marque blanche**, à l'appel traité par créneau | jour 0,90-1,10 € · soir & samedi 1,20-1,40 € · pics réservés +15-20 % | interne, remis au cadrage |
+
+**Ce qui se sert sans se chasser** (direct — gelé §0.a : on répond à un entrant, on ne va
+pas le chercher) :
+
+| Offre | Prix | Statut |
+|---|---|---|
+| Télésec médical **Essentiel / Confort / Intensif** | **350 / 590 / 950 €/mois** (250 / 500 / 900 appels) | grille **maintenue et publique**, plus prospectée |
+| Télésec médical **> 900 appels** | sur devis | idem |
+| **Helpdesk IT N1** — poste dédié | 2 200 - 2 800 €/ETP/mois | estimation publique + devis 24 h, plus prospectée |
+| **Support N1 SaaS** — poste dédié | 1 900 - 2 400 €/ETP/mois | idem |
+| **Équipe managée** (≥ 4 agents) | à partir de **10 000 €** (support) · **11 000 €** (helpdesk) | **dormant** — direct uniquement |
 
 **Plancher absolu, jamais franchi : 920 €/position/mois** (coût direct 766 € + ~20 %).
 Il est codé en dur dans `tools/deal-build.mjs`, qui refuse de générer une proposition

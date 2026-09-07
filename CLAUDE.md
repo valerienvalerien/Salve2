@@ -20,17 +20,34 @@ Structure volontairement resserrée, en démarrage.
 > Détail du raisonnement : `02-Prospection/AUDIT-PARCOURS-SALES-NAVIGATOR.md` §6.
 1. **Helpdesk IT N1 distant pour ESN / MSP** (priorité absolue — IT)
 2. **Support applicatif N1 pour éditeurs SaaS français** (IT)
-3. Télésecrétariat médical
+3. Télésecrétariat médical — **par les télésecrétariats FR qui sous-traitent**, pas par les
+   cabinets en direct (gel du direct, 2026-09-07)
 4. *Relation client de toutes sortes* — dans un futur non déterminé
 
 ### Séquence de développement (toujours dans cet ordre)
 **Prospection → Équipe → Infrastructure**
 
-### Stratégie GTM (décision direction, 2026-06-10)
-**Objectif prioritaire : démarrer en MARQUE BLANCHE sur les 3 niches** (sous-traitance
-de donneurs d'ordre : télésecrétariats médicaux FR, éditeurs/prestataires support,
-ESN/MSP). Le direct (client final) vient en 2e temps. Toute priorisation de prospection,
-de copy ou de chiffrage doit refléter ce MB-first.
+### Stratégie GTM — **marque blanche uniquement** (décision 2026-06-10, **direct gelé le 2026-09-07**)
+**Tout l'effort commercial va à la MARQUE BLANCHE** sur les 3 niches (sous-traitance de
+donneurs d'ordre : ESN/MSP, éditeurs et prestataires de support, télésecrétariats médicaux
+FR). Toute priorisation de prospection, de copy ou de chiffrage doit refléter ce **MB-only**.
+
+> ⚠️ **Le direct (client final) est GELÉ depuis le 2026-09-07.** Il n'était déjà plus qu'« en
+> 2e temps » depuis le 2026-06-10 ; il passe désormais à **zéro ressource**. Motif : à un
+> fondateur seul, le temps commercial est la ressource rare — et un contrat MB vaut
+> plusieurs clients finaux pour le même effort de prospection (point mort à **1-2 positions
+> placées**, atteignable sur un seul deal partenaire).
+>
+> **Ce que le gel veut dire au quotidien** :
+> - **Aucune prospection sortante en direct** — pas de séquence, pas d'appel, pas de liste.
+> - **Aucun nouveau chantier en direct** — ni copy, ni simulateur, ni page, ni offre.
+> - **L'entrant se sert quand même** : un cabinet ou une PME qui arrive seul se traite
+>   normalement, au tarif en vigueur. Le gel supprime l'investissement, pas le chiffre
+>   d'affaires offert.
+> - **Ne jamais dire à un prospect que Salverys « ne fait pas de direct »** — c'est une
+>   décision d'allocation interne, pas une restriction d'offre.
+>
+> Portée exacte, conséquences sur le catalogue et **conditions de dégel** : `PRICING.md` §0.a.
 
 ### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
 Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
@@ -99,8 +116,10 @@ définis dans **`PRICING.md`** — c'est la **source unique de vérité**. Toute
 de divergence, `PRICING.md` fait foi. Réflexion détaillée : `RAPPORT-PRIX.html`.
 
 Rappels clés : priorités niches = **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS ·
-3) médical · 4) relation client de toutes sortes (futur non déterminé)** ; offre de lancement
-= **1er mois à -50 %** (et non plus essai gratuit) ;
+3) médical · 4) relation client de toutes sortes (futur non déterminé)** ;
+mécanique d'entrée = **dépôt d'activation imputable + 3 contreparties de risque** (marque
+blanche, §3.a/§3.b) — l'offre « 1er mois à −50 % » est **direct uniquement, donc dormante**
+depuis le gel du 2026-09-07 (§0.a) ;
 modèles de tarification = **ETP par position > à l'heure > à l'interaction**.
 
 ## Règle d'arbitrage : SaaS-first avant tout code maison
