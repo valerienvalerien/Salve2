@@ -1,5 +1,11 @@
 # Mini-test de qualification — Vivier Salverys
 
+> ⚠️ **Ce test est le tri d'entrée, pas le calage commercial.** Pour savoir quel niveau
+> correspond au **bas** et au **haut** de la fourchette de prix vendue (2 275 / 2 725 €),
+> et quel test technique complémentaire passer sur les niches IT, voir
+> **`REFERENTIEL-NIVEAU-AGENT-N1.md`** — §5 pose la règle de calage : **A (≥ 16/20) est un
+> minimum d'éligibilité, pas un niveau vendable en soi**.
+
 > Test court (**15-20 min**, au téléphone ou WhatsApp audio) pour décider :
 > **A / B / C** → reporté dans `Note qualif`, détail dans le champ **`Résultat test`**.
 > 3 blocs : **Voix & français** (commun) + **Technique** (selon niche) + **Mise en situation**.

@@ -13,6 +13,12 @@
 > **Sources de vérité** : prix/SLA/durées = `PRICING.md` · conformité médicale =
 > `CONFORMITE-HDS-RGPD.md` · garde-fous marque/discours = `CLAUDE.md`.
 >
+> 💰 **Défense du prix en appel** (poser une fourchette, arbre d'objections prix,
+> interdits) : `FICHE-APPEL-PRIX-POSTE-DEDIE.md`. Le niveau réel d'agent qu'on a le
+> droit de promettre derrière chaque borne est défini dans
+> `07-Recrutement-Vivier/REFERENTIEL-NIVEAU-AGENT-N1.md` — **ne rien promettre qui n'y
+> figure pas**.
+>
 > **Placeholders** : `{prenom}` = prénom de l'interlocuteur · `{structure}` =
 > nom du cabinet / de l'éditeur / de la DSI.
 

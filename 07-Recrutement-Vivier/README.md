@@ -35,6 +35,7 @@ proposée est un contrat salarié dès le premier contact.
 | `vivier-template.csv` | Modèle d'import (27 champs) — **Airtable et Notion** |
 | `VIVIER-Airtable-GUIDE.md` | Montage Airtable (multi-éditeurs + relances auto) |
 | `VIVIER-Notion-GUIDE.md` | Montage Notion (mono-user, blocs illimités) |
+| `REFERENTIEL-NIVEAU-AGENT-N1.md` | **Niveau minimal exigé d'un agent N1** (8 dimensions, seuils E/S/C), test technique /20, calage avec le prix vendu et avec le salaire |
 | `MINI-TEST-Qualification.md` | Grille de test /20 → Note `A/B/C` |
 | `MINI-TEST-Scripts-Reponses.md` | Scripts de mise en situation + corrigé **A vs C** par niche |
 | `ROUTINE-Evaluation-Candidat.md` | **Routine d'évaluation** : réclamer le CV, détecter surévaluation/mensonges, note provisoire |
