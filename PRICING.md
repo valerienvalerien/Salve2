@@ -865,9 +865,16 @@ du document. Corrigé partout :
 
 - ⚠️ **Reste à faire, hors de portée d'un commit** : `espace-client-medical.html`,
   `-support.html` et `-helpdesk.html` sont **chiffrés en AES-256-GCM** et doivent être
-  **régénérés avec leur mot de passe** pour embarquer la correction du hub :
+  **régénérés avec leur mot de passe** pour embarquer les corrections :
   `node tools/espace-client-build.mjs <espace> "<mot-de-passe>" --verify`. Tant que ce n'est
-  pas fait, les espaces partenaires servent encore l'ancienne promesse.
+  pas fait, les espaces partenaires servent encore l'ancien contenu.
+  - **2026-09-07 — la source médicale est à jour, la page publiée ne l'est pas.**
+    `tools/espace-contenu-medical.html` a été corrigé sur deux points : « capacité activable
+    en ~3 semaines » ⇒ **6 semaines** (délai marque blanche, §3.g.6) et « **Backup mutualisé
+    inclus** » ⇒ la continuité par nature du débordement mutualisé (§3.e — l'agent n'est pas
+    nominatif, le pool absorbe). **Un seul geste reste à faire, avec le mot de passe :**
+    `node tools/espace-client-build.mjs medical "<mot-de-passe>" --verify`, puis committer
+    `espace-client-medical.html`. Les sources `support` et `helpdesk` restent à auditer.
 
 ---
 

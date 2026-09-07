@@ -3,6 +3,16 @@
 > Document de vente autonome, ciblé **réseaux/chaînes médicaux ou dentaires multi-sites
 > (3 sites et plus)**. Dérivé de `OFFRE-MEDICAL.md` · chiffres : `PRICING.md` fait foi ·
 > garantie : `PRICING.md §7`. À adapter au prospect (nom de l'enseigne, nb de centres).
+>
+> ⚠️ **Canal direct — gelé depuis le 2026-09-07** (`PRICING.md` §0.a). Ce one-pager **ne
+> se prospecte plus** : il sert à traiter une chaîne qui arrive d'elle-même. Le pendant
+> actif est `ONEPAGER-PARTENAIRE-MB.md`, pour les télésecrétariats français qui
+> sous-traitent leur débordement.
+>
+> **Révisé le 2026-09-07** — l'offre « mois pilote à −50 % » est *direct uniquement*, donc
+> **dormante** : elle disparaît de l'argumentaire structurel et reste un levier de closing
+> accordable à un entrant (§7). La réassurance repose désormais sur le **périmètre** (un
+> seul site) et sur l'**engagement de décroché**, qui ne dépendent d'aucune remise.
 
 ---
 
@@ -29,11 +39,13 @@ praticiens, plus le besoin de centraliser l'accueil est fort.**
 ## La proposition : prouver sur 1 site, puis déployer
 
 On ne vous demande pas d'engager tout le réseau sur une promesse. On procède en deux temps,
-sans risque :
+à **risque borné** :
 
-1. **Pilote garanti sur 1 site** — on prend les appels d'un centre, **sous votre marque**,
-   intégrés à votre logiciel (Doctolib, Maiia, Médistory…). Mois pilote à **−50 %, sans
-   engagement**. Vous mesurez le décroché réel et le ressenti patient.
+1. **Démarrage sur 1 site** — on prend les appels d'un seul centre, **sous votre marque**,
+   intégrés à votre logiciel (Doctolib, Maiia, Médistory…), avec vos KPI partagés dès le
+   premier jour. Vous mesurez le décroché réel et le ressenti patient. **C'est le périmètre
+   qui limite votre risque, pas une promesse** : un site, vos vrais appels, en petit.
+   Comptez **3 à 4 semaines** pour être opérationnel.
 2. **Déploiement** sur les autres centres une fois la preuve faite — accueil **uniformisé**,
    un seul interlocuteur, une vue consolidée des KPI.
 
@@ -54,8 +66,8 @@ sans risque :
 
 | | Couvre la peur de… | Mécanique |
 |---|---|---|
-| **Mois pilote −50 %, sans engagement** | l'**entrée** (« et si ça ne convient pas ? ») | résiliable à tout moment, sur 1 site |
-| **Engagement de décroché en régime** | la **durée** (« et s'ils baissent en qualité ? ») | ≥ 90 % d'appels décrochés ; en deçà sur un mois, **20 % d'avoir** automatique |
+| **Démarrage sur 1 seul site** | l'**entrée** (« et si ça ne convient pas ? ») | un centre, pas le réseau : ce que vous risquez est borné par le périmètre, et le contrat démarre sur 3 mois |
+| **Engagement de décroché en régime** | la **durée** (« et s'ils baissent en qualité ? ») | ≥ 90 % d'appels décrochés ; en deçà sur un mois, **20 % d'avoir** automatique, sans rien à réclamer |
 
 *Conditions de l'engagement : appels présentés sur 8h-20h, hors débordement au-delà du
 volume contractuel, hors coupure côté centre. Seuil et périmètre figés au cadrage.*
@@ -81,8 +93,14 @@ local. Remis au cadrage, avant tout démarrage.
 
 Modèle **forfait mensuel par volume** (cf. grille `PRICING.md` : 350 / 590 / 950 €), ou
 **sur-mesure multi-postes** dès que le réseau justifie plusieurs positions d'agents
-dédiées. **Mois pilote à −50 %** sur le site pilote. **Mise en service : 490 € par site —
-offerte.** Coût ~40 % inférieur à un secrétariat interne équivalent.
+dédiées. **Mise en service : 490 € par site — offerte.** **40 à 60 % de moins** que le coût
+complet d'un secrétariat interne équivalent (33-42 k€/an par poste : salaire chargé,
+congés, absences, recrutement, formation, supervision, matériel, locaux).
+
+> 💡 **Levier de closing, à ne pas mettre dans le document** : le **1er mois à −50 %** reste
+> accordable en direct (`PRICING.md` §7). Il ne figure plus dans l'argumentaire écrit — un
+> « give » annoncé d'avance n'en est plus un, et le gel du direct interdit d'en faire un
+> argument de prospection. On le sort en négociation, pas en ouverture.
 
 > **Présenter le chiffrage en coût par site et par mois** (ex. « ~X €/site selon le
 > volume consolidé ») plutôt qu'en somme de forfaits unitaires : c'est l'unité dans
@@ -104,7 +122,7 @@ téléphonique au quotidien. Le dirigeant valide ; l'opérationnel décide et d�
 
 ## Prochaine étape
 
-**15 minutes** pour cadrer un **pilote sur un site** : on identifie le centre le plus sous
-tension, on branche votre logiciel, et vous mesurez le décroché en conditions réelles.
+**15 minutes** pour cadrer un **démarrage sur un site** : on identifie le centre le plus
+sous tension, on branche votre logiciel, et vous mesurez le décroché en conditions réelles.
 
 📧 contact@salverys.fr
