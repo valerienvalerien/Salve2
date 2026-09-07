@@ -14,7 +14,8 @@
 **Plus aucun appel patient qui sonne dans le vide.** Salverys décroche vos appels **sous
 le nom de votre cabinet**, 8h-20h, sans que vous embauchiez ni gériez de personnel.
 
-Le coût ~40 % inférieur à une secrétaire en France est une **conséquence**, pas l'argument
+Le coût — **jusqu'à 50 % de moins** qu'une secrétaire en France (claim révisé le 2026-09-07,
+`PRICING.md` §5.b) — est une **conséquence**, pas l'argument
 de tête. On ne vend pas « une secrétaire moins chère » : on vend **« vous ne perdez plus
 de patients, et vous ne gérez rien »**.
 
@@ -126,4 +127,4 @@ avec du volume peu rentable.
   mes données ». Le levier est le **risque**, pas le prix.
 - **Promettre un % de décroché sans les conditions de défense** (§2) : on s'expose à un
   remède qu'on ne maîtrise pas.
-- **Mettre « −40 à −60 % » en titre** : c'est notre logique de coût, pas la douleur du client.
+- **Mettre le claim d'économie en titre** (« jusqu'à −50 % ») : c'est notre logique de coût, pas la douleur du client.
