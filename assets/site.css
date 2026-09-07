@@ -1169,6 +1169,34 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
    scan vertical remplace la lecture carte par carte. */
 .ptable-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .ptable { width: 100%; min-width: 720px; border-collapse: collapse; background: var(--bg); }
+/* Mode compact : depuis le retrait des cartes (2026-09-07), le tableau est la
+   seule présentation des forfaits — il doit donc tenir sans défilement latéral
+   sur un téléphone, là où les cartes empilées servaient de vue mobile.
+   Trois colonnes seulement (libellé + 2 forfaits), le compactage suffit. */
+@media (max-width: 700px) {
+  /* table-layout fixed : sans lui, l'en-tête (bouton + badge) impose sa propre
+     largeur et la dernière colonne sort du cadre. */
+  .ptable { min-width: 0; table-layout: fixed; }
+  .ptable th, .ptable td { padding: 11px 6px; }
+  .ptable thead th.pt-corner { width: 40%; }
+  .ptable thead th[data-pkg] { width: 30%; }
+  .ptable tbody th { width: 40%; font-size: 12.5px; line-height: 1.35; }
+  .ptable tbody td { width: 30%; }
+  /* Pas de coupure au milieu des mots : on laisse le texte passer à la ligne
+     normalement, seuls les prix (qui portent un tiret) peuvent se scinder. */
+  .pt-price { overflow-wrap: anywhere; }
+  .pt-name { font-size: 14px; }
+  .pt-price { margin: 6px 3px 0 0; font-size: 15px; }
+  .pt-unit { font-size: 10.5px; }
+  .pt-equiv { font-size: 11px; }
+  /* Pastille rectangulaire en petit écran : sur deux lignes, l'arrondi complet
+     donne un ovale illisible. */
+  /* display:block — en inline-block, la pastille prend la largeur de son texte
+     et déborde sur la colonne voisine. */
+  .pt-badge { display: block; padding: 4px 6px; font-size: 9px; letter-spacing: .01em; border-radius: 7px; line-height: 1.3; text-align: center; }
+  .pt-cta { margin-top: 9px; padding: 9px 6px; font-size: 11.5px; border-radius: 12px; line-height: 1.3; }
+  .ptable thead th { padding-left: 4px; padding-right: 4px; }
+}
 .ptable th, .ptable td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
 .ptable thead th { border-bottom: 1px solid var(--line); vertical-align: top; }
 .ptable thead th.pt-corner { border-bottom-color: transparent; }
@@ -1177,6 +1205,15 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .ptable tbody tr:last-child th, .ptable tbody tr:last-child td { border-bottom: 0; }
 .ptable thead th.pt-featured { background: var(--accent-tint); border-radius: 12px 12px 0 0; }
 .theme-it .ptable thead th.pt-featured, .theme-helpdesk .ptable thead th.pt-featured { background: rgba(10,110,150,.07); }
+/* Colonne qui correspond à la simulation en cours + pastille de tête de colonne.
+   Reprend le rôle que jouaient .pkg.is-match / .pkg-badge sur les cartes,
+   retirées des simulateurs IT le 2026-09-07. */
+.ptable thead th.is-match { background: var(--accent-tint); border-radius: 12px 12px 0 0; box-shadow: inset 0 0 0 1.5px var(--accent); }
+.theme-it .ptable thead th.is-match, .theme-helpdesk .ptable thead th.is-match { background: rgba(10,110,150,.10); }
+.pt-badge[hidden] { display: none; }
+.pt-badge { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; background: var(--accent-tint); color: var(--primary); }
+.ptable thead th.is-match .pt-badge { background: var(--accent); color: #fff; }
+.pt-equiv { display: block; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--accent); }
 .pt-name { display: block; font-size: 17px; font-weight: 800; color: var(--primary); }
 .pt-price { display: inline-block; margin: 8px 6px 0 0; font-size: 21px; font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
 .pt-unit { font-size: 12.5px; color: var(--text-mute); }

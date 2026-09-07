@@ -150,10 +150,12 @@
      carte correspondant à la configuration courante et rappelle l'estimation
      au-dessus des cartes, pour qui a scrollé et perdu le résultat de vue. */
   function syncPackages(slug, recall) {
-    document.querySelectorAll('.pkg[data-pkg]').forEach(card => {
+    // [data-pkg] et non .pkg[data-pkg] : les simulateurs IT portent désormais le
+    // forfait sur les colonnes du tableau, le médical sur ses cartes (2026-09-07).
+    document.querySelectorAll('[data-pkg]').forEach(card => {
       const match = card.dataset.pkg === slug;
       card.classList.toggle('is-match', match);
-      const badge = card.querySelector('.pkg-badge');
+      const badge = card.querySelector('.pkg-badge, .pt-badge');
       if (!badge) return;
       badge.classList.toggle('is-match', match);
       if (match) {
@@ -401,17 +403,21 @@
       });
     }
 
-    /* Prix des cartes « Forfaits » — même moteur que l'estimation du haut de page.
+    /* Prix des forfaits — même moteur que l'estimation du haut de page.
        Deux règles :
-       — la carte qui CORRESPOND à la simulation affiche exactement la fourchette
+       — le forfait qui CORRESPOND à la simulation affiche exactement la fourchette
          du bandeau prix, sinon les deux chiffres se contredisent sur la page ;
-       — les autres montrent leur configuration type. Chacune impose ce qui la
+       — les autres montrent leur configuration type. Chacun impose ce qui le
          définit (data-pkg-service / -agents / -hours) et hérite du reste : heures,
          amplitude, canaux, langue, périmètre. Le plafond d'heures garde au
          Débordement son prix d'appel (base 20 h) quand la simulation vise un
-         autre palier. */
+         autre palier.
+       Le sélecteur porte sur [data-pkg-service], pas sur .pkg : depuis le
+       2026-09-07 les simulateurs IT n'affichent plus que le tableau (les cartes,
+       qui doublonnaient la même information, ont été retirées) et la config vit
+       donc sur les colonnes <th>. Le médical, lui, a gardé ses cartes. */
     function syncPackagePrices(activeSlug) {
-      document.querySelectorAll('.pkg[data-pkg-service]').forEach(card => {
+      document.querySelectorAll('[data-pkg-service]').forEach(card => {
         const isActive = card.dataset.pkg === activeSlug;
         const shared = card.dataset.pkgService === 'shared';
         const rule = card.dataset.pkgAgents;
@@ -422,11 +428,8 @@
         const etp = agents * st.coverage;
         const total = st.mode * (hours / 35) * etp * serviceMult * st.channels * st.language * st.scope * vol(agents);
 
-        const priceEl = card.querySelector('.pkg-price');
+        const priceEl = card.querySelector('.pkg-price, .pt-price');
         if (priceEl) priceEl.textContent = range(total);
-        // Le tableau comparatif (variante B) rejoue le même prix.
-        document.querySelectorAll('[data-pkg-price="' + card.dataset.pkg + '"]')
-          .forEach(el => { el.textContent = range(total); });
         const equivEl = card.querySelector('.pkg-equiv');
         if (equivEl) {
           const s = agents > 1 ? 's' : '';
