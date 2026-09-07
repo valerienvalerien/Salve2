@@ -39,7 +39,8 @@ personnes sont une seconde poche : contrat plus petit, mais le dirigeant décide
 le cycle est court.
 
 **Sa douleur :** le créneau 7h-9h avant l'arrivée des équipes, l'overflow, les pics ;
-recruter un technicien N1 = 60-90 jours sur un marché tendu.
+recruter un technicien N1 = 2 à 3 mois avant la prise de poste (processus + préavis Syntec)
+et 4 à 6 mois avant l'autonomie, sur un marché tendu.
 
 **Pourquoi Salverys :** soupape helpdesk sous leur marque, process ITIL, UTC+3 (le 7h-9h
 français = pleine heure de bureau à Tana, sans prime de nuit), SLA de prise en charge
@@ -187,7 +188,7 @@ calme · 0-1 = laisser tomber.
 > - **interne** → capacité sans CapEx, coût vs recrutement France ;
 > - **filiale propre** → débordement et créneaux non couverts uniquement.
 >
-> ⚠️ Sur un prospect qui achète déjà en offshore, **l'argument « -40 à -60 % vs un poste
+> ⚠️ Sur un prospect qui achète déjà en offshore, **l'argument « jusqu'à -50 % vs un poste
 > interne en France » ne fonctionne pas** : sa référence n'est pas un salaire français, c'est
 > la facture de son prestataire actuel. Script complet : `02-Prospection/SCRIPTS-APPEL.md` §4.
 

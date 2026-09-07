@@ -429,7 +429,7 @@ la porte d'entrée la plus large sur un compte déjà servi.
 ## Le piège à éviter — l'ancrage prix
 
 Un prospect qui achète déjà en offshore **connaît le prix du marché**. L'argument
-« -40 à -60 % vs un poste interne en France » (`CLAUDE.md`) **ne fonctionne pas sur lui** :
+« jusqu'à -50 % vs un poste interne en France » (`CLAUDE.md`) **ne fonctionne pas sur lui** :
 sa référence n'est pas un salaire français, c'est la facture de son prestataire actuel.
 
 Conséquences directes :

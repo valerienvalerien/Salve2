@@ -4,7 +4,14 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-09-07 (**gel du go-to-market direct — décision direction** :
+> Dernière révision : 2026-09-07 (**sourçage des deux claims du hero — clôture de
+> l'arbitrage n°3** : le claim d'économie passe de **« −40 à −60 % »** à **« jusqu'à −50 % »**
+> §5.b — le plafond −60 % n'était atteignable dans aucun scénario et le simulateur de la même
+> page mesurait −32/−38 % ; le délai de recrutement, jusqu'ici **repris sans source**, est
+> sourcé et **découpé en deux jalons** §5.a — *première prise de tickets* (2-3 mois en France
+> vs 3-6 sem. chez nous) et *position pleinement autonome* (4-6 mois vs 6-8 sem.). Le mot
+> « opérationnel » est proscrit pour désigner le J1 : il promet le J2) ·
+> précédente 2026-09-07 (**gel du go-to-market direct — décision direction** :
 > tout l'effort commercial passe en **marque blanche** ; le direct est encore **servi en
 > entrant** mais **plus prospecté ni développé**. Quatre éléments deviennent **dormants** —
 > **Équipe managée**, offre **1er mois à −50 %**, affichage « mise en service 490 € offerte »,
@@ -55,8 +62,9 @@
 > forfaits IT nommés **Débordement / Poste dédié / Centre de services** §3.c · amplitude
 > horaire traitée en **ETP** et astreinte/24·7 passés **sur devis** §3.c · Priority **sans
 > argument d'économie sous 3 agents** §3 · badge médical recadré sur le **coût/jour ouvré**
-> §1 · mise en route IT **3 à 4 semaines** §3.c. **Reste ouvert : arbitrage n°3** — benchmark
-> coût complet IT et claim −40 à −60 %, cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §C`) ·
+> §1 · mise en route IT **3 à 4 semaines** §3.c. ~~**Reste ouvert : arbitrage n°3** — benchmark
+> coût complet IT et claim −40 à −60 %, cf. `AUDIT-OFFRE-PRIX-SIMULATEURS.md §C`~~
+> **⇒ clos le 2026-09-07 : claim « jusqu'à −50 % », cf. §5.b**) ·
 > précédente 2026-08-03 (**recalibrage marque blanche — décision direction** :
 > dépôt d'activation MB 900 €/position §3.a · **fin du mois pilote −50 % en MB** remplacé par
 > 3 contreparties de risque §3.b · palier 5+ ETP conditionné à un volume ferme facturé §3) ·
@@ -81,9 +89,10 @@
     l'input de marge du revendeur. Bailleurs → interne (§4).
 - **Forfait, pas à l'appel** côté client (prévisibilité). Le « à l'appel » ne sert
   qu'en référence interne de coût.
-- **-40 à -60 %** = fourchette publique **défendable** (cf. §5), calée sur le **coût
-  complet** d'un ETP interne (pas le seul salaire chargé). Le plancher -40 % reste le
-  claim conservateur ; -60 % correspond au haut de la fourchette de coût complet interne.
+- **« jusqu'à -50 % »** = claim public **défendable** (cf. §5.b, révisé le 2026-09-07),
+  calé sur le **coût complet** d'un ETP interne (pas le seul salaire chargé). Remplace la
+  fourchette « -40 à -60 % », dont le plafond n'était atteignable dans aucun scénario.
+  **Jamais de fourchette basse-haute** : c'est elle qui obligeait à défendre un plafond faux.
 - **Marque blanche systématique** : l'équipe répond sous le nom du client. Deux
   go-to-market chiffrés : **en direct** (client final) ou **en marque blanche** comme
   sous-traitant d'un acteur déjà établi (ESN, prestataire BPO) — qui prend une marge de
@@ -529,9 +538,16 @@ produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
   coûte des ETP **des deux côtés** de la comparaison, donc le % d'économie est désormais
   **invariant à l'amplitude** — ce qui est le comportement correct.
 
-**Promesse de mise en route — « opérationnel en 3 à 4 semaines ».** Remplace « lancé en
-10 jours » et « onboarding 5 jours », intenables face à `FINANCE-PREVISIONNEL.md §5`
+**Promesse de mise en route — ~~« opérationnel en 3 à 4 semaines »~~ ⇒ « première prise de
+tickets sur vos outils en 3 à 4 semaines » (révisé le 2026-09-07, cf. §5.a).** Remplace
+« lancé en 10 jours » et « onboarding 5 jours », intenables face à `FINANCE-PREVISIONNEL.md §5`
 (recrutement 2-4 sem. + formation 2-3 sem.). Aligne l'IT sur le médical (§1.c).
+
+> ⚠️ **Le mot « opérationnel » est retiré.** Il désignait un jalon (la première connexion
+> productive) en promettant l'autre (l'autonomie complète) — c'est ce glissement qui rendait
+> le chiffre attaquable, pas le chiffre lui-même. Les deux jalons et leur formulation
+> publique sont fixés en **§5.a**. Et 3-4 sem. reste le jalon **direct** : en marque blanche,
+> donc dans tout ce qui est prospecté aujourd'hui, c'est **~6 semaines**.
 
 ### 3.d Palier haut « Équipe managée » & axes du simulateur (décidé 2026-08-14, renommé 2026-08-24)
 
@@ -919,18 +935,79 @@ du document. Corrigé partout :
 > recrutement, formation, supervision, matériel, licences, locaux, turnover) — c'est ce
 > coût complet qu'on met en avant dans l'argumentaire BPO.
 
-- Délai de recrutement conservé : **60 à 90 jours**.
 - Turnover CRC conservé : **~25 %/an**.
 - **Sources marché 2025** (à citer dans le rapport) : forfaits télésecrétariat FR
   300-900 €/mois ; salaires Indeed/Talent.com/HelloWork ; modèles BPO (per-seat/FTE,
   per-minute, per-ticket).
 
-**Calcul du -40 à -60 % (défendable)** : un forfait Confort (590 €/mois ≈ 7,1 k€/an) face à
-une secrétaire interne en coût complet (~33-42 k€/an) représente une économie bien
-supérieure à 40 %. On annonce le **plancher -40 %** parce que le client compare parfois à un
-**mi-temps** ou à un **appoint** (scénario où -40 % est exact et incontestable) ; face au
-**coût complet d'un ETP plein**, l'économie monte vers **-60 %** — d'où la fourchette
-affichée -40 à -60 %.
+### 5.a Délai de recrutement — **deux jalons, jamais un seul** (sourcé le 2026-09-07)
+
+> ⚠️ **Ce qui a changé** : le chiffre « 60 à 90 jours » était **repris de l'ancienne copy
+> sans source** (mention « conservé », audit du 2026-09-07). Il est désormais sourcé —
+> et surtout **découpé en deux jalons**, parce qu'un seul chiffre laissait le prospect
+> comparer notre *première connexion* à sa *prise de poste*, deux choses différentes.
+
+**Doctrine : on ne compare que des jalons identiques.**
+
+| Jalon | Recrutement interne France | Salverys |
+|---|---|---|
+| **J1 — première prise de tickets** (accès ouverts, premier ticket traité sous supervision) | **2 à 3 mois** | **3 à 4 sem.** en direct · **~6 sem.** en marque blanche |
+| **J2 — position pleinement autonome** sur le périmètre client | **4 à 6 mois** | **6 à 8 sem.** |
+
+**Composition du J1 côté France** (processus + préavis, les deux sont incompressibles) :
+
+- Délai médian toutes offres, du dépôt au pourvoi : **47-48 jours** (France Travail,
+  offres de 1 mois ou plus clôturées, médiane stable 2022→2025).
+- Analyse SmartRecruiters mars 2025 : **39 jours** pour pourvoir un poste vacant en France.
+- Cadres : **~12 semaines** (Apec, *Pratiques de recrutement des cadres* — 12 sem. en 2023,
+  contre 11 en 2021 et 9 en 2020 ; niveau confirmé en 2025).
+- Tech / IT : **50 à 60 jours** (Bersin) ; **5 à 8 semaines** pour le support IT, l'un des
+  métiers tech les plus recrutés.
+- **+ préavis, qui n'est jamais dans ces chiffres** : convention **Syntec** — ETAM **1 mois**
+  (< 2 ans d'ancienneté), **2 mois** (≥ 2 ans, et systématiquement aux coefficients
+  400/450/500) ; cadres **1 mois** (< 1 an) puis **3 mois**. Un N1 déjà en poste chez un
+  concurrent arrive donc 1 à 3 mois après avoir dit oui.
+
+⇒ **5-8 sem. de processus + 1-2 mois de préavis = 2 à 3 mois.** Le « 60 à 90 jours »
+historique était donc **juste, mais par accident** : il tenait pour un profil déjà en poste
+et sous-estimait le cas cadre confirmé (préavis 3 mois ⇒ jusqu'à 5 mois).
+
+**Composition du J2** (montée en compétence, après la prise de poste) :
+
+- Agent de support / service desk : **2 à 6 semaines** avant un onboarding complet,
+  **3 à 6 semaines** sur le canal voix ; un recruté **à distance** met **15 à 25 % de plus**
+  qu'un recruté sur site à atteindre sa pleine productivité.
+- Tous métiers confondus, la pleine productivité demande **6 à 8 mois**, ramenés à **3-4 mois**
+  avec un onboarding structuré (et 8-12 mois sans, *Harvard Business Review*).
+- Le N1 helpdesk est dans le bas de cette fourchette : on retient **4 à 8 semaines après la
+  prise de poste**, soit **4 à 6 mois** depuis l'ouverture du poste.
+
+> **Ce que ça change dans la copy.** L'argument fort n'est pas « 3 semaines contre 90 jours »
+> — c'est **« vous avez du volume traité en 3 à 6 semaines, là où votre recrutement n'a même
+> pas encore signé »**. Et il faut nommer le jalon : écrire « opérationnel en 3 semaines »
+> promet le J2 en livrant le J1. Formulation retenue :
+> **« première prise de tickets sur vos outils »** pour le J1, **« position pleinement
+> autonome »** pour le J2.
+
+### 5.b Claim d'économie — **« jusqu'à −50 % »** (révisé le 2026-09-07)
+
+> ⚠️ **Remplace « −40 à −60 % ».** Le plafond −60 % n'était atteignable dans aucun scénario :
+> `AUDIT-OFFRE-PRIX-SIMULATEURS.md` §C mesurait **−32 %** (helpdesk) et **−38 %** (SaaS) sur
+> le simulateur de la page qui affichait −60 %, et **−57 % au meilleur coin** avec les bruts
+> révisés (30-36 k€ ⇒ coût complet 44-53 k€/an) — encore fallait-il prendre pour référence
+> une **ESN Île-de-France**, qui n'est pas « un poste interne ». La page se contredisait
+> elle-même à 30 cm d'écart. **L'arbitrage n°3 est clos par cette révision.**
+
+**Calcul (défendable)** : avec les bruts révisés, l'économie mesurée va de **−31 %** (helpdesk,
+benchmark bas) à **−48 %** (SaaS, benchmark haut), et **−57 %** au coin le plus favorable.
+Un forfait télésecrétariat Confort (590 €/mois ≈ 7,1 k€/an) face à une secrétaire interne en
+coût complet (33-42 k€/an) dépasse largement −50 %.
+
+⇒ On affiche **« jusqu'à −50 % »** : la borne est **au-dessus du cas médian** (donc vendeuse),
+**en dessous du meilleur cas réel** (donc jamais prise en défaut), et le mot « jusqu'à »
+supprime la contradiction avec le simulateur — qui peut afficher −32 % sans démentir la page.
+**Ne jamais réécrire ce claim en fourchette basse-haute** : c'est la fourchette qui obligeait
+à défendre un plafond indéfendable.
 
 ---
 
@@ -1074,7 +1151,9 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
 | **Priority sous 3 agents (2026-08-13, clos 2026-08-24)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | correctif d'affichage en 2026-08-13, puis **tier entièrement retiré** le 2026-08-24 : le problème était l'offre, pas le badge (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
-| **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` |
+| **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` — *libellé revu le 2026-09-07, cf. ligne suivante* |
+| **Délai de recrutement FR (2026-09-07)** | **« 60 à 90 jours »**, chiffre « conservé » de l'ancienne copy, **sans aucune source** ; comparé à un « opérationnel en 3-4 sem. » qui désignait un autre jalon | **Deux jalons sourcés (§5.a)** : *première prise de tickets* — **2 à 3 mois** en France (47-48 j médians France Travail + préavis Syntec 1-3 mois ; 5-8 sem. sur le support IT) contre **3-4 sem.** en direct / **~6 sem.** en MB · *position pleinement autonome* — **4 à 6 mois** en France contre **6-8 sem.**. Mot « opérationnel » **proscrit** pour le premier jalon |
+| **Claim d'économie (2026-09-07)** | **« −40 à −60 % »** — plafond jamais atteint (meilleur coin réel −57 %, et seulement contre une ESN IDF), contredit par le simulateur de la même page (−32 % helpdesk, −38 % SaaS) | **« jusqu'à −50 % »** (§5.b) : au-dessus du cas médian, sous le meilleur cas réel, et compatible avec un simulateur qui affiche −32 %. **Arbitrage n°3 clos.** Ne jamais revenir à une fourchette basse-haute |
 | **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
 | **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation de l'Équipe managée (plage tenue). Aucune tête supplémentaire à recruter |
 | **Source prévisionnel (2026-08-14)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **plus une source** — seul le **tableau d'effectif** (8 agents + 2 managers à 650 €) est repris, en §3.e |

@@ -51,7 +51,7 @@ couvertes par une équipe de soirée dédiée.
 
 **Le coût.** Regardez ce que vous coûte réellement un poste en France : salaire
 chargé, recrutement, encadrement, absences, locaux. Une position chez nous, c'est
-40 à 60 % de moins.
+jusqu'à 50 % de moins.
 
 **Les données.** Elles restent chez vous : nous travaillons dans vos systèmes, nous
 n'en hébergeons aucune copie. Le cadre de confidentialité est signé avant le premier

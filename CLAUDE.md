@@ -76,8 +76,18 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
 - Français langue maternelle
-- Coût **40 à 60 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
+- Coût **jusqu'à 50 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
   (benchmark différencié par métier dans `PRICING.md §3/§5` : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
+  > ⚠️ **Révisé le 2026-09-07 — remplace « 40 à 60 % ».** Le plafond −60 % n'était atteignable
+  > dans aucun scénario et le simulateur de la page qui l'affichait mesurait −32/−38 %.
+  > **Ne jamais réécrire ce claim en fourchette basse-haute** : `PRICING.md §5.b`.
+- **Délai d'activation — toujours nommer le jalon** (`PRICING.md §5.a`) : *première prise de
+  tickets sur vos outils* = **3-4 sem. en direct, ~6 sem. en marque blanche**, contre **2 à
+  3 mois** pour une prise de poste en France (processus + préavis Syntec) ; *position
+  pleinement autonome* = **6-8 sem.** contre **4 à 6 mois**.
+  > ⚠️ **Le mot « opérationnel » est proscrit** pour désigner la première prise de tickets :
+  > il promet l'autonomie complète en livrant la première connexion. C'est ce glissement,
+  > pas le chiffre, qui rendait la promesse attaquable.
 
 ## Marque
 
