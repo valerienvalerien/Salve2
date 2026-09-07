@@ -66,13 +66,14 @@ volume contractuel, hors coupure côté centre. Seuil et périmètre figés au c
 
 **Secret médical** · **RGPD sous-traitant (art. 28)**, transfert encadré (clauses art. 46) ·
 **comptes nommés, zéro download** (données chez votre hébergeur) · **intégration faite par
-nous** · **backup +1 agent / compte** (continuité) · **reporting mensuel** · **forfait,
+nous** · **absence reprise par le manager de votre compte** (continuité) · **reporting mensuel** · **forfait,
 jamais à l'appel** · vous gardez la main sur les agendas.
 
 **Plan de continuité écrit** : chaque agent a son **kit d'autonomie** (solaire ou batterie)
-et bascule dessus en moins de 5 minutes, hub de repli alimenté (groupe électrogène,
-onduleurs) sur les coupures longues — l'accueil de vos centres ne dépend pas du réseau
-électrique local. Remis au cadrage, avant tout démarrage.
+et bascule dessus en moins de 5 minutes ; le délestage étant zonal et tournant à
+Antananarivo, nos agents ne sont jamais coupés au même moment et le trafic se reporte sur
+ceux qui restent en ligne — l'accueil de vos centres ne dépend pas du réseau électrique
+local. Remis au cadrage, avant tout démarrage.
 
 ---
 

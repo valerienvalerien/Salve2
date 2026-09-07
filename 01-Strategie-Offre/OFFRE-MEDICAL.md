@@ -74,11 +74,11 @@ Confidentialité en tête, exprès.
 | **RGPD — sous-traitant art. 28** (DPA, registre) | Cadre légal clair, présenté dès le 1er RDV |
 | **Comptes nommés, MFA, zéro download** | Les données restent chez l'hébergeur HDS (Doctolib/Ubicentrex), jamais sur le poste de l'agent |
 | **Intégration faite par nous** (Doctolib/Maiia/Médistory/Cegedim) | Vous ne touchez à rien |
-| **Backup +1 agent par compte** | Continuité : pas de jour d'arrêt sur absence |
+| **Continuité en cas d'absence** — le manager qui supervise votre compte prend le relais | Il connaît vos consignes, et il n'occupe aucune position que vous payez |
 | **Reporting mensuel** (décroché, délai de réponse) | Vous mesurez, vous ne croyez pas sur parole |
 | **Forfait mensuel, jamais à l'appel** | Coût prévisible, pas de mauvaise surprise |
 | **Vous gardez la main sur l'agenda** | Aucune perte de contrôle |
-| **Plan de continuité écrit** (kit d'autonomie individuel par agent, hub de repli alimenté) | Votre accueil ne dépend pas du réseau électrique local |
+| **Plan de continuité écrit** (kit d'autonomie individuel par agent) | Votre accueil ne dépend pas du réseau électrique local |
 | **Mise en service : 490 € — offerte** | L'intégration a un coût réel ; vous ne le payez pas |
 
 ---
