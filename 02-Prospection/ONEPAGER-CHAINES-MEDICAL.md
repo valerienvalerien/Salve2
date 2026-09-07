@@ -45,7 +45,9 @@ On ne vous demande pas d'engager tout le réseau sur une promesse. On procède e
    intégrés à votre logiciel (Doctolib, Maiia, Médistory…), avec vos KPI partagés dès le
    premier jour. Vous mesurez le décroché réel et le ressenti patient. **C'est le périmètre
    qui limite votre risque, pas une promesse** : un site, vos vrais appels, en petit.
-   Comptez **3 à 4 semaines** pour être opérationnel.
+   Comptez **3 à 4 semaines** jusqu'à la première prise d'appels, **6 à 8** jusqu'à une
+   position pleinement autonome — contre 2 à 3 mois avant qu'une recrue prenne son poste
+   en France, et 4 à 6 mois avant qu'elle soit autonome (`PRICING.md` §5.a).
 2. **Déploiement** sur les autres centres une fois la preuve faite — accueil **uniformisé**,
    un seul interlocuteur, une vue consolidée des KPI.
 
@@ -93,9 +95,10 @@ local. Remis au cadrage, avant tout démarrage.
 
 Modèle **forfait mensuel par volume** (cf. grille `PRICING.md` : 350 / 590 / 950 €), ou
 **sur-mesure multi-postes** dès que le réseau justifie plusieurs positions d'agents
-dédiées. **Mise en service : 490 € par site — offerte.** **40 à 60 % de moins** que le coût
-complet d'un secrétariat interne équivalent (33-42 k€/an par poste : salaire chargé,
-congés, absences, recrutement, formation, supervision, matériel, locaux).
+dédiées. **Mise en service : 490 € par site — offerte.** **Jusqu'à 50 % de moins** que le
+coût complet d'un secrétariat interne équivalent (33-42 k€/an par poste : salaire chargé,
+congés, absences, recrutement, formation, supervision, matériel, locaux) — claim révisé le
+2026-09-07, `PRICING.md` §5.b : **ne jamais le réécrire en fourchette basse-haute**.
 
 > 💡 **Levier de closing, à ne pas mettre dans le document** : le **1er mois à −50 %** reste
 > accordable en direct (`PRICING.md` §7). Il ne figure plus dans l'argumentaire écrit — un
