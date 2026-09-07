@@ -14,16 +14,36 @@
 
 ## 1. La réponse en une phrase
 
-> **Salverys loue des postes de travail francophones, à Madagascar.**
-> Un agent en CDI, formé à vos procédures, encadré chez nous, qui travaille **dans vos
-> outils, sous votre marque, à vos horaires** — avec un engagement de service chiffré et
-> un coût 40 à 60 % inférieur à celui du même poste en France.
+> **Salverys est la capacité de support francophone que les acteurs français activent en
+> quelques semaines, au lieu de recruter — sur leur fuseau, sous leur marque.**
+
+*Formulation retenue le 2026-09-07.* Deux déclinaisons obligatoires, l'accroche ne marchant
+telle quelle que face à un donneur d'ordre :
+
+- **En clair, si « capacité » reste abstrait** : « des agents francophones en CDI à
+  Antananarivo, formés à vos procédures, qui travaillent dans vos outils et répondent à
+  votre nom — pour 40 à 60 % de moins que le même poste en France. »
+- **En direct (cabinet, éditeur, PME)**, où « les acteurs français » ne désigne personne :
+  « Salverys, c'est le secrétariat / le support que vous activez **sans recruter** : une
+  personne formée à vos procédures, sur votre ligne et dans vos outils, en 3 à 4 semaines. »
+
+> ⚠️ **Deux mots proscrits, décision du 2026-09-07.**
+> **« Louer »** — le mot décrit une mise à disposition de personnel, c'est-à-dire
+> exactement ce que la gouvernance écarte (`GOUVERNANCE-CHAINE-COMMANDEMENT.md`,
+> `MATRICE-REGIE-PRESTATION-SMART.md` : *vous pilotez le périmètre et les priorités, nous
+> encadrons les agents et tenons le SLA*). On **prend en charge**, on **opère**, on
+> **active** — on ne loue pas.
+> **« Poste de travail »** — en helpdesk IT, le terme désigne **le PC de l'utilisateur**.
+> Devant une ESN, la formule s'entend comme de la location de matériel. On dit **agent**,
+> **capacité**, ou **équipe**.
 
 Trois précisions qui font tout le sens, à ajouter dès que l'interlocuteur creuse :
 
-1. **L'unité vendue est la position-mois**, pas la minute, pas le ticket, pas l'appel.
-   On facture une capacité de travail réservée, pas un volume consommé. (`PRICING.md` §3 :
-   ETP par position > à l'heure > à l'interaction.)
+1. **On s'engage à l'agent et au mois** — pas à la minute, pas au ticket, pas à l'appel.
+   C'est une capacité réservée qu'on facture, pas un volume consommé. (`PRICING.md` §3 :
+   ETP par position > à l'heure > à l'interaction.) *« Position » reste le terme interne —
+   la clause de volume ferme facturable en dépend ; côté client on dit « un agent à temps
+   plein sur votre périmètre ».*
 2. **La marque, c'est celle du client.** L'agent répond « bonjour, société X ». Salverys
    n'apparaît nulle part devant l'utilisateur final. Ce n'est pas une option, c'est le
    mode par défaut.
@@ -51,7 +71,8 @@ n'est pas de vendre : c'est qu'il puisse te **re-raconter** correctement à quel
 
 **— Donc c'est un call center ?**
 
-> C'est la même famille, mais on ne vend pas des minutes d'appel. On vend **des postes**.
+> C'est la même famille, mais on ne vend pas des minutes d'appel. On met **quelqu'un à
+> demeure** sur le support d'une boîte.
 > Tu me dis « j'ai besoin d'une personne à plein temps sur mon support, du lundi au
 > vendredi » — je te la recrute, je la forme à tes procédures, je l'encadre, et elle
 > travaille pour toi tous les jours. Elle apparaît dans tes outils, elle répond au nom de
@@ -82,8 +103,8 @@ l'exploitation.**
 > Deux types de clients, et c'est important parce que ça ne se raconte pas pareil.
 >
 > Il y a **le client final** : une boîte qui édite un logiciel, une PME, un cabinet
-> médical. Elle a besoin de quelqu'un pour son support ou son standard, elle m'achète des
-> postes directement.
+> médical. Elle a besoin de quelqu'un pour son support ou son standard, elle vient me le
+> demander directement.
 >
 > Et puis il y a — et c'est là que je mets l'essentiel de mon énergie — **les boîtes qui
 > vendent déjà ce service en France** : des sociétés d'infogérance, des prestataires de
@@ -115,15 +136,16 @@ l'exploitation.**
 
 > 💡 **Règle du registre amical** : jamais de sigle (N1, ETP, SLA, MSP, BPO), jamais de
 > pourcentage sauf le −40/−60 %, et une seule idée par réplique. Si l'ami repart en
-> disant « il loue des employés francophones à des boîtes françaises, et il les paie bien
-> pour qu'ils restent » — c'est gagné.
+> disant « il monte des équipes de support francophones pour des boîtes françaises, et il
+> les paie bien pour qu'elles restent » — c'est gagné.
 
 ---
 
 ## 3. L'architecture réelle — un produit, quatre axes
 
-Le catalogue paraît touffu ; il ne l'est pas. C'est **un seul produit** (la position-mois)
-décliné sur quatre axes indépendants. Toute offre Salverys est un point dans cet espace.
+Le catalogue paraît touffu ; il ne l'est pas. C'est **un seul produit** — une capacité de
+support réservée, facturée à l'agent et au mois — décliné sur quatre axes indépendants.
+Toute offre Salverys est un point dans cet espace.
 
 ### Axe A — le métier (ce que fait l'agent)
 
@@ -234,15 +256,19 @@ SaaS) · prise en charge (helpdesk IT).
 
 ### 4.1 La phrase (10 secondes — networking, LinkedIn, ascenseur)
 
-> **« On fournit à des sociétés françaises des postes de support et de secrétariat
-> francophones, opérés depuis Madagascar, sous leur marque — pour 40 à 60 % de moins
-> qu'un poste interne, avec un engagement de service écrit. »**
+> **« On opère du support et du secrétariat francophones depuis Madagascar, sous la marque
+> de nos clients — activable en quelques semaines, pour 40 à 60 % de moins qu'un
+> recrutement en France, avec un engagement de service écrit. »**
 
 Variante marque blanche, plus tranchante face à une ESN :
 
 > **« On est le bras offshore que vous ne montrez pas : des techniciens N1 francophones
 > qui répondent au nom de votre société, activables en quelques semaines au lieu de trois
 > mois de recrutement. »**
+
+> 💡 Le mot qui porte, dans les deux : **activable**. C'est lui qui transforme une offre de
+> coût (« moins cher ») en offre de vitesse (« vous pouvez dire oui tout de suite ») — et
+> c'est la vitesse, pas le prix, qui est la douleur n°1 d'une ESN.
 
 ### 4.2 Le pitch 30 secondes — ESN / MSP (marque blanche) — **LE PITCH DE RÉFÉRENCE**
 
@@ -354,7 +380,11 @@ vous envoie la fiche et la grille sous 48 h. »*
 6. **Jamais « lancé en 10 jours »** : c'est 3 à 4 semaines en direct, 6 en marque blanche.
 7. **Jamais le mot « freelance », « fee » ou « prestataire »** pour parler de l'équipe :
    elle est 100 % salariée en CDI depuis le 2026-08-14.
-8. **Ne pas vendre l'Équipe managée à une ESN.** Son pilotage est son fonds de commerce ;
+8. **Jamais « louer » ni « poste de travail »** (§1) : le premier décrit la mise à
+   disposition de personnel que la gouvernance écarte, le second désigne le PC de
+   l'utilisateur dans le vocabulaire du helpdesk. On dit : opérer, prendre en charge,
+   activer · agent, capacité, équipe.
+9. **Ne pas vendre l'Équipe managée à une ESN.** Son pilotage est son fonds de commerce ;
    on lui vend des positions, elle garde le SLA et les priorités. Formule :
    *« vous pilotez le périmètre et les priorités ; nous encadrons les agents et tenons le
    SLA. »*
