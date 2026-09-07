@@ -21,22 +21,23 @@
 <meta name="twitter:title" content="Salverys — Helpdesk IT N1 externalisé pour entreprises : simulateur d'équipe" />
 <meta name="twitter:description" content="Helpdesk IT N1 externalisé : agents francophones dédiés, escalade N2 cadrée vers vos équipes, KPI partagés. Simulez le tarif de votre équipe." />
 <meta name="twitter:image" content="https://salverys.fr/assets/img/og-salverys.png" />
-<link rel="stylesheet" href="assets/site.css?v=5" />
+<link rel="stylesheet" href="assets/site.css?v=6" />
 </head>
 <body class="theme-helpdesk">
 
 <!-- TOPBAR -->
 <div class="site-head">
-<div class="topbar">Support francophone depuis Antananarivo — <b>1er mois à −50 %</b>, sans engagement</div>
+<div class="topbar">Support francophone depuis Antananarivo — <b>opérationnel en 3 à 4 semaines</b>, sous votre marque</div>
 <!-- NAV -->
 <header class="nav">
   <div class="container nav-inner">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys-helpdesk.svg" alt="Salverys" /></a>
     <nav class="nav-links">
       <a href="index.html">Accueil</a>
-      <a href="simulateur-salverys.html">Télésecrétariat médical</a>
-      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
       <a href="simulateur-helpdesk-it.html" class="active">Helpdesk IT N1</a>
+      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+      <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+      <a href="#partenaire">Donneurs d'ordre</a>
       <a href="espace-candidat.html" class="nav-rejoin">Nous rejoindre</a>
       <a href="#top" class="nav-cta">Simuler mon équipe</a>
     </nav>
@@ -214,60 +215,12 @@
   <a class="scroll-next" href="#forfaits" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- COMPARATIF POSTE DÉDIÉ vs NON-STOP -->
-<section class="section" id="priority-compare">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Poste dédié vs Équipe managée</div>
-      <h2>Le vrai coût de la continuité de service</h2>
-      <p>Le choix ne dépend pas de votre volume de tickets : il dépend des <strong>heures où on vous sollicite</strong>. Le <strong>Poste dédié</strong> couvre une journée de travail, 9h–18h — au-delà, un ticket attend l'ouverture du lendemain. L'<strong>Équipe managée</strong> fait tourner une rotation qui tient une plage plus large, jusqu'au 24·7 sur devis — elle ne se staffe qu'à partir de 4 agents.</p>
-    </div>
-    <div class="chart-card reveal d1">
-      <div class="chart-toggle pill-group">
-        <button class="pill active" data-chart-view="office">Heures de bureau</button>
-        <button class="pill" data-chart-view="extended">Amplitude 8h–20h</button>
-      </div>
-      <div id="priority-chart" class="priority-chart"></div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-swatch sw-dedie"></span>Poste dédié</span>
-        <span class="chart-legend-item"><span class="chart-swatch sw-nonstop"></span>Équipe managée</span>
-      </div>
-      <p id="priority-chart-caption" class="chart-caption"></p>
-    </div>
-
-    <div class="verdict-grid reveal d2">
-      <div class="verdict">
-        <div class="verdict-head">Restez au <strong>Poste dédié</strong> si…</div>
-        <ul>
-          <li>Vos utilisateurs sont là <b>de 9h à 18h</b>, pas après — c'est déjà la totalité de votre trafic.</li>
-          <li>Un ticket ouvert un soir ou un week-end <b>peut attendre l'ouverture</b> du lendemain matin, sans réclamation.</li>
-          <li>Vous couvrez <b>1 à 3 positions</b> — sous 4 agents, une rotation ne peut de toute façon pas tourner.</li>
-          <li>Il vous faut <b>un nombre d'agents garanti en ligne au même moment</b> : c'est ce que le poste dédié tient, position par position.</li>
-          <li>Une absence isolée <b>glisse le traitement de quelques heures</b> dans la journée ; elle ne ferme jamais la plage.</li>
-          <li>Vous cherchez le prix le plus juste sur une plage classique : c'est le forfait qui porte le <b>−40 à −60 %</b>.</li>
-        </ul>
-      </div>
-      <div class="verdict">
-        <div class="verdict-head">Passez à l'<strong>Équipe managée</strong> si…</div>
-        <ul>
-          <li>Des demandes arrivent <b>après 18h, le week-end ou la nuit</b> — hors 9h–18h, un poste dédié ne répond pas : il faut quelqu'un en poste.</li>
-          <li>Un ticket ouvert <b>vendredi 19h</b> ne peut pas attendre <b>lundi 9h</b> : 62 heures de silence, ce n'est pas un délai, c'est une rupture.</li>
-          <li>Chaque heure sans réponse a un <b>coût chiffrable</b> — pénalité de SLA, escalade client : dès qu'une heure se facture, la rotation devient l'option économique.</li>
-          <li>Votre couverture dépasse <b>45 h/semaine</b> : 6h–20h, 3×8 ou 24·7. Vous acceptez alors <b>moins d'agents en ligne au même moment</b>, en échange d'une plage qui ne ferme pas.</li>
-          <li>Vous ouvrez <b>4 positions ou plus</b> : c'est le plancher physique de la rotation, en dessous elle ne tourne pas.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="verdict-note" id="verdict-crossover"></p>
-  </div>
-</section>
-
 <!-- FORFAITS -->
 <section class="section" id="forfaits">
   <div class="container">
     <div class="section-head reveal">
       <div class="kicker">Variante A — cartes</div>
-      <h2>Trois forfaits, une logique simple</h2>
+      <h2>Deux forfaits, une logique simple</h2>
       <p>Choisissez l'offre packagée, ou configurez sur mesure ci-dessus.</p>
       <p class="pkg-legend"><span class="lg-on">Inclus dans le forfait</span><span class="lg-off"><s>Barré</s> : se débloque au forfait supérieur</span></p>
       <p class="pkg-recall" id="pkg-recall" hidden></p>
@@ -284,15 +237,11 @@
           <li>Gestion structurée des tickets</li>
           <li>Reporting hebdomadaire + KPI support</li>
           <li>Opérationnel en 3 à 4 semaines</li>
-          <li>1er mois à -50 %, sans engagement</li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Agent 100 % dédié · en 35 h ou 40 h / semaine</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Téléphone + chat en plus des tickets</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Agent formé sur votre parc et vos procédures</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Escalade N2 cadrée vers vos techniciens</span></li>
           <li class="off"><span class="sr-only">Non inclus : </span><span>Absence ponctuelle reprise par le manager de votre compte</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Superviseur dédié à votre équipe</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (6 h – 20 h) ou rotation en 3×8</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Plage horaire tenue même en cas d'absence</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
       </div>
@@ -308,43 +257,16 @@
           <li>Gestion structurée des tickets</li>
           <li>Reporting hebdomadaire + KPI support</li>
           <li>Opérationnel en 3 à 4 semaines</li>
-          <li>1er mois à -50 %, sans engagement</li>
           <li>Agent 100 % dédié · en 35 h ou 40 h / semaine</li>
           <li>Téléphone + chat en plus des tickets</li>
           <li>Agent formé sur votre parc et vos procédures</li>
           <li>Escalade N2 cadrée vers vos techniciens</li>
           <li>Absence ponctuelle reprise par le manager de votre compte</li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Superviseur dédié à votre équipe</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Horaires étendus (6 h – 20 h) ou rotation en 3×8</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Plage horaire tenue même en cas d'absence</span></li>
         </ul>
         <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
       </div>
 
-      <div class="pkg reveal d2" data-pkg="non-stop">
-        <div class="pkg-badge" hidden></div>
-        <div class="pkg-name">Équipe managée</div>
-        <div class="pkg-tag">Rotation d'équipe, couverture continue</div>
-        <div><span class="pkg-from">Sur devis</span><span class="pkg-unit">à partir de </span><span class="pkg-price">11 000</span><span class="pkg-unit"> €/mois</span></div>
-        <div class="pkg-equiv">4 agents dédiés minimum · amplitude chiffrée au devis</div>
-        <ul class="pkg-feat">
-          <li>Tickets + email</li>
-          <li>Gestion structurée des tickets</li>
-          <li>Reporting hebdomadaire + KPI support</li>
-          <li>Opérationnel en 3 à 4 semaines</li>
-          <li>1er mois à -50 %, sans engagement</li>
-          <li>Agent 100 % dédié · en 35 h ou 40 h / semaine</li>
-          <li>Téléphone + chat en plus des tickets</li>
-          <li>Agent formé sur votre parc et vos procédures</li>
-          <li>Escalade N2 cadrée vers vos techniciens</li>
-          <li>Absence ponctuelle reprise par le manager de votre compte</li>
-          <li>Superviseur dédié à votre équipe</li>
-          <li>Horaires étendus (6 h – 20 h) ou rotation en 3×8</li>
-          <li>Plage horaire tenue même en cas d'absence</li>
-        </ul>
-        <a href="#contact" class="pkg-cta" data-devis data-min-agents="4" data-tooltip="Le forfait Équipe managée démarre à 4 agents — remontez le curseur « Nombre d'agents ».">Passer à l'Équipe managée</a>
-      </div>
-    </div>
+          </div>
     <p style="text-align:center;margin-top:26px;font-size:13.5px;color:var(--text-soft);">
       <b>Revue de service mensuelle</b> (compte rendu écrit) et <b>cadrage &amp; mise en place</b> : inclus dans tous les forfaits.
       <b>Astreinte soir / week-end et couverture 24·7</b> : sur devis.
@@ -376,27 +298,18 @@
             <span class="pt-price" data-pkg-price="poste-dedie">2 275 – 2 725</span><span class="pt-unit">€/mois</span>
             <a href="#contact" class="pt-cta pkg-cta" data-devis>Choisir le poste dédié</a>
           </th>
-          <th scope="col">
-            <span class="pt-name">Équipe managée</span>
-            <span class="pt-price" data-pkg-price="non-stop">dès 11 000</span><span class="pt-unit">€/mois</span>
-            <a href="#contact" class="pt-cta pkg-cta" data-devis data-min-agents="4" data-tooltip="Le forfait Équipe managée démarre à 4 agents — remontez le curseur « Nombre d'agents ».">Passer à l'Équipe managée</a>
-          </th>
         </tr>
         </thead>
         <tbody>
-        <tr><th scope="row">Tickets + email</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Gestion structurée des tickets</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Reporting hebdomadaire + KPI support</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Opérationnel en 3 à 4 semaines</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">1er mois à -50 %, sans engagement</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Agent 100 % dédié · en 35 h ou 40 h / semaine</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Téléphone + chat en plus des tickets</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Agent formé sur votre parc et vos procédures</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Escalade N2 cadrée vers vos techniciens</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Absence ponctuelle reprise par le manager de votre compte</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Superviseur dédié à votre équipe</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Horaires étendus (6 h – 20 h) ou rotation en 3×8</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
-        <tr><th scope="row">Plage horaire tenue même en cas d'absence</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Tickets + email</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Gestion structurée des tickets</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Reporting hebdomadaire + KPI support</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Opérationnel en 3 à 4 semaines</th><td class="pt-on"><span class="sr-only">Inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Agent 100 % dédié · en 35 h ou 40 h / semaine</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Téléphone + chat en plus des tickets</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Agent formé sur votre parc et vos procédures</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Escalade N2 cadrée vers vos techniciens</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
+        <tr><th scope="row">Absence ponctuelle reprise par le manager de votre compte</th><td class="pt-off"><span class="sr-only">Non inclus</span></td><td class="pt-on"><span class="sr-only">Inclus</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -466,6 +379,38 @@
   <a class="scroll-next" href="#contact" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
+<!-- DONNEURS D'ORDRE — le simulateur estime le direct ; la grille partenaire est privée -->
+<section class="section soft" id="partenaire">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Vous êtes un donneur d'ordre</div>
+      <h2>ESN, infogéreur, éditeur : cette estimation n'est pas la vôtre</h2>
+      <p>Le simulateur chiffre une prestation <strong>pour votre propre structure</strong>. Si vous revendez ce support à vos clients sous votre marque, c'est une autre grille qui s'applique — dégressive selon le volume de positions fermes engagées, et remise <strong>au cadrage, sous NDA</strong> : c'est votre input de marge, nous ne le laissons pas circuler.</p>
+    </div>
+    <div class="verdict-grid reveal d1">
+      <div class="verdict">
+        <div class="verdict-head">Ce que vous obtenez</div>
+        <ul>
+          <li><b>Marque blanche totale</b> — vos outils, vos scripts, vos SLA, votre nom. Votre client final ne nous voit jamais.</li>
+          <li><b>Deux modèles</b> : débordement mutualisé sur un lot de tickets, ou positions dédiées à votre compte.</li>
+          <li><b>Vous pilotez le périmètre et les priorités</b> ; nous encadrons les agents et tenons le SLA. Vous restez responsable devant votre client.</li>
+          <li><b>Le dossier d'avant-vente sous 48 h</b>, à votre nom : engagement de service, plan de continuité, dispositif qualité, profils anonymisés, DPA — réutilisable dans vos réponses d'appels d'offres.</li>
+        </ul>
+      </div>
+      <div class="verdict">
+        <div class="verdict-head">Ce qu'on ne fait pas</div>
+        <ul>
+          <li><b>Pas de remise sur le prix de gros.</b> Vous revendez : une remise gonflerait votre marge d'un mois, elle ne vous aiderait pas à gagner votre client.</li>
+          <li>À la place, on enlève du <b>risque</b> : sortie à 30 jours pendant les 3 premiers mois, exclusivité territoire ou segment 12 mois.</li>
+          <li><b>Chaque palier est un prix de volume engagé</b> : il s'achète avec des positions fermes facturables, dues qu'elles soient consommées ou non.</li>
+          <li>Comptez <b>6 semaines</b> pour un démarrage partenaire — transition, shadowing et doublon inversé compris.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="section-cta reveal"><a href="#contact" class="btn btn-primary">Demander la grille partenaire <span class="arrow">→</span></a></p>
+  </div>
+</section>
+
 <!-- CTA BAND -->
 <section class="cta-band" id="contact">
   <span class="hero-bg-blob b1"></span>
@@ -519,7 +464,7 @@
   // (sous-traitance) n'est jamais exposé publiquement (cf. PRICING.md §0).
   window.SIM_CONFIG = { baseDirect: 2500, frBench: 3700 };
 </script>
-<script src="assets/site.js?v=5"></script>
+<script src="assets/site.js?v=6"></script>
 
 <!-- ===== MODAL DEVIS — capture lead via Formspree ===== -->
 <div id="modal-devis" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

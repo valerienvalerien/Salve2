@@ -365,13 +365,16 @@
       annualEl.textContent = euro(savings * 12) + ' €';
       if (annualLabel) annualLabel.textContent = 'Économie annuelle estimée';
 
-      // Le palier se déduit de ce qui le définit : le niveau de service d'abord
-      // (mutualisé = Débordement), puis la taille de l'équipe. Les heures n'entrent
-      // plus dans le tri — elles font varier le prix, pas la nature du forfait.
-      // Le palier haut suppose une rotation : il ne se tient pas sous NONSTOP_MIN agents.
+      // Le palier se déduit du niveau de service : mutualisé = Débordement, dédié =
+      // Poste dédié. Les heures ne trient plus — elles font varier le prix, pas la
+      // nature du forfait.
+      // ⚠️ Le palier « Équipe managée » ne figure plus ici : il est *direct uniquement*
+      // depuis le 2026-08-24 et devient dormant avec le gel du direct (PRICING.md §0.a).
+      // Le catalogue actif compte deux formats — les modèles marque blanche A et B.
+      // Une équipe de 4 positions ou plus reste chiffrable : c'est un Poste dédié
+      // multiplié, pas un autre forfait.
       let pkg;
       if (st.service <= 0.85) pkg = { slug: 'debordement', name: 'Débordement', why: 'absorber les pics sans recruter.' };
-      else if (st.posts >= NONSTOP_MIN) pkg = { slug: 'non-stop', name: 'Équipe managée', why: 'la plage reste couverte, même quand quelqu\'un manque.' };
       else pkg = { slug: 'poste-dedie', name: 'Poste dédié', why: 'meilleur rapport coût / disponibilité.' };
 
       const recoEl = $('recommendation');
@@ -459,6 +462,13 @@
     });
 
     /* ----- Graphe comparatif Poste dédié vs Équipe managée (SVG sans dépendance) -----
+       ⚠️ DORMANT depuis le 2026-09-07 (PRICING.md §0.a) : l'Équipe managée est un
+       forfait *direct uniquement*, donc hors catalogue actif depuis le gel du direct.
+       La section #priority-compare a été retirée des deux simulateurs et ce bloc ne
+       s'exécute plus (garde `if (chart)` ci-dessous). Il est conservé tel quel — pas
+       supprimé — pour être réactivable en l'état au dégel : un actif dormant ne se
+       détruit pas, il s'arrête d'être alimenté.
+
        Ce que le graphe démontre (cf. PRICING.md §3.d/§3.f) : le choix entre les
        deux forfaits se joue sur les HEURES à couvrir, pas sur le volume.
        — De 9h à 18h, le Poste dédié est moins cher partout : la rotation

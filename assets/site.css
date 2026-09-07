@@ -193,6 +193,12 @@ html:has(.site-head) { scroll-padding-top: 110px; }
 @media (max-width: 640px) { .ctas-metiers { grid-template-columns: 1fr; } }
 .hero-trust { margin-top: 30px; display: flex; gap: 26px; flex-wrap: wrap; font-size: 13.5px; color: var(--text-mute); }
 .hero-trust b { color: var(--primary); }
+/* Passerelle hero → section donneurs d'ordre : le canal marque blanche est la
+   priorite commerciale, il lui faut une porte des le premier ecran. */
+.hero-sub-link { margin-top: 18px; font-size: 14.5px; color: var(--text-soft); }
+.hero-sub-link .txt-link { margin-left: 4px; white-space: nowrap; }
+/* Bouton de fin de section (ex. « Demander la grille partenaire »). */
+.section-cta { margin-top: 40px; text-align: center; }
 
 /* Hero visuel photo */
 .hero-visual { position: relative; }
@@ -457,7 +463,11 @@ input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: v
 .disclaimer { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.5); text-align: center; }
 
 /* ================= PACKAGES ================= */
-.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+/* Grille auto-ajustée au nombre de forfaits : depuis le retrait du palier
+   « Équipe managée » (dormant, PRICING.md §0.a), les simulateurs IT n'en
+   affichent plus que deux — une grille figée à 3 colonnes laissait un vide. */
+.packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; max-width: 880px; margin: 0 auto; }
+.packages:has(> .pkg:nth-child(3)) { max-width: none; }
 /* Rappel de l'estimation courante au-dessus des cartes — le chiffre du simulateur
    suit le lecteur qui a scrollé jusqu'aux forfaits. */
 .pkg-recall { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--text-soft); }
