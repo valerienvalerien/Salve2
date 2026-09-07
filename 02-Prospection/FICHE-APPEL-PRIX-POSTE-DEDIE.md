@@ -153,6 +153,39 @@ Dire **« première prise de tickets sur vos outils »**.
 
 ---
 
+## 5 bis. Le prix du milieu (2 500 €) — **usage interne uniquement**
+
+**2 500 € n'est pas un troisième prix : c'est le prix de référence dont la fourchette est
+tirée.** La bande ±9 % (`PRICING.md §3.d`) s'applique à lui : 2 500 × 0,91 = **2 275** ·
+2 500 × 1,09 = **2 725**. Même mécanique sur le Débordement (1 215 € ⇒ 1 105-1 324 €).
+
+| Où 2 500 € est légitime | Où il est interdit |
+|---|---|
+| **Prévisionnel, marge, point mort** : c'est la valeur de référence à modéliser (marge brute **1 734 €/position**, coût direct 766 €) | **À l'oral, pendant l'appel.** Un prix du milieu sans profil attaché est une invitation à couper la poire en deux — vers le bas |
+| **Devis ferme sous 24 h**, si le périmètre calculé y tombe. Il est alors justifié par le **périmètre**, jamais par « un demi-profil » | **En réponse à une pression sur le prix.** « Allez, 2 500 » dit au prospect que le 2 725 était faux et que le 2 275 est accessible |
+| **Argument MB** : 2 000 € de prix de gros + 25 % de marge partenaire = **exactement 2 500 €**. Notre prix public **ne concurrence pas le partenaire, il ancre sa revente** | **Comme borne d'une fourchette à trois valeurs.** La fourchette a **deux prix**, pas un continuum |
+
+> **Doctrine : on vend 2 275 ou 2 725, jamais entre les deux.** Deux prix affichés retirent
+> tout objet au « on coupe la poire en deux ». Un continuum le fabrique.
+
+**Contrôle de vérité sur l'économie annoncée** (benchmark France 3 200-4 200 €/mois, §3) :
+
+| Prix vendu | vs benchmark bas (3 200 €) | vs benchmark haut (4 200 €) |
+|---|---|---|
+| 2 275 € | −29 % | −46 % |
+| **2 500 €** | **−22 %** | **−41 %** |
+| 2 725 € | **−15 %** | −35 % |
+
+⚠️ **Deux enseignements opérationnels** :
+1. Au milieu de fourchette, l'économie réelle tourne autour de **−30 %**. Ne pas agiter le
+   « jusqu'à −50 % » à ce niveau — calculer sur son chiffre à lui (§2, étape 4).
+2. **Ne pas pousser le haut de fourchette à un prospect dont le coût interne est en bas du
+   benchmark** : à 2 725 € contre 3 200 €, l'argument économique tombe à −15 % et ne tient
+   plus seul. Sur ces comptes, vendre le **socle** — ou vendre le **délai** et la
+   **continuité**, pas le prix.
+
+---
+
 ## 6. Mémo chiffres — à avoir sous les yeux
 
 | | Helpdesk IT N1 | Support N1 SaaS |
