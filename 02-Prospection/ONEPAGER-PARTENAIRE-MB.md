@@ -26,8 +26,9 @@ prestataires de support, ESN et MSP.
 
 ## Le problème, vu de votre côté
 
-- **Recruter en France prend 60 à 90 jours** — et la capacité doit exister *avant* de
-  signer le prochain client. Donc on hésite, donc on bride la croissance.
+- **Recruter en France, c'est 2 à 3 mois avant la prise de poste** (processus de
+  recrutement puis préavis Syntec) **et 4 à 6 mois avant un N1 autonome** — or la capacité
+  doit exister *avant* de signer le prochain client. Donc on hésite, donc on bride la croissance.
 - **Certains créneaux ne seront jamais rentables en interne** : nuits, week-ends, le
   7h-9h du matin, les pics saisonniers. Les staffer en France, c'est payer du temps mort.
 - **Refuser du volume** (débordement, nouveau compte, astreinte) revient à l'offrir à un
@@ -44,9 +45,11 @@ vos SLA, votre nom. Votre client final ne voit que vous.
 au lieu de recruter — sur votre fuseau, sous votre marque.**
 
 - **Français langue maternelle**, 1 à 2 heures d'écart avec Paris selon la saison.
-- **Opérationnel en 6 semaines** — recrutement, formation à vos procédures, transition et
-  doublon inversé compris. Face à **60 à 90 jours** de recrutement en France, vous pouvez
-  dire **oui au prochain gros client dès la signature**, sans avancer la masse salariale.
+- **Première prise de tickets sur vos outils en 6 semaines** — recrutement, formation à vos
+  procédures, transition et doublon inversé compris ; position pleinement autonome sous
+  8 semaines. Face à **2 à 3 mois** avant la seule prise de poste d'un recrutement en France,
+  vous pouvez dire **oui au prochain gros client dès la signature**, sans avancer la masse
+  salariale.
 - **Ça monte au rythme de vos contrats** : chaque position ferme déclenche un recrutement,
   et nous n'opposons aucun plafond d'effectif. À la baisse, un préavis s'applique — nos
   agents sont en CDI, et c'est exactement ce qui vous garantit qu'ils ne partiront pas en
