@@ -22,7 +22,7 @@ telle quelle que face à un donneur d'ordre :
 
 - **En clair, si « capacité » reste abstrait** : « des agents francophones en CDI à
   Antananarivo, formés à vos procédures, qui travaillent dans vos outils et répondent à
-  votre nom — pour 40 à 60 % de moins que le même poste en France. »
+  votre nom — pour jusqu'à 50 % de moins que le même poste en France. »
 - **En direct (cabinet, éditeur, PME)**, où « les acteurs français » ne désigne personne :
   « Salverys, c'est le secrétariat / le support que vous activez **sans recruter** : une
   personne formée à vos procédures, sur votre ligne et dans vos outils, en 3 à 4 semaines. »
@@ -126,7 +126,8 @@ l'exploitation.**
 > Et puis il y a — et c'est là que je mets l'essentiel de mon énergie — **les boîtes qui
 > vendent déjà ce service en France** : des sociétés d'infogérance, des prestataires de
 > support, des télésecrétariats médicaux. Eux, leur problème n'est pas le prix, c'est la
-> **capacité**. Recruter un technicien en France, c'est 60 à 90 jours. Donc quand un gros
+> **capacité**. Recruter un technicien en France, c'est deux à trois mois avant qu'il
+> arrive, et le double avant qu'il soit autonome. Donc quand un gros
 > client arrive, soit ils ont déjà embauché à vide, soit ils refusent l'affaire. Moi je
 > leur donne un moyen de dire oui tout de suite : ils signent leur client, je monte
 > l'équipe en quelques semaines, et ça reste leur nom sur le contrat. Je suis leur
@@ -152,7 +153,7 @@ l'exploitation.**
 > phrase.
 
 > 💡 **Règle du registre amical** : jamais de sigle (N1, ETP, SLA, MSP, BPO), jamais de
-> pourcentage sauf le −40/−60 %, et une seule idée par réplique. Si l'ami repart en
+> pourcentage sauf le « jusqu'à −50 % », et une seule idée par réplique. Si l'ami repart en
 > disant « il monte des équipes de support francophones pour des boîtes françaises, et il
 > les paie bien pour qu'elles restent » — c'est gagné.
 
@@ -295,7 +296,7 @@ SaaS) · prise en charge (helpdesk IT).
 ### 4.1 La phrase (10 secondes — networking, LinkedIn, ascenseur)
 
 > **« On opère du support et du secrétariat francophones depuis Madagascar, sous la marque
-> de nos clients — activable en quelques semaines, pour 40 à 60 % de moins qu'un
+> de nos clients — activable en quelques semaines, pour jusqu'à 50 % de moins qu'un
 > recrutement en France, avec un engagement de service écrit. »**
 
 Variante marque blanche, plus tranchante face à une ESN :
@@ -316,8 +317,8 @@ l'entrant et la niche n°2 ; ils ne portent pas l'effort de prospection.*
 
 > « Vous connaissez le problème mieux que moi : pour signer un nouveau contrat
 > d'infogérance, il faut la capacité **avant** la signature. Or recruter un technicien N1
-> en France, c'est 60 à 90 jours — donc soit vous embauchez à vide, soit vous laissez
-> passer l'affaire.
+> en France, c'est 2 à 3 mois avant qu'il prenne son poste, et 4 à 6 mois avant qu'il soit
+> autonome — donc soit vous embauchez à vide, soit vous laissez passer l'affaire.
 >
 > Nous, on opère des positions de helpdesk N1 depuis Madagascar : français langue
 > maternelle, même fuseau horaire que Paris, en marque blanche totale — vos outils, vos
@@ -380,7 +381,7 @@ l'entrant et la niche n°2 ; ils ne portent pas l'effort de prospection.*
    écoute, reporting, plan de continuité, DPA RGPD.
 4. **Contrepartie** — le chiffre engagé (≥ 90 %, 20 % d'avoir automatique) puis la
    mécanique d'entrée à petit risque : périmètre restreint, 3 mois d'engagement initial,
-   opérationnel en 3-4 semaines (6 en marque blanche).
+   première prise de tickets en 3-4 semaines (6 en marque blanche), position autonome sous 8.
 
 **Fermeture, toujours la même** : ne pas demander « qu'en pensez-vous ? » mais proposer le
 prochain pas concret — *« on prend 30 minutes pour cadrer un périmètre de démarrage, et je
