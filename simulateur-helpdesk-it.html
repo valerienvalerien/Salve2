@@ -215,87 +215,33 @@
   <a class="scroll-next" href="#forfaits" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
 
-<!-- FORFAITS -->
+<!-- FORFAITS — tableau a encoches (seule presentation depuis le 2026-09-07) -->
 <section class="section" id="forfaits">
   <div class="container">
     <div class="section-head reveal">
-      <div class="kicker">Variante A — cartes</div>
+      <div class="kicker">Forfaits</div>
       <h2>Deux forfaits, une logique simple</h2>
-      <p>Choisissez l'offre packagée, ou configurez sur mesure ci-dessus.</p>
-      <p class="pkg-legend"><span class="lg-on">Inclus dans le forfait</span><span class="lg-off"><s>Barré</s> : se débloque au forfait supérieur</span></p>
+      <p>Deux façons d'acheter la même capacité : mutualisée sur vos pics, ou dédiée à vos utilisateurs. Les prix suivent le simulateur ci-dessus.</p>
+      <p class="pkg-legend"><span class="lg-on">Inclus dans le forfait</span><span class="lg-off">Non inclus : se débloque au forfait supérieur</span></p>
       <p class="pkg-recall" id="pkg-recall" hidden></p>
-    </div>
-    <div class="packages">
-      <div class="pkg reveal" data-pkg="debordement" data-pkg-service="shared" data-pkg-agents="follow" data-pkg-hours="20">
-        <div class="pkg-badge" hidden></div>
-        <div class="pkg-name">Débordement</div>
-        <div class="pkg-tag">Débordement ponctuel, sans engagement long</div>
-        <div><span class="pkg-from">Estimation type</span><span class="pkg-price is-range">1 105 – 1 324</span><span class="pkg-unit"> €/mois</span></div>
-        <div class="pkg-equiv">1 agent mutualisé · 20 h / semaine</div>
-        <ul class="pkg-feat">
-          <li>Tickets + email</li>
-          <li>Gestion structurée des tickets</li>
-          <li>Reporting hebdomadaire + KPI support</li>
-          <li>Opérationnel en 3 à 4 semaines</li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Agent 100 % dédié · en 35 h ou 40 h / semaine</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Téléphone + chat en plus des tickets</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Agent formé sur votre parc et vos procédures</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Escalade N2 cadrée vers vos techniciens</span></li>
-          <li class="off"><span class="sr-only">Non inclus : </span><span>Absence ponctuelle reprise par le manager de votre compte</span></li>
-        </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Démarrer</a>
-      </div>
-
-      <div class="pkg featured reveal d1" data-pkg="poste-dedie" data-pkg-service="dedicated" data-pkg-agents="follow">
-        <div class="pkg-badge" data-default="★ Le plus choisi">★ Le plus choisi</div>
-        <div class="pkg-name">Poste dédié</div>
-        <div class="pkg-tag">Un N1 dédié à vos utilisateurs, gestion structurée</div>
-        <div><span class="pkg-from">Estimation type</span><span class="pkg-price is-range">2 275 – 2 725</span><span class="pkg-unit"> €/mois</span></div>
-        <div class="pkg-equiv">1 agent dédié · 35 h / semaine</div>
-        <ul class="pkg-feat">
-          <li>Tickets + email</li>
-          <li>Gestion structurée des tickets</li>
-          <li>Reporting hebdomadaire + KPI support</li>
-          <li>Opérationnel en 3 à 4 semaines</li>
-          <li>Agent 100 % dédié · en 35 h ou 40 h / semaine</li>
-          <li>Téléphone + chat en plus des tickets</li>
-          <li>Agent formé sur votre parc et vos procédures</li>
-          <li>Escalade N2 cadrée vers vos techniciens</li>
-          <li>Absence ponctuelle reprise par le manager de votre compte</li>
-        </ul>
-        <a href="#contact" class="pkg-cta" data-devis>Choisir le poste dédié</a>
-      </div>
-
-          </div>
-    <p style="text-align:center;margin-top:26px;font-size:13.5px;color:var(--text-soft);">
-      <b>Revue de service mensuelle</b> (compte rendu écrit) et <b>cadrage &amp; mise en place</b> : inclus dans tous les forfaits.
-      <b>Astreinte soir / week-end et couverture 24·7</b> : sur devis.
-    </p>
-  </div>
-  <a class="scroll-next" href="#comparaison" aria-label="Aller à la section suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
-</section>
-
-<!-- FORFAITS — VARIANTE B : tableau à encoches -->
-<section class="section soft" id="forfaits-tableau">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Variante B — tableau</div>
-      <h2>Le même contenu, ligne par ligne</h2>
-      <p>Une ligne par fonctionnalité, une encoche là où elle est incluse. Les prix suivent le simulateur.</p>
     </div>
     <div class="ptable-wrap reveal d1">
       <table class="ptable">
         <thead>
         <tr>
           <th class="pt-corner" scope="col"><span class="sr-only">Fonctionnalité</span></th>
-          <th scope="col">
+          <th scope="col" data-pkg="debordement" data-pkg-service="shared" data-pkg-agents="follow" data-pkg-hours="20">
+            <span class="pt-badge" hidden></span>
             <span class="pt-name">Débordement</span>
-            <span class="pt-price" data-pkg-price="debordement">1 105 – 1 324</span><span class="pt-unit">€/mois</span>
+            <span class="pt-price">1 105 – 1 324</span><span class="pt-unit">€/mois</span>
+            <span class="pt-equiv pkg-equiv">1 agent mutualisé · 20 h / semaine</span>
             <a href="#contact" class="pt-cta pkg-cta" data-devis>Démarrer</a>
           </th>
-          <th scope="col" class="pt-featured">
+          <th scope="col" class="pt-featured" data-pkg="poste-dedie" data-pkg-service="dedicated" data-pkg-agents="follow">
+            <span class="pt-badge" data-default="★ Le plus choisi">★ Le plus choisi</span>
             <span class="pt-name">Poste dédié</span>
-            <span class="pt-price" data-pkg-price="poste-dedie">2 275 – 2 725</span><span class="pt-unit">€/mois</span>
+            <span class="pt-price">2 275 – 2 725</span><span class="pt-unit">€/mois</span>
+            <span class="pt-equiv pkg-equiv">1 agent dédié · 35 h / semaine</span>
             <a href="#contact" class="pt-cta pkg-cta" data-devis>Choisir le poste dédié</a>
           </th>
         </tr>
@@ -313,6 +259,10 @@
         </tbody>
       </table>
     </div>
+    <p style="text-align:center;margin-top:26px;font-size:13.5px;color:var(--text-soft);">
+      <b>Revue de service mensuelle</b> (compte rendu écrit) et <b>cadrage &amp; mise en place</b> : inclus dans tous les forfaits.
+      <b>Astreinte soir / week-end et couverture 24·7</b> : sur devis.
+    </p>
   </div>
 </section>
 
@@ -380,7 +330,7 @@
 </section>
 
 <!-- DONNEURS D'ORDRE — le simulateur estime le direct ; la grille partenaire est privée -->
-<section class="section soft" id="partenaire">
+<section class="section" id="partenaire">
   <div class="container">
     <div class="section-head reveal">
       <div class="kicker">Vous êtes un donneur d'ordre</div>
