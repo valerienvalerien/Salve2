@@ -158,6 +158,18 @@ décliné sur quatre axes indépendants. Toute offre Salverys est un point dans 
 | Mise en route annoncée | **3 à 4 semaines** | **6 semaines** (transition + shadowing + doublon inversé) |
 | Marge du partenaire | — | il prend ~25-35 % ; on capte moins par poste mais le coût d'acquisition est ~nul |
 
+> ⚠️ **Statut du direct — à ne pas confondre avec un abandon.** La décision du 2026-06-10
+> place la marque blanche en **priorité n°1** et le direct « en 2e temps ». Il n'a jamais
+> été supprimé, et il structure encore la grille médicale publique (§1), l'offre de
+> lancement −50 % (§7), l'Équipe managée (§3.d) et tout le site public. **Mais il ne se
+> prospecte pas activement aujourd'hui** : à un fondateur seul, avec 58 ESN/MSP qualifiées
+> contre 15 éditeurs et un point mort à 1-2 positions placées, le temps commercial va à la
+> marque blanche. En clair : **le direct se sert, il ne se chasse pas.** Un cabinet qui
+> arrive par le site se traite ; on ne monte pas de séquence sortante pour lui.
+>
+> Conséquence sur les pitchs (§4) : **le pitch de référence est celui de la marque blanche.**
+> Les deux autres sont là pour l'entrant et pour le jour où le direct s'active.
+
 **Les trois contreparties de risque en MB** (à la place de toute remise, `PRICING.md` §3.b) :
 sortie à 30 jours pendant 3 mois · exclusivité territoire ou segment 12 mois · **appui
 avant-vente sous 48 h** (PCA, DPA, CV anonymisés, dispositif QA, SLA écrit — réutilisables
@@ -232,7 +244,11 @@ Variante marque blanche, plus tranchante face à une ESN :
 > qui répondent au nom de votre société, activables en quelques semaines au lieu de trois
 > mois de recrutement. »**
 
-### 4.2 Le pitch 30 secondes — ESN / MSP (cible n°1, marque blanche)
+### 4.2 Le pitch 30 secondes — ESN / MSP (marque blanche) — **LE PITCH DE RÉFÉRENCE**
+
+*C'est celui-ci qu'on travaille, qu'on répète et qu'on mesure. Les deux suivants servent
+l'entrant et la niche n°2 ; ils ne portent pas l'effort de prospection.*
+
 
 > « Vous connaissez le problème mieux que moi : pour signer un nouveau contrat
 > d'infogérance, il faut la capacité **avant** la signature. Or recruter un technicien N1
