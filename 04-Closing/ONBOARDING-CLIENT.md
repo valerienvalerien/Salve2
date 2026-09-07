@@ -73,7 +73,9 @@ l'engagement de service).
 - [ ] **Armement QA** : grille de scoring prête, planning de double écoute, gabarit de
   reporting instancié (`PROCESS-QA-DOUBLE-ECOUTE.md`, `MODELE-REPORTING-CLIENT.md`).
 - [ ] Vérification **continuité** : kit d'autonomie de chaque agent **testé** (bascule
-  réelle, autonomie constatée) + hub de repli opérationnel, backup +1 agent.
+  réelle, autonomie constatée) + **manager du compte identifié et formé aux procédures du
+  client** — c'est lui qui reprend les absences ponctuelles sur une position dédiée
+  (`PRICING.md` §3.e), aucune tête supplémentaire n'est à prévoir.
 - [ ] Test de bout en bout (appel/ticket fictif) avant J1.
 
 ## Phase 2 — J1, démarrage du pilote

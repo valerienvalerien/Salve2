@@ -796,6 +796,21 @@ d'accueil : les simulateurs avaient été alignés le 2026-08-14, `index.html` n
 - Tables comparatives : « Oui + backup » ⇒ **« Oui + reprise manager »** (deux simulateurs
   IT) · « Équipe + backup » ⇒ **« Reprise par le pool »** (médical, où l'agent n'est pas
   nominatif).
+
+> ✅ **Propagation achevée le 2026-09-07.** L'audit du 2026-08-24 avait corrigé le site ;
+> **sept documents de vente et contractuels portaient encore les deux promesses** et ont été
+> alignés : `04-Closing/MODELE-CONTRAT-PRESTATION.md` (art. 7, seul endroit où la promesse
+> devenait opposable) · `04-Closing/DOSSIER-AVANT-VENTE/01-PLAN-CONTINUITE.md` (le hub y
+> structurait le registre des risques et l'architecture — réécrits autour de la
+> **production distribuée**, R7 « indisponibilité du hub » supprimé) ·
+> `04-Closing/MODELE-DPA-RGPD.md` (annexe 2) · `04-Closing/ONBOARDING-CLIENT.md` (checklist
+> de mise en service) · `02-Prospection/OUTREACH-telesec-marque-blanche.md` ·
+> `02-Prospection/ONEPAGER-CHAINES-MEDICAL.md` · `02-Prospection/OUTREACH-cabinets-medicaux.md`
+> · `01-Strategie-Offre/OFFRE-MEDICAL.md`.
+> Les mentions subsistant dans `EVALUATION-STRATEGIQUE-2026-06.md`,
+> `CHAPITRE-Offre-irresistible.md`, `RAPPORT-PRIX.html` et les prévisionnels sont des
+> **archives de raisonnement datées** : on ne réécrit pas un document d'analyse a posteriori.
+> Les `CRM_Salverys*.html` sont hors production depuis le 2026-08-28.
 **9. Vocabulaire de la continuité — réécrit en français d'acheteur (2026-08-24).** Le
 tableau de continuité de la fiche était **illisible pour un prospect** : la colonne
 « Qui remplace » ne disait jamais **dans quelle situation** (rien n'annonçait qu'on parlait

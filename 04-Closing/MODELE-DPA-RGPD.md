@@ -127,7 +127,7 @@ art. 4), avec **attestation** sur demande. Aucune conservation au-delà de l'obl
 
 - Comptes nominatifs + MFA · zéro download · pas de cache local · chiffrement TLS ·
   formation RGPD + secret pro · révocation immédiate des accès · kit d'autonomie
-  individuel + hub de repli alimenté (continuité) · aucun enregistrement d'appel.
+  individuel par agent (continuité d'alimentation) · aucun enregistrement d'appel.
 
 ## Annexe 3 — Localisation
 

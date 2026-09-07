@@ -109,10 +109,18 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
 
 ## Article 7 — Continuité de service
 
-- **Backup +1 agent par compte** : pas d'interruption sur absence d'un agent.
+- **Absence d'un agent affecté au Client.** Le remplacement est **compris dans le prix** et
+  ne fait l'objet d'aucune ligne de facturation distincte. Selon le format souscrit :
+  - **Débordement mutualisé** — l'agent n'est pas nominatif : la prise en charge est
+    assurée par le pool, sans interlocuteur attitré.
+  - **Position dédiée** — les **absences ponctuelles** (congé isolé, arrêt court) sont
+    reprises par le **manager qui supervise le compte du Client**, lequel n'occupe aucune
+    position facturée. Salverys ne garantit ni deux absences simultanées, ni un arrêt long :
+    dans ces cas, le Client est prévenu et le niveau de service est réajusté d'un commun
+    accord.
 - **Plan de continuité écrit**, remis avant démarrage : **kit d'autonomie individuel par
-  agent** (solaire ou batterie) et **hub de repli alimenté** (onduleur / groupe
-  électrogène). Le service ne dépend pas du réseau électrique local.
+  agent** (solaire ou batterie), sur lequel l'agent bascule en moins de cinq minutes. Une
+  coupure du réseau électrique local n'interrompt pas le service.
 
 ## Article 8 — Obligations du Client
 
