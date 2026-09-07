@@ -1,11 +1,18 @@
 # ONE-PAGER — Partenaires marque blanche (donneurs d'ordre)
 
-> Document de vente autonome pour la **cible GTM n°1** (MB-first, décision direction
-> 2026-06-10) : télésecrétariats médicaux FR, éditeurs SaaS / prestataires de support,
-> ESN/MSP. Pendant du `ONEPAGER-CHAINES-MEDICAL.md` (qui couvre le direct).
+> Document de vente autonome pour la **cible GTM n°1** — et depuis le gel du direct
+> (2026-09-07, `PRICING.md` §0.a) **le seul canal prospecté** : télésecrétariats médicaux FR,
+> éditeurs SaaS / prestataires de support, ESN/MSP. Son pendant direct
+> (`ONEPAGER-CHAINES-MEDICAL.md`) est conservé mais non maintenu.
 > **Aucun prix dans ce document** (règle `PRICING.md §0/§9` : toute MB jamais publique) —
 > la rate card par créneau (`§1.b`) ou par ETP (`§3`) se remet **au cadrage, sous NDA**.
 > À adapter au segment du prospect (garder le bloc « déclinaison » correspondant).
+>
+> **Révisé le 2026-09-07** — six écarts corrigés : hub de repli et « backup +1 agent »
+> (promesses retirées le 2026-08-24, `PRICING.md` §3.e/§3.g.8) · délai de démarrage MB
+> (3 → 6 semaines, §3.g.6) · « élastique à la baisse » (contredisait la clause de volume
+> ferme facturable, §3) · dépôt d'activation présenté comme restituable au lieu
+> d'imputable (§3.a) · fuseau horaire.
 
 ---
 
@@ -33,10 +40,17 @@ prestataires de support, ESN et MSP.
 Salverys (Antananarivo) opère **en marque blanche totale** : vos scripts, vos outils,
 vos SLA, votre nom. Votre client final ne voit que vous.
 
-- **Français langue maternelle**, fuseau compatible Paris (UTC+3).
-- **Capacité activable en ~3 semaines** (vs 60-90 jours de recrutement) : vous pouvez
+**Nous sommes la capacité de support francophone que vous activez en quelques semaines
+au lieu de recruter — sur votre fuseau, sous votre marque.**
+
+- **Français langue maternelle**, 1 à 2 heures d'écart avec Paris selon la saison.
+- **Opérationnel en 6 semaines** — recrutement, formation à vos procédures, transition et
+  doublon inversé compris. Face à **60 à 90 jours** de recrutement en France, vous pouvez
   dire **oui au prochain gros client dès la signature**, sans avancer la masse salariale.
-- **Élastique** : on monte ou on descend le nombre d'agents au rythme de vos contrats.
+- **Ça monte au rythme de vos contrats** : chaque position ferme déclenche un recrutement,
+  et nous n'opposons aucun plafond d'effectif. À la baisse, un préavis s'applique — nos
+  agents sont en CDI, et c'est exactement ce qui vous garantit qu'ils ne partiront pas en
+  cours de mission.
 
 ---
 
@@ -50,10 +64,13 @@ minimum local et tourne en 6 mois — votre qualité part avec lui.
 - **Engagement de service contractuel** : taux de décroché ou SLA convenu au cadrage ;
   en deçà sur un mois, **20 % d'avoir automatique** — on met notre argent sur le résultat.
 - **Plan de continuité écrit**, remis avant tout démarrage : chaque agent dispose de son
-  **kit d'autonomie** (solaire ou batterie) sur lequel il bascule en moins de 5 minutes, et
-  un hub de repli alimenté (groupe électrogène, onduleurs) prend le relais sur les coupures
-  longues. Votre service ne dépend pas du réseau électrique local.
-- **Backup +1 agent par compte** : pas de jour d'arrêt sur absence.
+  **kit d'autonomie** (solaire ou batterie) sur lequel il bascule en moins de 5 minutes.
+  Une coupure de réseau électrique n'interrompt pas votre service.
+- **Le jour où votre agent est absent** : le manager qui supervise déjà votre compte prend
+  le relais. Il connaît vos procédures, et **il n'occupe aucune position que vous payez**.
+  Nous n'avons pas besoin de vous facturer un remplaçant : à 4,5× le marché local, une
+  absence est un congé posé à l'avance, qui s'anticipe au planning au lieu de se rattraper
+  avec une tête en plus.
 - **Conformité documentée** : sous-traitant RGPD (art. 28, DPA), transfert encadré
   (clauses art. 46), comptes nommés, **zéro donnée stockée chez nous** — on travaille
   dans vos outils.
@@ -65,8 +82,11 @@ minimum local et tourne en 6 mois — votre qualité part avec lui.
 ## La mécanique d'entrée
 
 1. **Cadrage** (1 RDV) : périmètre, créneaux, scripts, KPI — et la grille tarifaire
-   partenaire, remise à ce moment-là (dégressive selon le **volume ferme engagé** : plus
-   vous engagez de positions, meilleur est votre prix de gros).
+   partenaire, remise à ce moment-là. Elle est dégressive par paliers de volume : **chaque
+   palier est un prix de volume engagé — il s'achète avec des positions fermes facturables,
+   dues qu'elles soient consommées ou non, pas avec une intention.** On le dit d'entrée
+   plutôt qu'en petits caractères : c'est ce qui nous permet d'afficher un prix bas sans
+   le reprendre ailleurs.
 2. **Démarrage sur périmètre restreint** : un seul de vos clients finaux, vos créneaux de
    débordement, ou un lot de tickets défini ensemble. KPIs partagés dès J1. C'est le
    **périmètre** qui limite votre risque — vous jugez sur vos vrais flux, en petit.
@@ -115,10 +135,13 @@ place enlève du **risque**, pas du prix :
 
 - **Vous pouvez arrêter en prévenant 30 jours** pendant les 3 premiers mois.
 - **Exclusivité sur votre territoire ou votre segment pendant 12 mois.**
+- **Le dossier d'avant-vente sous 48 h** (section précédente) — le seul « give » qui vous
+  fasse gagner du chiffre d'affaires au lieu d'en économiser.
 
-*Une avance d'activation, imputable sur vos premières factures, est demandée à la signature :
-elle couvre le recrutement et la formation engagés pour vous, et vous revient intégralement
-si le contrat suit son cours. Montant précisé au cadrage.*
+*Une avance d'activation est demandée à la signature : elle couvre le recrutement et la
+formation engagés pour vous, et **s'impute intégralement sur vos premières factures**. Le
+partenaire qui va au bout ne paie rien de plus — ce ne sont pas des frais. Montant précisé
+au cadrage.*
 
 ---
 
