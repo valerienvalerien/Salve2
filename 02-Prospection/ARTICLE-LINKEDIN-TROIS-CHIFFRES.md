@@ -1,205 +1,103 @@
-# ARTICLE-LINKEDIN-TROIS-CHIFFRES.md — « Trois chiffres que j'ai retirés de mes propres pages »
+# ARTICLE-LINKEDIN-TROIS-CHIFFRES.md — cadrage & garde-fous
 
-> **Article LinkedIn**, cible **ESN / MSP** (niche 1) et **éditeurs SaaS** (niche 2).
-> Second contenu de la série ouverte par `POST-LINKEDIN-SUPPORT-N1.md`.
-> Structure volontairement différente : le premier est un **déroulé de process**, celui-ci
-> est un **démontage de trois claims**. Deux posts numérotés 1️⃣→6️⃣ à quinze jours d'écart
-> se liraient comme un gabarit.
-> Sources : `PRICING.md` §3.e / §5 / §5.a / §5.b / §3.f / §3.g.8, `CLAUDE.md` (garde-fou),
-> `ONEPAGER-PARTENAIRE-MB.md`.
+> **Ce fichier ne se publie pas.** Le texte à publier est dans
+> **`publier-article-trois-chiffres.md`**, qui ne contient que lui.
+> Cible : **ESN / MSP** (niche 1) et **éditeurs SaaS** (niche 2). Second contenu de la série
+> ouverte par `POST-LINKEDIN-SUPPORT-N1.md`.
+> Sources : `PRICING.md` §3.e / §5 / §5.a / §5.b / §3.g.8, `CLAUDE.md` (garde-fou).
 
 ---
 
-## 1. L'angle, et pourquoi celui-là
+## 1. L'angle
 
-**La thèse : le secteur vend l'offshore sur le prix, alors que ce qui se joue réellement
-est la capacité.**
+**Trois chiffres du secteur ne tiennent pas au calcul : le plafond −60 %, « opérationnel en
+3 semaines », et le « backup dédié inclus ». Deux des trois étaient sur nos propres pages
+avant d'être retirés** (`PRICING.md §5.b` et §3.g.8).
 
-Trois raisons de publier ça plutôt qu'une nouvelle plaquette :
+Trois raisons de publier ça :
 
-1. **C'est vrai, et c'est vérifiable en public.** Les trois chiffres démontés sont sur les
-   sites de la moitié du secteur. Le lecteur peut aller vérifier pendant sa lecture.
+1. **C'est vérifiable pendant la lecture.** Les trois claims sont sur les sites de la moitié
+   du secteur.
 2. **C'est incopiable.** Un concurrent qui répondrait devrait admettre les mêmes retraits.
-   Personne ne le fera — donc l'article ne sera pas neutralisé.
-3. **Ça retourne la faiblesse en preuve.** Deux des trois claims étaient **sur nos propres
-   pages** avant d'être retirés (`PRICING.md §5.b` et §3.g.8). Le dire nous-mêmes vaut
-   beaucoup mieux qu'attendre qu'un prospect le trouve dans l'historique.
+3. **Ça prend les devants.** Le dire nous-mêmes vaut mieux qu'attendre qu'un prospect trouve
+   l'ancienne version de nos pages.
 
 > ⚠️ **Décision à confirmer avant publication.** L'article publie l'économie **réelle**
-> (~28 à 45 %) et non le seul claim « jusqu'à −50 % ». Les deux sont compatibles — le mot
-> « jusqu'à » est précisément là pour ça (`PRICING.md §5.b`) — mais c'est un choix : on
-> échange un chiffre plus vendeur contre de la crédibilité, en pariant que l'acheteur ESN a
-> déjà été déçu une fois. Si le pari ne vous convient pas, la parade est en §3.
+> (28 à 45 %) et non le seul claim « jusqu'à −50 % ». Les deux sont compatibles — le mot
+> « jusqu'à » est là pour ça (`PRICING.md §5.b`) — mais c'est un arbitrage : on échange un
+> chiffre plus vendeur contre un calcul opposable. Parade si le pari ne convient pas :
+> garder la démonstration que −60 % suppose de descendre autour de 900 € la position, et
+> retirer notre propre ratio. On perd l'essentiel de la force du texte.
 
 ---
 
-## 2. L'article
+## 2. Réécriture du 2026-09-10 — ce qui a été coupé, et pourquoi
+
+> Le premier jet a été rejeté en relecture : **4 300 signes de voix générée**. Le fond était
+> juste, la voix était fausse. Version publiée : **2 400 signes**. Les défauts identifiés
+> valent pour **tout contenu de la série** — d'où la checklist du §3.
+
+| Défaut | Occurrences dans le jet rejeté | Correctif |
+|---|---|---|
+| **Figure « X n'est pas Y, c'est Z »** | 6 fois : « Pas exagéré : faux » · « Le chiffre n'est pas le problème, le mot l'est » · « C'est un problème de capacité, pas de prix » · « Le prix décide si… le délai décide si… » · « ce n'est pas qu'il ment, c'est que… » · « Ce n'est pas un poste interne, c'est le cas le plus cher » | **Une seule conservée.** Un humain place cette antithèse une fois ; six fois, c'est une signature machine. |
+| **Ouverture qui s'auto-félicite** | « Ce qui suit va contre mon intérêt commercial immédiat, et c'est exactement pour ça que je l'écris » | Supprimée. La transparence qui s'annonce n'en est plus. Remplacée par un constat plat : « Mes chiffres sont moins bons que ceux de la plupart de mes concurrents. » |
+| **Impératifs au lecteur** | « Faites la division » · « Posez une seule question » · « Maintenant comparez à la bonne chose » · « De deux choses l'une » | Tous supprimés. C'est de l'oralité de tribune, pas d'écrit professionnel. |
+| **Aphorismes de clôture** | « on achète du support sur une plaquette et on le découvre en production » · « des jalons qu'on devra tenir devant témoin » | Supprimés. Ils sonnent sans rien ajouter à la phrase précédente. |
+| **Symétrie totale** | 3 chiffres + 3 questions + 3 blocs de longueur égale, chacun sur le patron *claim → démolition → « ce que j'écris maintenant »* | Blocs de longueurs inégales, patron cassé, section « trois questions à poser » supprimée entièrement. |
+| **Méta-commentaire** | « Ce qui se joue vraiment, et que personne ne met sur ses pages » | Supprimé. Annoncer qu'on va dire une chose importante retarde le moment de la dire. |
+
+**Ce qui a été gardé du fond** : le calcul 27 600 € vs 38-50 k€, les deux jalons, le coût de
+l'absence à 13 %, la reprise par le fondateur non facturée, le repère du recrutement interne.
+
+**Ce qui a été ajouté** : « Vous la retrouvez dans votre qualité six mois plus tard » —
+seule phrase de conséquence du texte, placée là parce que c'est l'argument qui parle
+vraiment à une ESN qui a déjà changé de sous-traitant.
 
 ---
 
-### Trois chiffres que le support offshore affiche — et que j'ai retirés de mes propres pages
+## 3. Checklist anti-gabarit — à passer sur tout contenu publié
 
-Je vends du support N1 francophone depuis Antananarivo. Ce qui suit va contre mon intérêt
-commercial immédiat, et c'est exactement pour ça que je l'écris : sur ces trois chiffres,
-deux étaient encore sur mes pages il y a quelques semaines.
+Relire le texte en cherchant **uniquement** ces sept choses, dans cet ordre :
 
----
+1. **Compter les « X n'est pas Y, c'est Z ».** Plus d'une par texte → en couper.
+2. **Chercher les impératifs adressés au lecteur** (« imaginez », « faites », « posez-vous
+   la question »). Objectif : zéro.
+3. **Lire la première phrase seule.** Si elle parle de l'auteur ou annonce la valeur de ce
+   qui suit au lieu de le dire, elle saute.
+4. **Lire la dernière phrase de chaque paragraphe.** Si elle reformule la précédente en plus
+   court et plus percutant, c'est un effet, pas une information → couper.
+5. **Compter les listes de trois.** Deux au maximum dans un texte, jamais imbriquées.
+6. **Chercher les questions rhétoriques.** Objectif : zéro. Une vraie question s'adresse à
+   quelqu'un qui peut répondre.
+7. **Mesurer les paragraphes.** S'ils font tous la même longueur, le texte a été composé,
+   pas écrit.
 
-**1. « −40 à −60 % d'économie »**
-
-Le plafond est faux. Pas exagéré : faux. Il n'est atteignable dans aucun scénario réaliste.
-
-Voici le calcul, avec mes propres prix.
-
-Un technicien support N1 en interne, en France, coûte **38 à 50 k€ par an** en coût complet :
-brut, charges, congés, absences, encadrement, formation, matériel, licences, locaux, et le
-turnover quand il part au bout de dix-huit mois.
-
-Une position chez moi, c'est **à partir de 2 300 € par mois**, soit **27 600 € par an**.
-
-Faites la division : l'économie va de **28 % à 45 %** selon le poste auquel vous vous
-comparez. Elle dépasse 50 % dans un seul cas — une ESN d'Île-de-France dont le poste chargé
-dépasse 55 k€. Ce n'est pas « un poste interne », c'est le cas le plus cher du marché.
-
-Pour afficher −60 %, il faut soit gonfler le coût interne, soit descendre sous un prix qui
-permet de payer correctement quelqu'un. Le second est plus fréquent que le premier, et c'est
-lui qui devrait vous inquiéter : à 900 € la position, quelqu'un paie la différence, et ce
-n'est pas le prestataire.
-
-**Ce que j'écris maintenant : jusqu'à 50 %. Avec « jusqu'à ».**
+> Règle de fond : **un chiffre exact et une date opposable font plus de travail qu'une
+> formule.** Quand une phrase n'apporte ni l'un ni l'autre, elle est décorative.
 
 ---
 
-**2. « Opérationnel en 3 semaines »**
+## 4. Contraintes de publication
 
-Le chiffre n'est pas le problème. Le mot l'est.
+- **Le prix affiché doit être identique à l'euro près** à celui du post n°1 (2 300 €
+  support N1 · 2 700 € helpdesk). Deux ancres différentes en quinze jours détruiraient les
+  deux.
+- **Aucun tarif marque blanche** (`PRICING.md §0/§9`). Le 2 300 € est le tarif **direct** :
+  le client final y lit son prix, le donneur d'ordre y lit la marge qu'il pourra prendre.
+- **Ne jamais publier notre coût de revient** (salaire brut, coût employeur). Le lecteur
+  calculerait la marge et la négociation partirait de là. La mention « CDI » suffit ; le
+  « ×4,5 le marché local » est déjà public sur `index.html` mais **ne se place pas dans le
+  même paragraphe qu'un prix**.
+- **Aucun concurrent nommé**, même en creux (« contrairement à certains acteurs bien
+  connus »). Le texte attaque des **claims**, jamais des sociétés.
+- **Le §backup ne se publie pas sans son remplacement.** Retirer une promesse sans dire ce
+  qu'on met à la place laisse un trou, pas une preuve.
+- **Le fondateur au « je » : ce qu'il fait, jamais ce qu'il a été** (`CLAUDE.md`).
 
-« Opérationnel » désigne deux jalons très différents, et l'annonce livre le premier en
-promettant le second :
-
-- **premier ticket traité sur vos outils, sous supervision** ;
-- **position pleinement autonome sur votre périmètre.**
-
-Entre les deux, il y a la partie qui coûte cher : comprendre votre produit, vos macros, à
-quel moment on escalade au lieu de s'entêter.
-
-Chez moi, honnêtement : **environ 6 semaines** pour le premier jalon en marque blanche,
-**6 à 8 semaines** pour le second. C'est plus long que ce qu'affichent mes concurrents.
-
-Maintenant comparez à la bonne chose. Un recrutement interne en France, c'est **2 à 3 mois**
-avant le premier jalon — 5 à 8 semaines de processus, plus le préavis Syntec, qui n'est
-jamais compté dans les délais qu'on vous annonce — et **4 à 6 mois** avant le second.
-
-L'argument n'a jamais été « 3 semaines contre 90 jours ». Il est : **vous avez du volume
-traité en 6 semaines, quand votre recrutement n'a pas encore signé.**
-
----
-
-**3. « Backup dédié inclus »**
-
-Celui-là est le plus coûteux pour vous, parce qu'il ne se découvre qu'au mauvais moment.
-
-Posez une seule question : **qui paie la deuxième tête ?**
-
-Vous payez une position. Un second agent est « inclus », formé sur votre compte, disponible.
-De deux choses l'une. Soit il existe vraiment, et il est dans votre prix — vous payez deux
-personnes pour en avoir une. Soit il n'existe pas, et vous l'apprendrez le premier lundi de
-son congé.
-
-Un agent est absent environ **13 % du temps** : cinq semaines de congés, plus les arrêts.
-C'est un coût réel, et il faut bien que quelqu'un le porte.
-
-**Ce que je promets à la place, et rien de plus.** L'absence ponctuelle d'un agent, c'est
-moi qui la reprends : je supervise déjà votre compte, je connais vos procédures, et je
-n'occupe aucune position que vous payez. Deux absences simultanées, ou un arrêt long : je
-vous préviens et nous ajustons le périmètre. Je ne fais pas semblant de couvrir ce que je ne
-couvre pas.
-
----
-
-### Ce qui se joue vraiment, et que personne ne met sur ses pages
-
-Si vous dirigez une ESN, un MSP ou un éditeur, vous ne cherchez pas à économiser 30 % sur un
-poste. Vous cherchez à **prendre le contrat suivant sans casser le service actuel.**
-
-C'est un problème de capacité, pas de prix. Il a une horloge, et elle est brutale : le
-recrutement interne vous met à 4-6 mois d'un N1 autonome. Un appel d'offres ne vous attend
-pas 4 mois.
-
-Le prix décide **si** vous externalisez. Le délai décide **si vous gagnez l'affaire.**
-
-Le secteur communique sur le premier parce qu'il est facile à mettre en gros sur une page.
-Le second demande d'annoncer des jalons qu'on devra tenir devant témoin.
-
----
-
-### Les trois questions à poser à n'importe quel prestataire — moi compris
-
-Elles prennent quatre minutes et elles trient mieux qu'une grille tarifaire.
-
-**1. « Votre pourcentage d'économie, il se calcule contre quel poste exactement ? »**
-Demandez le salaire brut, le coût chargé et ce qui est inclus dedans. Si la réponse est une
-fourchette sans base, le chiffre a été choisi avant d'être calculé.
-
-**2. « Votre délai, c'est le premier ticket traité ou la position autonome ? »**
-Les deux dates, par écrit. L'écart entre elles vous dit à quel point on a réfléchi à votre
-montée en charge.
-
-**3. « Si vous ratez votre engagement de service, il se passe quoi ? »**
-Un engagement sans remède chiffré n'est pas un engagement, c'est une intention. Chez moi
-c'est 20 % d'avoir sur la facture suivante, automatique, plafonné à un mois sur douze. Peu
-importe le chiffre : exigez qu'il existe.
-
-Si un prestataire répond mal à ces trois questions, ce n'est pas qu'il ment. C'est souvent
-qu'il n'a jamais eu à y répondre — parce qu'on achète du support sur une plaquette et qu'on
-le découvre en production.
-
----
-
-Je suis à Antananarivo, une heure de décalage avec Paris. Mes agents sont en CDI, payés
-environ 4,5 fois le salaire local du métier, et je forme moi-même chaque personne affectée à
-un compte.
-
-**Si vous avez un N1 qui déborde : écrivez-moi en une ligne le volume de tickets et l'outil
-sur lequel vous travaillez.** Si c'est hors de ma portée, je vous le dis tout de suite.
-Sinon vous aurez une fourchette et une date de démarrage sous 24 h.
-
----
-
-## 3. Notes de rédaction & garde-fous
-
-- **La parade si le pari « publier 28-45 % » ne vous convient pas** (cf. §1) : remplacer le
-  bloc de calcul par la seule démonstration que **−60 % suppose de descendre sous un prix
-  qui permet de payer les gens**, sans donner notre propre ratio. On garde l'attaque, on
-  perd la preuve — et avec elle l'essentiel de la crédibilité de l'article. **Je recommande
-  de publier le calcul.**
-- **Le calcul est exact et vérifiable** : 2 300 € × 12 = 27 600 € ; face à 38 k€ ⇒ −27,4 % ;
-  face à 50 k€ ⇒ −44,8 %. Arrondi publié en « 28 % à 45 % ». Compatible avec le claim
-  « jusqu'à −50 % » (`PRICING.md §5.b`) précisément parce qu'il dit « jusqu'à ».
-- **Cohérence obligatoire avec le post n°1** : le prix affiché doit être **le même à l'euro
-  près** (2 300 € support N1 · 2 700 € helpdesk). Deux ancres différentes en quinze jours
-  détruiraient les deux.
-- **Aucun tarif marque blanche**, comme toujours (`PRICING.md §0/§9`). Le 2 300 € est le
-  tarif **direct**, et il sert ici deux publics à la fois : le client final y lit son prix,
-  le donneur d'ordre y lit **la marge qu'il pourra prendre** au-dessus de son prix d'achat.
-- **Le « je » et le garde-fou.** « Je forme moi-même chaque personne affectée » est un fait
-  de delivery, vérifiable dès la première semaine. Ne jamais glisser vers le parcours
-  (« mon expérience », « j'ai dirigé »), proscrit par `CLAUDE.md`.
-- **Le §3 ne se publie pas sans son remède.** Retirer une promesse (« backup inclus ») sans
-  dire ce qu'on met à la place laisse le lecteur avec un trou, pas avec une preuve.
-- **Ne jamais nommer un concurrent**, même en creux (« contrairement à certains acteurs
-  bien connus »). L'article ne vaut que s'il attaque des **claims**, jamais des sociétés.
-- **Longueur** : ~4 300 signes. Format « article » LinkedIn plutôt que post — les trois
-  intertitres portent la lecture en diagonale.
-
-### Calendrier de publication proposé
+### Calendrier proposé
 
 | Ordre | Contenu | Écart |
 |---|---|---|
-| 1 | `POST-LINKEDIN-SUPPORT-N1.md` — le déroulé de collaboration | — |
-| 2 | **Cet article** — les trois chiffres | J+10 à J+14 |
-| 3 | Variante Helpdesk IT N1 du post n°1 (`POST-LINKEDIN-SUPPORT-N1.md §3`) | J+25 minimum |
-
-L'article en position 2 fait un travail que le post n°1 ne peut pas faire : il donne une
-raison de **suivre le profil** plutôt que de répondre tout de suite. C'est ce qui alimente
-la position 3.
+| 1 | `POST-LINKEDIN-SUPPORT-N1.md` §2 — le déroulé de collaboration | — |
+| 2 | **`publier-article-trois-chiffres.md`** | J+10 à J+14 |
+| 3 | Variante Helpdesk IT N1 du post n°1 (§3) | J+25 minimum |
