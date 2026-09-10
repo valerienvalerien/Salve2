@@ -1226,3 +1226,55 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 /* Le CTA du tableau porte un fond plein : le style « verrouillé » générique
    ne doit pas le vider de sa couleur. */
 .pt-cta.is-locked, .pt-cta.is-locked:hover { background: var(--primary); border-color: var(--primary); color: #fff; filter: none; }
+
+/* =========================================================
+   HOME — hero dé-typé (2026-09-10)
+   Pilule + point pulsant, surlignage plein dans le H1, cartes
+   flottantes sur la photo et blobs en dégradé sont devenus le
+   vocabulaire par défaut des templates : sur la home ils sont
+   remplacés par un traitement typographique. Tout est scopé sur
+   .home — les pages simulateurs gardent le style commun.
+   ========================================================= */
+.home { --accent-ink: #4F6350; }
+
+/* Les blobs sont retirés du HTML : le dégradé de marque de body.home
+   (blanc → vert sauge, en attachment fixed) suffit à porter le premier
+   écran, et n'a plus rien qui flotte par-dessus. */
+
+/* Surtitre : capitales espacées + filet, à la place de la pilule. */
+.home .hero .hero-kicker {
+  display: block; font-size: 12.5px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent-ink); margin-bottom: 20px;
+}
+.home .hero .hero-kicker::after {
+  content: ""; display: block; width: 34px; height: 2px;
+  background: var(--accent); margin-top: 12px;
+}
+
+/* Emphase du H1 : la couleur seule. Pas de surlignage au marqueur, et pas
+   d'italique non plus — Anton n'a pas de vraie italique, le navigateur en
+   fabriquerait une penchée à la main. */
+.home .hero h1 .lift { font-style: normal; color: var(--accent-ink); }
+
+/* Preuves chiffrées en ligne sous le hero, plus en cartes sur la photo. */
+.home .hero-proof {
+  margin-top: 32px; display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px; max-width: 560px;
+}
+.home .hero-proof > div { border-top: 1px solid var(--line); padding-top: 12px; }
+.home .hero-proof dt {
+  font-family: var(--font-display); font-weight: 400; font-size: 26px;
+  color: var(--primary); line-height: 1.1; letter-spacing: .01em;
+}
+.home .hero-proof dd { margin-top: 6px; font-size: 12.5px; line-height: 1.4; color: var(--text-soft); }
+@media (max-width: 560px) {
+  .home .hero-proof { grid-template-columns: 1fr; gap: 0; max-width: none; }
+  .home .hero-proof > div { border-top: 0; padding: 11px 0; }
+  .home .hero-proof > div + div { border-top: 1px solid var(--line-soft); }
+  .home .hero-proof dt { font-size: 23px; display: inline; }
+  .home .hero-proof dd { display: inline; margin-left: 8px; }
+}
+
+/* Sans cartes en surimpression, la photo n'a plus besoin d'être aussi haute. */
+.home .hero-visual .photo-wrap { aspect-ratio: 5/6; }
