@@ -198,7 +198,7 @@ Toute offre Salverys est un point dans cet espace.
 | Priorité GTM | 2e temps | **n°1 (MB-first, 2026-06-10)** |
 | Cibles | cabinets, PME, éditeurs, DSI | ESN, MSP, prestataires support, télésecrétariats FR |
 | Prix | médical **public** · IT en **fourchette + devis 24 h** | **jamais public** — rate card remise au cadrage, sous NDA |
-| Entrée | **1er mois à −50 %**, mise en service (490 €) offerte, **sans dépôt** | **dépôt d'activation 900 €/position** (plafond 2 700 €), imputable sur les 3 premières factures + **3 contreparties de risque** — pas de remise |
+| Entrée | **1er mois à −50 %**, mise en service (490 €) offerte, **sans dépôt** | **dépôt d'activation 900 €/position**, imputable sur les 3 premières factures + **3 contreparties de risque** — pas de remise |
 | Mise en route annoncée | **3 à 4 semaines** | **6 semaines** (transition + shadowing + doublon inversé) |
 | Marge du partenaire | — | il prend ~25-35 % ; on capte moins par poste mais le coût d'acquisition est ~nul |
 
@@ -234,12 +234,17 @@ tels quels dans *ses* réponses d'appels d'offres). La troisième est la seule q
 L'amplitude n'est pas une majoration de confort, c'est un **multiplicateur de têtes** :
 couvrir une plage, c'est acheter des ETP.
 
-| Amplitude | Fenêtre | ETP par position | Statut |
+| Amplitude | Fenêtre à tenir en continu | ETP par position | Statut |
 |---|---|---|---|
-| Bureau | ~45 h/sem | ×1,00 | public |
-| Étendu 8h-20h | 60 h/sem | ×1,33 | public |
-| Astreinte soir + WE | ~90 h/sem | ×2,00 | **sur devis** (non staffable à l'effectif actuel) |
-| 24·7 | 168 h/sem | ×3,73 | **sur devis** (~4,8 ETP — toute la capacité de démarrage) |
+| Bureau 9h-18h | 45 h/sem — *présence continue non exigée* | ×1,00 *(1 agent, 35 h)* | public |
+| Étendu 8h-20h | 60 h/sem | **×1,71** | public |
+| Astreinte soir + WE | ~90 h/sem | **×2,57** | **sur devis** (non staffable à l'effectif actuel) |
+| 24·7 | 168 h/sem | **×4,80** | **sur devis** (~4,8 ETP — toute la capacité de démarrage) |
+
+> 🔴 **Base corrigée le 2026-09-14 (`PRICING.md` §3.c).** Les multiplicateurs divisaient la
+> fenêtre par **45 h** (une fenêtre d'ouverture) au lieu des **35 h** qu'un agent couvre.
+> Règle unique désormais : **ETP par position = heures de présence continue ÷ 35**. Le
+> ×4,80 du 24·7 réconcilie enfin la ligne avec sa propre note (« ~4,8 ETP »).
 
 Côté médical, l'amplitude se vend en **options nommées** cumulables avec n'importe quel
 forfait : samedi matin +90 €/mois · soirée étendue +120 € · samedi complet +150 €.

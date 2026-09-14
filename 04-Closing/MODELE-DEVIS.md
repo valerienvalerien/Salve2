@@ -154,7 +154,7 @@ KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 | Réf. | Désignation | Qté | PU | Total |
 |---|---|---|---|---|
 | SETUP | **Cadrage & mise en place** (intégration outils, formation aux procédures, armement QA) | 1 | ~~[valeur] €~~ | **0 € — offert** |
-| DEPOT | **Dépôt d'activation** — 900 €/position, plafond 2 700 € | [ ] | 900 € | **[ ] €** |
+| DEPOT | **Dépôt d'activation** — 900 €/position | [ ] | 900 € | **[ ] €** |
 
 - **Le dépôt n'est pas des frais** : il est **intégralement imputé** sur les **3 premières
   factures**, à raison de **300 €/position/mois**. Un partenaire qui va au bout ne paie

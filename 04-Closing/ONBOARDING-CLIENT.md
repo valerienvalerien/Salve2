@@ -48,7 +48,7 @@ l'engagement de service).
 - [ ] **Signature** : devis + contrat de prestation + **DPA**.
 - [ ] **Direct** — choix offre de lancement : mois pilote −50 % ou programme fondateurs.
 - [ ] **Marque blanche** — **pas de remise**. À la place :
-  - [ ] **Dépôt d'activation encaissé** : 900 €/position, plafond 2 700 € — **avant tout
+  - [ ] **Dépôt d'activation encaissé** : 900 €/position — **avant tout
     démarrage de la mise en service**. Rappeler qu'il est **imputé sur les 3 premières
     factures** (300 €/position/mois) et ne coûte rien au partenaire qui va au bout.
   - [ ] **Palier tarifaire figé** : si palier **5+**, acter le **minimum facturable de

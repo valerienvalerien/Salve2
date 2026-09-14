@@ -121,7 +121,7 @@ Salut [Prénom],
 
 Je prépare mes premiers emails de prospection pour Salverys.
 Tu aurais 2 minutes pour me dire si ce pitch te parle :
-"Un secrétariat médical disponible, en français, 40 à 60 % moins cher que le coût habituel."
+"Un secrétariat médical disponible, en français, jusqu'à 50 % moins cher que le coût habituel."
 
 Trop court ? Trop vague ?
 

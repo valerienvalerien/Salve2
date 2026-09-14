@@ -4,7 +4,18 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-09-07 (**sourçage des deux claims du hero — clôture de
+> Dernière révision : 2026-09-14 (**audit de cohérence interne — 5 corrections** :
+> **§3.c** les multiplicateurs d'amplitude étaient calés sur une **fenêtre de 45 h** au lieu
+> des **35 h** qu'un agent couvre ⇒ étendu **×1,71** (et non ×1,33), astreinte ×2,57, 24·7
+> ×4,80 — **~29 % de sous-facturation** sur tout devis 8h-20h, répercuté dans `assets/site.js`
+> et les deux simulateurs · **§3.a** le **plafond de 2 700 €** du dépôt d'activation est
+> **supprimé** : fixe face à une imputation proportionnelle, il créditait **8 100 € pour
+> 2 700 € encaissés** à 9 positions · **§3** le claim abrogé **« −40 à −60 % »** survivait
+> dans le tableau de benchmark ⇒ **« jusqu'à −50 % »** partout · **§3** le **point mort**
+> était donné à « 2-6 ETP / 3-4 positions » (socle d'avant le 2026-08-28) ⇒ **1-2 ETP**,
+> ce qui rouvre les MSP régionaux de 11-50 personnes · **§8** le récapitulatif portait
+> **8 lignes périmées**, dont une décision annulée en tête de ce fichier — toutes reprises) ·
+> précédente 2026-09-07 (**sourçage des deux claims du hero — clôture de
 > l'arbitrage n°3** : le claim d'économie passe de **« −40 à −60 % »** à **« jusqu'à −50 % »**
 > §5.b — le plafond −60 % n'était atteignable dans aucun scénario et le simulateur de la même
 > page mesurait −32/−38 % ; le délai de recrutement, jusqu'ici **repris sans source**, est
@@ -124,7 +135,7 @@ rendent pas le même effort :
 | Ce qu'un deal gagné apporte | **un** client final, 1 à 2 positions | un donneur d'ordre qui apporte **du volume récurrent** et ses propres clients |
 | Base de cibles qualifiées | dispersée (cabinets, PME, éditeurs) | **58 ESN/MSP** + 15 éditeurs + télésecrétariats FR |
 | Coût d'acquisition ensuite | à refaire à chaque client | **~nul** — le partenaire vend pour nous |
-| Rapport au point mort (1-2 positions, `FINANCE §4`) | plusieurs signatures | **un seul deal de 3-4 positions suffit** |
+| Rapport au point mort (1-2 positions, `FINANCE §4`) | plusieurs signatures | **un seul deal de 1-2 positions suffit** |
 
 Le direct demande donc *n* fois l'effort pour le même résultat. Ce n'est pas un jugement
 sur sa rentabilité unitaire — un forfait médical reste sain — c'est un arbitrage
@@ -202,7 +213,8 @@ au palier supérieur, **jamais de surfacturation à l'appel**.
   demi-consultation par jour ; **2 à 3 RDV récupérés** sur des appels manqués paient le
   forfait. C'est le recadrage anti-objection prix le moins cher qui existe.
   - **C'est ce recadrage qui occupe le badge du simulateur (décidé 2026-08-13)**, à la place
-    du **−87 %** qui y figurait — hors doctrine (claim public −40 à −60 %) et non crédible
+    du **−87 %** qui y figurait — hors doctrine (claim public alors en vigueur, −40 à −60 % ;
+    **aujourd'hui « jusqu'à −50 % »**, §5.b) et non crédible
     (il comparait un forfait 250 appels à une secrétaire **temps plein**). Le badge affiche
     le **coût/jour ouvré** et la ligne d'appui « N RDV récupérés paient le forfait », mise à
     l'échelle du forfait : Essentiel **2 à 3** · Confort **4 à 6** · Intensif **6 à 9**.
@@ -335,9 +347,20 @@ exigences de comptes européens — cf. la bande d'estimation ±9 %, §3.d).*
   à 1 350 € sortait **sous le point mort** (`AUDIT-FINANCE-PREVISIONNEL.md §A`) ; à 9
   positions il dégage **~+2 450 €/mois**. Le palier le plus bas est désormais adossé à un
   volume qui le finance.
-- **Rapport au point mort** (`FINANCE-PREVISIONNEL.md §4` : **2 à 6 ETP** selon le palier
-  et le nombre de métiers activés) : **un seul deal de 3-4 positions au tarif standard
-  fait atteindre le point mort.** C'est l'argument de prospection MB à tenir.
+- **Rapport au point mort** (`FINANCE-PREVISIONNEL.md §4` : **1 à 2 ETP placés** à 1 métier
+  actif, 2 à 4 si les deux métiers tournent) : **un deal MB de 2 positions au tarif standard
+  passe le point mort — et une seule position suffit sur le palier helpdesk 1-4 ETP**
+  (2 000 € − 843 € = 1 157 € de contribution, pour un socle fixe de 920 €). C'est
+  l'argument de prospection MB à tenir.
+  > 🔴 **Corrigé le 2026-09-14 — il était écrit « 2 à 6 ETP » et « un deal de 3-4 positions ».**
+  > Valeurs d'avant le 2026-08-28, calculées sur un socle fixe de **2 114 €** qui incluait le
+  > poste de développement commercial. Ce poste a pris fin le 2026-08-27, le socle est tombé
+  > à **920 €** (`FINANCE §2.c`) et le point mort à **1-2 ETP** — ce que §0.a de ce fichier
+  > écrivait déjà correctement, pendant que §3 disait l'inverse.
+  > **Ce que l'erreur coûtait en prospection** : exiger 3-4 positions écarte les **MSP
+  > régionaux de 11-50 personnes**, qui signent des contrats de 1-2 ETP et que `FINANCE §4`
+  > désigne explicitement comme « cibles rentables à part entière, et non plus comme lots de
+  > consolation ». C'est le gros de la base des 58 ESN/MSP, soit la cible n°1 de `CLAUDE.md`.
 - 🔒 **Volume ferme facturable — sur tous les paliers (généralisé le 2026-08-14).** Le tarif
   d'un palier n'est accordé **que** contre le **minimum de positions facturables** de ce
   palier, dues **qu'elles soient consommées ou non**. En deçà, le prix appliqué est celui
@@ -376,9 +399,33 @@ Accroche autorisée **après cadrage / NDA**, dans les espaces partenaires prot�
 
 ### 3.a Dépôt d'activation — marque blanche uniquement (décidé 2026-08-03)
 
-> **Dépôt de 900 € par position, plafonné à 2 700 €**, encaissé **à la signature** et
-> **entièrement imputable** : déduit des **trois premières factures** à raison de
-> **300 €/position/mois**. Le partenaire qui va au bout ne paie **rien de plus**.
+> **Dépôt de 900 € par position**, encaissé **à la signature** et **entièrement
+> imputable** : déduit des **trois premières factures** à raison de **300 €/position/mois**.
+> Le partenaire qui va au bout ne paie **rien de plus**.
+
+> 🔴 **Plafond de 2 700 € supprimé le 2026-09-14 — il était arithmétiquement incompatible
+> avec sa propre règle d'imputation.** Le plafond était fixe, l'imputation proportionnelle
+> (300 €/position/mois) : les deux ne se recoupaient qu'à **exactement 3 positions**.
+>
+> | Positions | Encaissé (plafonné) | Imputé sur 3 factures | Écart |
+> |---|---|---|---|
+> | 3 | 2 700 € | 2 700 € | 0 ✓ |
+> | 5 | 2 700 € | 4 500 € | **−1 800 €** |
+> | 9 | 2 700 € | 8 100 € | **−5 400 €** |
+>
+> Sur un deal 9 positions — celui que le palier stratégique cherche précisément à vendre —
+> on créditait **5 400 € jamais encaissés**. Second effet : la justification du dépôt est
+> qu'il *« couvre le coût réel s'il s'arrête »*, or l'onboarding vaut 400 € de socle
+> **+ 400 €/position** ; dès **6 positions** (2 800 €) il dépassait le plafond. **Le plafond
+> cassait les deux fonctions du dépôt exactement sur les paliers 5-8 et 9+.**
+>
+> **Retenu : dépôt strictement proportionnel, sans plafond.** Tout reste cohérent à tout
+> volume (900 € versés par position, 900 € imputés par position), et le dépôt couvre
+> toujours l'onboarding (900 € > 400 €/position + quote-part du socle).
+>
+> ⚠️ **Alternative si la direction juge la friction trop forte sur un gros deal** : garder un
+> plafond, mais alors **plafonner aussi l'imputation** à `dépôt versé ÷ 3` par mois — jamais
+> 300 €/position. Ce qui est interdit, c'est de plafonner l'un sans l'autre.
 
 - **Acquis à Salverys** si le partenaire annule **après le démarrage de la mise en service**
   (recrutement engagé, formation lancée). Avant ce démarrage, il est intégralement restitué.
@@ -445,10 +492,15 @@ jetée sur un acheteur qui revend.
 
   **Présentation retenue pour Salverys :**
 
-  | Poste | Coût complet interne France | Objectif Salverys |
+  | Poste | Coût complet interne France | Claim public unique |
   |---|---|---|
-  | Télésecrétaire médicale | **33-42 k€/an** (~2 750-3 500 €/mois) | **≈ -40 % à -60 %** |
-  | Support IT N1 | **38-50 k€/an** (~3 200-4 200 €/mois) | **≈ -40 % à -60 %** |
+  | Télésecrétaire médicale | **33-42 k€/an** (~2 750-3 500 €/mois) | **« jusqu'à −50 % »** (§5.b) |
+  | Support IT N1 | **38-50 k€/an** (~3 200-4 200 €/mois) | **« jusqu'à −50 % »** (§5.b) |
+
+  > 🔴 **Corrigé le 2026-09-14.** Ce tableau affichait encore **« ≈ −40 % à −60 % »**, claim
+  > **abrogé le 2026-09-07** par §5.b — dans le fichier qui est la source unique de vérité,
+  > et dans le tableau qu'un commercial copie-colle. Le claim public est **« jusqu'à −50 % »**
+  > et rien d'autre. **Jamais de fourchette basse-haute** (§0, §5.b).
 
   **Le vrai concurrent n'est pas le seul coût salarial mais le coût complet d'un ETP
   interne**, que les décideurs comparent réellement : salaire + charges, congés et
@@ -477,7 +529,8 @@ jetée sur un acheteur qui revend.
 
 **Pourquoi il est retiré** — quatre motifs qui se cumulaient :
 
-1. **Il contredisait le claim public.** Le claim **−40 à −60 %** est un claim du **tier
+1. **Il contredisait le claim public.** Le claim alors en vigueur (**−40 à −60 %**,
+   *abrogé depuis — le claim public est « jusqu'à −50 % », §5.b*) est un claim du **tier
    Dédié**. Priority ne ressortait qu'à **~10-17 %** d'économie faciale, même au-delà de
    3 agents. Un même site portait donc deux promesses inconciliables.
 2. **Sous 3 agents, il coûtait plus cher qu'un recrutement en France** (`priorityMult` valait
@@ -518,16 +571,41 @@ les deux marchés.
   niveau de service et un forfait que parce que le forfait s'appelait « Pro ».
 - Le médical **ne change pas** (Essentiel / Confort / Intensif, §1).
 
-**Amplitude horaire = multiplicateur de présence, pas majoration (décidé 2026-08-13).**
+**Amplitude horaire = multiplicateur de présence, pas majoration (décidé 2026-08-13,
+**base de calcul corrigée le 2026-09-14**).**
 L'amplitude impose des **têtes supplémentaires** ; la traiter en pourcentage de confort
 produisait des devis à perte. Le simulateur calcule désormais des **ETP** :
 
-| Amplitude | Fenêtre | ETP par position | Affichage public |
+| Amplitude | Fenêtre à tenir en continu | ETP par position | Affichage public |
 |---|---|---|---|
-| Bureau | ~45 h/sem | ×1,00 | **public** |
-| Étendu 8h-20h | 60 h/sem | **×1,33** | **public** |
-| Astreinte soir + WE | ~90 h/sem | ×2,00 | **sur devis** |
-| 24·7 | 168 h/sem | **×3,73** | **sur devis** |
+| Bureau 9h-18h | 45 h/sem — *présence continue non exigée* | ×1,00 *(référence : 1 agent, 35 h)* | **public** |
+| Étendu 8h-20h | 60 h/sem | **×1,71** | **public** |
+| Astreinte soir + WE | ~90 h/sem | **×2,57** | **sur devis** |
+| 24·7 | 168 h/sem | **×4,80** | **sur devis** |
+
+> 🔴 **Correction du 2026-09-14 — les multiplicateurs étaient calés sur 45 h/sem alors
+> qu'un agent en couvre 35.** Les anciennes valeurs (×1,33 · ×2,00 · ×3,73) divisaient la
+> fenêtre à tenir par **45 h**, c'est-à-dire par une **fenêtre d'ouverture**, pas par le
+> temps de travail d'un agent. Or tout le reste du document compte en **35 h** : §3.d
+> (« 35 h ou 40 h/sem »), §3.e (« 4 × 35 h = 140 h ») et §3.g.10 (« 6h-20h ⇒ ~2 ETP par
+> position, un agent couvre 35 h »). Le tableau se contredisait même lui-même : la note
+> ci-dessous chiffre le 24·7 à **~4,8 ETP**, soit 168 ÷ **35**, quand la ligne affichait
+> ×3,73 = 168 ÷ 45.
+>
+> **Règle désormais unique : ETP par position = heures de présence continue exigées ÷ 35.**
+> Vérification : 60 ÷ 35 = 1,71 · 90 ÷ 35 = 2,57 · 168 ÷ 35 = 4,80 · et 70 ÷ 35 = 2,00,
+> qui est exactement le « ~2 ETP par position » de §3.g.10. Tout se recolle.
+>
+> ⚠️ **Le ×1,00 de la ligne Bureau n'est pas une exception à la règle, c'est une prestation
+> différente** : en heures de bureau on vend **un agent présent 35 h à l'intérieur d'une
+> fenêtre de 45 h**, pas une position tenue de bout en bout. Exiger la continuité sur toute
+> la plage 9h-18h, c'est 45 ÷ 35 = **×1,29**, et cela se chiffre au devis. Ne jamais laisser
+> croire qu'un Poste dédié standard couvre la fenêtre sans trou.
+>
+> **Effet sur les devis : un 8h-20h passe de ×1,33 à ×1,71, soit +28,6 %.** Ce n'est pas une
+> hausse de prix, c'est la fin d'une sous-facturation — exactement le « devis à perte » que
+> la décision du 2026-08-13 prétendait avoir supprimé. Répercuté dans `assets/site.js`
+> (`EXT_COVERAGE`).
 
 - Astreinte et 24·7 sont **retirés du simulateur public**. Motif : **non staffables** à
   l'effectif de démarrage (un contrat 24·7 = ~4,8 ETP, soit toute la capacité de la
@@ -676,13 +754,15 @@ alors renvoyé en note sous le graphe ; le tier a depuis été **retiré du cata
   | Vue | Poste dédié | Équipe managée | Lecture |
   |---|---|---|---|
   | **Heures de bureau** | 1 tête par position | rotation + superviseur, **×1,15** | Le dédié est **moins cher à tous les effectifs** — la rotation se paie sans couvrir une minute de plus |
-  | **Amplitude 8h-20h** | **×1,333 têtes** par position (§3.c) | couvre la plage avec **moins d'agents simultanés** | L'Équipe managée **coûte moins cher — parce qu'elle met moins de monde en ligne à la fois**, pas par efficacité |
+  | **Amplitude 8h-20h** | **×1,71 têtes** par position (§3.c, corrigé le 2026-09-14) | couvre la plage avec **moins d'agents simultanés** | L'Équipe managée **coûte moins cher — parce qu'elle met moins de monde en ligne à la fois**, pas par efficacité. L'écart se creuse avec la base 35 h |
 
   > 🔴 **Correction du 2026-08-24 — l'ancienne formulation était fausse.** On écrivait « la
   > rotation tient la plage **sans tête en plus** ». C'est impossible : **couvrir une plage,
   > c'est acheter des ETP.** 4 agents × 35 h = 140 h réparties sur une fenêtre de 60 h font
   > **~2,3 agents présents à la fois**, pas 4. Le graphe comparait donc **4 positions tenues**
-  > (soit 5,33 têtes en dédié) à **4 têtes en rotation** — deux prestations différentes.
+  > (soit **6,86 têtes** en dédié — *chiffre corrigé le 2026-09-14 : il était écrit 5,33,
+  > calculé sur l'ancien ×1,333 ; à la base 35 h c'est 4 × 1,71*) à **4 têtes en rotation**
+  > — deux prestations différentes.
   > L'écart de prix vient de là. Ce qui est vendu n'est pas un nombre de sièges, c'est **la
   > garantie que la plage ne ferme pas** quand quelqu'un manque, plus une rotation que le
   > client n'a pas à organiser. Les infobulles du graphe affichent désormais la simultanéité
@@ -1130,40 +1210,51 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 
 ## 8. Récapitulatif des changements à propager
 
+> 🔴 **Audit du 2026-09-14 — ce tableau était le bloc le moins à jour du fichier.** Il
+> portait **huit lignes périmées**, dont une décision **explicitement annulée en tête de ce
+> même document** (la ligne « `FINANCE-PREVISIONNEL.md` n'est plus une source »). C'est le
+> seul tableau de synthèse du fichier, donc le seul qu'un lecteur pressé consulte : une
+> valeur fausse y coûte plus cher qu'ailleurs.
+>
+> **Règle désormais** : chaque ligne est un **historique daté** — colonne « Avant » = l'état
+> révolu, colonne « Après » = **l'état en vigueur aujourd'hui**. Une décision ultérieure qui
+> écrase une ligne doit **modifier cette ligne**, pas seulement en ajouter une nouvelle plus
+> bas. Les lignes révisées après coup portent la mention *(révisé le …)*.
+
 | Élément | Avant | Après |
 |---|---|---|
 | Essai | « 15 jours gratuit » / « 7 jours » (incohérent) | **« 1er mois à -50 % »** (repli : 7j offerts cadrés) |
 | Amorçage | — | **Deal « clients fondateurs »** : 5 logos, dégressif −50/−30/−15 % sur 3 mois, engagement réciproque + témoignage 60 j + référral |
 | Benchmark coût à battre (2026-07-12) | valeur unique 38-46 k€/an (2 métiers) | **différencié : télésecrétaire 33-42 k€/an (~2 750-3 500 €/mois) · support IT N1 38-50 k€/an (~3 200-4 200 €/mois)** ; argument « coût complet ETP » |
-| Claim économie public | « -40 % » | **« -40 à -60 % » vs coût complet interne** |
+| Claim économie public | « -40 % » | **« jusqu'à −50 % » vs coût complet interne** *(révisé le 2026-09-07, §5.b — la ligne portait encore « −40 à −60 % », abrogé ; corrigé le 2026-09-14)* |
 | Téléconseiller CDI (CRC, benchmark relation client) | 48-55 k€/an | **38-46 k€/an** |
 | Grille médical | « indicatifs à valider » | **prix fermes** (350/590/950 + sur-devis) |
 | Contrats helpdesk | « 12 à 36 mois » | **« dès 3 mois, puis 12 mois renouvelable »** |
 | Grilles bailleurs / SaaS-helpdesk | éparses en email | **centralisées ici (interne)** |
 | Priorités niches (→2026-06-12) | Bailleurs n°2, SaaS/Helpdesk n°3 | SaaS/Helpdesk n°2, Bailleurs n°3 |
-| Priorités niches (2026-06-22) | médical n°1 · SaaS/Helpdesk n°2 · Bailleurs n°3 | **IT (Support N1 + Helpdesk) n°1 · médical n°2 · relation client de toutes sortes (futur non déterminé) n°3** |
+| Priorités niches (2026-06-22, **révisé 2026-08-28**) | médical n°1 · SaaS/Helpdesk n°2 · Bailleurs n°3 | **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical (par les télésecrétariats FR qui sous-traitent) · 4) relation client de toutes sortes (futur non déterminé)** — ordre de `CLAUDE.md` *(la ligne disait « médical n°2 » quand §1 de ce fichier disait « priorité 3 » ; corrigé le 2026-09-14)* |
 | Modèles de tarification | implicites | **ETP/position > à l'heure > à l'interaction** |
 | Go-to-market | direct uniquement | **direct + marque blanche (sous-traitance)** |
 | Affichage public | « hybride » (médical public, reste interne) | **3 paliers (§9)** : médical public ferme · support/helpdesk **direct = estimation** · **toute MB jamais publique** |
 | Simulateurs IT (helpdesk/informatique) | prix **ETP marque blanche** affiché publiquement (fuite de marge) | **estimation directe (fourchette)** + « devis sous 24 h », chiffres MB retirés |
 | Pilote Support/Helpdesk (2026-06-12) | « 15 j (~80 tickets) » / « 60 jours » (incohérent) | **1er mois à −50 %, 200-400 tickets, sans engagement** |
-| Prix MB Support/Helpdesk (2026-06-12) | fourchette donnée « en cadrage » au cas par cas | **rate card partenaire 1/3/5+ ETP** (confidentielle, NDA, §3) |
+| Prix MB Support/Helpdesk (2026-06-12, **révisé 2026-08-14**) | fourchette donnée « en cadrage » au cas par cas | **rate card partenaire 1-4 / 5-8 / 9+ ETP** (confidentielle, NDA, §3) — *la ligne portait encore les paliers 1/3/5+, supprimés ; corrigé le 2026-09-14* |
 | Télésec MB à l'appel (2026-06-12) | tarif à plat 0,90-1,40 € | **par créneau** : jour 0,90-1,10 € · soir/samedi 1,20-1,40 € · pics réservés +15-20 % (§1.b) |
 | Amplitude médical (2026-06-12) | diluée dans « sur-mesure » | **add-ons nommés** : samedi matin +90 € · soirée +120 € · samedi complet +150 € (§1.a) |
 | Onboarding (2026-06-12) | invisible, gratuit | **« Mise en service : 490 € — offerte »** sur chaque devis (§1.c) |
-| **Activation MB (2026-08-03)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, plafond 2 700 €**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a) |
+| **Activation MB (2026-08-03, **plafond supprimé 2026-09-14**)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, sans plafond**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a). *Le plafond de 2 700 € était incompatible avec une imputation proportionnelle : à 9 positions on créditait 8 100 € pour 2 700 € encaissés* |
 | **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
-| **Palier 5+ ETP (2026-08-03)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturé** : minimum 5 positions facturées, consommées ou non ; en deçà, prix du palier 3 ETP (§3) |
-| **Forfaits IT (2026-08-13)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Centre de services**, identiques dans les deux simulateurs et **définis en §3.c** |
-| **Amplitude horaire IT (2026-08-13)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** | **multiplicateur d'ETP** : étendu ×1,33 **public** · astreinte ×2,00 et 24·7 ×3,73 **sur devis** (§3.c) ; exposant `FR_PEN` supprimé |
+| **Palier bas (2026-08-03, révisé 2026-08-14)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturable, sur tous les paliers** : le tarif d'un palier n'est dû que contre son minimum de positions facturables, consommées ou non ; en deçà, prix du **palier inférieur en volume** (§3). *La ligne renvoyait au « palier 3 ETP », qui n'existe plus depuis la refonte 1-4 / 5-8 / 9+ ; corrigé le 2026-09-14* |
+| **Forfaits IT (2026-08-13, renommé 2026-08-24)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Équipe managée**, identiques dans les deux simulateurs et **définis en §3.c** — *la ligne portait encore « Centre de services », renommé le 2026-08-24 ; corrigé le 2026-09-14* |
+| **Amplitude horaire IT (2026-08-13, base corrigée 2026-09-14)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** ; puis multiplicateurs calés sur une **fenêtre de 45 h** (×1,33 · ×2,00 · ×3,73) ⇒ **sous-facturation de ~29 %** | **multiplicateur d'ETP sur la base réelle de 35 h** : étendu **×1,71** *(public)* · astreinte **×2,57** et 24·7 **×4,80** *(sur devis)* (§3.c) ; exposant `FR_PEN` supprimé |
 | **Priority sous 3 agents (2026-08-13, clos 2026-08-24)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | correctif d'affichage en 2026-08-13, puis **tier entièrement retiré** le 2026-08-24 : le problème était l'offre, pas le badge (§3) |
 | **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
-| **Mise en route IT (2026-08-13)** | « lancé en 10 jours » / « onboarding 5 jours » | **« opérationnel en 3 à 4 semaines »** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5` — *libellé revu le 2026-09-07, cf. ligne suivante* |
+| **Mise en route IT (2026-08-13, libellé revu 2026-09-07)** | « lancé en 10 jours » / « onboarding 5 jours » | **« première prise de tickets sur vos outils en 3 à 4 semaines »** en direct, **~6 sem. en marque blanche** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5`. ⚠️ **Le mot « opérationnel » est proscrit** (§5.a) — *la ligne le portait encore ; corrigé le 2026-09-14* |
 | **Délai de recrutement FR (2026-09-07)** | **« 60 à 90 jours »**, chiffre « conservé » de l'ancienne copy, **sans aucune source** ; comparé à un « opérationnel en 3-4 sem. » qui désignait un autre jalon | **Deux jalons sourcés (§5.a)** : *première prise de tickets* — **2 à 3 mois** en France (47-48 j médians France Travail + préavis Syntec 1-3 mois ; 5-8 sem. sur le support IT) contre **3-4 sem.** en direct / **~6 sem.** en MB · *position pleinement autonome* — **4 à 6 mois** en France contre **6-8 sem.**. Mot « opérationnel » **proscrit** pour le premier jalon |
 | **Claim d'économie (2026-09-07)** | **« −40 à −60 % »** — plafond jamais atteint (meilleur coin réel −57 %, et seulement contre une ESN IDF), contredit par le simulateur de la même page (−32 % helpdesk, −38 % SaaS) | **« jusqu'à −50 % »** (§5.b) : au-dessus du cas médian, sous le meilleur cas réel, et compatible avec un simulateur qui affiche −32 %. **Arbitrage n°3 clos.** Ne jamais revenir à une fourchette basse-haute |
 | **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
 | **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation de l'Équipe managée (plage tenue). Aucune tête supplémentaire à recruter |
-| **Source prévisionnel (2026-08-14)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **plus une source** — seul le **tableau d'effectif** (8 agents + 2 managers à 650 €) est repris, en §3.e |
+| **Source prévisionnel (2026-08-14 — ⚠️ décision ANNULÉE le jour même)** | `FINANCE-PREVISIONNEL.md` cité comme contrainte de faisabilité | **Reste une source (v3).** La mention « n'est plus une source », portée ici le matin du 2026-08-14, a été **annulée le même jour** (cf. en-tête de ce fichier et `AUDIT-FINANCE-PREVISIONNEL.md §M`) : elle était contredite par les 8 citations actives du fichier. L'ancien texte de cette ligne survivait malgré l'annulation ; **corrigé le 2026-09-14**. Le « tableau d'effectif 8 agents + 2 managers » ne vaut plus non plus — **il n'y a aucun plafond d'effectif** (§3.e) |
 | **Périmètre N2 (2026-08-14)** | axe de simulateur majorant le prix (+8 % / +22 %) | **supprimé** — un N1 escalade toujours ; la variable réelle est le **profil de l'agent**, que porte la fourchette d'estimation (§3.d) |
 | **Fourchette d'estimation (2026-08-14)** | ±5 %, sans signification affichée | **±9 %**, adossée au **profil de l'agent** et expliquée sous le prix (§3.d) |
 | **Revue de service (2026-08-14)** | « Account manager dédié » au palier 3 | **revue mensuelle avec compte rendu écrit, incluse dans tous les forfaits** — hors différenciation (§3.d) |
@@ -1171,7 +1262,7 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | **Plancher absolu (2026-08-14)** | **840 €/ETP** (coût marginal freelance 700 € + 20 %) | **920 €/ETP** (coût direct salarié 766 € + 20 %) — recodé dans `tools/deal-build.mjs` (§3) |
 | **Rate card MB (2026-08-14)** | paliers **1 / 3 / 5+ ETP** ; prix plancher 1 350 € accordé dès **5** positions — **sous le point mort** au coût salarié | paliers **1-4 / 5-8 / 9+ ETP** (standard / volume / stratégique) ; prix plancher accordé à **9** positions ; **volume ferme facturable généralisé à tous les paliers** (§3) |
 | **Accroche prix MB (2026-08-14)** | aucune | **« à partir de 1 350 € / 1 550 €/ETP »**, autorisée **en espace partenaire et one-pager MB uniquement** — jamais public, doctrine §0/§9 inchangée (§3) |
-| **Point mort de référence (2026-08-14)** | « ~7 ETP placés », chiffre unique | **2 à 6 ETP selon le palier et le nombre de métiers actifs** ; un deal de **3-4 positions au tarif standard** suffit (`FINANCE-PREVISIONNEL.md §4`) |
+| **Point mort de référence (2026-08-14, **révisé 2026-08-28**)** | « ~7 ETP placés », chiffre unique ; puis « 2 à 6 ETP » et « un deal de 3-4 positions », calculés sur un socle fixe de 2 114 € incluant le poste commercial | **1 à 2 ETP placés** (1 métier actif, socle fixe **920 €**), 2 à 4 si les deux métiers tournent : **un deal MB de 2 positions suffit, une seule sur le palier helpdesk 1-4 ETP** (`FINANCE-PREVISIONNEL.md §4`). Ouvre les **MSP régionaux de 11-50 personnes** (contrats 1-2 ETP) comme cibles à part entière — *corrigé le 2026-09-14* |
 | **Kit d'autonomie & hub (2026-08-14)** | ligne de charges à chiffrer (capex kits) + hub de repli | **sortis des charges** ; le kit reste dû à l'agent, **réputé couvert par le salaire** (4,5× le marché) — à inscrire au contrat de travail et au PCA (§10) |
 
 ---

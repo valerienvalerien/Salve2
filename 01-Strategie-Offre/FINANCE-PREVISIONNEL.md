@@ -305,7 +305,8 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
   **755 €/mois** tant qu'aucun contrat n'est signé : le coût de l'attente est devenu
   marginal. C'est l'effet principal de la bascule.
 - Leviers anti-creux (inchangés, tous actés) :
-  - ✅ **Dépôt d'activation MB** — **900 €/position, plafond 2 700 €**, encaissé **à la
+  - ✅ **Dépôt d'activation MB** — **900 €/position** (plafond global supprimé le
+    2026-09-14, `PRICING.md §3.a`), encaissé **à la
     signature**, déduit des 3 premières factures (300 €/position/mois), `PRICING.md §3.a`.
     Effet trésorerie : encaissement **à J0 au lieu de J+30**, et **coût d'onboarding
     couvert (~1 600 €)** si le partenaire s'arrête. Le dépôt tombe désormais **~2 mois

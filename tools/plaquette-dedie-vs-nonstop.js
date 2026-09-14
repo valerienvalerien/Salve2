@@ -84,7 +84,7 @@ const dedie = [
   ['Un ticket du soir attend le lendemain', "Nuit ou week-end sans réponse : le ticket part à l'ouverture, sans pénalité ni client qui décroche."],
   ['Vous couvrez 1 à 3 positions', "Sous 4 agents, une rotation ne peut de toute façon pas tourner : le sujet Équipe managée ne se pose même pas."],
   ['Une absence glisse le traitement', "de quelques heures dans la journée, pas d'un jour : le manager métier reprend, le ticket part juste un peu plus tard."],
-  ['Vous cherchez le prix au plus juste', "sur une plage classique : c'est le forfait qui porte l'écart de −40 à −60 % face à un poste interne en France."],
+  ['Vous cherchez le prix au plus juste', "sur une plage classique : c'est le forfait qui porte l'écart, jusqu'à −50 % face à un poste interne en France."],
 ];
 dedie.forEach((d, i) => {
   const col = i % 2, row = Math.floor(i / 2);
