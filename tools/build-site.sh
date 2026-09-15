@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Construit le dossier publié sur Netlify (_site) en ne copiant QUE les
+# Construit le dossier à uploader sur OVH par FTP (_site) en ne copiant QUE les
 # fichiers publics. Tout le reste (fichiers .md stratégiques, CRM, trésorerie,
 # tools/ — dont la source en clair de l'espace client) n'est JAMAIS servi.
 set -euo pipefail
@@ -24,12 +24,30 @@ mkdir -p _site/assets
 cp "${PUBLIC_PAGES[@]}" _site/
 cp -r assets/. _site/assets/
 
+# En-têtes de sécurité pour les espaces partenaires, via .htaccess (Apache,
+# lu automatiquement par l'hébergement mutualisé OVH).
+cat > _site/.htaccess <<'EOF'
+<IfModule mod_headers.c>
+  <FilesMatch "^espace-client.*\.html$">
+    Header set X-Robots-Tag "noindex, nofollow"
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+</IfModule>
+EOF
+
 # Pages de closing chiffrées, une par deal (générées par tools/deal-build.mjs).
 # Leur URL contient un token non devinable : elles ne sont listées nulle part.
 # Supprimer une page ici = révoquer l'accès de ce partenaire, et lui seul.
 if compgen -G "espace/*.html" >/dev/null; then
   mkdir -p _site/espace
   cp espace/*.html _site/espace/
+  cat > _site/espace/.htaccess <<'EOF'
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+  Header set Cache-Control "no-store"
+  Header set Referrer-Policy "no-referrer"
+</IfModule>
+EOF
   echo "  · $(ls espace/*.html | wc -l) page(s) de deal publiée(s) sous /espace/"
 fi
 

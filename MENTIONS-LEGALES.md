@@ -69,8 +69,8 @@ Prestation de services **B2B** d'une société **malgache** (hors UE) vers des c
 
 ## Hébergement du site
 
-_(à compléter — ex. hébergeur, raison sociale, adresse. Si déploiement Netlify : indiquer
-Netlify, Inc. + adresse.)_
+_(à compléter — hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. Vérifier la
+raison sociale exacte et le numéro RCS auprès d'OVH avant publication.)_
 
 ## Rappels de cohérence
 

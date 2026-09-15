@@ -1,2 +1,2 @@
-# Sortie de build Netlify (générée par tools/build-site.sh)
+# Sortie de build à uploader sur OVH par FTP (générée par tools/build-site.sh)
 _site/
