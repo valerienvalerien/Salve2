@@ -1,14 +1,14 @@
 # PRODUIT-ET-OFFRES.md — « C'est quoi, ton produit ? »
 
 > **Document interne.** Contient des tarifs marque blanche : ne jamais diffuser tel quel
-> (règle `PRICING.md` §0/§9). Les pitchs des §4 et §5 sont, eux, **diffusables oralement**
+> (règle de confidentialité de `PRICING.md`). Les pitchs des §4 et §5 sont, eux, **diffusables oralement**
 > — ils ne contiennent aucun prix de gros.
 >
 > Objet : donner **une** réponse stable à la question « c'est quoi ton produit, et quelles
 > offres autour ? », dans deux registres — amical (§2) et commercial (§4-§5).
 > Sources : `PRICING.md` (prix, SLA, paliers) · `CLAUDE.md` (niches, garde-fous) ·
 > `FINANCE-PREVISIONNEL.md` (coûts, délais) · `05-Process-Delivery/` (gouvernance, QA).
-> Créé le 2026-09-07.
+> Créé le 2026-09-07. La grille partenaire actuelle est dans `PRICING.md` ; les références anciennes à ses sections (§0.a, §3, §5, etc.) renvoient au registre `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` et ne doivent pas servir à établir un devis.
 
 ---
 
@@ -224,7 +224,7 @@ Toute offre Salverys est un point dans cet espace.
 > ESN/MSP travaillés sans un seul cadrage).
 
 **Les trois contreparties de risque en MB** (à la place de toute remise, `PRICING.md` §3.b) :
-sortie à 30 jours pendant 3 mois · exclusivité territoire ou segment 12 mois · **appui
+sortie à 30 jours pendant 3 mois · exclusivité nominative pour 3 à 5 concurrents pendant le contrat · **appui
 avant-vente sous 48 h** (PCA, DPA, CV anonymisés, dispositif QA, SLA écrit — réutilisables
 tels quels dans *ses* réponses d'appels d'offres). La troisième est la seule qui lui fasse
 **gagner** du chiffre d'affaires au lieu d'en économiser : c'est celle à pousser.
@@ -348,7 +348,7 @@ l'entrant et la niche n°2 ; ils ne portent pas l'effort de prospection.*
 > ticketing, et qui escalade ce qui doit l'être selon une règle qu'on écrit ensemble.
 >
 > Vous récupérez le temps de vos équipes techniques pour à peu près la moitié du coût
-> complet d'un poste en France, opérationnel en 3 à 4 semaines. On peut démarrer sur un
+> complet d'un poste en France, avec une première prise de tickets en 3 à 4 semaines. On peut démarrer sur un
 > périmètre restreint — un lot de 200 à 400 tickets — pour que vous jugiez sur vos vrais
 > flux. »
 
@@ -386,7 +386,7 @@ l'entrant et la niche n°2 ; ils ne portent pas l'effort de prospection.*
    écoute, reporting, plan de continuité, DPA RGPD.
 4. **Contrepartie** — le chiffre engagé (≥ 90 %, 20 % d'avoir automatique) puis la
    mécanique d'entrée à petit risque : périmètre restreint, 3 mois d'engagement initial,
-   première prise de tickets en 3-4 semaines (6 en marque blanche), position autonome sous 8.
+   première prise de tickets en 3-4 semaines (6 en marque blanche), position autonome sous 2 à 3 mois en direct ou 2,5 à 3,5 mois en marque blanche.
 
 **Fermeture, toujours la même** : ne pas demander « qu'en pensez-vous ? » mais proposer le
 prochain pas concret — *« on prend 30 minutes pour cadrer un périmètre de démarrage, et je
