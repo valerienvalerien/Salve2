@@ -39,12 +39,17 @@ const COUT_AGENT = 766;
 const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
-/* Depot d'activation MB (PRICING.md §3.a, decide 2026-08-03) : 900 €/position, plafond
- * 2 700 €, imputable sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
+/* Depot d'activation MB (PRICING.md §3.a, decide 2026-08-03) : 900 €/position, imputable
+ * sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
  * frais : le partenaire qui va au bout ne paie rien de plus. Il couvre l'onboarding reel
  * (~1 600 € sur 3 positions) s'il s'arrete, et fait rentrer du cash a J0 au lieu de J+30. */
 const DEPOT_PAR_POSITION = 900;
-const DEPOT_PLAFOND = 2700;
+/* Plafond global supprime le 2026-09-14 (PRICING.md §3.a) : il etait fixe alors que
+ * l'imputation est proportionnelle (300 €/position/mois), donc les deux ne se recoupaient
+ * qu'a 3 positions exactement. A 9 positions on creditait 8 100 € pour 2 700 € encaisses.
+ * Le depot est desormais strictement proportionnel. `plafond` reste lisible par deal pour
+ * un cas negocie ; l'imputation suit toujours le montant REELLEMENT verse (total / 3). */
+const DEPOT_PLAFOND = Infinity;
 const DEPOT_IMPUTATION_MENSUELLE = 300;
 const DEPOT_MOIS_IMPUTATION = 3;
 
