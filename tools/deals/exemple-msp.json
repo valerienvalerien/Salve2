@@ -1,5 +1,5 @@
 {
-  "_note": "DEAL DE DÉMONSTRATION — sert de gabarit. Dupliquer ce fichier pour chaque deal réel, puis supprimer celui-ci si besoin. Prix alignés PRICING.md §3 (rate card MB helpdesk 2000/1750/1550, direct 2200-2800). Mise à jour 2026-08-03 : plus de remise de lancement en MB (§3.b) — le pilote est un périmètre restreint au tarif du palier ; dépôt d'activation calculé automatiquement (§3.a) ; palier 5+ porteur d'un minimumFacturable (§3).",
+  "_note": "DEAL DE DÉMONSTRATION — gabarit pour un poste dédié helpdesk en marque blanche. La grille, le dépôt et les délais suivent PRICING.md, modèle B. Vérifier le périmètre, les horaires et chaque concession avant de copier ce fichier pour un vrai partenaire.",
   "slug": "exemple-msp",
   "partenaire": "Ardenor Systèmes",
   "contact": "la direction des opérations",
@@ -8,7 +8,7 @@
   "dateEmission": "2026-07-29",
   "validiteJours": 21,
   "signaturePrevue": "2026-08-10",
-  "accroche": "Trois techniciens N1 francophones à Antananarivo, sous votre marque, dans vos outils, sur vos procédures. Le créneau 7h-9h Paris tombe en pleine journée de bureau chez nous — sans astreinte ni majoration nuit. Vos clients finaux ne voient qu'Ardenor.",
+  "accroche": "Cinq techniciens N1 francophones à Antananarivo, sous votre marque, dans vos outils, sur vos procédures. Le créneau 7h-9h Paris tombe en pleine journée de bureau chez nous — sans astreinte ni majoration nuit. Vos clients finaux ne voient qu'Ardenor.",
   "douleurs": [
     "Le N1 déborde depuis le rachat du portefeuille de janvier : ~40 % des tickets traités hors SLA sur les deux derniers mois.",
     "Deux recrutements N1 ouverts depuis mars, aucun profil tenu au-delà de six mois — le turnover coûte plus cher que le poste.",
@@ -57,21 +57,13 @@
     3200,
     4200
   ],
-  "pilote": "On démarre sur une seule position et un seul de vos clients finaux, au tarif de la grille, KPI partagés dès le premier jour. Ce qui limite votre risque, c'est le périmètre, pas une remise. Si le taux de prise en charge n'est pas au rendez-vous au bout de quatre semaines, vous arrêtez en prévenant trente jours — la position s'éteint, vos procédures et votre base de connaissances vous sont restituées, rien n'est dû au-delà du mois entamé.",
+  "pilote": "Le pilote porte sur un seul de vos clients finaux. Cinq positions restent fermes et facturables au palier 5–8 pendant la phase initiale ; le périmètre réduit ne réduit pas le volume engagé. Les KPI sont publiés dès la première prise de tickets et deviennent opposables à partir du premier mois plein en régime. Toute réduction du minimum exige un avenant ; la sortie suit les clauses signées.",
   "sla": {
     "kpi": "prise en charge des tickets N1 sous 30 minutes",
     "seuil": "90 % des tickets présentés sur les plages couvertes",
     "avoir": "20 %"
   },
   "concessions": [
-    {
-      "titre": "Sortie à 30 jours pendant les 3 premiers mois",
-      "detail": "au lieu des 60 jours de préavis contractuels, vous pouvez arrêter sur simple notification pendant le premier trimestre, sans indemnité — seul le dépôt d'activation reste acquis une fois la mise en service démarrée."
-    },
-    {
-      "titre": "Exclusivité Hauts-de-France, 12 mois",
-      "detail": "aucun autre prestataire d'infogérance de la région ne sera servi par Salverys pendant les 12 premiers mois du contrat."
-    },
     {
       "titre": "Appui avant-vente sous 48 h",
       "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement SLA écrit, fournis sous 48 h ouvrées et réutilisables tels quels dans vos propres réponses d'appels d'offres — le seul de ces trois points qui vous aide à gagner un client plutôt qu'à en économiser un."
