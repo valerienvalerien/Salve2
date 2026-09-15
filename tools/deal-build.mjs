@@ -39,12 +39,12 @@ const COUT_AGENT = 766;
 const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
-/* Depot d'activation MB (PRICING.md §3.a, decide 2026-08-03) : 900 €/position, imputable
+/* Depot d'activation MB (PRICING.md §3, decide 2026-08-03) : 900 €/position, imputable
  * sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
  * frais : le partenaire qui va au bout ne paie rien de plus. Il couvre l'onboarding reel
  * (~1 600 € sur 3 positions) s'il s'arrete, et fait rentrer du cash a J0 au lieu de J+30. */
 const DEPOT_PAR_POSITION = 900;
-/* Plafond global supprime le 2026-09-14 (PRICING.md §3.a) : il etait fixe alors que
+/* Plafond global supprime le 2026-09-14 (PRICING.md §3) : il etait fixe alors que
  * l'imputation est proportionnelle (300 €/position/mois), donc les deux ne se recoupaient
  * qu'a 3 positions exactement. A 9 positions on creditait 8 100 € pour 2 700 € encaisses.
  * Le depot est desormais strictement proportionnel. `plafond` reste lisible par deal pour
@@ -53,7 +53,7 @@ const DEPOT_PLAFOND = Infinity;
 const DEPOT_IMPUTATION_MENSUELLE = 300;
 const DEPOT_MOIS_IMPUTATION = 3;
 
-/* Volume ferme facturable — generalise a TOUS les paliers (PRICING.md §3, revise 2026-08-14) :
+/* Volume ferme facturable — generalise a TOUS les paliers (PRICING.md §1, modele B) :
  * chaque tarif s'achete avec un volume engage, pas avec une intention. Sans minimum
  * facturable, Salverys porterait le risque de sous-consommation du partenaire (il annonce
  * 9 positions pour obtenir 1 350 €, en consomme 5, et le banc est a notre charge). En equipe
@@ -62,7 +62,7 @@ const DEPOT_MOIS_IMPUTATION = 3;
  * Paliers en vigueur : 1-4 ETP (standard) · 5-8 ETP (volume) · 9+ ETP (strategique). */
 const MINIMUM_FACTURABLE_SEUIL = 1;
 
-/* Plus de remise de lancement en marque blanche (PRICING.md §3.b, decide 2026-08-03) :
+/* Plus de remise de lancement en marque blanche (PRICING.md §3, decide 2026-08-03) :
  * sur 3 positions, le mois pilote a -50 % coutait ~2 625 € pour un onboarding reel de
  * ~1 600 €, et une remise sur prix de gros ameliore la marge du revendeur sans l'aider a
  * gagner son client final. Le builder refuse une page qui la reintroduirait. */
@@ -103,10 +103,10 @@ const normCode = (s) => String(s).toUpperCase().replace(/[\s\-_.]/g, '');
 function renderPlanning(deal) {
   const sign = D(deal.signaturePrevue);
   const etapes = deal.planning && deal.planning.length ? deal.planning : [
-    { jours: 0, titre: 'Cadrage', detail: 'Périmètre figé, accès à vos outils, référent désigné de chaque côté, volumétrie de départ.' },
-    { jours: 4, titre: 'Formation produit & procédures', detail: 'Base de connaissances, arbres de décision, escalades, consignes de ton — écrit avant le premier contact.' },
-    { jours: 11, titre: 'Production accompagnée (double écoute)', detail: 'Vos flux traités par nos agents, QA quotidienne, corrections à chaud.' },
-    { jours: 18, titre: 'Mise en production & reporting', detail: 'Autonomie complète, reporting hebdomadaire, engagement de service actif.' },
+    { jours: 0, titre: 'Cadrage', detail: 'Périmètre, horaires, volumétrie, accès et référents figés avec le partenaire.' },
+    { jours: 14, titre: 'Recrutement et préparation', detail: 'Agents identifiés, accès nominatifs ouverts, base de connaissances et escalades cadrées.' },
+    { jours: 35, titre: 'Formation et shadowing', detail: 'Procédures du partenaire, double écoute et tests sur des flux accompagnés.' },
+    { jours: 42, titre: 'Première prise de tickets accompagnée', detail: 'Premier traitement sous supervision ; la pleine autonomie est visée à 2,5–3,5 mois après la signature. L\'engagement de service devient opposable au premier mois plein en régime.' },
   ];
   const li = etapes.map((e, i) => {
     const d1 = addDays(sign, e.jours);
@@ -122,7 +122,7 @@ function renderPlanning(deal) {
 function renderGrille(deal) {
   const revDef = deal.reventeConseillee;
   let noteMinimum = '';
-  const rows = deal.grille.map((r, i) => {
+  const rows = deal.grille.map((r) => {
     const rev = r.revente ?? revDef;
     const marge = rev ? rev - r.gros : null;
     const hi = r.retenu ? ' class="hi"' : '';
@@ -131,15 +131,10 @@ function renderGrille(deal) {
      * partenaire doit pouvoir chiffrer la consequence sans relire le tableau. */
     const min = r.minimumFacturable;
     if (min) {
-      const repli = deal.grille[i - 1];
-      noteMinimum = `<b>Le tarif de ${EUR(r.gros)} est conditionné à un engagement ferme
-        de ${min} positions.</b> Vous les payez toutes les ${min} chaque mois, même si vous
-        n'en utilisez que ${min - 2} ou ${min - 1} : c'est cet engagement qui finance le prix bas.`
-        + (repli
-          ? ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
-             « ${repli.engagement} », soit ${EUR(repli.gros)} par position utilisée.`
-          : ` Un mois où vous facturez moins de ${min} positions repasse au tarif du palier
-             inférieur, pour les positions réellement utilisées.`);
+      noteMinimum = `<b>Le tarif de ${EUR(r.gros)} est conditionné à ${min} positions fermes
+        facturables chaque mois.</b> Ce minimum reste dû même si vous utilisez moins de
+        positions. Une réduction du minimum nécessite un avenant ; le tarif du palier
+        correspondant s'applique à compter de sa date d'effet.`;
     }
     return `<tr${hi}>
       <td>${H(r.engagement)}${min ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
@@ -159,7 +154,7 @@ function renderGrille(deal) {
   </table></div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
 }
 
-/* Depot d'activation : montant, plafond et imputation mensuelle (PRICING.md §3.a). */
+/* Depot d'activation : montant, plafond et imputation mensuelle (PRICING.md §3). */
 function calcDepot(deal) {
   if (deal.depot === false) return null;
   const n = deal.etpRetenus || 1;
@@ -358,10 +353,10 @@ if (deal.archive) {
 }
 
 /* Le gabarit actuel est concu pour le modele ETP (colonnes €/mois/ETP). Le telesec MB se
- * facture a l'appel traite par creneau (PRICING.md §1.b) : refuser explicitement plutot
+ * facture a l'appel traite par creneau (PRICING.md §2) : refuser explicitement plutot
  * que produire un document faux. */
 if (deal.niche === 'medical') {
-  console.error('✗ Le modele « a l\'appel par creneau » (PRICING.md §1.b) n\'est pas encore');
+  console.error('✗ Le modele « a l\'appel par creneau » (PRICING.md §2) n\'est pas encore');
   console.error('  couvert par ce gabarit, concu pour le modele ETP. Ne pas forcer.');
   process.exit(1);
 }
@@ -383,7 +378,7 @@ for (const r of deal.grille) {
   }
 }
 
-/* Palier a volume ferme (PRICING.md §3, generalise le 2026-08-14) : tout palier retenu doit
+/* Palier a volume ferme (PRICING.md §1, modele B) : tout palier retenu doit
  * porter un minimum facturable, sinon Salverys encaisse le risque de sous-consommation du
  * partenaire (positions annoncees pour obtenir le prix, moins consommees, banc a notre
  * charge — et en salariat le banc porte un cout de sortie). */
@@ -391,7 +386,7 @@ for (const r of deal.grille) {
   const retenue = deal.grille.find((r) => r.retenu);
   const n = deal.etpRetenus || 0;
   if (n >= MINIMUM_FACTURABLE_SEUIL && retenue && !retenue.minimumFacturable) {
-    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §3, revise 2026-08-14).`);
+    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §1, modele B).`);
     console.error(`  Ajouter "minimumFacturable" sur la ligne « ${retenue.engagement} » — le minimum du palier`);
     console.error('  (1-4 ETP : 1 · 5-8 ETP : 5 · 9+ ETP : 9), ou retenir le palier inferieur.');
     console.error('  Chaque tarif s\'achete avec un volume ferme, pas avec une intention.');
@@ -405,15 +400,15 @@ for (const r of deal.grille) {
   }
 }
 
-/* Plus de remise de lancement en marque blanche (PRICING.md §3.b) : intercepter une remise
+/* Plus de remise de lancement en marque blanche (PRICING.md §3) : intercepter une remise
  * reintroduite dans le texte du pilote ou de la note de grille. Le pilote reste un perimetre
  * restreint, au tarif du palier. */
 for (const [champ, texte] of [['pilote', deal.pilote], ['grilleIntro', deal.grilleIntro], ['grilleNote', deal.grilleNote]]) {
   if (texte && REMISE_INTERDITE.test(texte)) {
     console.error(`✗ Remise detectee dans « ${champ} » : "${texte.match(REMISE_INTERDITE)[0]}".`);
-    console.error('  Plus de remise sur le prix de gros en marque blanche (PRICING.md §3.b, 2026-08-03).');
+    console.error('  Plus de remise sur le prix de gros en marque blanche (PRICING.md §3, 2026-08-03).');
     console.error('  Le pilote est un PERIMETRE restreint au tarif du palier. Pour donner quelque chose,');
-    console.error('  utiliser concessions[] : sortie 30 j · exclusivite 12 mois · appui avant-vente 48 h.');
+    console.error('  utiliser concessions[] : sortie 30 j · exclusivite nominative · appui avant-vente 48 h.');
     process.exit(1);
   }
 }
@@ -481,7 +476,7 @@ console.log(`  Chiffré  : ${chiffre.length} octets · PBKDF2 ${ITER} itération
     console.log(`  Depot    : ${EUR(dep.total)} a la signature (${EUR(dep.parPosition)} × ${dep.n} position${dep.n > 1 ? 's' : ''}${dep.plafonne ? `, plafonne a ${EUR(dep.plafond)}` : ''})`);
     console.log(`             impute ${EUR(dep.mensuel)}/mois sur ${DEPOT_MOIS_IMPUTATION} mois — ne pas lancer le recrutement avant encaissement.`);
   } else {
-    console.log('  Depot    : AUCUN (depot:false) — verifier que c\'est bien voulu (PRICING.md §3.a).');
+    console.log('  Depot    : AUCUN (depot:false) — verifier que c\'est bien voulu (PRICING.md §3).');
   }
   const retenue = deal.grille.find((r) => r.retenu);
   if (retenue?.minimumFacturable) {
