@@ -474,6 +474,37 @@ Accroche autorisée **après cadrage / NDA**, dans les espaces partenaires prot�
 - **Jamais en direct** : le médical et le support/helpdesk client final gardent
   « mise en service offerte, 1er mois à −50 %, sans dépôt » (§7).
 
+**Exemple de flux — 3 positions Support N1 SaaS au palier 1-4 (1 700 €/ETP)**
+
+> À montrer au cadrage : la clause se comprend mieux déroulée que décrite. Hypothèses —
+> dépôt 900 €/position · coût agent **843 €** (coût direct 766 € + quote-part imprévus,
+> `FINANCE §2.a`) · paiement à 30 jours · signature le **6 octobre**.
+
+| Date | Événement | Mouvement | Trésorerie du deal |
+|---|---|---|---|
+| **6 oct.** | Signature — dépôt encaissé (3 × 900 €) | **+2 700 €** | +2 700 € |
+| **2 nov.** | Les 3 agents démarrent, recrutement bouclé | — | +2 700 € |
+| **17 nov.** | Première prise de tickets sur les outils du partenaire (J1 MB, ~6 sem., §5.a) | — | +2 700 € |
+| **30 nov.** | Salaires novembre | −2 529 € | +171 € |
+| **31 déc.** | Salaires décembre · facture n°1 émise (5 100 − 900 d'imputation = 4 200 €) | −2 529 € | **−2 358 €** ← creux |
+| **31 janv.** | Salaires · encaissement facture n°1 · facture n°2 (4 200 €) | −2 529 € · +4 200 € | −687 € |
+| **28 fév.** | Salaires · encaissement n°2 · facture n°3 (4 200 €, **dernière imputation**) | −2 529 € · +4 200 € | +984 € |
+| **31 mars** | Salaires · encaissement n°3 · facture n°4 (**5 100 €, plein tarif**) | −2 529 € · +4 200 € | +2 655 € |
+| **30 avr.** | Salaires · encaissement facture n°4 | −2 529 € · +5 100 € | **+5 226 €** |
+
+- **Le dépôt est intégralement rendu.** Sur 12 mois le partenaire verse
+  `2 700 + (3 × 4 200) + (9 × 5 100) =` **61 200 €**, soit exactement `12 × 5 100`. Il n'a
+  **rien payé de plus** — il a avancé la trésorerie trois mois. C'est la phrase à dire.
+- **Le dépôt divise le creux par plus de deux** : sans lui, le point bas de fin décembre
+  serait à **−5 058 €** au lieu de −2 358 €.
+- **Marge en régime : 1 651 €/mois** (5 100 − 2 529 de salaires − 920 de socle fixe).
+  Aux mêmes 3 positions vendues au tarif 9+ (1 350 €), elle tomberait à **601 €** — 2,7×
+  moins pour le même travail. C'est exactement ce que protège la clause de volume ferme
+  facturable (§3) : un palier accordé sans son volume ne coûte pas une remise, il coûte
+  les deux tiers de la marge.
+- Le **socle fixe de 920 €/mois** n'est pas dans la colonne : il existe avec ou sans ce
+  deal. En le comptant, la trésorerie repasse au vert **fin mai** au lieu de fin février.
+
 ### 3.b Fin du mois pilote −50 % en marque blanche (décidé 2026-08-03)
 
 **Le mois pilote à −50 % est supprimé en marque blanche.** Il reste en vigueur **en direct**
