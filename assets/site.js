@@ -212,14 +212,20 @@
       // 4a — le badge porte le recadrage ROI de PRICING.md §1, plus un pourcentage
       // d'économie : comparer un forfait 250 appels à une secrétaire temps plein
       // donnait −87 %, hors doctrine (claim public « jusqu'à −50 % », PRICING.md §5.b) et peu crédible.
-      // Fourchette RDV calée sur l'ancre documentée « 350 €/mois = 2 à 3 RDV
-      // récupérés » ⇒ valeur implicite d'un RDV récupéré ≈ 117-175 €.
-      const RDV_HIGH = 175, RDV_LOW = 117;
-      const rdvMin = Math.ceil(price / RDV_HIGH), rdvMax = Math.ceil(price / RDV_LOW);
+      // Nombre de RDV calculé sur le tarif conventionné d'une consultation de
+      // généraliste (30 €, secteur 1) — PRICING.md §1. L'ancienne fourchette
+      // 117-175 € par RDV était déduite d'un nombre de RDV lui-même posé sans
+      // source : 4 à 6 fois le tarif réel. Le nombre se calcule, il ne se pose pas.
+      const CONSULT_EUR = 30;
+      const rdv = Math.round(price / CONSULT_EUR);
+      const rdvPerDay = rdv / WORKDAYS_PER_MONTH;
+      const cadence = rdvPerDay <= 0.6
+        ? 'soit <strong>un rendez-vous tous les deux jours ouvrés</strong>'
+        : (rdvPerDay <= 1.15
+            ? 'soit <strong>un rendez-vous par jour ouvré</strong>'
+            : 'soit <strong>' + rdvPerDay.toFixed(1).replace('.', ',') + ' rendez-vous par jour ouvré</strong>');
       badge.textContent = '≈ ' + euro(price / WORKDAYS_PER_MONTH) + ' € / jour ouvré';
-      cmp.innerHTML = rdvMin === rdvMax
-        ? '<strong>' + rdvMin + ' RDV récupérés</strong> dans le mois paient le forfait'
-        : '<strong>' + rdvMin + ' à ' + rdvMax + ' RDV récupérés</strong> dans le mois paient le forfait';
+      cmp.innerHTML = '<strong>' + rdv + ' RDV récupérés</strong> dans le mois paient le forfait — ' + cadence;
 
       let reco;
       if (custom) reco = 'Offre <strong>Sur-mesure</strong> — on cadre ensemble.';

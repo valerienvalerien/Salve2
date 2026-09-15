@@ -84,7 +84,9 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 - **Délai d'activation — toujours nommer le jalon** (`PRICING.md §5.a`) : *première prise de
   tickets sur vos outils* = **3-4 sem. en direct, ~6 sem. en marque blanche**, contre **2 à
   3 mois** pour une prise de poste en France (processus + préavis Syntec) ; *position
-  pleinement autonome* = **6-8 sem.** contre **4 à 6 mois**.
+  pleinement autonome* = **2-3 mois en direct, 2,5-3,5 mois en marque blanche**, contre
+  **4 à 6 mois**. La montée en compétence (4-8 sem.) est la même des deux côtés : elle
+  **s'ajoute** au premier jalon, elle ne le remplace pas.
   > ⚠️ **Le mot « opérationnel » est proscrit** pour désigner la première prise de tickets :
   > il promet l'autonomie complète en livrant la première connexion. C'est ce glissement,
   > pas le chiffre, qui rendait la promesse attaquable.

@@ -4,7 +4,17 @@
 > les simulateurs et le site doit être aligné sur ce fichier. En cas de divergence,
 > **ce fichier fait foi.**
 >
-> Dernière révision : 2026-09-14 (**audit de cohérence interne — 5 corrections** :
+> Dernière révision : 2026-09-15 (**trois claims réajustés** : **§5.a** le jalon **J2**
+> passe de « 6-8 sem. » à **2-3 mois en direct / 2,5-3,5 mois en MB** — la montée en
+> compétence (4-8 sem.) est la même des deux côtés et **s'ajoute** au J1 ; l'ancienne valeur
+> sous-estimait de 1 à 4 sem. et ignorait la pénalité du travail à distance · **§1** le badge
+> RDV du simulateur était **construit à l'envers** (on déduisait la valeur d'un RDV, 117-175 €,
+> d'un nombre de RDV posé sans source) ⇒ recalculé sur le **tarif réel d'une consultation,
+> 30 €** : Essentiel **~12 RDV/mois**, Confort ~20, Intensif ~32 · **§3.b** l'**exclusivité
+> territoriale est abandonnée** — elle n'a aucun sens face à des ESN nationales et fermait
+> une région entière ⇒ **exclusivité nominative** (3-5 concurrents désignés), verticale
+> réservée aux deals ≥ 5 positions, §3.b.1) ·
+> précédente 2026-09-14 (**audit de cohérence interne — 5 corrections** :
 > **§3.c** les multiplicateurs d'amplitude étaient calés sur une **fenêtre de 45 h** au lieu
 > des **35 h** qu'un agent couvre ⇒ étendu **×1,71** (et non ×1,33), astreinte ×2,57, 24·7
 > ×4,80 — **~29 % de sous-facturation** sur tout devis 8h-20h, répercuté dans `assets/site.js`
@@ -210,15 +220,38 @@ au palier supérieur, **jamais de surfacturation à l'appel**.
   arrive de lui-même**. La prospection médicale se fait en **§1.b**, auprès des
   télésecrétariats FR qui sous-traitent leur débordement.
 - **Recadrage ROI (à utiliser partout)** : 350 €/mois ≈ **16 €/jour ouvré** — moins d'une
-  demi-consultation par jour ; **2 à 3 RDV récupérés** sur des appels manqués paient le
-  forfait. C'est le recadrage anti-objection prix le moins cher qui existe.
+  demi-consultation par jour ; **~12 RDV récupérés dans le mois**, soit **un tous les deux
+  jours ouvrés**, paient le forfait. C'est le recadrage anti-objection prix le moins cher
+  qui existe.
   - **C'est ce recadrage qui occupe le badge du simulateur (décidé 2026-08-13)**, à la place
     du **−87 %** qui y figurait — hors doctrine (claim public alors en vigueur, −40 à −60 % ;
     **aujourd'hui « jusqu'à −50 % »**, §5.b) et non crédible
     (il comparait un forfait 250 appels à une secrétaire **temps plein**). Le badge affiche
     le **coût/jour ouvré** et la ligne d'appui « N RDV récupérés paient le forfait », mise à
-    l'échelle du forfait : Essentiel **2 à 3** · Confort **4 à 6** · Intensif **6 à 9**.
-    Valeur implicite d'un RDV récupéré ≈ **117-175 €** (ancre : « 350 € = 2 à 3 RDV »).
+    l'échelle du forfait sur le **tarif conventionné d'une consultation de généraliste
+    (30 €, secteur 1)** :
+
+    | Forfait | Prix | RDV/mois pour le payer | Lecture quotidienne |
+    |---|---|---|---|
+    | Essentiel | 350 € | **~12** | 1 RDV tous les 2 jours ouvrés |
+    | Confort | 590 € | **~20** | 1 RDV par jour ouvré |
+    | Intensif | 950 € | **~32** | ~1,5 RDV par jour ouvré |
+
+  > 🔴 **Corrigé le 2026-09-15 — l'ancienne échelle était construite à l'envers.** Le badge
+  > annonçait « 2 à 3 RDV » (Essentiel), « 4 à 6 » (Confort), « 6 à 9 » (Intensif), et le
+  > fichier en **déduisait** une valeur implicite du RDV de **117-175 €** — en divisant le
+  > prix du forfait par un nombre de RDV lui-même posé sans source. Raisonnement circulaire,
+  > et résultat **4 à 6 fois le tarif réel** : une consultation de généraliste est à **30 €**.
+  > Un médecin refait ce calcul de tête en trois secondes.
+  >
+  > **Règle désormais : le nombre de RDV se calcule, il ne se pose pas.**
+  > `RDV = prix du forfait ÷ 30 €`. Et **on ne publie jamais la valeur d'un RDV en euros** —
+  > elle varie du simple au double selon la spécialité (spécialiste 60 € et plus, où le
+  > nombre de RDV est divisé par deux). On parle en **rendez-vous**, jamais en euros de
+  > valeur récupérée.
+  >
+  > L'argument y gagne : « **un rendez-vous récupéré tous les deux jours paie le forfait** »
+  > se vérifie de tête et ne s'effondre pas quand le prospect fait la division.
   - ⚠️ **Ne jamais diviser en public au-delà du jour.** 350 € ÷ 250 appels = **1,40 €/appel**,
     soit exactement le haut de la grille de gros marque blanche (§1.b) : un prospect qui
     pousse la division atterrit sur ton prix de revente et se replace mentalement dans une
@@ -458,8 +491,38 @@ jetée sur un acheteur qui revend.
 | Contrepartie | Ce qu'elle donne au partenaire | Coût pour Salverys |
 |---|---|---|
 | **Sortie à 30 jours** pendant les 3 premiers mois (au lieu du préavis de 60 j) | Le vrai « sans risque » en MB : de la **réversibilité**, pas de la remise | Faible — le dépôt (§3.a) couvre l'onboarding |
-| **Exclusivité territoire ou segment, 12 mois** | Valeur perçue forte, argument de différenciation face à ses concurrents | **0 €** aujourd'hui (aucun autre partenaire sur la zone) |
+| **Exclusivité nominative** — 3 à 5 concurrents qu'il désigne, pour la durée du contrat (§3.b.1) | Répond à sa **vraie** peur : que son sous-traitant produise pour ceux qui lui prennent ses appels d'offres | ~**0 €** — périmètre borné et vérifiable |
 | **Appui avant-vente sous 48 h** : PCA, DPA, CV anonymisés, dispositif QA, engagement SLA écrit — **réutilisables tels quels dans SES réponses d'appels d'offres** | **Le seul give qui lui fait gagner du CA** au lieu d'en économiser — et qui rend Salverys difficile à remplacer | ~0 € marginal (documents déjà produits) |
+
+#### 3.b.1 Exclusivité — **nominative par défaut, jamais territoriale** (révisé 2026-09-15)
+
+> 🔴 **« Exclusivité territoire ou segment, 12 mois » est abandonnée.** Le volet
+> **territorial** n'a aucun sens sur la cible MB : une **ESN opère nationalement** et ses
+> clients finaux sont partout — « exclusivité Rhône-Alpes » ne protège rien pour elle, et
+> nous **interdirait de signer une autre ESN de la région** alors que la base cible en
+> compte **58 sur la France entière** (`CLAUDE.md`). La clause coûtait donc du marché sans
+> rien valoir au partenaire. Le volet « 12 mois » était par ailleurs déséquilibré : il peut
+> sortir à 3 mois (§3.b) et nous laisser bloqués neuf mois de plus.
+
+**Deux crans, par ordre de préférence :**
+
+| Cran | Périmètre | Quand le concéder |
+|---|---|---|
+| **1 — Nominative** *(défaut)* | **3 à 5 concurrents qu'il nomme**. On ne produit pas pour eux en marque blanche | D'emblée, sur n'importe quel deal. Borné, vérifiable, coût réel ~nul |
+| **2 — Par verticale du client final** | Un segment nommé (« éditeurs SaaS santé », « cabinets d'expertise comptable », « retail ») | **À partir de 5 positions fermes seulement** — là on ferme vraiment une part de marché |
+
+**Deux garde-fous, dans les deux cas :**
+
+- **L'exclusivité court avec le contrat, pas sur une durée sèche**, et tombe avec lui. Elle
+  est adossée au **maintien du volume ferme** du palier : en dessous, elle s'éteint de plein
+  droit. Sans cela, un partenaire sort à 3 mois et nous garde bloqués sur son segment.
+- **Elle porte sur la production en marque blanche uniquement.** Un client final de ce
+  segment qui vient à nous **en direct** reste servi normalement (§0.a) — à écrire dans la
+  clause, sinon le gel du direct se transforme en engagement contractuel de refus.
+
+> ⚠️ **Ne jamais concéder une exclusivité géographique**, même demandée. Si le partenaire y
+> tient, c'est qu'il raisonne en territoire commercial : reformuler en **nominative** — elle
+> couvre sa peur réelle sans fermer une région entière.
 
 - Le **pilote comme périmètre restreint reste** (débordement, un seul client final, lot de
   **200-400 tickets**) : c'est le **cadrage** qui limite le risque du partenaire, plus la remise.
@@ -1060,12 +1123,38 @@ du document. Corrigé partout :
 > et surtout **découpé en deux jalons**, parce qu'un seul chiffre laissait le prospect
 > comparer notre *première connexion* à sa *prise de poste*, deux choses différentes.
 
-**Doctrine : on ne compare que des jalons identiques.**
+**Doctrine : on ne compare que des jalons identiques, et on dit d'où part le compteur.**
 
-| Jalon | Recrutement interne France | Salverys |
-|---|---|---|
-| **J1 — première prise de tickets** (accès ouverts, premier ticket traité sous supervision) | **2 à 3 mois** | **3 à 4 sem.** en direct · **~6 sem.** en marque blanche |
-| **J2 — position pleinement autonome** sur le périmètre client | **4 à 6 mois** | **6 à 8 sem.** |
+| | Le compteur démarre à… |
+|---|---|
+| **Recrutement interne France** | la **publication de l'annonce** |
+| **Salverys** | la **signature du contrat** |
+
+| Jalon | Recrutement interne France | Salverys — direct | Salverys — marque blanche |
+|---|---|---|---|
+| **J1 — première prise de tickets** (accès ouverts, premier ticket traité sous supervision) | **2 à 3 mois** | **3 à 4 sem.** | **~6 sem.** |
+| **J2 — position pleinement autonome** sur le périmètre client | **4 à 6 mois** | **2 à 3 mois** | **2,5 à 3,5 mois** |
+
+> 🔴 **J2 corrigé le 2026-09-15 — il était annoncé à « 6 à 8 sem. », ce que la composition
+> ci-dessous ne permettait pas.** La montée en compétence est la **même donnée des deux
+> côtés** (même métier, même source) : *4 à 8 semaines après la prise de poste*. Elle
+> s'ajoute donc au J1, qui n'est pas le même selon le canal :
+>
+> ```
+> France    : J1  8-13 sem. + montée 4-8 sem. = 12-21 sem. →  4 à 6 mois    ✓ cohérent
+> Direct    : J1   3-4 sem. + montée 4-8 sem. =  7-12 sem. →  2 à 3 mois
+> MB        : J1  ~6   sem. + montée 4-8 sem. = 10-14 sem. →  2,5 à 3,5 mois
+> ```
+>
+> L'ancienne valeur **sous-estimait de 1 à 4 semaines** et ne distinguait pas direct et
+> marque blanche, alors que le J1 le fait. Deux aggravations qu'elle ignorait :
+> **le travail à distance** (nos agents le sont tous) coûte **15-25 % de montée en
+> compétence en plus** d'après la source même de cette section ; et en MB s'ajoutent
+> transition, shadowing et doublon inversé.
+>
+> **L'argument reste fort et devient défendable** : **2 à 3 mois contre 4 à 6 mois**, soit
+> un rapport de 1 à 2. À 6-8 semaines, un acheteur qui additionnait nos propres chiffres
+> trouvait 7-12 semaines — dans une section qui se présente comme sourcée.
 
 **Composition du J1 côté France** (processus + préavis, les deux sont incompressibles) :
 
@@ -1094,6 +1183,10 @@ et sous-estimait le cas cadre confirmé (préavis 3 mois ⇒ jusqu'à 5 mois).
   avec un onboarding structuré (et 8-12 mois sans, *Harvard Business Review*).
 - Le N1 helpdesk est dans le bas de cette fourchette : on retient **4 à 8 semaines après la
   prise de poste**, soit **4 à 6 mois** depuis l'ouverture du poste.
+- ⚠️ **Cette fourchette de 4-8 semaines s'applique aussi à nous** — c'est le même métier.
+  Elle s'ajoute à notre J1, elle ne le remplace pas. Et la pénalité « à distance »
+  (15-25 %) joue **contre** nous, pas pour nous : elle est absorbée par le haut de la
+  fourchette retenue au tableau.
 
 > **Ce que ça change dans la copy.** L'argument fort n'est pas « 3 semaines contre 90 jours »
 > — c'est **« vous avez du volume traité en 3 à 6 semaines, là où votre recrutement n'a même
@@ -1269,14 +1362,14 @@ basculer sur le repli « 7 jours offerts, périmètre limité ».
 | Amplitude médical (2026-06-12) | diluée dans « sur-mesure » | **add-ons nommés** : samedi matin +90 € · soirée +120 € · samedi complet +150 € (§1.a) |
 | Onboarding (2026-06-12) | invisible, gratuit | **« Mise en service : 490 € — offerte »** sur chaque devis (§1.c) |
 | **Activation MB (2026-08-03, **plafond supprimé 2026-09-14**)** | rien encaissé avant J+30 ; onboarding ~1 600 € à fonds perdus si le partenaire s'arrête | **Dépôt d'activation imputable 900 €/position, sans plafond**, déduit des 3 premières factures (300 €/position/mois), acquis si annulation après démarrage de la mise en service (§3.a). *Le plafond de 2 700 € était incompatible avec une imputation proportionnelle : à 9 positions on créditait 8 100 € pour 2 700 € encaissés* |
-| **Pilote MB (2026-08-03)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · exclusivité territoire/segment 12 mois · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7) |
+| **Pilote MB (2026-08-03, exclusivité revue 2026-09-15)** | mois pilote à **−50 %** (≈ −1 075 € sur 3 positions) | **Supprimé en MB** — remplacé par 3 contreparties de risque : sortie 30 j les 3 premiers mois · **exclusivité nominative** (3-5 concurrents désignés, durée du contrat) · appui avant-vente sous 48 h (§3.b). **Conservé en direct** (§7). *L'exclusivité « territoire ou segment, 12 mois » est abandonnée : sans objet face à des ESN nationales, §3.b.1* |
 | **Palier bas (2026-08-03, révisé 2026-08-14)** | prix le plus bas accordé sur une **intention** de volume | **Conditionné à un volume ferme facturable, sur tous les paliers** : le tarif d'un palier n'est dû que contre son minimum de positions facturables, consommées ou non ; en deçà, prix du **palier inférieur en volume** (§3). *La ligne renvoyait au « palier 3 ETP », qui n'existe plus depuis la refonte 1-4 / 5-8 / 9+ ; corrigé le 2026-09-14* |
 | **Forfaits IT (2026-08-13, renommé 2026-08-24)** | « Support/Helpdesk Starter · Pro · Scale » — inventés côté site, en anglais, différents d'un simulateur à l'autre | **Débordement · Poste dédié · Équipe managée**, identiques dans les deux simulateurs et **définis en §3.c** — *la ligne portait encore « Centre de services », renommé le 2026-08-24 ; corrigé le 2026-09-14* |
 | **Amplitude horaire IT (2026-08-13, base corrigée 2026-09-14)** | majoration de confort (+15 % étendu, +28 % astreinte, +45 % 24·7) ⇒ devis 24·7 **à perte** ; puis multiplicateurs calés sur une **fenêtre de 45 h** (×1,33 · ×2,00 · ×3,73) ⇒ **sous-facturation de ~29 %** | **multiplicateur d'ETP sur la base réelle de 35 h** : étendu **×1,71** *(public)* · astreinte **×2,57** et 24·7 **×4,80** *(sur devis)* (§3.c) ; exposant `FR_PEN` supprimé |
 | **Priority sous 3 agents (2026-08-13, clos 2026-08-24)** | badge public **« Économie : −24 % / −35 % »** — l'outil vendait le recrutement en France | correctif d'affichage en 2026-08-13, puis **tier entièrement retiré** le 2026-08-24 : le problème était l'offre, pas le badge (§3) |
-| **Badge médical (2026-08-13)** | **−87 %** vs une secrétaire temps plein | **coût/jour ouvré** + « N RDV récupérés paient le forfait » (§1) |
+| **Badge médical (2026-08-13, échelle RDV corrigée 2026-09-15)** | **−87 %** vs une secrétaire temps plein ; puis une échelle RDV **posée sans source**, dont on déduisait une valeur de RDV de **117-175 €** — 4 à 6× le tarif réel | **coût/jour ouvré** + « N RDV récupérés paient le forfait », **calculé sur le tarif conventionné de 30 €** : Essentiel **~12 RDV/mois**, Confort ~20, Intensif ~32 (§1). **Ne jamais publier la valeur d'un RDV en euros** |
 | **Mise en route IT (2026-08-13, libellé revu 2026-09-07)** | « lancé en 10 jours » / « onboarding 5 jours » | **« première prise de tickets sur vos outils en 3 à 4 semaines »** en direct, **~6 sem. en marque blanche** (§3.c), aligné sur `FINANCE-PREVISIONNEL.md §5`. ⚠️ **Le mot « opérationnel » est proscrit** (§5.a) — *la ligne le portait encore ; corrigé le 2026-09-14* |
-| **Délai de recrutement FR (2026-09-07)** | **« 60 à 90 jours »**, chiffre « conservé » de l'ancienne copy, **sans aucune source** ; comparé à un « opérationnel en 3-4 sem. » qui désignait un autre jalon | **Deux jalons sourcés (§5.a)** : *première prise de tickets* — **2 à 3 mois** en France (47-48 j médians France Travail + préavis Syntec 1-3 mois ; 5-8 sem. sur le support IT) contre **3-4 sem.** en direct / **~6 sem.** en MB · *position pleinement autonome* — **4 à 6 mois** en France contre **6-8 sem.**. Mot « opérationnel » **proscrit** pour le premier jalon |
+| **Délai de recrutement FR (2026-09-07)** | **« 60 à 90 jours »**, chiffre « conservé » de l'ancienne copy, **sans aucune source** ; comparé à un « opérationnel en 3-4 sem. » qui désignait un autre jalon | **Deux jalons sourcés (§5.a)** : *première prise de tickets* — **2 à 3 mois** en France (47-48 j médians France Travail + préavis Syntec 1-3 mois ; 5-8 sem. sur le support IT) contre **3-4 sem.** en direct / **~6 sem.** en MB · *position pleinement autonome* — **4 à 6 mois** en France contre **2-3 mois** en direct / **2,5-3,5 mois** en MB. Mot « opérationnel » **proscrit** pour le premier jalon. *Le J2 portait « 6-8 sem. » : il omettait que la montée en compétence (4-8 sem.) s'ajoute au J1 et est identique des deux côtés ; corrigé le 2026-09-15* |
 | **Claim d'économie (2026-09-07)** | **« −40 à −60 % »** — plafond jamais atteint (meilleur coin réel −57 %, et seulement contre une ESN IDF), contredit par le simulateur de la même page (−32 % helpdesk, −38 % SaaS) | **« jusqu'à −50 % »** (§5.b) : au-dessus du cas médian, sous le meilleur cas réel, et compatible avec un simulateur qui affiche −32 %. **Arbitrage n°3 clos.** Ne jamais revenir à une fourchette basse-haute |
 | **Palier 3 IT (2026-08-14, renommé 2026-08-24)** | « Centre de services », sans effectif minimum | **« Équipe managée »**, **plancher 4 agents** opposable (bouton verrouillé sous ce seuil), prix **« à partir de » sur devis** : 11 000 € helpdesk · 10 000 € support (§3.d) |
 | **Backup agent (2026-08-14)** | « agent de backup inclus » affiché dans le **Poste dédié** ; règle « un remplaçant par client » non financée (§10) | **Doctrine de continuité à 3 niveaux (§3.e)** : manager métier (absences ponctuelles) · rotation de l'Équipe managée (plage tenue). Aucune tête supplémentaire à recruter |
