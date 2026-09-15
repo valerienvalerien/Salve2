@@ -24,49 +24,41 @@
   }
   .wrap{max-width:1180px; margin:0 auto; padding:0 20px}
 
-  /* ---------- Header ---------- */
   header.top{background:var(--navy); color:#fff; padding:38px 0 30px; border-bottom:5px solid var(--jaune)}
   header.top .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--jaune); font-weight:700; margin:0 0 10px}
   header.top h1{margin:0 0 8px; font-size:30px; line-height:1.15; font-weight:800; letter-spacing:-.02em}
-  header.top p.sub{margin:0; color:#cfe2ec; max-width:70ch; font-size:14.5px}
+  header.top p.sub{margin:0; color:#cfe2ec; max-width:72ch; font-size:14.5px}
   .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
   .meta span{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:5px 12px; font-size:12.5px; color:#eaf3f8}
   .meta span b{color:var(--jaune); font-weight:700}
 
-  /* ---------- Nav ---------- */
   nav.toc{position:sticky; top:0; z-index:30; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
   nav.toc .wrap{display:flex; gap:4px; overflow-x:auto; padding-top:8px; padding-bottom:8px}
   nav.toc a{white-space:nowrap; text-decoration:none; color:var(--ink-2); font-size:13px; font-weight:600; padding:6px 11px; border-radius:7px}
   nav.toc a:hover{background:var(--jaune-2); color:var(--navy)}
 
-  /* ---------- Sections ---------- */
   section{padding:38px 0 6px}
   h2{font-size:21px; margin:0 0 6px; color:var(--navy); letter-spacing:-.01em; font-weight:800; scroll-margin-top:60px}
   h2 .num{display:inline-block; background:var(--jaune); color:var(--navy); border-radius:6px; padding:1px 9px; font-size:14px; margin-right:9px; vertical-align:2px}
   h3{font-size:16px; margin:26px 0 8px; color:var(--navy-2); font-weight:700}
   h4{font-size:13.5px; margin:18px 0 6px; color:var(--ink-2); text-transform:uppercase; letter-spacing:.06em; font-weight:700}
-  p.lead{color:var(--ink-2); margin:0 0 16px; max-width:86ch}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:14px 0}
+  p.lead{color:var(--ink-2); margin:0 0 16px; max-width:88ch}
 
-  /* ---------- Tables ---------- */
   .tw{overflow-x:auto; margin:12px 0 4px; border:1px solid var(--line); border-radius:10px; background:var(--card)}
   table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px}
-  th{background:var(--navy); color:#fff; text-align:left; padding:9px 12px; font-weight:600; font-size:12.5px; letter-spacing:.01em}
+  th{background:var(--navy); color:#fff; text-align:left; padding:9px 12px; font-weight:600; font-size:12.5px}
   td{padding:9px 12px; border-top:1px solid var(--line); vertical-align:top}
   tbody tr:nth-child(even) td{background:#fafcfd}
   td.num, th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
   table.compact{font-size:13px}
-  caption{caption-side:top; text-align:left; padding:10px 12px 2px; font-size:12.5px; color:var(--ink-3)}
 
-  /* ---------- Badges ---------- */
-  .b{display:inline-block; border-radius:5px; padding:1px 7px; font-size:11.5px; font-weight:700; letter-spacing:.02em; white-space:nowrap}
+  .b{display:inline-block; border-radius:5px; padding:1px 7px; font-size:11.5px; font-weight:700; white-space:nowrap}
   .b-rouge{background:var(--rouge-bg); color:var(--rouge)}
   .b-orange{background:var(--orange-bg); color:var(--orange)}
   .b-vert{background:var(--vert-bg); color:var(--vert)}
   .b-gris{background:var(--gris-bg); color:var(--gris)}
   .b-navy{background:#e4eef4; color:var(--navy)}
 
-  /* ---------- KPI ---------- */
   .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:12px; margin:16px 0 4px}
   .kpi{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:14px 15px; border-top:3px solid var(--navy)}
   .kpi.r{border-top-color:var(--rouge)} .kpi.o{border-top-color:#e09600} .kpi.v{border-top-color:var(--vert)} .kpi.g{border-top-color:var(--gris)}
@@ -74,14 +66,12 @@
   .kpi.r .v1{color:var(--rouge)} .kpi.o .v1{color:var(--orange)} .kpi.v .v1{color:var(--vert)} .kpi.g .v1{color:var(--gris)}
   .kpi .l1{font-size:12px; color:var(--ink-3); margin-top:3px; line-height:1.35}
 
-  /* ---------- Callouts ---------- */
   .co{border-left:4px solid var(--navy); background:#eef4f8; padding:12px 16px; border-radius:0 9px 9px 0; margin:14px 0; font-size:14px}
   .co.warn{border-left-color:#e09600; background:var(--orange-bg)}
   .co.stop{border-left-color:var(--rouge); background:var(--rouge-bg)}
   .co.ok{border-left-color:var(--vert); background:var(--vert-bg)}
   .co p{margin:0 0 8px} .co p:last-child{margin:0}
 
-  /* ---------- Findings ---------- */
   .filters{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 16px; align-items:center}
   .filters button{font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink-2); border-radius:999px; padding:6px 14px}
   .filters button[aria-pressed="true"]{background:var(--navy); color:#fff; border-color:var(--navy)}
@@ -97,22 +87,23 @@
   .find p:last-child{margin:0}
   .find .fix{background:var(--jaune-2); border-radius:7px; padding:8px 12px; font-size:13.3px; color:var(--ink); margin-top:9px}
   .find .fix b{color:var(--navy)}
+  .calc{background:#f4f7f9; border:1px solid var(--line); border-radius:7px; padding:8px 12px; margin:8px 0; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.6px; color:var(--ink); overflow-x:auto}
 
   code{background:#eef2f5; padding:1px 5px; border-radius:4px; font-size:.9em; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   .ok-check{color:var(--vert); font-weight:800}
   .ko-check{color:var(--rouge); font-weight:800}
   ul.tight{margin:8px 0; padding-left:20px} ul.tight li{margin:4px 0; color:var(--ink-2); font-size:14px}
+  .strike{text-decoration:line-through; color:var(--ink-3)}
   footer{background:var(--navy); color:#b9d2df; padding:26px 0; margin-top:44px; font-size:13px}
   footer b{color:var(--jaune)}
   hr.sep{border:0; border-top:1px solid var(--line); margin:30px 0 0}
 
   @media print{
     nav.toc,.filters{display:none} body{background:#fff; font-size:11pt}
-    .card,.find,.tw{break-inside:avoid} section{padding:18px 0 0}
+    .find,.tw{break-inside:avoid} section{padding:18px 0 0}
   }
   @media (max-width:620px){
     header.top h1{font-size:23px} .wrap{padding:0 16px}
-    .find .hd{gap:6px}
   }
 </style>
 </head>
@@ -120,20 +111,21 @@
 
 <header class="top">
   <div class="wrap">
-    <p class="eyebrow">Audit de cohérence — source unique de vérité</p>
+    <p class="eyebrow">Audit de cohérence — 2<sup>e</sup> passe</p>
     <h1>PRICING.md — récapitulatif &amp; audit complet</h1>
-    <p class="sub">Relecture intégrale des 1&nbsp;225 lignes de <code style="background:rgba(255,255,255,.14);color:#fff">PRICING.md</code> : consolidation de toutes les grilles en vigueur, vérification arithmétique des chiffrages, et registre des écarts entre les décisions les plus récentes et le contenu encore actif du fichier.</p>
+    <p class="sub">Relecture intégrale des 1&nbsp;342 lignes de <code style="background:rgba(255,255,255,.14);color:#fff">PRICING.md</code> après les corrections d'aberrations des 14 et 15 septembre. Consolidation des grilles en vigueur, vérification arithmétique de chaque chiffrage, et registre des écarts restants — y compris <strong>ceux que les corrections elles-mêmes ont créés</strong>.</p>
     <div class="meta">
       <span>Audit du <b>15 septembre 2026</b></span>
-      <span>Source : <b>PRICING.md</b> — rév. 2026-09-07</span>
-      <span>Périmètre : <b>fichier seul</b>, hors copy et simulateurs</span>
-      <span>Statut GTM : <b>marque blanche uniquement</b></span>
+      <span>Source : <b>PRICING.md</b> — rév. 2026-09-15</span>
+      <span>Intègre <b>0de423e</b> + <b>be2acb6</b></span>
+      <span>Recoupé avec <b>FINANCE-PREVISIONNEL v3.2</b></span>
     </div>
   </div>
 </header>
 
 <nav class="toc">
   <div class="wrap">
+    <a href="#delta">Ce qui a changé</a>
     <a href="#synthese">Synthèse</a>
     <a href="#catalogue">Catalogue actif</a>
     <a href="#grilles">Grilles</a>
@@ -149,29 +141,115 @@
 
 <div class="wrap">
 
-<!-- ============ SYNTHÈSE ============ -->
-<section id="synthese">
-  <h2><span class="num">1</span>Synthèse d'audit</h2>
-  <p class="lead">Le fichier tient son rôle de source unique : les décisions sont datées, motivées, et les révisions successives sont tracées en tête. La faiblesse est ailleurs — <strong>la propagation interne</strong>. Trois refontes lourdes (bascule salariale du 2026-08-14, retrait du tier Priority du 2026-08-24, gel du direct du 2026-09-07) ont été écrites en tête et dans leur section, mais <strong>pas répercutées dans les sections plus anciennes</strong>, en particulier le récapitulatif §8, qui porte aujourd'hui des lignes contredisant le corps du document.</p>
+<!-- ============ DELTA ============ -->
+<section id="delta">
+  <h2><span class="num">1</span>Ce que les corrections des 14-15 septembre ont changé</h2>
+  <p class="lead">Deux commits ont traité 8 aberrations — 5 dans <code>PRICING.md</code>, 3 dans le prévisionnel, plus le retrait du 3×8 au palier haut. Huit des anomalies de la passe précédente sont levées. Mais deux des corrections ont des conséquences qui n'ont pas été suivies jusqu'au bout, et c'est de là que viennent les trouvailles les plus lourdes de cette passe.</p>
 
-  <div class="kpis">
-    <div class="kpi r"><div class="v1">5</div><div class="l1">anomalies bloquantes — un chiffre ou une règle périmés en position normative</div></div>
-    <div class="kpi o"><div class="v1">11</div><div class="l1">à corriger — obsolète ou non propagé, risque en rendez-vous</div></div>
-    <div class="kpi g"><div class="v1">6</div><div class="l1">à surveiller — lisibilité, nommage, granularité</div></div>
-    <div class="kpi v"><div class="v1">14/15</div><div class="l1">contrôles arithmétiques passés sur les chiffrages internes</div></div>
-    <div class="kpi"><div class="v1">4</div><div class="l1">actions ouvertes non closes dans le fichier</div></div>
+  <h3>Corrections appliquées</h3>
+  <div class="tw">
+    <table class="compact">
+      <thead><tr><th>Correction</th><th>Avant</th><th>Après</th><th>Portée réelle</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Base de calcul de l'amplitude</b> (§3.c)</td>
+          <td class="strike">÷ 45 h — ×1,33 · ×2,00 · ×3,73</td>
+          <td><b>÷ 35 h</b> — ×1,71 · ×2,57 · ×4,80</td>
+          <td>La plus coûteuse : <b>~29 % de sous-facturation</b> sur tout devis 8h-20h. Répercutée dans <code>assets/site.js</code> et les deux simulateurs</td>
+        </tr>
+        <tr>
+          <td><b>Plafond du dépôt d'activation</b> (§3.a)</td>
+          <td class="strike">900 €/position, plafonné à 2 700 €</td>
+          <td><b>900 €/position, sans plafond</b></td>
+          <td>Un plafond fixe face à une imputation proportionnelle : à 9 positions on créditait <b>8 100 € pour 2 700 € encaissés</b></td>
+        </tr>
+        <tr>
+          <td><b>Claim d'économie</b> (§3)</td>
+          <td class="strike">« ≈ −40 % à −60 % » dans le tableau de benchmark</td>
+          <td><b>« jusqu'à −50 % »</b> partout</td>
+          <td>Lève l'anomalie A-1 de la passe précédente — le claim abrogé survivait dans le tableau qu'un commercial copie-colle</td>
+        </tr>
+        <tr>
+          <td><b>Point mort</b> (§3)</td>
+          <td class="strike">2 à 6 ETP · « un deal de 3-4 positions »</td>
+          <td><b>1 à 2 ETP</b> · un deal de 2 positions, <b>une seule</b> sur le palier helpdesk 1-4</td>
+          <td>Socle fixe passé de 2 114 € à <b>920 €</b> après la fin du poste commercial. Rouvre les MSP régionaux de 11-50 personnes</td>
+        </tr>
+        <tr>
+          <td><b>Récapitulatif §8</b></td>
+          <td class="strike">8 lignes périmées</td>
+          <td>Toutes reprises + <b>règle de tenue du tableau</b></td>
+          <td>Lève les anomalies A-2, A-3, B-3, B-4 et une partie de B-5 et C-4</td>
+        </tr>
+        <tr>
+          <td><b>« ou 3×8 » au palier haut</b> (§3.d)</td>
+          <td class="strike">≥ 4 agents · 6h-20h <b>ou 3×8</b></td>
+          <td><b>6h-20h seulement</b> ; 3×8 sur devis, plancher ≥ 5 agents</td>
+          <td>Un 3×8 = 168 h ; 4 × 35 = 140 h. Le plancher annoncé ne permettait jamais la couverture annoncée sur la même ligne</td>
+        </tr>
+        <tr>
+          <td><b>Unité du plancher</b> (§3.d)</td>
+          <td class="strike">« ≥ 4 agents », unité implicite</td>
+          <td><b>Têtes, jamais positions</b> — et c'est écrit</td>
+          <td>« 4 positions » en 6h-20h = 8 agents = ~21 850 €, pas 11 000 €</td>
+        </tr>
+        <tr>
+          <td><b>Réserve de rotation</b> (§3.d)</td>
+          <td class="strike">Incluse dans la base de prix du palier</td>
+          <td><b>Retirée</b></td>
+          <td>§3.e pose qu'aucune tête supplémentaire n'est recrutée — facturer une réserve non staffée est ce que le retrait de Priority a sanctionné</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Anomalies levées depuis la passe précédente</h3>
+  <div class="tw">
+    <table class="compact">
+      <thead><tr><th>Réf. passe 1</th><th>Anomalie</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr><td><b>A-1</b></td><td>Claim « −40 à −60 % » dans le tableau de présentation §3</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>A-2</b></td><td>§8 portait deux lignes contradictoires sur le claim</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>A-3</b></td><td>§8 : « FINANCE-PREVISIONNEL n'est plus une source » (décision annulée)</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>B-3</b></td><td>§8 décrivait la rate card en paliers « 1 / 3 / 5+ ETP »</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>B-4</b></td><td>§8 nommait le palier 3 « Centre de services »</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>C-2</b></td><td>Claim périmé cité en archive sans marqueur (§1, §3 Priority)</td><td><span class="b b-vert">LEVÉE</span></td></tr>
+        <tr><td><b>B-5</b></td><td>Mot « opérationnel » proscrit — corrigé en §8</td><td><span class="b b-orange">PARTIELLE</span> — subsiste en §3.g.6</td></tr>
+        <tr><td><b>C-4</b></td><td>Granularité des priorités de niches — corrigée en §8</td><td><span class="b b-orange">PARTIELLE</span> — le titre du §3 dit toujours « priorité 1 » pour les deux métiers</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="co stop">
-    <p><strong>Le point le plus coûteux : le claim d'économie.</strong> §5.b (2026-09-07) impose « jusqu'à −50 % » et <em>interdit explicitement</em> toute fourchette basse-haute. Or le tableau « Présentation retenue pour Salverys » du §3 affiche toujours <strong>« ≈ −40 % à −60 % »</strong> sur ses deux lignes — et c'est un tableau de présentation, pas une archive de raisonnement. Quiconque prépare un argumentaire depuis §3 ressort avec le claim que la révision a supprimé.</p>
+    <p><strong>Ce que les corrections ont créé.</strong> Corriger le point mort sans rouvrir ce qui en dépendait a laissé <strong>deux chiffrages orphelins</strong> dans le même bloc de texte — dont la justification du palier 9+, c'est-à-dire le motif même de la refonte de la rate card du 14 août. Et corriger l'unité du plancher en §3.d sans propager à §3.g.1 laisse le tableau de chiffrage de la fiche offre exprimé dans l'unité que la correction vient d'interdire. Détail en <a href="#anomalies" style="color:var(--rouge)">A-1</a>, <a href="#anomalies" style="color:var(--rouge)">A-2</a> et <a href="#anomalies" style="color:var(--rouge)">A-3</a>.</p>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ SYNTHÈSE ============ -->
+<section id="synthese">
+  <h2><span class="num">2</span>Synthèse d'audit</h2>
+  <p class="lead">Le fichier s'est nettement amélioré : le §8 est désormais tenu à jour et doté d'une règle d'entretien, les claims sont alignés, et les deux erreurs de calcul les plus coûteuses (amplitude, plafond du dépôt) sont corrigées avec démonstration. Le problème structurel demeure : <strong>une correction est appliquée là où l'erreur a été repérée, pas là où ses conséquences se propagent</strong>. Le diagnostic n'a pas changé depuis la première passe, seule la liste a tourné.</p>
+
+  <div class="kpis">
+    <div class="kpi v"><div class="v1">8</div><div class="l1">anomalies levées par les corrections des 14-15 septembre</div></div>
+    <div class="kpi r"><div class="v1">5</div><div class="l1">bloquantes — dont <b>3 nouvelles</b>, créées par les corrections</div></div>
+    <div class="kpi o"><div class="v1">12</div><div class="l1">à corriger — obsolète, non propagé, risque en rendez-vous</div></div>
+    <div class="kpi g"><div class="v1">6</div><div class="l1">à surveiller — lisibilité, nommage, unités</div></div>
+    <div class="kpi"><div class="v1">18/20</div><div class="l1">contrôles arithmétiques passés</div></div>
+  </div>
+
+  <div class="co stop">
+    <p><strong>Le point le plus coûteux : la justification du palier 9+ ne tient plus.</strong> §3 affirme qu'« un deal de 5 positions à 1 350 € sortait sous le point mort » — c'est le motif qui a repoussé le prix plancher de 5 à 9 positions le 14 août. Avec le socle corrigé le 14 septembre, 5 positions dégagent <strong>2 535 € de contribution contre un socle de 920 €</strong> (ou 1 730 € à deux métiers). Le tableau de <code>FINANCE §4</code>, que le bullet cite lui-même, place le point mort de ce palier à 2 ETP. On refuse donc le meilleur tarif à un partenaire de 5 positions au nom d'un calcul périmé — exactement l'erreur que la correction n°4 dénonce pour les MSP régionaux.</p>
   </div>
 
   <div class="co warn">
-    <p><strong>Le plus insidieux : deux chiffrages jamais recalculés après la refonte de la rate card.</strong> Le coût du mois pilote MB (§3.b, « ~2&nbsp;625&nbsp;€ sur 3 positions ») et le prix d'une position 6h-20h (§3.g.10, « ~3&nbsp;100&nbsp;€ ») s'appuient tous deux sur des tarifs qui ne correspondent plus au palier du volume décrit. Les deux sous-estiment le vrai montant — voir <a href="#anomalies" style="color:var(--orange)">B-10</a> et <a href="#anomalies" style="color:var(--orange)">B-11</a>.</p>
+    <p><strong>Trois nombres proches se croisent sans être distingués : 766 €, 843 €, 920 €.</strong> Le prévisionnel les définit proprement (coût direct · coût imprévus compris · socle fixe mensuel), mais <code>PRICING.md</code> les emploie sans les nommer, et le 920 € y désigne <em>deux grandeurs différentes</em> — le plancher de prix par ETP et le socle de charges de l'entreprise. Ce n'est pas une faute de calcul, c'est un piège de lecture dans la source de vérité. Voir <a href="#anomalies" style="color:var(--orange)">B-1</a> à <a href="#anomalies" style="color:var(--orange)">B-3</a>.</p>
   </div>
 
   <div class="co ok">
-    <p><strong>Ce qui est solide.</strong> Le plancher de 920&nbsp;€/ETP est respecté sans exception par toutes les grilles du fichier. Les multiplicateurs d'amplitude, le calage de <code>NONSTOP_MULT</code>, l'imputation du dépôt d'activation, le dégressif « clients fondateurs » et le recadrage ROI médical sont tous arithmétiquement exacts. La doctrine d'affichage (§0/§9) est appliquée sans contradiction.</p>
+    <p><strong>Ce qui est solide.</strong> La règle « ETP = heures de présence continue ÷ 35 » se vérifie sur les quatre lignes du tableau d'amplitude et recolle avec §3.e, §3.d et §3.g.10 — le document est arithmétiquement cohérent sur ce point pour la première fois. Le dépôt proportionnel tient à tout volume. Le plancher de 920 € est respecté sans exception. Et le « panier à ~12 000 €/mois » du 24·7, écrit en août, valide rétrospectivement la base 35 h : c'est exactement 4,80 × 2 500 €.</p>
   </div>
 </section>
 
@@ -179,30 +257,30 @@
 
 <!-- ============ CATALOGUE ============ -->
 <section id="catalogue">
-  <h2><span class="num">2</span>Ce qui se vend aujourd'hui — effet du gel du direct</h2>
-  <p class="lead">Le gel du 2026-09-07 (§0.a) ne supprime rien : il arrête d'alimenter. Conséquence structurelle que le fichier note lui-même — <strong>le catalogue actif retombe aux deux modèles marque blanche A et B</strong>.</p>
+  <h2><span class="num">3</span>Ce qui se vend aujourd'hui</h2>
+  <p class="lead">Le gel du 7 septembre ne supprime rien, il arrête d'alimenter. <strong>Le catalogue actif se réduit aux deux modèles marque blanche A et B.</strong></p>
 
   <div class="tw">
     <table>
       <thead><tr><th>Élément</th><th>Réf.</th><th>Statut</th><th>Ce que ça veut dire au quotidien</th></tr></thead>
       <tbody>
-        <tr><td><b>Modèle A — Débordement mutualisé</b></td><td>§3.c, §3.g.1</td><td><span class="b b-vert">ACTIF</span></td><td>1&nbsp;120&nbsp;€/mois, 400 tickets inclus. Vendu en MB.</td></tr>
-        <tr><td><b>Modèle B — Poste dédié / capacité dédiée</b></td><td>§3.c, §3.g.1</td><td><span class="b b-vert">ACTIF</span></td><td>Rate card intégrale 1-4 / 5-8 / 9+. Cœur de l'offre.</td></tr>
-        <tr><td><b>Grille médicale publique 350/590/950</b></td><td>§1</td><td><span class="b b-navy">MAINTENUE, NON PROSPECTÉE</span></td><td>Affichée, sert à traiter un entrant. La prospection médicale passe par §1.b.</td></tr>
-        <tr><td><b>Grille de gros télésec MB (à l'appel/créneau)</b></td><td>§1.b</td><td><span class="b b-vert">ACTIVE</span></td><td>Cible : télésecrétariats FR qui sous-traitent. Jamais publique.</td></tr>
-        <tr><td><b>Équipe managée (palier 3, ≥ 4 agents)</b></td><td>§3.d, §3.g.10</td><td><span class="b b-gris">DORMANT</span></td><td>Direct uniquement depuis le 2026-08-24, donc hors catalogue actif depuis le gel.</td></tr>
-        <tr><td><b>Offre de lancement 1<sup>er</sup> mois à −50 %</b></td><td>§7</td><td><span class="b b-gris">DORMANTE</span></td><td>Direct uniquement. En MB : dépôt d'activation + 3 contreparties.</td></tr>
-        <tr><td><b>« Mise en service : 490 € — offerte »</b></td><td>§1.c</td><td><span class="b b-gris">DORMANTE</span></td><td>En tant qu'affichage de devis direct. En MB, reste à 0 €, couverte par le dépôt.</td></tr>
-        <tr><td><b>Deal « clients fondateurs » (5 logos)</b></td><td>§7</td><td><span class="b b-gris">DORMANT</span></td><td>La preuve sociale passe par le 1<sup>er</sup> partenaire MB et son autorisation de citation.</td></tr>
-        <tr><td><b>Tier « Priority »</b></td><td>§3</td><td><span class="b b-rouge">RETIRÉ</span></td><td>Supprimé du catalogue le 2026-08-24. Ni vendable ni chiffrable.</td></tr>
-        <tr><td><b>Bailleurs / relation client</b></td><td>§4</td><td><span class="b b-gris">FUTUR NON DÉTERMINÉ</span></td><td>Grille conservée en référence de chiffrage. Pas de prospection.</td></tr>
+        <tr><td><b>Modèle A — Débordement mutualisé</b></td><td>§3.c, §3.g.1</td><td><span class="b b-vert">ACTIF</span></td><td>1&nbsp;120&nbsp;€/mois, 400 tickets inclus (2,80 €/ticket)</td></tr>
+        <tr><td><b>Modèle B — Poste dédié / capacité dédiée</b></td><td>§3.c, §3.g.1</td><td><span class="b b-vert">ACTIF</span></td><td>Rate card intégrale 1-4 / 5-8 / 9+. Cœur de l'offre</td></tr>
+        <tr><td><b>Grille médicale publique 350/590/950</b></td><td>§1</td><td><span class="b b-navy">MAINTENUE, NON PROSPECTÉE</span></td><td>Sert à traiter un entrant. La prospection médicale passe par §1.b</td></tr>
+        <tr><td><b>Grille de gros télésec MB (à l'appel/créneau)</b></td><td>§1.b</td><td><span class="b b-vert">ACTIVE</span></td><td>Cible : télésecrétariats FR qui sous-traitent. Jamais publique</td></tr>
+        <tr><td><b>Équipe managée (palier 3, ≥ 4 agents)</b></td><td>§3.d</td><td><span class="b b-gris">DORMANT</span></td><td>Direct uniquement depuis le 24/08, donc hors catalogue actif depuis le gel. <b>Couvre 6h-20h et rien de plus</b> depuis le 15/09</td></tr>
+        <tr><td><b>Offre de lancement 1<sup>er</sup> mois à −50 %</b></td><td>§7</td><td><span class="b b-gris">DORMANTE</span></td><td>Direct uniquement. En MB : dépôt d'activation + 3 contreparties</td></tr>
+        <tr><td><b>« Mise en service : 490 € — offerte »</b></td><td>§1.c</td><td><span class="b b-gris">DORMANTE</span></td><td>En tant qu'affichage de devis direct. En MB, reste à 0 €, couverte par le dépôt</td></tr>
+        <tr><td><b>Deal « clients fondateurs »</b></td><td>§7</td><td><span class="b b-gris">DORMANT</span></td><td>La preuve sociale passe par le 1<sup>er</sup> partenaire MB</td></tr>
+        <tr><td><b>Tier « Priority »</b></td><td>§3</td><td><span class="b b-rouge">RETIRÉ</span></td><td>Supprimé le 24/08. Ni vendable ni chiffrable</td></tr>
+        <tr><td><b>3×8 et 24·7</b></td><td>§3.c, §3.d</td><td><span class="b b-rouge">SUR DEVIS</span></td><td>Non staffables au plancher standard : ≥ 5 agents pour <em>une seule</em> position en continu</td></tr>
+        <tr><td><b>Bailleurs / relation client</b></td><td>§4</td><td><span class="b b-gris">FUTUR NON DÉTERMINÉ</span></td><td>Grille conservée en référence de chiffrage</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="co">
-    <p><strong>Conditions de dégel du direct</strong> — l'une des trois suffit : (1) un 2<sup>e</sup> opérateur commercial existe · (2) le flux entrant direct dépasse durablement ~2 demandes qualifiées/mois · (3) plus de 60 comptes ESN/MSP travaillés sans un seul cadrage obtenu.</p>
-    <p><strong>Le gel est interne et ne se dit jamais à un prospect.</strong></p>
+    <p><strong>Conditions de dégel du direct</strong> — l'une des trois suffit : (1) un 2<sup>e</sup> opérateur commercial existe · (2) le flux entrant direct dépasse durablement ~2 demandes qualifiées/mois · (3) plus de 60 comptes ESN/MSP travaillés sans un seul cadrage obtenu. <strong>Le gel est interne et ne se dit jamais à un prospect.</strong></p>
   </div>
 </section>
 
@@ -210,9 +288,9 @@
 
 <!-- ============ GRILLES ============ -->
 <section id="grilles">
-  <h2><span class="num">3</span>Toutes les grilles consolidées</h2>
+  <h2><span class="num">4</span>Toutes les grilles consolidées</h2>
 
-  <h3>3.1 — Médical, forfaits publics <span class="b b-navy">PUBLIC</span></h3>
+  <h3>4.1 — Médical, forfaits publics <span class="b b-navy">PUBLIC</span></h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Forfait</th><th>Volume inclus</th><th class="num">Prix mensuel</th><th class="num">Coût / jour ouvré</th><th>RDV récupérés qui paient le forfait</th></tr></thead>
@@ -226,12 +304,12 @@
   </div>
   <ul class="tight">
     <li>Couverture 8h-20h, 5j/7 minimum. Intégration Doctolib / Maiia / Médistory / Cegedim.</li>
-    <li><b>Prix fermes</b> — la mention « indicatifs à valider » est retirée. Dépassement = bascule de palier, <b>jamais de surfacturation à l'appel</b>.</li>
-    <li>Valeur implicite d'un RDV récupéré : <b>117-175 €</b> (ancre « 350 € = 2 à 3 RDV »).</li>
+    <li><b>Prix fermes.</b> Dépassement = bascule de palier, <b>jamais de surfacturation à l'appel</b>.</li>
+    <li>Valeur implicite d'un RDV récupéré : <b>117-175 €</b>.</li>
     <li>⚠️ <b>Ne jamais diviser en public au-delà du jour</b> : 350 € ÷ 250 appels = 1,40 €/appel, soit exactement le haut de la grille de gros MB.</li>
   </ul>
 
-  <h4>Add-ons d'amplitude médicale (cumulables, §1.a)</h4>
+  <h4>Add-ons d'amplitude médicale (§1.a)</h4>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Option</th><th>Couverture ajoutée</th><th class="num">Prix</th></tr></thead>
@@ -242,9 +320,9 @@
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Règle de closing : <b>toujours offrir une option plutôt que remiser le forfait</b> — le prix de référence reste intact.</p>
+  <p class="lead" style="margin-top:8px"><b>Toujours offrir une option plutôt que remiser le forfait</b> — le prix de référence reste intact.</p>
 
-  <h3>3.2 — Médical marque blanche, à l'appel par créneau <span class="b b-rouge">INTERNE — JAMAIS PUBLIC</span></h3>
+  <h3>4.2 — Médical marque blanche, à l'appel par créneau <span class="b b-rouge">INTERNE</span></h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Créneau</th><th class="num">Prix de gros / appel traité</th></tr></thead>
@@ -255,9 +333,8 @@
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Plancher inchangé : jamais sous coût chargé agent + ~20 %. Jamais de chiffre en cold email ; grille remise <b>au cadrage</b> uniquement.</p>
 
-  <h3>3.3 — Support N1 SaaS &amp; Helpdesk IT, référence ETP <span class="b b-rouge">INTERNE</span></h3>
+  <h3>4.3 — Support N1 SaaS &amp; Helpdesk IT, référence ETP <span class="b b-rouge">INTERNE</span></h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Segment</th><th class="num">En direct</th><th class="num">En marque blanche</th></tr></thead>
@@ -271,25 +348,26 @@
   <h4>Rate card partenaire MB — paliers par volume ferme facturable</h4>
   <div class="tw">
     <table class="compact">
-      <thead><tr><th>Engagement ferme</th><th class="num">Support N1 SaaS</th><th class="num">Helpdesk IT N1</th></tr></thead>
+      <thead><tr><th>Engagement ferme</th><th class="num">Support N1 SaaS</th><th class="num">Helpdesk IT N1</th><th class="num">Contribution / ETP<br><span style="font-weight:400">(prix − 843 €)</span></th></tr></thead>
       <tbody>
-        <tr><td><b>1-4 ETP</b> — tarif standard</td><td class="num">1 700 €</td><td class="num">2 000 €</td></tr>
-        <tr><td><b>5-8 ETP</b> — tarif volume</td><td class="num">1 500 €</td><td class="num">1 750 €</td></tr>
-        <tr><td><b>9+ ETP</b> — tarif stratégique</td><td class="num">1 350 €</td><td class="num">1 550 €</td></tr>
+        <tr><td><b>1-4 ETP</b> — tarif standard</td><td class="num">1 700 €</td><td class="num">2 000 €</td><td class="num">857 € · 1 157 €</td></tr>
+        <tr><td><b>5-8 ETP</b> — tarif volume</td><td class="num">1 500 €</td><td class="num">1 750 €</td><td class="num">657 € · 907 €</td></tr>
+        <tr><td><b>9+ ETP</b> — tarif stratégique</td><td class="num">1 350 €</td><td class="num">1 550 €</td><td class="num">507 € · 707 €</td></tr>
       </tbody>
     </table>
   </div>
   <div class="co stop" style="margin-top:12px">
     <p>🔒 <strong>Volume ferme facturable, sur tous les paliers.</strong> Le tarif d'un palier n'est accordé <em>que</em> contre le minimum de positions facturables de ce palier, dues <strong>qu'elles soient consommées ou non</strong>. En deçà, le prix appliqué est celui du palier inférieur en volume.</p>
-    <p>Motif en équipe salariée : un agent non consommé ne se désactive pas — préavis et indemnité s'ajoutent au salaire. <strong>Ce n'est plus un confort de marge, c'est une protection contre un coût de sortie.</strong></p>
+    <p>En équipe salariée, un agent non consommé ne se désactive pas : préavis et indemnité s'ajoutent au salaire. <strong>Ce n'est plus un confort de marge, c'est une protection contre un coût de sortie.</strong></p>
   </div>
   <ul class="tight">
-    <li><b>Plancher absolu : 920 €/ETP</b> (coût direct salarié 766 € + ~20 %) — codé en dur dans <code>tools/deal-build.mjs</code>, qui refuse une proposition en dessous.</li>
-    <li>Accroche <b>« à partir de 1 350 € / 1 550 €/ETP »</b> : autorisée <b>en espace partenaire et one-pager MB uniquement</b>, jamais sur le site public ni en cold email.</li>
-    <li>Engagement réel : ~<b>5 à 7 semaines</b> entre signature et 1<sup>re</sup> facture ; sur 5 positions, ~3 800 €/mois engagés avant le premier euro encaissé.</li>
+    <li><b>Plancher absolu : 920 €/ETP</b> — codé en dur dans <code>tools/deal-build.mjs</code>.</li>
+    <li><b>Point mort : 1 à 2 ETP placés</b> à un métier actif (socle fixe 920 €), 2 à 4 si les deux métiers tournent. <b>Une seule position helpdesk au tarif standard suffit</b> : 1 157 € de contribution pour 920 € de socle.</li>
+    <li>Accroche <b>« à partir de 1 350 € / 1 550 €/ETP »</b> : espace partenaire et one-pager MB uniquement.</li>
+    <li>Engagement réel : ~<b>5 à 7 semaines</b> entre signature et 1<sup>re</sup> facture ; salaires payés ~1 mois avant le premier euro encaissé.</li>
   </ul>
 
-  <h4>Autres modèles de tarification (ordre de préférence : ETP &gt; heure &gt; interaction)</h4>
+  <h4>Autres modèles (ordre de préférence : ETP &gt; heure &gt; interaction)</h4>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Modèle</th><th class="num">En direct</th><th class="num">En marque blanche</th></tr></thead>
@@ -300,64 +378,71 @@
     </table>
   </div>
 
-  <h3>3.4 — Forfaits IT &amp; amplitude</h3>
+  <h3>4.4 — Forfaits IT &amp; amplitude <span class="b b-orange">RÈGLE CORRIGÉE LE 14/09</span></h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Palier</th><th>Nom</th><th>Contenu type</th><th>Statut</th></tr></thead>
       <tbody>
         <tr><td>1</td><td><b>Débordement</b></td><td>1 agent mutualisé · base 20 h/sem · tickets + email</td><td><span class="b b-vert">ACTIF</span></td></tr>
-        <tr><td>2</td><td><b>Poste dédié</b></td><td>agent 100 % dédié, 35-40 h/sem · escalade N2 cadrée · se vend à la position</td><td><span class="b b-vert">ACTIF</span></td></tr>
-        <tr><td>3</td><td><b>Équipe managée</b></td><td>≥ 4 agents en rotation · superviseur dédié · 6h-20h ou 3×8</td><td><span class="b b-gris">DORMANT</span></td></tr>
+        <tr><td>2</td><td><b>Poste dédié</b></td><td>agent 100 % dédié, 35-40 h/sem · escalade N2 cadrée · se vend <b>à la position</b></td><td><span class="b b-vert">ACTIF</span></td></tr>
+        <tr><td>3</td><td><b>Équipe managée</b></td><td><b>≥ 4 agents</b> <em>(têtes, pas positions simultanées)</em> · superviseur dédié · <b>6h-20h</b></td><td><span class="b b-gris">DORMANT</span></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px"><b>Plancher de 4 agents opposable</b> sur le palier 3 : en dessous, la rotation n'existe pas. Le simulateur verrouille le bouton et affiche la raison au survol. Prix « à partir de », sur devis : <b>11 000 €/mois</b> (helpdesk IT) · <b>10 000 €/mois</b> (support N1 SaaS).</p>
+  <div class="co warn" style="margin-top:10px">
+    <p><strong>Le plancher se compte en agents, jamais en positions.</strong> 4 agents = 140 h/semaine à répartir, soit <strong>~2 présents à la fois</strong> sur 6h-20h. Requalifier en « 4 positions » changerait la prestation vendue : 4 positions simultanées en 6h-20h demandent 8 agents, soit <strong>~21 850 €</strong> et non 11 000 €.</p>
+    <p>Prix « à partir de », sur devis : <strong>11 000 €/mois</strong> (helpdesk IT) · <strong>10 000 €/mois</strong> (support N1 SaaS), <strong>pour 4 agents sur 6h-20h</strong>. Toute couverture plus large sort de ce prix.</p>
+  </div>
 
+  <h4>Amplitude — ETP par position = heures de présence continue ÷ 35</h4>
   <div class="tw">
     <table class="compact">
-      <thead><tr><th>Amplitude</th><th>Fenêtre</th><th class="num">ETP par position</th><th>Affichage</th></tr></thead>
+      <thead><tr><th>Amplitude</th><th>Fenêtre à tenir en continu</th><th class="num">Ancien (÷45 h)</th><th class="num">En vigueur (÷35 h)</th><th>Affichage</th></tr></thead>
       <tbody>
-        <tr><td>Bureau</td><td>~45 h/sem</td><td class="num">×1,00</td><td><span class="b b-vert">public</span></td></tr>
-        <tr><td>Étendu 8h-20h</td><td>60 h/sem</td><td class="num">×1,33</td><td><span class="b b-vert">public</span></td></tr>
-        <tr><td>Astreinte soir + WE</td><td>~90 h/sem</td><td class="num">×2,00</td><td><span class="b b-gris">sur devis</span></td></tr>
-        <tr><td>24·7</td><td>168 h/sem</td><td class="num">×3,73</td><td><span class="b b-gris">sur devis</span></td></tr>
+        <tr><td>Bureau 9h-18h</td><td>45 h/sem — <em>présence continue non exigée</em></td><td class="num">×1,00</td><td class="num">×1,00</td><td><span class="b b-vert">public</span></td></tr>
+        <tr><td>Étendu 8h-20h</td><td>60 h/sem</td><td class="num strike">×1,33</td><td class="num"><b>×1,71</b></td><td><span class="b b-vert">public</span></td></tr>
+        <tr><td>Astreinte soir + WE</td><td>~90 h/sem</td><td class="num strike">×2,00</td><td class="num"><b>×2,57</b></td><td><span class="b b-gris">sur devis</span></td></tr>
+        <tr><td>24·7</td><td>168 h/sem</td><td class="num strike">×3,73</td><td class="num"><b>×4,80</b></td><td><span class="b b-gris">sur devis</span></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Astreinte et 24·7 sont retirés du simulateur public pour un motif de <b>livrabilité</b>, pas de marge : un contrat 24·7 = ~4,8 ETP. L'exposant correctif <code>FR_PEN = 1,35</code> est supprimé — l'amplitude coûte des ETP des deux côtés de la comparaison, donc le % d'économie est invariant à l'amplitude.</p>
+  <ul class="tight">
+    <li><b>Un 8h-20h passe de ×1,33 à ×1,71, soit +28,6 %.</b> Ce n'est pas une hausse de prix, c'est la fin d'une sous-facturation.</li>
+    <li>⚠️ <b>Le ×1,00 de la ligne Bureau n'est pas une exception à la règle, c'est une prestation différente</b> : on vend un agent présent 35 h <em>à l'intérieur</em> d'une fenêtre de 45 h. Exiger la continuité sur toute la plage 9h-18h, c'est ×1,29, et cela se chiffre au devis. <b>Ne jamais laisser croire qu'un Poste dédié standard couvre la fenêtre sans trou.</b></li>
+    <li>Astreinte et 24·7 retirés du simulateur public pour un motif de <b>livrabilité</b>, pas de marge.</li>
+  </ul>
 
-  <h4>Axes de simulateur conservés / retirés (§3.f)</h4>
+  <h4>Axes de simulateur (§3.f)</h4>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Axe</th><th class="num">Multiplicateur</th><th>Décision</th></tr></thead>
       <tbody>
         <tr><td>Canaux — Ticket / email</td><td class="num">×1,00</td><td><span class="b b-vert">conservé</span></td></tr>
-        <tr><td>Canaux — Tél + ticket</td><td class="num">×1,08</td><td><span class="b b-vert">conservé</span> — le téléphone change vraiment la charge</td></tr>
+        <tr><td>Canaux — Tél + ticket</td><td class="num">×1,08</td><td><span class="b b-vert">conservé</span> — seul canal qui change la charge</td></tr>
         <tr><td>Langue — FR+EN (ex-« EN »)</td><td class="num">×1,12</td><td><span class="b b-vert">conservé</span>, renommé ; prix inchangé</td></tr>
         <tr><td>Canaux — « Omnicanal »</td><td class="num">×1,15</td><td><span class="b b-rouge">retiré</span> — ne décrivait aucun travail réel</td></tr>
         <tr><td>Langue — « Bilingue »</td><td class="num">×1,22</td><td><span class="b b-rouge">retiré</span> — doublon de « EN »</td></tr>
         <tr><td>« Périmètre N2 »</td><td class="num">+8 % / +22 %</td><td><span class="b b-rouge">retiré</span> — un N1 escalade toujours</td></tr>
-        <tr><td>Fourchette d'estimation</td><td class="num">±9 %</td><td>porte désormais le <b>profil de l'agent</b> (formé chez nous → confirmé)</td></tr>
+        <tr><td>Fourchette d'estimation</td><td class="num">±9 %</td><td>porte le <b>profil de l'agent</b></td></tr>
         <tr><td><code>NONSTOP_MULT</code> (encadrement)</td><td class="num">×1,15</td><td>calé sur les « à partir de » publiés</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px"><b>Règle générale</b> : un axe de simulateur ne se justifie que s'il correspond à une charge ou une compétence que nous <b>payons différemment</b>. Sinon c'est de la majoration décorative, et elle se retourne contre nous au devis.</p>
+  <p class="lead" style="margin-top:8px"><b>Règle générale</b> : un axe ne se justifie que s'il correspond à une charge ou une compétence que nous <b>payons différemment</b>. Sinon c'est de la majoration décorative, et elle se retourne contre nous au devis.</p>
 
-  <h3>3.5 — Fiche offre France, modèles MB (§3.g)</h3>
+  <h3>4.5 — Fiche offre France, modèles MB (§3.g)</h3>
   <div class="tw">
     <table class="compact">
-      <thead><tr><th>Modèle</th><th class="num">Fiche d'origine</th><th class="num">Retenu</th><th>Motif du réalignement</th></tr></thead>
+      <thead><tr><th>Modèle</th><th class="num">Fiche d'origine</th><th class="num">Retenu</th><th>Motif</th></tr></thead>
       <tbody>
-        <tr><td><b>A — Débordement mutualisé</b></td><td class="num">690 €/mois</td><td class="num">1 120 €/mois<br><span style="color:var(--ink-3)">400 tickets — 2,80 €/ticket</span></td><td>690 € était sous le plancher absolu (920 €) et sous le coût direct d'un agent (766 €)</td></tr>
-        <tr><td><b>B — Capacité dédiée</b></td><td class="num">1 450 €/ETP</td><td class="num">rate card intégrale</td><td>1 450 € était sous le tarif stratégique 9+ du helpdesk (1 550 €) : le meilleur prix consenti d'entrée, sans contrepartie de volume</td></tr>
-        <tr><td><b>C — Équipe managée</b></td><td class="num">5 400 €/mois</td><td class="num">dès 7 820 € (SaaS)<br>dès 9 200 € (helpdesk)</td><td>Suppose le plancher de 4 positions + 15 % d'encadrement. À 5 400 €, la fiche vendait une équipe sous le tarif d'une position × 4 — <span class="b b-rouge">mais C est retiré de la MB</span></td></tr>
+        <tr><td><b>A — Débordement mutualisé</b></td><td class="num">690 €/mois</td><td class="num">1 120 €/mois</td><td>690 € était sous le plancher (920 €) et sous le coût direct d'un agent (766 €)</td></tr>
+        <tr><td><b>B — Capacité dédiée</b></td><td class="num">1 450 €/ETP</td><td class="num">rate card intégrale</td><td>1 450 € était sous le tarif stratégique 9+ du helpdesk : le meilleur prix consenti d'entrée, sans contrepartie de volume</td></tr>
+        <tr><td><b>C — Équipe managée</b></td><td class="num">5 400 €/mois</td><td class="num">dès 7 820 € (SaaS)<br>dès 9 200 € (helpdesk)</td><td><span class="b b-rouge">C est retiré de la MB</span> (point 10) — et le calcul est exprimé en « positions », unité proscrite depuis le 15/09 <a href="#anomalies">(A-3)</a></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Deux versions du document : <code>FICHE-OFFRE-FRANCE-publique.html</code> (sans aucun montant, diffusable) et <code>-cadrage.html</code> (grille complète, bandeau « ne pas rediffuser »).</p>
 
-  <h3>3.6 — Bailleurs sociaux &amp; relation client <span class="b b-gris">FUTUR NON DÉTERMINÉ</span></h3>
+  <h3>4.6 — Bailleurs sociaux &amp; relation client <span class="b b-gris">FUTUR NON DÉTERMINÉ</span></h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Modèle</th><th class="num">En direct</th><th class="num">En marque blanche</th></tr></thead>
@@ -367,91 +452,97 @@
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Positionnement : <b>capacité d'appoint</b> (débordement du CRC), jamais remplacement. Pilote sur 1 pic prévisible, facturé au forfait — <b>pas de pilote gratuit</b>.</p>
 </section>
 
 <hr class="sep">
 
 <!-- ============ MÉCANIQUES ============ -->
 <section id="mecaniques">
-  <h2><span class="num">4</span>Mécaniques commerciales &amp; engagements</h2>
+  <h2><span class="num">5</span>Mécaniques commerciales &amp; engagements</h2>
 
-  <h3>4.1 — Mécanique d'entrée, dissociée direct / marque blanche</h3>
+  <h3>5.1 — Mécanique d'entrée</h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th></th><th>En direct <span class="b b-gris">gelé</span></th><th>En marque blanche <span class="b b-vert">actif</span></th></tr></thead>
       <tbody>
         <tr><td><b>Entrée</b></td><td>1<sup>er</sup> mois à −50 %, mise en service offerte, pas de dépôt</td><td>Dépôt d'activation imputable + 3 contreparties de risque</td></tr>
-        <tr><td><b>Remise sur le prix</b></td><td>oui (−50 % le 1<sup>er</sup> mois)</td><td><b>aucune</b> — on ne remise pas un acheteur qui revend</td></tr>
-        <tr><td><b>Pilote</b></td><td>périmètre N1 cadré, 200-400 tickets, sans engagement</td><td>même périmètre restreint, mais sans remise</td></tr>
+        <tr><td><b>Remise sur le prix</b></td><td>oui</td><td><b>aucune</b> — on ne remise pas un acheteur qui revend</td></tr>
+        <tr><td><b>Pilote</b></td><td>périmètre N1 cadré, 200-400 tickets, sans engagement</td><td>même périmètre restreint, sans remise</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h4>Dépôt d'activation MB (§3.a)</h4>
+  <h4>Dépôt d'activation MB <span class="b b-orange">PLAFOND SUPPRIMÉ LE 14/09</span></h4>
   <ul class="tight">
-    <li><b>900 € par position, plafonné à 2 700 €</b>, encaissé à la signature, <b>entièrement imputable</b> : déduit des 3 premières factures à raison de 300 €/position/mois.</li>
+    <li><b>900 € par position, sans plafond</b>, encaissé à la signature, <b>entièrement imputable</b> : déduit des 3 premières factures à raison de 300 €/position/mois.</li>
     <li><b>Acquis à Salverys</b> si annulation <em>après</em> le démarrage de la mise en service ; intégralement restitué avant.</li>
-    <li>Justifications : coût nul pour qui va au bout · couvre l'onboarding réel (~1 600 €) · <b>filtre d'intention</b> (on le sait en 48 h au lieu de 3 semaines) · encaissement à J0 contre le creux de trésorerie.</li>
-    <li>Un dépôt imputable <b>n'est pas</b> des frais — la règle « ne jamais facturer la mise en service » n'est donc pas contredite.</li>
+    <li>Justifications : coût nul pour qui va au bout · couvre l'onboarding réel (400 € de socle + 400 €/position) · <b>filtre d'intention</b> · encaissement à J0 contre le creux de trésorerie.</li>
+    <li>⚠️ <b>Ce qui est interdit, c'est de plafonner l'un sans l'autre.</b> Si la direction juge la friction trop forte sur un gros deal, garder un plafond impose de <b>plafonner aussi l'imputation</b> à <code>dépôt versé ÷ 3</code> par mois.</li>
   </ul>
+  <div class="co warn">
+    <p><strong>Pourquoi le plafond est tombé.</strong> Il était fixe, l'imputation proportionnelle : les deux ne se recoupaient qu'à <em>exactement</em> 3 positions.</p>
+    <div class="calc">3 positions → encaissé 2 700 € · imputé 2 700 € · écart 0
+5 positions → encaissé 2 700 € · imputé 4 500 € · écart −1 800 €
+9 positions → encaissé 2 700 € · imputé 8 100 € · écart −5 400 €</div>
+    <p>Second effet : l'onboarding dépassait le plafond dès 6 positions. <strong>Le plafond cassait les deux fonctions du dépôt exactement sur les paliers 5-8 et 9+</strong> — ceux que la rate card cherche précisément à vendre.</p>
+  </div>
 
-  <h4>Les 3 contreparties de risque qui remplacent le mois pilote MB (§3.b)</h4>
+  <h4>Les 3 contreparties de risque (§3.b)</h4>
   <div class="tw">
     <table class="compact">
-      <thead><tr><th>Contrepartie</th><th>Ce qu'elle donne au partenaire</th><th>Coût pour Salverys</th></tr></thead>
+      <thead><tr><th>Contrepartie</th><th>Ce qu'elle donne au partenaire</th><th>Coût</th></tr></thead>
       <tbody>
-        <tr><td><b>Sortie à 30 jours</b> pendant les 3 premiers mois</td><td>Le vrai « sans risque » en MB : de la réversibilité, pas de la remise</td><td>Faible — le dépôt couvre l'onboarding</td></tr>
+        <tr><td><b>Sortie à 30 jours</b> les 3 premiers mois</td><td>Le vrai « sans risque » en MB : de la réversibilité, pas de la remise</td><td>Faible — le dépôt couvre l'onboarding</td></tr>
         <tr><td><b>Exclusivité territoire ou segment, 12 mois</b></td><td>Valeur perçue forte, différenciation face à ses concurrents</td><td><b>0 €</b> aujourd'hui</td></tr>
-        <tr><td><b>Appui avant-vente sous 48 h</b><br><span style="color:var(--ink-3)">PCA, DPA, CV anonymisés, dispositif QA, SLA écrit</span></td><td><b>Le seul give qui lui fait gagner du CA</b> — réutilisable dans ses réponses d'appels d'offres</td><td>~0 € marginal</td></tr>
+        <tr><td><b>Appui avant-vente sous 48 h</b><br><span style="color:var(--ink-3)">PCA, DPA, CV anonymisés, dispositif QA, SLA écrit</span></td><td><b>Le seul give qui lui fait gagner du CA</b> — réutilisable dans ses appels d'offres</td><td>~0 € marginal</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Elles se concèdent <b>une à la fois</b>, sont <b>affichées</b> au partenaire et <b>tracées</b> dans <code>tools/deals/*.json</code> (<code>concessions[]</code>).</p>
+  <p class="lead" style="margin-top:8px">Elles se concèdent <b>une à la fois</b>, sont <b>affichées</b> au partenaire et <b>tracées</b> dans <code>tools/deals/*.json</code>.</p>
 
-  <h3>4.2 — Doctrine de continuité (§3.e) — le remplacement est dans le prix, jamais en option</h3>
+  <h3>5.2 — Doctrine de continuité (§3.e)</h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Palier</th><th>Qui prend le relais</th><th>Ce qu'on promet</th><th>Ce qu'on ne promet pas</th></tr></thead>
       <tbody>
         <tr><td><b>Débordement</b></td><td>le pool, par nature</td><td>continuité sans objet — l'agent n'est pas nominatif</td><td>un interlocuteur constant</td></tr>
         <tr><td><b>Poste dédié</b></td><td>le <b>manager métier</b> (non facturable, supervise déjà le compte)</td><td>reprise des absences ponctuelles : congés isolés, arrêt court</td><td>deux absences simultanées, ni un arrêt long</td></tr>
-        <tr><td><b>Équipe managée</b></td><td>la <b>rotation</b></td><td>la plage horaire reste tenue : 4×35 h = 140 h/sem pour 70 h d'amplitude ; un absent laisse 105 h</td><td>la capacité à l'identique — elle baisse de ~25 %</td></tr>
+        <tr><td><b>Équipe managée</b></td><td>la <b>rotation</b></td><td>la plage reste tenue : 4×35 h = 140 h ; un absent laisse 105 h</td><td>la capacité à l'identique — elle baisse de ~25 %</td></tr>
       </tbody>
     </table>
   </div>
   <ul class="tight">
-    <li><b>Seuil pratique : un remplacement long à la fois par métier.</b> Au-delà de <b>8 agents par métier</b>, prévoir un agent volant (~766 €/mois) plutôt que de dégrader la supervision.</li>
+    <li><b>Seuil pratique : un remplacement long à la fois par métier.</b> Au-delà de <b>8 agents par métier</b>, prévoir un agent volant (~766 €/mois).</li>
     <li>« Backup inclus » disparaît des listes de fonctionnalités. Côté client on écrit <b>ce que le manager fait</b>, jamais son titre interne.</li>
+    <li><b>Aucune réserve de rotation n'est staffée ni facturée</b> (rappel du 15/09) : la continuité de l'Équipe managée <em>est</em> la rotation elle-même.</li>
   </ul>
 
-  <h3>4.3 — Engagement de décroché / SLA (§7)</h3>
+  <h3>5.3 — Engagement de décroché / SLA (§7)</h3>
   <ul class="tight">
-    <li><b>Seuil : ≥ 90 %</b> d'appels présentés décrochés sur les plages couvertes. <b>95 % explicitement écarté</b> — trop ambitieux en démarrage.</li>
-    <li><b>Remède : avoir de 20 %</b> sur la facture suivante, <b>automatique</b>, <b>plafonné à 1 mois sur 12</b>. Pas de remboursement cash.</li>
-    <li><b>Ne court qu'à partir du 1<sup>er</sup> mois plein en régime</b> ; pendant la transition, la mesure est publiée mais non opposable.</li>
-    <li>Défenses : hors débordement au-delà du forfait · hors indisponibilité côté client · périmètre et seuil figés au cadrage.</li>
-    <li>Déclinaison : Support SaaS → SLA de 1<sup>re</sup> réponse · Helpdesk → SLA de prise en charge · télésec MB → taux de décroché.</li>
+    <li><b>Seuil : ≥ 90 %</b> d'appels présentés sur les plages couvertes. <b>95 % explicitement écarté</b>.</li>
+    <li><b>Remède : avoir de 20 %</b> sur la facture suivante, <b>automatique</b>, <b>plafonné à 1 mois sur 12</b>. Pas de cash.</li>
+    <li><b>Ne court qu'à partir du 1<sup>er</sup> mois plein en régime.</b></li>
+    <li>Défenses : hors débordement au-delà du forfait · hors indisponibilité côté client · périmètre figé au cadrage.</li>
   </ul>
 
-  <h3>4.4 — Durée de contrat</h3>
-  <p class="lead">Engagement initial <b>3 mois</b>, puis <b>12 mois renouvelable</b> ; 24-36 mois réservés aux grands comptes avec dégressif. <span class="b b-orange">Action ouverte</span> — la copy dit encore « contrats 12 à 36 mois ».</p>
+  <h3>5.4 — Durée de contrat</h3>
+  <p class="lead">Engagement initial <b>3 mois</b>, puis <b>12 mois renouvelable</b> ; 24-36 mois réservés aux grands comptes. <span class="b b-orange">Action ouverte</span> — la copy dit encore « contrats 12 à 36 mois ».</p>
 </section>
 
 <hr class="sep">
 
 <!-- ============ CLAIMS ============ -->
 <section id="claims">
-  <h2><span class="num">5</span>Claims publics &amp; benchmarks</h2>
+  <h2><span class="num">6</span>Claims publics &amp; benchmarks</h2>
 
-  <h3>5.1 — Le claim d'économie</h3>
+  <h3>6.1 — Le claim d'économie</h3>
   <div class="co stop">
-    <p><strong>« jusqu'à −50 % »</strong> — claim en vigueur depuis le 2026-09-07, calé sur le <strong>coût complet</strong> d'un ETP interne (pas le seul salaire chargé).</p>
-    <p>Mesures réelles : <strong>−31 %</strong> (helpdesk, benchmark bas) à <strong>−48 %</strong> (SaaS, benchmark haut), <strong>−57 %</strong> au coin le plus favorable. La borne « 50 » est au-dessus du cas médian (donc vendeuse) et en dessous du meilleur cas réel (donc jamais prise en défaut).</p>
-    <p><strong>Ne jamais réécrire ce claim en fourchette basse-haute</strong> — c'est la fourchette « −40 à −60 % » qui obligeait à défendre un plafond indéfendable, contredit par le simulateur de la même page (−32 % / −38 %).</p>
+    <p><strong>« jusqu'à −50 % »</strong>, calé sur le <strong>coût complet</strong> d'un ETP interne. Mesures : <strong>−31 %</strong> (helpdesk, benchmark bas) à <strong>−48 %</strong> (SaaS, benchmark haut), <strong>−57 %</strong> au coin le plus favorable.</p>
+    <p><strong>Ne jamais réécrire ce claim en fourchette basse-haute.</strong> Depuis le 14 septembre, le claim abrogé « −40 à −60 % » ne subsiste plus que dans deux passages d'analyse datés, explicitement annotés.</p>
+    <p>⚠️ <strong>Ces mesures datent d'avant la correction d'amplitude</strong> et n'ont pas été revérifiées — voir <a href="#anomalies" style="color:var(--rouge)">B-10</a>.</p>
   </div>
 
-  <h3>5.2 — Benchmarks RH France (coût à battre)</h3>
+  <h3>6.2 — Benchmarks RH France</h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Poste</th><th class="num">Ancienne copy</th><th class="num">Repère retenu</th><th class="num">Équivalent mensuel</th></tr></thead>
@@ -462,53 +553,51 @@
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px">Méthode : brut moyen × charges patronales (~+42 %) + poste de travail + formation + coût de turnover amorti. <b>Le vrai concurrent n'est pas le coût salarial mais le coût complet d'un ETP interne</b> : salaire + charges, congés/absences, recrutement, formation, supervision, matériel, licences, locaux, turnover. Turnover CRC conservé à ~25 %/an.</p>
+  <p class="lead" style="margin-top:8px"><b>Le vrai concurrent n'est pas le coût salarial mais le coût complet d'un ETP interne</b> : salaire + charges, congés/absences, recrutement, formation, supervision, matériel, licences, locaux, turnover.</p>
 
-  <h3>5.3 — Délai d'activation : deux jalons, jamais un seul (§5.a)</h3>
+  <h3>6.3 — Délai d'activation : deux jalons, jamais un seul (§5.a)</h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Jalon</th><th>Recrutement interne France</th><th>Salverys</th></tr></thead>
       <tbody>
-        <tr><td><b>J1 — première prise de tickets</b><br><span style="color:var(--ink-3)">accès ouverts, premier ticket traité sous supervision</span></td><td><b>2 à 3 mois</b></td><td><b>3 à 4 sem.</b> en direct · <b>~6 sem.</b> en marque blanche</td></tr>
+        <tr><td><b>J1 — première prise de tickets</b></td><td><b>2 à 3 mois</b></td><td><b>3 à 4 sem.</b> en direct · <b>~6 sem.</b> en marque blanche</td></tr>
         <tr><td><b>J2 — position pleinement autonome</b></td><td><b>4 à 6 mois</b></td><td><b>6 à 8 sem.</b></td></tr>
       </tbody>
     </table>
   </div>
   <ul class="tight">
-    <li><b>Sources J1 France</b> : 47-48 j médians du dépôt au pourvoi (France Travail) · 39 j (SmartRecruiters mars 2025) · ~12 sem. pour les cadres (Apec) · 50-60 j en tech (Bersin), 5-8 sem. sur le support IT · <b>+ préavis Syntec</b> jamais inclus dans ces chiffres : ETAM 1-2 mois, cadres 1-3 mois.</li>
-    <li><b>Sources J2</b> : 2-6 sem. avant onboarding complet en service desk, 3-6 sem. sur le canal voix ; un recruté à distance met 15-25 % de plus ; pleine productivité 6-8 mois tous métiers, ramenée à 3-4 mois avec onboarding structuré.</li>
-    <li>⚠️ <b>Le mot « opérationnel » est proscrit</b> pour désigner le J1 : il promet le J2 en livrant le J1. Formulations retenues : « première prise de tickets sur vos outils » / « position pleinement autonome ».</li>
-    <li>L'argument à tenir n'est pas « 3 semaines contre 90 jours » mais <b>« vous avez du volume traité en 3 à 6 semaines, là où votre recrutement n'a même pas encore signé »</b>.</li>
+    <li><b>Sources J1</b> : 47-48 j médians (France Travail) · 39 j (SmartRecruiters 2025) · ~12 sem. cadres (Apec) · 50-60 j en tech (Bersin) · <b>+ préavis Syntec</b> jamais inclus : ETAM 1-2 mois, cadres 1-3 mois.</li>
+    <li>⚠️ <b>Le mot « opérationnel » est proscrit</b> pour le J1 : il promet le J2 en livrant le J1.</li>
+    <li>L'argument à tenir : <b>« vous avez du volume traité en 3 à 6 semaines, là où votre recrutement n'a même pas encore signé »</b>.</li>
   </ul>
 
-  <h3>5.4 — Doctrine d'affichage public (§9)</h3>
+  <h3>6.4 — Doctrine d'affichage public (§9)</h3>
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Segment</th><th class="num">Score /50</th><th class="num">%</th><th>Décision</th></tr></thead>
       <tbody>
-        <tr><td>Médical — standard</td><td class="num">45,5</td><td class="num">91 %</td><td><span class="b b-vert">Afficher</span> grille ferme + simulateur</td></tr>
-        <tr><td>Support N1 — direct</td><td class="num">31</td><td class="num">62 %</td><td><span class="b b-orange">Estimation</span> sans prix ferme + capture lead</td></tr>
-        <tr><td>Helpdesk IT — direct</td><td class="num">29,5</td><td class="num">59 %</td><td><span class="b b-orange">Estimation</span> sans prix ferme + capture lead</td></tr>
+        <tr><td>Médical — standard</td><td class="num">45,5</td><td class="num">91 %</td><td><span class="b b-vert">Afficher</span></td></tr>
+        <tr><td>Support N1 — direct</td><td class="num">31</td><td class="num">62 %</td><td><span class="b b-orange">Estimation</span> + capture lead</td></tr>
+        <tr><td>Helpdesk IT — direct</td><td class="num">29,5</td><td class="num">59 %</td><td><span class="b b-orange">Estimation</span> + capture lead</td></tr>
         <tr><td>Médical — marque blanche</td><td class="num">22,5</td><td class="num">45 %</td><td><span class="b b-rouge">Jamais public</span></td></tr>
         <tr><td>Support N1 — marque blanche</td><td class="num">17,5</td><td class="num">35 %</td><td><span class="b b-rouge">Jamais public</span></td></tr>
         <tr><td>Helpdesk IT — marque blanche</td><td class="num">17,5</td><td class="num">35 %</td><td><span class="b b-rouge">Jamais public</span></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lead" style="margin-top:8px"><b>Ligne de fracture = 2 axes</b> : direct vs marque blanche (toute MB privée, conflit de marge) ET produit packagé vs ETP sur-mesure. Seuils : ≥70 % grille ferme · 50-69 % estimation · &lt;50 % jamais public.</p>
 </section>
 
 <hr class="sep">
 
 <!-- ============ ANOMALIES ============ -->
 <section id="anomalies">
-  <h2><span class="num">6</span>Registre d'anomalies</h2>
-  <p class="lead">22 écarts relevés. La sévérité mesure <strong>le risque d'être utilisé de bonne foi</strong> : un chiffre périmé dans un tableau de présentation est bloquant, le même chiffre dans un paragraphe d'analyse daté ne l'est pas. Les numéros de ligne renvoient à <code>PRICING.md</code> dans son état du 2026-09-15.</p>
+  <h2><span class="num">7</span>Registre d'anomalies</h2>
+  <p class="lead">23 écarts après les corrections. Les <strong>huit</strong> marquées <span class="b b-rouge">NOUVELLE</span> n'existaient pas avant le 14 septembre — dont <strong>trois bloquantes</strong> : ce sont des conséquences non suivies des corrections elles-mêmes. Les numéros de ligne renvoient à <code>PRICING.md</code> dans son état du 2026-09-15 (1 342 lignes).</p>
 
   <div class="filters">
-    <button data-f="all" aria-pressed="true">Tout (22)</button>
+    <button data-f="all" aria-pressed="true">Tout (23)</button>
     <button data-f="bloquant" aria-pressed="false">Bloquant (5)</button>
-    <button data-f="corriger" aria-pressed="false">À corriger (11)</button>
+    <button data-f="corriger" aria-pressed="false">À corriger (12)</button>
     <button data-f="surveiller" aria-pressed="false">À surveiller (6)</button>
   </div>
 
@@ -516,165 +605,192 @@
 
   <!-- BLOQUANT -->
   <div class="find" data-sev="bloquant">
-    <div class="hd"><span class="id">A-1</span><span class="ti">Le claim « −40 à −60 % » subsiste dans un tableau de présentation du §3</span><span class="b b-rouge">BLOQUANT</span></div>
-    <p class="loc">§3 — « Présentation retenue pour Salverys », l. 448-451</p>
-    <p>Le tableau affiche <b>« Objectif Salverys ≈ −40 % à −60 % »</b> sur ses deux lignes (télésecrétaire et support IT). §5.b (2026-09-07) a remplacé ce claim par « jusqu'à −50 % » et interdit <em>explicitement</em> toute fourchette basse-haute. Ce n'est pas une archive de raisonnement : c'est le tableau intitulé « Présentation retenue », celui qu'on recopie pour bâtir un argumentaire.</p>
-    <div class="fix"><b>Correctif :</b> remplacer les deux cellules par « <b>jusqu'à −50 %</b> » et ajouter un renvoi vers §5.b. C'est la seule occurrence normative du claim périmé dans tout le fichier.</div>
+    <div class="hd"><span class="id">A-1</span><span class="ti">La justification du palier 9+ est invalidée par la correction du point mort</span><span class="b b-rouge">BLOQUANT</span><span class="b b-rouge">NOUVELLE</span></div>
+    <p class="loc">§3 — l. 347-349, juste au-dessus du bullet corrigé le 2026-09-14</p>
+    <p>Le motif qui a repoussé le prix plancher de 5 à 9 positions le 14 août : « au coût salarié, un deal de 5 positions à 1 350 € sortait <b>sous le point mort</b> ». Avec le socle corrigé le 14 septembre, ce n'est plus vrai — et le tableau de <code>FINANCE §4</code> que le bullet cite lui-même place le point mort de ce palier à <b>2 ETP</b> (1 métier) ou <b>4 ETP</b> (2 métiers).</p>
+    <div class="calc">contribution Support 9+ : 1 350 − 843 = 507 €/ETP
+5 positions        : 5 × 507 = 2 535 €
+socle 1 métier     :             920 €  →  +1 615 €  ✗ pas sous le point mort
+socle 2 métiers    :           1 730 €  →   +805 €   ✗ pas sous le point mort non plus</div>
+    <p>L'affirmation ne tenait que sur l'ancien socle à deux métiers (~2 850 €, poste commercial inclus), qui n'existe plus depuis le 27 août. <b>La correction n°4 a supprimé la base de calcul sans rouvrir la conclusion qui en dépendait</b>, et les deux se touchent dans le même bloc de bullets.</p>
+    <p><b>Effet commercial direct</b> : on refuse le tarif 1 350 € à un partenaire de 5 positions au nom d'un calcul périmé. C'est exactement l'erreur que la correction n°4 dénonce pour les MSP régionaux — commise une seconde fois, deux bullets plus haut.</p>
+    <div class="fix"><b>Correctif :</b> rouvrir l'arbitrage du seuil 9+. Soit le motif est reformulé (le palier 9+ protège la marge, pas le point mort), soit le seuil redescend. En l'état le fichier affirme une chose que son propre tableau de référence contredit.</div>
   </div>
 
   <div class="find" data-sev="bloquant">
-    <div class="hd"><span class="id">A-2</span><span class="ti">Le récap §8 porte deux lignes contradictoires sur le même claim</span><span class="b b-rouge">BLOQUANT</span></div>
-    <p class="loc">§8 — l. 1138 vs l. 1163</p>
-    <p>La ligne 1138 dit « Claim économie public : « −40 % » ⇒ <b>« −40 à −60 % »</b> », la ligne 1163 dit « ⇒ <b>« jusqu'à −50 % »</b> ». Les deux sont présentes, aucune n'est barrée. Or §8 s'intitule « Récapitulatif des changements <b>à propager</b> » : c'est la table de référence pour mettre la copy à jour, donc l'endroit où une contradiction fait le plus de dégâts.</p>
-    <div class="fix"><b>Correctif :</b> barrer la ligne 1138 (<code>~~…~~</code>) ou lui ajouter la mention « superseded 2026-09-07, cf. ligne suivante », comme c'est déjà fait ailleurs dans le fichier pour l'arbitrage n°3.</div>
+    <div class="hd"><span class="id">A-2</span><span class="ti">Le gain « ~+2 450 €/mois à 9 positions » est calculé sur le socle supprimé</span><span class="b b-rouge">BLOQUANT</span><span class="b b-rouge">NOUVELLE</span></div>
+    <p class="loc">§3 — l. 349, quatre lignes au-dessus du bullet corrigé</p>
+    <p>Même bullet, même cause. Le chiffre publié se reconstitue exactement avec l'ancien socle de 2 114 € — celui qui incluait le poste de développement commercial supprimé le 27 août.</p>
+    <div class="calc">9 × 507 = 4 563 € de contribution
+− ancien socle 2 114 €  →  +2 449 €   ← le chiffre publié
+− socle en vigueur 920 € →  +3 643 €   ← la valeur réelle</div>
+    <p>L'écart est de <b>+1 193 €/mois</b>, soit 49 % de plus que ce qui est écrit. Le fichier fournit désormais lui-même, quatre lignes plus bas, tous les éléments pour démontrer que son chiffre est faux.</p>
+    <div class="fix"><b>Correctif :</b> remplacer par <b>~+3 640 €/mois</b> et poser la ligne de calcul entre parenthèses, comme le fait déjà le bullet corrigé. C'est un meilleur argument de prospection, en plus d'être le bon.</div>
   </div>
 
   <div class="find" data-sev="bloquant">
-    <div class="hd"><span class="id">A-3</span><span class="ti">« FINANCE-PREVISIONNEL.md n'est plus une source » — mention annulée mais toujours active en §8</span><span class="b b-rouge">BLOQUANT</span></div>
-    <p class="loc">§8 — l. 1166 (contredit l'en-tête, l. 50-52)</p>
-    <p>L'en-tête indique que cette mention du 2026-08-14 matin est <b>annulée</b> le jour même, parce qu'elle était contredite par les 8 citations actives du fichier (<code>AUDIT-FINANCE-PREVISIONNEL.md §M</code>). La ligne 1166 de §8 la porte pourtant toujours telle quelle : « plus une source — seul le tableau d'effectif est repris ».</p>
-    <p>Conséquence pratique : le fichier cite <code>FINANCE-PREVISIONNEL.md</code> une douzaine de fois comme référence de point mort, de délai de recrutement et de trésorerie — un lecteur qui s'arrête à §8 conclut que toutes ces citations sont caduques.</p>
-    <div class="fix"><b>Correctif :</b> remplacer la ligne par « annulée le 2026-08-14 — <code>FINANCE-PREVISIONNEL.md</code> (v3) reste une source ».</div>
+    <div class="hd"><span class="id">A-3</span><span class="ti">§3.g.1 exprime le plancher du palier haut en « positions » — l'unité proscrite la veille</span><span class="b b-rouge">BLOQUANT</span><span class="b b-rouge">NOUVELLE</span></div>
+    <p class="loc">§3.g point 1, l. 842 — vs §3.d corrigé le 2026-09-15</p>
+    <p>La correction du 15 septembre pose noir sur blanc que le plancher se compte en <b>agents (têtes)</b>, que « position » reste réservé au Poste dédié, et que requalifier en « 4 positions » <em>changerait la prestation vendue</em> : 4 positions simultanées en 6h-20h demandent 8 agents, soit ~21 850 € et non 11 000 €.</p>
+    <p>Le tableau de chiffrage de la fiche offre écrit pourtant : « Un service desk encadré suppose le <b>plancher de 4 positions</b> (§3.d). Calcul : <b>4 ETP</b> au tarif du palier 1-4 + 15 % d'encadrement ». Deux unités interdites dans la même phrase, avec renvoi à la section qui les interdit.</p>
+    <p>Gravité : c'est le tableau qu'on ouvre pour chiffrer une fiche partenaire. Un lecteur qui applique « 4 positions » littéralement vend ~21 850 € de prestation au prix de 7 820 €.</p>
+    <div class="fix"><b>Correctif :</b> « suppose le plancher de <b>4 agents</b> (§3.d) · 4 × 1 700 × 1,15 ». Et comme C est retiré de la MB (A-4 ci-dessous), les deux corrections se font d'un seul geste.</div>
   </div>
 
   <div class="find" data-sev="bloquant">
-    <div class="hd"><span class="id">A-4</span><span class="ti">La doctrine de continuité est annoncée « à deux niveaux » alors qu'elle en compte trois</span><span class="b b-rouge">BLOQUANT</span></div>
-    <p class="loc">§3 (retrait Priority) l. 496-498 vs §3.e l. 625-631 et §3.g.4 l. 765</p>
-    <p>Le paragraphe « Conséquences appliquées » du retrait de Priority affirme : « la doctrine de continuité §3.e passe de trois à <b>deux</b> niveaux ». Mais §3.e s'intitule toujours « <b>Trois niveaux</b>, adossés à ce qui est déjà payé » et son tableau en liste trois (Débordement / Poste dédié / Équipe managée) ; §3.g.4 parle lui aussi de « doctrine à trois niveaux — pool (A) · manager métier (B) · rotation d'équipe (C) ».</p>
-    <p>Priority n'a jamais été un des trois niveaux de §3.e — il portait la <em>capacité réservée</em>, une quatrième modalité. La phrase est donc simplement fausse, et elle est dans la section qui fait autorité sur le retrait.</p>
-    <div class="fix"><b>Correctif :</b> supprimer le fragment « passe de trois à deux niveaux » et écrire « la capacité réservée disparaît des modalités de continuité ; la doctrine §3.e reste à trois niveaux ».</div>
+    <div class="hd"><span class="id">A-4</span><span class="ti">§3.g chiffre le modèle C en marque blanche… et le retire de la marque blanche</span><span class="b b-rouge">BLOQUANT</span></div>
+    <p class="loc">§3.g point 1 (l. 842) vs §3.g point 10 (l. 950-975)</p>
+    <p>Le point 1 réaligne le modèle C « Équipe managée » des fiches MB à <b>7 820 €</b> (SaaS) / <b>9 200 €</b> (helpdesk). Le point 10 de la même section le retire des deux fiches MB : « il reste un modèle direct uniquement », « les fiches MB comptent donc deux modèles, A et B ». Les deux règles coexistent sans renvoi de l'une à l'autre.</p>
+    <p>Persistante depuis la passe précédente. Le gel du direct l'aggrave : C est désormais dormant <em>et</em> hors MB, donc ce chiffrage ne sert plus aucun canal actif — mais il reste le plus visible des deux.</p>
+    <div class="fix"><b>Correctif :</b> annoter la ligne C : « <b>retiré des fiches MB le 2026-08-24 (point 10)</b> — chiffrage conservé pour le direct et pour le dégel ».</div>
   </div>
 
   <div class="find" data-sev="bloquant">
-    <div class="hd"><span class="id">A-5</span><span class="ti">Le §3.g chiffre le modèle C en marque blanche… et le retire de la marque blanche</span><span class="b b-rouge">BLOQUANT</span></div>
-    <p class="loc">§3.g point 1 (l. 736) vs §3.g point 10 (l. 857-880)</p>
-    <p>Le point 1 réaligne le modèle C « Équipe managée » des fiches MB à <b>7 820 €</b> (SaaS) / <b>9 200 €</b> (helpdesk). Le point 10 de la même section retire C des deux fiches MB : « il reste un modèle direct uniquement », « les fiches MB comptent donc deux modèles, A et B ». Les deux règles coexistent sans renvoi de l'une à l'autre.</p>
-    <p>Le risque est concret : quelqu'un qui prépare une proposition partenaire et lit le tableau des montants réalignés — le plus visible des deux — chiffre un modèle qui n'existe plus dans ce canal.</p>
-    <div class="fix"><b>Correctif :</b> annoter la ligne C du tableau du point 1 : « <b>retiré des fiches MB le 2026-08-24 (point 10)</b> — chiffrage conservé pour le direct et pour le dégel ».</div>
+    <div class="hd"><span class="id">A-5</span><span class="ti">La doctrine de continuité est annoncée « à deux niveaux » alors qu'elle en compte trois</span><span class="b b-rouge">BLOQUANT</span></div>
+    <p class="loc">§3 (retrait Priority) l. 551 vs §3.e l. 728-734 et §3.g.4</p>
+    <p>« Conséquences appliquées : … la doctrine de continuité §3.e passe de trois à <b>deux</b> niveaux. » Mais §3.e s'intitule toujours « <b>Trois niveaux</b>, adossés à ce qui est déjà payé », son tableau en liste trois, et §3.g.4 parle de « doctrine à trois niveaux — pool (A) · manager métier (B) · rotation d'équipe (C) ».</p>
+    <p>Priority n'a jamais été un des trois niveaux de §3.e — il portait la <em>capacité réservée</em>, une quatrième modalité. La phrase est fausse, dans la section qui fait autorité sur le retrait. Persistante depuis la passe précédente.</p>
+    <div class="fix"><b>Correctif :</b> « la capacité réservée disparaît des modalités de continuité ; la doctrine §3.e reste à trois niveaux ».</div>
   </div>
 
   <!-- À CORRIGER -->
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-1</span><span class="ti">Chiffrage du mois pilote MB jamais recalculé après la refonte des paliers</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3.b l. 402-404 (chiffré le 2026-08-03) vs rate card §3 (refondue le 2026-08-14)</p>
-    <p>L'argumentaire de suppression du mois pilote MB repose sur : « sur un deal type de 3 positions helpdesk, la remise vaut <b>~2 625 €</b> ». Ce montant suppose un tarif de <b>1 750 €/ETP</b> (3 × 1 750 ÷ 2 = 2 625). Or 1 750 € est le tarif du palier <b>5-8 ETP</b> ; un deal de <b>3</b> positions relève du palier <b>1-4</b>, à <b>2 000 €</b>. Au tarif juste, la remise vaut 3 × 2 000 ÷ 2 = <b>3 000 €</b>, et le mois pilote sort à <b>≈ −1 400 €</b> et non −1 075 €.</p>
-    <p>La conclusion ne bouge pas — elle se renforce, la remise coûtant encore plus cher que l'onboarding qu'elle est censée compenser. Mais le chiffre publié est faux depuis le 2026-08-14.</p>
-    <div class="fix"><b>Correctif :</b> recalculer à 3 000 € / −1 400 €, ou préciser explicitement « au tarif 5-8 ETP alors en vigueur » si l'on veut conserver la trace du raisonnement d'origine.</div>
+    <div class="hd"><span class="id">B-1</span><span class="ti">Deux coûts agent dans la même section, dont un jamais défini</span><span class="b b-orange">À CORRIGER</span><span class="b b-orange">NOUVELLE</span></div>
+    <p class="loc">§3 — « coût direct 766 € » (l. 316, 344) vs « − 843 € » (l. 353)</p>
+    <p>Le bullet corrigé le 14 septembre introduit <b>843 €</b> sans le définir : « 2 000 € − 843 € = 1 157 € de contribution ». Quarante lignes plus haut, le même §3 pose « coût direct 766 €/mois » et bâtit le plancher dessus. Un lecteur de <code>PRICING.md</code> seul voit deux coûts agent contradictoires.</p>
+    <p>Les deux sont justes — <code>FINANCE §2.a</code> définit 766 € comme le coût employeur direct (736 € + 30 € de VoIP) et <b>843 € comme ce même coût avec une quote-part d'imprévus de 10 %</b>. Mais cette distinction n'existe que dans l'autre document, et la source unique de vérité tarifaire ne se lit plus seule.</p>
+    <div class="fix"><b>Correctif :</b> écrire « − 843 € (coût direct 766 € + quote-part imprévus 10 %, <code>FINANCE §2.a</code>) » à la première occurrence.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-2</span><span class="ti">« ~3 100 € pour une position tenue 6h-20h » suppose silencieusement le meilleur palier</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3.g point 10, l. 869-874</p>
-    <p>L'argument qui remplace le modèle C en MB : « au tarif MB helpdesk, une position tenue 6h-20h revient à <b>~3 100 €</b>, contre 5 000-6 500 € en France ». Le calcul est 2 ETP × <b>1 550 €</b> — soit le tarif <b>stratégique 9+</b>. Un partenaire au palier standard 1-4 paie 2 × 2 000 = <b>4 000 €</b>, au palier 5-8, 2 × 1 750 = <b>3 500 €</b>.</p>
-    <p>L'écart n'invalide pas l'argument (4 000 € reste sous 5 000-6 500 €) mais il le rétrécit nettement — et le chiffre est destiné à être dit en rendez-vous à un partenaire qui, par définition, démarre au palier 1-4.</p>
-    <div class="fix"><b>Correctif :</b> écrire la fourchette réelle « <b>3 100 à 4 000 €</b> selon le palier » — c'est de toute façon plus vendeur d'annoncer un prix qui baisse avec le volume.</div>
+    <div class="hd"><span class="id">B-2</span><span class="ti">920 € désigne deux grandeurs différentes, dans la même phrase</span><span class="b b-orange">À CORRIGER</span><span class="b b-orange">NOUVELLE</span></div>
+    <p class="loc">§3 — « Plancher : 920 € » (l. 344) vs « pour un socle fixe de 920 € » (l. 353)</p>
+    <p>Le même nombre porte deux sens sans rapport : le <b>plancher de prix par ETP</b> (766 € × 1,2, un prix unitaire à ne pas franchir) et le <b>socle de charges fixes mensuelles de l'entreprise</b> (<code>FINANCE §2.c</code>, un total). La coïncidence est fortuite — elle vient de deux calculs indépendants — mais les deux occurrences sont à neuf lignes d'écart.</p>
+    <p>Conséquence de lecture : « 1 157 € de contribution pour un socle fixe de 920 € » se lit spontanément comme une marge de 237 € au-dessus du plancher, alors que la phrase dit qu'<em>une seule position couvre toutes les charges fixes de l'entreprise</em>. C'est le meilleur argument de prospection du fichier, et il est illisible.</p>
+    <div class="fix"><b>Correctif :</b> écrire « pour un socle de charges fixes de 920 €/mois (sans rapport avec le plancher de prix du même montant, §3) ». Ou, mieux, mentionner le socle à 2 métiers (1 730 €) qui lève toute ambiguïté.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-3</span><span class="ti">§8 décrit encore la rate card en paliers « 1 / 3 / 5+ ETP »</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§8 — l. 1150 et l. 1156 (vs l. 1172)</p>
-    <p>Deux lignes du récapitulatif décrivent la grille abandonnée : « rate card partenaire <b>1/3/5+ ETP</b> » et « Palier 5+ ETP… en deçà, prix du palier <b>3 ETP</b> ». La grille en vigueur depuis le 2026-08-14 est <b>1-4 / 5-8 / 9+</b>, et le prix plancher s'achète à <b>9</b> positions, pas 5 — c'est même le cœur de la refonte, puisqu'un deal de 5 positions à 1 350 € sortait sous le point mort.</p>
-    <div class="fix"><b>Correctif :</b> dater ces deux lignes « (2026-06-12, superseded 2026-08-14) » — elles ont une valeur d'historique, pas d'instruction.</div>
+    <div class="hd"><span class="id">B-3</span><span class="ti">Le plancher est calé sur 766 € quand le point mort l'est sur 843 €</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3 — l. 315-316 et 344 vs l. 353</p>
+    <p>Question de doctrine, pas d'arithmétique. Le plancher absolu applique « +20 % » au coût direct <b>hors imprévus</b> (766 × 1,2 = 920 €), tandis que le point mort retient le coût <b>imprévus compris</b> (843 €). Avec la même prudence des deux côtés, le plancher serait <b>1 012 €</b>.</p>
+    <p>Pratiquement, l'écart ne mord sur aucun tarif du catalogue — le plus bas est à 1 120 € (modèle A) et le plus bas de la rate card à 1 350 €. Mais le plancher est <b>codé en dur dans <code>tools/deal-build.mjs</code></b>, où il sert de garde-fou automatique : un garde-fou calé sur un coût optimiste laisse passer un deal à 950 € qui, imprévus compris, dégage 107 € de marge.</p>
+    <div class="fix"><b>Correctif :</b> trancher explicitement lequel des deux coûts fait référence pour le plancher, et l'écrire. Si c'est 843 €, remonter le plancher à 1 012 € dans <code>deal-build.mjs</code>.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-4</span><span class="ti">§8 nomme encore le palier 3 « Centre de services »</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§8 — l. 1157</p>
-    <p>« Débordement · Poste dédié · <b>Centre de services</b>, identiques dans les deux simulateurs ». Ce nom a été abandonné le 2026-08-14 (« Non-stop ») puis remplacé le 2026-08-24 par <b>« Équipe managée »</b>. Le fichier porte donc trois noms pour un même palier, dont deux morts.</p>
-    <div class="fix"><b>Correctif :</b> aligner sur « Équipe managée » avec mention du renommage, comme le fait déjà la ligne 1164.</div>
+    <div class="hd"><span class="id">B-4</span><span class="ti">Le coût du mois pilote MB n'a jamais été recalculé après la refonte des paliers</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3.b l. 450-452 · repris en §7 l. 1156 et §8 l. 1272</p>
+    <p>L'argumentaire de suppression du mois pilote MB repose sur « sur un deal type de 3 positions helpdesk, la remise vaut <b>~2 625 €</b> ». Ce montant suppose 1 750 €/ETP, tarif du palier <b>5-8</b> ; un deal de <b>3</b> positions relève du palier <b>1-4</b>, à 2 000 €.</p>
+    <div class="calc">annoncé  : 3 × 1 750 ÷ 2 = 2 625 €  →  pilote à ≈ −1 075 €
+au palier: 3 × 2 000 ÷ 2 = 3 000 €  →  pilote à ≈ −1 400 €</div>
+    <p>La conclusion se renforce — la remise coûte encore plus cher que l'onboarding qu'elle compense. Mais le chiffre est faux depuis le 14 août, et il est répété à trois endroits.</p>
+    <div class="fix"><b>Correctif :</b> recalculer à 3 000 € / −1 400 € aux trois occurrences, ou préciser « au tarif 5-8 ETP alors en vigueur » pour garder la trace du raisonnement d'origine.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-5</span><span class="ti">Le mot proscrit « opérationnel » reste lisible tel quel dans deux sections</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§8 l. 1161 · §3.g point 6, l. 783</p>
-    <p>§5.a proscrit « opérationnel » pour désigner la première prise de tickets. Pourtant §8 conserve « ⇒ <b>« opérationnel en 3 à 4 semaines »</b> » (avec une note de renvoi, mais le libellé reste copiable tel quel), et §3.g.6 écrit « alors que <b>le public annonce « opérationnel en 3 à 4 semaines »</b> (§3.c) » — or §3.c ne l'annonce plus, il a été révisé le 2026-09-07.</p>
-    <div class="fix"><b>Correctif :</b> remplacer par « première prise de tickets sur vos outils en 3 à 4 semaines » dans les deux endroits. La formule barrée est déjà utilisée en §3.c — l'appliquer partout.</div>
+    <div class="hd"><span class="id">B-5</span><span class="ti">« ~3 100 € pour une position tenue 6h-20h » suppose silencieusement le meilleur palier</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3.g point 10, l. 975-977</p>
+    <p>L'argument qui remplace le modèle C en MB : « au tarif MB helpdesk, une position tenue 6h-20h revient à ~3 100 €, contre 5 000-6 500 € en France ». Le calcul est 2 ETP × <b>1 550 €</b>, soit le tarif <b>stratégique 9+</b>. Un partenaire au palier standard paie 2 × 2 000 = <b>4 000 €</b>.</p>
+    <p>La base en ETP est correcte et l'est restée après la correction du 14 septembre (70 h ÷ 35 = 2,00). C'est le palier qui est optimiste — et le chiffre est destiné à être dit en rendez-vous à un partenaire qui, par définition, démarre au palier 1-4.</p>
+    <div class="fix"><b>Correctif :</b> « <b>3 100 à 4 000 €</b> selon le palier ». C'est plus vendeur d'annoncer un prix qui baisse avec le volume.</div>
   </div>
 
   <div class="find" data-sev="corriger">
     <div class="hd"><span class="id">B-6</span><span class="ti">Deux sections raisonnent encore sur un plafond de 10 agents</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§4 l. 921 · §7 l. 1060-1061</p>
-    <p>§4 écarte le pilote gratuit bailleurs parce que les « volumes [sont] trop lourds pour <b>10 agents</b> » ; §7 justifie le −50 % par la protection d'une « capacité rare — contrainte n°1 <b>à 10 agents</b> ». Or depuis le 2026-08-14, <b>il n'y a plus aucun plafond d'effectif</b> : on embauche sur positions fermes facturables, et §3.e prévient explicitement de « ne jamais opposer un plafond de capacité à un partenaire ».</p>
-    <p>La contrainte réelle a changé de nature : c'est le <b>rythme de recrutement et de formation</b>, pas un nombre de têtes.</p>
-    <div class="fix"><b>Correctif :</b> reformuler les deux motifs sur le rythme de recrutement (<code>FINANCE §5</code>) et la trésorerie, pas sur un effectif.</div>
+    <p class="loc">§4 l. 1027 · §7 l. 1167 · et « la capacité de la phase 1 » §3.c l. 611</p>
+    <p>§4 écarte le pilote gratuit bailleurs parce que les « volumes [sont] trop lourds pour <b>10 agents</b> » ; §7 justifie le −50 % par la protection d'une « capacité rare — contrainte n°1 <b>à 10 agents</b> » ; §3.c parle de « toute la capacité de la <b>phase 1</b> ». Or depuis le 14 août <b>il n'y a plus aucun plafond d'effectif</b>, et §3.e prévient explicitement de « ne jamais opposer un plafond de capacité à un partenaire ».</p>
+    <div class="fix"><b>Correctif :</b> reformuler les trois motifs sur le <b>rythme de recrutement et de formation</b> (<code>FINANCE §5</code>) et la trésorerie, jamais sur un effectif.</div>
   </div>
 
   <div class="find" data-sev="corriger">
     <div class="hd"><span class="id">B-7</span><span class="ti">§2 renvoie à une offre dormante sans le signaler</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§2 — l. 276-280</p>
-    <p>« Les très petits cabinets sont adressés par l'<b>offre de lancement (−50 % le 1<sup>er</sup> mois)</b> plutôt qu'un prix plancher ». Cette offre est dormante depuis le gel (§0.a). §1, §3 et §7 portent tous un bandeau de rappel ; §2 est la seule section « offre » à ne pas en avoir, alors que c'est précisément une décision <em>fondée sur</em> l'existence du −50 %.</p>
-    <div class="fix"><b>Correctif :</b> ajouter le renvoi « (dormante depuis le 2026-09-07, §0.a — vaut pour un entrant) ». La décision de ne pas créer de Starter, elle, reste valide.</div>
+    <p class="loc">§2 — l. 288-292</p>
+    <p>« Les très petits cabinets sont adressés par l'<b>offre de lancement (−50 % le 1<sup>er</sup> mois)</b> plutôt qu'un prix plancher. » Cette offre est dormante depuis le gel. §1, §3 et §7 portent tous un bandeau ; §2 est la seule section « offre » à ne pas en avoir, alors que c'est précisément une décision <em>fondée sur</em> l'existence du −50 %.</p>
+    <div class="fix"><b>Correctif :</b> ajouter « (dormante depuis le 2026-09-07, §0.a — vaut pour un entrant) ». La décision de ne pas créer de Starter reste valide.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-8</span><span class="ti">Dette de nommage : la constante s'appelle toujours NONSTOP_MULT</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3.f l. 691 · <code>assets/site.js</code></p>
-    <p>Le multiplicateur d'encadrement est nommé <code>NONSTOP_MULT</code>, d'après « Non-stop » — nom explicitement abandonné le 2026-08-24 au motif qu'il « promettait un résultat qu'on ne tient pas au sens où le prospect l'entend ». La constante survit au nom, dans le code comme dans le fichier de prix, et la plaquette de closing s'appelle encore <code>PLAQUETTE-DEDIE-VS-NONSTOP.pptx</code>.</p>
-    <div class="fix"><b>Correctif :</b> renommer en <code>ENCADREMENT_MULT</code> dans <code>assets/site.js</code> et §3.f/§3.g.1. Sans impact client, mais c'est le genre de nom qui ressurgit dans une infobulle.</div>
+    <div class="hd"><span class="id">B-8</span><span class="ti">Le mot proscrit « opérationnel » subsiste en §3.g.6</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3.g point 6, l. 889-890</p>
+    <p>La correction du 14 septembre a nettoyé §8. Mais §3.g.6 écrit toujours « alors que <b>le public annonce « opérationnel en 3 à 4 semaines »</b> (§3.c) » — or §3.c ne l'annonce plus depuis le 7 septembre, et §5.a proscrit le mot.</p>
+    <p>Deuxième couche : l'écart 3-4 sem. / 6 sem. y est encore présenté comme une prudence rédactionnelle (« le chiffre le plus prudent est celui qu'on écrit dans un document contractuel »). Depuis §5.a, ce sont <b>deux valeurs d'une même doctrine</b> — J1 en direct vs J1 en marque blanche — pas un écart assumé entre deux documents.</p>
+    <div class="fix"><b>Correctif :</b> « alors que le public annonce une <b>première prise de tickets en 3 à 4 semaines</b> en direct (§3.c, §5.a) ». L'argument devient plus fort : ce n'est plus « on est prudent par écrit », c'est « un déploiement partenaire ajoute transition et shadowing ».</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-9</span><span class="ti">§3.g.6 présente l'écart 3-4 sem. / 6 sem. comme « public vs marque blanche » — le cadrage a changé</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3.g point 6, l. 783-787</p>
-    <p>L'écart y est justifié comme une prudence rédactionnelle (« le chiffre le plus prudent est celui qu'on écrit dans un document contractuel »). Depuis §5.a, ce n'est plus un arbitrage de prudence : <b>3-4 sem. est le jalon J1 en direct, ~6 sem. le jalon J1 en marque blanche</b>. Ce sont deux valeurs d'une même doctrine, pas un écart assumé entre deux documents.</p>
-    <div class="fix"><b>Correctif :</b> réécrire en renvoyant à §5.a. L'argument devient plus fort : ce n'est plus « on est prudent par écrit », c'est « le déploiement partenaire ajoute transition et shadowing ».</div>
+    <div class="hd"><span class="id">B-9</span><span class="ti">Le « ~−40 % » du 24·7 n'a pas été revu après la correction d'amplitude</span><span class="b b-orange">À CORRIGER</span><span class="b b-orange">NOUVELLE</span></div>
+    <p class="loc">§3.c — l. 612-613</p>
+    <p>« Le prix, lui, est sain (<b>~−40 %</b> vs une équipe interne 24·7 à 17,5-21 k€/mois) : c'est la livrabilité qui commande le retrait, pas la marge. » Ce pourcentage a été écrit quand le 24·7 valait ×3,73. Il vaut désormais ×4,80.</p>
+    <div class="calc">ancien : 3,73 × 2 500 =  9 325 €  vs 17 500-21 000  →  −47 % à −56 %
+actuel : 4,80 × 2 500 = 12 000 €  vs 17 500-21 000  →  −31 % à −43 %</div>
+    <p>Le « ~−40 % » n'est plus atteint qu'au haut de la fourchette du benchmark. L'argument tient encore — le prix reste sain — mais de dix points moins qu'annoncé.</p>
+    <div class="fix"><b>Correctif :</b> « ~−31 à −43 % ». Et noter que cela reste compatible avec « jusqu'à −50 % », qui borne par le haut.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-10</span><span class="ti">L'action « reformuler la copy contrats 12 à 36 mois » n'a ni date ni suivi</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3 — l. 458-460</p>
-    <p>« ⚠️ La copy dit « contrats 12 à 36 mois » → reformuler en « dès 3 mois, puis 12 mois ». » Aucune date, aucun fichier cible, aucune trace de clôture. Les autres actions du fichier nomment au moins le document à corriger. Impossible de savoir si elle est faite.</p>
-    <div class="fix"><b>Correctif :</b> lister les fichiers porteurs du libellé et clore l'action, ou la basculer dans une liste d'actions ouvertes datées (cf. §7 du présent audit).</div>
+    <div class="hd"><span class="id">B-10</span><span class="ti">Les mesures d'économie de §5.b datent d'avant la correction d'amplitude</span><span class="b b-orange">À CORRIGER</span><span class="b b-orange">NOUVELLE</span></div>
+    <p class="loc">§5.b — l. 1108-1121</p>
+    <p>Le claim « jusqu'à −50 % » est étayé par des mesures reprises d'<code>AUDIT-OFFRE-PRIX-SIMULATEURS.md §C</code> : −32 % (helpdesk) et −38 % (SaaS) affichés par le simulateur, −31 % à −48 % selon le benchmark. Toutes ont été calculées <b>avant</b> que les devis en amplitude étendue ne montent de 28,6 %.</p>
+    <p>Le claim lui-même n'est pas menacé : « jusqu'à » borne par le haut, donc une économie plus faible ne le met pas en défaut. Mais §5.b argumente que la borne est « <b>au-dessus du cas médian, donc vendeuse</b> » — et c'est cette affirmation-là qui n'a pas été revérifiée. Un scénario en 8h-20h est désormais nettement moins économique qu'au moment de la mesure.</p>
+    <div class="fix"><b>Correctif :</b> relancer les mesures du simulateur sur la base 35 h et mettre à jour les valeurs citées. Si le cas médian descend trop, c'est l'argumentaire de §5.b qu'il faut reformuler, pas le claim.</div>
   </div>
 
   <div class="find" data-sev="corriger">
-    <div class="hd"><span class="id">B-11</span><span class="ti">Le gain « ~+2 450 €/mois à 9 positions » n'est pas reconstituable depuis le fichier</span><span class="b b-orange">À CORRIGER</span></div>
-    <p class="loc">§3 — l. 333-337</p>
-    <p>La justification du palier 9+ annonce « à 9 positions il dégage <b>~+2 450 €/mois</b> ». Avec les seules données de <code>PRICING.md</code> — 9 × 1 350 € de CA, 9 × 766 € de coût direct, 2 managers à 736 €, burn 110-155 € — on obtient <b>~+3 600 €</b>. L'écart de ~1 150 € vient d'hypothèses qui ne sont que dans <code>AUDIT-FINANCE-PREVISIONNEL.md §A</code>.</p>
-    <p>Ce n'est pas nécessairement une erreur, mais c'est le seul chiffre du fichier qu'on ne peut pas vérifier sans ouvrir un autre document — dans une source de vérité, c'est un problème en soi.</p>
-    <div class="fix"><b>Correctif :</b> ajouter la ligne de coûts retenue entre parenthèses, ou pointer la sous-section exacte de l'audit finance.</div>
+    <div class="hd"><span class="id">B-11</span><span class="ti">Dette de nommage : la constante s'appelle toujours NONSTOP_MULT</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3.f l. 797 · §3.g.1 l. 842 · <code>assets/site.js</code> · <code>tools/plaquette-dedie-vs-nonstop.js</code></p>
+    <p>Le multiplicateur d'encadrement est nommé d'après « Non-stop », nom abandonné le 24 août au motif qu'il « promettait un résultat qu'on ne tient pas au sens où le prospect l'entend ». La constante survit au nom, dans le code comme dans le fichier de prix, et la plaquette de closing s'appelle encore <code>PLAQUETTE-DEDIE-VS-NONSTOP.pptx</code> — elle vient pourtant d'être régénérée le 15 septembre.</p>
+    <div class="fix"><b>Correctif :</b> renommer en <code>ENCADREMENT_MULT</code>. Sans impact client, mais c'est le genre de nom qui ressurgit dans une infobulle.</div>
+  </div>
+
+  <div class="find" data-sev="corriger">
+    <div class="hd"><span class="id">B-12</span><span class="ti">L'action « reformuler la copy contrats 12 à 36 mois » n'a ni date ni suivi</span><span class="b b-orange">À CORRIGER</span></div>
+    <p class="loc">§3 — l. 512</p>
+    <p>« ⚠️ La copy dit « contrats 12 à 36 mois » → reformuler en « dès 3 mois, puis 12 mois ». » Aucune date, aucun fichier cible, aucune trace de clôture. Les autres actions du fichier nomment au moins le document à corriger.</p>
+    <div class="fix"><b>Correctif :</b> lister les fichiers porteurs du libellé et clore l'action, ou la basculer dans une liste d'actions ouvertes datées.</div>
   </div>
 
   <!-- À SURVEILLER -->
   <div class="find" data-sev="surveiller">
     <div class="hd"><span class="id">C-1</span><span class="ti">§0.a annonce « quatre éléments dormants », le tableau en contient cinq</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§0.a — l. 145-154</p>
-    <p>La cinquième ligne est la grille médicale publique, dont le statut est « <b>maintenue et affichée</b> » — l'inverse de dormant. Elle est dans le tableau des dormants pour la commodité de la lecture, mais un lecteur rapide compte cinq gels.</p>
-    <div class="fix"><b>Correctif :</b> sortir la ligne médicale dans un encadré « maintenu » distinct, ou titrer le tableau « Conséquences sur le catalogue » sans annoncer de nombre.</div>
+    <p class="loc">§0.a — l. 156-165</p>
+    <p>La cinquième ligne est la grille médicale publique, dont le statut est « <b>maintenue et affichée</b> » — l'inverse de dormant. Un lecteur rapide compte cinq gels.</p>
+    <div class="fix"><b>Correctif :</b> sortir la ligne médicale dans un encadré « maintenu » distinct, ou titrer sans annoncer de nombre.</div>
   </div>
 
   <div class="find" data-sev="surveiller">
-    <div class="hd"><span class="id">C-2</span><span class="ti">Le claim périmé reste cité dans deux passages d'analyse, sans marqueur d'archive</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§1 l. 206 · §3 « Tier Priority » l. 480</p>
-    <p>Les deux passages citent « claim public −40 à −60 % » à l'intérieur d'un raisonnement daté — ce qui est légitime : le fichier pose lui-même qu'« on ne réécrit pas un document d'analyse a posteriori ». Le risque est le copier-coller : rien ne signale visuellement que ce chiffre ne doit plus sortir.</p>
-    <div class="fix"><b>Correctif :</b> suffixer « (claim alors en vigueur ; « jusqu'à −50 % » depuis le 2026-09-07) ». À distinguer nettement de <b>A-1</b>, qui est, lui, à corriger sur le fond.</div>
-  </div>
-
-  <div class="find" data-sev="surveiller">
-    <div class="hd"><span class="id">C-3</span><span class="ti">La bande d'estimation est introduite à ±5 % puis portée à ±9 % dans la même phrase</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§3.d — l. 590-593</p>
-    <p>Le bullet s'ouvre sur « La fourchette d'estimation (<b>±5 %</b>) porte désormais le profil de l'agent » et se termine sur « <b>bande portée de ±5 % à ±9 %</b> ». La valeur en vigueur est ±9 % (confirmée en §3 sous la rate card et en §8), mais le libellé de tête affiche l'ancienne.</p>
+    <div class="hd"><span class="id">C-2</span><span class="ti">La bande d'estimation est introduite à ±5 % puis portée à ±9 % dans la même phrase</span><span class="b b-gris">À SURVEILLER</span></div>
+    <p class="loc">§3.d — l. 694-697</p>
+    <p>Le bullet s'ouvre sur « La fourchette d'estimation (<b>±5 %</b>) porte désormais le profil de l'agent » et se termine sur « bande portée de ±5 % à <b>±9 %</b> ». La valeur en vigueur est ±9 %, mais le libellé de tête affiche l'ancienne.</p>
     <div class="fix"><b>Correctif :</b> ouvrir le bullet sur ±9 % et renvoyer l'historique en fin de phrase.</div>
   </div>
 
   <div class="find" data-sev="surveiller">
-    <div class="hd"><span class="id">C-4</span><span class="ti">La granularité des priorités de niches diffère de CLAUDE.md</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§3 titre, l. 284 · vs <code>CLAUDE.md</code></p>
-    <p><code>PRICING.md</code> regroupe « Support N1 SaaS &amp; Helpdesk IT (<b>priorité 1</b>) », alors que <code>CLAUDE.md</code> les sépare depuis le 2026-08-28 : <b>helpdesk IT ESN/MSP n°1</b>, <b>support applicatif SaaS n°2</b> — avec un motif documenté (base de cibles 4× plus fournie côté ESN/MSP).</p>
-    <div class="fix"><b>Correctif :</b> refléter la séparation dans le titre de §3. Elle commande l'ordre de travail de la prospection, pas seulement l'étiquetage.</div>
+    <div class="hd"><span class="id">C-3</span><span class="ti">Le titre du §3 regroupe deux niches que CLAUDE.md sépare</span><span class="b b-gris">À SURVEILLER</span></div>
+    <p class="loc">§3 titre, l. 296 — corrigé en §8 mais pas ici</p>
+    <p>Le §8 a été aligné le 14 septembre sur l'ordre de <code>CLAUDE.md</code> (helpdesk ESN/MSP n°1, support SaaS n°2). Le titre du §3 porte toujours « Support N1 SaaS &amp; Helpdesk IT (<b>priorité 1</b>) », qui regroupe les deux. La séparation commande l'ordre de travail de la prospection.</p>
+    <div class="fix"><b>Correctif :</b> « Helpdesk IT N1 (priorité 1) &amp; Support N1 SaaS (priorité 2) ».</div>
+  </div>
+
+  <div class="find" data-sev="surveiller">
+    <div class="hd"><span class="id">C-4</span><span class="ti">Deux plages voisines, deux multiplicateurs : 8h-20h et 6h-20h</span><span class="b b-gris">À SURVEILLER</span><span class="b b-gris">NOUVELLE</span></div>
+    <p class="loc">§3.c (60 h → ×1,71) vs §3.d et §3.g.10 (70 h → ×2,00)</p>
+    <p>Depuis que la règle est unique (heures ÷ 35), les deux valeurs sont justes et se déduisent l'une de l'autre. Mais le fichier emploie « amplitude étendue » pour 8h-20h et « couverture 6h-20h » pour le palier haut, sans jamais rappeler que ce sont <b>deux fenêtres différentes</b> — 60 h et 70 h, à deux heures près par jour.</p>
+    <p>Le risque est d'appliquer ×1,71 à un besoin 6h-20h et de sous-facturer de 17 %.</p>
+    <div class="fix"><b>Correctif :</b> ajouter une ligne « Étendu 6h-20h — 70 h/sem — ×2,00 » au tableau d'amplitude de §3.c. La règle la produit déjà ; l'écrire évite l'erreur.</div>
   </div>
 
   <div class="find" data-sev="surveiller">
     <div class="hd"><span class="id">C-5</span><span class="ti">La grille d'affichage §9 ne porte aucune trace du gel</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§9 — l. 1179-1194</p>
-    <p>Les deux lignes « direct » (62 % et 59 %, décision « estimation + capture lead ») sont présentées comme pleinement actives. Depuis le gel, elles ne régissent plus que le traitement d'un entrant — le dispositif de capture lead n'est plus alimenté par de la prospection.</p>
-    <div class="fix"><b>Correctif :</b> une note de bas de tableau suffit : « lignes direct — maintenues pour l'entrant, non prospectées (§0.a) ».</div>
+    <p class="loc">§9 — l. 1296-1311</p>
+    <p>Les deux lignes « direct » (62 % et 59 %, décision « estimation + capture lead ») sont présentées comme pleinement actives. Depuis le gel, elles ne régissent plus que le traitement d'un entrant.</p>
+    <div class="fix"><b>Correctif :</b> une note de bas de tableau : « lignes direct — maintenues pour l'entrant, non prospectées (§0.a) ».</div>
   </div>
 
   <div class="find" data-sev="surveiller">
     <div class="hd"><span class="id">C-6</span><span class="ti">Le benchmark téléconseiller CRC n'est rattaché à aucune niche active</span><span class="b b-gris">À SURVEILLER</span></div>
-    <p class="loc">§5 l. 936 · §4</p>
-    <p>La ligne « Téléconseiller CDI (CRC) — 38 à 46 k€/an » sert la niche « relation client de toutes sortes », repoussée à un futur non déterminé. Elle reste dans le tableau des benchmarks au même niveau que les deux métiers actifs, sans distinction visuelle.</p>
+    <p class="loc">§5 · §4</p>
+    <p>La ligne « Téléconseiller CDI (CRC) — 38 à 46 k€/an » sert la niche « relation client de toutes sortes », repoussée à un futur non déterminé. Elle reste au même niveau que les deux métiers actifs, sans distinction visuelle.</p>
     <div class="fix"><b>Correctif :</b> la marquer « niche non active » pour éviter qu'elle serve d'ancre dans un argumentaire IT ou médical.</div>
   </div>
 
@@ -685,37 +801,41 @@
 
 <!-- ============ CONTRÔLES ============ -->
 <section id="controles">
-  <h2><span class="num">7</span>Contrôles arithmétiques</h2>
-  <p class="lead">Chaque chiffrage interne du fichier a été recalculé. Les deux échecs sont les anomalies <b>B-1</b> et <b>B-2</b> ; le point non vérifiable est <b>B-11</b>.</p>
+  <h2><span class="num">8</span>Contrôles arithmétiques</h2>
+  <p class="lead">Vingt chiffrages recalculés sur les bases en vigueur au 15 septembre. Les deux échecs sont <b>A-1/A-2</b> et <b>B-4</b> ; <b>B-5</b> et <b>B-9</b> sont justes arithmétiquement mais reposent sur une hypothèse implicite.</p>
 
   <div class="tw">
     <table class="compact">
       <thead><tr><th>Contrôle</th><th>Réf.</th><th>Vérification</th><th>Résultat</th></tr></thead>
       <tbody>
-        <tr><td>Plancher 920 € respecté par toute la rate card</td><td>§3</td><td>min(1 350 ; 1 550) &gt; 920</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Modèle A au-dessus du plancher et du coût direct</td><td>§3.g.1</td><td>400 × 2,80 = 1 120 &gt; 920 &gt; 766</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Calage <code>NONSTOP_MULT</code> — helpdesk</td><td>§3.f</td><td>4 × 2 500 × 0,95 × 1,15 = <b>10 925</b> ≈ « dès 11 000 »</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Calage <code>NONSTOP_MULT</code> — support SaaS</td><td>§3.f</td><td>4 × 2 300 × 0,95 × 1,15 = <b>10 051</b> ≈ « dès 10 000 »</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Modèle C de la fiche — SaaS et helpdesk</td><td>§3.g.1</td><td>4 × 1 700 × 1,15 = <b>7 820</b> · 4 × 2 000 × 1,15 = <b>9 200</b></td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Imputation du dépôt d'activation</td><td>§3.a</td><td>300 €/position × 3 mois = 900 € · plafond 2 700 € = 3 positions</td><td><span class="ok-check">✓</span> cohérent</td></tr>
-        <tr><td>Dégressif « clients fondateurs »</td><td>§7</td><td>(350−175)+(350−245)+(350−297,50) = <b>332,50 €</b> · ×5 = <b>1 662,50 €</b></td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Recadrage ROI médical — coût/jour</td><td>§1</td><td>350 ÷ ~22 j ouvrés = <b>15,9 €</b> ≈ 16 €</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Valeur implicite d'un RDV récupéré</td><td>§1</td><td>350 ÷ 3 = 116,7 · 350 ÷ 2 = 175 ⇒ <b>117-175 €</b></td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Alerte « ne jamais diviser par appel »</td><td>§1</td><td>350 ÷ 250 = <b>1,40 €</b> = haut exact de la grille de gros §1.b</td><td><span class="ok-check">✓</span> alerte fondée</td></tr>
-        <tr><td>Multiplicateurs d'amplitude</td><td>§3.c</td><td>60÷45 = 1,33 · 90÷45 = 2,00 · 168÷45 = <b>3,73</b></td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Simultanéité en rotation (correction 2026-08-24)</td><td>§3.f</td><td>4 × 35 = 140 h ÷ 60 h = <b>2,33 agents</b> présents, pas 4</td><td><span class="ok-check">✓</span> correction justifiée</td></tr>
-        <tr><td>Perte de capacité sur absence en Équipe managée</td><td>§3.e</td><td>1 agent sur 4 = <b>25 %</b> · 140 h → 105 h</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Couverture 6h-20h en ETP</td><td>§3.g.10</td><td>70 h/sem ÷ 35 h = <b>2 ETP</b> par position</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr><td>Plafond du manager comme backup</td><td>§3.e</td><td>8 agents × ~13 % d'absence ≈ <b>1 ETP</b> à couvrir</td><td><span class="ok-check">✓</span> passé</td></tr>
-        <tr style="background:var(--rouge-bg)"><td><b>Coût du mois pilote MB, 3 positions</b></td><td>§3.b</td><td>annoncé 2 625 € (tarif 1 750 €) · au palier 1-4 : 3 × 2 000 ÷ 2 = <b>3 000 €</b></td><td><span class="ko-check">✗</span> <b>B-1</b></td></tr>
-        <tr style="background:var(--rouge-bg)"><td><b>Position 6h-20h au tarif MB helpdesk</b></td><td>§3.g.10</td><td>annoncé ~3 100 € (tarif 9+) · au palier 1-4 : 2 × 2 000 = <b>4 000 €</b></td><td><span class="ko-check">✗</span> <b>B-2</b></td></tr>
-        <tr style="background:var(--orange-bg)"><td><b>Marge à 9 positions</b></td><td>§3</td><td>annoncé +2 450 € · reconstitué depuis le fichier : <b>~+3 600 €</b></td><td><span class="b b-orange">non vérifiable</span> <b>B-11</b></td></tr>
+        <tr><td><b>Règle unique d'amplitude</b> — heures ÷ 35</td><td>§3.c</td><td>60÷35 = 1,71 · 90÷35 = 2,57 · 168÷35 = 4,80 · 70÷35 = 2,00</td><td><span class="ok-check">✓</span> les 4 lignes</td></tr>
+        <tr style="background:var(--vert-bg)"><td><b>Le panier 24·7 valide rétrospectivement la base 35 h</b></td><td>§3.c</td><td>« ~12 000 €/mois » écrit en août = <b>4,80 × 2 500 €</b> exactement, pas 3,73 × 2 500 = 9 325 €</td><td><span class="ok-check">✓</span> preuve indépendante</td></tr>
+        <tr><td>Recollement avec §3.e et §3.g.10</td><td>§3.c</td><td>4 × 35 = 140 h ✓ · 6h-20h ⇒ 2 ETP ✓ · 4,8 ETP pour le 24·7 ✓</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Dépôt proportionnel, à tout volume</td><td>§3.a</td><td>900 €/position versés = 3 × 300 €/position imputés</td><td><span class="ok-check">✓</span> cohérent</td></tr>
+        <tr><td>Démonstration de l'ancien plafond</td><td>§3.a</td><td>9 positions : 2 700 € encaissés vs 8 100 € imputés = <b>−5 400 €</b></td><td><span class="ok-check">✓</span> exact</td></tr>
+        <tr><td>Onboarding vs dépôt</td><td>§3.a</td><td>400 € socle + 400 €/position &lt; 900 €/position à tout volume</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Point mort — helpdesk 1-4</td><td>§3</td><td>2 000 − 843 = 1 157 € &gt; socle 920 € ⇒ <b>1 ETP</b></td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Point mort — support 1-4</td><td>§3</td><td>1 700 − 843 = 857 € ; 2 × 857 = 1 714 € &gt; 920 € ⇒ <b>2 ETP</b></td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Plancher respecté par toute la rate card</td><td>§3</td><td>min(1 350 ; 1 550) &gt; 920 €</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Modèle A au-dessus du plancher et du coût</td><td>§3.g.1</td><td>400 × 2,80 = 1 120 € &gt; 920 € &gt; 843 € &gt; 766 €</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Coût de 4 positions simultanées en 6h-20h</td><td>§3.d</td><td>8 agents × 2 500 × 0,95 × 1,15 = <b>21 850 €</b></td><td><span class="ok-check">✓</span> exact</td></tr>
+        <tr><td>Têtes en dédié pour 4 positions 8h-20h</td><td>§3.f</td><td>4 × 1,71 = <b>6,86</b> (corrigé depuis 5,33)</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Calage <code>NONSTOP_MULT</code></td><td>§3.f</td><td>4 × 2 500 × 0,95 × 1,15 = 10 925 ≈ « dès 11 000 » · 4 × 2 300 × … = 10 051 ≈ « dès 10 000 »</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Modèle C de la fiche</td><td>§3.g.1</td><td>4 × 1 700 × 1,15 = 7 820 · 4 × 2 000 × 1,15 = 9 200</td><td><span class="ok-check">✓</span> <span class="b b-orange">unité contestée (A-3)</span></td></tr>
+        <tr><td>Dégressif « clients fondateurs »</td><td>§7</td><td>175 + 105 + 52,50 = <b>332,50 €</b> · ×5 = <b>1 662,50 €</b></td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Recadrage ROI médical</td><td>§1</td><td>350 ÷ ~22 j = 15,9 € ≈ 16 € · 350÷3 à 350÷2 = <b>117-175 €</b></td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr><td>Alerte « ne jamais diviser par appel »</td><td>§1</td><td>350 ÷ 250 = <b>1,40 €</b> = haut exact de la grille de gros</td><td><span class="ok-check">✓</span> alerte fondée</td></tr>
+        <tr><td>Perte de capacité sur absence</td><td>§3.e</td><td>1 agent sur 4 = 25 % · 140 h → 105 h</td><td><span class="ok-check">✓</span> passé</td></tr>
+        <tr style="background:var(--rouge-bg)"><td><b>« 5 positions à 1 350 € sous le point mort »</b></td><td>§3</td><td>5 × 507 = 2 535 € vs socle 920 € (ou 1 730 €) — <b>au-dessus dans les deux cas</b></td><td><span class="ko-check">✗</span> <b>A-1</b></td></tr>
+        <tr style="background:var(--rouge-bg)"><td><b>Gain à 9 positions</b></td><td>§3</td><td>annoncé +2 450 € (= socle 2 114 € supprimé) · réel : 4 563 − 920 = <b>+3 643 €</b></td><td><span class="ko-check">✗</span> <b>A-2</b></td></tr>
+        <tr style="background:var(--rouge-bg)"><td><b>Coût du mois pilote MB, 3 positions</b></td><td>§3.b</td><td>annoncé 2 625 € (tarif 5-8) · au palier 1-4 : <b>3 000 €</b></td><td><span class="ko-check">✗</span> <b>B-4</b></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="co ok">
-    <p><strong>Lecture d'ensemble.</strong> Sur 15 chiffrages vérifiables, 14 sont exacts au centime près. Les deux erreurs partagent la même cause — <strong>un chiffrage daté du 2026-08-03 ou antérieur, jamais recalculé après la refonte de la rate card du 2026-08-14</strong> — et vont toutes deux dans le sens d'une <em>sous-estimation</em> du montant réel. Aucune n'inverse la conclusion qu'elle sert.</p>
+    <p><strong>Lecture d'ensemble.</strong> 18 contrôles sur 20 passent. La correction d'amplitude est la plus solide du lot : elle se vérifie sur les quatre lignes du tableau, recolle avec trois autres sections, et le « panier à ~12 000 € » écrit en août la confirme rétrospectivement — la bonne base était déjà employée ailleurs dans le document, c'est le tableau qui était faux.</p>
+    <p>Les trois échecs partagent une seule cause : <strong>une conclusion laissée en place après que sa base de calcul a changé</strong>. Deux viennent de la correction du point mort du 14 septembre, un de la refonte de la rate card du 14 août.</p>
   </div>
 </section>
 
@@ -723,8 +843,7 @@
 
 <!-- ============ ACTIONS ============ -->
 <section id="actions">
-  <h2><span class="num">8</span>Actions ouvertes dans le fichier</h2>
-  <p class="lead">Quatre chantiers sont explicitement laissés en suspens par <code>PRICING.md</code> lui-même. Aucun n'a de date cible.</p>
+  <h2><span class="num">9</span>Actions ouvertes</h2>
 
   <div class="tw">
     <table class="compact">
@@ -733,8 +852,8 @@
         <tr>
           <td><b>Régénérer les 3 espaces partenaires chiffrés</b><br><code>node tools/espace-client-build.mjs &lt;espace&gt; "&lt;mdp&gt;" --verify</code></td>
           <td>§3.g</td>
-          <td>Nécessite les mots de passe — hors de portée d'un commit</td>
-          <td><b>Les espaces partenaires servent encore l'ancien contenu.</b> Pour le médical, la source est déjà corrigée (6 semaines, continuité du pool) mais la page publiée ne l'est pas</td>
+          <td>Nécessite les mots de passe</td>
+          <td><b>Les espaces servent l'ancien contenu.</b> Les sources ont été touchées par la correction du dépôt — l'écart s'est creusé, pas réduit</td>
         </tr>
         <tr>
           <td>Auditer les sources <code>support</code> et <code>helpdesk</code> des espaces</td>
@@ -743,28 +862,46 @@
           <td>Écarts inconnus sur les deux niches prioritaires</td>
         </tr>
         <tr>
+          <td><b>Relancer les mesures du simulateur sur la base 35 h</b></td>
+          <td>§5.b</td>
+          <td>Conséquence non suivie de la correction du 14/09</td>
+          <td>L'argumentaire du claim « jusqu'à −50 % » s'appuie sur des mesures périmées (<b>B-10</b>)</td>
+        </tr>
+        <tr>
+          <td><b>Renseigner le coût de sortie réellement payé</b> sur le licenciement du poste commercial</td>
+          <td><code>FINANCE §7.1/§8</code></td>
+          <td>Montant dans aucun document du dépôt</td>
+          <td>Le risque n°1 du modèle salarié s'est matérialisé une fois et n'a pas de base de provision chiffrée</td>
+        </tr>
+        <tr>
+          <td><b>Recalculer les trajectoires de trésorerie</b> et la provision de 30 k€</td>
+          <td><code>FINANCE §5/§6</code></td>
+          <td>Base déclarée caduque depuis le 2026-08-28</td>
+          <td>Le chiffre le plus lourd du prévisionnel est explicitement non opposable en attendant</td>
+        </tr>
+        <tr>
           <td>Trancher l'outil de facturation</td>
           <td>§6</td>
-          <td>Décision reportée, comparatif fait (Stripe / GoCardless / Pennylane)</td>
-          <td>Aucun encaissement récurrent outillé. Critère posé : encaissement automatisé → Stripe ou GoCardless ; compta FR intégrée → Pennylane + PSP</td>
+          <td>Décision reportée, comparatif fait</td>
+          <td>Aucun encaissement récurrent outillé</td>
         </tr>
         <tr>
           <td>Reformuler « contrats 12 à 36 mois » dans la copy</td>
           <td>§3</td>
-          <td>Ni date ni fichier cible (cf. <b>B-10</b>)</td>
-          <td>La copy annonce un engagement 4× plus long que la doctrine (« dès 3 mois »)</td>
+          <td>Ni date ni fichier cible (<b>B-12</b>)</td>
+          <td>La copy annonce un engagement 4× plus long que la doctrine</td>
         </tr>
         <tr>
           <td>Inscrire le financement du kit d'autonomie au contrat de travail et au PCA</td>
           <td>§10</td>
-          <td>Signalé « à écrire noir sur blanc », non tracé comme fait</td>
-          <td>Une promesse faite aux partenaires en avant-vente sans financement identifiable</td>
+          <td>Signalé, non tracé comme fait</td>
+          <td>Promesse faite aux partenaires sans financement identifiable</td>
         </tr>
         <tr>
           <td>Supprimer la base Airtable « Prospection Salverys IT » fusionnée</td>
           <td><code>CLAUDE.md</code></td>
-          <td>Fusion faite le 2026-09-02, suppression non confirmée</td>
-          <td>Risque de double saisie — exactement ce qu'on reproche à Excel</td>
+          <td>Fusion faite le 2026-09-02</td>
+          <td>Risque de double saisie</td>
         </tr>
       </tbody>
     </table>
@@ -775,28 +912,32 @@
 
 <!-- ============ RÈGLES ============ -->
 <section id="regles">
-  <h2><span class="num">9</span>Les interdits — à connaître par cœur</h2>
-  <p class="lead">Le fichier pose une douzaine de règles absolues. Elles sont dispersées ; les voici rassemblées, parce que ce sont elles qui coûtent cher quand on les enfreint en rendez-vous.</p>
+  <h2><span class="num">10</span>Les interdits</h2>
+  <p class="lead">Rassemblés depuis tout le fichier. Trois sont nouveaux depuis le 14 septembre.</p>
 
   <div class="tw">
     <table class="compact">
       <thead><tr><th style="width:44%">Interdit</th><th>Réf.</th><th>Pourquoi</th></tr></thead>
       <tbody>
-        <tr><td><b>Ne jamais publier un prix de marque blanche</b>, quelle que soit la niche</td><td>§0, §9</td><td>Le prix de gros est l'input de marge du revendeur — le publier arme ses concurrents et devient l'ancre de négociation de tous les partenaires</td></tr>
-        <tr><td><b>Ne jamais réécrire le claim d'économie en fourchette basse-haute</b></td><td>§5.b</td><td>C'est la fourchette qui obligeait à défendre un plafond (−60 %) atteignable dans aucun scénario</td></tr>
-        <tr><td><b>Ne jamais dire « opérationnel »</b> pour la première prise de tickets</td><td>§3.c, §5.a</td><td>Le mot promet l'autonomie complète (J2) en livrant la première connexion (J1)</td></tr>
-        <tr><td><b>Ne jamais diviser le forfait médical au-delà du jour ouvré</b></td><td>§1</td><td>350 ÷ 250 = 1,40 €/appel, soit exactement le prix de revente MB — et ça replace le prospect en logique à l'acte</td></tr>
-        <tr><td><b>Ne jamais dire à un prospect que Salverys ne fait pas de direct</b></td><td>§0.a</td><td>Le gel est une décision d'allocation interne, pas une restriction d'offre — l'annoncer fait perdre des entrants gratuits</td></tr>
-        <tr><td><b>Ne jamais opposer un plafond de capacité à un partenaire</b></td><td>§3.e</td><td>Il n'y a plus de plafond d'effectif ; la contrainte est le rythme de recrutement</td></tr>
+        <tr><td><b>Ne jamais publier un prix de marque blanche</b></td><td>§0, §9</td><td>Le prix de gros est l'input de marge du revendeur</td></tr>
+        <tr><td><b>Ne jamais réécrire le claim d'économie en fourchette basse-haute</b></td><td>§5.b</td><td>C'est la fourchette qui obligeait à défendre un plafond indéfendable</td></tr>
+        <tr><td><b>Ne jamais dire « opérationnel »</b> pour la première prise de tickets</td><td>§3.c, §5.a</td><td>Le mot promet le J2 en livrant le J1</td></tr>
+        <tr style="background:var(--jaune-2)"><td><b>Ne jamais compter le plancher du palier haut en positions</b> — c'est en agents</td><td>§3.d <span class="b b-navy">15/09</span></td><td>4 positions en 6h-20h = 8 agents = ~21 850 €, pas 11 000 €</td></tr>
+        <tr style="background:var(--jaune-2)"><td><b>Ne jamais plafonner le dépôt sans plafonner aussi l'imputation</b></td><td>§3.a <span class="b b-navy">14/09</span></td><td>Un plafond fixe face à une imputation proportionnelle crédite ce qui n'a pas été encaissé</td></tr>
+        <tr style="background:var(--jaune-2)"><td><b>Ne jamais laisser croire qu'un Poste dédié standard couvre la fenêtre sans trou</b></td><td>§3.c <span class="b b-navy">14/09</span></td><td>On vend 35 h de présence dans une fenêtre de 45 h. La continuité sur toute la plage, c'est ×1,29 au devis</td></tr>
+        <tr><td><b>Ne jamais diviser le forfait médical au-delà du jour ouvré</b></td><td>§1</td><td>350 ÷ 250 = 1,40 €/appel, soit exactement le prix de revente MB</td></tr>
+        <tr><td><b>Ne jamais dire à un prospect que Salverys ne fait pas de direct</b></td><td>§0.a</td><td>Décision d'allocation interne, pas une restriction d'offre</td></tr>
+        <tr><td><b>Ne jamais opposer un plafond de capacité à un partenaire</b></td><td>§3.e</td><td>Il n'y a plus de plafond ; la contrainte est le rythme de recrutement</td></tr>
         <tr><td><b>Ne jamais facturer la mise en service</b></td><td>§1.c</td><td>La facturer contredirait le « sans engagement ». Un dépôt imputable n'est pas des frais</td></tr>
-        <tr><td><b>Ne jamais remiser un prix de gros</b></td><td>§0, §3.b</td><td>La remise gonfle la marge du mois du revendeur — elle ne l'aide pas à gagner son client final</td></tr>
-        <tr><td><b>Ne jamais surfacturer à l'appel en médical</b> — dépassement = bascule de palier</td><td>§1</td><td>Prévisibilité : c'est la promesse du forfait</td></tr>
-        <tr><td><b>Ne jamais descendre sous 920 €/ETP</b></td><td>§3</td><td>Coût direct salarié 766 € + ~20 %. Codé en dur dans <code>tools/deal-build.mjs</code></td></tr>
-        <tr><td><b>Ne jamais vendre l'Équipe managée sous 4 agents</b></td><td>§3.d</td><td>La rotation n'existe pas en dessous : ni staffable ni tenable. Bouton verrouillé dans le simulateur</td></tr>
-        <tr><td><b>Ne jamais dire « abonnement »</b> — dire « forfait » ou « contrat de service »</td><td>§7</td><td>Connotation télécom/grand public, dévalorise en médical</td></tr>
-        <tr><td><b>Ne jamais ajouter un axe de simulateur</b> qui ne corresponde pas à une charge payée différemment</td><td>§3.f</td><td>Majoration décorative — elle se retourne contre nous au devis</td></tr>
-        <tr><td><b>Ne jamais promettre un backup nominatif</b> ni « pas de jour d'arrêt »</td><td>§3.e, §3.g.8</td><td>Promesse non financée : la règle « un remplaçant par client » doublait le coût d'un compte pour ~13 % d'absences</td></tr>
-        <tr><td><b>Ne jamais argumenter sur le parcours de la direction</b></td><td><code>CLAUDE.md</code></td><td>Ni vérifiable ni vendeur. Mettre en avant les process, le cadrage qualité, le pilote mesuré, le SLA chiffré</td></tr>
+        <tr><td><b>Ne jamais remiser un prix de gros</b></td><td>§0, §3.b</td><td>La remise gonfle la marge du revendeur — elle ne l'aide pas à gagner son client final</td></tr>
+        <tr><td><b>Ne jamais surfacturer à l'appel en médical</b></td><td>§1</td><td>Prévisibilité : c'est la promesse du forfait</td></tr>
+        <tr><td><b>Ne jamais descendre sous 920 €/ETP</b></td><td>§3</td><td>Codé en dur dans <code>tools/deal-build.mjs</code> — mais voir <b>B-3</b></td></tr>
+        <tr><td><b>Ne jamais vendre l'Équipe managée sous 4 agents</b>, ni un 3×8 sous 5</td><td>§3.d</td><td>La rotation n'existe pas en dessous. Un 3×8 = 168 h ; 4 × 35 = 140 h</td></tr>
+        <tr><td><b>Ne jamais facturer une réserve de rotation</b></td><td>§3.d, §3.e</td><td>Aucune tête supplémentaire n'est recrutée — c'est ce que le retrait de Priority a sanctionné</td></tr>
+        <tr><td><b>Ne jamais dire « abonnement »</b> — dire « forfait »</td><td>§7</td><td>Connotation télécom, dévalorise en médical</td></tr>
+        <tr><td><b>Ne jamais ajouter un axe de simulateur</b> sans charge payée différemment</td><td>§3.f</td><td>Majoration décorative — elle se retourne contre nous au devis</td></tr>
+        <tr><td><b>Ne jamais promettre un backup nominatif</b> ni « pas de jour d'arrêt »</td><td>§3.e</td><td>Promesse non financée</td></tr>
+        <tr><td><b>Ne jamais argumenter sur le parcours de la direction</b></td><td><code>CLAUDE.md</code></td><td>Ni vérifiable ni vendeur</td></tr>
       </tbody>
     </table>
   </div>
@@ -806,33 +947,34 @@
 
 <!-- ============ CHRONO ============ -->
 <section id="chrono">
-  <h2><span class="num">10</span>Chronologie des décisions</h2>
-  <p class="lead">Treize révisions en quatre mois. Les trois refontes en gras sont celles dont la propagation interne est incomplète — c'est d'elles que proviennent 14 des 22 anomalies.</p>
+  <h2><span class="num">11</span>Chronologie des décisions</h2>
 
   <div class="tw">
     <table class="compact">
       <thead><tr><th class="num">Date</th><th>Décision</th><th>Portée</th></tr></thead>
       <tbody>
         <tr><td class="num">2026-05-30</td><td>Base du fichier</td><td>—</td></tr>
-        <tr><td class="num">2026-06-06</td><td>Ajout de l'engagement de décroché (§7)</td><td>SLA</td></tr>
-        <tr><td class="num">2026-06-12</td><td>Rate card partenaire MB · télésec MB par créneau · add-ons amplitude · mise en service 490 €</td><td>Grilles</td></tr>
-        <tr><td class="num">2026-06-22</td><td>Priorité des niches revue : IT n°1, médical n°2</td><td>Stratégie</td></tr>
-        <tr><td class="num">2026-07-12</td><td>Benchmark coût à battre différencié par métier</td><td>Argumentaire</td></tr>
-        <tr><td class="num">2026-08-03</td><td>Dépôt d'activation MB 900 €/position · fin du mois pilote −50 % en MB · 3 contreparties de risque</td><td>Mécanique d'entrée</td></tr>
-        <tr><td class="num">2026-08-13</td><td>Forfaits IT nommés en français · amplitude traitée en ETP · badge médical recadré</td><td>Catalogue &amp; simulateurs</td></tr>
-        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-08-14</b></td><td><b>Bascule en équipe salariée</b> · plancher 840 € → <b>920 €</b> · rate card refondue en <b>1-4 / 5-8 / 9+</b> · volume ferme généralisé · plus de plafond d'effectif · doctrine de continuité §3.e</td><td><b>Structurel</b></td></tr>
-        <tr><td class="num">2026-08-14</td><td>Palier 3 « Non-stop », plancher 4 agents · axes de simulateur nettoyés · bande ±9 %</td><td>Catalogue</td></tr>
-        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-08-24</b></td><td><b>Retrait du tier Priority</b> · palier 3 renommé <b>« Équipe managée »</b> et rendu direct uniquement · correction de la promesse de simultanéité · audit et réalignement de la fiche offre France</td><td><b>Catalogue &amp; copy</b></td></tr>
-        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-09-07</b></td><td><b>Gel du go-to-market direct</b> — tout l'effort passe en marque blanche ; 4 éléments dormants ; catalogue actif ramené aux modèles A et B</td><td><b>Stratégie</b></td></tr>
-        <tr><td class="num">2026-09-07</td><td>Sourçage des deux claims du hero : « jusqu'à −50 % » (§5.b) et délai en deux jalons (§5.a). <b>Arbitrage n°3 clos</b></td><td>Claims publics</td></tr>
-        <tr><td class="num">2026-09-07</td><td>Propagation achevée de la doctrine de continuité à 7 documents de vente et contractuels</td><td>Propagation</td></tr>
+        <tr><td class="num">2026-06-06</td><td>Engagement de décroché (§7)</td><td>SLA</td></tr>
+        <tr><td class="num">2026-06-12</td><td>Rate card MB · télésec par créneau · add-ons amplitude · mise en service 490 €</td><td>Grilles</td></tr>
+        <tr><td class="num">2026-06-22</td><td>Priorité des niches revue : IT n°1</td><td>Stratégie</td></tr>
+        <tr><td class="num">2026-07-12</td><td>Benchmark différencié par métier</td><td>Argumentaire</td></tr>
+        <tr><td class="num">2026-08-03</td><td>Dépôt d'activation · fin du mois pilote MB · 3 contreparties</td><td>Mécanique d'entrée</td></tr>
+        <tr><td class="num">2026-08-13</td><td>Forfaits IT en français · amplitude en ETP · badge médical recadré</td><td>Catalogue</td></tr>
+        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-08-14</b></td><td><b>Bascule en équipe salariée</b> · plancher 920 € · rate card <b>1-4 / 5-8 / 9+</b> · volume ferme · plus de plafond d'effectif · doctrine de continuité</td><td><b>Structurel</b></td></tr>
+        <tr><td class="num">2026-08-24</td><td><b>Retrait de Priority</b> · palier 3 → « Équipe managée », direct uniquement · correction de la simultanéité · audit de la fiche offre France</td><td>Catalogue</td></tr>
+        <tr><td class="num">2026-08-27</td><td><b>Fin du poste de développement commercial</b> (licenciement) — socle fixe 2 114 € → 920 €</td><td>Structurel</td></tr>
+        <tr><td class="num">2026-08-28</td><td>Ordre des niches : helpdesk ESN/MSP n°1, support SaaS n°2</td><td>Prospection</td></tr>
+        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-09-07</b></td><td><b>Gel du go-to-market direct</b> · claims du hero sourcés : « jusqu'à −50 % » et délai en deux jalons. <b>Arbitrage n°3 clos</b></td><td><b>Stratégie</b></td></tr>
+        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-09-14</b></td><td><b>Audit de cohérence — 5 corrections</b> : base d'amplitude 45 h → <b>35 h</b> · plafond du dépôt supprimé · claim abrogé nettoyé · point mort <b>1-2 ETP</b> · §8 repris (8 lignes)</td><td><b>Correctif</b></td></tr>
+        <tr style="background:var(--jaune-2)"><td class="num"><b>2026-09-15</b></td><td><b>3 corrections du prévisionnel</b> (sensibilité CNaPS ×10, burn, provision non opposable) · <b>3×8 retiré</b> du palier haut · unité du plancher explicitée · réserve de rotation retirée</td><td><b>Correctif</b></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="co">
-    <p><strong>Ce que la chronologie montre.</strong> Les refontes sont bien documentées <em>au moment où elles sont prises</em> — motif, chiffrage, conséquences. Ce qui manque systématiquement, c'est le passage de relecture sur les sections antérieures. Le §8, écrit comme un journal cumulatif où chaque décision ajoute une ligne sans toucher aux précédentes, concentre à lui seul <strong>6 des 22 anomalies</strong>.</p>
-    <p><strong>Suggestion de méthode</strong> : à chaque décision structurelle, faire une recherche sur les termes qu'elle périme (ici : <code>−60 %</code>, <code>opérationnel</code>, <code>5+ ETP</code>, <code>Centre de services</code>, <code>10 agents</code>, <code>Non-stop</code>) avant de clore la révision. Les 22 écarts de cet audit auraient été trouvés par six <code>grep</code>.</p>
+    <p><strong>Ce que la chronologie montre.</strong> Les deux passes d'audit des 14 et 15 septembre sont d'excellente facture : chaque correction est démontrée, chiffrée, et propagée au code et aux documents de vente. Le §8 a même reçu une <em>règle de tenue</em> qui devrait empêcher sa dérive future.</p>
+    <p><strong>Ce qui manque reste le même, à un cran plus haut.</strong> Le premier audit corrigeait des valeurs périmées ; celui-ci révèle que <strong>corriger une base de calcul ne suffit pas — il faut rouvrir les conclusions qui en dépendaient</strong>. La correction du point mort a changé le socle fixe sans revisiter les deux chiffrages construits dessus, situés dans le même bloc de bullets. La correction de l'unité du plancher a nettoyé §3.d sans toucher §3.g.1.</p>
+    <p><strong>Suggestion de méthode</strong> : quand une correction touche une <em>grandeur de référence</em> (socle fixe, coût agent, base horaire, unité de comptage), lister d'abord tous les nombres du dépôt qui en dérivent, puis corriger. Ici, un <code>grep</code> sur <code>2 450</code>, <code>point mort</code>, <code>positions</code> et <code>2 625</code> aurait sorti les trois échecs de cette passe.</p>
   </div>
 </section>
 
@@ -840,8 +982,8 @@
 
 <footer>
   <div class="wrap">
-    <p style="margin:0 0 6px"><b>Audit PRICING.md</b> — établi le 15 septembre 2026 sur la révision du 2026-09-07 (1 225 lignes).</p>
-    <p style="margin:0">Document de travail interne. Il ne remplace pas <code style="background:rgba(255,255,255,.12);color:#fff">PRICING.md</code>, qui reste la source unique de vérité tarifaire : en cas de divergence entre le présent récapitulatif et le fichier source, <b>c'est le fichier source qui fait foi</b>. Les correctifs proposés ici n'ont pas été appliqués.</p>
+    <p style="margin:0 0 6px"><b>Audit PRICING.md — 2<sup>e</sup> passe</b> · établi le 15 septembre 2026 sur la révision du 2026-09-15 (1 342 lignes), après intégration des commits <code style="background:rgba(255,255,255,.12);color:#fff">0de423e</code> et <code style="background:rgba(255,255,255,.12);color:#fff">be2acb6</code>, et recoupement avec <code style="background:rgba(255,255,255,.12);color:#fff">FINANCE-PREVISIONNEL.md</code> v3.2.</p>
+    <p style="margin:0">Document de travail interne. Il ne remplace pas <code style="background:rgba(255,255,255,.12);color:#fff">PRICING.md</code>, qui reste la source unique de vérité tarifaire : en cas de divergence, <b>c'est le fichier source qui fait foi</b>. Les correctifs proposés ici n'ont pas été appliqués.</p>
   </div>
 </footer>
 
