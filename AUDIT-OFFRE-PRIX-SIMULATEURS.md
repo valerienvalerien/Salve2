@@ -64,7 +64,7 @@ Base implicite « Bureau » ≈ 45 h/semaine de fenêtre couverte par 1 agent à
 ## B. 🔴 Tier Priority à 1-2 agents — le simulateur affiche une économie négative
 
 La formule `priorityMult(n) = 1,10 + 0,90/n` est **économiquement correcte** et documentée
-(`PRICING.md §3`, `ARGUMENTS-APPEL-priority.md`). Le problème n'est pas la formule, c'est
+(`PRICING.md §3`, `99-Archives/ARGUMENTS-APPEL-priority.md` — archivé le 2026-09-15). Le problème n'est pas la formule, c'est
 son **rendu public** aux petits effectifs.
 
 | n agents | ×base | Estimation SaaS | Badge affiché | Estimation Helpdesk | Badge affiché |
@@ -310,4 +310,4 @@ sur un deal 5 positions.
 | `simulateur-helpdesk-it.html` | Helpdesk IT N1 — `SIM_CONFIG`, forfaits, comparatif, CTA |
 | `index.html` | claims chiffrés (hero, FAQ, bloc « 40 à 60 % ») |
 | `RAPPORT-PRIX.html` | rapport de réflexion à re-synchroniser après arbitrage |
-| `ARGUMENTS-APPEL-priority.md` | argumentaire Priority, dépend de l'arbitrage n°2 |
+| `ARGUMENTS-APPEL-priority.md` | argumentaire Priority, dépend de l'arbitrage n°2 — **archivé le 2026-09-15** (tier retiré), `99-Archives/` |
