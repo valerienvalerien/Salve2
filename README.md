@@ -9,7 +9,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | Fichier | Rôle |
 |---|---|
 | `CLAUDE.md` | Instructions projet (contexte, marque, règles) — **doit rester à la racine** |
-| `PRICING.md` | **Source unique de vérité tarifaire** — référencé partout |
+| `PRICING.md` | **Grille partenaire marque blanche en vigueur** — prix, volume ferme, dépôt et SLA |
 | `ESPACE-CLIENT-CANDIDAT.md` | Procédure de build des espaces protégés (couplée aux HTML/`tools/`) |
 
 ## Documentation par dossier (ordre du funnel)
@@ -22,6 +22,8 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `04-Closing/` | Devis, contrat de prestation, DPA/RGPD, onboarding client |
 | `05-Process-Delivery/` | Grille QA + double écoute, modèles de reporting client |
 | `06-Warmup-Email/` | Warm-up email (démarrage, manuel) |
+
+La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` (décisions passées et tarifs directs). Les anciennes références aux sections de ce fichier renvoient à ce registre ; la nouvelle grille partenaire fait foi pour les devis marque blanche.
 
 ## Site / CRM (racine — ne pas déplacer)
 
