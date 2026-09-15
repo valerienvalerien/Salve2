@@ -1,4 +1,29 @@
-# FINANCE-PREVISIONNEL.md — Salverys (v3.1, mis à jour le 2026-08-28)
+# FINANCE-PREVISIONNEL.md — Salverys (v3.2, mis à jour le 2026-09-15)
+
+> 🔴 **Audit de cohérence du 2026-09-15 — trois corrections.**
+> - **§7.5 — sensibilité au plafond CNaPS fausse d'un facteur 10.** Il était écrit
+>   « +100 000 Ar de SME = +14 400 Ar de charges/agent » ; l'assiette étant le **plafond**
+>   (8 × SME), c'est **+144 000 Ar (~29 €)**. Le risque n°5, présenté comme structurant,
+>   était minimisé par 10 — et contredisait §1.a. **Bonne nouvelle au passage : le risque
+>   est borné**, le coût agent sature à **767 €** au-delà d'un SME de 406 250 Ar.
+> - **§6 — le burn y était resté à 755 €/mois**, valeur de la v3 (poste commercial compris),
+>   contre **110-155 €** en §2.b. Facteur 5 à 7, dans la phrase qui porte la conclusion de
+>   la section trésorerie.
+> - **§6 — la « recommandation ferme : provisionner 30 k€ » ne portait aucun avertissement**,
+>   alors que §5 déclare caduques les trajectoires dont elle tire ses creux. Le chiffre le
+>   plus lourd du document reposait sur une base annulée deux sections plus haut. Il est
+>   désormais **explicitement non opposable en attendant recalcul**, avec les charges M12
+>   recalculées et les deux effets contraires à intégrer.
+>
+> 🔴 **Répercussion du licenciement du poste commercial (précisé le 2026-09-15).** Le poste
+> supprimé le 2026-08-27 l'a été **par licenciement** : le risque n°1 du modèle salarié
+> (rigidité de l'effectif, §7.1) **s'est donc déjà matérialisé une fois**, et il portait sur
+> le seul poste qui produisait du pipeline. Trois effets dans ce document : §1 et §1.a
+> requalifiés en grille de référence (le poste n'est pas « non pourvu », il est supprimé) ·
+> §6 — le levier « part variable indexée sur les contrats encaissés » sort des leviers
+> actifs, la règle étant conservée pour un futur recrutement · §7.1 et §8 — **le coût de
+> sortie réellement payé est à relever** et doit servir de base de provision, à la place de
+> la ligne « à chiffrer ».
 
 > 🔴 **Mise à jour du 2026-08-28 — le poste de développement commercial a pris fin le
 > 2026-08-27. Effectif : 0 salarié.** Effets chiffrés, répercutés dans tout le document :
@@ -39,7 +64,7 @@
 |---|---|---|
 | Agent productif (facturable) | **3 250 000 Ar (650 €)** | CDI |
 | Manager métier (1 médical, 1 IT) | **3 250 000 Ar (650 €)** | CDI, non facturable |
-| ~~Développement commercial~~ | ~~fixe ~500 € + variable, OTE 1 000 €~~ | **Poste terminé le 2026-08-27 — non pourvu.** Grille conservée pour un futur recrutement : `remuneration-vololoniaina.html` |
+| ~~Développement commercial~~ | ~~fixe ~500 € + variable, OTE 1 000 €~~ | **Poste supprimé le 2026-08-27 — salariée licenciée, poste non pourvu depuis.** Grille conservée comme référence pour un futur recrutement : `remuneration-vololoniaina.html` |
 | Direction | **0 €** | fondateur unique, non rémunéré au lancement |
 
 **Lecture marché** : le salaire moyen d'un agent de call center à Tana est ~700 000 Ar ;
@@ -68,8 +93,8 @@ plafond de cotisation est **8 × 300 000 = 2 400 000 Ar**.
 | | Brut | Charges patronales | **Coût employeur** |
 |---|---|---|---|
 | Agent / manager | 3 250 000 Ar (650 €) | 432 000 Ar (86 €) | **3 682 000 Ar ≈ 736 €** |
-| Vololona (fixe seul) | ~2 500 000 Ar (500 €) | 432 000 Ar (86 €) | **≈ 586 €** |
-| Vololona (à l'OTE) | 5 000 000 Ar (1 000 €) | 432 000 Ar (86 €) | **≈ 1 086 €** |
+| *Poste commercial — fixe seul* **(référence, poste supprimé)** | ~2 500 000 Ar (500 €) | 432 000 Ar (86 €) | *≈ 586 €* |
+| *Poste commercial — à l'OTE* **(référence, poste supprimé)** | 5 000 000 Ar (1 000 €) | 432 000 Ar (86 €) | *≈ 1 086 €* |
 
 - **Retenues salariales** (CNaPS 1 % + OSTIE 1 % + IRSA progressive) : à la charge du
   salarié, **sans impact sur le coût employeur**. Elles réduisent le net perçu — à
@@ -296,16 +321,54 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
 
   > **Le besoin de financement est quasi indépendant du scénario : ~25-30 k€.** Croître
   > plus vite fait rentrer le CA plus tôt, mais fait aussi payer plus de salaires avant
-  > facturation — les deux effets se compensent presque exactement. **Recommandation ferme :
-  > provisionner 30 k€**, ce qui couvre les trois trajectoires. (v2 : 50-60 k€, et
+  > facturation — les deux effets se compensent presque exactement. (v2 : 50-60 k€, et
   > insuffisant dans le scénario prudent.)
+
+  > 🔴 **Ce chiffre n'est plus opposable en l'état — recalcul requis avant toute citation
+  > (2026-09-15).** Les creux ci-dessus sont ceux des trajectoires de §5, que §5 déclare
+  > lui-même caduques depuis le 2026-08-28. Cette section en tirait une *« recommandation
+  > ferme : provisionner 30 k€ »* **sans porter l'avertissement** — le chiffre le plus lourd
+  > du document, celui qu'on présente à un prêteur ou à un associé, reposait sur une base
+  > annulée deux sections plus haut.
+  >
+  > **Ce qui a changé et n'est pas répercuté** : les trois scénarios portent chacun un poste
+  > de développement commercial à l'OTE (**~1 195 €/mois**), qui n'existe plus depuis le
+  > 2026-08-27.
+  >
+  > | Scénario | Charges M12 affichées (§5) | Recalculées sans ce poste | CA M12 − charges réelles |
+  > |---|---|---|---|
+  > | Prudent | 4 640 € | **3 439 €** | **+1 661 €/mois** |
+  > | Médian | 11 350 € | **10 150 €** | **+3 750 €/mois** |
+  > | Ambitieux | 22 270 € | **21 076 €** | **+9 424 €/mois** |
+  >
+  > **Ordre de grandeur de l'écart sur le cumulé** : ~1 200 €/mois sur toute la période
+  > précédant le creux (M10 à M15 selon le scénario) représente **12 à 18 k€**, soit le même
+  > ordre de grandeur que le creux lui-même. Autrement dit : **les 30 k€ sont probablement
+  > très surestimés**, mais personne ne peut dire de combien sans refaire le modèle mois par
+  > mois — et c'est exactement pour ça qu'on ne peut pas continuer à citer le chiffre.
+  >
+  > ⚠️ **Deux effets jouent en sens inverse** et doivent entrer ensemble dans le recalcul :
+  > les **charges baissent** (ci-dessus, et socle fixe 2 114 € ⇒ 920 €), mais le **CA rentre
+  > plus tard** — la prospection repose sur le fondateur seul (§7, risque n°0), donc les
+  > rythmes de placement de §5 sont optimistes. Un creux moins profond mais **plus long**
+  > reste possible. Ne pas conclure « on n'a plus besoin de financement » sur la seule
+  > lecture des charges.
+  >
+  > **En attendant le recalcul** : citer une **fourchette explicitement provisoire**, jamais
+  > une recommandation ferme. Le recalcul devient possible dès que deux mois d'activité
+  > réelle en solo auront donné un vrai taux de transformation (§5).
 
 - **Le creux ne se creuse plus en cas de lenteur commerciale.** En v2, un démarrage lent
   brûlait ~6 900 €/mois d'équipe payée sans contrat. Ici le burn de départ est de
-  **755 €/mois** tant qu'aucun contrat n'est signé : le coût de l'attente est devenu
-  marginal. C'est l'effet principal de la bascule.
+  **110-155 €/mois** tant qu'aucun contrat n'est signé (§2.b) : le coût de l'attente n'est
+  pas « marginal », il est **quasi nul**. C'est l'effet principal de la bascule.
+  > 🔴 **Corrigé le 2026-09-15 — il était écrit « 755 €/mois ».** Valeur de la v3, poste
+  > commercial compris. Depuis la fin de ce poste le 2026-08-27, le burn est de
+  > **110-155 €/mois** (§2.b et encadré de tête), soit **5 à 7 fois moins**. Le bon chiffre
+  > renforce la conclusion de cette section au lieu de l'affaiblir.
 - Leviers anti-creux (inchangés, tous actés) :
-  - ✅ **Dépôt d'activation MB** — **900 €/position, plafond 2 700 €**, encaissé **à la
+  - ✅ **Dépôt d'activation MB** — **900 €/position** (plafond global supprimé le
+    2026-09-14, `PRICING.md §3.a`), encaissé **à la
     signature**, déduit des 3 premières factures (300 €/position/mois), `PRICING.md §3.a`.
     Effet trésorerie : encaissement **à J0 au lieu de J+30**, et **coût d'onboarding
     couvert (~1 600 €)** si le partenaire s'arrête. Le dépôt tombe désormais **~2 mois
@@ -318,8 +381,12 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
   - ✅ **Tarif conditionné à un volume ferme facturable** sur **tous** les paliers
     (`PRICING.md §3`) : supprime le risque de banc payé, désormais bien plus coûteux
     qu'en freelance (§7).
-  - Prélèvement SEPA dès le 1er mois ; part variable de Vololona indexée sur les contrats
-    encaissés, pas signés.
+  - Prélèvement SEPA dès le 1er mois.
+  - ⚠️ *Le levier « part variable indexée sur les contrats encaissés, pas signés » a été
+    retiré de cette liste le 2026-09-15 : il portait sur le poste commercial, supprimé le
+    2026-08-27. **La règle reste bonne et doit être reprise telle quelle** au prochain
+    recrutement commercial — c'est ce qui évite de payer une commission sur un contrat qui
+    ne sera jamais encaissé.*
 - Simulation interactive : `tresorerie-salverys.html`.
 
 ---
@@ -348,6 +415,23 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
    **plus** le coût de sortie. **Mitigation** : n'embaucher qu'**après** signature d'un
    volume ferme facturable (§2.c), utiliser la **période d'essai** comme fenêtre
    d'ajustement, et provisionner les indemnités dès 6 mois d'ancienneté.
+
+   > ⚠️ **Ce risque s'est déjà matérialisé une fois — il n'est plus théorique (2026-09-15).**
+   > La suppression du poste de développement commercial le 2026-08-27 s'est faite par
+   > **licenciement**, donc avec préavis et, selon l'ancienneté, indemnité. C'est le premier
+   > coût de sortie réellement supporté par la structure, et il portait sur le **seul** poste
+   > qui produisait du pipeline.
+   >
+   > **Deux enseignements à inscrire au modèle, pas seulement à la mémoire :**
+   > 1. **Le coût de sortie réel est à relever** (préavis versé + indemnité + solde de tout
+   >    compte) et à reporter en §8, à la place de la ligne « à chiffrer ». C'est la seule
+   >    donnée observée dont on dispose pour calibrer la provision des futures embauches —
+   >    **⚠️ montant à renseigner, il n'est pas dans ce document.**
+   > 2. **La séquence « embaucher puis chercher les contrats » a été validée par l'échec.**
+   >    La mitigation ci-dessus (n'embaucher qu'après un volume ferme facturable) n'est pas
+   >    une précaution de principe : c'est la leçon de ce licenciement. Elle vaut d'abord
+   >    pour le prochain recrutement commercial, qui se fera **sur variable dès que le CA le
+   >    finance** (§7, risque n°0), pas sur un fixe payé avant le premier contrat.
 2. **Coût de capacité des absences** : 5 semaines de congés + ~3 % de maladie ≈ **13 %**
    d'absence (`PRICING.md §3.e`). Un salarié est payé 12 mois et produit ~10,4 mois. La
    doctrine de continuité fait porter ce remplacement par le **manager métier**, déjà
@@ -363,7 +447,26 @@ C'est là qu'il faut mettre le garde-fou, pas sur le cash.
    one-shot pour le cadrage des contrats) + une **prestation de paie** récurrente.
 5. **Plafond de cotisation** : tout le modèle repose sur un plafond CNaPS/OSTIE à
    8 × SME = 2,4 M Ar (§1.a). **Une revalorisation du SME renchérit mécaniquement chaque
-   tête** — +100 000 Ar de SME = +14 400 Ar de charges/agent/mois. À surveiller au budget.
+   tête** — **+100 000 Ar de SME = +144 000 Ar de charges/agent/mois (~29 €)**.
+
+   > 🔴 **Corrigé le 2026-09-15 — il était écrit « +14 400 Ar », soit 10 fois moins.**
+   > L'assiette est le **plafond**, pas le SME : +100 000 Ar de SME relève le plafond de
+   > **800 000 Ar** (8 ×), et les charges de `18 % × 800 000 =` **144 000 Ar**.
+   >
+   > | SME | Plafond (8 × SME) | Assiette retenue | Charges patronales | Coût agent |
+   > |---|---|---|---|---|
+   > | 300 000 Ar *(aujourd'hui)* | 2 400 000 Ar | 2 400 000 Ar | 432 000 Ar (86 €) | **736 €** |
+   > | 400 000 Ar | 3 200 000 Ar | 3 200 000 Ar | 576 000 Ar (115 €) | **765 €** *(+4,0 %)* |
+   > | ≥ 406 250 Ar | ≥ 3 250 000 Ar | **brut 3 250 000 Ar** | 585 000 Ar (117 €) | **767 €** *(plafond de sensibilité)* |
+   >
+   > **Le risque est donc borné** : au-delà d'un SME de **406 250 Ar**, le plafond dépasse
+   > le brut, l'assiette devient le brut lui-même et le coût agent sature à **767 €** — quoi
+   > qu'il arrive ensuite au SME. C'est ce que §1.a écrivait déjà (« un plafond relevé fait
+   > passer le coût agent de 736 € à ~767 € ») : les deux sections se contredisaient, puisque
+   > avec +14 400 Ar il aurait fallu un SME de ~1,37 M Ar pour y arriver.
+   >
+   > **Ce que ça change** : le poste reste à surveiller, mais le pire cas est **+31 €/agent**
+   > (+4,2 %), pas un risque ouvert. Un plancher à 920 €/ETP l'absorbe sans réviser la grille.
 6. **Change Ar/€ et inflation locale** : salaires en ariary, revenus en euros. Le risque
    réel est une **appréciation de l'ariary**, qui renchérit la masse salariale en euros ;
    une dépréciation, elle, l'allège. Marges de couverture réelles : **43 % (palier 9+
@@ -393,7 +496,7 @@ montants sont connus :
 | Onboarding d'un deal MB | **~1 600 €** par deal (`AUDIT-ESPACE-CLIENT.md §9.2`) | variable, couvert par le dépôt §3.a |
 | Remise « clients fondateurs » | ~1 660 € pour 5 logos (`PRICING.md §7`) | variable |
 | Hébergement HDS en **direct** | 100-500 €/mois (`PRICING.md §10`) | déclenché au 1ᵉʳ client médical direct |
-| Provision indemnités de licenciement | à partir de 6 mois d'ancienneté | §7.1 |
+| Provision indemnités de licenciement | à partir de 6 mois d'ancienneté | §7.1 — ⚠️ **un cas réel est déjà survenu** (poste commercial, 2026-08-27) : **relever le coût de sortie effectivement payé** et l'utiliser comme base de provision, au lieu de laisser cette ligne « à chiffrer » |
 
 ---
 

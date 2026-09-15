@@ -211,7 +211,7 @@
       const cmp = $('compare-line'), badge = $('savings-badge');
       // 4a — le badge porte le recadrage ROI de PRICING.md §1, plus un pourcentage
       // d'économie : comparer un forfait 250 appels à une secrétaire temps plein
-      // donnait −87 %, hors doctrine (claim public −40 à −60 %) et peu crédible.
+      // donnait −87 %, hors doctrine (claim public « jusqu'à −50 % », PRICING.md §5.b) et peu crédible.
       // Fourchette RDV calée sur l'ancre documentée « 350 €/mois = 2 à 3 RDV
       // récupérés » ⇒ valeur implicite d'un RDV récupéré ≈ 117-175 €.
       const RDV_HIGH = 175, RDV_LOW = 117;
@@ -476,7 +476,7 @@
        deux forfaits se joue sur les HEURES à couvrir, pas sur le volume.
        — De 9h à 18h, le Poste dédié est moins cher partout : la rotation
          (+ superviseur dédié) se paie sans rien couvrir de plus.
-       — En 8h–20h, le Poste dédié staffe ×1,333 têtes par position pour tenir
+       — En 8h–20h, le Poste dédié staffe ×1,71 têtes par position pour tenir
          la plage avec ce nombre de positions EN SIMULTANÉ (§3.c). L'Équipe
          managée couvre la même plage pour moins cher — mais avec moins d'agents
          en ligne à la fois : c'est de là que vient l'écart, pas d'une efficacité
@@ -494,7 +494,10 @@
       // (helpdesk, base 2 500) et ~10 000 € (support SaaS, base 2 300).
       const NONSTOP_MULT = 1.15;
       // Têtes à staffer par position pour tenir 8h–20h en Poste dédié (§3.c).
-      const EXT_COVERAGE = 1.333;
+      // ⚠️ Corrigé le 2026-09-14 : valait 1.333 (= 60/45), calé sur la FENÊTRE d'ouverture
+      // au lieu des 35 h qu'un agent couvre réellement. Règle unique (PRICING.md §3.c) :
+      // ETP par position = heures de présence continue exigées / 35. Ici 60/35.
+      const EXT_COVERAGE = 60 / 35; // ≈ 1,714
       let chartView = 'office'; // 'office' | 'extended'
 
       // Coût mensuel pour n agents à la config courante, hors amplitude :
@@ -576,7 +579,7 @@
         const cap = $('priority-chart-caption');
         if (cap) cap.textContent = chartView === 'office'
           ? 'De 9h à 18h, le Poste dédié est moins cher à tous les effectifs : la rotation et le superviseur de l\'Équipe managée se paient sans couvrir une minute de plus tant que personne ne sollicite le support en dehors de ces heures-là. Le surcoût n\'achète pas du temps, il achète la garantie que la plage tienne quand quelqu\'un manque.'
-          : 'Attention à ce que compare ce graphe : à effectif affiché égal, le Poste dédié tient ce nombre de positions en simultané (1,33 tête chacune), là où l\'Équipe managée répartit ces agents sur toute la plage — donc moins de monde en ligne à un instant donné. Elle coûte moins cher pour cette raison, pas par magie. Ce que vous achetez n\'est pas un nombre de sièges : c\'est la garantie que la plage ne ferme pas quand quelqu\'un manque, et une rotation que vous n\'avez pas à organiser.';
+          : 'Attention à ce que compare ce graphe : à effectif affiché égal, le Poste dédié tient ce nombre de positions en simultané (1,71 tête chacune), là où l\'Équipe managée répartit ces agents sur toute la plage — donc moins de monde en ligne à un instant donné. Elle coûte moins cher pour cette raison, pas par magie. Ce que vous achetez n\'est pas un nombre de sièges : c\'est la garantie que la plage ne ferme pas quand quelqu\'un manque, et une rotation que vous n\'avez pas à organiser.';
 
         // Ligne de bascule chiffrée sous les deux colonnes de verdict.
         const vn = $('verdict-crossover');

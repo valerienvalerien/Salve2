@@ -70,7 +70,7 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
   engagement (le cas échéant, programme « clients fondateurs » dégressif sur 3 mois avec
   contreparties — cf. devis). **Ne s'applique pas à la variante MB** (`PRICING.md §7`).
 - **Dépôt d'activation — variante MB uniquement** (`PRICING.md §3.a`) :
-  - Montant : **900 € par position**, plafonné à **2 700 €**, soit **[____] €** au titre du
+  - Montant : **900 € par position**, soit **[____] €** au titre du
     présent contrat.
   - **Exigible à la signature**, avant tout démarrage de la mise en service.
   - **Intégralement imputable** : déduit des **trois (3) premières factures mensuelles** à
@@ -255,7 +255,7 @@ Garder le(s) bloc(s) de niche concerné(s).
   positions sur un mois donné, le prix applicable à ce mois est celui du **palier
   3 positions** (1 500 € / 1 750 €), appliqué aux positions effectivement consommées.
   → Positions fermes retenues : **[__]** · palier applicable : **[__] €/mois/position**.
-- **Dépôt d'activation** : **900 € × [__] positions = [____] €** (plafond 2 700 €) — art. 4.
+- **Dépôt d'activation** : **900 € × [__] positions = [____] €** — art. 4.
 - **Pas de remise de lancement** : la variante MB ne comporte **aucun mois pilote à −50 %**
   (`PRICING.md §3.b`). Le pilote éventuel est un **périmètre restreint** (débordement, un
   client final, lot de 200-400 tickets), **au tarif du palier retenu**.
