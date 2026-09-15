@@ -442,8 +442,8 @@ vous envoie la fiche et la grille sous 48 h. »*
   **« Backup +1 agent par compte : pas de jour d'arrêt »** (abandonné par la doctrine de
   continuité `PRICING.md` §3.e). À corriger avant tout envoi — c'est un document de vente
   actif.
-- `01-Strategie-Offre/ARGUMENTS-APPEL-priority.md` argumente en entier un tier **retiré du
-  catalogue** le 2026-08-24. À archiver ou marquer obsolète pour éviter qu'il ressorte en
+- ✅ `ARGUMENTS-APPEL-priority.md` argumentait en entier un tier **retiré du catalogue** le
+  2026-08-24. **Archivé le 2026-09-15** dans `99-Archives/` — il ne peut plus ressortir en
   préparation d'appel.
 </content>
 </invoke>
