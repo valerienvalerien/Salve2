@@ -180,7 +180,7 @@ Toute offre Salverys est un point dans cet espace.
 |---|---|---|
 | **Débordement** | 1 agent **mutualisé**, base ~20 h/sem, tickets + email | n'importe quel agent du pool — pas d'interlocuteur attitré |
 | **Poste dédié** | 1 agent **100 % dédié**, 35-40 h/sem, escalade N2 cadrée — *le format principal* | le manager qui supervise déjà le compte reprend les absences ponctuelles ; il n'occupe aucune position facturée |
-| **Équipe managée** *(dormant)* | **≥ 4 agents** en rotation + superviseur dédié, 6h-20h ou 3×8 | la plage horaire reste tenue même en cas d'absence (capacité −25 %, pas iso) |
+| **Équipe managée** *(dormant)* | **≥ 4 agents** en rotation *(têtes — 140 h/sem à répartir, ~2 présents à la fois)* + superviseur dédié, **6h-20h** ; 3×8 et 24·7 **sur devis** (`PRICING.md` §3.d) | la plage horaire reste tenue même en cas d'absence (capacité −25 %, pas iso) |
 
 > 🔒 **Deux formats actifs, pas trois.** L'Équipe managée étant *direct uniquement*, le gel
 > du 2026-09-07 la rend **dormante** : ce qui se vend aujourd'hui, c'est **Débordement** et

@@ -648,16 +648,42 @@ tickets sur vos outils en 3 à 4 semaines » (révisé le 2026-09-07, cf. §5.a)
 |---|---|---|
 | 1 | **Débordement** | 1 agent mutualisé · base 20 h/sem · tickets + email |
 | 2 | **Poste dédié** | agent 100 % dédié, 35 h ou 40 h/sem · escalade N2 cadrée · se vend à la position |
-| 3 | **Équipe managée** | **≥ 4 agents** en rotation · superviseur dédié · 6h-20h ou 3×8 |
+| 3 | **Équipe managée** | **≥ 4 agents** en rotation *(têtes, pas positions simultanées)* · superviseur dédié · **6h-20h** |
+
+> 🔴 **Deux corrections du 2026-09-15 — « ou 3×8 » retiré, unité du plancher explicitée.**
+>
+> **1. Le 3×8 n'était pas staffable au plancher annoncé, quelle que soit l'unité.** Un 3×8
+> couvre 168 h/semaine ; 4 agents × 35 h = **140 h**. Il manque 28 h. Et même pour **une
+> seule** position tenue en continu, il faut `168 ÷ 35 =` **4,8 agents** — c'est exactement
+> le « ~4,8 ETP » que §3.c chiffre pour le 24·7. Le plancher de 4, présenté comme opposable,
+> ne permettait donc jamais la couverture annoncée dans la même ligne de tableau.
+> **Un 3×8 est du 24·7** : il suit le même régime que l'astreinte, **sur devis** (§3.c),
+> pour le même motif de livrabilité. Si un entrant le demande, le plancher applicable est
+> **≥ 5 agents pour une seule position en continu**, et le prix se construit au devis — le
+> « à partir de » ci-dessous ne le couvre pas.
+>
+> **2. Le plancher se compte en agents (têtes), pas en positions — et ça se dit.** C'est le
+> choix acté le 2026-08-24 (§3.f : *« n TÊTES en rotation »*), pas un abus de langage.
+> Requalifier le plancher en « ≥ 4 positions » **changerait la prestation vendue** : tenir
+> 4 positions simultanées en 6h-20h (70 h) demande `4 × 70/35 =` **8 agents**, soit ~21 850 €
+> et non 11 000 €. Le mot « position » reste réservé au **Poste dédié**, qui se vend bien à
+> la position. Ici on écrit **agents**, et on donne la simultanéité : *4 agents = 140 h/sem
+> à répartir sur la plage, soit **~2 présents à la fois** sur 6h-20h.*
 
 - **Plancher de 4 agents, opposable.** En dessous, la rotation n'existe pas : le forfait
   n'est ni staffable ni tenable. Le simulateur **verrouille le bouton** du palier haut sous
   4 agents et affiche la raison au survol, plutôt que d'ouvrir un devis impossible.
+  **Ce plancher compte des têtes** : 4 agents, c'est **140 h/semaine à répartir**, soit
+  ~2 agents présents à la fois sur une plage 6h-20h — jamais 4 positions en simultané.
 - **Prix : pas d'estimation, un « à partir de » sur devis** — 11 000 €/mois (helpdesk IT) ·
-  10 000 €/mois (support N1 SaaS). Base : 4 agents au tarif direct (§3), dégressif volume
-  inclus, plus la réserve de rotation (§3.e) et la supervision dédiée. Au-delà,
-  l'amplitude (6h-20h, 3×8) se chiffre au devis — cohérent avec le retrait des paliers
-  astreinte / 24·7 du simulateur public (§3.c).
+  10 000 €/mois (support N1 SaaS), **pour 4 agents en rotation sur 6h-20h**. Base : 4 agents
+  au tarif direct (§3), dégressif volume inclus, plus la supervision dédiée. Toute
+  couverture plus large (3×8, 24·7) **sort de ce prix** et se chiffre au devis — cohérent
+  avec le retrait des paliers astreinte / 24·7 du simulateur public (§3.c).
+  > ⚠️ **« La réserve de rotation » a été retirée de la base de prix (2026-09-15)** : elle
+  > n'existe pas. §3.e pose que la continuité de l'Équipe managée **est** la rotation
+  > elle-même, et qu'**aucune tête supplémentaire n'est recrutée**. Facturer une réserve
+  > qu'on ne staffe pas, c'est ce que le retrait du tier Priority a précisément sanctionné.
 - **Le backup n'est plus une ligne d'offre.** « Dédié » et « quelqu'un d'autre prend le
   relais » se contredisent. Ce que chaque palier garantit réellement est fixé par la
   **doctrine de continuité §3.e** : manager métier au Poste dédié, rotation à l'Équipe
@@ -788,7 +814,7 @@ alors renvoyé en note sous le graphe ; le tier a depuis été **retiré du cata
     juste sur une plage classique*.
   - Équipe managée : *après 18h / le week-end / la nuit*, *ticket vendredi 19h → lundi 9h =
     62 h de silence*, *coût chiffrable de l'heure sans réponse*, *couverture > 45 h/semaine
-    (6h-20h, 3×8, 24·7)*, *4 positions ou plus*.
+    (**6h-20h au tarif affiché** ; 3×8 et 24·7 **sur devis**, §3.d)*, *4 agents ou plus*.
   - L'intro de section et les légendes du graphe (`assets/site.js`) sont réécrites dans
     la même logique : « le choix dépend des heures où on vous sollicite », pas de
     « l'amplitude ». La phrase de bascule chiffrée mène désormais par la plage (« 9h–18h »

@@ -55,7 +55,7 @@ const promises = [
     b: ['Un agent 100 % à vous, 35 ou 40 h/semaine, sur une plage classique.', 'Il connaît votre parc, vos procédures, vos utilisateurs récurrents.', "Une absence isolée est reprise par le manager métier : le service continue, le délai de traitement s'allonge."],
     foot: 'La contrepartie : passé 18h ou le week-end, personne ne répond avant le lendemain matin.', c: BLUE },
   { t: 'Équipe managée', sub: 'Vous achetez une plage horaire',
-    b: ['4 agents minimum en rotation sur 6h-20h, 3×8 ou 24·7, plus un superviseur dédié.', "L'équipe est dimensionnée pour que la plage tienne, pas pour qu'une personne soit là.", 'Un absent fait baisser la capacité d\'environ 25 % — il ne ferme jamais la plage.'],
+    b: ['4 agents minimum en rotation sur 6h-20h, plus un superviseur dédié (3×8 et 24·7 : sur devis).', "L'équipe est dimensionnée pour que la plage tienne, pas pour qu'une personne soit là.", 'Un absent fait baisser la capacité d\'environ 25 % — il ne ferme jamais la plage.'],
     foot: "La contrepartie : la rotation se paie, même les heures où personne ne manque.", c: CORAL },
 ];
 promises.forEach((p, i) => {
@@ -110,8 +110,8 @@ const nonstop = [
   ['Des demandes arrivent après 18h', "le week-end ou la nuit. Hors 9h–18h, un poste dédié ne répond pas : il faut quelqu'un en poste, physiquement, sur ces heures-là."],
   ['Vendredi 19h ne peut pas attendre lundi 9h', "62 heures de silence, ce n'est pas un délai : c'est une rupture. Un ticket dédié attend l'ouverture ; un ticket en Équipe managée est pris en charge dans l'heure."],
   ['Chaque heure sans réponse coûte cher', "Pénalité de SLA, escalade client, appel d'offres à défendre : dès qu'une heure se facture, la rotation devient l'option économique."],
-  ['Votre couverture dépasse 45 h/semaine', "6h-20h, 3×8 ou 24·7 : au-delà d'une journée de travail, il faut des équipes qui se relaient, pas des agents qui s'épuisent."],
-  ['Vous ouvrez 4 positions ou plus', "C'est le plancher physique de la rotation : 4 × 35 h = 140 h/semaine pour 70 h d'amplitude. En dessous, elle ne tourne pas."],
+  ['Votre couverture dépasse 45 h/semaine', "6h-20h au tarif affiché, 3×8 et 24·7 sur devis : au-delà d'une journée de travail, il faut des équipes qui se relaient, pas des agents qui s'épuisent."],
+  ['Vous mobilisez 4 agents ou plus', "C'est le plancher physique de la rotation : 4 × 35 h = 140 h/semaine pour 70 h d'amplitude, soit ~2 agents présents à la fois. En dessous, elle ne tourne pas."],
 ];
 nonstop.forEach((d, i) => {
   const col = i % 2, row = Math.floor(i / 2);
@@ -125,9 +125,9 @@ s.addShape(pptx.ShapeType.roundRect, { x: M + 6.15, y: 4.79, w: 5.75, h: 1.34, r
 s.addText('−1 739 €', { x: M + 6.42, y: 4.94, w: 2.3, h: 0.55, fontSize: 30, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
 s.addText("par mois face au Poste dédié sur-staffé, dès lors que la plage à tenir est 8h-20h.",
   { x: M + 8.75, y: 5.0, w: 3.0, h: 0.9, fontSize: 11, color: 'FCE4DE', fontFace: BODY, lineSpacing: 13.5, margin: 0 });
-s.addText("Un seul de ces cinq critères suffit à justifier l'Équipe managée, dès lors qu'il touche les heures — sauf le plancher de 4 positions, qui, lui, est non négociable.",
+s.addText("Un seul de ces cinq critères suffit à justifier l'Équipe managée, dès lors qu'il touche les heures — sauf le plancher de 4 agents en rotation, qui, lui, est non négociable.",
   { x: M, y: 6.45, w: 11.9, h: 0.4, fontSize: 12, italic: true, color: GREY, fontFace: BODY, margin: 0 });
-s.addNotes("Le 4e critère est le verrou : sous 4 positions, on ne vend pas l'Équipe managée, même si le client le demande. Ce n'est pas un choix commercial, c'est une contrainte de staffing.");
+s.addNotes("Le 4e critere est le verrou : sous 4 AGENTS en rotation, on ne vend pas l'Equipe managee, meme si le client le demande. Le plancher compte des tetes (4 x 35 h = 140 h a repartir), pas des positions simultanees. Ce n'est pas un choix commercial, c'est une contrainte de staffing.");
 
 /* ---------- 5. Le chiffre qui tranche (graphe natif) ---------- */
 s = pptx.addSlide();
@@ -153,7 +153,7 @@ s.addChart(pptx.ChartType.bar, [
 
 const reads = [
   ['De 9h à 18h, le dédié gagne', "La rotation et le superviseur de l'Équipe managée coûtent +15 % sans couvrir une minute de plus, tant que personne ne sollicite le support hors de ces heures. Le surcoût n'achète pas du temps : il achète une garantie."],
-  ['Dès 8h-20h, la comparaison change', "Tenir 60 h/semaine avec 4 positions en simultané demande 5,3 têtes en dédié. L'Équipe managée couvre la même plage avec 4 agents — donc ~2,3 en ligne à la fois. Moins cher pour cette raison, pas par efficacité."],
+  ['Dès 8h-20h, la comparaison change', "Tenir 60 h/semaine avec 4 positions en simultané demande 6,9 têtes en dédié. L'Équipe managée couvre la même plage avec 4 agents — donc ~2,3 en ligne à la fois. Moins cher pour cette raison, pas par efficacité."],
 ];
 reads.forEach((r, i) => {
   const y = 2.35 + i * 1.75;
@@ -204,7 +204,7 @@ const errors = [
     f: "Le bon réflexe : rester au Poste dédié, et n'ajouter Priority que si une rupture est réellement inacceptable." },
   { t: "Tenir une plage large avec des postes dédiés", c: CORAL,
     p: "Un engagement 8h-20h honoré en empilant des agents dédiés, sans rotation organisée ni superviseur.",
-    r: "Il faut 5,3 têtes pour tenir 4 positions en simultané — et la plage tombe dès la première absence, précisément le jour où le SLA se joue.",
+    r: "Il faut 6,9 têtes pour tenir 4 positions en simultané — et la plage tombe dès la première absence, précisément le jour où le SLA se joue.",
     f: "Le bon réflexe : passer à l'Équipe managée dès que la plage dépasse une journée de travail." },
 ];
 errors.forEach((e, i) => {
@@ -232,7 +232,7 @@ s.addShape(pptx.ShapeType.ellipse, { x: 11.6, y: -1.2, w: 3.6, h: 3.6, fill: { c
 s.addText('LA RÈGLE EN UNE PHRASE', { x: M, y: 1.0, w: 11.9, h: 0.3, fontSize: 12, bold: true, charSpacing: 2, color: CORAL, fontFace: BODY, margin: 0 });
 s.addText("Comptez vos heures, pas vos tickets.", { x: M, y: 1.42, w: 11.9, h: 0.7,
   fontSize: 36, bold: true, color: WHITE, fontFace: HEAD, margin: 0 });
-s.addText("Tant que vos demandes arrivent entre 9h et 18h, le Poste dédié les couvre au meilleur prix. Dès qu'elles arrivent après 18h, le week-end ou la nuit — et que vous avez 4 positions à ouvrir — l'Équipe managée les couvre pour moins cher que des postes dédiés empilés.",
+s.addText("Tant que vos demandes arrivent entre 9h et 18h, le Poste dédié les couvre au meilleur prix. Dès qu'elles arrivent après 18h, le week-end ou la nuit — et que vous mobilisez 4 agents ou plus — l'Équipe managée les couvre pour moins cher que des postes dédiés empilés.",
   { x: M, y: 2.32, w: 10.4, h: 1.0, fontSize: 15, color: 'D8E2E7', fontFace: BODY, lineSpacing: 23, margin: 0 });
 
 const steps = [
