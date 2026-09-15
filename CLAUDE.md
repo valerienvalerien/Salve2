@@ -47,7 +47,7 @@ FR). Toute priorisation de prospection, de copy ou de chiffrage doit refléter c
 > - **Ne jamais dire à un prospect que Salverys « ne fait pas de direct »** — c'est une
 >   décision d'allocation interne, pas une restriction d'offre.
 >
-> Portée exacte, conséquences sur le catalogue et **conditions de dégel** : `PRICING.md` §0.a.
+> Portée exacte, conséquences sur le catalogue et **conditions de dégel** : `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` §0.a.
 
 ### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
 Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
@@ -71,17 +71,17 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 > ⚠️ Le vocabulaire « freelance », « fee », « prestataire » ne s'applique plus à l'équipe.
 > Le risque de requalification disparaît ; il est remplacé par la **rigidité de l'effectif**
 > (préavis + indemnité de licenciement), couverte par la clause de **volume ferme
-> facturable** sur tous les paliers (`PRICING.md §3`).
+> facturable** sur tous les paliers (`PRICING.md` §1, modèle B).
 
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
 - Français langue maternelle
 - Coût **jusqu'à 50 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
-  (benchmark différencié par métier dans `PRICING.md §3/§5` : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
+  (benchmark différencié par métier dans le registre interne archivé : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
   > ⚠️ **Révisé le 2026-09-07 — remplace « 40 à 60 % ».** Le plafond −60 % n'était atteignable
   > dans aucun scénario et le simulateur de la page qui l'affichait mesurait −32/−38 %.
-  > **Ne jamais réécrire ce claim en fourchette basse-haute** : `PRICING.md §5.b`.
-- **Délai d'activation — toujours nommer le jalon** (`PRICING.md §5.a`) : *première prise de
+  > **Ne jamais réécrire ce claim en fourchette basse-haute**.
+- **Délai d'activation — toujours nommer le jalon** (`PRICING.md` §3) : *première prise de
   tickets sur vos outils* = **3-4 sem. en direct, ~6 sem. en marque blanche**, contre **2 à
   3 mois** pour une prise de poste en France (processus + préavis Syntec) ; *position
   pleinement autonome* = **2-3 mois en direct, 2,5-3,5 mois en marque blanche**, contre
@@ -122,17 +122,9 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 
 ## Source de vérité tarifaire
 
-Tous les prix, grilles, benchmarks et conditions (essai/offre de lancement) sont
-définis dans **`PRICING.md`** — c'est la **source unique de vérité**. Toute copy
-(emails `OUTREACH-*`, CRM, simulateurs, `index.html`) doit s'aligner dessus ; en cas
-de divergence, `PRICING.md` fait foi. Réflexion détaillée : `RAPPORT-PRIX.html`.
+**`PRICING.md` fait foi pour les devis en marque blanche** : deux modèles IT (débordement et poste dédié), grille par volume ferme, télésecrétariat partenaire, dépôt, horaires et engagement de service. Toute proposition partenaire doit s'y aligner. La version complète antérieure, avec les tarifs directs et la chronologie des décisions, est conservée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` ; elle ne remplace pas la grille partenaire actuelle.
 
-Rappels clés : priorités niches = **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS ·
-3) médical · 4) relation client de toutes sortes (futur non déterminé)** ;
-mécanique d'entrée = **dépôt d'activation imputable + 3 contreparties de risque** (marque
-blanche, §3.a/§3.b) — l'offre « 1er mois à −50 % » est **direct uniquement, donc dormante**
-depuis le gel du 2026-09-07 (§0.a) ;
-modèles de tarification = **ETP par position > à l'heure > à l'interaction**.
+Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical partenaire · 4) relation client future**. Le dépôt de **900 €/position** concerne le poste dédié ; les modèles sans position réservée nécessitent un cadrage distinct. Les tarifs directs restent disponibles dans le registre pour traiter les entrants, sans prospection sortante ni nouveau chantier direct.
 
 ## Règle d'arbitrage : SaaS-first avant tout code maison
 
