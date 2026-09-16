@@ -30,7 +30,7 @@
       "Achat et gestion du parc matériel"
     ]
   },
-  "grilleIntro": "Prix arrêtés lors de notre échange du 24 juillet, dégressifs selon le volume engagé. La colonne « revente conseillée » est le repère de marché constaté pour un N1 francophone dédié — vous restez évidemment libre de votre prix de vente.",
+  "grilleIntro": "Exemple fictif : prix dégressifs selon le volume ferme. La revente indiquée est une hypothèse du partenaire, non un prix de marché vérifié ni une marge garantie.",
   "reventeConseillee": 2700,
   "grille": [
     {
@@ -53,10 +53,6 @@
   "grilleNote": "Amplitudes au-delà du périmètre ci-dessus (nuit, dimanche, jours fériés) chiffrées séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.",
   "heuresSemaine": "35 h/semaine",
   "etpRetenus": 5,
-  "coutInterneMensuel": [
-    3200,
-    4200
-  ],
   "pilote": "Le pilote porte sur un seul de vos clients finaux. Cinq positions restent fermes et facturables au palier 5–8 pendant la phase initiale ; le périmètre réduit ne réduit pas le volume engagé. Les KPI sont publiés dès la première prise de tickets et deviennent opposables à partir du premier mois plein en régime. Toute réduction du minimum exige un avenant ; la sortie suit les clauses signées.",
   "sla": {
     "kpi": "prise en charge des tickets N1 sous 30 minutes",
@@ -65,8 +61,8 @@
   },
   "concessions": [
     {
-      "titre": "Appui avant-vente sous 48 h",
-      "detail": "plan de continuité, DPA, description du dispositif QA, CV anonymisés et engagement SLA écrit, fournis sous 48 h ouvrées et réutilisables tels quels dans vos propres réponses d'appels d'offres — le seul de ces trois points qui vous aide à gagner un client plutôt qu'à en économiser un."
+      "titre": "Appui avant-vente",
+      "detail": "les pièces déjà validées sont fournies sous 48 h ouvrées ; les documents manquants ou à tester sont listés et datés dans la proposition avant toute promesse au client final."
     }
   ],
   "nonSollicitationMois": 24,

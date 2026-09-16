@@ -51,9 +51,10 @@ FR). Toute priorisation de prospection, de copy ou de chiffrage doit refléter c
 
 ### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
 Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
-**3 250 000 Ar/mois** (650 € — ~4,5× le marché local), **charges patronales CNaPS/OSTIE en
-sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/agent**. Objectif :
-**zéro turnover**.
+**3 250 000 Ar/mois** (650 € au taux de simulation), avec charges patronales en sus.
+Le coût employeur illustratif d'environ **736 €/personne** suppose un plafond et des taux
+non vérifiés sur la paie réelle ; consulter le prévisionnel avant citation. La stabilité
+de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
 
 - **Aucun plafond d'effectif** : on embauche sur **positions fermes facturables**, pas sur
   une cible d'équipe. Ne jamais opposer une limite de capacité à un prospect.
@@ -61,11 +62,13 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
   **2026-08-27**. **Le fondateur est seul et assure lui-même la prospection** — toute
   planification (cadence, volumes, objectifs) doit partir de cette contrainte et non d'une
   équipe commerciale. Conséquence financière : le burn avant premier contrat tombe à
-  **~110-155 €/mois** (Sales Navigator inclus) et le point mort à **1-2 ETP placés** (`FINANCE-PREVISIONNEL.md` §2.b/§4).
+  une **base d'outils chiffrée selon les dépenses déclarées**, à compléter des abonnements
+  sans montant confirmé. Le point mort varie par métier et par coût de manager ; une seule
+  position support peut être déficitaire (`01-Strategie-Offre/FINANCE-PREVISIONNEL.md`).
 - **Un seul fondateur, non rémunéré** au lancement.
-- Le **hub de repli** et la ligne **kits d'autonomie** sont sortis des charges : le kit
-  reste dû à l'agent, son coût est réputé couvert par le salaire.
-- Rentabilité, point mort et trésorerie : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` (v3).
+- Les équipements et liaisons de secours sont à **chiffrer et tester** avant d'être promis
+  au partenaire ; ils ne sont pas implicitement couverts par le salaire.
+- Rentabilité, point mort et trésorerie : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`.
   Audit de ce prévisionnel : `AUDIT-FINANCE-PREVISIONNEL.md`.
 
 > ⚠️ Le vocabulaire « freelance », « fee », « prestataire » ne s'applique plus à l'équipe.
@@ -76,17 +79,11 @@ sus** (~86 €/tête, plafonnées à 8 × SME) ⇒ **coût employeur ~736 €/ag
 ### Avantage compétitif
 - Fuseau horaire compatible avec la France
 - Français langue maternelle
-- Coût **jusqu'à 50 % inférieur** au coût complet d'un poste interne / prestataire hexagonal
-  (benchmark différencié par métier dans le registre interne archivé : télésec 33-42 k€/an · support IT N1 38-50 k€/an)
-  > ⚠️ **Révisé le 2026-09-07 — remplace « 40 à 60 % ».** Le plafond −60 % n'était atteignable
-  > dans aucun scénario et le simulateur de la page qui l'affichait mesurait −32/−38 %.
-  > **Ne jamais réécrire ce claim en fourchette basse-haute**.
-- **Délai d'activation — toujours nommer le jalon** (`PRICING.md` §3) : *première prise de
-  tickets sur vos outils* = **3-4 sem. en direct, ~6 sem. en marque blanche**, contre **2 à
-  3 mois** pour une prise de poste en France (processus + préavis Syntec) ; *position
-  pleinement autonome* = **2-3 mois en direct, 2,5-3,5 mois en marque blanche**, contre
-  **4 à 6 mois**. La montée en compétence (4-8 sem.) est la même des deux côtés : elle
-  **s'ajoute** au premier jalon, elle ne le remplace pas.
+- Aucun claim chiffré d'**économie vs France** sans étude datée du métier et du compte
+  avec source vérifiable. Les anciens benchmarks restent au registre interne.
+- **Délai d'activation — toujours nommer le jalon** : première prise de tickets en
+  marque blanche visée **vers six semaines** après signature, sous réserve de recrutement,
+  formation et accès ; autonomie visée **2,5 à 3,5 mois**. Le devis date les jalons.
   > ⚠️ **Le mot « opérationnel » est proscrit** pour désigner la première prise de tickets :
   > il promet l'autonomie complète en livrant la première connexion. C'est ce glissement,
   > pas le chiffre, qui rendait la promesse attaquable.

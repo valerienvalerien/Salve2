@@ -1,472 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trésorerie Salverys — simulateur 24 mois (3 métiers · salariés)</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salverys — simulateur de trésorerie partenaire</title>
 <style>
-  :root{
-    --bleu:#2E3B4E; --sauge:#6F8770; --or:#B89968; --creme:#F6F2EA;
-    --rouge:#B05C4A; --ok:#5E7F60;
-    --med:#6F8770; --sup:#B89968; --it:#5B7F9E; --trans:#8A7A9B;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
-  body{background:var(--creme);color:var(--bleu);padding:24px}
-  .wrap{max-width:1760px;margin:0 auto}
-  .grid2{display:grid;grid-template-columns:600px 1fr;gap:20px;align-items:start}
-  @media(max-width:1200px){.grid2{grid-template-columns:1fr}}
-  h1{font-size:1.5rem;margin-bottom:4px}
-  .sub{color:#6b7280;font-size:.9rem;margin-bottom:20px}
-  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(46,59,78,.08);margin-bottom:20px}
-  .card h2{font-size:1rem;margin-bottom:12px;color:var(--sauge);text-transform:uppercase;letter-spacing:.05em}
-  .hyp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:620px){.hyp-grid{grid-template-columns:1fr}}
-  .hyp-col{border-top:3px solid #ccc;padding-top:10px}
-  .hyp-col.c-med{border-color:var(--med)}
-  .hyp-col.c-sup{border-color:var(--sup)}
-  .hyp-col.c-it{border-color:var(--it)}
-  .hyp-col.c-trans{border-color:var(--trans)}
-  .hyp-col h3{font-size:.82rem;margin-bottom:4px;text-transform:uppercase;letter-spacing:.03em}
-  .hyp-col.c-med h3{color:var(--med)} .hyp-col.c-sup h3{color:var(--sup)}
-  .hyp-col.c-it h3{color:var(--it)} .hyp-col.c-trans h3{color:var(--trans)}
-  .hyp-col .coltag{font-size:.7rem;color:#9ca3af;display:block;margin-bottom:10px}
-  .hyp-col h4{font-size:.72rem;text-transform:uppercase;color:#9ca3af;margin:14px 0 8px;letter-spacing:.03em}
-  .ctl{margin-bottom:14px}
-  .ctl label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:4px;gap:6px}
-  .ctl label b{color:var(--bleu);white-space:nowrap}
-  .ctl input[type=range]{width:100%;accent-color:var(--sauge)}
-  .ctl input[type=number]{width:100%;padding:5px;border:1px solid #e5e7eb;border-radius:6px;font-size:.85rem}
-  .ctl .hint{font-size:.7rem;color:#9ca3af;margin-top:2px;line-height:1.3}
-  .check{display:flex;align-items:flex-start;gap:8px;font-size:.8rem;margin-bottom:12px}
-  .check input{accent-color:var(--sauge);width:16px;height:16px;margin-top:2px}
-  .saas-row{display:flex;gap:8px;margin-bottom:10px;align-items:center}
-  .saas-row .tool{flex:1;font-size:.78rem;color:#6b7280}
-  .saas-row input{flex:0 0 56px;padding:4px;border:1px solid #e5e7eb;border-radius:6px;font-size:.8rem}
-  .saas-row .amount{flex:0 0 70px;text-align:right;font-size:.72rem;color:#9ca3af}
-  .ar-equiv{font-size:.7rem;color:var(--or);font-weight:600}
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-  @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
-  .kpi{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(46,59,78,.08)}
-  .kpi .v{font-size:1.35rem;font-weight:700}
-  .kpi .l{font-size:.72rem;color:#6b7280;margin-top:2px}
-  .kpi.bad .v{color:var(--rouge)} .kpi.good .v{color:var(--ok)}
-  .chart{display:flex;align-items:flex-end;gap:3px;height:200px;padding:8px 0;border-bottom:2px solid var(--bleu);position:relative}
-  .bar{flex:1;background:var(--sauge);border-radius:3px 3px 0 0;min-height:2px;position:relative}
-  .bar.neg{background:var(--rouge)}
-  .bar:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
-    background:var(--bleu);color:var(--creme);font-size:.7rem;padding:4px 8px;border-radius:6px;white-space:nowrap;z-index:5}
-  .legend{font-size:.75rem;color:#6b7280;margin-top:8px}
-  table{width:100%;border-collapse:collapse;font-size:.68rem;margin-top:16px}
-  th,td{padding:3px 4px;text-align:right;border-bottom:1px solid #eee;white-space:nowrap}
-  th{background:var(--bleu);color:var(--creme);position:sticky;top:0;cursor:help}
-  .th-tip{position:fixed;display:none;transform:translateX(-50%);max-width:300px;
-    background:var(--bleu);color:var(--creme);font-size:.72rem;font-weight:400;
-    padding:7px 11px;border-radius:6px;line-height:1.45;z-index:50;pointer-events:none;
-    box-shadow:0 4px 14px rgba(46,59,78,.28);white-space:normal;text-align:left}
-  td.g-med{background:rgba(111,135,112,.10)}
-  td.g-sup{background:rgba(184,153,104,.12)}
-  td.g-it{background:rgba(91,127,158,.12)}
-  td:first-child,th:first-child{text-align:left}
-  tr.be td{font-weight:700;outline:1px solid var(--ok)}
-  .neg-cell{color:var(--rouge)}
-  .rate-bar{background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(46,59,78,.08)}
-  .rate-bar label{font-size:.9rem;font-weight:700;white-space:nowrap}
-  .rate-bar input{width:110px;padding:6px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;color:var(--bleu)}
-  .rate-hint{font-size:.75rem;color:#9ca3af}
-  .rate-ex{font-size:.85rem;color:var(--or);font-weight:600;margin-left:auto}
-  .note{font-size:.75rem;color:#6b7280;margin-top:4px;line-height:1.5}
-  .stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
-  @media(max-width:700px){.stack-grid{grid-template-columns:1fr}}
-  .stack-col h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--bleu);margin-bottom:8px}
-  .stack-list{list-style:none;font-size:.8rem;line-height:1.45}
-  .stack-list li{padding:5px 0;border-bottom:1px solid #f0ede6}
-  .stack-list b{color:var(--bleu)}
-  .garde{font-size:.74rem;color:#6b7280;margin-top:14px;border-left:3px solid var(--or);padding-left:10px;line-height:1.5}
+:root{font-family:Inter,Arial,sans-serif;color:#20333d;background:#f5f7f5}*{box-sizing:border-box}body{max-width:1120px;margin:auto;padding:28px 18px 60px}h1{margin:0 0 8px;font-size:2rem}h2{margin:32px 0 12px}p{line-height:1.55}.muted{color:#59706a}.notice{background:#fff8e8;border-left:4px solid #b38632;padding:12px 16px;border-radius:4px}.card{background:#fff;border:1px solid #d7e2da;border-radius:12px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.field label{display:block;font-size:.83rem;font-weight:700;margin-bottom:5px}.field input,.field select{width:100%;padding:9px;border:1px solid #afc2b5;border-radius:7px;font:inherit}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.kpi{background:#e7efe9;border-radius:8px;padding:14px}.kpi strong{display:block;font-size:1.35rem;margin:5px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.82rem;min-width:950px}th,td{padding:8px;text-align:right;border-bottom:1px solid #d8e2da}th:first-child,td:first-child{text-align:left}tr.negative td:last-child{color:#a3342f;font-weight:700}tr.positive td:last-child{color:#216b42;font-weight:700}button{background:#255b47;color:#fff;border:0;border-radius:7px;padding:10px 14px;font:inherit;cursor:pointer}button.secondary{background:#e1eae2;color:#204b37}.deal{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr)) auto;gap:8px;margin:10px 0}.deal button{align-self:end}@media(max-width:760px){.deal{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Trésorerie Salverys — simulateur 24 mois</h1>
-  <p class="sub">Interne · <b>v6 du 2026-08-14 — modèle 100 % salarié</b> · <b>3 métiers séparés</b> (médical · Support N1 SaaS · Helpdesk IT) + transverse · coûts bottom-up + SaaS · aligné sur <b>FINANCE-PREVISIONNEL.md v3</b> et <b>PRICING.md</b> · salaires payés dès l'embauche, facturation à M+2, encaissement à 30 jours</p>
-
-  <!-- TAUX EUR → MGA — TOUT EN HAUT -->
-  <div class="rate-bar">
-    <label for="rate">Taux EUR → MGA</label>
-    <input type="number" id="rate" value="5000" step="50" min="3500" max="7000" />
-    <span class="rate-hint">Ar / €</span>
-    <span class="rate-ex" id="vRateEx">1 000 € = 5 000 000 Ar</span>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi" id="kpiBE"><div class="v">—</div><div class="l">Point mort (CA ≥ charges)</div></div>
-    <div class="kpi" id="kpiCreux"><div class="v">—</div><div class="l">Creux de trésorerie max</div></div>
-    <div class="kpi" id="kpiCash"><div class="v">—</div><div class="l">Trésorerie M24</div></div>
-    <div class="kpi" id="kpiCA"><div class="v">—</div><div class="l">CA mensuel M24</div></div>
-  </div>
-
-  <div class="grid2">
-  <!-- ============ HYPOTHÈSES — 4 BLOCS MÉTIER (2×2) ============ -->
-  <div class="card">
-    <h2>Hypothèses</h2>
-    <div class="hyp-grid">
-
-      <!-- COL 1 — MÉDICAL -->
-      <div class="hyp-col c-med">
-        <h3>① Télésecrétariat médical</h3>
-        <span class="coltag">Priorité absolue · cabinets × forfait</span>
-        <div class="ctl"><label>Forfait médical moyen <b id="vForfait"></b></label>
-          <input type="range" id="forfait" min="300" max="950" step="10" value="590">
-          <div class="hint">€/mois par cabinet (Essentiel 350 → Intensif 950)</div></div>
-        <div class="ctl"><label>Cabinets / salarié <b id="vRatio"></b></label>
-          <input type="range" id="ratio" min="1" max="20" step="1" value="4">
-          <div class="hint">Plancher Erlang : min 2 salariés dès le 1er cabinet</div></div>
-        <div class="ctl"><label>Cabinets au départ (M1) <b id="vCab0"></b></label>
-          <input type="range" id="cab0" min="0" max="10" step="1" value="0">
-          <div class="hint">Déjà signés au lancement</div></div>
-        <div class="ctl"><label>Acquisition cabinets / mois <b id="vAcq"></b></label>
-          <input type="range" id="acq" min="0" max="4" step="0.25" value="0">
-          <div class="hint">Rythme réaliste 1–2 nouveaux cabinets/mois</div></div>
-      </div>
-
-      <!-- COL 2 — SUPPORT N1 SAAS -->
-      <div class="hyp-col c-sup">
-        <h3>② Support N1 SaaS</h3>
-        <span class="coltag">Éditeurs SaaS FR · dédié + mutualisé</span>
-        <div class="ctl"><label>ETP Support / mois <b id="vSupQ"></b></label>
-          <input type="range" id="supQ" min="0" max="8" step="0.25" value="0">
-          <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
-        <div class="ctl"><label>% marque blanche <b id="vSupMix"></b></label>
-          <input type="range" id="supMix" min="0" max="100" step="10" value="100">
-          <div class="hint">MB 1 700 / 1 500 / 1 350 €/ETP selon palier 1-4 / 5-8 / 9+ · direct ~2 150 €/ETP</div></div>
-        <div class="ctl"><label>% mutualisé (vs dédié) <b id="vSupPctMut"></b></label>
-          <input type="range" id="supPctMut" min="0" max="100" step="10" value="20">
-          <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
-        <div class="ctl"><label>Salariés / client mutualisé <b id="vSupRatioMut"></b></label>
-          <input type="range" id="supRatioMut" min="0.5" max="3" step="0.5" value="0.5">
-          <div class="hint">Combien de salariés couvrent 1 client (max 3)</div></div>
-        <div class="ctl"><label>Forfait mutualisé moyen <b id="vSupForfaitMut"></b></label>
-          <input type="range" id="supForfaitMut" min="300" max="1500" step="50" value="700">
-          <div class="hint">€/mois/client · SLA N1 partagé</div></div>
-      </div>
-
-      <!-- COL 3 — HELPDESK IT -->
-      <div class="hyp-col c-it">
-        <h3>③ Helpdesk IT N1</h3>
-        <span class="coltag">ESN/MSP distant · dédié + mutualisé</span>
-        <div class="ctl"><label>ETP IT / mois <b id="vItQ"></b></label>
-          <input type="range" id="itQ" min="0" max="8" step="0.25" value="0">
-          <div class="hint">À partir de M4 · donneurs d'ordre MB en priorité</div></div>
-        <div class="ctl"><label>% marque blanche <b id="vItMix"></b></label>
-          <input type="range" id="itMix" min="0" max="100" step="10" value="100">
-          <div class="hint">MB 1 700 / 1 500 / 1 350 €/ETP selon palier 1-4 / 5-8 / 9+ · direct ~2 150 €/ETP</div></div>
-        <div class="ctl"><label>% mutualisé (vs dédié) <b id="vItPctMut"></b></label>
-          <input type="range" id="itPctMut" min="0" max="100" step="10" value="20">
-          <div class="hint">80 % dédié · 20 % mutualisé partagé (attendu)</div></div>
-        <div class="ctl"><label>Salariés / client mutualisé <b id="vItRatioMut"></b></label>
-          <input type="range" id="itRatioMut" min="0.5" max="3" step="0.5" value="0.5">
-          <div class="hint">Combien de salariés couvrent 1 client (max 3)</div></div>
-        <div class="ctl"><label>Forfait mutualisé moyen <b id="vItForfaitMut"></b></label>
-          <input type="range" id="itForfaitMut" min="300" max="1500" step="50" value="700">
-          <div class="hint">€/mois/client · SLA N1 partagé</div></div>
-      </div>
-
-      <!-- COL 4 — TRANSVERSE -->
-      <div class="hyp-col c-trans">
-        <h3>④ Transverse</h3>
-        <span class="coltag">Financement · équipe · SaaS · conditions</span>
-
-        <h4>Financement</h4>
-        <div class="ctl"><label>Capital initial <b id="vCap"></b></label>
-          <input type="range" id="cap" min="0" max="60000" step="1000" value="30000">
-          <div class="hint">FINANCE §6 : ~25-30 k€ couvrent les 3 scénarios</div></div>
-        <div class="ctl"><label>Setup initial (M1) <b id="vSetup"></b></label>
-          <input type="range" id="setupInit" min="0" max="3000" step="100" value="0">
-          <div class="hint">Création société (VJUS / formalités)</div></div>
-
-        <h4>Équipe — coûts</h4>
-        <div class="ctl"><label>Plafond ETP par métier (Sup / IT) <b id="vCapEtp"></b></label>
-          <input type="range" id="capEtp" min="4" max="40" step="1" value="40">
-          <div class="hint"><b>Plus de plafond d'effectif</b> (FINANCE v3) : on embauche sur positions fermes. Ce curseur ne sert qu'à borner une simulation.</div></div>
-        <div class="ctl"><label>Coût employeur / agent <b id="vCostFL"></b></label>
-          <input type="range" id="costFL" min="300" max="1500" step="1" value="736">
-          <div class="hint"><span class="ar-equiv" id="vCostFLAr"></span> · brut <b>3,25 M Ar (650 €)</b> + charges CNaPS/OSTIE <b>~86 €</b> (18 % plafonnés à 8× SME)</div></div>
-        <div class="ctl"><label>VoIP médical / salarié <b id="vVoip"></b></label>
-          <input type="range" id="voip" min="0" max="150" step="10" value="50">
-          <div class="hint">€/mois par poste médical (IT/Support : ACD client)</div></div>
-        <div class="ctl"><label>Superviseur / manager <b id="vMgr"></b></label>
-          <input type="range" id="costMgr" min="300" max="1500" step="1" value="736">
-          <div class="hint"><span class="ar-equiv" id="vMgrAr"></span> · €/mois — manager médical dès 3 agents médical · <b>+ 1 manager partagé IT+Support / 8 agents (dès 3)</b></div></div>
-
-        <div class="ctl"><label>Commercial (Vololona) <b id="vCostCom"></b></label>
-          <input type="range" id="costCom" min="0" max="2000" step="1" value="586">
-          <div class="hint">Coût employeur €/mois — fixe seul ≈ 586 € · à l'OTE ≈ 1 086 €</div></div>
-        <div class="ctl"><label>Divers / imprévus <b id="vDivers"></b></label>
-          <input type="range" id="divers" min="0" max="25" step="1" value="10">
-          <div class="hint">% appliqué à l'ensemble des charges</div></div>
-
-        <h4>SaaS &amp; outils</h4>
-        <div class="saas-row"><div class="tool"><b>HubSpot</b> Free</div><div class="amount">0 €/mois</div></div>
-        <div class="ctl"><label>Emelia (outreach) <b id="vEmelia"></b></label>
-          <input type="range" id="emelia" min="0" max="500" step="5" value="40">
-          <div class="hint">€/mois — selon votre plan (saisie libre)</div></div>
-        <div class="saas-row"><div class="tool"><b>CloudTalk</b></div><div class="amount">29 €/free méd.</div></div>
-        <div class="saas-row"><div class="tool"><b>OVH</b> domaine</div>
-          <div style="flex:1"><input type="number" id="ovh" min="0" max="20" step="0.5" value="1"></div>
-          <div class="amount">€/mois</div></div>
-        <div class="saas-row"><div class="tool"><b>M365 + GWS</b></div>
-          <div style="flex:1"><input type="number" id="m365" min="0" max="10" step="1" value="2"></div>
-          <div class="amount">× 10 €/PU</div></div>
-
-        <h4>Conditions</h4>
-        <div class="check"><input type="checkbox" id="founders" checked>
-          <span>Deal « cabinets fondateurs » (5 premiers : −50/−30/−15 % sur 3 mois)</span></div>
-        <div class="check"><input type="checkbox" id="churn">
-          <span>Churn médical 1 cabinet / 6 mois (stress test)</span></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ============ RÉSULTATS ============ -->
-  <div class="card">
-    <h2>Courbe de trésorerie (fin de mois)</h2>
-    <div class="chart" id="chart"></div>
-    <div class="legend">Vert sauge = trésorerie positive · Rouge = négative · Survoler une barre pour le détail</div>
-    <div style="max-height:380px;overflow:auto">
-    <table id="tbl">
-      <thead><tr>
-        <th title="Mois de simulation (M1 à M24)">M</th>
-        <th title="Cabinets médicaux actifs ce mois (signés moins churn éventuel)">Cab</th>
-        <th title="Salariés médical = ceil(cabinets / cabinets-par-salarié), avec plancher Erlang minimum 2">Sal.</th>
-        <th title="Sup = nombre d'ETP (équivalents temps plein) Support N1 SaaS facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP Support / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">Sup</th>
-        <th title="IT = nombre d'ETP (équivalents temps plein) Helpdesk IT N1 facturables ce mois. Vaut 0 avant le mois 4, puis démarre à la valeur du curseur « ETP IT / mois » et gagne un palier à chaque trimestre. Plafonné par le curseur « Plafond ETP par métier » (8 par défaut) : taille maximale d'une équipe technique modélisée à ce stade ; au-delà, il faudrait restructurer encadrement et tarifs.">IT</th>
-        <th title="Masse salariale : salariés médical + technicians IT/Support + superviseurs (1 médical dès 3, 1 partagé IT+Support dès 3 technicians puis +1 par tranche de 8)">M.sal</th>
-        <th title="Chiffre d'affaires Télésecrétariat médical = cabinets × forfait (remises fondateurs incluses)">CA méd</th>
-        <th title="Chiffre d'affaires Support N1 SaaS = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA Sup</th>
-        <th title="Chiffre d'affaires Helpdesk IT N1 = flux dédié (ETP × prix) + flux mutualisé (forfait SLA)">CA IT</th>
-        <th title="Chiffre d'affaires total facturé ce mois (médical + Support + IT)">CA tot</th>
-        <th title="Encaissé ce mois = CA total facturé le mois précédent, payé à 30 jours (J+30)">Enc</th>
-        <th title="Charges totales du mois = masse salariale + VoIP médical + SaaS/outils (+ setup initial en M1)">Chrg</th>
-        <th title="Bénéfice du mois = CA total − charges (comptable, hors décalage d'encaissement)">Bén</th>
-        <th title="Trésorerie en fin de mois = trésorerie précédente + encaissé (J+30) − charges du mois">Tréso</th>
-      </tr></thead>
-      <tbody></tbody>
-    </table>
-    </div>
-    <p style="font-size:.7rem;color:#9ca3af;margin-top:6px">Colonnes teintées = par métier (vert médical · or Support · bleu IT). « Reçu J+30 » = CA total facturé le mois précédent, encaissé ce mois (paiement à 30 j) — d'où un décalage systématique en M1.</p>
-  </div>
-  </div><!-- /grid2 -->
-
-  <p class="note">
-    <b>Mécanique du modèle (v5 · 3 métiers séparés)</b> :
-    <b>① Médical</b> = cabinets × forfait (remises fondateurs) ; salariés = ceil(cabinets/ratio), plancher Erlang min 2 ; coût = (salaire + VoIP) par poste, superviseur dès 3 salariés médical.
-    <b>② Support N1 SaaS</b> et <b>③ Helpdesk IT</b> : deux métiers indépendants, chacun en 2 flux — <b>dédié/régie</b> = ETP placés × prix ETP (mix MB 1 500 € / direct 2 150 €) ; <b>mutualisé</b> = (salariés pool ÷ salariés-par-client) × forfait SLA. Le curseur « % mutualisé » répartit la capacité de chaque métier entre dédié et mutualisé.
-    <b>Staffing IT &amp; Support</b> : chaque ETP/salarié coûte un salaire (sans VoIP CloudTalk — ACD/ticketing imposé par le client) → marge réelle, plus surévaluée. Pas de plancher Erlang sur IT/Support (dédié = placement nominatif, mutualisé = backup via le pool). <b>Encadrement technique</b> : 1 superviseur partagé IT+Support dès 3 technicians cumulés, +1 par tranche de 8 (ceil((Sup+IT)/8)).
-    <b>Décalages</b> : agent payé dès l'embauche (M+1 après signature), facturé à M+2, <b>encaissement</b> à 30 j. <b>Charges</b> : salaire brut + charges patronales CNaPS/OSTIE (plafonnées), commercial, SaaS, puis imprévus en %. SaaS : HubSpot Free (0€) + Emelia (éditable) + CloudTalk (× salariés méd.) + OVH + M365 (× licences). Prix : <b>PRICING.md fait foi</b>.
-  </p>
-
-  <!-- ============ STACK INTERNE VALIDÉE ============ -->
-  <div class="card">
-    <h2>Stack &amp; organisation interne — éléments validés</h2>
-    <p class="sub" style="margin:0 0 6px">Principe : séparer ce qui est <b>imposé</b> (delivery, clients) de ce qui est <b>à moi</b> (la boîte, que je choisis).</p>
-    <div class="stack-grid">
-      <div class="stack-col">
-        <h3>Ma boîte — je choisis</h3>
-        <ul class="stack-list">
-          <li><b>Messagerie &amp; collab</b> — Microsoft 365 Business Basic (~6 $/mois) + Teams, sur <code>salverys.fr</code>.</li>
-          <li><b>Cold email — domaine</b> — <code>salverys-bpo.fr</code> isolé · <b>2 inboxes</b> dès le départ · SPF+DKIM+DMARC <b>avant</b> 1er envoi.</li>
-          <li><b>Outreach</b> — Emelia (99 €/mois, warm-up auto inclus) · montée 5→10→20→30/jour.</li>
-          <li><b>CRM commercial</b> — <b>HubSpot Free</b> (0 €, décision tranchée).</li>
-          <li><b>Coordination de l'équipe</b> — Teams (même outil que la collab interne).</li>
-          <li><b>Facturation</b> — VJUS (société malgache), HT en autoliquidation (art. 283-2 CGI) · modèle PDF jusqu'à ~10 clients · Wise Business pour EUR→MGA.</li>
-          <li><b>Dev &amp; assets</b> — GitHub (repo <code>Salve2</code>) + Netlify + Claude Code.</li>
-          <li><b>Modèles IA</b> — Opus (stratégique) · Sonnet/Haiku (volume).</li>
-          <li><b>Téléphonie sortante</b> — CloudTalk Essential (29 €/user/mois) · <b>numéro +33 obligatoire</b> · scale avec les agents.</li>
-          <li><b>Domaine &amp; sous-domaines</b> — OVH · €/mois éditable dans le simulateur.</li>
-          <li><b>Licences mailing</b> — M365 + GWS · 10 €/PU/mois · nombre éditable.</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h3>Imposé — delivery (je ne choisis pas)</h3>
-        <ul class="stack-list">
-          <li><b>TLS médical</b> — très probablement <b>Ubicentrex</b> (agenda/RDV + SMS natifs) · à confirmer client par client (certains sur Doctolib).</li>
-          <li><b>Support IT &amp; applicatif</b> — ACD + ticketing <b>imposés par le donneur d'ordre</b> · agents connectés à l'instance client.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="garde"><b>Garde-fou</b> — ne pas sur-équiper. Chaque outil répond à un besoin <b>présent</b>, pas anticipé. La stack évolue au rythme du CA, pas l'inverse.</p>
-  </div>
-</div>
-
-<script>
-const $=id=>document.getElementById(id);
-const fmtE=n=>Math.round(n).toLocaleString('fr-FR')+' €';
-const fmtK=n=>(n/1000).toLocaleString('fr-FR',{maximumFractionDigits:1})+' k€';
-
-// prix ETP dédié (régie) — communs aux 2 métiers IT/Support, source PRICING.md
-const PRICE_MB=1500, PRICE_DIRECT=2150;   // MB : palier 5-8 ETP par defaut (PRICING §3 : 1 700 / 1 500 / 1 350)
-
-// capacité d'un métier IT/Support : croissance trimestrielle dès M4, plafond 8
-function etpCapacity(m,q,cap){ return m>=4 ? Math.min(cap, q*Math.floor((m-4)/3+1)) : 0; }
-
-// CA d'un métier IT/Support en 2 flux (dédié + mutualisé)
-function revFlux(etp,mix,pctMut,ratioMut,forfaitMut){
-  const ded=etp*(1-pctMut), mut=etp*pctMut;
-  const priceDed=PRICE_MB*mix+PRICE_DIRECT*(1-mix);
-  const revDed=ded*priceDed;
-  const revMut=(mut/ratioMut)*forfaitMut;   // freelances ÷ (freelances/client) = clients servis
-  return revDed+revMut;
+<header><h1>Trésorerie Salverys</h1><p class="muted">Simulation mensuelle 24 mois · contrats de positions dédiées en marque blanche · chiffres en euros HT</p></header>
+<p class="notice"><b>Prévision, pas situation bancaire.</b> Les coûts, cotisations, taxes et délais restent à confirmer sur pièces. Le modèle A mutualisé et le médical à l'appel ne sont pas inclus faute de staffing mesuré. L'ancien montant de financement de 25–30 k€ n'est plus une recommandation valide.</p>
+<section class="card"><h2>Hypothèses</h2><div class="grid">
+<div class="field"><label for="scenario">Scénario de signatures</label><select id="scenario"><option value="attente">Attente</option><option value="prudent">Prudent : 1 helpdesk M4</option><option value="median" selected>Médian : 2 helpdesk M4 + 2 support M9</option><option value="expansion">Expansion : 3 contrats, 9 agents</option><option value="custom">Mes contrats</option></select></div>
+<div class="field"><label for="initialCash">Trésorerie disponible de départ (€)</label><input id="initialCash" type="number" value="0"></div>
+<div class="field"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
+<div class="field"><label for="onboarding">Onboarding payé par contrat (€)</label><input id="onboarding" type="number" min="0" value="1600"></div>
+<div class="field"><label for="rate">Taux Ar par €</label><input id="rate" type="number" min="1" value="5000"></div>
+<div class="field"><label for="gross">Brut agent/manager (Ar/mois)</label><input id="gross" type="number" min="0" value="3250000"></div>
+<div class="field"><label for="sme">SME supposé (Ar)</label><input id="sme" type="number" min="0" value="300000"></div>
+<div class="field"><label for="employer">Taux employeur supposé (%)</label><input id="employer" type="number" min="0" max="100" step=".1" value="18"></div>
+<div class="field"><label for="voip">VoIP par agent (€/mois)</label><input id="voip" type="number" min="0" value="30"></div>
+<div class="field"><label for="contingency">Coussin sur personnel + VoIP (%)</label><input id="contingency" type="number" min="0" max="100" value="10"></div>
+<div class="field"><label for="paymentDelay">Retard de règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
+</div><p class="muted">68 €/mois correspond aux coûts récurrents connus en équivalent mensuel : 48 € d'outils et domaines + 20 € de Claude. Sales Navigator est inactif. Les dépenses ponctuelles et les dates de facturation annuelle restent à saisir séparément. Les prix de palier, dépôt et crédits proviennent de PRICING.md ; la première facture est supposée en M+2. Un manager est compté dès la première position du métier, puis un de plus par tranche de huit.</p></section>
+<section class="card"><h2>Contrats signés ou hypothétiques</h2><div id="deals"></div><button id="addDeal">Ajouter un contrat</button></section>
+<section class="kpis"><div class="kpi">Creux de trésorerie<strong id="trough">—</strong><span id="troughMonth"></span></div><div class="kpi">Besoin illustratif +30 %<strong id="need">—</strong><span>Avant coûts et dettes manquants</span></div><div class="kpi">Trésorerie M12<strong id="cash12">—</strong></div><div class="kpi">Trésorerie M24<strong id="cash24">—</strong></div></section>
+<section class="card"><h2>Flux mensuels</h2><div class="table-wrap"><table><thead><tr><th>Mois</th><th>Agents</th><th>Managers</th><th>Dépôts</th><th>Facturé net crédits</th><th>Encaissé</th><th>Personnel + coussin</th><th>Onboarding</th><th>Outils</th><th>Cash disponible fin de mois</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<p class="muted">Un dépôt est encaissé à la signature puis déduit des trois premières factures : il améliore le calendrier d'encaissement, sans accroître le montant total du contrat. Le personnel est budgété dès l'embauche en M+1 ; le coussin de 10 % est réservé dans le cash disponible, même s'il ne correspond pas à une paie effectivement payée. Consultez le prévisionnel pour les coûts non inclus.</p>
+<script type="module">
+import {ASSUMPTIONS, pricePerPosition, projectCash, summarize} from './tools/finance-model.mjs';
+import {SCENARIOS} from './tools/finance-scenarios.mjs';
+const $=id=>document.getElementById(id), eur=n=>Math.round(n).toLocaleString('fr-FR')+' €';
+const fields=['initialCash','tools','onboarding','rate','gross','sme','employer','voip','contingency','paymentDelay'];
+function dealRow(d={signedMonth:1,metier:'helpdesk',positions:1}){
+ const el=document.createElement('div');el.className='deal';
+ el.innerHTML='<div class="field"><label>Mois de signature</label><input data-key="signedMonth" type="number" min="1" max="24"></div><div class="field"><label>Métier</label><select data-key="metier"><option value="helpdesk">Helpdesk IT N1</option><option value="support">Support applicatif N1</option></select></div><div class="field"><label>Positions fermes</label><input data-key="positions" type="number" min="1"></div><div class="field"><label>Prix / position (€)</label><input data-key="priceOverride" type="number" min="0" placeholder="Palier automatique"></div><button type="button" class="secondary">Retirer</button>';
+ el.querySelector('[data-key="signedMonth"]').value=d.signedMonth;el.querySelector('[data-key="metier"]').value=d.metier;el.querySelector('[data-key="positions"]').value=d.positions;
+ if(d.priceOverride!=null)el.querySelector('[data-key="priceOverride"]').value=d.priceOverride;
+ el.querySelector('button').onclick=()=>{el.remove();$('scenario').value='custom';render()};
+ el.addEventListener('input',()=>{$('scenario').value='custom';render()});return el;
 }
-
-function simulate(){
-  const rate=+$('rate').value;
-  const cap=+$('cap').value, setupInit=+$('setupInit').value,
-        forfait=+$('forfait').value, ratio=+$('ratio').value,
-        cab0=+$('cab0').value, acq=+$('acq').value,
-        supQ=+$('supQ').value, supMix=+$('supMix').value/100,
-        supPctMut=+$('supPctMut').value/100, supRatioMut=+$('supRatioMut').value, supForfaitMut=+$('supForfaitMut').value,
-        itQ=+$('itQ').value, itMix=+$('itMix').value/100,
-        itPctMut=+$('itPctMut').value/100, itRatioMut=+$('itRatioMut').value, itForfaitMut=+$('itForfaitMut').value,
-        capEtp=+$('capEtp').value,
-        costFL=+$('costFL').value, voip=+$('voip').value, costMgr=+$('costMgr').value,
-        costCom=+$('costCom').value, divers=+$('divers').value/100,
-        emelia=+$('emelia').value, ovh=+$('ovh').value, m365=+$('m365').value,
-        founders=$('founders').checked, churn=$('churn').checked;
-
-  // affichage valeurs
-  $('vRateEx').textContent=`1 000 € = ${(1000*rate).toLocaleString('fr-FR')} Ar`;
-  $('vCap').textContent=fmtK(cap);
-  $('vSetup').textContent=fmtE(setupInit);
-  $('vCapEtp').textContent=capEtp+' ETP';
-  $('vForfait').textContent=fmtE(forfait);
-  $('vRatio').textContent=ratio;
-  $('vCab0').textContent=cab0;
-  $('vAcq').textContent=acq;
-  $('vSupQ').textContent=supQ;
-  $('vSupMix').textContent=Math.round(supMix*100)+' %';
-  $('vSupPctMut').textContent=Math.round(supPctMut*100)+' %';
-  $('vSupRatioMut').textContent=supRatioMut.toFixed(1);
-  $('vSupForfaitMut').textContent=fmtE(supForfaitMut);
-  $('vItQ').textContent=itQ;
-  $('vItMix').textContent=Math.round(itMix*100)+' %';
-  $('vItPctMut').textContent=Math.round(itPctMut*100)+' %';
-  $('vItRatioMut').textContent=itRatioMut.toFixed(1);
-  $('vItForfaitMut').textContent=fmtE(itForfaitMut);
-  $('vCostFL').textContent=fmtE(costFL);
-  $('vCostFLAr').textContent=`≈ ${((costFL*rate)/1e6).toFixed(2)} M Ar`;
-  $('vVoip').textContent=fmtE(voip);
-  $('vMgr').textContent=fmtE(costMgr);
-  $('vCostCom').textContent=fmtE(costCom);
-  $('vDivers').textContent=Math.round(divers*100)+' %';
-  $('vMgrAr').textContent=`≈ ${((costMgr*rate)/1e6).toFixed(2)} M Ar`;
-  $('vEmelia').textContent=fmtE(emelia);
-
-  const M=24, rows=[]; let cash=cap, prevRev=0, signups=[], churned=0;
-
-  for(let m=1;m<=M;m++){
-    // ① Médical
-    const baseTarget = cab0 + Math.round(acq*(m-1));
-    while(signups.length < baseTarget) signups.push(m);
-    if(churn && m>=9 && (m-9)%6===0) churned++;
-    const actifs = signups.slice(churned);
-    const cabinets = actifs.length;
-    // decalage FINANCE §5 : agent paye des M+1 (embauche), cabinet facture a partir de M+2
-    const cabPayes = actifs.filter(s=>m-s>=1).length;
-    let revMed=0;
-    actifs.forEach((s,i)=>{
-      const age=m-s+1; if(age<3) return;               // pas encore facture
-      const ageFact=age-2; let f=1;
-      if(founders && i<5){ if(ageFact===1)f=.5; else if(ageFact===2)f=.7; else if(ageFact===3)f=.85; }
-      revMed+=forfait*f;
-    });
-    const freelancesMed = cabPayes>0 ? Math.max(2, Math.ceil(cabPayes/ratio)) : 0; // plancher Erlang min 2
-
-    // ② Support N1 SaaS · ③ Helpdesk IT — capacités + CA en 2 flux
-    // ETP signes / payes (M+1) / factures (M+2) — decalage FINANCE §5
-    const supEtp = etpCapacity(m-2,supQ,capEtp);         // factures
-    const itEtp  = etpCapacity(m-2,itQ,capEtp);
-    const supPay = etpCapacity(m-1,supQ,capEtp);         // payes
-    const itPay  = etpCapacity(m-1,itQ,capEtp);
-    const revSup = revFlux(supEtp,supMix,supPctMut,supRatioMut,supForfaitMut);
-    const revIt  = revFlux(itEtp ,itMix ,itPctMut ,itRatioMut ,itForfaitMut );
-
-    const rev = revMed + revSup + revIt;
-
-    // coûts bottom-up — modèle salarié (FINANCE v3)
-    const medMgr = freelancesMed>=3 ? 1 : 0;            // manager médical dès 3 agents médical
-    const techTotal = supPay+itPay;                      // agents IT + Support payés
-    const techMgr = techTotal>=3 ? Math.ceil(techTotal/8) : 0; // 1 manager partagé / 8 agents (dès 3)
-    const nbMgr = medMgr + techMgr;
-    const masseSal = freelancesMed*costFL + techTotal*costFL + nbMgr*costMgr + costCom;
-    const costSaaS = emelia + freelancesMed*29 + ovh + m365*10; // CloudTalk sur postes médicaux
-    const costs = (masseSal + freelancesMed*voip + costSaaS)*(1+divers) + (m===1?setupInit:0);
-    const profit = rev - costs;
-
-    const enc = m===1?0:rows[m-2].rev;
-    cash += prevRev - costs;
-    prevRev = rev;
-    rows.push({m,cabinets,freelancesMed,supEtp,itEtp,masseSal,revMed,revSup,revIt,rev,enc,costs,profit,cash});
-  }
-
-  // KPIs
-  const be=rows.find(r=>r.rev>=r.costs);
-  const creux=Math.min(...rows.map(r=>r.cash));
-  $('kpiBE').querySelector('.v').textContent = be?('M'+be.m):'> M24';
-  $('kpiBE').className='kpi '+(be&&be.m<=8?'good':be?'':'bad');
-  $('kpiCreux').querySelector('.v').textContent=fmtK(creux);
-  $('kpiCreux').className='kpi '+(creux<0?'bad':'good');
-  $('kpiCash').querySelector('.v').textContent=fmtK(rows[M-1].cash);
-  $('kpiCash').className='kpi '+(rows[M-1].cash>cap?'good':rows[M-1].cash<0?'bad':'');
-  $('kpiCA').querySelector('.v').textContent=fmtE(rows[M-1].rev);
-
-  // chart
-  const ch=$('chart'); ch.innerHTML='';
-  const maxAbs=Math.max(...rows.map(r=>Math.abs(r.cash)),1);
-  rows.forEach(r=>{
-    const b=document.createElement('div');
-    b.className='bar'+(r.cash<0?' neg':'');
-    b.style.height=Math.max(2,Math.abs(r.cash)/maxAbs*180)+'px';
-    b.dataset.tip=`M${r.m} : ${fmtK(r.cash)} (CA ${fmtE(r.rev)})`;
-    ch.appendChild(b);
-  });
-
-  // table
-  const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
-  const dash=v=>v>0?v.toFixed(1):'-';
-  rows.forEach(r=>{
-    const tr=document.createElement('tr');
-    if(be&&r.m===be.m) tr.className='be';
-    tr.innerHTML=`<td>M${r.m}</td>
-      <td class="g-med">${r.cabinets}</td><td class="g-med">${r.freelancesMed}</td>
-      <td class="g-sup">${dash(r.supEtp)}</td>
-      <td class="g-it">${dash(r.itEtp)}</td>
-      <td>${fmtE(r.masseSal)}</td>
-      <td class="g-med">${fmtE(r.revMed)}</td><td class="g-sup">${fmtE(r.revSup)}</td><td class="g-it">${fmtE(r.revIt)}</td>
-      <td><b>${fmtE(r.rev)}</b></td>
-      <td>${fmtE(r.enc)}</td>
-      <td>${fmtE(r.costs)}</td>
-      <td class="${r.profit<0?'neg-cell':''}">${fmtE(r.profit)}</td>
-      <td class="${r.cash<0?'neg-cell':''}">${fmtE(r.cash)}</td>`;
-    tb.appendChild(tr);
-  });
+function setDeals(ds){$('deals').replaceChildren(...ds.map(dealRow));render()}
+function readDeals(){return [...$('deals').children].map(el=>{const read=k=>el.querySelector('[data-key="'+k+'"]').value;const d={signedMonth:Number(read('signedMonth')),metier:read('metier'),positions:Number(read('positions'))};if(read('priceOverride')!=='')d.priceOverride=Number(read('priceOverride'));return d})}
+function render(){
+ try{
+  const a={...ASSUMPTIONS,initialCash:Number($('initialCash').value),toolsPerMonth:Number($('tools').value),onboardingPerDeal:Number($('onboarding').value),exchangeArPerEuro:Number($('rate').value),grossSalaryAr:Number($('gross').value),smeAr:Number($('sme').value),employerRate:Number($('employer').value)/100,voipPerAgent:Number($('voip').value),contingency:Number($('contingency').value)/100,paymentDelayMonths:Number($('paymentDelay').value)};
+  const deals=readDeals();for(const d of deals){if(d.signedMonth<1||d.positions<1||(d.priceOverride!=null&&d.priceOverride<0))throw new Error('Saisir des contrats valides')}
+  const rows=projectCash(deals,24,a),sum=summarize(rows);
+  $('trough').textContent=eur(sum.trough);$('troughMonth').textContent='M'+sum.troughMonth;
+  $('need').textContent=eur(sum.runwayNeedWith30pctBuffer);$('cash12').textContent=eur(rows[11].cash);$('cash24').textContent=eur(rows[23].cash);
+  $('rows').innerHTML=rows.map(r=>'<tr class="'+(r.cash<0?'negative':'positive')+'"><td>M'+r.month+'</td><td>'+r.agents+'</td><td>'+r.managers+'</td><td>'+eur(r.deposit)+'</td><td>'+eur(r.invoiced)+'</td><td>'+eur(r.receipt)+'</td><td>'+eur(r.payroll)+'</td><td>'+eur(r.onboarding)+'</td><td>'+eur(r.overhead)+'</td><td>'+eur(r.cash)+'</td></tr>').join('');
+ }catch(e){$('trough').textContent=e.message;$('rows').replaceChildren()}
 }
-document.querySelectorAll('input').forEach(i=>i.addEventListener('input',simulate));
-simulate();
-
-// Infobulles fiables sur les en-têtes de colonnes (remplacent le title natif lent)
-(function(){
-  const tip=document.createElement('div'); tip.className='th-tip'; document.body.appendChild(tip);
-  document.querySelectorAll('#tbl thead th[title]').forEach(th=>{
-    th.dataset.tip=th.getAttribute('title'); th.removeAttribute('title');
-    th.addEventListener('mouseenter',()=>{
-      tip.textContent=th.dataset.tip; tip.style.display='block';
-      const r=th.getBoundingClientRect();
-      let left=Math.min(Math.max(r.left+r.width/2,158),window.innerWidth-158);
-      tip.style.left=left+'px'; tip.style.top=(r.bottom+6)+'px';
-    });
-    th.addEventListener('mouseleave',()=>{tip.style.display='none';});
-  });
-})();
-</script>
-</body>
-</html>
+$('scenario').addEventListener('change',()=>{const v=$('scenario').value;if(v!=='custom')setDeals(SCENARIOS[v])});
+$('addDeal').onclick=()=>{$('scenario').value='custom';$('deals').append(dealRow());render()};
+for(const f of fields)$(f).addEventListener('input',render);
+setDeals(SCENARIOS.median);
+</script></body></html>

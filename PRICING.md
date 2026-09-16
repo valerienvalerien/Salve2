@@ -27,7 +27,7 @@ Les appels, les canaux, le périmètre des tickets, les horaires et la règle d'
 | **5 à 8** | **1 500 €/position** | **1 750 €/position** |
 | **9 ou plus** | **1 350 €/position** | **1 550 €/position** |
 
-Le palier dépend du **minimum de positions facturables garanti dans le contrat**, et non d'un volume envisagé. Les positions fermes restent dues si le partenaire ne les utilise pas. Si le minimum baisse, le prix du palier correspondant s'applique à compter de la modification contractuelle. Aucun prix négocié ne descend sous **920 €/position/mois**.
+Le palier dépend du **minimum de positions facturables garanti dans le contrat**, et non d'un volume envisagé. Les positions fermes restent dues si le partenaire ne les utilise pas. Si le minimum baisse, le prix du palier correspondant s'applique à compter de la modification contractuelle. Aucun prix négocié ne descend sous **920 €/position/mois**. **Ce seuil n'est pas un seuil de rentabilité** : avant d'approuver un devis, calculer la contribution du contrat après agents, manager(s), outils, onboarding, relève et horaires selon `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`. Une seule position support à 1 700 € peut être déficitaire dans un métier isolé selon les hypothèses actuelles.
 
 **Exemple :** deux positions helpdesk au palier 1–4 coûtent `2 × 2 000 = 4 000 €/mois`. Cinq positions fermes coûtent `5 × 1 750 = 8 750 €/mois` ; le tarif de cinq positions ne s'applique pas à deux positions simplement envisagées.
 
@@ -80,6 +80,6 @@ En débordement, le pool prend le relais sans agent attitré. Sur un poste dédi
 
 - **Sortie à 30 jours** pendant les trois premiers mois, selon la clause convenue.
 - **Exclusivité nominative** pour trois à cinq concurrents désignés par le partenaire, pendant la durée du contrat. Une exclusivité par verticale de client final n'est envisageable qu'à partir de **cinq positions fermes**. Aucune exclusivité territoriale.
-- **Appui avant-vente sous 48 h** : plan de continuité, documents RGPD, profils anonymisés, dispositif qualité et engagement de service écrit, réutilisables dans la réponse du partenaire à ses propres clients.
+- **Appui avant-vente sous 48 h**, si les documents sont déjà validés : plan de continuité, documents RGPD, profils anonymisés, dispositif qualité et engagement de service écrit. La date de remise des pièces manquantes se fixe au devis ; aucune procédure non testée ne se présente comme opérationnelle.
 
 Les tarifs dégressifs, les horaires supplémentaires et les concessions se confirment dans un **devis nominatif**. Les tarifs de ce document ne constituent pas à eux seuls une promesse de couverture ou une offre ferme.

@@ -10,6 +10,9 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 |---|---|
 | `CLAUDE.md` | Instructions projet (contexte, marque, règles) — **doit rester à la racine** |
 | `PRICING.md` | **Grille partenaire marque blanche en vigueur** — prix, volume ferme, dépôt et SLA |
+| `01-Strategie-Offre/PRODUIT-ET-OFFRES.md` | Produit et discours d'offre actuels |
+| `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` | Hypothèses financières et scénarios explicites, à rapprocher des coûts réels |
+| `tresorerie-salverys.html` | Simulateur 24 mois alimenté par `tools/finance-model.mjs` |
 | `ESPACE-CLIENT-CANDIDAT.md` | Procédure de build des espaces protégés (couplée aux HTML/`tools/`) |
 
 ## Documentation par dossier (ordre du funnel)
@@ -23,11 +26,11 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `05-Process-Delivery/` | Grille QA + double écoute, modèles de reporting client |
 | `06-Warmup-Email/` | Warm-up email (démarrage, manuel) |
 
-La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` (décisions passées et tarifs directs). Les anciennes références aux sections de ce fichier renvoient à ce registre ; la nouvelle grille partenaire fait foi pour les devis marque blanche.
+La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` (décisions passées et tarifs directs). L'ancien prévisionnel, ses audits et les anciens simulateurs directs sont également conservés dans `99-Archives/`. Leurs tarifs, benchmarks et prévisions ne doivent pas être repris dans les devis actifs.
 
 ## Site / CRM (racine — ne pas déplacer)
 
-`index.html`, `CRM_Salverys.html`, simulateurs, espaces client/candidat, chartes,
+`index.html`, `CRM_Salverys.html`, pages métier partenaires, espaces client/candidat, chartes,
 `assets/`, `tools/`. Build : `tools/build-site.sh`.
 
 > ⚠️ **Les CRM HTML (`CRM_Salverys*.html`) ne sont plus l'outil de prospection en production**

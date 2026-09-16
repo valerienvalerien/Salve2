@@ -22,27 +22,21 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync
 import { dirname, join, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pbkdf2Sync, randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
+import { ASSUMPTIONS, monthlyAgentCost, monthlyManagerCost } from './finance-model.mjs';
 
 const ITER = 310000;
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-/* Garde-fous economiques — FINANCE-PREVISIONNEL.md §2/§3 fait foi.
- * Modele salarie (decision direction 2026-08-14) : brut 3 250 000 Ar (650 €) + charges
- * patronales CNaPS/OSTIE plafonnees a 8 x SME (~86 €/tete) = 736 € de cout employeur,
- * + VoIP ~30 € => cout direct 766 €/ETP. Plancher absolu = cout + ~20 % = 920 €/ETP.
- * (Historique : 840 € sous le modele 100 % freelance jusqu'au 2026-08-14 ; 540 € avant le
- * 2026-07-29, valeur heritee du modele salarie v1 abandonne le 2026-06-10. Negocier avec
- * un plancher perime permet de signer a perte.)
- * Le builder refuse de produire un document sous le plancher : on ne peut pas, sous
- * pression en closing, generer une proposition qui met l'entreprise en perte. */
-const COUT_AGENT = 766;
+/* Le seuil unitaire de 920 € est un garde-fou de négociation, pas une preuve de
+ * rentabilité. La contribution réelle dépend du nombre d'agents et de managers. */
+const COUT_AGENT = monthlyAgentCost();
 const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
 /* Depot d'activation MB (PRICING.md §3, decide 2026-08-03) : 900 €/position, imputable
  * sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
- * frais : le partenaire qui va au bout ne paie rien de plus. Il couvre l'onboarding reel
- * (~1 600 € sur 3 positions) s'il s'arrete, et fait rentrer du cash a J0 au lieu de J+30. */
+ * frais : le partenaire qui va au bout ne paie rien de plus. C'est une avance de cash,
+ * et non une marge ou une couverture définitive du coût d'onboarding. */
 const DEPOT_PAR_POSITION = 900;
 /* Plafond global supprime le 2026-09-14 (PRICING.md §3) : il etait fixe alors que
  * l'imputation est proportionnelle (300 €/position/mois), donc les deux ne se recoupaient
@@ -174,8 +168,8 @@ function renderDepot(deal) {
     <p><b>Vous ne le payez pas, vous l'avancez.</b> Il est déduit de vos ${DEPOT_MOIS_IMPUTATION} premières
     factures, à raison de ${EUR(d.mensuel)} par mois. Si le contrat suit son cours, il ne vous coûte
     rien de plus — ce ne sont pas des frais.</p>
-    <p>Il couvre le recrutement et la formation que nous engageons pour vous avant votre premier
-    ticket. Il vous est <b>intégralement restitué</b> si vous annulez avant le démarrage de la mise
+     <p>Cette avance permet de lancer le recrutement et la formation avant votre premier
+     ticket. Elle vous est <b>intégralement restituée</b> si vous annulez avant le démarrage de la mise
     en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les agents
     recrutés et formés.</p>
     <p class="dl-note">Le cadrage et la mise en place restent offerts. Nous ne pratiquons pas de
@@ -191,19 +185,12 @@ function renderGain(deal) {
   const n = deal.etpRetenus || 1;
   const mensuel = (rev - r.gros) * n;
   const annuel = mensuel * 12;
-  const [ci1, ci2] = deal.coutInterneMensuel || [];
-  const compare = ci1
-    ? `<div class="s">À titre de comparaison, la même capacité recrutée en France vous coûte
-       <b>${EUR(ci1)} à ${EUR(ci2)}</b> par mois et par poste, en coût complet (salaire chargé, congés,
-       absences, recrutement, encadrement, matériel, locaux) — soit
-       <b>${EUR(ci1 * n)} à ${EUR(ci2 * n)}</b> par mois pour ${n} poste${n > 1 ? 's' : ''}, avec 60 à 90 jours de délai de recrutement.</div>`
-    : '';
-  return `<div class="dl-gain">
-    <div class="k">${EUR(annuel)}</div>
-    <div class="l">de marge brute par an sur ${n} position${n > 1 ? 's' : ''} — soit ${EUR(mensuel)}/mois,
-      sans recrutement, sans encadrement et sans risque social côté vous.</div>
-    ${compare}
-  </div>`;
+   return `<div class="dl-gain">
+     <div class="k">${EUR(annuel)}</div>
+     <div class="l">d'écart brut indicatif entre revente envisagée et prix d'achat sur un an
+       pour ${n} position${n > 1 ? 's' : ''}, soit ${EUR(mensuel)}/mois avant vos coûts,
+       vos taxes et votre risque commercial. Ce n'est pas une marge garantie.</div>
+   </div>`;
 }
 
 function renderDoc(deal) {
@@ -361,13 +348,32 @@ if (deal.niche === 'medical') {
   process.exit(1);
 }
 
-/* Plancher : aucune proposition sous le cout marginal + 20 %. */
+/* Garde-fou unitaire ; vérification de la contribution du contrat retenu juste après. */
 const sousPlancher = deal.grille.filter((r) => r.gros < PLANCHER_ETP);
 if (sousPlancher.length) {
-  console.error(`✗ Plancher viole (${PLANCHER_ETP} € = cout agent ${COUT_AGENT} € + 20 %, FINANCE-PREVISIONNEL.md §3) :`);
+  console.error(`✗ Garde-fou unitaire violé (${PLANCHER_ETP} €/position) :`);
   for (const r of sousPlancher) console.error(`  · ${r.engagement} a ${EUR(r.gros)}`);
-  console.error('  Document non genere. Remonter le prix, ou assumer la decision et ajuster PLANCHER_ETP.');
+  console.error('  Document non généré. Rechiffrer le contrat et ajuster la proposition.');
   process.exit(1);
+}
+
+/* Rejeter un contrat dont la contribution mensuelle ne couvre pas les ressources
+ * déclenchées dans un métier isolé. Ce test n'inclut pas les coûts encore inconnus :
+ * un résultat positif ne vaut donc pas approbation finale du devis. */
+{
+  const retained = deal.grille.find((r) => r.retenu);
+  const n = Number(deal.etpRetenus || 0);
+  if (retained && n > 0) {
+    const managers = Math.ceil(n / 8);
+    const charges = n * COUT_AGENT + managers * monthlyManagerCost() + ASSUMPTIONS.toolsPerMonth;
+    const contribution = n * retained.gros - charges;
+    if (contribution <= 0) {
+      console.error(`✗ Contrat déficitaire dans l'hypothèse actuelle : ${EUR(n * retained.gros)} de CA − ${EUR(charges)} de charges = ${EUR(contribution)}/mois.`);
+      console.error('  Ajouter les coûts réels d’onboarding, de relève et de licences avant décision.');
+      process.exit(1);
+    }
+    console.warn(`⚠ Contribution indicative du contrat retenu : ${EUR(contribution)}/mois avant onboarding, relève, taxes et coûts non mesurés.`);
+  }
 }
 
 /* Alerte non bloquante : marge brute Salverys sous le seuil de confort. */
