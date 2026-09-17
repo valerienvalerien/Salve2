@@ -1,82 +1,224 @@
 /** Prévision de trésorerie Salverys, en euros HT. Hypothèses explicites, pas de données réelles.
  * Le coussin de 10 % est soustrait du cash disponible comme réserve prudente,
- * même si ce n'est pas une charge de paie effectivement payée. */
-export const OFFERS = Object.freeze({ support: [1700, 1500, 1350], helpdesk: [2000, 1750, 1550] });
+ * même si ce n'est pas une charge de paie effectivement payée.
+ *
+ * Ce fichier est la SOURCE DE VÉRITÉ du calcul. Il est recopié à l'identique dans
+ * projection-finances-salverys.html (bloc délimité par les marqueurs MODELE FINANCIER)
+ * pour que la page fonctionne hors serveur ; finance-model.test.mjs vérifie l'absence de dérive.
+ */
+
+/** Grilles de prix par position et par mois.
+ * `mb` : paliers 1-4 / 5-8 / 9+ de PRICING.md (grille partenaire en vigueur).
+ * `direct` : fourchette client final du registre interne archivé (bas / médian / haut).
+ *   Le direct n'a PAS de grille de volume documentée : le prix ne dépend pas du nombre
+ *   de positions, seulement du point choisi dans la fourchette.
+ *   Le direct est GELÉ en prospection depuis le 2026-09-07 : ces prix servent à chiffrer
+ *   un entrant, pas à planifier une conquête. */
+export const OFFERS = Object.freeze({
+  support: Object.freeze({ mb: [1700, 1500, 1350], direct: [1900, 2150, 2400] }),
+  helpdesk: Object.freeze({ mb: [2000, 1750, 1550], direct: [2200, 2500, 2800] }),
+});
+
+export const METIER_LABELS = Object.freeze({ support: 'Support applicatif N1', helpdesk: 'Helpdesk IT N1' });
+export const DIRECT_LEVELS = Object.freeze(['bas', 'median', 'haut']);
+
+/** Plancher de négociation de PRICING.md §1. Ce n'est PAS un seuil de rentabilité. */
+export const PRICE_FLOOR = 920;
+
 export const ASSUMPTIONS = Object.freeze({
   exchangeArPerEuro: 5000,
   grossSalaryAr: 3250000,
   smeAr: 300000,
   employerRate: 0.18,
   voipPerAgent: 30,
+  voipPerManager: 0,
   contingency: 0.10,
   toolsPerMonth: 68,
-  onboardingPerDeal: 1600,
+  otherMonthlyCost: 0,
+  onboardingBase: 400,
+  onboardingPerPosition: 400,
   depositPerPosition: 900,
   invoiceCreditPerPosition: 300,
+  invoiceCreditMonths: 3,
   paymentDelayMonths: 1,
   hireDelayMonths: 1,
   firstInvoiceDelayMonths: 2,
   managerCapacity: 8,
+  /** Nombre de positions que le fondateur encadre lui-même avant d'embaucher un manager.
+   * 0 = un manager dès la première position (hypothèse prudente par défaut). */
+  founderSupervisesUpTo: 0,
+  /** Part du CA encaissé perdue en impayés ; 0 par défaut, à régler sur l'expérience réelle. */
+  badDebtRate: 0,
+  /** Charges proportionnelles au CA encaissé non détaillées ailleurs : taxes, frais de
+   * change et frais bancaires. 0 par défaut car non vérifié. */
+  revenueChargeRate: 0,
   initialCash: 0,
 });
 
+/** Prix marque blanche selon le palier de volume ferme (PRICING.md §1, modèle B). */
 export function pricePerPosition(metier, positions) {
   if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
   if (!Number.isInteger(positions) || positions < 1) throw new Error('Nombre de positions invalide');
-  return OFFERS[metier][positions >= 9 ? 2 : positions >= 5 ? 1 : 0];
+  return OFFERS[metier].mb[positions >= 9 ? 2 : positions >= 5 ? 1 : 0];
 }
 
-export function monthlyAgentCost(a = ASSUMPTIONS) {
-  const charged = (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro;
-  return (charged + a.voipPerAgent) * (1 + a.contingency);
-}
-
-export function monthlyManagerCost(a = ASSUMPTIONS) {
-  return (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro * (1 + a.contingency);
+/** Prix client final selon le point retenu dans la fourchette du registre interne. */
+export function directPrice(metier, level = 'bas') {
+  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
+  const i = DIRECT_LEVELS.indexOf(level);
+  if (i < 0) throw new Error(`Niveau de fourchette inconnu : ${level}`);
+  return OFFERS[metier].direct[i];
 }
 
 /**
- * deal = {signedMonth, métier, positions, priceOverride?}; les positions restent fermes.
- * Le dépôt est une avance créditée : flux positif à la signature, puis négatif sur trois factures.
- * Les montants d'onboarding sont des sorties de cash au mois de signature, si effectivement engagés.
+ * Résout le prix mensuel d'une position selon le mode de tarification du contrat.
+ * tarif = 'mb' (grille partenaire) | 'direct' (client final) | 'libre' (prix saisi).
+ */
+export function resolvePrice(deal) {
+  const tarif = deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+  if (tarif === 'libre') {
+    const p = deal.price ?? deal.priceOverride;
+    if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) throw new Error('Prix libre invalide');
+    return p;
+  }
+  if (tarif === 'direct') return directPrice(deal.metier, deal.directLevel ?? 'bas');
+  if (tarif === 'mb') return pricePerPosition(deal.metier, deal.positions);
+  throw new Error(`Mode de tarification inconnu : ${tarif}`);
+}
+
+/** Salaire chargé mensuel d'une personne, en euros, cotisations plafonnées à 8 × SME. */
+export function chargedSalary(a = ASSUMPTIONS) {
+  return (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro;
+}
+
+export function monthlyAgentCost(a = ASSUMPTIONS) {
+  return (chargedSalary(a) + a.voipPerAgent) * (1 + a.contingency);
+}
+
+export function monthlyManagerCost(a = ASSUMPTIONS) {
+  return (chargedSalary(a) + (a.voipPerManager ?? 0)) * (1 + a.contingency);
+}
+
+/** Onboarding d'un contrat : socle partenaire + part par position (registre interne). */
+export function onboardingCost(positions, a = ASSUMPTIONS) {
+  return a.onboardingBase + positions * a.onboardingPerPosition;
+}
+
+/** Nombre de managers budgétés pour un effectif donné, réparti par métier.
+ * Un manager par tranche de `managerCapacity` positions DANS CHAQUE MÉTIER : la supervision
+ * n'est pas supposée mutualisable entre deux métiers. Elle l'est en revanche entre deux
+ * partenaires d'un même métier, ce qui reste une hypothèse optimiste. */
+export function managersFor(staffByMetier, a = ASSUMPTIONS) {
+  const total = Object.values(staffByMetier).reduce((x, y) => x + y, 0);
+  if (total === 0 || total <= (a.founderSupervisesUpTo ?? 0)) return 0;
+  return Object.values(staffByMetier).reduce((n, positions) => n + (positions ? Math.ceil(positions / a.managerCapacity) : 0), 0);
+}
+
+function normalize(deals, a) {
+  return deals.map(d => {
+    if (!Number.isInteger(d.signedMonth) || d.signedMonth < 1) throw new Error('Mois de signature invalide');
+    if (!Number.isInteger(d.positions) || d.positions < 1) throw new Error('Nombre de positions invalide');
+    if (!OFFERS[d.metier]) throw new Error('Métier invalide');
+    const price = resolvePrice(d);
+    return { ...d, price, acquisitionCost: d.acquisitionCost ?? 0, onboarding: d.onboarding ?? onboardingCost(d.positions, a) };
+  });
+}
+
+/** Montant facturé pour un contrat à sa n-ième facture (n commence à 0), crédits de dépôt déduits. */
+function invoiceAmount(deal, invoiceNumber, a) {
+  const credit = invoiceNumber < a.invoiceCreditMonths ? deal.positions * a.invoiceCreditPerPosition : 0;
+  return deal.positions * deal.price - credit;
+}
+
+/**
+ * deal = {signedMonth, metier, positions, tarif?, directLevel?, price?, acquisitionCost?, label?}
+ * Le dépôt est une avance créditée : flux positif à la signature, puis négatif sur les
+ * trois premières factures. L'onboarding et le coût d'acquisition sortent au mois de signature.
  */
 export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
   if (!Number.isInteger(months) || months < 1) throw new Error('Horizon invalide');
-  const accepted = deals.map(d => {
-    if (!Number.isInteger(d.signedMonth) || d.signedMonth < 1 || !Number.isInteger(d.positions) || d.positions < 1 || !OFFERS[d.metier]) throw new Error('Deal invalide');
-    return { ...d, price: d.priceOverride ?? pricePerPosition(d.metier, d.positions) };
-  });
+  const accepted = normalize(deals, a);
   const rows = [];
   let cash = a.initialCash;
   for (let m = 1; m <= months; m++) {
     const active = accepted.filter(d => m >= d.signedMonth + a.hireDelayMonths);
     const staffByMetier = Object.fromEntries(Object.keys(OFFERS).map(k => [k, active.filter(d => d.metier === k).reduce((n, d) => n + d.positions, 0)]));
     const agents = Object.values(staffByMetier).reduce((x, y) => x + y, 0);
-    const managers = Object.values(staffByMetier).reduce((n, positions) => n + (positions ? Math.ceil(positions / a.managerCapacity) : 0), 0);
+    const managers = managersFor(staffByMetier, a);
     const payroll = agents * monthlyAgentCost(a) + managers * monthlyManagerCost(a);
-    const overhead = a.toolsPerMonth;
-    const onboarding = accepted.filter(d => d.signedMonth === m).length * a.onboardingPerDeal;
-    const deposit = accepted.filter(d => d.signedMonth === m).reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
-    const invoices = accepted.filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths).map(d => {
-      const invoiceNumber = m - (d.signedMonth + a.firstInvoiceDelayMonths);
-      const credit = invoiceNumber < 3 ? d.positions * a.invoiceCreditPerPosition : 0;
-      return d.positions * d.price - credit;
-    });
-    const invoiced = invoices.reduce((n, v) => n + v, 0);
-    const receipt = accepted.filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths + a.paymentDelayMonths).reduce((n, d) => {
-      const invoiceNumber = m - a.paymentDelayMonths - (d.signedMonth + a.firstInvoiceDelayMonths);
-      const credit = invoiceNumber < 3 ? d.positions * a.invoiceCreditPerPosition : 0;
-      return n + d.positions * d.price - credit;
-    }, 0);
-    const expense = payroll + overhead + onboarding;
+    const signedThisMonth = accepted.filter(d => d.signedMonth === m);
+    const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
+    const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
+    const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    const invoiced = accepted
+      .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths)
+      .reduce((n, d) => n + invoiceAmount(d, m - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
+    const receiptGross = accepted
+      .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths + a.paymentDelayMonths)
+      .reduce((n, d) => n + invoiceAmount(d, m - a.paymentDelayMonths - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
+    const badDebt = receiptGross * (a.badDebtRate ?? 0);
+    const receipt = receiptGross - badDebt;
+    const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
+    const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
+    const expense = payroll + overhead + onboarding + acquisition;
     cash += deposit + receipt - expense;
-    rows.push({ month: m, agents, managers, payroll, overhead, onboarding, deposit, invoiced, receipt, expense, cash });
+    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, invoiced, receiptGross, badDebt, receipt, expense, result: receipt - expense, cash });
   }
   return rows;
+}
+
+/** Contribution mensuelle à régime plein, contrat par contrat.
+ * Le coût de manager attribué à un contrat est son coût MARGINAL : le manager déclenché
+ * par le premier contrat d'un métier n'est pas recompté sur le suivant. L'ordre des
+ * contrats suit leur mois de signature, donc le premier signé porte le manager. */
+export function contributions(deals, a = ASSUMPTIONS) {
+  const accepted = normalize(deals, a).sort((x, y) => x.signedMonth - y.signedMonth);
+  const staff = Object.fromEntries(Object.keys(OFFERS).map(k => [k, 0]));
+  let managersSoFar = 0;
+  const lines = accepted.map(d => {
+    staff[d.metier] += d.positions;
+    const managersNow = managersFor(staff, a);
+    const marginalManagers = managersNow - managersSoFar;
+    managersSoFar = managersNow;
+    const revenue = d.positions * d.price;
+    const agentCost = d.positions * monthlyAgentCost(a);
+    const managerCost = marginalManagers * monthlyManagerCost(a);
+    return {
+      deal: d, revenue, agentCost, managerCost, marginalManagers,
+      contribution: revenue - agentCost - managerCost,
+      perPositionMargin: d.price - monthlyAgentCost(a),
+      belowFloor: d.price < PRICE_FLOOR,
+    };
+  });
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const total = lines.reduce((n, l) => n + l.contribution, 0);
+  return { lines, fixedCost: fixed, totalContribution: total, monthlyResult: total - fixed };
+}
+
+/** Nombre de positions d'un métier nécessaires, à un prix donné, pour couvrir
+ * les coûts fixes connus et la supervision. Renvoie null si la contribution
+ * par position est nulle ou négative : aucun volume ne rattrape un prix en dessous du coût. */
+export function breakEvenPositions(price, a = ASSUMPTIONS) {
+  const perPosition = price - monthlyAgentCost(a);
+  if (perPosition <= 0) return null;
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  for (let n = 1; n <= 200; n++) {
+    const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
+    if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
+  }
+  return null;
 }
 
 export function summarize(rows) {
   const low = rows.reduce((a, b) => b.cash < a.cash ? b : a);
   const last = rows.at(-1);
-  return { trough: low.cash, troughMonth: low.month, endCash: last.cash, endAgents: last.agents, endManagers: last.managers, endInvoices: last.invoiced, runwayNeedWith30pctBuffer: Math.max(0, -low.cash) * 1.3 };
+  const positive = rows.find(r => r.month > 1 && r.result > 0);
+  const cashPositive = rows.find(r => r.cash >= 0 && r.month > low.month);
+  return {
+    trough: low.cash, troughMonth: low.month,
+    endCash: last.cash, endAgents: last.agents, endManagers: last.managers, endInvoices: last.invoiced,
+    firstPositiveMonth: positive ? positive.month : null,
+    cashPositiveMonth: low.cash < 0 && cashPositive ? cashPositive.month : null,
+    runwayNeedWith30pctBuffer: Math.max(0, -low.cash) * 1.3,
+  };
 }

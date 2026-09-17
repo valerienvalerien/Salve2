@@ -29,6 +29,14 @@ Les appels, les canaux, le périmètre des tickets, les horaires et la règle d'
 
 Le palier dépend du **minimum de positions facturables garanti dans le contrat**, et non d'un volume envisagé. Les positions fermes restent dues si le partenaire ne les utilise pas. Si le minimum baisse, le prix du palier correspondant s'applique à compter de la modification contractuelle. Aucun prix négocié ne descend sous **920 €/position/mois**. **Ce seuil n'est pas un seuil de rentabilité** : avant d'approuver un devis, calculer la contribution du contrat après agents, manager(s), outils, onboarding, relève et horaires selon `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`. Une seule position support à 1 700 € peut être déficitaire dans un métier isolé selon les hypothèses actuelles.
 
+> 🔴 **Plancher à réviser (audit du 2026-09-17, décision non prise).** À 920 €, la perte
+> **grandit avec le volume** : huit positions rapportent `8 × 76,96 = 615,68 €` et déclenchent
+> un manager à `810,04 €`. Le prix minimal en dessous duquel aucun volume ne couvre la
+> supervision est **944,30 €/position** — outils, onboarding et coûts non renseignés en sus.
+> Tant que le plancher n'est pas relevé au-dessus de ce seuil, **ne pas s'en servir comme
+> limite de négociation** : chiffrer le contrat dans `projection-finances-salverys.html`.
+> Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §1.
+
 **Exemple :** deux positions helpdesk au palier 1–4 coûtent `2 × 2 000 = 4 000 €/mois`. Cinq positions fermes coûtent `5 × 1 750 = 8 750 €/mois` ; le tarif de cinq positions ne s'applique pas à deux positions simplement envisagées.
 
 ### Horaires et dimensionnement

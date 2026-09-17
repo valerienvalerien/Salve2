@@ -3,7 +3,7 @@
 > Audit complet : positionnement (vs marché malgache), benchmarking concurrentiel,
 > tarification, cohérence des livrables. Recherche concurrentielle web du 2026-06-10
 > (sources en fin de document). Le prévisionnel financier a été **refait from scratch**
-> dans `FINANCE-PREVISIONNEL.md` + `tresorerie-salverys.html` (anciennes versions écartées).
+> dans `FINANCE-PREVISIONNEL.md` + `projection-finances-salverys.html` (anciennes versions écartées).
 
 ---
 

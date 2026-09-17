@@ -12,7 +12,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `PRICING.md` | **Grille partenaire marque blanche en vigueur** — prix, volume ferme, dépôt et SLA |
 | `01-Strategie-Offre/PRODUIT-ET-OFFRES.md` | Produit et discours d'offre actuels |
 | `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` | Hypothèses financières et scénarios explicites, à rapprocher des coûts réels |
-| `tresorerie-salverys.html` | Simulateur 24 mois alimenté par `tools/finance-model.mjs` |
+| `projection-finances-salverys.html` | **Projection de finances** — trésorerie, contribution par contrat et point mort, avec choix du tarif (marque blanche, client final, prix libre). Moteur : `tools/finance-model.mjs`, recopié dans la page par `tools/sync-projection.mjs` |
 | `ESPACE-CLIENT-CANDIDAT.md` | Procédure de build des espaces protégés (couplée aux HTML/`tools/`) |
 
 ## Documentation par dossier (ordre du funnel)
@@ -32,6 +32,11 @@ La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archi
 
 `index.html`, `CRM_Salverys.html`, pages métier partenaires, espaces client/candidat, chartes,
 `assets/`, `tools/`. Build : `tools/build-site.sh`.
+
+> Après toute modification de `tools/finance-model.mjs` : `node tools/sync-projection.mjs`
+> puis `node tools/finance-model.test.mjs`. Le test échoue si la copie embarquée dans
+> `projection-finances-salverys.html` a dérivé de la source. `tresorerie-salverys.html`
+> n'est plus qu'une redirection vers cette page.
 
 > ⚠️ **Les CRM HTML (`CRM_Salverys*.html`) ne sont plus l'outil de prospection en production**
 > (depuis le 2026-08-28). Ils stockent en `localStorage` : non partagés, non sauvegardés —
