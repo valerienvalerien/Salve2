@@ -121,7 +121,22 @@ de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
 
 **`PRICING.md` fait foi pour les devis en marque blanche** : deux modèles IT (débordement et poste dédié), grille par volume ferme, télésecrétariat partenaire, dépôt, horaires et engagement de service. Toute proposition partenaire doit s'y aligner. La version complète antérieure, avec les tarifs directs et la chronologie des décisions, est conservée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` ; elle ne remplace pas la grille partenaire actuelle.
 
-Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical partenaire · 4) relation client future**. Le dépôt de **900 €/position** concerne le poste dédié ; les modèles sans position réservée nécessitent un cadrage distinct. Les tarifs directs restent disponibles dans le registre pour traiter les entrants, sans prospection sortante ni nouveau chantier direct.
+Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical partenaire · 4) relation client future**. Le dépôt de **900 €/position** concerne le poste dédié ; les modèles sans position réservée nécessitent un cadrage distinct.
+
+> ⚠️ **`99-Archives/` ne chiffre rien.** Son README l'écrit en première ligne : rien de ce
+> dossier ne sert à chiffrer un deal, préparer un appel ou écrire de la copy. **Ne jamais
+> reprendre un prix, un benchmark ou une prévision d'un fichier de `99-Archives/` dans un
+> document actif, un devis ou un outil** — on peut l'y citer comme historique daté, jamais
+> comme valeur de calcul. En cas de doute sur un prix : `PRICING.md` fait foi.
+>
+> **Il n'existe aucun tarif direct arbitré** (corrigé le 2026-09-18). Les fourchettes de
+> 1 900–2 400 € et 2 200–2 800 € du registre interne sont une **estimation marché du
+> 2026-06-10, jamais validée** : aucune décision datée ne les fixe, et les sources de cette
+> étude sont des sites de télésecrétariat médical et des BPO généralistes — aucune ne publie
+> un prix de position dédiée en helpdesk IT ou en support SaaS en direct.
+> **Un entrant en direct se chiffre au cas par cas**, à partir du coût réel et de la marge
+> visée, dans `projection-finances-salverys.html`. Le gel du direct porte sur la prospection,
+> pas sur le traitement d'un entrant. Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §0.b.
 
 ## Règle d'arbitrage : SaaS-first avant tout code maison
 
