@@ -38,6 +38,10 @@ Le builder annonce aussi ce que coûterait la position suivante, palier de manag
 
 **Bug trouvé au passage.** Basculer un contrat sur « direct » sans prix faisait échouer la lecture des contrats avant le rafraîchissement des cartes : le champ prix restait masqué et désactivé, donc impossible à remplir, alors que le message d'erreur réclamait précisément ce prix. La visibilité du champ ne dépend plus du succès du calcul.
 
+**Cause de fond : le dépôt se contredisait.** `99-Archives/README.md` interdit en première ligne d'utiliser quoi que ce soit du dossier pour chiffrer, tandis que `CLAUDE.md` §« Source de vérité tarifaire » indiquait que « les tarifs directs restent disponibles dans le registre pour traiter les entrants ». `CLAUDE.md` est lu à chaque session, le README du dossier d'archives ne l'est pas : l'instruction qui autorisait était visible, celle qui interdisait ne l'était pas. La phrase de `CLAUDE.md` reposait en outre sur un fait faux, puisque le registre ne contient pas de tarif direct mais une estimation.
+
+`CLAUDE.md` porte désormais la règle d'archivage et l'absence de tarif direct arbitré, à l'endroit où elles seront effectivement lues. Les deux fiches de la page de projection qui citaient le registre à côté d'une source active ont été reprises : un fichier archivé ne peut y apparaître que nommé comme historique.
+
 ---
 
 
