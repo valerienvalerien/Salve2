@@ -35,11 +35,14 @@
   "grille": [
     {
       "engagement": "Positions 1 a 4 — tarif d'entree",
+      "de": 1,
+      "a": 4,
       "gros": 2000,
       "minimumFacturable": 1
     },
     {
       "engagement": "Positions 5 et suivantes — tarif volume",
+      "de": 5,
       "gros": 1750,
       "retenu": true,
       "minimumFacturable": 5

@@ -22,7 +22,11 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync
 import { dirname, join, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pbkdf2Sync, randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
-import { ASSUMPTIONS, monthlyAgentCost, monthlyManagerCost } from './finance-model.mjs';
+import { ASSUMPTIONS, monthlyAgentCost, monthlyManagerCost, OFFERS, MB_ENTRY_POSITIONS } from './finance-model.mjs';
+import {
+  positionsDansTranche, caMensuel, reventeMensuelle, detailTranches,
+  trancheHaute, prixPositionSuivante, validerTranches,
+} from './deal-pricing.mjs';
 
 const ITER = 310000;
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -122,39 +126,62 @@ function renderPlanning(deal) {
   return { html: `<ul class="dl-steps">${li}</ul>`, production: prod, signature: sign };
 }
 
+/** « 4 × 2 000 € + 1 × 1 750 € » */
+function formuleTranches(grille, n) {
+  return detailTranches(grille, n).map((x) => `${x.count} × ${EUR(x.price)}`).join(' + ');
+}
+
 function renderGrille(deal) {
   const revDef = deal.reventeConseillee;
+  const n = deal.etpRetenus || 1;
   let noteMinimum = '';
   const rows = deal.grille.map((r) => {
     const rev = r.revente ?? revDef;
     const marge = rev ? rev - r.gros : null;
-    const hi = r.retenu ? ' class="hi"' : '';
-    /* Palier a volume ferme : le prix ne s'obtient pas sur une intention de volume.
-     * La note nomme le prix de repli au lieu de renvoyer a « palier inferieur » : le
-     * partenaire doit pouvoir chiffrer la consequence sans relire le tableau. */
+    const actives = positionsDansTranche(r, n);
+    /* On surligne toutes les tranches qui s'appliquent au volume retenu, pas une seule :
+     * avec des tranches non retroactives, plusieurs tarifs coexistent sur un meme contrat. */
+    const hi = actives > 0 ? ' class="hi"' : '';
+    /* Volume ferme : le tarif ne s'obtient pas sur une intention de volume. */
     const min = r.minimumFacturable;
-    if (min) {
+    if (min && min > 1) {
       noteMinimum = `<b>Le tarif de ${EUR(r.gros)} est conditionné à ${min} positions fermes
         facturables chaque mois.</b> Ce minimum reste dû même si vous utilisez moins de
-        positions. Une réduction du minimum nécessite un avenant ; le tarif du palier
-        correspondant s'applique à compter de sa date d'effet.`;
+        positions. En deçà, les positions sont facturées au tarif de leur tranche. Une
+        réduction du minimum nécessite un avenant, applicable à compter de sa date d'effet.`;
     }
     return `<tr${hi}>
-      <td>${H(r.engagement)}${min ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
+      <td>${H(r.engagement)}${min && min > 1 ? ' <span style="opacity:.7">— volume ferme facturé</span>' : ''}</td>
+      <td class="num">${actives > 0 ? `<b>${actives}</b>` : '—'}</td>
       <td class="num">${EUR(r.gros)}</td>
       <td class="num">${rev ? EUR(rev) : '—'}</td>
       <td class="num">${marge != null ? `<b>${EUR(marge)}</b> <span style="opacity:.65">(${PCT(marge / rev)})</span>` : '—'}</td>
     </tr>`;
   }).join('');
+
+  const total = caMensuel(deal.grille, n);
+  const moyenne = total / n;
+  const plusieurs = deal.grille.filter((r) => positionsDansTranche(r, n) > 0).length > 1;
+
   return `<div class="dl-scroll"><table class="dl-table">
     <thead><tr>
-      <th>Volume engagé</th>
-      <th class="num">Votre prix de gros<br /><span style="font-weight:400">€/mois/ETP</span></th>
-      <th class="num">Revente conseillée<br /><span style="font-weight:400">€/mois/ETP</span></th>
-      <th class="num">Votre marge<br /><span style="font-weight:400">€/mois/ETP</span></th>
+      <th>Tranche de positions</th>
+      <th class="num">Dans votre contrat</th>
+      <th class="num">Votre prix de gros<br /><span style="font-weight:400">€/mois/position</span></th>
+      <th class="num">Revente conseillée<br /><span style="font-weight:400">€/mois/position</span></th>
+      <th class="num">Votre marge<br /><span style="font-weight:400">€/mois/position</span></th>
     </tr></thead>
     <tbody>${rows}</tbody>
-  </table></div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
+  </table></div>
+  <div class="dl-box">
+    <p><b>Votre facture mensuelle pour ${n} position${n > 1 ? 's' : ''} : ${H(formuleTranches(deal.grille, n))} = ${EUR(total)}</b>${plusieurs ? `, soit <b>${EUR(moyenne)}</b> en moyenne par position` : ''}.</p>
+    ${plusieurs ? `<p class="dl-note"><b>La remise de volume ne s'applique pas aux positions déjà tarifées.</b>
+      Chaque position est facturée au prix de sa tranche : les premières restent au tarif d'entrée,
+      les suivantes passent au tarif volume. Vous ne perdez donc jamais de remise en ajoutant une
+      position, et chaque position supplémentaire vous coûte exactement le prix de sa tranche.</p>`
+    : `<p class="dl-note">À partir de la position ${deal.grille.find((r) => r.de > 1)?.de ?? '—'},
+      les positions supplémentaires passent au tarif volume, sans que les premières changent de prix.</p>`}
+  </div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
 }
 
 /* Depot d'activation : montant, plafond et imputation mensuelle (PRICING.md §3). */
@@ -188,17 +215,18 @@ function renderDepot(deal) {
 }
 
 function renderGain(deal) {
-  const r = deal.grille.find((x) => x.retenu) || deal.grille[0];
-  const rev = r.revente ?? deal.reventeConseillee;
-  if (!rev) return '';
   const n = deal.etpRetenus || 1;
-  const mensuel = (rev - r.gros) * n;
+  const vente = reventeMensuelle(deal.grille, n, deal.reventeConseillee);
+  if (!vente) return '';
+  const achat = caMensuel(deal.grille, n);
+  const mensuel = vente - achat;
   const annuel = mensuel * 12;
    return `<div class="dl-gain">
      <div class="k">${EUR(annuel)}</div>
-     <div class="l">d'écart brut indicatif entre revente envisagée et prix d'achat sur un an
-       pour ${n} position${n > 1 ? 's' : ''}, soit ${EUR(mensuel)}/mois avant vos coûts,
-       vos taxes et votre risque commercial. Ce n'est pas une marge garantie.</div>
+     <div class="l">d'écart brut indicatif entre revente envisagée (${EUR(vente)}/mois) et prix
+       d'achat (${EUR(achat)}/mois) sur un an pour ${n} position${n > 1 ? 's' : ''},
+       soit ${EUR(mensuel)}/mois avant vos coûts, vos taxes et votre risque commercial.
+       Ce n'est pas une marge garantie.</div>
    </div>`;
 }
 
@@ -357,6 +385,37 @@ if (deal.niche === 'medical') {
   process.exit(1);
 }
 
+/* Les tranches doivent etre valides avant tout calcul : un trou dans la grille produirait
+ * un CA faux dans un document remis a un partenaire. */
+try {
+  validerTranches(deal.grille);
+} catch (e) {
+  console.error('✗ ' + e.message.split('\n').join('\n  '));
+  process.exit(1);
+}
+
+/* Alerte non bloquante si la grille du deal s'ecarte de PRICING.md. Un prix negocie reste
+ * legitime, mais il doit etre vu — c'est souvent un fichier de deal laisse en arriere apres
+ * une revision de la grille. */
+{
+  const officiel = OFFERS[deal.niche]?.mb;
+  if (officiel) {
+    const attendu = [
+      { de: 1, a: MB_ENTRY_POSITIONS, gros: officiel[0] },
+      { de: MB_ENTRY_POSITIONS + 1, a: null, gros: officiel[1] },
+    ];
+    const tri = [...deal.grille].sort((x, y) => x.de - y.de);
+    const identique = tri.length === attendu.length
+      && tri.every((r, i) => r.de === attendu[i].de && (r.a ?? null) === attendu[i].a && r.gros === attendu[i].gros);
+    if (!identique) {
+      console.warn('⚠ La grille de ce deal differe de PRICING.md §1 :');
+      console.warn(`  officiel : 1-${MB_ENTRY_POSITIONS} a ${EUR(officiel[0])} · ${MB_ENTRY_POSITIONS + 1}+ a ${EUR(officiel[1])}`);
+      for (const r of tri) console.warn(`  deal     : ${r.de}${r.a ? '-' + r.a : '+'} a ${EUR(r.gros)} (« ${r.engagement} »)`);
+      console.warn('  Verifier que c\'est un prix negocie voulu, et non un fichier non mis a jour.');
+    }
+  }
+}
+
 /* Garde-fou unitaire ; vérification de la contribution du contrat retenu juste après. */
 const sousPlancher = deal.grille.filter((r) => r.gros < PLANCHER_ETP);
 if (sousPlancher.length) {
@@ -370,18 +429,29 @@ if (sousPlancher.length) {
  * déclenchées dans un métier isolé. Ce test n'inclut pas les coûts encore inconnus :
  * un résultat positif ne vaut donc pas approbation finale du devis. */
 {
-  const retained = deal.grille.find((r) => r.retenu);
   const n = Number(deal.etpRetenus || 0);
-  if (retained && n > 0) {
-    const managers = Math.ceil(n / 8);
+  if (n > 0) {
+    const managers = Math.ceil(n / ASSUMPTIONS.managerCapacity);
     const charges = n * COUT_AGENT + managers * monthlyManagerCost() + ASSUMPTIONS.toolsPerMonth;
-    const contribution = n * retained.gros - charges;
+    const ca = caMensuel(deal.grille, n);
+    const contribution = ca - charges;
     if (contribution <= 0) {
-      console.error(`✗ Contrat déficitaire dans l'hypothèse actuelle : ${EUR(n * retained.gros)} de CA − ${EUR(charges)} de charges = ${EUR(contribution)}/mois.`);
+      console.error(`✗ Contrat déficitaire dans l'hypothèse actuelle : ${EUR(ca)} de CA − ${EUR(charges)} de charges = ${EUR(contribution)}/mois.`);
       console.error('  Ajouter les coûts réels d’onboarding, de relève et de licences avant décision.');
       process.exit(1);
     }
-    console.warn(`⚠ Contribution indicative du contrat retenu : ${EUR(contribution)}/mois avant onboarding, relève, taxes et coûts non mesurés.`);
+    console.warn(`⚠ Contribution indicative : ${EUR(ca)} de CA (${formuleTranches(deal.grille, n)}) − ${EUR(charges)} de charges = ${EUR(contribution)}/mois,`);
+    console.warn('  avant onboarding, relève, taxes et coûts non mesurés.');
+
+    /* Une position de plus coute un agent, et un manager de plus toutes les
+     * managerCapacity positions. Le dire ici evite de decouvrir le palier apres coup. */
+    const prixSuivante = prixPositionSuivante(deal.grille, n);
+    const managerSuivante = Math.ceil((n + 1) / ASSUMPTIONS.managerCapacity) > managers;
+    if (prixSuivante != null) {
+      const gain = prixSuivante - COUT_AGENT - (managerSuivante ? monthlyManagerCost() : 0);
+      console.warn(`⚠ Position ${n + 1} : ${EUR(prixSuivante)} − ${EUR(COUT_AGENT)} d'agent${managerSuivante ? ` − ${EUR(monthlyManagerCost())} de manager supplémentaire` : ''} = ${EUR(gain)}/mois.`);
+      if (gain <= 0) console.warn('  Elle coûterait plus qu\'elle ne rapporte : négocier au moins deux positions de plus.');
+    }
   }
 }
 
@@ -398,13 +468,21 @@ for (const r of deal.grille) {
  * partenaire (positions annoncees pour obtenir le prix, moins consommees, banc a notre
  * charge — et en salariat le banc porte un cout de sortie). */
 {
-  const retenue = deal.grille.find((r) => r.retenu);
   const n = deal.etpRetenus || 0;
-  if (n >= MINIMUM_FACTURABLE_SEUIL && retenue && !retenue.minimumFacturable) {
-    console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §1, modele B).`);
-    console.error(`  Ajouter "minimumFacturable" sur la ligne « ${retenue.engagement} » — le minimum du palier`);
-    console.error('  (tarif d\'entree : 1 · tarif volume : 5), ou retenir le tarif d\'entree.');
+  /* La tranche la plus haute atteinte porte l'engagement : c'est elle dont le tarif
+   * s'achete avec un volume ferme. Sans minimum, Salverys encaisse le risque de
+   * sous-consommation. */
+  const haute = trancheHaute(deal.grille, n);
+  if (n >= MINIMUM_FACTURABLE_SEUIL && haute && !haute.minimumFacturable) {
+    console.error(`✗ Contrat a ${n} positions sans minimum facturable (PRICING.md §1, modele B).`);
+    console.error(`  Ajouter "minimumFacturable" sur la tranche la plus haute atteinte, « ${haute.engagement} » :`);
+    console.error(`  au moins ${haute.de} position${haute.de > 1 ? 's' : ''}, ou reduire le volume retenu.`);
     console.error('  Chaque tarif s\'achete avec un volume ferme, pas avec une intention.');
+    process.exit(1);
+  }
+  if (haute?.minimumFacturable != null && haute.minimumFacturable < haute.de) {
+    console.error(`✗ « ${haute.engagement} » : minimum facturable ${haute.minimumFacturable} inferieur`);
+    console.error(`  au debut de la tranche (${haute.de}). Le minimum ne peut pas ouvrir un tarif qu'il n'atteint pas.`);
     process.exit(1);
   }
   for (const r of deal.grille) {
@@ -471,6 +549,19 @@ writeFileSync(join(root, out), page);
   if (clair !== contenu) { console.error('✗ Vérification : le déchiffré ne correspond pas.'); process.exit(1); }
   const manquants = deal.grille.map((r) => EUR(r.gros)).filter((p) => !clair.includes(p));
   if (manquants.length) { console.error('✗ Vérification : prix absents du document : ' + manquants.join(', ')); process.exit(1); }
+  /* Le total facture est le chiffre que le partenaire retiendra : il doit figurer tel quel,
+   * et ne peut pas etre un simple `positions × prix` si plusieurs tranches s'appliquent. */
+  const nRet = deal.etpRetenus || 1;
+  const totalRet = caMensuel(deal.grille, nRet);
+  if (!clair.includes(EUR(totalRet))) {
+    console.error(`✗ Vérification : facture mensuelle (${EUR(totalRet)}) absente du document.`); process.exit(1);
+  }
+  const plat = nRet * (deal.grille.find((r) => positionsDansTranche(r, nRet) > 0 && r.de > 1)?.gros ?? 0);
+  if (plat && plat !== totalRet && clair.includes(EUR(plat))) {
+    console.error(`✗ Vérification : le document affiche ${EUR(plat)}, soit ${nRet} × le tarif volume.`);
+    console.error('  La tarification est par tranches : ce total retroactif ne doit pas apparaitre.');
+    process.exit(1);
+  }
   const dep = calcDepot(deal);
   if (dep && !clair.includes(EUR(dep.total))) {
     console.error(`✗ Vérification : dépôt d'activation (${EUR(dep.total)}) absent du document.`); process.exit(1);

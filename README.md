@@ -37,6 +37,11 @@ La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archi
 > puis `node tools/finance-model.test.mjs`. Le test échoue si la copie embarquée dans
 > `projection-finances-salverys.html` a dérivé de la source. `tresorerie-salverys.html`
 > n'est plus qu'une redirection vers cette page.
+>
+> Après toute modification de `tools/deal-pricing.mjs` ou `tools/deal-build.mjs` :
+> `node tools/deal-pricing.test.mjs`. La tarification partenaire est **par tranches non
+> rétroactives** (`PRICING.md` §1) : la grille d'un deal se déclare en tranches
+> `de` / `a` / `gros`, et un CA ne se calcule jamais en `positions × prix`.
 
 > ⚠️ **Les CRM HTML (`CRM_Salverys*.html`) ne sont plus l'outil de prospection en production**
 > (depuis le 2026-08-28). Ils stockent en `localStorage` : non partagés, non sauvegardés —
