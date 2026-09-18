@@ -14,6 +14,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` | Hypothèses financières et scénarios explicites, à rapprocher des coûts réels |
 | `projection-finances-salverys.html` | **Projection de finances** — trésorerie, contribution par contrat et point mort, avec choix du tarif (marque blanche, client final, prix libre). Moteur : `tools/finance-model.mjs`, recopié dans la page par `tools/sync-projection.mjs` |
 | `grille-negociation-salverys.html` | **Marges de négociation** — à quel prix signer. On décrit le deal (métier, positions, durée), les trois prix se calculent : prix annoncé, limite de remise, point de rupture. Même moteur et même définition du résultat que la page de projection |
+| `PROJECTION-FINANCES-SALVERYS.xlsx` | **Même projection, en classeur Excel** — 6 onglets, logo sur chacun. Chaque cellule calculée est une vraie formule : modifier une hypothèse recalcule tout. Généré par `tools/export-xlsx.py`, conformité au moteur prouvée par `tools/verify-xlsx.py` |
 | `AUDIT-CHIFFRES-2026-09-18.md` | **Origine et validité de chaque chiffre** du dépôt : vérifié, hypothèse, estimation non validée, ou faux aujourd'hui. À consulter avant de citer un coût ou une marge |
 | `ESPACE-CLIENT-CANDIDAT.md` | Procédure de build des espaces protégés (couplée aux HTML/`tools/`) |
 
@@ -39,6 +40,14 @@ La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archi
 > puis `node tools/finance-model.test.mjs`. Le test échoue si la copie embarquée dans
 > `projection-finances-salverys.html` a dérivé de la source. `tresorerie-salverys.html`
 > n'est plus qu'une redirection vers cette page.
+>
+> Pour régénérer le classeur Excel : `python3 tools/export-xlsx.py`, puis
+> `python3 tools/eval-xlsx.py` — qui **exécute réellement les 197 formules** avec la
+> bibliothèque `formulas` et les compare au moteur, sans Excel ni LibreOffice.
+> `python3 tools/verify-xlsx.py` ne vérifie, lui, que les valeurs mises en cache : c'est un
+> filet, pas une preuve. **Régénérer écrase les saisies faites dans Excel** : travailler sur
+> une copie. À noter : `libreoffice-calc` n'est pas installé dans l'environnement de build,
+> donc le `recalc.py` du skill xlsx ne peut pas servir ici.
 >
 > Après toute modification de `tools/deal-pricing.mjs` ou `tools/deal-build.mjs` :
 > `node tools/deal-pricing.test.mjs`. La tarification partenaire est **par tranches non

@@ -1,2 +1,5 @@
 # Sortie de build Netlify (générée par tools/build-site.sh)
 _site/
+
+# Artefacts de génération du classeur Excel
+*.tmp.xlsx
