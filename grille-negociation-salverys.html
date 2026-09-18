@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grille et marges de négociation</title>
+<title>Marges de négociation</title>
 <style>
 :root{
   --surface:#FCFCFB; --panel:#FFFFFF; --panel-soft:#F6F2EA; --line:#E7DFD1; --line-soft:#F0EADE;
@@ -29,57 +29,57 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--surface);color:var(--ink);font:15px/1.55 Inter,-apple-system,Segoe UI,Arial,sans-serif;-webkit-text-size-adjust:100%}
-.wrap{max-width:1180px;margin:0 auto;padding:22px 16px 64px}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 16px 64px}
 h1{font-size:1.7rem;margin:0 0 6px;letter-spacing:-.01em}
 h2{font-size:1.05rem;margin:0 0 4px}
-h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-mute);margin:20px 0 8px}
+.step{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--primary);color:var(--surface);font-size:.78rem;font-weight:700;margin-right:8px;flex:none}
 p{margin:.5em 0}
 .lede{color:var(--ink-soft);margin:0 0 18px}
 .note{color:var(--ink-mute);font-size:.82rem;line-height:1.5}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px;box-shadow:var(--shadow)}
-.card>header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.duo{display:grid;gap:16px;grid-template-columns:1fr}
-@media (min-width:860px){.duo{grid-template-columns:1fr 1fr}}
-.who{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--panel);box-shadow:var(--shadow)}
-.who.mb{border-left:4px solid var(--accent)}
-.who.direct{border-left:4px solid var(--gold)}
-.who h2{margin-bottom:2px}
-.who .who-sub{font-size:.8rem;color:var(--ink-mute);margin:0 0 12px}
-.rate{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-soft);font-size:.9rem}
-.rate:last-of-type{border-bottom:0}
-.rate b{font-variant-numeric:tabular-nums;font-size:1.05rem}
-.nogrid{background:var(--gold-tint);border-radius:8px;padding:12px 14px;font-size:.86rem;margin:6px 0 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+.card>header{display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;align-items:end}
 .field label{display:block;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
 .field input,.field select{width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--panel);color:var(--ink)}
 .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
-.seg button{background:var(--panel);color:var(--ink-soft);border:0;padding:8px 18px;font:inherit;font-weight:600;cursor:pointer}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;flex-wrap:wrap}
+.seg button{background:var(--panel);color:var(--ink-soft);border:0;padding:7px 15px;font:inherit;font-size:.86rem;font-weight:600;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--primary);color:var(--surface)}
-.ruler{position:relative;margin:6px 0 0}
+.segs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+input[type=range]{width:100%;accent-color:var(--primary)}
+/* Les trois prix : une ligne = un repère, tous calculés depuis le deal. */
+.reperes{display:grid;gap:10px;margin:0}
+.rep{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel-soft)}
+.rep.annonce{border-left:4px solid var(--accent)}
+.rep.limite{border-left:4px solid var(--gold)}
+.rep.rupture{border-left:4px solid var(--danger)}
+.rep .lab{font-weight:700;font-size:.92rem}
+.rep .sub{font-size:.79rem;color:var(--ink-mute);margin-top:2px}
+.rep .val{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rep .val b{display:block;font-size:1.25rem;letter-spacing:-.02em}
+.rep .val span{font-size:.78rem;color:var(--ink-mute)}
+.ruler{position:relative;margin:14px 0 0}
 .ruler svg{display:block;width:100%;height:auto}
-input[type=range]{width:100%;margin:10px 0 0;accent-color:var(--primary)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0 0}
-.kpi{background:var(--panel-soft);border-radius:10px;padding:12px 13px}
-.kpi span{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mute);display:block}
-.kpi strong{display:block;font-size:1.3rem;font-variant-numeric:tabular-nums;margin:4px 0 2px;letter-spacing:-.02em}
-.kpi em{font-style:normal;font-size:.75rem;color:var(--ink-mute)}
-.kpi.bad strong{color:var(--danger)}
-.verdict{border-radius:10px;padding:12px 14px;font-size:.9rem;margin:14px 0 0;font-weight:600}
+.propose{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;margin-top:6px}
+@media (max-width:620px){.propose{grid-template-columns:1fr}}
+.big{font-variant-numeric:tabular-nums;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.verdict{border-radius:10px;padding:13px 15px;font-size:.92rem;margin:14px 0 0}
+.verdict b{font-weight:700}
 .verdict.no{background:var(--danger-tint);color:var(--danger)}
 .verdict.warn{background:var(--gold-tint);color:var(--ink)}
 .verdict.ok{background:var(--accent-tint);color:var(--ink)}
-table{border-collapse:collapse;width:100%;font-size:.85rem;font-variant-numeric:tabular-nums;margin-top:8px}
-th,td{padding:8px 9px;text-align:right;border-bottom:1px solid var(--line-soft)}
-th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-mute);font-weight:600}
-th:first-child,td:first-child{text-align:left}
-td.neg{color:var(--danger);font-weight:700}
-td.pos{font-weight:600}
-.table-wrap{overflow-x:auto}
+.lignes{display:grid;gap:8px;margin-top:12px}
+.ligne{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;padding:7px 0;border-bottom:1px solid var(--line-soft)}
+.ligne:last-child{border-bottom:0}
+.ligne b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.ligne.tot{border-top:2px solid var(--line);border-bottom:0;padding-top:10px;font-weight:700}
+.neg{color:var(--danger)}
+.concord{background:var(--accent-tint);border-radius:10px;padding:13px 15px;font-size:.88rem}
+.concord a{color:inherit}
 details{border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
 summary{cursor:pointer;font-weight:600;font-size:.86rem;color:var(--ink-soft)}
-.src{font-size:.78rem;color:var(--ink-mute);margin-top:10px}
 code{font-size:.9em}
+.src{font-size:.78rem;color:var(--ink-mute);margin-top:10px}
 @media print{.seg,input[type=range]{display:none}.card{break-inside:avoid;box-shadow:none}}
 </style>
 </head>
@@ -87,97 +87,84 @@ code{font-size:.9em}
 <div class="wrap">
 
 <header>
-  <h1>Grille et marges de négociation</h1>
-  <p class="lede">Ce qui est arbitré, ce qui ne l'est pas, et jusqu'où descendre. Montants en euros HT, par position et par mois.</p>
+  <h1>Marges de négociation</h1>
+  <p class="lede">Décrivez le deal : les trois prix qui comptent se calculent. Aucun repère n'est à inventer.</p>
 </header>
 
-<!-- 1. Qui paie quoi ------------------------------------------------------- -->
-<div class="duo" style="margin-bottom:16px">
-  <section class="who mb">
-    <h2>Marque blanche — le partenaire</h2>
-    <p class="who-sub">Grille arbitrée. <code>PRICING.md</code> §1 fait foi.</p>
-    <div id="rateMb"></div>
-    <p class="note" style="margin-top:10px"><b>Tranches non rétroactives</b> : les quatre premières positions restent au tarif d'entrée quel que soit le volume. Le tarif volume ne s'achète que contre un minimum de positions fermes facturables au contrat.</p>
-  </section>
-
-  <section class="who direct">
-    <h2>Client final — l'entrant</h2>
-    <p class="who-sub">Aucune grille n'a jamais été arbitrée.</p>
-    <p class="nogrid"><b>Il n'y a pas de tarif direct.</b> Un entrant se chiffre au cas par cas, à partir du coût réel et de la marge visée — avec la règle ci-dessous.</p>
-    <div id="rateDirect" style="margin-top:12px"></div>
-    <p class="note" style="margin-top:10px">Le gel du 2026-09-07 porte sur la <b>prospection</b> directe, pas sur le traitement d'un entrant. En direct, le coût d'acquisition est à votre charge : il n'est pas apporté par un donneur d'ordre.</p>
-  </section>
-</div>
-
-<!-- 2. La règle ------------------------------------------------------------ -->
+<!-- 1 -------------------------------------------------------------------- -->
 <section class="card">
-  <header>
-    <div>
-      <h2>La règle — prix d'une position</h2>
-      <p class="note">Déplacez le curseur : la lecture dessous suit. Les repères que vous fixez sont enregistrés.</p>
-    </div>
+  <header><span class="step">1</span><h2>Le deal sur la table</h2></header>
+  <div class="segs">
     <div class="seg" role="group" aria-label="Métier">
-      <button type="button" data-metier="helpdesk" aria-pressed="true">Helpdesk IT N1</button>
-      <button type="button" data-metier="support" aria-pressed="false">Support applicatif N1</button>
+      <button type="button" data-set="metier" data-val="helpdesk">Helpdesk IT N1</button>
+      <button type="button" data-set="metier" data-val="support">Support applicatif N1</button>
     </div>
-  </header>
-
-  <div class="ruler" id="ruler"></div>
-  <input type="range" id="price" min="800" max="3000" step="10" value="2000" aria-label="Prix par position">
-
-  <div class="grid" style="margin-top:12px">
-    <div class="field"><label for="priceNum">Prix testé (€/position/mois)</label><input id="priceNum" type="number" min="0" step="10"></div>
-    <div class="field"><label for="ancrage">Mon prix d'ancrage (€)</label><input id="ancrage" type="number" min="0" step="10" placeholder="ce que j'annonce"></div>
-    <div class="field"><label for="cible">Ma cible (€)</label><input id="cible" type="number" min="0" step="10" placeholder="où je veux signer"></div>
-    <div class="field"><label for="walk">Mon plancher (€)</label><input id="walk" type="number" min="0" step="10" placeholder="en dessous je pars"></div>
+    <div class="seg" role="group" aria-label="Canal">
+      <button type="button" data-set="canal" data-val="mb">Marque blanche</button>
+      <button type="button" data-set="canal" data-val="direct">Client final</button>
+    </div>
   </div>
-
-  <div class="kpis" id="kpis"></div>
-  <div class="verdict" id="verdict"></div>
-</section>
-
-<!-- 3. Le contrat complet -------------------------------------------------- -->
-<section class="card">
-  <header>
-    <div>
-      <h2>Le contrat complet</h2>
-      <p class="note">Ce que la grille facture, et ce que coûte un prix unique concédé à la place.</p>
-    </div>
-  </header>
   <div class="grid">
     <div class="field"><label for="positions">Positions fermes : <b id="positionsVal">5</b></label><input id="positions" type="range" min="1" max="20" step="1" value="5"></div>
-    <div class="field"><label for="revente">Revente du partenaire à son client (€)</label><input id="revente" type="number" min="0" step="50" placeholder="facultatif"></div>
+    <div class="field"><label for="duree">Durée d'engagement (mois)</label><input id="duree" type="number" min="1" max="60" step="1" value="12"></div>
+    <div class="field" id="champRemise"><label for="remise">Remise que je m'autorise (%)</label><input id="remise" type="number" min="0" max="60" step="1" value="10"></div>
+    <div class="field" id="champMarge" hidden><label for="marge">Marge visée sur ce contrat (%)</label><input id="marge" type="number" min="0" max="90" step="1" value="50"></div>
   </div>
-  <div class="table-wrap"><table id="contrat"></table></div>
-  <p class="note" id="contratNote"></p>
+  <p class="note" id="dealNote"></p>
 </section>
 
-<!-- 4. Hypothèses ---------------------------------------------------------- -->
+<!-- 2 -------------------------------------------------------------------- -->
 <section class="card">
-  <header><div><h2>Sur quoi reposent ces marges</h2></div></header>
-  <div class="grid">
-    <div class="field"><label for="cout">Coût d'une position (€/mois)</label><input id="cout" type="number" min="0" step="1"></div>
-    <div class="field"><label for="coutMgr">Coût d'un manager (€/mois)</label><input id="coutMgr" type="number" min="0" step="1"></div>
-    <div class="field"><label for="capacite">Positions par manager</label><input id="capacite" type="number" min="1" max="30" step="1"></div>
+  <header><span class="step">2</span><h2>Les trois prix, calculés depuis ce deal</h2></header>
+  <div class="reperes" id="reperes"></div>
+  <p class="note" id="reperesNote"></p>
+</section>
+
+<!-- 3 -------------------------------------------------------------------- -->
+<section class="card">
+  <header><span class="step">3</span><h2>Ce qu'il demande</h2></header>
+  <div class="ruler" id="ruler"></div>
+  <div class="propose">
+    <div class="field"><label for="prix">Prix proposé par position</label><input id="prix" type="range" step="10"></div>
+    <div><div class="big" id="prixVal">—</div><div class="note" id="prixSub"></div></div>
   </div>
-  <p class="note" id="coutNote"></p>
+  <div class="verdict" id="verdict"></div>
+  <div class="lignes" id="impact"></div>
+  <p class="note" id="compense"></p>
+</section>
+
+<!-- 4 -------------------------------------------------------------------- -->
+<section class="card">
+  <header><span class="step">4</span><h2>Ce que ça donne, et où le retrouver</h2></header>
+  <div class="concord" id="concord"></div>
 
   <details>
-    <summary>Pourquoi le plancher de 920 € ne tient pas</summary>
-    <p class="note">À 920 €, une position laisse <b>76,96 €</b> après son agent. Huit positions rapportent donc <code>8 × 76,96 = 615,68 €</code> et déclenchent un manager à <b>810,04 €</b> : chaque tranche de huit creuse le résultat d'environ 194 €/mois. <b>La perte grandit avec le volume.</b> Le prix en dessous duquel aucun volume ne rattrape la supervision est <code>coût d'une position + coût d'un manager ÷ positions par manager</code>, soit <b id="seuilTxt">944,30 €</b>. Le plancher de <code>PRICING.md</code> est sous ce seuil ; sa révision est une décision ouverte.</p>
+    <summary>Ce que ces chiffres contiennent, et ce qu'ils ne contiennent pas</summary>
+    <p class="note" id="hypNote"></p>
+    <div class="grid" style="margin-top:10px">
+      <div class="field"><label for="cout">Coût d'une position (€/mois)</label><input id="cout" type="number" min="0" step="1"></div>
+      <div class="field"><label for="coutMgr">Coût d'un manager (€/mois)</label><input id="coutMgr" type="number" min="0" step="1"></div>
+      <div class="field"><label for="capacite">Positions par manager</label><input id="capacite" type="number" min="1" max="30" step="1"></div>
+      <div class="field"><label for="outils">Outils récurrents (€/mois)</label><input id="outils" type="number" min="0" step="1"></div>
+    </div>
   </details>
 
   <details>
-    <summary>Ce que valent les repères du client final</summary>
-    <p class="note">Les fourchettes de <b>1 900–2 400 €</b> (support) et <b>2 200–2 800 €</b> (helpdesk) viennent du registre interne archivé, issues de l'évaluation stratégique du 2026-06-10. <b>Aucune décision datée ne les fixe</b>, contrairement à la grille marque blanche. Les sources de cette étude sont des sites de télésecrétariat médical et des BPO généralistes : aucune ne publie un prix de position dédiée en helpdesk IT ou en support SaaS en direct, et l'étude qualifie elle-même ses valeurs d'« estimations recoupées ». Elles sont affichées ici comme <b>repère de positionnement</b>, jamais comme tarif. Tri complet : <code>AUDIT-CHIFFRES-2026-09-18.md</code>.</p>
+    <summary>Pourquoi le plancher de 920 € de PRICING.md ne tient pas</summary>
+    <p class="note">À 920 €, une position laisse <b>76,96 €</b> après son agent. Huit positions rapportent donc <code>8 × 76,96 = 615,68 €</code> et déclenchent un manager à <b>810,04 €</b> : chaque tranche de huit creuse le résultat d'environ 194 €/mois. <b>La perte grandit avec le volume.</b> Le point de rupture affiché plus haut est calculé <b>sur votre deal</b> — il tient compte du nombre de managers déclenchés, des outils et de l'onboarding amorti. C'est lui qui fait foi, pas le plancher du document.</p>
+  </details>
+
+  <details>
+    <summary>Le client final n'a aucune grille</summary>
+    <p class="note">Les fourchettes de <b>1 900–2 400 €</b> (support) et <b>2 200–2 800 €</b> (helpdesk) viennent du registre interne archivé, issues de l'évaluation stratégique du 2026-06-10. <b>Aucune décision datée ne les fixe</b> : les sources de cette étude sont des sites de télésecrétariat médical et des BPO généralistes, dont aucune ne publie un prix de position dédiée en IT. En mode client final, cette page ne les utilise pas pour calculer : elle part de la marge que vous visez. La bande hachurée sur la règle ne sert qu'à situer le positionnement. Tri complet : <code>AUDIT-CHIFFRES-2026-09-18.md</code>.</p>
   </details>
 
   <details>
     <summary>Les marges de 65-80 % qui circulent sont fausses</summary>
-    <p class="note">Plusieurs supports annoncent une marge brute de <b>65 à 80 %</b>. Ce chiffre vient de l'évaluation de juin 2026, qui raisonnait sur un coût complet de <b>400-450 €/ETP</b> hérité du modèle freelance, abandonné le 2026-08-14. Le coût réel est de <b>843,04 €</b>, soit le double. Les marges réelles sur la grille en vigueur sont de <b>44 à 58 %</b> — un écart d'environ 25 points. Ne jamais citer une marge à un tiers sans l'avoir recalculée ici.</p>
+    <p class="note">Ce chiffre vient de l'évaluation de juin 2026, qui raisonnait sur un coût complet de <b>400-450 €/ETP</b> hérité du modèle freelance, abandonné le 2026-08-14. Le coût réel est de <b>843,04 €</b>, soit le double. Les marges réelles sur la grille en vigueur sont de <b>44 à 58 %</b> — un écart d'environ 25 points. Ne jamais citer une marge à un tiers sans l'avoir recalculée ici.</p>
   </details>
 
-  <p class="src">Sources : <code>PRICING.md</code> §1 et §3 pour la grille, le dépôt et le plancher · <code>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</code> §2 pour le coût d'une position · <code>AUDIT-CHIFFRES-2026-09-18.md</code> pour l'origine et la validité de chaque chiffre · trésorerie et point mort dans <a href="projection-finances-salverys.html">projection-finances-salverys.html</a>.</p>
+  <p class="src">Sources : <code>PRICING.md</code> §1 et §3 · coût d'une position : <code>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</code> §2 · origine et validité de chaque chiffre : <code>AUDIT-CHIFFRES-2026-09-18.md</code>. Le calcul est celui de <code>tools/finance-model.mjs</code>, partagé avec la page de projection.</p>
 </section>
 
 <script type="module">
@@ -493,209 +480,245 @@ const $ = id => document.getElementById(id);
 const eur = n => (Math.round(n) + 0).toLocaleString('fr-FR') + ' €';
 const eur2 = n => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
 const pct = n => (n * 100).toFixed(1).replace('.', ',') + ' %';
-const STORE = 'salverys_negociation_v1';
+const STORE = 'salverys_negociation_v2';
 
-const PMIN = 800, PMAX = 3000;
-let metier = 'helpdesk';
+let etat = { metier: 'helpdesk', canal: 'mb', prix: null };
 
 function hypotheses() {
   return {
     ...ASSUMPTIONS,
-    agent: Number($('cout').value) || monthlyAgentCost(),
-    manager: Number($('coutMgr').value) || monthlyManagerCost(),
-    capacite: Math.max(1, Math.round(Number($('capacite').value) || ASSUMPTIONS.managerCapacity)),
+    toolsPerMonth: Number($('outils').value) || 0,
+    managerCapacity: Math.max(1, Math.round(Number($('capacite').value) || ASSUMPTIONS.managerCapacity)),
+    _agent: Number($('cout').value) || monthlyAgentCost(),
+    _manager: Number($('coutMgr').value) || monthlyManagerCost(),
   };
+}
+
+/* ------------------------- le deal, et ce qu'il coûte ---------------------- */
+
+/** Charges mensuelles réelles du contrat : agents, managers déclenchés, outils. */
+function charges(n, a) {
+  const managers = Math.ceil(n / a.managerCapacity);
+  const agents = n * a._agent;
+  const mgr = managers * a._manager;
+  return { managers, agents, mgr, outils: a.toolsPerMonth, total: agents + mgr + a.toolsPerMonth };
+}
+
+/** Onboarding du contrat, réparti sur sa durée d'engagement. */
+function onboardingMensuel(n, duree, a) {
+  return onboardingCost(n, a) / Math.max(1, duree);
+}
+
+/** Prix par position auquel le contrat ne rapporte plus rien du tout. */
+function prixRupture(n, duree, a) {
+  return (charges(n, a).total + onboardingMensuel(n, duree, a)) / n;
+}
+
+/** Prix par position qui laisse la marge visée, onboarding amorti compris. */
+function prixPourMarge(n, duree, marge, a) {
+  const socle = charges(n, a).total + onboardingMensuel(n, duree, a);
+  return socle / (n * Math.max(0.01, 1 - marge));
+}
+
+/** Résultat mensuel d'un contrat facturé à un prix unique — même définition que la
+ * page de projection : CA moins agents, managers et outils. Onboarding non compris. */
+function resultatFlat(n, prix, a) {
+  return n * prix - charges(n, a).total;
+}
+
+/** Résultat mensuel du même contrat facturé à la grille marque blanche. */
+function resultatGrille(n, a) {
+  return mbRevenue(etat.metier, n) - charges(n, a).total;
 }
 
 /* --------------------------------- la règle ------------------------------- */
 
-function drawRuler(h) {
+function drawRuler(d) {
   const host = $('ruler');
   host.querySelector('svg')?.remove();
   const W = Math.max(320, Math.round(host.clientWidth || 900));
-  const H = 168;
-  const PAD = { l: 8, r: 8, top: 44, bar: 30 };
-  const x = v => PAD.l + (v - PMIN) / (PMAX - PMIN) * (W - PAD.l - PAD.r);
+  const H = 130;
+  const PAD = { l: 8, r: 8, top: 46, bar: 28 };
+  const lo = d.min, hi = d.max;
+  const x = v => PAD.l + (Math.min(Math.max(v, lo), hi) - lo) / (hi - lo) * (W - PAD.l - PAD.r);
   const barY = PAD.top, barH = PAD.bar;
 
-  const [entree, volume] = OFFERS[metier].mb;
-  const ref = DIRECT_REFERENCE[metier];
-  const seuil = h.agent + h.manager / h.capacite;
-  const prix = Number($('price').value);
-
   const zones = [
-    { de: PMIN, a: seuil, fill: 'var(--danger)', op: .16, txt: 'jamais rentable' },
-    { de: seuil, a: volume, fill: 'var(--gold)', op: .18, txt: 'sous la grille' },
-    { de: volume, a: entree, fill: 'var(--accent)', op: .22, txt: 'grille' },
-    { de: entree, a: PMAX, fill: 'var(--primary)', op: .08, txt: 'au-dessus de la grille' },
+    { de: lo, a: d.rupture, fill: 'var(--danger)', op: .18, txt: 'perte' },
+    { de: d.rupture, a: d.limite, fill: 'var(--gold)', op: .18, txt: 'sous ma limite' },
+    { de: d.limite, a: d.annonce, fill: 'var(--accent)', op: .22, txt: 'marge de négociation' },
+    { de: d.annonce, a: hi, fill: 'var(--primary)', op: .08, txt: 'au-dessus' },
   ];
-
-  /* Un libellé plus large que sa zone déborde sur la zone voisine et devient trompeur :
-   * on l'omet plutôt que de le laisser mordre sur la bande d'à côté. */
   const zoneSvg = zones.map(z => {
     const x1 = x(z.de), x2 = x(z.a), w = x2 - x1;
     const tient = w > z.txt.length * 6.4 + 12;
-    const label = tient ? `<text x="${(x1 + x2) / 2}" y="${barY + barH / 2 + 4}" text-anchor="middle" font-size="11" fill="var(--ink-soft)">${z.txt}</text>` : '';
-    return `<rect x="${x1}" y="${barY}" width="${Math.max(0, w)}" height="${barH}" fill="${z.fill}" opacity="${z.op}"/>${label}`;
+    return `<rect x="${x1}" y="${barY}" width="${Math.max(0, w)}" height="${barH}" fill="${z.fill}" opacity="${z.op}"/>`
+      + (tient ? `<text x="${(x1 + x2) / 2}" y="${barY + barH / 2 + 4}" text-anchor="middle" font-size="11" fill="var(--ink-soft)">${z.txt}</text>` : '');
   }).join('');
 
-  // Seuils fixes. 920 et 944 sont trop proches pour deux libellés : on les fusionne.
-  const seuils = [
-    { v: PRICE_FLOOR, lab: null },
-    { v: seuil, lab: `plancher ${PRICE_FLOOR} € · seuil ${Math.round(seuil)} €`, anchor: 'start' },
-    { v: volume, lab: `volume ${volume} €`, anchor: 'middle' },
-    { v: entree, lab: `entrée ${entree} €`, anchor: 'middle' },
-  ];
-  const seuilSvg = seuils.map(s => {
-    const px = x(s.v);
-    const tick = `<line x1="${px}" x2="${px}" y1="${barY - 5}" y2="${barY + barH + 5}" stroke="var(--ink-soft)" stroke-width="1.5"/>`;
-    const lab = s.lab ? `<text x="${px + (s.anchor === 'start' ? 4 : 0)}" y="${barY + barH + 20}" text-anchor="${s.anchor}" font-size="11" font-weight="600" fill="var(--ink-soft)">${s.lab}</text>` : '';
-    return tick + lab;
+  const bornes = [
+    { v: d.rupture, lab: 'rupture', anchor: 'start' },
+    { v: d.limite, lab: 'ma limite', anchor: 'middle' },
+    { v: d.annonce, lab: d.canal === 'mb' ? 'grille' : 'annoncé', anchor: 'end' },
+  ].map(b => {
+    const px = x(b.v);
+    return `<line x1="${px}" x2="${px}" y1="${barY - 5}" y2="${barY + barH + 5}" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <text x="${px + (b.anchor === 'start' ? 3 : b.anchor === 'end' ? -3 : 0)}" y="${barY + barH + 19}" text-anchor="${b.anchor}" font-size="11" font-weight="600" fill="var(--ink-soft)">${b.lab}</text>
+      <text x="${px + (b.anchor === 'start' ? 3 : b.anchor === 'end' ? -3 : 0)}" y="${barY + barH + 33}" text-anchor="${b.anchor}" font-size="10.5" fill="var(--ink-mute)">${eur(b.v)}</text>`;
   }).join('');
 
-  // Repère client final : bande hachurée, au-dessus de la barre, jamais confondue avec la grille.
-  const refSvg = `
-    <rect x="${x(ref[0])}" y="${barY - 26}" width="${x(ref[1]) - x(ref[0])}" height="14" fill="url(#hatch)" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 2"/>
-    <text x="${(x(ref[0]) + x(ref[1])) / 2}" y="${barY - 31}" text-anchor="middle" font-size="10.5" fill="var(--ink-mute)">repère client final ${ref[0]}–${ref[1]} € — non validé</text>`;
+  let refSvg = '';
+  if (d.canal === 'direct') {
+    const r = DIRECT_REFERENCE[etat.metier];
+    if (r[1] > lo && r[0] < hi) {
+      refSvg = `<rect x="${x(r[0])}" y="${barY - 24}" width="${Math.max(2, x(r[1]) - x(r[0]))}" height="12" fill="var(--gold)" opacity=".22" stroke="var(--gold)" stroke-dasharray="3 2"/>
+        <text x="${(x(r[0]) + x(r[1])) / 2}" y="${barY - 28}" text-anchor="middle" font-size="10" fill="var(--ink-mute)">repère archivé ${r[0]}–${r[1]} € — non validé</text>`;
+    }
+  }
 
-  // Repères personnels, sous l'axe.
-  const perso = [
-    { id: 'ancrage', lab: 'ancrage' },
-    { id: 'cible', lab: 'cible' },
-    { id: 'walk', lab: 'plancher' },
-  ].map(p => {
-    const v = Number($(p.id).value);
-    if (!(v >= PMIN && v <= PMAX)) return '';
-    const px = x(v);
-    return `<polygon points="${px},${barY + barH + 28} ${px - 5},${barY + barH + 38} ${px + 5},${barY + barH + 38}" fill="var(--primary)"/>
-      <text x="${px}" y="${barY + barH + 52}" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">${p.lab} ${eur(v)}</text>`;
-  }).join('');
-
-  const px = x(prix);
-  const bulleX = Math.min(Math.max(px, 42), W - 42);
-
+  const px = x(d.prix);
+  const bulle = Math.min(Math.max(px, 44), W - 44);
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', `Règle de prix de ${PMIN} à ${PMAX} euros. Prix testé ${Math.round(prix)} euros. Seuil de rentabilité ${Math.round(seuil)} euros, tarif volume ${volume}, tarif d'entrée ${entree}.`);
-  svg.innerHTML = `
-    <defs><pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-      <rect width="6" height="6" fill="var(--gold)" opacity=".10"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--gold)" stroke-width="2" opacity=".5"/>
-    </pattern></defs>
-    ${refSvg}
-    ${zoneSvg}
-    <rect x="${x(PMIN)}" y="${barY}" width="${x(PMAX) - x(PMIN)}" height="${barH}" fill="none" stroke="var(--line)"/>
-    ${seuilSvg}
-    ${perso}
+  svg.setAttribute('aria-label', `Prix proposé ${Math.round(d.prix)} euros. Rupture à ${Math.round(d.rupture)}, limite à ${Math.round(d.limite)}, prix annoncé ${Math.round(d.annonce)} euros.`);
+  svg.innerHTML = `${refSvg}${zoneSvg}
+    <rect x="${x(lo)}" y="${barY}" width="${x(hi) - x(lo)}" height="${barH}" fill="none" stroke="var(--line)"/>
+    ${bornes}
     <line x1="${px}" x2="${px}" y1="${barY - 12}" y2="${barY + barH + 12}" stroke="var(--primary)" stroke-width="3"/>
-    <rect x="${bulleX - 40}" y="2" width="80" height="22" rx="6" fill="var(--primary)"/>
-    <text x="${bulleX}" y="17" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--surface)">${eur(prix)}</text>`;
+    <rect x="${bulle - 42}" y="4" width="84" height="22" rx="6" fill="var(--primary)"/>
+    <text x="${bulle}" y="19" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--surface)">${eur(d.prix)}</text>`;
   host.append(svg);
 }
 
 /* ---------------------------------- rendu --------------------------------- */
 
+function calcule() {
+  const a = hypotheses();
+  const n = Number($('positions').value);
+  const duree = Math.max(1, Math.round(Number($('duree').value) || 12));
+  const canal = etat.canal;
+  const rupture = prixRupture(n, duree, a);
+
+  let annonce, sousTitre;
+  if (canal === 'mb') {
+    annonce = mbRevenue(etat.metier, n) / n;
+    const det = mbBreakdown(etat.metier, n).map(l => `${l.count} × ${eur(l.price)}`).join(' + ');
+    sousTitre = `Grille <code>PRICING.md</code> : ${det} = ${eur(annonce * n)}`;
+  } else {
+    const marge = Math.min(0.9, Math.max(0, Number($('marge').value) / 100));
+    annonce = prixPourMarge(n, duree, marge, a);
+    sousTitre = `Prix qui laisse ${pct(marge)} de marge sur ce contrat. Aucune grille client final n'existe.`;
+  }
+
+  const remise = canal === 'mb' ? Math.min(0.6, Math.max(0, Number($('remise').value) / 100)) : 0.15;
+  const limite = Math.max(rupture, annonce * (1 - remise));
+  return { a, n, duree, canal, rupture, annonce, limite, sousTitre, remise };
+}
+
 function render() {
-  const h = hypotheses();
-  const [entree, volume] = OFFERS[metier].mb;
-  const ref = DIRECT_REFERENCE[metier];
-  const seuil = h.agent + h.manager / h.capacite;
-  const prix = Number($('price').value);
-  if ($('priceNum').value !== String(prix)) $('priceNum').value = prix;
+  const d = calcule();
+  $('positionsVal').textContent = d.n;
+  $('champRemise').hidden = d.canal !== 'mb';
+  $('champMarge').hidden = d.canal === 'mb';
 
-  $('rateMb').innerHTML = `
-    <div class="rate"><span>Positions 1 à ${MB_ENTRY_POSITIONS} — tarif d'entrée</span><b>${eur(entree)}</b></div>
-    <div class="rate"><span>Positions ${MB_ENTRY_POSITIONS + 1} et suivantes — tarif volume</span><b>${eur(volume)}</b></div>
-    <div class="rate"><span>Plancher de négociation</span><b>${eur(PRICE_FLOOR)}</b></div>`;
-  $('rateDirect').innerHTML = `
-    <div class="rate"><span>Repère archivé, <b>non validé</b></span><b>${ref[0]}–${ref[1]} €</b></div>
-    <div class="rate"><span>Prix minimal viable, quel que soit le volume</span><b>${eur2(seuil)}</b></div>`;
+  const c = charges(d.n, d.a);
+  const onb = onboardingMensuel(d.n, d.duree, d.a);
+  $('dealNote').innerHTML = `${d.n} position${d.n > 1 ? 's' : ''} déclenchent <b>${c.managers} manager${c.managers > 1 ? 's' : ''}</b>. Charges mensuelles : ${eur(c.agents)} d'agents + ${eur(c.mgr)} de supervision + ${eur(c.outils)} d'outils = <b>${eur(c.total)}</b>. L'onboarding de ${eur(onboardingCost(d.n, d.a))} amorti sur ${d.duree} mois ajoute <b>${eur(onb)}</b> par mois.`;
 
-  drawRuler(h);
-  $('seuilTxt').textContent = eur2(seuil);
-  $('coutNote').innerHTML = `Par défaut, le coût d'une position est de <b>${eur2(monthlyAgentCost())}</b> — salaire chargé ${eur2(chargedSalary())} + VoIP ${ASSUMPTIONS.voipPerAgent} € + coussin de ${Math.round(ASSUMPTIONS.contingency * 100)} %. Il suppose des cotisations de ${Math.round(ASSUMPTIONS.employerRate * 100)} % plafonnées à 8 × SME et un change de ${ASSUMPTIONS.exchangeArPerEuro} Ar/€ : <b>aucun de ces trois paramètres n'est vérifié sur la paie réelle</b>. Ces marges ne comprennent ni les outils, ni l'onboarding, ni les taxes.`;
+  // Prix proposé : borné au deal, initialisé au prix annoncé.
+  const min = Math.floor(Math.min(d.rupture, etat.prix ?? d.annonce) * 0.9 / 10) * 10;
+  const max = Math.ceil(Math.max(d.annonce, etat.prix ?? d.annonce) * 1.15 / 10) * 10;
+  if (etat.prix == null) etat.prix = Math.round(d.annonce);
+  etat.prix = Math.min(Math.max(etat.prix, min), max);
+  const s = $('prix');
+  s.min = min; s.max = max; s.value = etat.prix;
 
-  const contribution = prix - h.agent;
-  const marge = prix > 0 ? contribution / prix : 0;
-  const parHuit = h.capacite * contribution - h.manager;
-  $('kpis').innerHTML = [
-    kpi('Contribution par position', eur(contribution), 'après son agent', contribution <= 0),
-    kpi('Marge brute', pct(marge), 'hors outils, onboarding, taxes', marge < 0.3),
-    kpi(`Par tranche de ${h.capacite}`, eur(parHuit), `${h.capacite} positions moins un manager`, parHuit <= 0),
-    kpi('Écart au tarif d\'entrée', (prix - entree >= 0 ? '+' : '') + eur(prix - entree), `entrée à ${eur(entree)}`, prix < entree),
+  $('reperes').innerHTML = [
+    rep('annonce', d.canal === 'mb' ? 'Le prix que j\'annonce' : 'Mon prix cible', d.sousTitre, d.annonce, d.n),
+    rep('limite', 'Ma limite de négociation', d.canal === 'mb'
+      ? `${pct(d.remise)} sous la grille. Descendre plus bas doit s'échanger contre du volume ferme.`
+      : `15 % sous le prix cible. En direct, le coût d'acquisition est à votre charge.`, d.limite, d.n),
+    rep('rupture', 'Point de rupture', `Ce contrat ne rapporte plus rien : agents, ${c.managers} manager${c.managers > 1 ? 's' : ''}, outils et onboarding amorti exactement couverts.`, d.rupture, d.n),
   ].join('');
+  $('reperesNote').innerHTML = `Ces trois prix <b>se recalculent à chaque changement du deal</b>. Le point de rupture dépend du nombre de positions : une position de plus ou de moins le déplace, parce qu'elle change le nombre de managers et la répartition des coûts fixes.`;
+
+  drawRuler({ ...d, prix: etat.prix, min, max });
+
+  const prix = etat.prix;
+  const resultat = resultatFlat(d.n, prix, d.a);
+  const resultatApresOnb = resultat - onb;
+  const ecartAnnonce = (prix - d.annonce) * d.n;
+  $('prixVal').textContent = eur(prix) + ' / position';
+  $('prixSub').innerHTML = `soit <b>${eur(prix * d.n)}</b> par mois · ${prix < d.annonce ? `−${pct((d.annonce - prix) / d.annonce)} sur le prix annoncé` : 'au-dessus du prix annoncé'}`;
 
   let v;
-  if (prix < seuil) v = { c: 'no', t: `Sous le seuil de ${eur2(seuil)}. Aucun volume ne rattrape ce prix : chaque tranche de ${h.capacite} positions coûte ${eur(-parHuit)} de plus qu'elle ne rapporte. À refuser, quelle que soit la promesse de volume.` };
-  else if (prix < volume) v = { c: 'warn', t: `Au-dessus du seuil mathématique, mais <b>sous la grille</b> (tarif volume à ${eur(volume)}). Rentable seulement à partir d'un certain volume, et sans marge pour les coûts non mesurés. À ne concéder que contre un engagement ferme écrit.` };
-  else if (prix < entree) v = { c: 'ok', t: `Dans la grille, au niveau du <b>tarif volume</b>. Ce prix ne s'accorde que contre un minimum de ${MB_ENTRY_POSITIONS + 1} positions fermes facturables, consommées ou non.` };
-  else v = { c: 'ok', t: `Au niveau du <b>tarif d'entrée</b> ou au-dessus. C'est le prix de référence d'un contrat de ${MB_ENTRY_POSITIONS} positions ou moins.` };
+  if (prix < d.rupture) v = { c: 'no', t: `<b>Sous le point de rupture.</b> Ce contrat perdrait ${eur(-resultatApresOnb)} par mois, onboarding amorti compris. Aucun volume ne le sauve : à ce prix, chaque position ajoutée creuse davantage. À refuser.` };
+  else if (prix < d.limite) v = { c: 'warn', t: `<b>Entre la rupture et votre limite.</b> Le contrat gagne encore ${eur(resultatApresOnb)} par mois, mais sans réserve pour les coûts non mesurés — taxes, congés, remplacement, équipement. Ne concéder que contre un engagement ferme écrit et une durée plus longue.` };
+  else if (prix < d.annonce) v = { c: 'ok', t: `<b>Dans votre marge de négociation.</b> Vous êtes à ${pct((d.annonce - prix) / d.annonce)} sous le prix annoncé et au-dessus de votre limite. Signable.` };
+  else v = { c: 'ok', t: `<b>Au prix annoncé ou au-dessus.</b> Rien à concéder à ce stade.` };
   $('verdict').className = 'verdict ' + v.c;
   $('verdict').innerHTML = v.t;
 
-  renderContrat(h, prix, entree, volume);
+  const lignes = [
+    ['CA mensuel', prix * d.n],
+    [`Agents (${d.n} × ${eur(d.a._agent)})`, -c.agents],
+    [`Supervision (${c.managers} × ${eur(d.a._manager)})`, -c.mgr],
+    ['Outils récurrents', -c.outils],
+  ];
+  $('impact').innerHTML = lignes.map(([l, v]) => `<div class="ligne"><span>${l}</span><b class="${v < 0 ? 'neg' : ''}">${eur(v)}</b></div>`).join('')
+    + `<div class="ligne tot"><span>Résultat mensuel à régime plein</span><b class="${resultat < 0 ? 'neg' : ''}">${eur(resultat)}</b></div>`
+    + `<div class="ligne"><span>Onboarding amorti sur ${d.duree} mois</span><b class="neg">${eur(-onb)}</b></div>`
+    + `<div class="ligne tot"><span>Résultat une fois l'onboarding absorbé</span><b class="${resultatApresOnb < 0 ? 'neg' : ''}">${eur(resultatApresOnb)}</b></div>`;
+
+  // Ce qui rend une remise négociable : le volume qui la compense.
+  if (d.canal === 'mb' && prix < d.annonce) {
+    const cible = resultatGrille(d.n, d.a);
+    let k = null;
+    for (let i = 1; i <= 30; i++) if (resultatFlat(d.n + i, prix, d.a) >= cible) { k = i; break; }
+    const perte = cible - resultat;
+    $('compense').innerHTML = `Cette remise coûte <b>${eur(perte)} par mois</b>, soit ${eur(perte * d.duree)} sur les ${d.duree} mois d'engagement. `
+      + (k ? `Pour retrouver le résultat de la grille à ${d.n} positions, il faudrait <b>${k} position${k > 1 ? 's' : ''} ferme${k > 1 ? 's' : ''} de plus</b>, soit ${d.n + k} au total. C'est la contrepartie à demander.`
+           : `Aucun volume raisonnable ne compense cette remise : elle est à refuser plutôt qu'à échanger.`);
+  } else if (d.canal === 'direct') {
+    $('compense').innerHTML = `En direct, ajoutez votre coût d'acquisition : il n'est pas apporté par un donneur d'ordre. Chiffrez-le dans <a href="projection-finances-salverys.html">la page de projection</a>, champ « coût d'acquisition ».`;
+  } else {
+    $('compense').textContent = '';
+  }
+
+  const memeQueProjection = d.canal === 'mb' && Math.abs(prix - d.annonce) < 0.01
+    ? resultatGrille(d.n, d.a) : resultat;
+  $('concord').innerHTML = `<b>Résultat mensuel à régime plein : ${eur(memeQueProjection)}.</b><br>
+    C'est exactement le chiffre que <a href="projection-finances-salverys.html">projection-finances-salverys.html</a> affiche pour le même contrat, sous le même nom — CA moins agents, supervision et outils, avant onboarding, dépôt, impayés et taxes. Les deux pages partagent le moteur <code>tools/finance-model.mjs</code>.
+    <br><span class="note">Cette page dit <b>à quel prix signer</b>. La page de projection dit <b>quand l'argent arrive</b> : elle seule modélise le décalage entre la paie, la première facture et l'encaissement — c'est là que se joue le besoin de trésorerie, pas ici.</span>`;
+
+  $('hypNote').innerHTML = `Une position coûte <b>${eur2(d.a._agent)}</b> par mois : salaire chargé ${eur2(chargedSalary())} + VoIP ${ASSUMPTIONS.voipPerAgent} € + coussin de ${Math.round(ASSUMPTIONS.contingency * 100)} %. Ce calcul suppose des cotisations de ${Math.round(ASSUMPTIONS.employerRate * 100)} % plafonnées à 8 × SME et un change de ${ASSUMPTIONS.exchangeArPerEuro} Ar/€ — <b>aucun de ces trois paramètres n'est vérifié sur la paie réelle</b>. Ne sont comptés nulle part : taxes et TVA, comptabilité, assurance, frais bancaires et de change, équipement, congés et remplacement, impayés. Tout prix proche du point de rupture est donc <b>déjà perdant en pratique</b>.`;
+
   save();
 }
 
-function kpi(label, value, sub, bad) {
-  return `<div class="kpi${bad ? ' bad' : ''}"><span>${label}</span><strong>${value}</strong><em>${sub}</em></div>`;
-}
-
-function renderContrat(h, prix, entree, volume) {
-  const n = Number($('positions').value);
-  $('positionsVal').textContent = n;
-  const managers = Math.ceil(n / h.capacite);
-  const charges = n * h.agent + managers * h.manager;
-
-  const caGrille = mbRevenue(metier, n);
-  const caPlat = n * prix;
-  const detail = mbBreakdown(metier, n).map(l => `${l.count} × ${eur(l.price)}`).join(' + ');
-  const revente = Number($('revente').value) || 0;
-
-  const lignes = [
-    ['Grille marque blanche', detail, caGrille, caGrille - charges],
-    [`Prix unique de ${eur(prix)}`, `${n} × ${eur(prix)}`, caPlat, caPlat - charges],
-  ];
-
-  $('contrat').innerHTML = `
-    <thead><tr><th>Scénario</th><th>Calcul</th><th>CA mensuel</th><th>Charges</th><th>Contribution</th></tr></thead>
-    <tbody>${lignes.map(([nom, calc, ca, contrib]) => `<tr>
-      <td>${nom}</td><td>${calc}</td><td>${eur(ca)}</td><td>${eur(-charges)}</td>
-      <td class="${contrib < 0 ? 'neg' : 'pos'}">${eur(contrib)}</td></tr>`).join('')}
-    </tbody>
-    <tfoot><tr>
-      <td colspan="2"><b>Écart du prix unique face à la grille</b></td>
-      <td class="${caPlat - caGrille < 0 ? 'neg' : 'pos'}">${(caPlat - caGrille >= 0 ? '+' : '') + eur(caPlat - caGrille)}</td>
-      <td class="note">par mois</td>
-      <td class="${caPlat - caGrille < 0 ? 'neg' : 'pos'}">${(caPlat - caGrille >= 0 ? '+' : '') + eur((caPlat - caGrille) * 12)} sur 12 mois</td>
-    </tr></tfoot>`;
-
-  const parts = [`${n} position${n > 1 ? 's' : ''} déclenchent <b>${managers} manager${managers > 1 ? 's' : ''}</b>, soit ${eur(charges)} de charges hors outils et onboarding.`];
-  if (caPlat < caGrille) parts.push(`Concéder ${eur(prix)} à plat sur ce volume coûte <b>${eur(caGrille - caPlat)} par mois</b>, soit ${eur((caGrille - caPlat) * 12)} sur un an.`);
-  if (revente > 0) {
-    const margePartenaire = revente * n - caGrille;
-    parts.push(`À ${eur(revente)} de revente, le partenaire encaisse ${eur(revente * n)} et dégage <b>${eur(margePartenaire)}</b> par mois avant ses propres coûts, soit ${pct(margePartenaire / (revente * n))} de sa facture. C'est un écart brut, pas une marge garantie.`);
-  }
-  $('contratNote').innerHTML = parts.join(' ');
+function rep(cls, lab, sub, prix, n) {
+  return `<div class="rep ${cls}">
+    <div></div>
+    <div><div class="lab">${lab}</div><div class="sub">${sub}</div></div>
+    <div class="val"><b>${eur(prix)}</b><span>${eur(prix * n)} / mois</span></div>
+  </div>`;
 }
 
 /* ------------------------------ persistance ------------------------------- */
 
-const CHAMPS = ['price', 'ancrage', 'cible', 'walk', 'positions', 'revente', 'cout', 'coutMgr', 'capacite'];
-
+const CHAMPS = ['positions', 'duree', 'remise', 'marge', 'cout', 'coutMgr', 'capacite', 'outils'];
 function save() {
-  try {
-    const d = { metier };
-    for (const c of CHAMPS) d[c] = $(c).value;
-    localStorage.setItem(STORE, JSON.stringify(d));
-  } catch { /* stockage indisponible */ }
+  try { localStorage.setItem(STORE, JSON.stringify({ ...etat, ...Object.fromEntries(CHAMPS.map(c => [c, $(c).value])) })); }
+  catch { /* stockage indisponible */ }
 }
-
 function restore() {
   try {
     const d = JSON.parse(localStorage.getItem(STORE) || 'null');
     if (!d) return false;
-    if (d.metier) metier = d.metier;
+    if (d.metier) etat.metier = d.metier;
+    if (d.canal) etat.canal = d.canal;
+    if (typeof d.prix === 'number') etat.prix = d.prix;
     for (const c of CHAMPS) if (d[c] != null && d[c] !== '') $(c).value = d[c];
     return true;
   } catch { return false; }
@@ -703,29 +726,26 @@ function restore() {
 
 /* -------------------------------- câblage --------------------------------- */
 
+function syncSegs() {
+  for (const b of document.querySelectorAll('.seg button')) {
+    b.setAttribute('aria-pressed', String(etat[b.dataset.set] === b.dataset.val));
+  }
+}
 for (const b of document.querySelectorAll('.seg button')) {
-  b.addEventListener('click', () => {
-    metier = b.dataset.metier;
-    for (const o of document.querySelectorAll('.seg button')) o.setAttribute('aria-pressed', String(o === b));
-    $('price').value = OFFERS[metier].mb[0];
-    render();
-  });
+  b.addEventListener('click', () => { etat[b.dataset.set] = b.dataset.val; etat.prix = null; syncSegs(); render(); });
 }
-$('price').addEventListener('input', render);
-$('priceNum').addEventListener('input', () => {
-  const v = Number($('priceNum').value);
-  if (v >= PMIN && v <= PMAX) { $('price').value = v; render(); }
-});
-for (const c of ['ancrage', 'cible', 'walk', 'positions', 'revente', 'cout', 'coutMgr', 'capacite']) {
-  $(c).addEventListener('input', render);
+$('prix').addEventListener('input', () => { etat.prix = Number($('prix').value); render(); });
+for (const c of ['positions', 'duree', 'remise', 'marge', 'cout', 'coutMgr', 'capacite', 'outils']) {
+  $(c).addEventListener('input', () => { if (c === 'positions') etat.prix = null; render(); });
 }
-addEventListener('resize', () => drawRuler(hypotheses()));
+addEventListener('resize', render);
 
 $('cout').value = monthlyAgentCost().toFixed(2);
 $('coutMgr').value = monthlyManagerCost().toFixed(2);
 $('capacite').value = ASSUMPTIONS.managerCapacity;
-if (!restore()) $('price').value = OFFERS[metier].mb[0];
-for (const o of document.querySelectorAll('.seg button')) o.setAttribute('aria-pressed', String(o.dataset.metier === metier));
+$('outils').value = ASSUMPTIONS.toolsPerMonth;
+restore();
+syncSegs();
 render();
 </script>
 </div>
