@@ -197,7 +197,7 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
 <section class="card">
   <header><h2>Flux mensuels</h2></header>
   <div class="table-wrap tall"><table class="flux" id="fluxTable"></table></div>
-  <p class="note">Le dépôt de 900 €/position est encaissé à la signature puis rendu par crédit de 300 €/position sur les trois premières factures : il avance du cash, il n'augmente pas le total du contrat. Le personnel est payé dès l'embauche, la première facture part deux mois après la signature et l'encaissement suit le délai de règlement.</p>
+  <p class="note">Le dépôt est encaissé à la signature puis <b>rendu</b> par crédit sur les premières factures : il avance du cash, il n'augmente pas le total du contrat. Les frais d'activation, eux, <b>ne sont jamais rendus</b> — c'est du chiffre d'affaires. La colonne « Résultat hors dépôt » les compte, puisqu'ils sont acquis. Le personnel est payé dès l'embauche, la première facture part deux mois après la signature et l'encaissement suit le délai de règlement.</p>
 </section>
 
 <section class="card">
@@ -241,9 +241,12 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
     <div class="field" data-help="deposit"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="900"></div>
     <div class="field" data-help="credit"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="300"></div>
     <div class="field" data-help="creditMonths"><label for="creditMonths">Factures créditées (nb)</label><input id="creditMonths" type="number" min="0" max="12" value="3"></div>
+    <div class="field" data-help="activationPos"><label for="activationPos">Frais d'activation par position (€)</label><input id="activationPos" type="number" min="0" step="50" value="0"></div>
+    <div class="field" data-help="activationDeal"><label for="activationDeal">Frais d'activation par contrat (€)</label><input id="activationDeal" type="number" min="0" step="50" value="0"></div>
     <div class="field" data-help="badDebt"><label for="badDebt">Impayés sur CA encaissé (%)</label><input id="badDebt" type="number" min="0" max="100" step=".5" value="0"></div>
     <div class="field" data-help="revCharge"><label for="revCharge">Taxes et frais sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="0"></div>
   </div>
+  <p class="warn" id="depotAlerte" style="display:none"></p>
 
   <details>
     <summary>Ce que cette projection ne contient pas</summary>
@@ -329,6 +332,13 @@ export const ASSUMPTIONS = Object.freeze({
   depositPerPosition: 900,
   invoiceCreditPerPosition: 300,
   invoiceCreditMonths: 3,
+  /** Frais d'activation NON remboursables, encaissés à la signature.
+   * À distinguer du dépôt, qui est une avance intégralement rendue par crédit de facture.
+   * Zéro par défaut : `PRICING.md` §3 dit aujourd'hui qu'il n'y a pas de frais de mise en
+   * service. Les activer est une MODIFICATION DE LA GRILLE, donc une hausse de prix à
+   * vendre — pas un simple réglage d'outil. */
+  activationFeePerDeal: 0,
+  activationFeePerPosition: 0,
   paymentDelayMonths: 1,
   hireDelayMonths: 1,
   firstInvoiceDelayMonths: 2,
@@ -427,6 +437,21 @@ export function onboardingCost(positions, a = ASSUMPTIONS) {
   return a.onboardingBase + positions * a.onboardingPerPosition;
 }
 
+/** Frais d'activation d'un contrat : encaissés à la signature, jamais rendus. */
+export function activationFee(positions, a = ASSUMPTIONS) {
+  return (a.activationFeePerDeal ?? 0) + positions * (a.activationFeePerPosition ?? 0);
+}
+
+/**
+ * Part du dépôt qui n'est PAS rendue au partenaire, par position.
+ * Le dépôt est censé être neutre : `dépôt = crédit × nombre de factures créditées`.
+ * Un résidu positif est un frais d'activation déguisé — il devrait être nommé comme tel.
+ * Un résidu négatif crédite au partenaire de l'argent jamais encaissé.
+ */
+export function depositResidual(a = ASSUMPTIONS) {
+  return a.depositPerPosition - a.invoiceCreditPerPosition * a.invoiceCreditMonths;
+}
+
 /** Nombre de managers budgétés pour un effectif donné, réparti par métier.
  * Un manager par tranche de `managerCapacity` positions DANS CHAQUE MÉTIER : la supervision
  * n'est pas supposée mutualisable entre deux métiers. Elle l'est en revanche entre deux
@@ -477,6 +502,8 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
     const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
     const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    // Les frais d'activation ne sont pas une avance : ils entrent et ne ressortent jamais.
+    const activation = signedThisMonth.reduce((n, d) => n + activationFee(d.positions, a), 0);
     const invoiced = accepted
       .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths)
       .reduce((n, d) => n + invoiceAmount(d, m - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
@@ -488,8 +515,8 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
     const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
     const expense = payroll + overhead + onboarding + acquisition;
-    cash += deposit + receipt - expense;
-    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, invoiced, receiptGross, badDebt, receipt, expense, result: receipt - expense, cash });
+    cash += deposit + activation + receipt - expense;
+    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
   }
   return rows;
 }
@@ -583,6 +610,7 @@ const NUM = {
   voipPerAgent: 'voip', voipPerManager: 'voipMgr',
   managerCapacity: 'managerCapacity', founderSupervisesUpTo: 'founderSupervises',
   depositPerPosition: 'deposit', invoiceCreditPerPosition: 'credit', invoiceCreditMonths: 'creditMonths',
+  activationFeePerPosition: 'activationPos', activationFeePerDeal: 'activationDeal',
   paymentDelayMonths: 'paymentDelay', hireDelayMonths: 'hireDelay', firstInvoiceDelayMonths: 'invoiceDelay',
 };
 const PCT = { employerRate: 'employer', contingency: 'contingency', badDebtRate: 'badDebt', revenueChargeRate: 'revCharge' };
@@ -863,13 +891,24 @@ function render() {
     $('breakEven').innerHTML = `<b>Point mort en marque blanche.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>sous ce seuil</b>.`;
 
     $('fluxTable').innerHTML = `
-      <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Acquisition</th><th>Structure</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
+      <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Activation</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Acquisition</th><th>Structure</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td>M${r.month}</td><td>${r.agents}</td><td>${r.managers}</td>
-        <td>${r.deposit ? eur(r.deposit) : '—'}</td><td>${r.invoiced ? eur(r.invoiced) : '—'}</td><td>${r.receipt ? eur(r.receipt) : '—'}</td>
+        <td>${r.deposit ? eur(r.deposit) : '—'}</td><td>${r.activation ? eur(r.activation) : '—'}</td><td>${r.invoiced ? eur(r.invoiced) : '—'}</td><td>${r.receipt ? eur(r.receipt) : '—'}</td>
         <td>${eur(-r.payroll)}</td><td>${r.onboarding ? eur(-r.onboarding) : '—'}</td><td>${r.acquisition ? eur(-r.acquisition) : '—'}</td><td>${eur(-r.overhead)}</td>
         <td class="${r.result < 0 ? 'neg' : 'pos'}">${eur(r.result)}</td>
         <td class="${r.cash < 0 ? 'neg' : 'pos'}">${eur(r.cash)}</td></tr>`).join('')}</tbody>`;
+
+    // Le dépôt doit rester neutre : ce qui n'est pas rendu est un frais d'activation caché.
+    const residu = depositResidual(a);
+    const alerte = $('depotAlerte');
+    if (Math.abs(residu) < 0.01) { alerte.style.display = 'none'; }
+    else {
+      alerte.style.display = '';
+      alerte.innerHTML = residu > 0
+        ? `<b>Le dépôt n'est plus neutre.</b> Vous encaissez ${eur(a.depositPerPosition)} par position et n'en rendez que ${eur(a.invoiceCreditPerPosition * a.invoiceCreditMonths)} : <b>${eur(residu)} par position restent acquis</b>. C'est un frais d'activation déguisé. Nommez-le : remettez le dépôt à ${eur(a.invoiceCreditPerPosition * a.invoiceCreditMonths)} et portez les ${eur(residu)} dans « Frais d'activation par position ». Le partenaire s'en apercevra à la dernière facture créditée ; autant l'annoncer au devis.`
+        : `<b>Vous créditez plus que vous n'encaissez.</b> Le dépôt est de ${eur(a.depositPerPosition)} par position mais vous en rendez ${eur(a.invoiceCreditPerPosition * a.invoiceCreditMonths)} : <b>${eur(-residu)} par position sont offerts</b>. C'est l'erreur exacte du plafond supprimé le 2026-09-14. Ajustez le crédit ou le nombre de factures.`;
+    }
 
     $('tarifNote').innerHTML = `<b>Grille marque blanche, par tranches non rétroactives.</b> Les ${MB_ENTRY_POSITIONS} premières positions sont au tarif d'entrée — helpdesk ${OFFERS.helpdesk.mb[0]} €, support ${OFFERS.support.mb[0]} € — et la ${MB_ENTRY_POSITIONS + 1}<sup>e</sup> et les suivantes au tarif volume — helpdesk ${OFFERS.helpdesk.mb[1]} €, support ${OFFERS.support.mb[1]} €. La remise ne s'applique jamais aux positions déjà vendues : ajouter une position ajoute toujours de la marge. Le prix affiché au partenaire est donc un total et une moyenne, pas un prix unitaire unique.<br><b>Client final : aucune grille n'a été arbitrée.</b> Le prix se saisit contrat par contrat. Le repère affiché en filigrane — helpdesk ${DIRECT_REFERENCE.helpdesk[0]}–${DIRECT_REFERENCE.helpdesk[1]} €, support ${DIRECT_REFERENCE.support[0]}–${DIRECT_REFERENCE.support[1]} € — vient d'une <b>estimation marché du 2026-06-10 jamais validée</b> : ses sources sont des sites de télésecrétariat médical et des BPO généralistes, aucune ne publie un prix de position dédiée en IT. Ne pas l'utiliser comme tarif. La prospection directe est gelée depuis le 2026-09-07 : ce mode sert à chiffrer un entrant.`;
 
@@ -986,7 +1025,8 @@ const HELP = {
         <tr><td>Factures 1 à 3</td><td>3 × 3 400 € au lieu de 4 000 €</td></tr>
         <tr><td>Facture 4 et suivantes</td><td>4 000 €</td></tr>
       </tbody><tfoot><tr><td><b>Trois premiers mois</b></td><td><b>1 800 + 3 × 3 400 = 12 000 €</b>, soit 3 × 4 000 €</td></tr></tfoot></table>
-      <p><span class="flag">Règle si vous modifiez ces champs :</span> dépôt par position = crédit × nombre de factures créditées. Changer l'un sans l'autre crédite au partenaire de l'argent jamais encaissé, ou le fait payer deux fois.</p>`,
+      <p><span class="flag">Règle si vous modifiez ces champs :</span> dépôt par position = crédit × nombre de factures créditées. Changer l'un sans l'autre crédite au partenaire de l'argent jamais encaissé, ou le fait payer deux fois. La page vous avertit si l'égalité est rompue.</p>
+      <p>Si vous voulez <b>garder</b> une partie de ce que vous encaissez au démarrage, ne déséquilibrez pas le dépôt : utilisez les champs <b>frais d'activation</b>. Un dépôt qui n'est pas intégralement rendu est un frais d'activation qui n'ose pas dire son nom — et le partenaire s'en apercevra à la troisième facture.</p>`,
     src: 'PRICING.md §3',
   },
   creditMonths: {
@@ -995,6 +1035,26 @@ const HELP = {
       <p>L'invariant à tenir est <code>dépôt = crédit × nombre de factures</code>, soit <code>900 = 300 × 3</code>. Cette neutralité est vérifiée automatiquement par <code>tools/finance-model.test.mjs</code> : le test échoue si une modification du moteur la casse.</p>
       <p>Allonger l'imputation (par exemple 150 € sur 6 factures) adoucit la facture du partenaire au démarrage sans rien changer au total, mais retarde d'autant le retour au plein tarif.</p>`,
     src: 'PRICING.md §3',
+  },
+  activationPos: {
+    title: 'Frais d\'activation par position — 0 € par défaut',
+    body: `<p><span class="flag">Ce n'est pas un réglage d'outil, c'est une hausse de prix.</span> <code>PRICING.md</code> §3 dit aujourd'hui : « Il n'y a pas de frais de mise en service supplémentaires ni de remise automatique sur le premier mois. » Mettre une valeur ici <b>modifie la grille</b> et doit se vendre au partenaire.</p>
+      <p><b>La différence avec le dépôt tient en une phrase :</b></p>
+      <table><tbody>
+        <tr><td><b>Dépôt</b></td><td>encaissé à la signature, <b>intégralement rendu</b> par crédit sur les premières factures. Avance de trésorerie, total du contrat inchangé.</td></tr>
+        <tr><td><b>Frais d'activation</b></td><td>encaissés à la signature, <b>jamais rendus</b>. Chiffre d'affaires en plus. Le partenaire paie davantage.</td></tr>
+      </tbody></table>
+      <p><b>Ce que ça défend.</b> Les dépenses réelles engagées avant le premier ticket : recrutement, paramétrage des outils, équipement du poste. Le modèle les chiffre à <b>400 € de socle + 400 € par position</b> d'onboarding. Aligner les frais d'activation sur ce montant est l'argument le plus solide — au-delà, c'est une marge, et il faut l'assumer comme telle.</p>
+      <p><b>Ce que ça change dans la projection.</b> Le cash entre au mois de la signature, avant toute embauche. C'est le seul levier de cette page qui améliore le creux <b>sans rien demander au calendrier de facturation</b> — mais c'est aussi le seul qui coûte quelque chose au partenaire.</p>
+      <p>Contrepartie à prévoir : des frais non remboursables sont un <b>frein à la signature</b> plus fort qu'une avance rendue. Le dépôt actuel se défend en disant « vous ne le payez pas, vous l'avancez ». Cet argument disparaît ici.</p>`,
+    src: 'PRICING.md §3 · AUDIT-ESPACE-CLIENT.md §9.2 pour le coût d\'onboarding',
+  },
+  activationDeal: {
+    title: 'Frais d\'activation par contrat — 0 € par défaut',
+    body: `<p>Part <b>fixe</b> des frais d'activation, indépendante du nombre de positions : cadrage, ouverture des accès, mise en place du reporting.</p>
+      <p>Elle correspond au <b>socle de 400 €</b> de l'onboarding, là où le champ « par position » correspond aux 400 €/position. Renseigner les deux à ces valeurs revient à <b>facturer l'onboarding à prix coûtant</b> : la projection montre alors un démarrage à trésorerie neutre au lieu d'une sortie sèche.</p>
+      <p><span class="flag">Même avertissement que pour le champ précédent :</span> ces frais n'existent pas dans <code>PRICING.md</code>. Les activer dans l'outil ne les rend pas facturables — il faut modifier la grille, et le devis doit les nommer.</p>`,
+    src: 'PRICING.md §3 · AUDIT-ESPACE-CLIENT.md §9.2',
   },
   badDebt: {
     title: 'Impayés sur CA encaissé — 0 %',
