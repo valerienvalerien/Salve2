@@ -8,6 +8,7 @@ import {
   mbRevenue, mbBreakdown, dealRevenue, marginalPrice, breakEvenMb, MB_ENTRY_POSITIONS, OFFERS, DIRECT_REFERENCE,
 } from './finance-model.mjs';
 import { SCENARIOS } from './finance-scenarios.mjs';
+import { PAGES, START, END } from './sync-projection.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 
@@ -126,14 +127,13 @@ for (const [name, deals] of Object.entries(SCENARIOS)) {
   assert.equal(Math.round(summarize(projectCash(deals)).trough), expected[name], name);
 }
 
-// La page de projection embarque une copie EXACTE du moteur : pas de dérive silencieuse.
-const page = readFileSync(join(here, '..', 'projection-finances-salverys.html'), 'utf8');
-const start = '// === MODELE FINANCIER : copie synchronisee de tools/finance-model.mjs ===';
-const end = '// === FIN MODELE FINANCIER ===';
-const i = page.indexOf(start), j = page.indexOf(end);
-assert.ok(i > 0 && j > i, 'Marqueurs du moteur introuvables dans projection-finances-salverys.html');
-const embedded = page.slice(i + start.length, j).trim();
+// Chaque page embarque une copie EXACTE du moteur : pas de dérive silencieuse.
 const source = readFileSync(join(here, 'finance-model.mjs'), 'utf8').trim();
-assert.equal(embedded, source, 'La copie du moteur dans la page a dérivé de tools/finance-model.mjs');
+for (const nom of PAGES) {
+  const page = readFileSync(join(here, '..', nom), 'utf8');
+  const i = page.indexOf(START), j = page.indexOf(END);
+  assert.ok(i > 0 && j > i, `Marqueurs du moteur introuvables dans ${nom}`);
+  assert.equal(page.slice(i + START.length, j).trim(), source, `La copie du moteur dans ${nom} a dérivé de tools/finance-model.mjs`);
+}
 
-console.log('Modèle financier : invariants validés, page synchronisée.');
+console.log(`Modèle financier : invariants validés, ${PAGES.length} pages synchronisées.`);

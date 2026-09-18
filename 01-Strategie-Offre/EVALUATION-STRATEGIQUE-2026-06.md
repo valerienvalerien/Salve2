@@ -5,6 +5,20 @@
 > (sources en fin de document). Le prévisionnel financier a été **refait from scratch**
 > dans `FINANCE-PREVISIONNEL.md` + `projection-finances-salverys.html` (anciennes versions écartées).
 
+> 🔴 **Ne pas citer les chiffres de coût et de marge de ce document (annoté le 2026-09-18).**
+> Il raisonne sur un **coût complet de ~400-450 €/ETP** hérité du modèle freelance, abandonné
+> le 2026-08-14 au profit du salariat. Le coût réel d'une position est **843,04 €**, soit le
+> double. Toutes les marges brutes qui en découlent — « 65-80 % », « ~80 %+ en helpdesk
+> direct », la capacité à « payer les agents 40-70 % au-dessus du marché » — sont fausses
+> d'environ **25 points** : les marges réelles sur la grille en vigueur sont de **44 à 58 %**.
+> Les fourchettes de tarif direct, le corridor offshore et les tarifs horaires de ce document
+> sont des **estimations non validées** dont les sources ne portent pas sur le support IT.
+>
+> Ce document est une **archive de raisonnement datée** : il s'annote, il ne se réécrit pas
+> (`99-Archives/README.md`). Le tri complet — ce qui est vérifié, estimé, ou faux aujourd'hui —
+> est dans **`AUDIT-CHIFFRES-2026-09-18.md`**. Pour chiffrer : `PRICING.md` fait foi, et
+> `grille-negociation-salverys.html` calcule les marges sur le coût réel.
+
 ---
 
 ## 0. Synthèse exécutive (TL;DR)
