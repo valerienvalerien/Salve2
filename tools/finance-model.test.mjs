@@ -3,9 +3,9 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import {
-  projectCash, pricePerPosition, directPrice, resolvePrice, monthlyAgentCost, monthlyManagerCost,
+  projectCash, pricePerPosition, resolvePrice, monthlyAgentCost, monthlyManagerCost,
   onboardingCost, managersFor, contributions, breakEvenPositions, summarize, PRICE_FLOOR, ASSUMPTIONS,
-  mbRevenue, mbBreakdown, dealRevenue, marginalPrice, breakEvenMb, MB_ENTRY_POSITIONS, OFFERS,
+  mbRevenue, mbBreakdown, dealRevenue, marginalPrice, breakEvenMb, MB_ENTRY_POSITIONS, OFFERS, DIRECT_REFERENCE,
 } from './finance-model.mjs';
 import { SCENARIOS } from './finance-scenarios.mjs';
 
@@ -61,12 +61,15 @@ assert.equal(marginalPrice({ metier: 'helpdesk', positions: 8, tarif: 'libre', p
 // Point mort marque blanche, tranches comprises.
 assert.equal(breakEvenMb('helpdesk'), 1);
 assert.equal(breakEvenMb('support'), 2);
-assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'direct' }), 2200);
-assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'direct', directLevel: 'haut' }), 2800);
+// Le direct n'a AUCUNE grille : un prix saisi est exigé, et le repère archivé ne sert jamais à calculer.
+assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'direct', price: 2300 }), 2300);
+assert.throws(() => dealRevenue({ metier: 'helpdesk', positions: 2, tarif: 'direct' }), /Prix client final à saisir/);
+assert.equal(OFFERS.helpdesk.direct, undefined, 'la grille directe ne doit plus exister');
+assert.deepEqual(DIRECT_REFERENCE.helpdesk, [2200, 2800]);
+assert.deepEqual(DIRECT_REFERENCE.support, [1900, 2400]);
 assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'libre', price: 1234 }), 1234);
-assert.equal(directPrice('support', 'median'), 2150);
-// Le direct n'a pas de grille de volume : 1 ou 12 positions, même prix.
-assert.equal(resolvePrice({ metier: 'support', positions: 12, tarif: 'direct' }), directPrice('support', 'bas'));
+// Le direct n'a pas de grille de volume : 1 ou 12 positions, même prix saisi.
+assert.equal(resolvePrice({ metier: 'support', positions: 12, tarif: 'direct', price: 2000 }), 2000);
 // L'ancienne clé priceOverride reste acceptée.
 assert.equal(resolvePrice({ metier: 'support', positions: 1, priceOverride: 1000 }), 1000);
 assert.throws(() => resolvePrice({ metier: 'support', positions: 1, tarif: 'inconnu' }), /tarification/);
