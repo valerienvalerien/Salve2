@@ -19,7 +19,11 @@ Le manager n'est pas la cause principale : à capacité de supervision 10, 12 ou
 
 **Ce qui subsiste.** En support, la neuvième position reste en recul de **153 €/mois** : 657 € de marge nouvelle contre 810 € de second manager. C'est un coût d'escalier réel, pas un défaut de grille. En helpdesk le passage est positif de 97 €.
 
-**Reste à faire.** `tools/deal-build.mjs` calcule encore le CA d'un deal en `positions × prix`, à plat. C'est sans effet sur les prix négociés au cas par cas qu'il lit dans le JSON du deal, et le calcul reste prudent — il sous-estime le CA, donc ne peut pas approuver à tort un contrat déficitaire. Mais le document de closing qu'il produit affiche une grille à prix unique par palier, qui ne correspond plus à la grille en vigueur. À reprendre avant le prochain devis dépassant quatre positions.
+**Documents de closing — repris le 2026-09-18.** `tools/deal-build.mjs` calculait le CA d'un deal en `positions × prix`, à plat : sur le deal d'exemple à cinq positions, il annonçait 8 750 € de facture et 3 657 € de contribution au lieu de 9 750 € et 4 657 €. Il est désormais adossé à `tools/deal-pricing.mjs`, testé séparément. La grille d'un deal se déclare en tranches (`de` / `a` / `gros`) et le document affiche la formule complète — « 4 × 2 000 € + 1 × 1 750 € = 9 750 €, soit 1 950 € en moyenne » — au lieu d'un prix unitaire unique.
+
+Cinq garde-fous bloquent la génération, vérifiés par exécution sur des grilles volontairement fausses : grille sans tranches (avec le message de migration), trou ou chevauchement entre deux tranches, dernière tranche fermée — qui ferait facturer à zéro les positions au-delà de la grille —, absence de minimum facturable sur la tranche haute atteinte, et prix sous le plancher. Une grille qui s'écarte de `PRICING.md` passe avec un avertissement : un prix négocié reste légitime, mais un fichier de deal laissé en arrière après une révision doit se voir. Enfin, la vérification finale du document échoue si le total rétroactif `positions × tarif volume` y apparaît.
+
+Le builder annonce aussi ce que coûterait la position suivante, palier de manager compris, pour que l'escalier de supervision se voie avant la signature et non après.
 
 ---
 
