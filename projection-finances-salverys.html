@@ -30,15 +30,23 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--surface);color:var(--ink);font:15px/1.55 Inter,-apple-system,Segoe UI,Arial,sans-serif;-webkit-text-size-adjust:100%}
-.wrap{max-width:1180px;margin:0 auto;padding:26px 16px 72px}
+.wrap{max-width:1580px;margin:0 auto;padding:22px 16px 64px}
+.layout{display:grid;gap:16px;grid-template-columns:1fr;align-items:start}
+.layout>.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.layout>.col>*{margin:0}
+@media (min-width:1180px){.layout{grid-template-columns:minmax(360px,44fr) minmax(620px,56fr)}}
+@media (min-width:1440px){.layout{grid-template-columns:minmax(360px,40fr) minmax(620px,60fr)}}
+@media (max-width:1179px){.layout>.col{order:-1}}
 h1{font-size:1.7rem;margin:0 0 6px;letter-spacing:-.01em}
 h2{font-size:1.05rem;margin:0 0 4px;letter-spacing:-.005em}
 h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-mute);margin:22px 0 8px}
 p{margin:.5em 0}
 .lede{color:var(--ink-soft);margin:0 0 18px}
 .note{color:var(--ink-mute);font-size:.82rem;line-height:1.5}
-.warn{background:var(--gold-tint);border-left:3px solid var(--gold);padding:11px 14px;border-radius:0 8px 8px 0;font-size:.86rem;margin:0 0 16px}
+.warn{background:var(--gold-tint);border:0;border-left:3px solid var(--gold);padding:9px 14px;border-radius:0 8px 8px 0;font-size:.84rem;margin:0 0 14px}
 .warn b{color:var(--ink)}
+.warn>summary{font-weight:400;font-size:.84rem;color:var(--ink);list-style-position:inside}
+.warn>p{margin:8px 0 2px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px;box-shadow:var(--shadow)}
 .card>header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;align-items:end}
@@ -51,7 +59,7 @@ button.ghost{background:var(--panel-soft);color:var(--ink);border:1px solid var(
 button.link{background:none;color:var(--ink-soft);padding:6px 8px;font-weight:500;text-decoration:underline}
 button:hover{filter:brightness(1.08)}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin:0 0 16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:12px;margin:0 0 16px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;box-shadow:var(--shadow)}
 .kpi span{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mute);display:block}
 .kpi strong{display:block;font-size:1.42rem;font-variant-numeric:tabular-nums;margin:4px 0 2px;letter-spacing:-.02em}
@@ -74,6 +82,8 @@ figcaption{font-size:.8rem;color:var(--ink-mute);margin-top:8px}
 .tip b{display:block;font-size:.72rem;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.04em}
 .tip s{text-decoration:none;font-variant-numeric:tabular-nums}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-wrap.tall{max-height:min(62vh,600px);overflow:auto}
+@media (max-width:1330px){#contribTable th,#contribTable td{padding:6px 5px}}
 table{border-collapse:collapse;width:100%;font-size:.8rem;font-variant-numeric:tabular-nums}
 table.flux{min-width:940px}
 th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
@@ -115,9 +125,12 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
   <p class="lede">Trésorerie mensuelle, contribution par contrat et point mort — positions dédiées en marque blanche, en direct ou au prix que vous fixez. Montants en euros HT.</p>
 </header>
 
-<p class="warn"><b>Prévision, pas situation bancaire.</b> Cotisations, taxes, comptabilité, assurance, équipement, congés et frais de change ne sont pas dans les valeurs par défaut : renseignez-les dans « Charges mensuelles supplémentaires » avant toute décision. Le solde de départ est à 0 € pour mesurer un besoin théorique, ce n'est pas le solde réel. Références : <code>PRICING.md</code>, <code>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</code>, <code>AUDIT-FINANCE-PREVISIONNEL.md</code>.</p>
+<details class="warn"><summary><b>Prévision, pas situation bancaire</b> — ce que ces chiffres ne couvrent pas</summary>
+<p>Cotisations, taxes, comptabilité, assurance, équipement, congés et frais de change ne sont pas dans les valeurs par défaut : renseignez-les dans « Charges mensuelles supplémentaires » avant toute décision. Le solde de départ est à 0 € pour mesurer un besoin théorique, ce n'est pas le solde réel. Références : <code>PRICING.md</code>, <code>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</code>, <code>AUDIT-FINANCE-PREVISIONNEL.md</code>.</p></details>
 
 <div class="err" id="err"></div>
+
+<div class="layout">
 
 <section class="card">
   <header>
@@ -157,30 +170,33 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
   <p class="note" id="tarifNote"></p>
 </section>
 
-<section class="kpis" id="kpis"></section>
+<div class="col">
+  <section class="kpis" id="kpis"></section>
+  <section class="card">
+    <figure>
+      <header><h2>Trésorerie disponible, fin de mois</h2></header>
+      <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+      <figcaption>Une seule courbe : le cash disponible après paie, outils, onboarding et encaissements. La zone sous la ligne de zéro est le découvert à financer. Le tableau des flux plus bas donne les mêmes valeurs, mois par mois.</figcaption>
+    </figure>
+  </section>
 
-<section class="card">
-  <figure>
-    <header><h2>Trésorerie disponible, fin de mois</h2></header>
-    <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
-    <figcaption>Une seule courbe : le cash disponible après paie, outils, onboarding et encaissements. La zone sous la ligne de zéro est le découvert à financer. Le tableau des flux plus bas donne les mêmes valeurs, mois par mois.</figcaption>
-  </figure>
-</section>
-
-<section class="card">
+  <section class="card">
   <header>
     <div>
       <h2>Contribution par contrat, à régime plein</h2>
       <p class="note">Hors onboarding, hors dépôt, hors coût d'acquisition, et <b>hors impayés et taxes sur CA encaissé</b> — ces deux-là ne pèsent que sur la courbe de trésorerie. Le coût de manager est <b>marginal</b> : il est porté par le premier contrat qui le déclenche dans son métier.</p>
     </div>
   </header>
-  <div class="table-wrap"><table id="contribTable"></table></div>
-  <p class="note" id="breakEven"></p>
-</section>
+    <div class="table-wrap"><table id="contribTable"></table></div>
+    <p class="note" id="breakEven"></p>
+  </section>
+</div>
+
+</div><!-- /layout -->
 
 <section class="card">
   <header><h2>Flux mensuels</h2></header>
-  <div class="table-wrap"><table class="flux" id="fluxTable"></table></div>
+  <div class="table-wrap tall"><table class="flux" id="fluxTable"></table></div>
   <p class="note">Le dépôt de 900 €/position est encaissé à la signature puis rendu par crédit de 300 €/position sur les trois premières factures : il avance du cash, il n'augmente pas le total du contrat. Le personnel est payé dès l'embauche, la première facture part deux mois après la signature et l'encaissement suit le délai de règlement.</p>
 </section>
 
@@ -605,12 +621,16 @@ function refreshDealCards(deals, a) {
 
 /* ------------------------------- graphique ------------------------------ */
 
-const W = 960, H = 320, PAD = { t: 18, r: 18, b: 34, l: 66 };
-
 function drawChart(rows) {
   const host = $('chart');
   const tip = $('tip');
   host.querySelector('svg')?.remove();
+
+  // Le viewBox suit la largeur réelle : le tracé rend à l'échelle 1, donc les
+  // libellés gardent leur taille en pixels au lieu d'être réduits sur petit écran.
+  const W = Math.max(320, Math.round(host.clientWidth || 960));
+  const H = Math.round(Math.min(400, Math.max(230, W * 0.40)));
+  const PAD = { t: 18, r: 16, b: 32, l: W < 480 ? 52 : 66 };
 
   const values = rows.map(r => r.cash);
   const lo = Math.min(0, ...values), hi = Math.max(0, ...values);
@@ -632,7 +652,8 @@ function drawChart(rows) {
     ` L${x(rows.length).toFixed(1)},${zeroY.toFixed(1)} Z`;
 
   const low = rows.reduce((p, c) => c.cash < p.cash ? c : p);
-  const every = rows.length > 30 ? 6 : rows.length > 14 ? 3 : 2;
+  const fits = Math.max(3, Math.floor((W - PAD.l - PAD.r) / 46));
+  const every = Math.max(1, Math.ceil(rows.length / fits));
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
@@ -709,21 +730,20 @@ function render() {
 
     drawChart(rows);
 
+    const tarifLabel = d => d.tarif === 'mb' ? 'marque blanche' : d.tarif === 'direct' ? 'direct, ' + (d.directLevel ?? 'bas') + ' de fourchette' : 'prix libre';
     $('contribTable').innerHTML = deals.length ? `
-      <thead><tr><th>Contrat</th><th>Tarif</th><th>Prix / position</th><th>Positions</th><th>CA mensuel</th><th>Coût agents</th><th>Manager marginal</th><th>Contribution</th></tr></thead>
+      <thead><tr><th>Contrat</th><th>Positions × prix</th><th>CA mensuel</th><th>Agents</th><th>Manager</th><th>Contribution</th></tr></thead>
       <tbody>${contrib.lines.map(l => `<tr>
-        <td>${escapeHtml(l.deal.label || METIER_LABELS[l.deal.metier])} <span class="note">(M${l.deal.signedMonth})</span></td>
-        <td>${l.deal.tarif === 'mb' ? 'Marque blanche' : l.deal.tarif === 'direct' ? 'Direct ' + (l.deal.directLevel ?? 'bas') : 'Libre'}</td>
-        <td${l.belowFloor ? ' class="neg"' : ''}>${eur(l.deal.price)}</td>
-        <td>${l.deal.positions}</td>
+        <td>${escapeHtml(l.deal.label || METIER_LABELS[l.deal.metier])}<br><span class="note">M${l.deal.signedMonth} · ${tarifLabel(l.deal)}</span></td>
+        <td${l.belowFloor ? ' class="neg"' : ''}>${l.deal.positions} × ${eur(l.deal.price)}</td>
         <td>${eur(l.revenue)}</td>
         <td>${eur(-l.agentCost)}</td>
         <td>${l.marginalManagers ? eur(-l.managerCost) : '—'}</td>
         <td class="${l.contribution < 0 ? 'neg' : 'pos'}">${eur(l.contribution)}</td></tr>`).join('')}</tbody>
       <tfoot>
-        <tr><td colspan="7">Total des contributions</td><td class="${contrib.totalContribution < 0 ? 'neg' : 'pos'}">${eur(contrib.totalContribution)}</td></tr>
-        <tr><td colspan="7">Coûts fixes connus (outils + charges supplémentaires)</td><td>${eur(-contrib.fixedCost)}</td></tr>
-        <tr><td colspan="7">Résultat mensuel à régime plein</td><td class="${contrib.monthlyResult < 0 ? 'neg' : 'pos'}">${eur(contrib.monthlyResult)}</td></tr>
+        <tr><td colspan="5">Total des contributions</td><td class="${contrib.totalContribution < 0 ? 'neg' : 'pos'}">${eur(contrib.totalContribution)}</td></tr>
+        <tr><td colspan="5">Coûts fixes connus (outils + charges supplémentaires)</td><td>${eur(-contrib.fixedCost)}</td></tr>
+        <tr><td colspan="5">Résultat mensuel à régime plein</td><td class="${contrib.monthlyResult < 0 ? 'neg' : 'pos'}">${eur(contrib.monthlyResult)}</td></tr>
       </tfoot>` : '<tbody><tr><td>Aucun contrat saisi.</td></tr></tbody>';
 
     const asymptote = agent + mgr / a.managerCapacity;
