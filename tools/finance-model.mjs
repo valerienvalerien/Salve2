@@ -16,21 +16,43 @@
  *   coûter plus que la position gagnée (décision 2026-09-18, cf. AUDIT-FINANCE §1).
  *   Le palier 9+ à 1 350 / 1 550 € est supprimé : il faisait décrocher le résultat de
  *   1 503 € (support) et 1 703 € (helpdesk) au passage de 8 à 9 positions.
- * `direct` : fourchette client final du registre interne archivé (bas / médian / haut).
- *   Le direct n'a PAS de grille de volume documentée : le prix ne dépend pas du nombre
- *   de positions, seulement du point choisi dans la fourchette.
- *   Le direct est GELÉ en prospection depuis le 2026-09-07 : ces prix servent à chiffrer
- *   un entrant, pas à planifier une conquête. */
+ *
+ * Il n'y a PAS de grille en direct (client final). Un contrat direct se chiffre au prix
+ * saisi, contrat par contrat — voir DIRECT_REFERENCE ci-dessous. */
 export const OFFERS = Object.freeze({
-  support: Object.freeze({ mb: Object.freeze([1700, 1500]), direct: Object.freeze([1900, 2150, 2400]) }),
-  helpdesk: Object.freeze({ mb: Object.freeze([2000, 1750]), direct: Object.freeze([2200, 2500, 2800]) }),
+  support: Object.freeze({ mb: Object.freeze([1700, 1500]) }),
+  helpdesk: Object.freeze({ mb: Object.freeze([2000, 1750]) }),
 });
 
 /** Nombre de positions facturées au tarif d'entrée avant le passage au tarif volume. */
 export const MB_ENTRY_POSITIONS = 4;
 
+/**
+ * ⚠️ REPÈRE NON VALIDÉ, PAS UNE GRILLE. Fourchettes [bas, haut] relevées dans
+ * `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` §3, sous le titre « référence
+ * interne », issues de l'évaluation stratégique du 2026-06-10.
+ *
+ * Trois raisons de ne jamais s'en servir pour chiffrer automatiquement :
+ *  1. Aucune décision datée ne fixe un tarif direct, contrairement à la grille marque
+ *     blanche (révisée le 2026-08-14, plancher arbitré, paliers déplacés le 2026-09-18).
+ *  2. Les sources de cette étude sont des sites de télésecrétariat médical et des BPO
+ *     généralistes ; aucune ne publie un prix de position dédiée en helpdesk IT ou en
+ *     support SaaS en direct. L'étude qualifie elle-même ses valeurs d'« estimations
+ *     recoupées ».
+ *  3. `CLAUDE.md` interdit tout claim chiffré sans étude datée du métier avec source
+ *     vérifiable, et laisse les anciens benchmarks au registre interne.
+ *
+ * Le moteur ne l'utilise donc jamais pour calculer : un contrat direct porte son prix
+ * saisi. Cette constante n'existe que pour être AFFICHÉE comme repère, étiquetée.
+ * Le direct est par ailleurs GELÉ en prospection depuis le 2026-09-07 : il sert à
+ * chiffrer un entrant, pas à planifier une conquête.
+ */
+export const DIRECT_REFERENCE = Object.freeze({
+  support: Object.freeze([1900, 2400]),
+  helpdesk: Object.freeze([2200, 2800]),
+});
+
 export const METIER_LABELS = Object.freeze({ support: 'Support applicatif N1', helpdesk: 'Helpdesk IT N1' });
-export const DIRECT_LEVELS = Object.freeze(['bas', 'median', 'haut']);
 
 /** Plancher de négociation de PRICING.md §1. Ce n'est PAS un seuil de rentabilité. */
 export const PRICE_FLOOR = 920;
@@ -92,13 +114,6 @@ export function mbBreakdown(metier, positions) {
   return lignes;
 }
 
-/** Prix client final selon le point retenu dans la fourchette du registre interne. */
-export function directPrice(metier, level = 'bas') {
-  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
-  const i = DIRECT_LEVELS.indexOf(level);
-  if (i < 0) throw new Error(`Niveau de fourchette inconnu : ${level}`);
-  return OFFERS[metier].direct[i];
-}
 
 function tarifOf(deal) {
   return deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
@@ -106,15 +121,20 @@ function tarifOf(deal) {
 
 /**
  * CA mensuel d'un contrat selon son mode de tarification.
- * tarif = 'mb' (grille partenaire, par tranches) | 'direct' (client final) | 'libre' (prix saisi).
+ * tarif = 'mb' (grille partenaire, par tranches) | 'direct' (client final) | 'libre'.
+ * Seul 'mb' a une grille : 'direct' et 'libre' portent le prix saisi, parce qu'aucune
+ * grille directe n'a jamais été arbitrée (voir DIRECT_REFERENCE).
  */
 export function dealRevenue(deal) {
   const tarif = tarifOf(deal);
   if (tarif === 'mb') return mbRevenue(deal.metier, deal.positions);
-  if (tarif === 'direct') return deal.positions * directPrice(deal.metier, deal.directLevel ?? 'bas');
-  if (tarif === 'libre') {
+  if (tarif === 'direct' || tarif === 'libre') {
     const p = deal.price ?? deal.priceOverride;
-    if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) throw new Error('Prix libre invalide');
+    if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) {
+      throw new Error(tarif === 'direct'
+        ? 'Prix client final à saisir : aucune grille directe n\'est arbitrée'
+        : 'Prix libre invalide');
+    }
     return deal.positions * p;
   }
   throw new Error(`Mode de tarification inconnu : ${tarif}`);

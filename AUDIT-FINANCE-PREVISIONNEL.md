@@ -25,6 +25,19 @@ Cinq garde-fous bloquent la génération, vérifiés par exécution sur des gril
 
 Le builder annonce aussi ce que coûterait la position suivante, palier de manager compris, pour que l'escalier de supervision se voie avant la signature et non après.
 
+## 0.b Correction du 2026-09-18 : le « tarif client final » n'existait pas
+
+**Constat, soulevé par le fondateur.** La page de projection proposait un mode « client final » adossé à une grille de trois crans — bas, milieu, haut — à **1 900 / 2 150 / 2 400 €** en support et **2 200 / 2 500 / 2 800 €** en helpdesk. Présentée ainsi, elle avait l'apparence d'un tarif arbitré. Elle ne l'était pas :
+
+- **Aucune décision datée ne fixe un tarif direct.** Les fourchettes viennent de `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` §3, sous le titre « Tarif ETP par position (**référence interne**) », produit par l'évaluation stratégique du 2026-06-10. La grille marque blanche, elle, a un historique de décisions : plancher arbitré, paliers déplacés le 2026-08-14 puis le 2026-09-18.
+- **La source ne porte pas sur le métier.** La liste des sources de cette étude est composée de sites de télésecrétariat médical et de BPO généralistes. Aucune ne publie un prix de position dédiée en helpdesk IT ou en support SaaS en direct. L'étude avertit elle-même que « les coûts complets par ETP sont des estimations recoupées ».
+- **Les valeurs médianes n'existaient nulle part.** 2 150 € et 2 500 € ne figurent dans aucun document du dépôt : elles ont été calculées comme le milieu d'une fourchette estimée, au moment d'écrire la page.
+- `CLAUDE.md` interdit tout claim chiffré sans étude datée du métier avec source vérifiable, et laisse les anciens benchmarks au registre interne.
+
+**Correction.** La grille directe est retirée du moteur ; `directPrice()` et le sélecteur de fourchette disparaissent. Un contrat en mode direct **exige un prix saisi**, et la page refuse de calculer sans lui. La fourchette archivée subsiste dans `DIRECT_REFERENCE`, que le moteur n'utilise jamais pour calculer : elle n'est qu'affichée, en filigrane du champ et en badge, étiquetée « repère archivé non validé ». Un test vérifie que `OFFERS.helpdesk.direct` n'existe plus et qu'un contrat direct sans prix est rejeté.
+
+**Bug trouvé au passage.** Basculer un contrat sur « direct » sans prix faisait échouer la lecture des contrats avant le rafraîchissement des cartes : le champ prix restait masqué et désactivé, donc impossible à remplir, alors que le message d'erreur réclamait précisément ce prix. La visibilité du champ ne dépend plus du succès du calcul.
+
 ---
 
 
