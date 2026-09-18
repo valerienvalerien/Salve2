@@ -41,8 +41,8 @@ p{margin:.5em 0}
 .warn b{color:var(--ink)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px;box-shadow:var(--shadow)}
 .card>header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
-.field label{display:block;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;align-items:end}
+.field label{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
 .field input,.field select{width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--panel);color:var(--ink)}
 .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 .field input:disabled{background:var(--panel-soft);color:var(--ink-mute)}
@@ -86,6 +86,23 @@ tfoot td{font-weight:700;border-top:2px solid var(--line);border-bottom:0}
 details{border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
 summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
 .err{background:var(--danger-tint);color:var(--danger);border:1px solid var(--danger);border-radius:8px;padding:10px 12px;font-size:.85rem;margin:0 0 14px;display:none}
+.hint{text-transform:none;letter-spacing:0;font-weight:400;font-size:.78rem;color:var(--ink-mute)}
+.help-btn{flex:none;width:17px;height:17px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink-mute);font-size:.7rem;font-weight:700;line-height:1;padding:0;cursor:help;opacity:.4;transition:opacity .12s}
+.field:hover .help-btn,.help-btn:focus-visible,.help-btn[aria-expanded="true"]{opacity:1}
+.help-btn[aria-expanded="true"]{background:var(--primary);color:var(--surface);border-color:var(--primary)}
+.field.is-open input,.field.is-open select{border-color:var(--primary);box-shadow:0 0 0 2px var(--accent-tint)}
+.help-panel{display:none;margin:12px 0 0;background:var(--panel-soft);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:0 10px 10px 0;padding:14px 16px;font-size:.84rem;line-height:1.55}
+.help-panel.open{display:block}
+.help-panel h4{margin:0 0 8px;font-size:.92rem}
+.help-panel p{margin:.5em 0}
+.help-panel ul{margin:.5em 0;padding-left:18px}
+.help-panel li{margin:.2em 0}
+.help-panel table{font-size:.79rem;margin:10px 0;width:auto;min-width:min(100%,340px)}
+.help-panel th,.help-panel td{padding:4px 10px 4px 0;border-bottom:1px solid var(--line-soft);white-space:normal}
+.help-panel tfoot td{border-top:1px solid var(--line);border-bottom:0}
+.help-panel .flag{color:var(--danger);font-weight:600}
+.help-panel .src{margin:10px 0 0;font-size:.76rem;color:var(--ink-mute)}
+.help-panel .close{float:right;margin:-4px -6px 0 8px}
 @media (max-width:640px){.wrap{padding:18px 16px 56px}h1{font-size:1.4rem}.kpi strong{font-size:1.25rem}}
 @media print{body{background:#fff}.actions,.tip{display:none}.card{break-inside:avoid;box-shadow:none}}
 </style>
@@ -192,24 +209,24 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
   </div>
   <p class="note">Coût employeur par personne : <b id="costLine">—</b></p>
 
-  <h3>Structure et démarrage</h3>
-  <div class="grid">
-    <div class="field"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
-    <div class="field"><label for="other">Charges mensuelles supplémentaires (€)</label><input id="other" type="number" min="0" value="0"></div>
-    <div class="field"><label for="onbBase">Onboarding — socle par contrat (€)</label><input id="onbBase" type="number" min="0" step="50" value="400"></div>
-    <div class="field"><label for="onbPos">Onboarding — par position (€)</label><input id="onbPos" type="number" min="0" step="50" value="400"></div>
-    <div class="field"><label for="hireDelay">Embauche après signature (mois)</label><input id="hireDelay" type="number" min="0" max="6" value="1"></div>
-    <div class="field"><label for="invoiceDelay">1re facture après signature (mois)</label><input id="invoiceDelay" type="number" min="0" max="12" value="2"></div>
+  <h3>Structure et démarrage <span class="hint">— cliquez sur le « ? » d'un intitulé pour voir d'où vient le chiffre</span></h3>
+  <div class="grid" data-help-group="structure">
+    <div class="field" data-help="tools"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
+    <div class="field" data-help="other"><label for="other">Charges mensuelles supplémentaires (€)</label><input id="other" type="number" min="0" value="0"></div>
+    <div class="field" data-help="onbBase"><label for="onbBase">Onboarding — socle par contrat (€)</label><input id="onbBase" type="number" min="0" step="50" value="400"></div>
+    <div class="field" data-help="onbPos"><label for="onbPos">Onboarding — par position (€)</label><input id="onbPos" type="number" min="0" step="50" value="400"></div>
+    <div class="field" data-help="hireDelay"><label for="hireDelay">Embauche après signature (mois)</label><input id="hireDelay" type="number" min="0" max="6" value="1"></div>
+    <div class="field" data-help="invoiceDelay"><label for="invoiceDelay">1re facture après signature (mois)</label><input id="invoiceDelay" type="number" min="0" max="12" value="2"></div>
   </div>
 
-  <h3>Encaissement et risque</h3>
-  <div class="grid">
-    <div class="field"><label for="paymentDelay">Règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
-    <div class="field"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="900"></div>
-    <div class="field"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="300"></div>
-    <div class="field"><label for="creditMonths">Factures créditées (nb)</label><input id="creditMonths" type="number" min="0" max="12" value="3"></div>
-    <div class="field"><label for="badDebt">Impayés sur CA encaissé (%)</label><input id="badDebt" type="number" min="0" max="100" step=".5" value="0"></div>
-    <div class="field"><label for="revCharge">Taxes et frais sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="0"></div>
+  <h3>Encaissement et risque <span class="hint">— même chose : le « ? » donne la source et l'effet du réglage</span></h3>
+  <div class="grid" data-help-group="risque">
+    <div class="field" data-help="paymentDelay"><label for="paymentDelay">Règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
+    <div class="field" data-help="deposit"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="900"></div>
+    <div class="field" data-help="credit"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="300"></div>
+    <div class="field" data-help="creditMonths"><label for="creditMonths">Factures créditées (nb)</label><input id="creditMonths" type="number" min="0" max="12" value="3"></div>
+    <div class="field" data-help="badDebt"><label for="badDebt">Impayés sur CA encaissé (%)</label><input id="badDebt" type="number" min="0" max="100" step=".5" value="0"></div>
+    <div class="field" data-help="revCharge"><label for="revCharge">Taxes et frais sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="0"></div>
   </div>
 
   <details>
@@ -742,6 +759,177 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
+/* --------------------- fiches « d'où vient ce chiffre » ------------------ */
+
+const HELP = {
+  tools: {
+    title: 'Outils récurrents connus — 68 €/mois',
+    body: `<p>Somme des abonnements déclarés, ramenés au mois :</p>
+      <table><tbody>
+        <tr><td>Microsoft 365 Business Basic + Teams</td><td>mensuel</td><td>6 €</td></tr>
+        <tr><td>Google Workspace, boîte mailing</td><td>mensuel</td><td>10 €</td></tr>
+        <tr><td>GitHub, dépôt Salve2</td><td>mensuel</td><td>4 €</td></tr>
+        <tr><td>Ringover Quicktalk</td><td>mensuel</td><td>25 €</td></tr>
+        <tr><td>Anthropic / Claude</td><td>mensuel</td><td>20 €</td></tr>
+        <tr><td>3 domaines OVH (salverys.fr, salverys-groupe.fr, salverys-bpo.fr)</td><td>12 €/an chacun</td><td>3 €</td></tr>
+      </tbody><tfoot><tr><td><b>Total</b></td><td>65 € d'abonnements + 36 €/an de domaines</td><td><b>68 €</b></td></tr></tfoot></table>
+      <p>Sales Navigator est inactif, à 0 €. La création de société (VJUS) est une dépense passée, sans montant communiqué.</p>
+      <p><span class="flag">Deux réserves.</span> Ce sont des <b>montants déclarés</b> le 2026-09-16 depuis un tableau SharePoint, jamais rapprochés de factures ni du relevé bancaire. Et les 3 €/mois de domaines sont une <b>répartition économique</b> : le décaissement réel tombe en une fois au renouvellement, à une date qui n'est pas renseignée.</p>`,
+    src: '01-Strategie-Offre/REGISTRE-COUTS-OUTILS.md',
+  },
+  other: {
+    title: 'Charges mensuelles supplémentaires — 0 € par défaut',
+    body: `<p>Ce n'est pas un chiffre calculé : c'est une <b>case volontairement vide</b>, prévue pour ce que la projection ne sait pas encore chiffrer.</p>
+      <p>Ce qui manque et devrait finir ici, une fois chiffré :</p>
+      <ul>
+        <li>impôts et TVA, comptabilité, assurance ;</li>
+        <li>frais bancaires de réception de virements internationaux ;</li>
+        <li>équipement des postes et liaisons de secours — à chiffrer et tester avant d'être promis à un partenaire ;</li>
+        <li>congés et remplacement, recrutement au-delà du forfait d'onboarding ;</li>
+        <li>si la chauffe cold redémarre : environ <b>36 €/mois</b> d'infra Google Workspace (3 domaines × 2 boîtes × 6 €), ce qui <b>double presque</b> le burn d'attente de 68 €.</li>
+      </ul>
+      <p><span class="flag">Laisser 0 est une décision, pas une absence de coût.</span> Ne pas présenter une projection à un financeur avec cette case à zéro.</p>`,
+    src: 'AUDIT-FINANCE-PREVISIONNEL.md §4 · SETUP-COLD-MAILING.md §6',
+  },
+  onbBase: {
+    title: 'Onboarding, socle par contrat — 400 €',
+    body: `<p>Part <b>fixe</b> du démarrage, indépendante du nombre de positions : cadrage du périmètre, ouverture des accès aux outils du partenaire, mise en place du reporting et de la double écoute, documentation des procédures d'escalade.</p>
+      <p>Elle vient de la décomposition du registre interne, <b>~400 € de socle + ~400 € par position</b>.</p>
+      <p><span class="flag">Correction du 2026-09-17.</span> Le prévisionnel utilisait jusque-là un forfait unique de <b>1 600 € par contrat</b>. Ce montant n'était rien d'autre que la décomposition appliquée à un contrat de <b>trois</b> positions (400 + 3 × 400). Employé tel quel, il surchargeait de 800 € un contrat d'une seule position et sous-estimerait un contrat de six.</p>
+      <p>Ordre de grandeur non documenté : ni le temps passé, ni les dépenses réellement engagées sur un démarrage n'ont été relevés.</p>`,
+    src: 'AUDIT-ESPACE-CLIENT.md §9.2 · 99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md',
+  },
+  onbPos: {
+    title: 'Onboarding, par position — 400 €',
+    body: `<p>Part <b>variable</b> du démarrage : recrutement, formation au périmètre du partenaire, poste et accès, montée en compétence avant la facturation pleine.</p>
+      <table><thead><tr><th>Positions</th><th>Onboarding</th><th>Dépôt encaissé</th></tr></thead><tbody>
+        <tr><td>1</td><td>800 €</td><td>900 €</td></tr>
+        <tr><td>2</td><td>1 200 €</td><td>1 800 €</td></tr>
+        <tr><td>3</td><td>1 600 €</td><td>2 700 €</td></tr>
+        <tr><td>5</td><td>2 400 €</td><td>4 500 €</td></tr>
+        <tr><td>9</td><td>4 000 €</td><td>8 100 €</td></tr>
+      </tbody></table>
+      <p>C'est la justification du dépôt : à 900 €/position, il couvre les 400 €/position et une part du socle si le partenaire s'arrête après la mise en service. Le rapport se dégrade quand même à mesure que les positions augmentent — le socle, lui, ne grandit pas.</p>`,
+    src: 'PRICING.md §3 · AUDIT-ESPACE-CLIENT.md §9.2',
+  },
+  hireDelay: {
+    title: 'Embauche après signature — 1 mois',
+    body: `<p>Hypothèse : les agents sont recrutés et <b>payés</b> à partir du mois suivant la signature.</p>
+      <p><b>C'est ce paramètre qui fabrique le creux de trésorerie.</b> Avec une première facture en M+2 et un règlement à 30 jours, le premier euro arrive en M+3 alors que la paie court depuis M+1 : <b>deux mois de paie à financer par contrat</b>, avant toute recette.</p>
+      <p>Repère commercial : la première prise de tickets est visée vers six semaines après la signature, l'autonomie entre 2,5 et 3,5 mois. Le recrutement doit donc démarrer tôt — mais <b>pas avant l'encaissement du dépôt</b>.</p>
+      <p>Effet du réglage, scénario médian : passer à 2 mois ramène le creux de <b>−4 800 €</b> à <b>−2 304 €</b>. Ce n'est réaliste que si le jalon de prise de tickets glisse d'autant ; sinon, vous déplacez le problème sur la qualité du démarrage.</p>`,
+    src: 'PRICING.md §3 · 01-Strategie-Offre/FINANCE-PREVISIONNEL.md §4',
+  },
+  invoiceDelay: {
+    title: 'Première facture après signature — 2 mois',
+    body: `<p>Hypothèse de travail : la facturation démarre en M+2, soit environ un mois après l'embauche.</p>
+      <p>Elle est cohérente avec le jalon « première prise de tickets vers six semaines », mais <b>ce n'est pas une règle contractuelle</b>. C'est le devis qui date le début de facturation, et c'est lui qui fait foi. Si un partenaire obtient une facturation au premier ticket traité, ou au contraire après la période de transition complète, ce champ doit suivre.</p>
+      <p>À ne pas confondre avec le délai de règlement : celui-ci dit quand la facture <b>part</b>, l'autre quand elle est <b>payée</b>.</p>`,
+    src: 'PRICING.md §3',
+  },
+  paymentDelay: {
+    title: 'Règlement après facture — 1 mois',
+    body: `<p><code>PRICING.md</code> §3 : « Facturation mensuelle, paiement à 30 jours ». Un mois est l'arrondi de ces 30 jours au pas mensuel du modèle.</p>
+      <p>Ce paramètre ne modélise <b>ni le retard, ni le litige, ni l'escompte</b> : il décale simplement tout l'encaissement. Un partenaire qui paie à 45 ou 60 jours se teste en passant à 2.</p>
+      <p>Effet du réglage, scénario médian :</p>
+      <table><thead><tr><th>Délai</th><th>Creux</th><th>Trésorerie M24</th></tr></thead><tbody>
+        <tr><td>1 mois</td><td>−4 800 €</td><td>+24 804 €</td></tr>
+        <tr><td>2 mois</td><td>−8 873 €</td><td>+17 404 €</td></tr>
+        <tr><td>3 mois</td><td>−13 934 €</td><td>+10 004 €</td></tr>
+      </tbody></table>
+      <p>Chaque mois de délai supplémentaire coûte <b>4 à 5 k€ de besoin de trésorerie</b>. C'est le paramètre le plus sensible de toute la page : négocier le délai de paiement pèse plus lourd que négocier 50 € sur le prix.</p>`,
+    src: 'PRICING.md §3',
+  },
+  deposit: {
+    title: 'Dépôt par position — 900 €',
+    body: `<p>Dépôt d'activation du <b>modèle B (poste dédié)</b> : 900 € par position ferme, <b>sans plafond</b>, encaissé à la signature.</p>
+      <p>Restitué en cas d'annulation <b>avant</b> le démarrage de la mise en service ; acquis à Salverys après, selon le contrat. Le modèle ne simule pas cette restitution.</p>
+      <p><span class="flag">Le plafond de 2 700 € a été supprimé le 2026-09-14.</span> Un plafond fixe face à une imputation proportionnelle de 300 €/position ne se recoupait qu'à exactement 3 positions : à 9 positions, on créditait 8 100 € pour 2 700 € réellement encaissés, soit 5 400 € offerts.</p>
+      <p>Ne s'applique pas automatiquement au modèle A (débordement mutualisé) ni au médical facturé à l'appel : aucune position n'y est réservée. Toute avance sur ces modèles se chiffre et s'impute explicitement dans le devis.</p>`,
+    src: 'PRICING.md §3 · 99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md §3.a',
+  },
+  credit: {
+    title: 'Crédit de dépôt par facture — 300 €',
+    body: `<p>Le dépôt est <b>entièrement imputé</b> à raison de 300 € par position et par facture, sur les trois premières factures : <code>3 × 300 = 900 €</code>, exactement le dépôt.</p>
+      <p>Conséquence à ne jamais perdre de vue : <b>le dépôt avance du cash, il n'augmente pas le total du contrat.</b> Deux positions helpdesk à 2 000 € :</p>
+      <table><tbody>
+        <tr><td>Signature — dépôt</td><td>+1 800 €</td></tr>
+        <tr><td>Factures 1 à 3</td><td>3 × 3 400 € au lieu de 4 000 €</td></tr>
+        <tr><td>Facture 4 et suivantes</td><td>4 000 €</td></tr>
+      </tbody><tfoot><tr><td><b>Trois premiers mois</b></td><td><b>1 800 + 3 × 3 400 = 12 000 €</b>, soit 3 × 4 000 €</td></tr></tfoot></table>
+      <p><span class="flag">Règle si vous modifiez ces champs :</span> dépôt par position = crédit × nombre de factures créditées. Changer l'un sans l'autre crédite au partenaire de l'argent jamais encaissé, ou le fait payer deux fois.</p>`,
+    src: 'PRICING.md §3',
+  },
+  creditMonths: {
+    title: 'Factures créditées — 3',
+    body: `<p>Nombre de factures sur lesquelles le dépôt est imputé. À partir de la <b>quatrième</b>, le plein tarif reprend.</p>
+      <p>L'invariant à tenir est <code>dépôt = crédit × nombre de factures</code>, soit <code>900 = 300 × 3</code>. Cette neutralité est vérifiée automatiquement par <code>tools/finance-model.test.mjs</code> : le test échoue si une modification du moteur la casse.</p>
+      <p>Allonger l'imputation (par exemple 150 € sur 6 factures) adoucit la facture du partenaire au démarrage sans rien changer au total, mais retarde d'autant le retour au plein tarif.</p>`,
+    src: 'PRICING.md §3',
+  },
+  badDebt: {
+    title: 'Impayés sur CA encaissé — 0 %',
+    body: `<p><b>0 % n'est pas une mesure, c'est une absence d'historique</b> : Salverys n'a encore facturé aucun partenaire.</p>
+      <p>À quoi sert le champ : mesurer ce qu'un partenaire défaillant coûte. Sur le scénario expansion à 48 mois, 10 % d'impayés retirent <b>66 480 €</b> de trésorerie finale.</p>
+      <p><span class="flag">La vraie forme du risque n'est pas un pourcentage moyen.</span> Avec un ou deux partenaires, c'est un client unique qui pèse la moitié du chiffre d'affaires et cesse de payer. Pour ce cas-là, ne mettez pas 50 % ici : <b>supprimez la ligne du contrat</b> et regardez la courbe. La paie des agents, elle, continue.</p>`,
+    src: 'AUDIT-FINANCE-PREVISIONNEL.md §1',
+  },
+  revCharge: {
+    title: 'Taxes et frais sur CA encaissé — 0 %',
+    body: `<p>Non renseigné faute de paramètres vérifiés. Ce champ doit couvrir, une fois les taux confirmés :</p>
+      <ul>
+        <li>l'impôt malgache sur le chiffre d'affaires ou le résultat ;</li>
+        <li>la TVA, si elle s'applique à une prestation facturée à un donneur d'ordre français ;</li>
+        <li>les frais bancaires de réception de virements internationaux ;</li>
+        <li>l'écart entre le taux de change de simulation et le taux réellement obtenu.</li>
+      </ul>
+      <p><span class="flag">Le change est le poste le plus sous-estimé</span> — mais il ne se corrige pas ici : il s'applique à la <b>masse salariale</b>, pas au CA encaissé. Réglez-le dans « Taux de change (Ar par €) ». Repère : à 4 750 Ar/€ au lieu de 5 000, un agent passe de <b>843,04 €</b> à <b>885,67 €</b> par mois, soit environ <b>+43 € par personne et par mois</b>.</p>`,
+    src: '01-Strategie-Offre/FINANCE-PREVISIONNEL.md §2 · AUDIT-FINANCE-PREVISIONNEL.md §4',
+  },
+};
+
+function buildHelp() {
+  for (const grid of document.querySelectorAll('[data-help-group]')) {
+    const panel = document.createElement('div');
+    panel.className = 'help-panel';
+    panel.id = 'help-' + grid.dataset.helpGroup;
+    panel.setAttribute('role', 'region');
+    panel.tabIndex = -1;
+    grid.after(panel);
+
+    for (const field of grid.querySelectorAll('[data-help]')) {
+      const key = field.dataset.help;
+      if (!HELP[key]) continue;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'help-btn';
+      btn.textContent = '?';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', panel.id);
+      btn.title = 'D’où vient ce chiffre ?';
+      btn.setAttribute('aria-label', `D’où vient ce chiffre : ${HELP[key].title}`);
+      btn.addEventListener('click', () => toggleHelp(grid, panel, field, btn, key));
+      field.querySelector('label').append(btn);
+    }
+  }
+}
+
+function toggleHelp(grid, panel, field, btn, key) {
+  const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+  for (const b of grid.querySelectorAll('.help-btn')) b.setAttribute('aria-expanded', 'false');
+  for (const f of grid.querySelectorAll('[data-help]')) f.classList.remove('is-open');
+  if (wasOpen) { panel.classList.remove('open'); panel.replaceChildren(); return; }
+
+  const h = HELP[key];
+  panel.setAttribute('aria-label', h.title);
+  panel.innerHTML = `<button type="button" class="link close">Fermer</button><h4>${h.title}</h4>${h.body}<p class="src">Source : <code>${h.src}</code></p>`;
+  panel.querySelector('.close').addEventListener('click', () => toggleHelp(grid, panel, field, btn, key));
+  panel.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  field.classList.add('is-open');
+  panel.focus({ preventScroll: true });
+}
+
 /* ------------------------- persistance et export ------------------------ */
 
 function snapshot() {
@@ -807,6 +995,7 @@ $('importFile').addEventListener('change', async ev => {
 for (const id of ALL_FIELDS) $(id).addEventListener('input', render);
 $('horizon').addEventListener('change', render);
 
+buildHelp();
 if (!restore()) setDeals(SCENARIOS.median);
 render();
 addEventListener('resize', () => { try { drawChart(projectCash(readDeals(), Number($('horizon').value), readAssumptions())); } catch { /* saisie invalide */ } });
