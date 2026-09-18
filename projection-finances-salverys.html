@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projection finances Salverys</title>
+<style>
+:root{
+  --surface:#FCFCFB; --panel:#FFFFFF; --panel-soft:#F6F2EA; --line:#E7DFD1; --line-soft:#F0EADE;
+  --ink:#2A2620; --ink-soft:#5C5448; --ink-mute:#8A8275;
+  --primary:#2E3B4E; --accent:#6F8770; --accent-tint:#EAF0EA; --gold:#B89968; --gold-tint:#FCEEC9;
+  --danger:#B6604D; --danger-tint:#F7EAE6;
+  --radius:12px; --shadow:0 1px 2px rgba(32,48,63,.06),0 1px 3px rgba(32,48,63,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --surface:#1B2028; --panel:#232A34; --panel-soft:#2B3340; --line:#3A4452; --line-soft:#313A47;
+    --ink:#EDEAE3; --ink-soft:#C3BFB6; --ink-mute:#938E85;
+    --primary:#C9D6E6; --accent:#9DB79E; --accent-tint:#2A3730; --gold:#D4B98A; --gold-tint:#3A3322;
+    --danger:#E08A73; --danger-tint:#3B2823;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --surface:#1B2028; --panel:#232A34; --panel-soft:#2B3340; --line:#3A4452; --line-soft:#313A47;
+  --ink:#EDEAE3; --ink-soft:#C3BFB6; --ink-mute:#938E85;
+  --primary:#C9D6E6; --accent:#9DB79E; --accent-tint:#2A3730; --gold:#D4B98A; --gold-tint:#3A3322;
+  --danger:#E08A73; --danger-tint:#3B2823;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font:15px/1.55 Inter,-apple-system,Segoe UI,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:1580px;margin:0 auto;padding:22px 16px 64px}
+.layout{display:grid;gap:16px;grid-template-columns:1fr;align-items:start}
+.layout>.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.layout>.col>*{margin:0}
+@media (min-width:1180px){.layout{grid-template-columns:minmax(360px,44fr) minmax(620px,56fr)}}
+@media (min-width:1440px){.layout{grid-template-columns:minmax(360px,40fr) minmax(620px,60fr)}}
+@media (max-width:1179px){.layout>.col{order:-1}}
+h1{font-size:1.7rem;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:1.05rem;margin:0 0 4px;letter-spacing:-.005em}
+h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-mute);margin:22px 0 8px}
+p{margin:.5em 0}
+.lede{color:var(--ink-soft);margin:0 0 18px}
+.note{color:var(--ink-mute);font-size:.82rem;line-height:1.5}
+.warn{background:var(--gold-tint);border:0;border-left:3px solid var(--gold);padding:9px 14px;border-radius:0 8px 8px 0;font-size:.84rem;margin:0 0 14px}
+.warn b{color:var(--ink)}
+.warn>summary{font-weight:400;font-size:.84rem;color:var(--ink);list-style-position:inside}
+.warn>p{margin:8px 0 2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px;box-shadow:var(--shadow)}
+.card>header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;align-items:end}
+.field label{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
+.field input,.field select{width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--panel);color:var(--ink)}
+.field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field input:disabled{background:var(--panel-soft);color:var(--ink-mute)}
+button{background:var(--primary);color:var(--surface);border:0;border-radius:8px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:var(--panel-soft);color:var(--ink);border:1px solid var(--line)}
+button.link{background:none;color:var(--ink-soft);padding:6px 8px;font-weight:500;text-decoration:underline}
+button:hover{filter:brightness(1.08)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:12px;margin:0 0 16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;box-shadow:var(--shadow)}
+.kpi span{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mute);display:block}
+.kpi strong{display:block;font-size:1.42rem;font-variant-numeric:tabular-nums;margin:4px 0 2px;letter-spacing:-.02em}
+.kpi em{font-style:normal;font-size:.76rem;color:var(--ink-mute)}
+.kpi.bad strong{color:var(--danger)}
+.deal{border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 10px;background:var(--panel-soft)}
+.deal .grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.deal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.deal-head b{font-size:.9rem}
+.price-tag{font-variant-numeric:tabular-nums;font-weight:700}
+.badge{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid transparent}
+.badge.ok{background:var(--accent-tint);color:var(--ink);border-color:var(--accent)}
+.badge.alert{background:var(--danger-tint);color:var(--danger);border-color:var(--danger)}
+.badge.info{background:var(--gold-tint);color:var(--ink);border-color:var(--gold)}
+figure{margin:0}
+figcaption{font-size:.8rem;color:var(--ink-mute);margin-top:8px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;touch-action:none}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.78rem;box-shadow:var(--shadow);opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.tip b{display:block;font-size:.72rem;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.04em}
+.tip s{text-decoration:none;font-variant-numeric:tabular-nums}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-wrap.tall{max-height:min(62vh,600px);overflow:auto}
+@media (max-width:1330px){#contribTable th,#contribTable td{padding:6px 5px}}
+table{border-collapse:collapse;width:100%;font-size:.8rem;font-variant-numeric:tabular-nums}
+table.flux{min-width:940px}
+th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-mute);font-weight:600;position:sticky;top:0;background:var(--panel)}
+th:first-child,td:first-child{text-align:left}
+tbody tr:hover{background:var(--panel-soft)}
+td.neg{color:var(--danger);font-weight:700}
+td.pos{font-weight:600}
+tfoot td{font-weight:700;border-top:2px solid var(--line);border-bottom:0}
+details{border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
+.err{background:var(--danger-tint);color:var(--danger);border:1px solid var(--danger);border-radius:8px;padding:10px 12px;font-size:.85rem;margin:0 0 14px;display:none}
+.hint{text-transform:none;letter-spacing:0;font-weight:400;font-size:.78rem;color:var(--ink-mute)}
+.help-btn{flex:none;width:17px;height:17px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink-mute);font-size:.7rem;font-weight:700;line-height:1;padding:0;cursor:help;opacity:.4;transition:opacity .12s}
+.field:hover .help-btn,.help-btn:focus-visible,.help-btn[aria-expanded="true"]{opacity:1}
+.help-btn[aria-expanded="true"]{background:var(--primary);color:var(--surface);border-color:var(--primary)}
+.field.is-open input,.field.is-open select{border-color:var(--primary);box-shadow:0 0 0 2px var(--accent-tint)}
+.help-panel{display:none;margin:12px 0 0;background:var(--panel-soft);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:0 10px 10px 0;padding:14px 16px;font-size:.84rem;line-height:1.55}
+.help-panel.open{display:block}
+.help-panel h4{margin:0 0 8px;font-size:.92rem}
+.help-panel p{margin:.5em 0}
+.help-panel ul{margin:.5em 0;padding-left:18px}
+.help-panel li{margin:.2em 0}
+.help-panel table{font-size:.79rem;margin:10px 0;width:auto;min-width:min(100%,340px)}
+.help-panel th,.help-panel td{padding:4px 10px 4px 0;border-bottom:1px solid var(--line-soft);white-space:normal}
+.help-panel tfoot td{border-top:1px solid var(--line);border-bottom:0}
+.help-panel .flag{color:var(--danger);font-weight:600}
+.help-panel .src{margin:10px 0 0;font-size:.76rem;color:var(--ink-mute)}
+.help-panel .close{float:right;margin:-4px -6px 0 8px}
+@media (max-width:640px){.wrap{padding:18px 16px 56px}h1{font-size:1.4rem}.kpi strong{font-size:1.25rem}}
+@media print{body{background:#fff}.actions,.tip{display:none}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Projection finances Salverys</h1>
+  <p class="lede">Trésorerie mensuelle, contribution par contrat et point mort — positions dédiées en marque blanche, en direct ou au prix que vous fixez. Montants en euros HT.</p>
+</header>
+
+<details class="warn"><summary><b>Prévision, pas situation bancaire</b> — ce que ces chiffres ne couvrent pas</summary>
+<p>Cotisations, taxes, comptabilité, assurance, équipement, congés et frais de change ne sont pas dans les valeurs par défaut : renseignez-les dans « Charges mensuelles supplémentaires » avant toute décision. Le solde de départ est à 0 € pour mesurer un besoin théorique, ce n'est pas le solde réel. Références : <code>PRICING.md</code>, <code>01-Strategie-Offre/FINANCE-PREVISIONNEL.md</code>, <code>AUDIT-FINANCE-PREVISIONNEL.md</code>.</p></details>
+
+<div class="err" id="err"></div>
+
+<div class="layout">
+
+<section class="card">
+  <header>
+    <div>
+      <h2>Contrats</h2>
+      <p class="note">Chaque contrat porte son propre mode de tarification : grille partenaire, client final, ou prix libre.</p>
+    </div>
+    <div class="actions">
+      <button id="addDeal" type="button">+ Contrat</button>
+      <button id="clearDeals" class="ghost" type="button">Vider</button>
+    </div>
+  </header>
+
+  <div class="grid" style="margin-bottom:14px">
+    <div class="field">
+      <label for="scenario">Jeu de contrats</label>
+      <select id="scenario">
+        <option value="attente">Attente — aucune signature</option>
+        <option value="prudent">Prudent — 1 helpdesk en M4</option>
+        <option value="median" selected>Médian — 2 helpdesk M4 + 2 support M9</option>
+        <option value="expansion">Expansion — 3 contrats, 9 positions</option>
+        <option value="custom">Mes contrats</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="horizon">Horizon (mois)</label>
+      <select id="horizon"><option>12</option><option selected>24</option><option>36</option><option>48</option></select>
+    </div>
+    <div class="field">
+      <label for="initialCash">Trésorerie de départ (€)</label>
+      <input id="initialCash" type="number" step="100" value="0">
+    </div>
+  </div>
+
+  <div id="deals"></div>
+
+  <p class="note" id="tarifNote"></p>
+</section>
+
+<div class="col">
+  <section class="kpis" id="kpis"></section>
+  <section class="card">
+    <figure>
+      <header><h2>Trésorerie disponible, fin de mois</h2></header>
+      <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+      <figcaption>Une seule courbe : le cash disponible après paie, outils, onboarding et encaissements. La zone sous la ligne de zéro est le découvert à financer. Le tableau des flux plus bas donne les mêmes valeurs, mois par mois.</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+  <header>
+    <div>
+      <h2>Contribution par contrat, à régime plein</h2>
+      <p class="note">Hors onboarding, hors dépôt, hors coût d'acquisition, et <b>hors impayés et taxes sur CA encaissé</b> — ces deux-là ne pèsent que sur la courbe de trésorerie. Le coût de manager est <b>marginal</b> : il est porté par le premier contrat qui le déclenche dans son métier.</p>
+    </div>
+  </header>
+    <div class="table-wrap"><table id="contribTable"></table></div>
+    <p class="note" id="breakEven"></p>
+  </section>
+</div>
+
+</div><!-- /layout -->
+
+<section class="card">
+  <header><h2>Flux mensuels</h2></header>
+  <div class="table-wrap tall"><table class="flux" id="fluxTable"></table></div>
+  <p class="note">Le dépôt de 900 €/position est encaissé à la signature puis rendu par crédit de 300 €/position sur les trois premières factures : il avance du cash, il n'augmente pas le total du contrat. Le personnel est payé dès l'embauche, la première facture part deux mois après la signature et l'encaissement suit le délai de règlement.</p>
+</section>
+
+<section class="card">
+  <header>
+    <div><h2>Hypothèses</h2><p class="note">Toutes modifiables. Les valeurs par défaut sont des conventions de simulation, pas des factures vérifiées.</p></div>
+    <div class="actions">
+      <button id="reset" class="ghost" type="button">Valeurs par défaut</button>
+      <button id="export" class="ghost" type="button">Exporter (JSON)</button>
+      <button id="importBtn" class="ghost" type="button">Importer</button>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <h3>Personnel</h3>
+  <div class="grid">
+    <div class="field"><label for="gross">Brut mensuel agent / manager (Ar)</label><input id="gross" type="number" min="0" step="50000" value="3250000"></div>
+    <div class="field"><label for="rate">Taux de change (Ar par €)</label><input id="rate" type="number" min="1" step="50" value="5000"></div>
+    <div class="field"><label for="employer">Cotisations employeur (%)</label><input id="employer" type="number" min="0" max="100" step=".5" value="18"></div>
+    <div class="field"><label for="sme">SME retenu (Ar) — plafond 8 × SME</label><input id="sme" type="number" min="0" step="10000" value="300000"></div>
+    <div class="field"><label for="voip">VoIP par agent (€/mois)</label><input id="voip" type="number" min="0" value="30"></div>
+    <div class="field"><label for="voipMgr">VoIP par manager (€/mois)</label><input id="voipMgr" type="number" min="0" value="0"></div>
+    <div class="field"><label for="contingency">Coussin sur personnel (%)</label><input id="contingency" type="number" min="0" max="100" value="10"></div>
+    <div class="field"><label for="managerCapacity">Positions par manager</label><input id="managerCapacity" type="number" min="1" max="50" value="8"></div>
+    <div class="field"><label for="founderSupervises">Positions encadrées par le fondateur</label><input id="founderSupervises" type="number" min="0" max="20" value="0"></div>
+  </div>
+  <p class="note">Coût employeur par personne : <b id="costLine">—</b></p>
+
+  <h3>Structure et démarrage <span class="hint">— cliquez sur le « ? » d'un intitulé pour voir d'où vient le chiffre</span></h3>
+  <div class="grid" data-help-group="structure">
+    <div class="field" data-help="tools"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
+    <div class="field" data-help="other"><label for="other">Charges mensuelles supplémentaires (€)</label><input id="other" type="number" min="0" value="0"></div>
+    <div class="field" data-help="onbBase"><label for="onbBase">Onboarding — socle par contrat (€)</label><input id="onbBase" type="number" min="0" step="50" value="400"></div>
+    <div class="field" data-help="onbPos"><label for="onbPos">Onboarding — par position (€)</label><input id="onbPos" type="number" min="0" step="50" value="400"></div>
+    <div class="field" data-help="hireDelay"><label for="hireDelay">Embauche après signature (mois)</label><input id="hireDelay" type="number" min="0" max="6" value="1"></div>
+    <div class="field" data-help="invoiceDelay"><label for="invoiceDelay">1re facture après signature (mois)</label><input id="invoiceDelay" type="number" min="0" max="12" value="2"></div>
+  </div>
+
+  <h3>Encaissement et risque <span class="hint">— même chose : le « ? » donne la source et l'effet du réglage</span></h3>
+  <div class="grid" data-help-group="risque">
+    <div class="field" data-help="paymentDelay"><label for="paymentDelay">Règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
+    <div class="field" data-help="deposit"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="900"></div>
+    <div class="field" data-help="credit"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="300"></div>
+    <div class="field" data-help="creditMonths"><label for="creditMonths">Factures créditées (nb)</label><input id="creditMonths" type="number" min="0" max="12" value="3"></div>
+    <div class="field" data-help="badDebt"><label for="badDebt">Impayés sur CA encaissé (%)</label><input id="badDebt" type="number" min="0" max="100" step=".5" value="0"></div>
+    <div class="field" data-help="revCharge"><label for="revCharge">Taxes et frais sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="0"></div>
+  </div>
+
+  <details>
+    <summary>Ce que cette projection ne contient pas</summary>
+    <p class="note">Impôts et TVA, comptabilité, assurance, frais bancaires et de change, équipement et liaisons de secours, recrutement au-delà du forfait d'onboarding, congés et remplacement, turnover, indemnités de rupture, dettes et créances existantes, dates réelles des factures annuelles. Le modèle A mutualisé (1 120 € / 400 tickets) et le télésecrétariat médical facturé à l'appel ne sont pas projetés : leur staffing n'est pas mesuré. Ajoutez le connu dans « Charges mensuelles supplémentaires », et ne présentez rien à un financeur avant d'avoir rapproché deux mois de dépenses réelles.</p>
+  </details>
+</section>
+
+<p class="note">Sauvegarde automatique dans ce navigateur uniquement — elle n'est ni partagée, ni synchronisée, ni sauvegardée. Utilisez <b>Exporter (JSON)</b> pour conserver une projection ou la transmettre.</p>
+
+<script type="module">
+// === MODELE FINANCIER : copie synchronisee de tools/finance-model.mjs ===
+/** Prévision de trésorerie Salverys, en euros HT. Hypothèses explicites, pas de données réelles.
+ * Le coussin de 10 % est soustrait du cash disponible comme réserve prudente,
+ * même si ce n'est pas une charge de paie effectivement payée.
+ *
+ * Ce fichier est la SOURCE DE VÉRITÉ du calcul. Il est recopié à l'identique dans
+ * projection-finances-salverys.html (bloc délimité par les marqueurs MODELE FINANCIER)
+ * pour que la page fonctionne hors serveur ; finance-model.test.mjs vérifie l'absence de dérive.
+ */
+
+/** Grilles de prix par position et par mois.
+ * `mb` : paliers 1-4 / 5-8 / 9+ de PRICING.md (grille partenaire en vigueur).
+ * `direct` : fourchette client final du registre interne archivé (bas / médian / haut).
+ *   Le direct n'a PAS de grille de volume documentée : le prix ne dépend pas du nombre
+ *   de positions, seulement du point choisi dans la fourchette.
+ *   Le direct est GELÉ en prospection depuis le 2026-09-07 : ces prix servent à chiffrer
+ *   un entrant, pas à planifier une conquête. */
+export const OFFERS = Object.freeze({
+  support: Object.freeze({ mb: [1700, 1500, 1350], direct: [1900, 2150, 2400] }),
+  helpdesk: Object.freeze({ mb: [2000, 1750, 1550], direct: [2200, 2500, 2800] }),
+});
+
+export const METIER_LABELS = Object.freeze({ support: 'Support applicatif N1', helpdesk: 'Helpdesk IT N1' });
+export const DIRECT_LEVELS = Object.freeze(['bas', 'median', 'haut']);
+
+/** Plancher de négociation de PRICING.md §1. Ce n'est PAS un seuil de rentabilité. */
+export const PRICE_FLOOR = 920;
+
+export const ASSUMPTIONS = Object.freeze({
+  exchangeArPerEuro: 5000,
+  grossSalaryAr: 3250000,
+  smeAr: 300000,
+  employerRate: 0.18,
+  voipPerAgent: 30,
+  voipPerManager: 0,
+  contingency: 0.10,
+  toolsPerMonth: 68,
+  otherMonthlyCost: 0,
+  onboardingBase: 400,
+  onboardingPerPosition: 400,
+  depositPerPosition: 900,
+  invoiceCreditPerPosition: 300,
+  invoiceCreditMonths: 3,
+  paymentDelayMonths: 1,
+  hireDelayMonths: 1,
+  firstInvoiceDelayMonths: 2,
+  managerCapacity: 8,
+  /** Nombre de positions que le fondateur encadre lui-même avant d'embaucher un manager.
+   * 0 = un manager dès la première position (hypothèse prudente par défaut). */
+  founderSupervisesUpTo: 0,
+  /** Part du CA encaissé perdue en impayés ; 0 par défaut, à régler sur l'expérience réelle. */
+  badDebtRate: 0,
+  /** Charges proportionnelles au CA encaissé non détaillées ailleurs : taxes, frais de
+   * change et frais bancaires. 0 par défaut car non vérifié. */
+  revenueChargeRate: 0,
+  initialCash: 0,
+});
+
+/** Prix marque blanche selon le palier de volume ferme (PRICING.md §1, modèle B). */
+export function pricePerPosition(metier, positions) {
+  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
+  if (!Number.isInteger(positions) || positions < 1) throw new Error('Nombre de positions invalide');
+  return OFFERS[metier].mb[positions >= 9 ? 2 : positions >= 5 ? 1 : 0];
+}
+
+/** Prix client final selon le point retenu dans la fourchette du registre interne. */
+export function directPrice(metier, level = 'bas') {
+  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
+  const i = DIRECT_LEVELS.indexOf(level);
+  if (i < 0) throw new Error(`Niveau de fourchette inconnu : ${level}`);
+  return OFFERS[metier].direct[i];
+}
+
+/**
+ * Résout le prix mensuel d'une position selon le mode de tarification du contrat.
+ * tarif = 'mb' (grille partenaire) | 'direct' (client final) | 'libre' (prix saisi).
+ */
+export function resolvePrice(deal) {
+  const tarif = deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+  if (tarif === 'libre') {
+    const p = deal.price ?? deal.priceOverride;
+    if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) throw new Error('Prix libre invalide');
+    return p;
+  }
+  if (tarif === 'direct') return directPrice(deal.metier, deal.directLevel ?? 'bas');
+  if (tarif === 'mb') return pricePerPosition(deal.metier, deal.positions);
+  throw new Error(`Mode de tarification inconnu : ${tarif}`);
+}
+
+/** Salaire chargé mensuel d'une personne, en euros, cotisations plafonnées à 8 × SME. */
+export function chargedSalary(a = ASSUMPTIONS) {
+  return (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro;
+}
+
+export function monthlyAgentCost(a = ASSUMPTIONS) {
+  return (chargedSalary(a) + a.voipPerAgent) * (1 + a.contingency);
+}
+
+export function monthlyManagerCost(a = ASSUMPTIONS) {
+  return (chargedSalary(a) + (a.voipPerManager ?? 0)) * (1 + a.contingency);
+}
+
+/** Onboarding d'un contrat : socle partenaire + part par position (registre interne). */
+export function onboardingCost(positions, a = ASSUMPTIONS) {
+  return a.onboardingBase + positions * a.onboardingPerPosition;
+}
+
+/** Nombre de managers budgétés pour un effectif donné, réparti par métier.
+ * Un manager par tranche de `managerCapacity` positions DANS CHAQUE MÉTIER : la supervision
+ * n'est pas supposée mutualisable entre deux métiers. Elle l'est en revanche entre deux
+ * partenaires d'un même métier, ce qui reste une hypothèse optimiste. */
+export function managersFor(staffByMetier, a = ASSUMPTIONS) {
+  const total = Object.values(staffByMetier).reduce((x, y) => x + y, 0);
+  if (total === 0 || total <= (a.founderSupervisesUpTo ?? 0)) return 0;
+  return Object.values(staffByMetier).reduce((n, positions) => n + (positions ? Math.ceil(positions / a.managerCapacity) : 0), 0);
+}
+
+function normalize(deals, a) {
+  return deals.map(d => {
+    if (!Number.isInteger(d.signedMonth) || d.signedMonth < 1) throw new Error('Mois de signature invalide');
+    if (!Number.isInteger(d.positions) || d.positions < 1) throw new Error('Nombre de positions invalide');
+    if (!OFFERS[d.metier]) throw new Error('Métier invalide');
+    const price = resolvePrice(d);
+    return { ...d, price, acquisitionCost: d.acquisitionCost ?? 0, onboarding: d.onboarding ?? onboardingCost(d.positions, a) };
+  });
+}
+
+/** Montant facturé pour un contrat à sa n-ième facture (n commence à 0), crédits de dépôt déduits. */
+function invoiceAmount(deal, invoiceNumber, a) {
+  const credit = invoiceNumber < a.invoiceCreditMonths ? deal.positions * a.invoiceCreditPerPosition : 0;
+  return deal.positions * deal.price - credit;
+}
+
+/**
+ * deal = {signedMonth, metier, positions, tarif?, directLevel?, price?, acquisitionCost?, label?}
+ * Le dépôt est une avance créditée : flux positif à la signature, puis négatif sur les
+ * trois premières factures. L'onboarding et le coût d'acquisition sortent au mois de signature.
+ */
+export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
+  if (!Number.isInteger(months) || months < 1) throw new Error('Horizon invalide');
+  const accepted = normalize(deals, a);
+  const rows = [];
+  let cash = a.initialCash;
+  for (let m = 1; m <= months; m++) {
+    const active = accepted.filter(d => m >= d.signedMonth + a.hireDelayMonths);
+    const staffByMetier = Object.fromEntries(Object.keys(OFFERS).map(k => [k, active.filter(d => d.metier === k).reduce((n, d) => n + d.positions, 0)]));
+    const agents = Object.values(staffByMetier).reduce((x, y) => x + y, 0);
+    const managers = managersFor(staffByMetier, a);
+    const payroll = agents * monthlyAgentCost(a) + managers * monthlyManagerCost(a);
+    const signedThisMonth = accepted.filter(d => d.signedMonth === m);
+    const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
+    const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
+    const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    const invoiced = accepted
+      .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths)
+      .reduce((n, d) => n + invoiceAmount(d, m - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
+    const receiptGross = accepted
+      .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths + a.paymentDelayMonths)
+      .reduce((n, d) => n + invoiceAmount(d, m - a.paymentDelayMonths - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
+    const badDebt = receiptGross * (a.badDebtRate ?? 0);
+    const receipt = receiptGross - badDebt;
+    const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
+    const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
+    const expense = payroll + overhead + onboarding + acquisition;
+    cash += deposit + receipt - expense;
+    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, invoiced, receiptGross, badDebt, receipt, expense, result: receipt - expense, cash });
+  }
+  return rows;
+}
+
+/** Contribution mensuelle à régime plein, contrat par contrat.
+ * Le coût de manager attribué à un contrat est son coût MARGINAL : le manager déclenché
+ * par le premier contrat d'un métier n'est pas recompté sur le suivant. L'ordre des
+ * contrats suit leur mois de signature, donc le premier signé porte le manager. */
+export function contributions(deals, a = ASSUMPTIONS) {
+  const accepted = normalize(deals, a).sort((x, y) => x.signedMonth - y.signedMonth);
+  const staff = Object.fromEntries(Object.keys(OFFERS).map(k => [k, 0]));
+  let managersSoFar = 0;
+  const lines = accepted.map(d => {
+    staff[d.metier] += d.positions;
+    const managersNow = managersFor(staff, a);
+    const marginalManagers = managersNow - managersSoFar;
+    managersSoFar = managersNow;
+    const revenue = d.positions * d.price;
+    const agentCost = d.positions * monthlyAgentCost(a);
+    const managerCost = marginalManagers * monthlyManagerCost(a);
+    return {
+      deal: d, revenue, agentCost, managerCost, marginalManagers,
+      contribution: revenue - agentCost - managerCost,
+      perPositionMargin: d.price - monthlyAgentCost(a),
+      belowFloor: d.price < PRICE_FLOOR,
+    };
+  });
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const total = lines.reduce((n, l) => n + l.contribution, 0);
+  return { lines, fixedCost: fixed, totalContribution: total, monthlyResult: total - fixed };
+}
+
+/** Nombre de positions d'un métier nécessaires, à un prix donné, pour couvrir
+ * les coûts fixes connus et la supervision. Renvoie null si la contribution
+ * par position est nulle ou négative : aucun volume ne rattrape un prix en dessous du coût. */
+export function breakEvenPositions(price, a = ASSUMPTIONS) {
+  const perPosition = price - monthlyAgentCost(a);
+  if (perPosition <= 0) return null;
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  for (let n = 1; n <= 200; n++) {
+    const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
+    if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
+  }
+  return null;
+}
+
+export function summarize(rows) {
+  const low = rows.reduce((a, b) => b.cash < a.cash ? b : a);
+  const last = rows.at(-1);
+  const positive = rows.find(r => r.month > 1 && r.result > 0);
+  const cashPositive = rows.find(r => r.cash >= 0 && r.month > low.month);
+  return {
+    trough: low.cash, troughMonth: low.month,
+    endCash: last.cash, endAgents: last.agents, endManagers: last.managers, endInvoices: last.invoiced,
+    firstPositiveMonth: positive ? positive.month : null,
+    cashPositiveMonth: low.cash < 0 && cashPositive ? cashPositive.month : null,
+    runwayNeedWith30pctBuffer: Math.max(0, -low.cash) * 1.3,
+  };
+}
+// === FIN MODELE FINANCIER ===
+
+/* ------------------------------ interface ------------------------------ */
+
+const SCENARIOS = {
+  attente: [],
+  prudent: [{ signedMonth: 4, metier: 'helpdesk', positions: 1, tarif: 'mb' }],
+  median: [{ signedMonth: 4, metier: 'helpdesk', positions: 2, tarif: 'mb' }, { signedMonth: 9, metier: 'support', positions: 2, tarif: 'mb' }],
+  expansion: [{ signedMonth: 3, metier: 'helpdesk', positions: 3, tarif: 'mb' }, { signedMonth: 7, metier: 'support', positions: 3, tarif: 'mb' }, { signedMonth: 10, metier: 'helpdesk', positions: 3, tarif: 'mb' }],
+};
+
+const STORE = 'salverys_projection_v1';
+const $ = id => document.getElementById(id);
+const eur = n => (Math.round(n) + 0).toLocaleString('fr-FR') + ' €';
+const eur1 = n => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+
+const NUM = {
+  initialCash: 'initialCash', toolsPerMonth: 'tools', otherMonthlyCost: 'other',
+  onboardingBase: 'onbBase', onboardingPerPosition: 'onbPos',
+  exchangeArPerEuro: 'rate', grossSalaryAr: 'gross', smeAr: 'sme',
+  voipPerAgent: 'voip', voipPerManager: 'voipMgr',
+  managerCapacity: 'managerCapacity', founderSupervisesUpTo: 'founderSupervises',
+  depositPerPosition: 'deposit', invoiceCreditPerPosition: 'credit', invoiceCreditMonths: 'creditMonths',
+  paymentDelayMonths: 'paymentDelay', hireDelayMonths: 'hireDelay', firstInvoiceDelayMonths: 'invoiceDelay',
+};
+const PCT = { employerRate: 'employer', contingency: 'contingency', badDebtRate: 'badDebt', revenueChargeRate: 'revCharge' };
+const ALL_FIELDS = [...Object.values(NUM), ...Object.values(PCT), 'horizon'];
+
+function readAssumptions() {
+  const a = { ...ASSUMPTIONS };
+  for (const [key, id] of Object.entries(NUM)) a[key] = Number($(id).value);
+  for (const [key, id] of Object.entries(PCT)) a[key] = Number($(id).value) / 100;
+  for (const k of ['managerCapacity', 'invoiceCreditMonths', 'paymentDelayMonths', 'hireDelayMonths', 'firstInvoiceDelayMonths', 'founderSupervisesUpTo']) a[k] = Math.round(a[k]);
+  if (!(a.exchangeArPerEuro > 0)) throw new Error('Le taux de change doit être supérieur à zéro.');
+  if (!(a.managerCapacity >= 1)) throw new Error('Il faut au moins une position par manager.');
+  return a;
+}
+
+function writeAssumptions(a) {
+  for (const [key, id] of Object.entries(NUM)) if (a[key] != null) $(id).value = a[key];
+  for (const [key, id] of Object.entries(PCT)) if (a[key] != null) $(id).value = +(a[key] * 100).toFixed(4);
+}
+
+/* ---- une ligne de contrat ---- */
+
+function dealCard(d, index) {
+  const el = document.createElement('div');
+  el.className = 'deal';
+  el.innerHTML = `
+    <div class="deal-head">
+      <b>Contrat ${index + 1}</b>
+      <button type="button" class="link" data-act="remove">Retirer</button>
+    </div>
+    <div class="grid">
+      <div class="field"><label>Nom (facultatif)</label><input data-key="label" type="text" placeholder="Partenaire, compte…"></div>
+      <div class="field"><label>Mois de signature</label><input data-key="signedMonth" type="number" min="1" max="60" step="1"></div>
+      <div class="field"><label>Métier</label><select data-key="metier"><option value="helpdesk">Helpdesk IT N1</option><option value="support">Support applicatif N1</option></select></div>
+      <div class="field"><label>Positions fermes</label><input data-key="positions" type="number" min="1" max="200" step="1"></div>
+      <div class="field"><label>Tarif appliqué</label><select data-key="tarif">
+        <option value="mb">Marque blanche — grille PRICING</option>
+        <option value="direct">Client final — direct</option>
+        <option value="libre">Prix que je fixe</option>
+      </select></div>
+      <div class="field" data-role="level"><label>Point dans la fourchette directe</label><select data-key="directLevel">
+        <option value="bas">Bas de fourchette</option><option value="median">Milieu</option><option value="haut">Haut</option>
+      </select></div>
+      <div class="field" data-role="price"><label>Prix par position (€/mois)</label><input data-key="price" type="number" min="0" step="10"></div>
+      <div class="field"><label>Coût d'acquisition (€, une fois)</label><input data-key="acquisitionCost" type="number" min="0" step="50"></div>
+    </div>
+    <p class="note" data-role="summary" style="margin-bottom:0"></p>`;
+
+  const q = k => el.querySelector(`[data-key="${k}"]`);
+  q('label').value = d.label ?? '';
+  q('signedMonth').value = d.signedMonth;
+  q('metier').value = d.metier;
+  q('positions').value = d.positions;
+  q('tarif').value = d.tarif ?? 'mb';
+  q('directLevel').value = d.directLevel ?? 'bas';
+  q('price').value = d.price ?? '';
+  q('acquisitionCost').value = d.acquisitionCost ?? 0;
+
+  el.querySelector('[data-act="remove"]').addEventListener('click', () => { el.remove(); markCustom(); render(); });
+  el.addEventListener('input', () => { markCustom(); render(); });
+  el.addEventListener('change', () => { markCustom(); render(); });
+  return el;
+}
+
+function readDeals() {
+  return [...$('deals').children].map(el => {
+    const q = k => el.querySelector(`[data-key="${k}"]`).value;
+    const d = {
+      label: q('label').trim(),
+      signedMonth: Math.round(Number(q('signedMonth'))),
+      metier: q('metier'),
+      positions: Math.round(Number(q('positions'))),
+      tarif: q('tarif'),
+      directLevel: q('directLevel'),
+      acquisitionCost: Number(q('acquisitionCost')) || 0,
+    };
+    if (d.tarif === 'libre') d.price = Number(q('price'));
+    if (!(d.signedMonth >= 1)) throw new Error(`Contrat « ${d.label || d.metier} » : mois de signature manquant ou invalide.`);
+    if (!(d.positions >= 1)) throw new Error(`Contrat « ${d.label || d.metier} » : il faut au moins une position ferme.`);
+    if (d.tarif === 'libre' && !(d.price >= 0)) throw new Error(`Contrat « ${d.label || d.metier} » : saisissez un prix par position.`);
+    return d;
+  });
+}
+
+function setDeals(list) {
+  $('deals').replaceChildren(...list.map((d, i) => dealCard(d, i)));
+}
+
+function markCustom() { $('scenario').value = 'custom'; }
+
+/* ---- affichage des prix et des alertes par contrat ---- */
+
+function refreshDealCards(deals, a) {
+  const agent = monthlyAgentCost(a), mgr = monthlyManagerCost(a);
+  const asymptote = agent + mgr / a.managerCapacity;
+  [...$('deals').children].forEach((el, i) => {
+    const d = deals[i]; if (!d) return;
+    el.querySelector('[data-role="level"]').style.display = d.tarif === 'direct' ? '' : 'none';
+    const priceField = el.querySelector('[data-role="price"]');
+    const priceInput = el.querySelector('[data-key="price"]');
+    let price;
+    try { price = resolvePrice(d); } catch { price = 0; }
+    if (d.tarif === 'libre') { priceField.style.display = ''; priceInput.disabled = false; }
+    else { priceField.style.display = 'none'; priceInput.disabled = true; }
+
+    const badges = [];
+    if (d.tarif === 'mb') badges.push(`<span class="badge ok">palier ${d.positions >= 9 ? '9+' : d.positions >= 5 ? '5-8' : '1-4'}</span>`);
+    if (d.tarif === 'direct') badges.push('<span class="badge info">direct — entrants seulement, prospection gelée</span>');
+    if (price < PRICE_FLOOR) badges.push(`<span class="badge alert">sous le plancher de ${PRICE_FLOOR} €</span>`);
+    else if (price < asymptote) badges.push('<span class="badge alert">aucun volume ne rentabilise ce prix</span>');
+
+    const ca = d.positions * price;
+    el.querySelector('[data-role="summary"]').innerHTML =
+      `<span class="price-tag">${eur(price)} / position</span> · CA mensuel <span class="price-tag">${eur(ca)}</span> · marge par position après agent <span class="price-tag">${eur(price - agent)}</span> ${badges.join(' ')}`;
+  });
+}
+
+/* ------------------------------- graphique ------------------------------ */
+
+function drawChart(rows) {
+  const host = $('chart');
+  const tip = $('tip');
+  host.querySelector('svg')?.remove();
+
+  // Le viewBox suit la largeur réelle : le tracé rend à l'échelle 1, donc les
+  // libellés gardent leur taille en pixels au lieu d'être réduits sur petit écran.
+  const W = Math.max(320, Math.round(host.clientWidth || 960));
+  const H = Math.round(Math.min(400, Math.max(230, W * 0.40)));
+  const PAD = { t: 18, r: 16, b: 32, l: W < 480 ? 52 : 66 };
+
+  const values = rows.map(r => r.cash);
+  const lo = Math.min(0, ...values), hi = Math.max(0, ...values);
+  const span = (hi - lo) || 1;
+  const pad = span * 0.08;
+  const yMin = lo - pad, yMax = hi + pad;
+  const x = m => PAD.l + (rows.length === 1 ? 0 : (m - 1) / (rows.length - 1)) * (W - PAD.l - PAD.r);
+  const y = v => PAD.t + (yMax - v) / (yMax - yMin) * (H - PAD.t - PAD.b);
+
+  const ticks = [];
+  const step = niceStep((yMax - yMin) / 4);
+  for (let v = Math.ceil(yMin / step) * step; v <= yMax; v += step) ticks.push(v);
+  if (!ticks.includes(0) && yMin < 0 && yMax > 0) ticks.push(0);
+
+  const line = rows.map(r => `${x(r.month).toFixed(1)},${y(r.cash).toFixed(1)}`).join(' ');
+  const zeroY = y(0);
+  const areaNeg = `M${x(1).toFixed(1)},${zeroY.toFixed(1)} ` +
+    rows.map(r => `L${x(r.month).toFixed(1)},${Math.max(y(r.cash), zeroY).toFixed(1)}`).join(' ') +
+    ` L${x(rows.length).toFixed(1)},${zeroY.toFixed(1)} Z`;
+
+  const low = rows.reduce((p, c) => c.cash < p.cash ? c : p);
+  const fits = Math.max(3, Math.floor((W - PAD.l - PAD.r) / 46));
+  const every = Math.max(1, Math.ceil(rows.length / fits));
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', `Trésorerie disponible de M1 à M${rows.length}. Creux ${eur(low.cash)} en M${low.month}, fin de période ${eur(rows.at(-1).cash)}.`);
+  svg.innerHTML = `
+    <g font-size="12" fill="var(--ink-mute)">
+      ${ticks.map(v => `<line x1="${PAD.l}" x2="${W - PAD.r}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" stroke="${v === 0 ? 'var(--ink-mute)' : 'var(--line)'}" stroke-width="${v === 0 ? 1.5 : 1}"/>
+        <text x="${PAD.l - 8}" y="${(y(v) + 4).toFixed(1)}" text-anchor="end">${Math.round(v).toLocaleString('fr-FR')}</text>`).join('')}
+      ${rows.filter(r => r.month === 1 || r.month % every === 0).map(r => `<text x="${x(r.month).toFixed(1)}" y="${H - 12}" text-anchor="middle">M${r.month}</text>`).join('')}
+    </g>
+    <path d="${areaNeg}" fill="var(--danger)" opacity=".13"/>
+    <polyline points="${line}" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${x(low.month).toFixed(1)}" cy="${y(low.cash).toFixed(1)}" r="4.5" fill="var(--surface)" stroke="${low.cash < 0 ? 'var(--danger)' : 'var(--primary)'}" stroke-width="2"/>
+    <text x="${x(low.month).toFixed(1)}" y="${(y(low.cash) + (low.cash < 0 ? 22 : -14)).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="700" fill="${low.cash < 0 ? 'var(--danger)' : 'var(--ink)'}">creux ${eur(low.cash)}</text>
+    <g id="cursor" opacity="0"><line y1="${PAD.t}" y2="${H - PAD.b}" stroke="var(--ink-mute)" stroke-width="1" stroke-dasharray="3 3"/><circle r="5" fill="var(--surface)" stroke="var(--primary)" stroke-width="2"/></g>`;
+  host.append(svg);
+
+  const cursor = svg.querySelector('#cursor');
+  const move = ev => {
+    const box = svg.getBoundingClientRect();
+    const px = ((ev.touches ? ev.touches[0].clientX : ev.clientX) - box.left) / box.width * W;
+    const t = (px - PAD.l) / (W - PAD.l - PAD.r) * (rows.length - 1) + 1;
+    const r = rows[Math.max(0, Math.min(rows.length - 1, Math.round(t) - 1))];
+    cursor.setAttribute('opacity', '1');
+    cursor.querySelector('line').setAttribute('x1', x(r.month));
+    cursor.querySelector('line').setAttribute('x2', x(r.month));
+    cursor.querySelector('circle').setAttribute('cx', x(r.month));
+    cursor.querySelector('circle').setAttribute('cy', y(r.cash));
+    tip.innerHTML = `<b>Mois ${r.month}</b><s>Cash ${eur(r.cash)}</s><br><s>Encaissé ${eur(r.receipt)} · Dépenses ${eur(r.expense)}</s><br><s>${r.agents} agent(s), ${r.managers} manager(s)</s>`;
+    tip.style.opacity = '1';
+    const left = x(r.month) / W * box.width;
+    tip.style.left = Math.min(Math.max(8, left + 12), box.width - tip.offsetWidth - 8) + 'px';
+    tip.style.top = Math.max(4, y(r.cash) / H * box.height - 12) + 'px';
+  };
+  const leave = () => { cursor.setAttribute('opacity', '0'); tip.style.opacity = '0'; };
+  svg.addEventListener('mousemove', move);
+  svg.addEventListener('touchmove', move, { passive: true });
+  svg.addEventListener('mouseleave', leave);
+  svg.addEventListener('touchend', leave);
+}
+
+function niceStep(raw) {
+  const mag = Math.pow(10, Math.floor(Math.log10(Math.max(raw, 1))));
+  const n = raw / mag;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * mag;
+}
+
+/* -------------------------------- rendu -------------------------------- */
+
+function render() {
+  try {
+    const a = readAssumptions();
+    const deals = readDeals();
+    const months = Number($('horizon').value);
+    const rows = projectCash(deals, months, a);
+    const sum = summarize(rows);
+    const contrib = contributions(deals, a);
+
+    $('err').style.display = 'none';
+    refreshDealCards(deals, a);
+
+    const agent = monthlyAgentCost(a), mgr = monthlyManagerCost(a);
+    $('costLine').textContent = `agent ${eur1(agent)} · manager ${eur1(mgr)} (salaire chargé ${eur1(chargedSalary(a))}, VoIP et coussin compris)`;
+
+    const last = rows.at(-1);
+    $('kpis').innerHTML = [
+      kpi('Creux de trésorerie', eur(sum.trough), 'en M' + sum.troughMonth, sum.trough < 0),
+      kpi('Besoin illustratif +30 %', eur(sum.runwayNeedWith30pctBuffer), 'hors dettes et coûts manquants', false),
+      kpi('Résultat mensuel à régime plein', eur(contrib.monthlyResult), 'contrats saisis, hors onboarding', contrib.monthlyResult < 0),
+      kpi(`Trésorerie M${months}`, eur(last.cash), `${last.agents} agent(s), ${last.managers} manager(s)`, last.cash < 0),
+      kpi('Retour au positif', sum.cashPositiveMonth ? 'M' + sum.cashPositiveMonth : (sum.trough >= 0 ? 'jamais négatif' : 'hors horizon'), 'trésorerie ≥ 0', sum.trough < 0 && !sum.cashPositiveMonth),
+    ].join('');
+
+    drawChart(rows);
+
+    const tarifLabel = d => d.tarif === 'mb' ? 'marque blanche' : d.tarif === 'direct' ? 'direct, ' + (d.directLevel ?? 'bas') + ' de fourchette' : 'prix libre';
+    $('contribTable').innerHTML = deals.length ? `
+      <thead><tr><th>Contrat</th><th>Positions × prix</th><th>CA mensuel</th><th>Agents</th><th>Manager</th><th>Contribution</th></tr></thead>
+      <tbody>${contrib.lines.map(l => `<tr>
+        <td>${escapeHtml(l.deal.label || METIER_LABELS[l.deal.metier])}<br><span class="note">M${l.deal.signedMonth} · ${tarifLabel(l.deal)}</span></td>
+        <td${l.belowFloor ? ' class="neg"' : ''}>${l.deal.positions} × ${eur(l.deal.price)}</td>
+        <td>${eur(l.revenue)}</td>
+        <td>${eur(-l.agentCost)}</td>
+        <td>${l.marginalManagers ? eur(-l.managerCost) : '—'}</td>
+        <td class="${l.contribution < 0 ? 'neg' : 'pos'}">${eur(l.contribution)}</td></tr>`).join('')}</tbody>
+      <tfoot>
+        <tr><td colspan="5">Total des contributions</td><td class="${contrib.totalContribution < 0 ? 'neg' : 'pos'}">${eur(contrib.totalContribution)}</td></tr>
+        <tr><td colspan="5">Coûts fixes connus (outils + charges supplémentaires)</td><td>${eur(-contrib.fixedCost)}</td></tr>
+        <tr><td colspan="5">Résultat mensuel à régime plein</td><td class="${contrib.monthlyResult < 0 ? 'neg' : 'pos'}">${eur(contrib.monthlyResult)}</td></tr>
+      </tfoot>` : '<tbody><tr><td>Aucun contrat saisi.</td></tr></tbody>';
+
+    const asymptote = agent + mgr / a.managerCapacity;
+    const be = ['helpdesk', 'support'].map(m => {
+      const p = pricePerPosition(m, 1), n = breakEvenPositions(p, a);
+      return `${METIER_LABELS[m]} au palier 1-4 (${eur(p)}) : ${n ? `${n} position${n > 1 ? 's' : ''}` : 'jamais rentable, quel que soit le volume'}`;
+    }).join(' · ');
+    $('breakEven').innerHTML = `<b>Point mort.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>sous ce seuil</b>.`;
+
+    $('fluxTable').innerHTML = `
+      <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Acquisition</th><th>Structure</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <td>M${r.month}</td><td>${r.agents}</td><td>${r.managers}</td>
+        <td>${r.deposit ? eur(r.deposit) : '—'}</td><td>${r.invoiced ? eur(r.invoiced) : '—'}</td><td>${r.receipt ? eur(r.receipt) : '—'}</td>
+        <td>${eur(-r.payroll)}</td><td>${r.onboarding ? eur(-r.onboarding) : '—'}</td><td>${r.acquisition ? eur(-r.acquisition) : '—'}</td><td>${eur(-r.overhead)}</td>
+        <td class="${r.result < 0 ? 'neg' : 'pos'}">${eur(r.result)}</td>
+        <td class="${r.cash < 0 ? 'neg' : 'pos'}">${eur(r.cash)}</td></tr>`).join('')}</tbody>`;
+
+    $('tarifNote').innerHTML = `Grille marque blanche : helpdesk ${OFFERS.helpdesk.mb.map(p => p + ' €').join(' / ')} et support ${OFFERS.support.mb.map(p => p + ' €').join(' / ')} selon les paliers 1-4 / 5-8 / 9+. Fourchette client final du registre interne : helpdesk ${OFFERS.helpdesk.direct[0]}–${OFFERS.helpdesk.direct[2]} €, support ${OFFERS.support.direct[0]}–${OFFERS.support.direct[2]} € — <b>sans grille de volume</b>, et la prospection directe est gelée depuis le 2026-09-07 : ce mode sert à chiffrer un entrant.`;
+
+    save();
+  } catch (e) {
+    $('err').textContent = e.message;
+    $('err').style.display = 'block';
+  }
+}
+
+function kpi(label, value, sub, bad) {
+  return `<div class="kpi${bad ? ' bad' : ''}"><span>${label}</span><strong>${value}</strong><em>${sub}</em></div>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* --------------------- fiches « d'où vient ce chiffre » ------------------ */
+
+const HELP = {
+  tools: {
+    title: 'Outils récurrents connus — 68 €/mois',
+    body: `<p>Somme des abonnements déclarés, ramenés au mois :</p>
+      <table><tbody>
+        <tr><td>Microsoft 365 Business Basic + Teams</td><td>mensuel</td><td>6 €</td></tr>
+        <tr><td>Google Workspace, boîte mailing</td><td>mensuel</td><td>10 €</td></tr>
+        <tr><td>GitHub, dépôt Salve2</td><td>mensuel</td><td>4 €</td></tr>
+        <tr><td>Ringover Quicktalk</td><td>mensuel</td><td>25 €</td></tr>
+        <tr><td>Anthropic / Claude</td><td>mensuel</td><td>20 €</td></tr>
+        <tr><td>3 domaines OVH (salverys.fr, salverys-groupe.fr, salverys-bpo.fr)</td><td>12 €/an chacun</td><td>3 €</td></tr>
+      </tbody><tfoot><tr><td><b>Total</b></td><td>65 € d'abonnements + 36 €/an de domaines</td><td><b>68 €</b></td></tr></tfoot></table>
+      <p>Sales Navigator est inactif, à 0 €. La création de société (VJUS) est une dépense passée, sans montant communiqué.</p>
+      <p><span class="flag">Deux réserves.</span> Ce sont des <b>montants déclarés</b> le 2026-09-16 depuis un tableau SharePoint, jamais rapprochés de factures ni du relevé bancaire. Et les 3 €/mois de domaines sont une <b>répartition économique</b> : le décaissement réel tombe en une fois au renouvellement, à une date qui n'est pas renseignée.</p>`,
+    src: '01-Strategie-Offre/REGISTRE-COUTS-OUTILS.md',
+  },
+  other: {
+    title: 'Charges mensuelles supplémentaires — 0 € par défaut',
+    body: `<p>Ce n'est pas un chiffre calculé : c'est une <b>case volontairement vide</b>, prévue pour ce que la projection ne sait pas encore chiffrer.</p>
+      <p>Ce qui manque et devrait finir ici, une fois chiffré :</p>
+      <ul>
+        <li>impôts et TVA, comptabilité, assurance ;</li>
+        <li>frais bancaires de réception de virements internationaux ;</li>
+        <li>équipement des postes et liaisons de secours — à chiffrer et tester avant d'être promis à un partenaire ;</li>
+        <li>congés et remplacement, recrutement au-delà du forfait d'onboarding ;</li>
+        <li>si la chauffe cold redémarre : environ <b>36 €/mois</b> d'infra Google Workspace (3 domaines × 2 boîtes × 6 €), ce qui <b>double presque</b> le burn d'attente de 68 €.</li>
+      </ul>
+      <p><span class="flag">Laisser 0 est une décision, pas une absence de coût.</span> Ne pas présenter une projection à un financeur avec cette case à zéro.</p>`,
+    src: 'AUDIT-FINANCE-PREVISIONNEL.md §4 · SETUP-COLD-MAILING.md §6',
+  },
+  onbBase: {
+    title: 'Onboarding, socle par contrat — 400 €',
+    body: `<p>Part <b>fixe</b> du démarrage, indépendante du nombre de positions : cadrage du périmètre, ouverture des accès aux outils du partenaire, mise en place du reporting et de la double écoute, documentation des procédures d'escalade.</p>
+      <p>Elle vient de la décomposition du registre interne, <b>~400 € de socle + ~400 € par position</b>.</p>
+      <p><span class="flag">Correction du 2026-09-17.</span> Le prévisionnel utilisait jusque-là un forfait unique de <b>1 600 € par contrat</b>. Ce montant n'était rien d'autre que la décomposition appliquée à un contrat de <b>trois</b> positions (400 + 3 × 400). Employé tel quel, il surchargeait de 800 € un contrat d'une seule position et sous-estimerait un contrat de six.</p>
+      <p>Ordre de grandeur non documenté : ni le temps passé, ni les dépenses réellement engagées sur un démarrage n'ont été relevés.</p>`,
+    src: 'AUDIT-ESPACE-CLIENT.md §9.2 · 99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md',
+  },
+  onbPos: {
+    title: 'Onboarding, par position — 400 €',
+    body: `<p>Part <b>variable</b> du démarrage : recrutement, formation au périmètre du partenaire, poste et accès, montée en compétence avant la facturation pleine.</p>
+      <table><thead><tr><th>Positions</th><th>Onboarding</th><th>Dépôt encaissé</th></tr></thead><tbody>
+        <tr><td>1</td><td>800 €</td><td>900 €</td></tr>
+        <tr><td>2</td><td>1 200 €</td><td>1 800 €</td></tr>
+        <tr><td>3</td><td>1 600 €</td><td>2 700 €</td></tr>
+        <tr><td>5</td><td>2 400 €</td><td>4 500 €</td></tr>
+        <tr><td>9</td><td>4 000 €</td><td>8 100 €</td></tr>
+      </tbody></table>
+      <p>C'est la justification du dépôt : à 900 €/position, il couvre les 400 €/position et une part du socle si le partenaire s'arrête après la mise en service. Le rapport se dégrade quand même à mesure que les positions augmentent — le socle, lui, ne grandit pas.</p>`,
+    src: 'PRICING.md §3 · AUDIT-ESPACE-CLIENT.md §9.2',
+  },
+  hireDelay: {
+    title: 'Embauche après signature — 1 mois',
+    body: `<p>Hypothèse : les agents sont recrutés et <b>payés</b> à partir du mois suivant la signature.</p>
+      <p><b>C'est ce paramètre qui fabrique le creux de trésorerie.</b> Avec une première facture en M+2 et un règlement à 30 jours, le premier euro arrive en M+3 alors que la paie court depuis M+1 : <b>deux mois de paie à financer par contrat</b>, avant toute recette.</p>
+      <p>Repère commercial : la première prise de tickets est visée vers six semaines après la signature, l'autonomie entre 2,5 et 3,5 mois. Le recrutement doit donc démarrer tôt — mais <b>pas avant l'encaissement du dépôt</b>.</p>
+      <p>Effet du réglage, scénario médian : passer à 2 mois ramène le creux de <b>−4 800 €</b> à <b>−2 304 €</b>. Ce n'est réaliste que si le jalon de prise de tickets glisse d'autant ; sinon, vous déplacez le problème sur la qualité du démarrage.</p>`,
+    src: 'PRICING.md §3 · 01-Strategie-Offre/FINANCE-PREVISIONNEL.md §4',
+  },
+  invoiceDelay: {
+    title: 'Première facture après signature — 2 mois',
+    body: `<p>Hypothèse de travail : la facturation démarre en M+2, soit environ un mois après l'embauche.</p>
+      <p>Elle est cohérente avec le jalon « première prise de tickets vers six semaines », mais <b>ce n'est pas une règle contractuelle</b>. C'est le devis qui date le début de facturation, et c'est lui qui fait foi. Si un partenaire obtient une facturation au premier ticket traité, ou au contraire après la période de transition complète, ce champ doit suivre.</p>
+      <p>À ne pas confondre avec le délai de règlement : celui-ci dit quand la facture <b>part</b>, l'autre quand elle est <b>payée</b>.</p>`,
+    src: 'PRICING.md §3',
+  },
+  paymentDelay: {
+    title: 'Règlement après facture — 1 mois',
+    body: `<p><code>PRICING.md</code> §3 : « Facturation mensuelle, paiement à 30 jours ». Un mois est l'arrondi de ces 30 jours au pas mensuel du modèle.</p>
+      <p>Ce paramètre ne modélise <b>ni le retard, ni le litige, ni l'escompte</b> : il décale simplement tout l'encaissement. Un partenaire qui paie à 45 ou 60 jours se teste en passant à 2.</p>
+      <p>Effet du réglage, scénario médian :</p>
+      <table><thead><tr><th>Délai</th><th>Creux</th><th>Trésorerie M24</th></tr></thead><tbody>
+        <tr><td>1 mois</td><td>−4 800 €</td><td>+24 804 €</td></tr>
+        <tr><td>2 mois</td><td>−8 873 €</td><td>+17 404 €</td></tr>
+        <tr><td>3 mois</td><td>−13 934 €</td><td>+10 004 €</td></tr>
+      </tbody></table>
+      <p>Chaque mois de délai supplémentaire coûte <b>4 à 5 k€ de besoin de trésorerie</b>. C'est le paramètre le plus sensible de toute la page : négocier le délai de paiement pèse plus lourd que négocier 50 € sur le prix.</p>`,
+    src: 'PRICING.md §3',
+  },
+  deposit: {
+    title: 'Dépôt par position — 900 €',
+    body: `<p>Dépôt d'activation du <b>modèle B (poste dédié)</b> : 900 € par position ferme, <b>sans plafond</b>, encaissé à la signature.</p>
+      <p>Restitué en cas d'annulation <b>avant</b> le démarrage de la mise en service ; acquis à Salverys après, selon le contrat. Le modèle ne simule pas cette restitution.</p>
+      <p><span class="flag">Le plafond de 2 700 € a été supprimé le 2026-09-14.</span> Un plafond fixe face à une imputation proportionnelle de 300 €/position ne se recoupait qu'à exactement 3 positions : à 9 positions, on créditait 8 100 € pour 2 700 € réellement encaissés, soit 5 400 € offerts.</p>
+      <p>Ne s'applique pas automatiquement au modèle A (débordement mutualisé) ni au médical facturé à l'appel : aucune position n'y est réservée. Toute avance sur ces modèles se chiffre et s'impute explicitement dans le devis.</p>`,
+    src: 'PRICING.md §3 · 99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md §3.a',
+  },
+  credit: {
+    title: 'Crédit de dépôt par facture — 300 €',
+    body: `<p>Le dépôt est <b>entièrement imputé</b> à raison de 300 € par position et par facture, sur les trois premières factures : <code>3 × 300 = 900 €</code>, exactement le dépôt.</p>
+      <p>Conséquence à ne jamais perdre de vue : <b>le dépôt avance du cash, il n'augmente pas le total du contrat.</b> Deux positions helpdesk à 2 000 € :</p>
+      <table><tbody>
+        <tr><td>Signature — dépôt</td><td>+1 800 €</td></tr>
+        <tr><td>Factures 1 à 3</td><td>3 × 3 400 € au lieu de 4 000 €</td></tr>
+        <tr><td>Facture 4 et suivantes</td><td>4 000 €</td></tr>
+      </tbody><tfoot><tr><td><b>Trois premiers mois</b></td><td><b>1 800 + 3 × 3 400 = 12 000 €</b>, soit 3 × 4 000 €</td></tr></tfoot></table>
+      <p><span class="flag">Règle si vous modifiez ces champs :</span> dépôt par position = crédit × nombre de factures créditées. Changer l'un sans l'autre crédite au partenaire de l'argent jamais encaissé, ou le fait payer deux fois.</p>`,
+    src: 'PRICING.md §3',
+  },
+  creditMonths: {
+    title: 'Factures créditées — 3',
+    body: `<p>Nombre de factures sur lesquelles le dépôt est imputé. À partir de la <b>quatrième</b>, le plein tarif reprend.</p>
+      <p>L'invariant à tenir est <code>dépôt = crédit × nombre de factures</code>, soit <code>900 = 300 × 3</code>. Cette neutralité est vérifiée automatiquement par <code>tools/finance-model.test.mjs</code> : le test échoue si une modification du moteur la casse.</p>
+      <p>Allonger l'imputation (par exemple 150 € sur 6 factures) adoucit la facture du partenaire au démarrage sans rien changer au total, mais retarde d'autant le retour au plein tarif.</p>`,
+    src: 'PRICING.md §3',
+  },
+  badDebt: {
+    title: 'Impayés sur CA encaissé — 0 %',
+    body: `<p><b>0 % n'est pas une mesure, c'est une absence d'historique</b> : Salverys n'a encore facturé aucun partenaire.</p>
+      <p>À quoi sert le champ : mesurer ce qu'un partenaire défaillant coûte. Sur le scénario expansion à 48 mois, 10 % d'impayés retirent <b>66 480 €</b> de trésorerie finale.</p>
+      <p><span class="flag">La vraie forme du risque n'est pas un pourcentage moyen.</span> Avec un ou deux partenaires, c'est un client unique qui pèse la moitié du chiffre d'affaires et cesse de payer. Pour ce cas-là, ne mettez pas 50 % ici : <b>supprimez la ligne du contrat</b> et regardez la courbe. La paie des agents, elle, continue.</p>`,
+    src: 'AUDIT-FINANCE-PREVISIONNEL.md §1',
+  },
+  revCharge: {
+    title: 'Taxes et frais sur CA encaissé — 0 %',
+    body: `<p>Non renseigné faute de paramètres vérifiés. Ce champ doit couvrir, une fois les taux confirmés :</p>
+      <ul>
+        <li>l'impôt malgache sur le chiffre d'affaires ou le résultat ;</li>
+        <li>la TVA, si elle s'applique à une prestation facturée à un donneur d'ordre français ;</li>
+        <li>les frais bancaires de réception de virements internationaux ;</li>
+        <li>l'écart entre le taux de change de simulation et le taux réellement obtenu.</li>
+      </ul>
+      <p><span class="flag">Le change est le poste le plus sous-estimé</span> — mais il ne se corrige pas ici : il s'applique à la <b>masse salariale</b>, pas au CA encaissé. Réglez-le dans « Taux de change (Ar par €) ». Repère : à 4 750 Ar/€ au lieu de 5 000, un agent passe de <b>843,04 €</b> à <b>885,67 €</b> par mois, soit environ <b>+43 € par personne et par mois</b>.</p>`,
+    src: '01-Strategie-Offre/FINANCE-PREVISIONNEL.md §2 · AUDIT-FINANCE-PREVISIONNEL.md §4',
+  },
+};
+
+function buildHelp() {
+  for (const grid of document.querySelectorAll('[data-help-group]')) {
+    const panel = document.createElement('div');
+    panel.className = 'help-panel';
+    panel.id = 'help-' + grid.dataset.helpGroup;
+    panel.setAttribute('role', 'region');
+    panel.tabIndex = -1;
+    grid.after(panel);
+
+    for (const field of grid.querySelectorAll('[data-help]')) {
+      const key = field.dataset.help;
+      if (!HELP[key]) continue;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'help-btn';
+      btn.textContent = '?';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', panel.id);
+      btn.title = 'D’où vient ce chiffre ?';
+      btn.setAttribute('aria-label', `D’où vient ce chiffre : ${HELP[key].title}`);
+      btn.addEventListener('click', () => toggleHelp(grid, panel, field, btn, key));
+      field.querySelector('label').append(btn);
+    }
+  }
+}
+
+function toggleHelp(grid, panel, field, btn, key) {
+  const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+  for (const b of grid.querySelectorAll('.help-btn')) b.setAttribute('aria-expanded', 'false');
+  for (const f of grid.querySelectorAll('[data-help]')) f.classList.remove('is-open');
+  if (wasOpen) { panel.classList.remove('open'); panel.replaceChildren(); return; }
+
+  const h = HELP[key];
+  panel.setAttribute('aria-label', h.title);
+  panel.innerHTML = `<button type="button" class="link close">Fermer</button><h4>${h.title}</h4>${h.body}<p class="src">Source : <code>${h.src}</code></p>`;
+  panel.querySelector('.close').addEventListener('click', () => toggleHelp(grid, panel, field, btn, key));
+  panel.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  field.classList.add('is-open');
+  panel.focus({ preventScroll: true });
+}
+
+/* ------------------------- persistance et export ------------------------ */
+
+function snapshot() {
+  const a = {};
+  for (const [key, id] of Object.entries(NUM)) a[key] = Number($(id).value);
+  for (const [key, id] of Object.entries(PCT)) a[key] = Number($(id).value) / 100;
+  let deals = [];
+  try { deals = readDeals(); } catch { deals = []; }
+  return { version: 1, date: new Date().toISOString().slice(0, 10), horizon: Number($('horizon').value), scenario: $('scenario').value, assumptions: a, deals };
+}
+
+function save() {
+  try { localStorage.setItem(STORE, JSON.stringify(snapshot())); } catch { /* stockage indisponible */ }
+}
+
+function load(state) {
+  if (!state || typeof state !== 'object') return false;
+  if (state.assumptions) writeAssumptions(state.assumptions);
+  if (state.horizon) $('horizon').value = state.horizon;
+  setDeals(Array.isArray(state.deals) ? state.deals : []);
+  $('scenario').value = state.scenario || 'custom';
+  return true;
+}
+
+function restore() {
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (raw && load(JSON.parse(raw))) return true;
+  } catch { /* stockage indisponible ou corrompu */ }
+  return false;
+}
+
+/* ------------------------------- câblage ------------------------------- */
+
+$('scenario').addEventListener('change', () => {
+  const v = $('scenario').value;
+  if (v !== 'custom') { setDeals(SCENARIOS[v]); render(); }
+});
+$('addDeal').addEventListener('click', () => {
+  const list = (() => { try { return readDeals(); } catch { return []; } })();
+  list.push({ signedMonth: Math.min(Number($('horizon').value), (list.at(-1)?.signedMonth ?? 0) + 1 || 1), metier: 'helpdesk', positions: 1, tarif: 'mb' });
+  setDeals(list); markCustom(); render();
+});
+$('clearDeals').addEventListener('click', () => { setDeals([]); markCustom(); render(); });
+$('reset').addEventListener('click', () => { writeAssumptions(ASSUMPTIONS); $('initialCash').value = 0; $('horizon').value = 24; render(); });
+
+$('export').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(snapshot(), null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = Object.assign(document.createElement('a'), { href: url, download: `projection-salverys-${new Date().toISOString().slice(0, 10)}.json` });
+  a.click();
+  URL.revokeObjectURL(url);
+});
+$('importBtn').addEventListener('click', () => $('importFile').click());
+$('importFile').addEventListener('change', async ev => {
+  const file = ev.target.files?.[0];
+  if (!file) return;
+  try { load(JSON.parse(await file.text())); render(); }
+  catch { $('err').textContent = 'Fichier de projection illisible.'; $('err').style.display = 'block'; }
+  ev.target.value = '';
+});
+
+for (const id of ALL_FIELDS) $(id).addEventListener('input', render);
+$('horizon').addEventListener('change', render);
+
+buildHelp();
+if (!restore()) setDeals(SCENARIOS.median);
+render();
+addEventListener('resize', () => { try { drawChart(projectCash(readDeals(), Number($('horizon').value), readAssumptions())); } catch { /* saisie invalide */ } });
+</script>
+</div>
+</body>
+</html>

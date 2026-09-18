@@ -2,7 +2,8 @@
 
 > Mémo de cadrage pour démarrer/scaler le cold mailing Salverys proprement.
 > Complète `WARMUP-MANUEL.md`, `SESSION-WARMUP-DEMARRAGE.md` et `planningchauffesalverys.html`
-> (procédure de chauffe). Coûts chiffrables dans `tresorerie-salverys.html` (ligne « Infra cold »).
+> (procédure de chauffe). Coûts chiffrables dans `projection-finances-salverys.html`, champ
+> « Charges mensuelles supplémentaires ».
 
 ## 1. Règle d'or
 
@@ -64,8 +65,12 @@ Chaque adresse : ~20-40 mails/j **une fois chauffée**.
 - **Envoi : Emelia** (outil retenu, cf. `CLAUDE.md`).
 - **Infra : GWS** (~6 €/boîte/mois) + domaines (~10-15 €/an chacun).
 - Ordre de grandeur : 3 dom × 2 boîtes × 6 € = **~36 €/mois** + Emelia.
-- Modélisable dans `tresorerie-salverys.html` → ligne « Infra cold — domaines GWS ».
-- **Le coût n'est pas le sujet** (négligeable vs charges ~7 100 €) ; le sujet est la
+- Modélisable dans `projection-finances-salverys.html` → « Charges mensuelles supplémentaires ».
+- **Le coût n'est pas le sujet**, mais il n'est plus négligeable : les charges récurrentes
+  connues sont de **68 €/mois** tant qu'aucun agent n'est embauché
+  (`01-Strategie-Offre/REGISTRE-COUTS-OUTILS.md`), et non des ~7 100 € hérités du modèle
+  avec équipe et poste commercial. Ajouter ~36 €/mois d'infra cold **double presque** le burn
+  d'attente. Le sujet reste la
   **délivrabilité**. Mieux vaut 6 adresses bien chauffées qu'une seule saturée.
 
 ## 7. Erreurs à éviter

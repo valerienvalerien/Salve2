@@ -1,59 +1,31 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Salverys — simulateur de trésorerie partenaire</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trésorerie Salverys — page déplacée</title>
+<meta http-equiv="refresh" content="4; url=projection-finances-salverys.html">
 <style>
-:root{font-family:Inter,Arial,sans-serif;color:#20333d;background:#f5f7f5}*{box-sizing:border-box}body{max-width:1120px;margin:auto;padding:28px 18px 60px}h1{margin:0 0 8px;font-size:2rem}h2{margin:32px 0 12px}p{line-height:1.55}.muted{color:#59706a}.notice{background:#fff8e8;border-left:4px solid #b38632;padding:12px 16px;border-radius:4px}.card{background:#fff;border:1px solid #d7e2da;border-radius:12px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.field label{display:block;font-size:.83rem;font-weight:700;margin-bottom:5px}.field input,.field select{width:100%;padding:9px;border:1px solid #afc2b5;border-radius:7px;font:inherit}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.kpi{background:#e7efe9;border-radius:8px;padding:14px}.kpi strong{display:block;font-size:1.35rem;margin:5px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.82rem;min-width:950px}th,td{padding:8px;text-align:right;border-bottom:1px solid #d8e2da}th:first-child,td:first-child{text-align:left}tr.negative td:last-child{color:#a3342f;font-weight:700}tr.positive td:last-child{color:#216b42;font-weight:700}button{background:#255b47;color:#fff;border:0;border-radius:7px;padding:10px 14px;font:inherit;cursor:pointer}button.secondary{background:#e1eae2;color:#204b37}.deal{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr)) auto;gap:8px;margin:10px 0}.deal button{align-self:end}@media(max-width:760px){.deal{grid-template-columns:repeat(2,1fr)}}
+:root{--surface:#FCFCFB;--panel:#FFFFFF;--line:#E7DFD1;--ink:#2A2620;--ink-mute:#8A8275;--primary:#2E3B4E;--gold:#B89968;--gold-tint:#FCEEC9}
+@media (prefers-color-scheme: dark){:root{--surface:#1B2028;--panel:#232A34;--line:#3A4452;--ink:#EDEAE3;--ink-mute:#938E85;--primary:#C9D6E6;--gold:#D4B98A;--gold-tint:#3A3322}}
+body{margin:0;background:var(--surface);color:var(--ink);font:16px/1.6 Inter,-apple-system,Segoe UI,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:24px}
+main{max-width:620px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px}
+h1{font-size:1.35rem;margin:0 0 10px}
+p{margin:.6em 0}
+.note{color:var(--ink-mute);font-size:.86rem}
+.warn{background:var(--gold-tint);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.86rem}
+a.cta{display:inline-block;margin-top:14px;background:var(--primary);color:var(--surface);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px}
+code{font-size:.9em}
 </style>
 </head>
 <body>
-<header><h1>Trésorerie Salverys</h1><p class="muted">Simulation mensuelle 24 mois · contrats de positions dédiées en marque blanche · chiffres en euros HT</p></header>
-<p class="notice"><b>Prévision, pas situation bancaire.</b> Les coûts, cotisations, taxes et délais restent à confirmer sur pièces. Le modèle A mutualisé et le médical à l'appel ne sont pas inclus faute de staffing mesuré. L'ancien montant de financement de 25–30 k€ n'est plus une recommandation valide.</p>
-<section class="card"><h2>Hypothèses</h2><div class="grid">
-<div class="field"><label for="scenario">Scénario de signatures</label><select id="scenario"><option value="attente">Attente</option><option value="prudent">Prudent : 1 helpdesk M4</option><option value="median" selected>Médian : 2 helpdesk M4 + 2 support M9</option><option value="expansion">Expansion : 3 contrats, 9 agents</option><option value="custom">Mes contrats</option></select></div>
-<div class="field"><label for="initialCash">Trésorerie disponible de départ (€)</label><input id="initialCash" type="number" value="0"></div>
-<div class="field"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
-<div class="field"><label for="onboarding">Onboarding payé par contrat (€)</label><input id="onboarding" type="number" min="0" value="1600"></div>
-<div class="field"><label for="rate">Taux Ar par €</label><input id="rate" type="number" min="1" value="5000"></div>
-<div class="field"><label for="gross">Brut agent/manager (Ar/mois)</label><input id="gross" type="number" min="0" value="3250000"></div>
-<div class="field"><label for="sme">SME supposé (Ar)</label><input id="sme" type="number" min="0" value="300000"></div>
-<div class="field"><label for="employer">Taux employeur supposé (%)</label><input id="employer" type="number" min="0" max="100" step=".1" value="18"></div>
-<div class="field"><label for="voip">VoIP par agent (€/mois)</label><input id="voip" type="number" min="0" value="30"></div>
-<div class="field"><label for="contingency">Coussin sur personnel + VoIP (%)</label><input id="contingency" type="number" min="0" max="100" value="10"></div>
-<div class="field"><label for="paymentDelay">Retard de règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
-</div><p class="muted">68 €/mois correspond aux coûts récurrents connus en équivalent mensuel : 48 € d'outils et domaines + 20 € de Claude. Sales Navigator est inactif. Les dépenses ponctuelles et les dates de facturation annuelle restent à saisir séparément. Les prix de palier, dépôt et crédits proviennent de PRICING.md ; la première facture est supposée en M+2. Un manager est compté dès la première position du métier, puis un de plus par tranche de huit.</p></section>
-<section class="card"><h2>Contrats signés ou hypothétiques</h2><div id="deals"></div><button id="addDeal">Ajouter un contrat</button></section>
-<section class="kpis"><div class="kpi">Creux de trésorerie<strong id="trough">—</strong><span id="troughMonth"></span></div><div class="kpi">Besoin illustratif +30 %<strong id="need">—</strong><span>Avant coûts et dettes manquants</span></div><div class="kpi">Trésorerie M12<strong id="cash12">—</strong></div><div class="kpi">Trésorerie M24<strong id="cash24">—</strong></div></section>
-<section class="card"><h2>Flux mensuels</h2><div class="table-wrap"><table><thead><tr><th>Mois</th><th>Agents</th><th>Managers</th><th>Dépôts</th><th>Facturé net crédits</th><th>Encaissé</th><th>Personnel + coussin</th><th>Onboarding</th><th>Outils</th><th>Cash disponible fin de mois</th></tr></thead><tbody id="rows"></tbody></table></div></section>
-<p class="muted">Un dépôt est encaissé à la signature puis déduit des trois premières factures : il améliore le calendrier d'encaissement, sans accroître le montant total du contrat. Le personnel est budgété dès l'embauche en M+1 ; le coussin de 10 % est réservé dans le cash disponible, même s'il ne correspond pas à une paie effectivement payée. Consultez le prévisionnel pour les coûts non inclus.</p>
-<script type="module">
-import {ASSUMPTIONS, pricePerPosition, projectCash, summarize} from './tools/finance-model.mjs';
-import {SCENARIOS} from './tools/finance-scenarios.mjs';
-const $=id=>document.getElementById(id), eur=n=>Math.round(n).toLocaleString('fr-FR')+' €';
-const fields=['initialCash','tools','onboarding','rate','gross','sme','employer','voip','contingency','paymentDelay'];
-function dealRow(d={signedMonth:1,metier:'helpdesk',positions:1}){
- const el=document.createElement('div');el.className='deal';
- el.innerHTML='<div class="field"><label>Mois de signature</label><input data-key="signedMonth" type="number" min="1" max="24"></div><div class="field"><label>Métier</label><select data-key="metier"><option value="helpdesk">Helpdesk IT N1</option><option value="support">Support applicatif N1</option></select></div><div class="field"><label>Positions fermes</label><input data-key="positions" type="number" min="1"></div><div class="field"><label>Prix / position (€)</label><input data-key="priceOverride" type="number" min="0" placeholder="Palier automatique"></div><button type="button" class="secondary">Retirer</button>';
- el.querySelector('[data-key="signedMonth"]').value=d.signedMonth;el.querySelector('[data-key="metier"]').value=d.metier;el.querySelector('[data-key="positions"]').value=d.positions;
- if(d.priceOverride!=null)el.querySelector('[data-key="priceOverride"]').value=d.priceOverride;
- el.querySelector('button').onclick=()=>{el.remove();$('scenario').value='custom';render()};
- el.addEventListener('input',()=>{$('scenario').value='custom';render()});return el;
-}
-function setDeals(ds){$('deals').replaceChildren(...ds.map(dealRow));render()}
-function readDeals(){return [...$('deals').children].map(el=>{const read=k=>el.querySelector('[data-key="'+k+'"]').value;const d={signedMonth:Number(read('signedMonth')),metier:read('metier'),positions:Number(read('positions'))};if(read('priceOverride')!=='')d.priceOverride=Number(read('priceOverride'));return d})}
-function render(){
- try{
-  const a={...ASSUMPTIONS,initialCash:Number($('initialCash').value),toolsPerMonth:Number($('tools').value),onboardingPerDeal:Number($('onboarding').value),exchangeArPerEuro:Number($('rate').value),grossSalaryAr:Number($('gross').value),smeAr:Number($('sme').value),employerRate:Number($('employer').value)/100,voipPerAgent:Number($('voip').value),contingency:Number($('contingency').value)/100,paymentDelayMonths:Number($('paymentDelay').value)};
-  const deals=readDeals();for(const d of deals){if(d.signedMonth<1||d.positions<1||(d.priceOverride!=null&&d.priceOverride<0))throw new Error('Saisir des contrats valides')}
-  const rows=projectCash(deals,24,a),sum=summarize(rows);
-  $('trough').textContent=eur(sum.trough);$('troughMonth').textContent='M'+sum.troughMonth;
-  $('need').textContent=eur(sum.runwayNeedWith30pctBuffer);$('cash12').textContent=eur(rows[11].cash);$('cash24').textContent=eur(rows[23].cash);
-  $('rows').innerHTML=rows.map(r=>'<tr class="'+(r.cash<0?'negative':'positive')+'"><td>M'+r.month+'</td><td>'+r.agents+'</td><td>'+r.managers+'</td><td>'+eur(r.deposit)+'</td><td>'+eur(r.invoiced)+'</td><td>'+eur(r.receipt)+'</td><td>'+eur(r.payroll)+'</td><td>'+eur(r.onboarding)+'</td><td>'+eur(r.overhead)+'</td><td>'+eur(r.cash)+'</td></tr>').join('');
- }catch(e){$('trough').textContent=e.message;$('rows').replaceChildren()}
-}
-$('scenario').addEventListener('change',()=>{const v=$('scenario').value;if(v!=='custom')setDeals(SCENARIOS[v])});
-$('addDeal').onclick=()=>{$('scenario').value='custom';$('deals').append(dealRow());render()};
-for(const f of fields)$(f).addEventListener('input',render);
-setDeals(SCENARIOS.median);
-</script></body></html>
+<main>
+  <h1>Ce simulateur a été remplacé</h1>
+  <p>La projection de trésorerie vit désormais dans <a href="projection-finances-salverys.html"><b>projection-finances-salverys.html</b></a>, qui reprend tout ce que faisait cette page et y ajoute le choix du tarif par contrat (marque blanche, client final, prix libre), la contribution contrat par contrat, le point mort et l'export JSON.</p>
+  <p class="warn"><b>Pourquoi une seule page.</b> Deux simulateurs alimentés par le même moteur finissent par diverger dès qu'une hypothèse change dans l'un et pas dans l'autre. Le calcul n'a qu'une source : <code>tools/finance-model.mjs</code>.</p>
+  <p class="note">Cette page ne calculait plus rien de juste après la révision du 2026-09-17 : son champ « onboarding par contrat » avait été remplacé par un socle plus une part par position. Elle exigeait aussi d'être servie par un serveur web, l'import de module étant bloqué en ouverture directe de fichier. La nouvelle page fonctionne en double-clic.</p>
+  <p class="note">Redirection automatique dans quelques secondes. Le contenu de l'ancienne page reste dans l'historique Git.</p>
+  <a class="cta" href="projection-finances-salverys.html">Ouvrir la projection</a>
+</main>
+</body>
+</html>
