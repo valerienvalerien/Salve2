@@ -13,7 +13,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 | `01-Strategie-Offre/PRODUIT-ET-OFFRES.md` | Produit et discours d'offre actuels |
 | `01-Strategie-Offre/FINANCE-PREVISIONNEL.md` | Hypothèses financières et scénarios explicites, à rapprocher des coûts réels |
 | `projection-finances-salverys.html` | **Projection de finances** — trésorerie, contribution par contrat et point mort, avec choix du tarif (marque blanche, client final, prix libre). Moteur : `tools/finance-model.mjs`, recopié dans la page par `tools/sync-projection.mjs` |
-| `grille-negociation-salverys.html` | **Grille et marges de négociation** — ce qui est arbitré, ce qui ne l'est pas, et jusqu'où descendre. Règle de prix, ancrage/cible/plancher, comparaison grille vs prix unique concédé |
+| `grille-negociation-salverys.html` | **Marges de négociation** — à quel prix signer. On décrit le deal (métier, positions, durée), les trois prix se calculent : prix annoncé, limite de remise, point de rupture. Même moteur et même définition du résultat que la page de projection |
 | `AUDIT-CHIFFRES-2026-09-18.md` | **Origine et validité de chaque chiffre** du dépôt : vérifié, hypothèse, estimation non validée, ou faux aujourd'hui. À consulter avant de citer un coût ou une marge |
 | `ESPACE-CLIENT-CANDIDAT.md` | Procédure de build des espaces protégés (couplée aux HTML/`tools/`) |
 
