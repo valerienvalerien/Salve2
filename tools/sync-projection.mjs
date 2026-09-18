@@ -12,16 +12,26 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const pagePath = join(here, '..', 'projection-finances-salverys.html');
-const START = '// === MODELE FINANCIER : copie synchronisee de tools/finance-model.mjs ===';
-const END = '// === FIN MODELE FINANCIER ===';
+
+/** Pages qui embarquent le moteur. Toute page ajoutée ici est vérifiée par le test. */
+export const PAGES = ['projection-finances-salverys.html', 'grille-negociation-salverys.html'];
+
+export const START = '// === MODELE FINANCIER : copie synchronisee de tools/finance-model.mjs ===';
+export const END = '// === FIN MODELE FINANCIER ===';
 
 const model = readFileSync(join(here, 'finance-model.mjs'), 'utf8').trim();
-const page = readFileSync(pagePath, 'utf8');
-const i = page.indexOf(START), j = page.indexOf(END);
-if (i < 0 || j < i) throw new Error('Marqueurs du moteur introuvables dans la page.');
+let touchees = 0;
 
-const next = page.slice(0, i + START.length) + '\n' + model + '\n' + page.slice(j);
-if (next === page) { console.log('Page déjà synchronisée.'); process.exit(0); }
-writeFileSync(pagePath, next);
-console.log('projection-finances-salverys.html : moteur synchronisé.');
+for (const nom of PAGES) {
+  const chemin = join(here, '..', nom);
+  const page = readFileSync(chemin, 'utf8');
+  const i = page.indexOf(START), j = page.indexOf(END);
+  if (i < 0 || j < i) throw new Error(`Marqueurs du moteur introuvables dans ${nom}.`);
+  const next = page.slice(0, i + START.length) + '\n' + model + '\n' + page.slice(j);
+  if (next === page) continue;
+  writeFileSync(chemin, next);
+  console.log(`${nom} : moteur synchronisé.`);
+  touchees++;
+}
+
+if (!touchees) console.log('Pages déjà synchronisées.');
