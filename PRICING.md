@@ -21,13 +21,20 @@ Les appels, les canaux, le périmètre des tickets, les horaires et la règle d'
 
 ### B — Poste dédié
 
-| Positions fermes facturables par mois | Support applicatif N1 | Helpdesk IT N1 |
-|---|---:|---:|
-| **1 à 4** | **1 700 €/position** | **2 000 €/position** |
-| **5 à 8** | **1 500 €/position** | **1 750 €/position** |
-| **9 ou plus** | **1 350 €/position** | **1 550 €/position** |
+Le tarif se calcule **par tranches, sans rétroactivité** — comme des tranches d'imposition. Les quatre premières positions restent au tarif d'entrée quel que soit le volume total ; la cinquième et les suivantes sont au tarif volume.
 
-Le palier dépend du **minimum de positions facturables garanti dans le contrat**, et non d'un volume envisagé. Les positions fermes restent dues si le partenaire ne les utilise pas. Si le minimum baisse, le prix du palier correspondant s'applique à compter de la modification contractuelle. Aucun prix négocié ne descend sous **920 €/position/mois**. **Ce seuil n'est pas un seuil de rentabilité** : avant d'approuver un devis, calculer la contribution du contrat après agents, manager(s), outils, onboarding, relève et horaires selon `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`. Une seule position support à 1 700 € peut être déficitaire dans un métier isolé selon les hypothèses actuelles.
+| Tranche de positions fermes facturables | Support applicatif N1 | Helpdesk IT N1 |
+|---|---:|---:|
+| **Positions 1 à 4** — tarif d'entrée | **1 700 €/position** | **2 000 €/position** |
+| **Positions 5 et suivantes** — tarif volume | **1 500 €/position** | **1 750 €/position** |
+
+**Exemple :** sept positions helpdesk coûtent `4 × 2 000 + 3 × 1 750 = 13 250 €/mois`, soit une moyenne de **1 893 €** par position. Ce n'est ni 2 000 € ni 1 750 € : le prix par position ne s'annonce pas seul, il s'annonce comme un total et une moyenne.
+
+> **Pourquoi par tranches (décision 2026-09-18).** La grille précédente appliquait le tarif du palier atteint à **toutes** les positions. Une remise de 150 €/position accordée à la neuvième s'appliquait aussi aux huit déjà vendues, soit 1 200 € offerts pour une position qui n'en rapporte que 507 : un contrat de 9 positions rapportait **1 503 € de moins** qu'un contrat de 8 en support, et 1 703 € de moins en helpdesk. Il fallait **12 positions** pour retrouver le résultat de 8. Par tranches, ajouter une position ajoute toujours de la marge.
+>
+> **Le palier 9+ à 1 350 / 1 550 € est supprimé** par la même décision. C'était le deuxième déplacement de ce palier pour la même raison : il était à 5 positions jusqu'au 2026-08-14. Un contrat de 12 positions ou plus se chiffre **sur devis**, avec le coût réel calculé dans `projection-finances-salverys.html`, et non sur une remise publiée.
+
+Le tarif volume s'obtient contre un **minimum de positions facturables garanti dans le contrat**, et non contre un volume envisagé. Les positions fermes restent dues si le partenaire ne les utilise pas. Si le minimum baisse, la facturation suit le nouveau nombre de positions à compter de la modification contractuelle. Aucun prix négocié ne descend sous **920 €/position/mois**. **Ce seuil n'est pas un seuil de rentabilité** : avant d'approuver un devis, calculer la contribution du contrat après agents, manager(s), outils, onboarding, relève et horaires selon `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`. Une seule position support à 1 700 € peut être déficitaire dans un métier isolé selon les hypothèses actuelles.
 
 > 🔴 **Plancher à réviser (audit du 2026-09-17, décision non prise).** À 920 €, la perte
 > **grandit avec le volume** : huit positions rapportent `8 × 76,96 = 615,68 €` et déclenchent
@@ -35,9 +42,11 @@ Le palier dépend du **minimum de positions facturables garanti dans le contrat*
 > supervision est **944,30 €/position** — outils, onboarding et coûts non renseignés en sus.
 > Tant que le plancher n'est pas relevé au-dessus de ce seuil, **ne pas s'en servir comme
 > limite de négociation** : chiffrer le contrat dans `projection-finances-salverys.html`.
-> Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §1.
+> Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §1. Le prix à comparer au plancher est celui de la
+> **dernière position de la tranche la plus basse** — 1 500 € en support, 1 750 € en helpdesk —
+> et non la moyenne du contrat, qui masque le prix auquel on accepterait la position suivante.
 
-**Exemple :** deux positions helpdesk au palier 1–4 coûtent `2 × 2 000 = 4 000 €/mois`. Cinq positions fermes coûtent `5 × 1 750 = 8 750 €/mois` ; le tarif de cinq positions ne s'applique pas à deux positions simplement envisagées.
+**Deuxième exemple :** deux positions helpdesk coûtent `2 × 2 000 = 4 000 €/mois`. Cinq positions fermes coûtent `4 × 2 000 + 1 × 1 750 = 9 750 €/mois` ; le tarif volume ne s'applique pas à des positions simplement envisagées, et jamais aux quatre premières.
 
 ### Horaires et dimensionnement
 

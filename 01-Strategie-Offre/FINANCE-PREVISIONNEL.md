@@ -32,7 +32,9 @@ Deux hypothèses de supervision restent à trancher, et elles pèsent plus que l
 
 ## 3. Prix et marge par contrat
 
-Les prix des positions dédiées sont ceux de `PRICING.md` : support applicatif **1 700 / 1 500 / 1 350 €** et helpdesk **2 000 / 1 750 / 1 550 €** par position selon les paliers 1–4 / 5–8 / 9+. La remise de palier exige le minimum de positions fermes facturables au contrat. Le modèle A à **1 120 € pour 400 tickets** et le médical MB facturé à l'appel ne sont **pas projetés** tant que la capacité nécessaire, le temps par interaction et le staffing partagé ne sont pas chiffrés.
+Les prix des positions dédiées sont ceux de `PRICING.md`, **par tranches non rétroactives** depuis le 2026-09-18 : les quatre premières positions au tarif d'entrée — support **1 700 €**, helpdesk **2 000 €** — puis la cinquième et les suivantes au tarif volume — support **1 500 €**, helpdesk **1 750 €**. Le tarif volume exige le minimum de positions fermes facturables au contrat. Le modèle A à **1 120 € pour 400 tickets** et le médical MB facturé à l'appel ne sont **pas projetés** tant que la capacité nécessaire, le temps par interaction et le staffing partagé ne sont pas chiffrés.
+
+Le **palier 9+ à 1 350 / 1 550 € est supprimé**, et la remise n'est plus rétroactive. Motif : une remise appliquée à toutes les positions coûte plus que la position qu'elle fait gagner. En support, la neuvième position déclenchait 1 200 € de remise sur les huit déjà vendues pour 507 € de marge nouvelle, plus 810 € de second manager — un contrat de 9 positions rapportait **1 503 € de moins** qu'un contrat de 8, et il fallait 12 positions pour revenir au résultat de 8. Par tranches, ajouter une position ajoute toujours de la marge. Le seul recul qui subsiste est celui du **palier de manager**, toutes les huit positions : en support il coûte 153 €/mois à la neuvième position, parce que 657 € de marge nouvelle ne couvrent pas 810 € de supervision. C'est un coût d'escalier réel, pas un défaut de grille.
 
 Une marge de contrat doit inclure **tous les agents et managers déclenchés**, les outils supplémentaires, le risque d'absence et l'onboarding amorti. Le seuil historique de **920 €/position** est seulement un garde-fou de négociation ; il n'est pas un seuil de rentabilité. À 920 €, la contribution par agent après coût variable n'est que `920 − 843,04 = 76,96 €`, avant manager et structure.
 
@@ -40,13 +42,16 @@ Une marge de contrat doit inclure **tous les agents et managers déclenchés**, 
 
 | Contrat isolé, un métier | CA mensuel | Agents + manager + outils (68 €) | Résultat indicatif mensuel |
 |---|---:|---:|---:|
-| 1 helpdesk à 2 000 € | 2 000 € | 1 721 € | **+279 €** |
-| 1 support à 1 700 € | 1 700 € | 1 721 € | **−21 €** |
-| 2 support à 1 700 € | 3 400 € | 2 564 € | **+836 €** |
-| 5 support au palier 5–8, à 1 500 € | 7 500 € | 5 093 € | **+2 407 €** |
-| 9 support au palier 9+, à 1 350 € | 12 150 € | 9 275 € (9 agents, **2 managers**) | **+2 875 €** |
+| 1 helpdesk | `1 × 2 000` = 2 000 € | 1 721 € | **+279 €** |
+| 1 support | `1 × 1 700` = 1 700 € | 1 721 € | **−21 €** |
+| 2 support | `2 × 1 700` = 3 400 € | 2 564 € | **+836 €** |
+| 5 support | `4 × 1 700 + 1 × 1 500` = 8 300 € | 5 093 € | **+3 207 €** |
+| 7 helpdesk | `4 × 2 000 + 3 × 1 750` = 13 250 € | 6 779 € | **+6 471 €** |
+| 9 support | `4 × 1 700 + 5 × 1 500` = 14 300 € | 9 275 € (9 agents, **2 managers**) | **+5 025 €** |
 
-Ces résultats sont des contributions **à régime plein, hors onboarding, taxes et coûts non renseignés**. L'ancien prévisionnel annonçait **+421 € pour 5 positions à 1 350 €** ; avec les coûts actuels, même ce prix non contractuel au palier 5 donnerait environ **+1 657 €** avant coûts manquants. L'ancien **+2 450 € à 9 positions** n'est pas reproductible avec la règle de manager supplémentaire. Ces assertions ont été retirées, sans les remplacer par une promesse de marge.
+Ces résultats sont des contributions **à régime plein, hors onboarding, taxes et coûts non renseignés**. Ils remplacent ceux calculés sur la grille rétroactive : 5 support donnaient **+2 407 €** au lieu de +3 207 €, et 9 support **+2 875 €** au lieu de +5 025 €. L'écart n'est pas un gain nouveau — c'est le montant que la remise rétroactive prélevait sur des positions déjà vendues au prix fort.
+
+Le prix **moyen** d'un contrat n'est jamais un des deux tarifs de la grille dès la cinquième position : sept positions helpdesk se facturent 13 250 €, soit 1 893 € en moyenne. Ne jamais annoncer une moyenne comme un prix unitaire, ni comparer une moyenne au plancher — c'est le tarif de la tranche la plus basse qui dit à quel prix on accepterait la position suivante.
 
 ## 4. Trésorerie sur 24 mois — scénarios explicites
 

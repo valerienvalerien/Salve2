@@ -1,4 +1,28 @@
-# Audit du prévisionnel financier — 2026-09-17
+# Audit du prévisionnel financier — 2026-09-17, révisé le 2026-09-18
+
+## 0. Décision du 2026-09-18 : la grille passe en tranches non rétroactives
+
+**Constat.** La grille appliquait le tarif du palier atteint à **toutes** les positions du contrat. La remise du dernier palier s'appliquait donc aussi aux positions déjà vendues au prix fort, et elle coûtait plus cher que la position qu'elle faisait gagner :
+
+| Support | 8 positions | 9 positions | Écart |
+|---|---:|---:|---:|
+| Ancienne grille rétroactive | 4 378 € | 2 875 € | **−1 503 €** |
+| Helpdesk, même passage | 6 378 € | 4 675 € | **−1 703 €** |
+
+Décomposition du passage de 8 à 9 en support : `−1 200 €` de remise sur les huit positions déjà vendues, `+507 €` de marge apportée par la neuvième, `−810 €` de second manager. Il fallait **12 positions** au palier 9+ pour retrouver le résultat de 8 positions au palier 5-8.
+
+Le manager n'est pas la cause principale : à capacité de supervision 10, 12 ou 16 agents, le passage à 9 reste perdant de **693 €**. La cause est la rétroactivité de la remise.
+
+**Décision.** Tarification **par tranches**, comme des tranches d'imposition : positions 1 à 4 au tarif d'entrée, position 5 et suivantes au tarif volume. **Le palier 9+ à 1 350 / 1 550 € est supprimé.** C'était son deuxième déplacement pour la même raison — il était à 5 positions jusqu'au 2026-08-14, repoussé à 9 parce qu'il passait sous le point mort. Déplacer le seuil ne corrigeait pas le mécanisme.
+
+**Vérification.** `tools/finance-model.test.mjs` teste désormais, de 2 à 30 positions et pour les deux métiers, que le CA augmente toujours quand on ajoute une position et que l'augmentation vaut exactement le prix de la tranche. Le seul recul de résultat autorisé est celui du palier de manager, toutes les huit positions ; le test échoue si un recul apparaît ailleurs.
+
+**Ce qui subsiste.** En support, la neuvième position reste en recul de **153 €/mois** : 657 € de marge nouvelle contre 810 € de second manager. C'est un coût d'escalier réel, pas un défaut de grille. En helpdesk le passage est positif de 97 €.
+
+**Reste à faire.** `tools/deal-build.mjs` calcule encore le CA d'un deal en `positions × prix`, à plat. C'est sans effet sur les prix négociés au cas par cas qu'il lit dans le JSON du deal, et le calcul reste prudent — il sous-estime le CA, donc ne peut pas approuver à tort un contrat déficitaire. Mais le document de closing qu'il produit affiche une grille à prix unique par palier, qui ne correspond plus à la grille en vigueur. À reprendre avant le prochain devis dépassant quatre positions.
+
+---
+
 
 Périmètre de cette passe : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`, la page `tresorerie-salverys.html` et le moteur `tools/finance-model.mjs` qui les alimente. L'audit du 2026-09-16 est repris en §3 ; l'audit antérieur, lié au modèle abandonné, reste dans `99-Archives/AUDIT-FINANCE-PREVISIONNEL-REGISTRE-INTERNE-2026-09-15.md`.
 
@@ -20,7 +44,7 @@ Périmètre de cette passe : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`, la pa
 Les valeurs suivantes ont été recalculées et sont reproduites par `node tools/finance-model.test.mjs` :
 
 - Salaire chargé **736,40 €**, agent **843,04 €**, manager **810,04 €** — le plafond de cotisations à 8 × SME s'applique bien, les 18 % portent sur 2 400 000 Ar et non sur 3 250 000 Ar.
-- Contributions à régime plein du §3 : helpdesk seul **+279 €**, support seul **−21 €**, 2 support **+836 €**, 5 support à 1 500 € **+2 407 €**, 9 support à 1 350 € **+2 875 €** avec deux managers.
+- Contributions à régime plein du §3 : helpdesk seul **+279 €**, support seul **−21 €**, 2 support **+836 €**. Les contrats de cinq positions et plus ont été recalculés sur les tranches (§0) : 5 support **+3 207 €**, 9 support **+5 025 €** avec deux managers.
 - Le dépôt reste une avance neutre : `1 800 + 3 × 3 400 = 12 000 €`, soit exactement trois mois à 4 000 €.
 - Les crédits de dépôt sont bien déduits au bon rang de facture, et l'encaissement suit la facture du délai de règlement.
 

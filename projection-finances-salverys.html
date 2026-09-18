@@ -265,16 +265,26 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
  */
 
 /** Grilles de prix par position et par mois.
- * `mb` : paliers 1-4 / 5-8 / 9+ de PRICING.md (grille partenaire en vigueur).
+ * `mb` : [tarif d'entrée, tarif volume] de PRICING.md (grille partenaire en vigueur).
+ *   Les tranches ne sont PAS rétroactives : les quatre premières positions restent au
+ *   tarif d'entrée quel que soit le volume total, la cinquième et les suivantes passent
+ *   au tarif volume. C'est ce qui garantit qu'ajouter une position ajoute toujours de la
+ *   marge — une remise rétroactive s'applique aussi aux positions déjà vendues, et peut
+ *   coûter plus que la position gagnée (décision 2026-09-18, cf. AUDIT-FINANCE §1).
+ *   Le palier 9+ à 1 350 / 1 550 € est supprimé : il faisait décrocher le résultat de
+ *   1 503 € (support) et 1 703 € (helpdesk) au passage de 8 à 9 positions.
  * `direct` : fourchette client final du registre interne archivé (bas / médian / haut).
  *   Le direct n'a PAS de grille de volume documentée : le prix ne dépend pas du nombre
  *   de positions, seulement du point choisi dans la fourchette.
  *   Le direct est GELÉ en prospection depuis le 2026-09-07 : ces prix servent à chiffrer
  *   un entrant, pas à planifier une conquête. */
 export const OFFERS = Object.freeze({
-  support: Object.freeze({ mb: [1700, 1500, 1350], direct: [1900, 2150, 2400] }),
-  helpdesk: Object.freeze({ mb: [2000, 1750, 1550], direct: [2200, 2500, 2800] }),
+  support: Object.freeze({ mb: Object.freeze([1700, 1500]), direct: Object.freeze([1900, 2150, 2400]) }),
+  helpdesk: Object.freeze({ mb: Object.freeze([2000, 1750]), direct: Object.freeze([2200, 2500, 2800]) }),
 });
+
+/** Nombre de positions facturées au tarif d'entrée avant le passage au tarif volume. */
+export const MB_ENTRY_POSITIONS = 4;
 
 export const METIER_LABELS = Object.freeze({ support: 'Support applicatif N1', helpdesk: 'Helpdesk IT N1' });
 export const DIRECT_LEVELS = Object.freeze(['bas', 'median', 'haut']);
@@ -312,11 +322,31 @@ export const ASSUMPTIONS = Object.freeze({
   initialCash: 0,
 });
 
-/** Prix marque blanche selon le palier de volume ferme (PRICING.md §1, modèle B). */
-export function pricePerPosition(metier, positions) {
+/** Prix marque blanche de la n-ième position (PRICING.md §1, modèle B).
+ * Attention : c'est le prix de CETTE position, pas le prix moyen du contrat.
+ * Les tranches n'étant pas rétroactives, utiliser mbRevenue() pour un CA. */
+export function pricePerPosition(metier, position) {
+  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
+  if (!Number.isInteger(position) || position < 1) throw new Error('Nombre de positions invalide');
+  return OFFERS[metier].mb[position > MB_ENTRY_POSITIONS ? 1 : 0];
+}
+
+/** CA mensuel marque blanche d'un contrat de n positions, tranche par tranche. */
+export function mbRevenue(metier, positions) {
   if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
   if (!Number.isInteger(positions) || positions < 1) throw new Error('Nombre de positions invalide');
-  return OFFERS[metier].mb[positions >= 9 ? 2 : positions >= 5 ? 1 : 0];
+  const [entree, volume] = OFFERS[metier].mb;
+  return Math.min(positions, MB_ENTRY_POSITIONS) * entree + Math.max(0, positions - MB_ENTRY_POSITIONS) * volume;
+}
+
+/** Détail des tranches d'un contrat marque blanche, pour l'affichage d'un devis. */
+export function mbBreakdown(metier, positions) {
+  const [entree, volume] = OFFERS[metier].mb;
+  const base = Math.min(positions, MB_ENTRY_POSITIONS);
+  const extra = Math.max(0, positions - MB_ENTRY_POSITIONS);
+  const lignes = [{ count: base, price: entree }];
+  if (extra) lignes.push({ count: extra, price: volume });
+  return lignes;
 }
 
 /** Prix client final selon le point retenu dans la fourchette du registre interne. */
@@ -327,20 +357,36 @@ export function directPrice(metier, level = 'bas') {
   return OFFERS[metier].direct[i];
 }
 
+function tarifOf(deal) {
+  return deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+}
+
 /**
- * Résout le prix mensuel d'une position selon le mode de tarification du contrat.
- * tarif = 'mb' (grille partenaire) | 'direct' (client final) | 'libre' (prix saisi).
+ * CA mensuel d'un contrat selon son mode de tarification.
+ * tarif = 'mb' (grille partenaire, par tranches) | 'direct' (client final) | 'libre' (prix saisi).
  */
-export function resolvePrice(deal) {
-  const tarif = deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+export function dealRevenue(deal) {
+  const tarif = tarifOf(deal);
+  if (tarif === 'mb') return mbRevenue(deal.metier, deal.positions);
+  if (tarif === 'direct') return deal.positions * directPrice(deal.metier, deal.directLevel ?? 'bas');
   if (tarif === 'libre') {
     const p = deal.price ?? deal.priceOverride;
     if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) throw new Error('Prix libre invalide');
-    return p;
+    return deal.positions * p;
   }
-  if (tarif === 'direct') return directPrice(deal.metier, deal.directLevel ?? 'bas');
-  if (tarif === 'mb') return pricePerPosition(deal.metier, deal.positions);
   throw new Error(`Mode de tarification inconnu : ${tarif}`);
+}
+
+/** Prix MOYEN par position. En marque blanche au-delà de quatre positions, ce n'est
+ * aucun des deux prix de la grille : c'est la moyenne des tranches. */
+export function resolvePrice(deal) {
+  return dealRevenue(deal) / deal.positions;
+}
+
+/** Prix de la DERNIÈRE position vendue. C'est lui qui doit rester au-dessus du plancher :
+ * c'est le prix auquel on accepterait la position suivante. */
+export function marginalPrice(deal) {
+  return tarifOf(deal) === 'mb' ? pricePerPosition(deal.metier, deal.positions) : resolvePrice(deal);
 }
 
 /** Salaire chargé mensuel d'une personne, en euros, cotisations plafonnées à 8 × SME. */
@@ -376,15 +422,19 @@ function normalize(deals, a) {
     if (!Number.isInteger(d.signedMonth) || d.signedMonth < 1) throw new Error('Mois de signature invalide');
     if (!Number.isInteger(d.positions) || d.positions < 1) throw new Error('Nombre de positions invalide');
     if (!OFFERS[d.metier]) throw new Error('Métier invalide');
-    const price = resolvePrice(d);
-    return { ...d, price, acquisitionCost: d.acquisitionCost ?? 0, onboarding: d.onboarding ?? onboardingCost(d.positions, a) };
+    const revenue = dealRevenue(d);
+    return {
+      ...d, revenue, price: revenue / d.positions, marginal: marginalPrice(d),
+      acquisitionCost: d.acquisitionCost ?? 0,
+      onboarding: d.onboarding ?? onboardingCost(d.positions, a),
+    };
   });
 }
 
 /** Montant facturé pour un contrat à sa n-ième facture (n commence à 0), crédits de dépôt déduits. */
 function invoiceAmount(deal, invoiceNumber, a) {
   const credit = invoiceNumber < a.invoiceCreditMonths ? deal.positions * a.invoiceCreditPerPosition : 0;
-  return deal.positions * deal.price - credit;
+  return deal.revenue - credit;
 }
 
 /**
@@ -437,14 +487,14 @@ export function contributions(deals, a = ASSUMPTIONS) {
     const managersNow = managersFor(staff, a);
     const marginalManagers = managersNow - managersSoFar;
     managersSoFar = managersNow;
-    const revenue = d.positions * d.price;
+    const revenue = d.revenue;
     const agentCost = d.positions * monthlyAgentCost(a);
     const managerCost = marginalManagers * monthlyManagerCost(a);
     return {
       deal: d, revenue, agentCost, managerCost, marginalManagers,
       contribution: revenue - agentCost - managerCost,
-      perPositionMargin: d.price - monthlyAgentCost(a),
-      belowFloor: d.price < PRICE_FLOOR,
+      perPositionMargin: d.marginal - monthlyAgentCost(a),
+      belowFloor: d.marginal < PRICE_FLOOR,
     };
   });
   const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
@@ -462,6 +512,17 @@ export function breakEvenPositions(price, a = ASSUMPTIONS) {
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
     if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
+  }
+  return null;
+}
+
+/** Nombre de positions nécessaires pour équilibrer un contrat marque blanche, tranches comprises. */
+export function breakEvenMb(metier, a = ASSUMPTIONS) {
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  for (let n = 1; n <= 200; n++) {
+    const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
+    const result = mbRevenue(metier, n) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
+    if (result >= 0) return n;
   }
   return null;
 }
@@ -594,6 +655,12 @@ function markCustom() { $('scenario').value = 'custom'; }
 
 /* ---- affichage des prix et des alertes par contrat ---- */
 
+/** « 4 × 2 000 € + 3 × 1 750 € », ou « 3 × 2 000 € » quand une seule tranche s'applique. */
+function priceFormula(d) {
+  const lignes = d.tarif === 'mb' ? mbBreakdown(d.metier, d.positions) : [{ count: d.positions, price: resolvePrice(d) }];
+  return lignes.map(l => `${l.count} × ${eur(l.price)}`).join(' + ');
+}
+
 function refreshDealCards(deals, a) {
   const agent = monthlyAgentCost(a), mgr = monthlyManagerCost(a);
   const asymptote = agent + mgr / a.managerCapacity;
@@ -602,20 +669,32 @@ function refreshDealCards(deals, a) {
     el.querySelector('[data-role="level"]').style.display = d.tarif === 'direct' ? '' : 'none';
     const priceField = el.querySelector('[data-role="price"]');
     const priceInput = el.querySelector('[data-key="price"]');
-    let price;
-    try { price = resolvePrice(d); } catch { price = 0; }
     if (d.tarif === 'libre') { priceField.style.display = ''; priceInput.disabled = false; }
     else { priceField.style.display = 'none'; priceInput.disabled = true; }
 
-    const badges = [];
-    if (d.tarif === 'mb') badges.push(`<span class="badge ok">palier ${d.positions >= 9 ? '9+' : d.positions >= 5 ? '5-8' : '1-4'}</span>`);
-    if (d.tarif === 'direct') badges.push('<span class="badge info">direct — entrants seulement, prospection gelée</span>');
-    if (price < PRICE_FLOOR) badges.push(`<span class="badge alert">sous le plancher de ${PRICE_FLOOR} €</span>`);
-    else if (price < asymptote) badges.push('<span class="badge alert">aucun volume ne rentabilise ce prix</span>');
+    let ca, moyen, marginal, suivante;
+    try {
+      ca = dealRevenue(d); moyen = ca / d.positions; marginal = marginalPrice(d);
+      // Prix de la position N+1, pas de la dernière vendue : c'est le chiffre de négociation.
+      suivante = d.tarif === 'mb' ? pricePerPosition(d.metier, d.positions + 1) : moyen;
+    } catch { ca = 0; moyen = 0; marginal = 0; suivante = 0; }
 
-    const ca = d.positions * price;
+    const badges = [];
+    if (d.tarif === 'mb') {
+      const reste = d.positions - MB_ENTRY_POSITIONS;
+      badges.push(reste > 0
+        ? `<span class="badge ok">tarif volume sur ${reste} position${reste > 1 ? 's' : ''}</span>`
+        : `<span class="badge ok">tarif d'entrée · volume dès la ${MB_ENTRY_POSITIONS + 1}<sup>e</sup></span>`);
+    }
+    if (d.tarif === 'direct') badges.push('<span class="badge info">direct — entrants seulement, prospection gelée</span>');
+    if (marginal < PRICE_FLOOR) badges.push(`<span class="badge alert">sous le plancher de ${PRICE_FLOOR} €</span>`);
+    else if (marginal < asymptote) badges.push('<span class="badge alert">aucun volume ne rentabilise ce prix</span>');
+
+    const mixte = d.tarif === 'mb' && d.positions > MB_ENTRY_POSITIONS;
     el.querySelector('[data-role="summary"]').innerHTML =
-      `<span class="price-tag">${eur(price)} / position</span> · CA mensuel <span class="price-tag">${eur(ca)}</span> · marge par position après agent <span class="price-tag">${eur(price - agent)}</span> ${badges.join(' ')}`;
+      `<span class="price-tag">${priceFormula(d)}</span> = CA mensuel <span class="price-tag">${eur(ca)}</span>`
+      + (mixte ? ` · moyenne <span class="price-tag">${eur(moyen)}</span> / position` : '')
+      + ` · une position de plus rapporterait <span class="price-tag">${eur(suivante - agent)}</span> après son agent ${badges.join(' ')}`;
   });
 }
 
@@ -735,7 +814,7 @@ function render() {
       <thead><tr><th>Contrat</th><th>Positions × prix</th><th>CA mensuel</th><th>Agents</th><th>Manager</th><th>Contribution</th></tr></thead>
       <tbody>${contrib.lines.map(l => `<tr>
         <td>${escapeHtml(l.deal.label || METIER_LABELS[l.deal.metier])}<br><span class="note">M${l.deal.signedMonth} · ${tarifLabel(l.deal)}</span></td>
-        <td${l.belowFloor ? ' class="neg"' : ''}>${l.deal.positions} × ${eur(l.deal.price)}</td>
+        <td${l.belowFloor ? ' class="neg"' : ''}>${priceFormula(l.deal)}${l.deal.positions > MB_ENTRY_POSITIONS && l.deal.tarif === 'mb' ? `<br><span class="note">moyenne ${eur(l.deal.price)}</span>` : ''}</td>
         <td>${eur(l.revenue)}</td>
         <td>${eur(-l.agentCost)}</td>
         <td>${l.marginalManagers ? eur(-l.managerCost) : '—'}</td>
@@ -748,10 +827,10 @@ function render() {
 
     const asymptote = agent + mgr / a.managerCapacity;
     const be = ['helpdesk', 'support'].map(m => {
-      const p = pricePerPosition(m, 1), n = breakEvenPositions(p, a);
-      return `${METIER_LABELS[m]} au palier 1-4 (${eur(p)}) : ${n ? `${n} position${n > 1 ? 's' : ''}` : 'jamais rentable, quel que soit le volume'}`;
+      const n = breakEvenMb(m, a);
+      return `${METIER_LABELS[m]} : ${n ? `${n} position${n > 1 ? 's' : ''}` : 'jamais rentable, quel que soit le volume'}`;
     }).join(' · ');
-    $('breakEven').innerHTML = `<b>Point mort.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>sous ce seuil</b>.`;
+    $('breakEven').innerHTML = `<b>Point mort en marque blanche.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>sous ce seuil</b>.`;
 
     $('fluxTable').innerHTML = `
       <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Acquisition</th><th>Structure</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
@@ -762,7 +841,7 @@ function render() {
         <td class="${r.result < 0 ? 'neg' : 'pos'}">${eur(r.result)}</td>
         <td class="${r.cash < 0 ? 'neg' : 'pos'}">${eur(r.cash)}</td></tr>`).join('')}</tbody>`;
 
-    $('tarifNote').innerHTML = `Grille marque blanche : helpdesk ${OFFERS.helpdesk.mb.map(p => p + ' €').join(' / ')} et support ${OFFERS.support.mb.map(p => p + ' €').join(' / ')} selon les paliers 1-4 / 5-8 / 9+. Fourchette client final du registre interne : helpdesk ${OFFERS.helpdesk.direct[0]}–${OFFERS.helpdesk.direct[2]} €, support ${OFFERS.support.direct[0]}–${OFFERS.support.direct[2]} € — <b>sans grille de volume</b>, et la prospection directe est gelée depuis le 2026-09-07 : ce mode sert à chiffrer un entrant.`;
+    $('tarifNote').innerHTML = `<b>Grille marque blanche, par tranches non rétroactives.</b> Les ${MB_ENTRY_POSITIONS} premières positions sont au tarif d'entrée — helpdesk ${OFFERS.helpdesk.mb[0]} €, support ${OFFERS.support.mb[0]} € — et la ${MB_ENTRY_POSITIONS + 1}<sup>e</sup> et les suivantes au tarif volume — helpdesk ${OFFERS.helpdesk.mb[1]} €, support ${OFFERS.support.mb[1]} €. La remise ne s'applique jamais aux positions déjà vendues : ajouter une position ajoute toujours de la marge. Le prix affiché au partenaire est donc un total et une moyenne, pas un prix unitaire unique.<br>Fourchette client final du registre interne : helpdesk ${OFFERS.helpdesk.direct[0]}–${OFFERS.helpdesk.direct[2]} €, support ${OFFERS.support.direct[0]}–${OFFERS.support.direct[2]} € — <b>sans grille de volume</b>, et la prospection directe est gelée depuis le 2026-09-07 : ce mode sert à chiffrer un entrant.`;
 
     save();
   } catch (e) {

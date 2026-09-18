@@ -34,23 +34,18 @@
   "reventeConseillee": 2700,
   "grille": [
     {
-      "engagement": "1-4 ETP — tarif standard",
+      "engagement": "Positions 1 a 4 — tarif d'entree",
       "gros": 2000,
       "minimumFacturable": 1
     },
     {
-      "engagement": "5-8 ETP — tarif volume",
+      "engagement": "Positions 5 et suivantes — tarif volume",
       "gros": 1750,
       "retenu": true,
       "minimumFacturable": 5
-    },
-    {
-      "engagement": "9+ ETP — tarif strategique",
-      "gros": 1550,
-      "minimumFacturable": 9
     }
   ],
-  "grilleNote": "Amplitudes au-delà du périmètre ci-dessus (nuit, dimanche, jours fériés) chiffrées séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.",
+  "grilleNote": "Tarification par tranches, sans retroactivite : les quatre premieres positions restent au tarif d'entree. Cinq positions se facturent 4 × 2 000 + 1 × 1 750 = 9 750 €/mois, soit 1 950 € en moyenne. Amplitudes au-delà du périmètre ci-dessus (nuit, dimanche, jours fériés) chiffrées séparément. Cadrage et mise en place offerts. Facturation mensuelle, prélèvement SEPA. Grille révisable annuellement avec préavis de 90 jours.",
   "heuresSemaine": "35 h/semaine",
   "etpRetenus": 5,
   "pilote": "Le pilote porte sur un seul de vos clients finaux. Cinq positions restent fermes et facturables au palier 5–8 pendant la phase initiale ; le périmètre réduit ne réduit pas le volume engagé. Les KPI sont publiés dès la première prise de tickets et deviennent opposables à partir du premier mois plein en régime. Toute réduction du minimum exige un avenant ; la sortie suit les clauses signées.",

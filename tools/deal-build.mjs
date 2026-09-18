@@ -50,10 +50,19 @@ const DEPOT_MOIS_IMPUTATION = 3;
 /* Volume ferme facturable — generalise a TOUS les paliers (PRICING.md §1, modele B) :
  * chaque tarif s'achete avec un volume engage, pas avec une intention. Sans minimum
  * facturable, Salverys porterait le risque de sous-consommation du partenaire (il annonce
- * 9 positions pour obtenir 1 350 €, en consomme 5, et le banc est a notre charge). En equipe
- * salariee ce banc coute plus cher qu'avant : preavis + indemnite de licenciement s'ajoutent
- * au salaire (FINANCE-PREVISIONNEL.md §7.1). Seuil a 1 = tout palier retenu doit le porter.
- * Paliers en vigueur : 1-4 ETP (standard) · 5-8 ETP (volume) · 9+ ETP (strategique). */
+ * 8 positions pour obtenir le tarif volume, en consomme 3, et le banc est a notre charge). En
+ * equipe salariee ce banc coute plus cher qu'avant : preavis + indemnite de licenciement
+ * s'ajoutent au salaire (FINANCE-PREVISIONNEL.md §7.1). Seuil a 1 = tout palier retenu doit
+ * le porter.
+ *
+ * Tranches en vigueur depuis le 2026-09-18 (PRICING.md §1) : positions 1 a 4 au tarif
+ * d'entree, positions 5 et suivantes au tarif volume, SANS retroactivite. Le palier 9+ est
+ * supprime.
+ * ⚠ Ce script calcule encore le CA a plat (positions × prix du palier retenu). C'est prudent
+ * — il sous-estime le CA d'un contrat de plus de 4 positions, donc ne peut pas approuver a
+ * tort un deal deficitaire — mais la grille rendue dans le document de closing affiche un
+ * prix unique par palier, qui ne correspond plus a la grille en vigueur. A reprendre avant
+ * le prochain devis de plus de quatre positions (AUDIT-FINANCE-PREVISIONNEL.md §0). */
 const MINIMUM_FACTURABLE_SEUIL = 1;
 
 /* Plus de remise de lancement en marque blanche (PRICING.md §3, decide 2026-08-03) :
@@ -394,7 +403,7 @@ for (const r of deal.grille) {
   if (n >= MINIMUM_FACTURABLE_SEUIL && retenue && !retenue.minimumFacturable) {
     console.error(`✗ Palier a ${n} positions retenu sans minimum facturable (PRICING.md §1, modele B).`);
     console.error(`  Ajouter "minimumFacturable" sur la ligne « ${retenue.engagement} » — le minimum du palier`);
-    console.error('  (1-4 ETP : 1 · 5-8 ETP : 5 · 9+ ETP : 9), ou retenir le palier inferieur.');
+    console.error('  (tarif d\'entree : 1 · tarif volume : 5), ou retenir le tarif d\'entree.');
     console.error('  Chaque tarif s\'achete avec un volume ferme, pas avec une intention.');
     process.exit(1);
   }
