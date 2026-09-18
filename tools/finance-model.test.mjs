@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import {
   projectCash, pricePerPosition, resolvePrice, monthlyAgentCost, monthlyManagerCost,
   onboardingCost, managersFor, contributions, breakEvenPositions, summarize, PRICE_FLOOR, ASSUMPTIONS,
+  activationFee, depositResidual,
   mbRevenue, mbBreakdown, dealRevenue, marginalPrice, breakEvenMb, MB_ENTRY_POSITIONS, OFFERS, DIRECT_REFERENCE,
 } from './finance-model.mjs';
 import { SCENARIOS } from './finance-scenarios.mjs';
@@ -86,6 +87,26 @@ assert.equal(rows[0].deposit, 1800);
 assert.deepEqual(rows.slice(2, 5).map(r => r.invoiced), [3400, 3400, 3400]);
 assert.equal(rows[5].invoiced, 4000);
 assert.equal(rows[0].deposit + rows.slice(2, 5).reduce((n, r) => n + r.invoiced, 0), 12000);
+
+// Frais d'activation : encaissés à la signature, jamais rendus, et nuls par défaut.
+assert.equal(activationFee(5), 0, 'aucun frais d\'activation par défaut');
+assert.equal(rows[0].activation, 0);
+{
+  const a = { ...ASSUMPTIONS, activationFeePerDeal: 400, activationFeePerPosition: 400 };
+  assert.equal(activationFee(2, a), 400 + 2 * 400);
+  const r = projectCash([d], 7, a);
+  assert.equal(r[0].activation, 1200, 'encaissés au mois de la signature');
+  assert.equal(r[1].activation, 0, 'et une seule fois');
+  // Ils améliorent le cash de leur montant exact, sans toucher à la facturation.
+  const sans = projectCash([d], 7);
+  assert.deepEqual(r.map(x => x.invoiced), sans.map(x => x.invoiced));
+  assert.equal(Math.round(r.at(-1).cash - sans.at(-1).cash), 1200);
+}
+
+// Le dépôt doit rester neutre : dépôt = crédit × nombre de factures créditées.
+assert.equal(depositResidual(), 0, 'le dépôt de PRICING.md est intégralement rendu');
+assert.equal(depositResidual({ ...ASSUMPTIONS, depositPerPosition: 1200 }), 300, 'résidu = frais caché');
+assert.equal(depositResidual({ ...ASSUMPTIONS, invoiceCreditMonths: 4 }), -300, 'crédit supérieur à l\'encaissé');
 
 // La supervision apparaît dès le premier métier et un second manager au 9e agent.
 assert.equal(projectCash([{ signedMonth: 1, metier: 'support', positions: 1 }], 4)[1].managers, 1);

@@ -243,6 +243,13 @@ export const ASSUMPTIONS = Object.freeze({
   depositPerPosition: 900,
   invoiceCreditPerPosition: 300,
   invoiceCreditMonths: 3,
+  /** Frais d'activation NON remboursables, encaissés à la signature.
+   * À distinguer du dépôt, qui est une avance intégralement rendue par crédit de facture.
+   * Zéro par défaut : `PRICING.md` §3 dit aujourd'hui qu'il n'y a pas de frais de mise en
+   * service. Les activer est une MODIFICATION DE LA GRILLE, donc une hausse de prix à
+   * vendre — pas un simple réglage d'outil. */
+  activationFeePerDeal: 0,
+  activationFeePerPosition: 0,
   paymentDelayMonths: 1,
   hireDelayMonths: 1,
   firstInvoiceDelayMonths: 2,
@@ -341,6 +348,21 @@ export function onboardingCost(positions, a = ASSUMPTIONS) {
   return a.onboardingBase + positions * a.onboardingPerPosition;
 }
 
+/** Frais d'activation d'un contrat : encaissés à la signature, jamais rendus. */
+export function activationFee(positions, a = ASSUMPTIONS) {
+  return (a.activationFeePerDeal ?? 0) + positions * (a.activationFeePerPosition ?? 0);
+}
+
+/**
+ * Part du dépôt qui n'est PAS rendue au partenaire, par position.
+ * Le dépôt est censé être neutre : `dépôt = crédit × nombre de factures créditées`.
+ * Un résidu positif est un frais d'activation déguisé — il devrait être nommé comme tel.
+ * Un résidu négatif crédite au partenaire de l'argent jamais encaissé.
+ */
+export function depositResidual(a = ASSUMPTIONS) {
+  return a.depositPerPosition - a.invoiceCreditPerPosition * a.invoiceCreditMonths;
+}
+
 /** Nombre de managers budgétés pour un effectif donné, réparti par métier.
  * Un manager par tranche de `managerCapacity` positions DANS CHAQUE MÉTIER : la supervision
  * n'est pas supposée mutualisable entre deux métiers. Elle l'est en revanche entre deux
@@ -391,6 +413,8 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
     const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
     const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    // Les frais d'activation ne sont pas une avance : ils entrent et ne ressortent jamais.
+    const activation = signedThisMonth.reduce((n, d) => n + activationFee(d.positions, a), 0);
     const invoiced = accepted
       .filter(d => m >= d.signedMonth + a.firstInvoiceDelayMonths)
       .reduce((n, d) => n + invoiceAmount(d, m - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
@@ -402,8 +426,8 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
     const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
     const expense = payroll + overhead + onboarding + acquisition;
-    cash += deposit + receipt - expense;
-    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, invoiced, receiptGross, badDebt, receipt, expense, result: receipt - expense, cash });
+    cash += deposit + activation + receipt - expense;
+    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
   }
   return rows;
 }
