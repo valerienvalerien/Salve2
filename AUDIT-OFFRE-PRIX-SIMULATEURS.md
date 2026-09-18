@@ -5,7 +5,7 @@ L'audit historique des simulateurs destinés au direct est conservé dans `99-Ar
 | Vérification | Résultat actuel |
 |---|---|
 | Modèle A IT | 1 120 €/mois pour 400 tickets, 2,80 €/ticket au-delà ; aucune position nominative ni présence continue incluse |
-| Modèle B IT | 35 h de travail/semaine par position ; tarifs 1–4 / 5–8 / 9+ liés au minimum facturable garanti |
+| Modèle B IT | 35 h de travail/semaine par position ; tarification **par tranches non rétroactives** depuis le 2026-09-18 — positions 1 à 4 au tarif d'entrée, 5 et suivantes au tarif volume, lié au minimum facturable garanti. Palier 9+ supprimé |
 | Médical MB | Prix à l'appel selon créneau, hors projection de marge tant que la durée et la capacité ne sont pas mesurées |
 | Comparatif France | Retiré des pages publiques, faute de coût complet sourcé, daté et comparable |
 | Trésorerie | Page unique `projection-finances-salverys.html` sur le moteur `tools/finance-model.mjs` ; dépôt crédité sur trois factures ; choix du tarif par contrat (marque blanche, client final, prix libre). `tresorerie-salverys.html` redirige vers elle depuis le 2026-09-17 |

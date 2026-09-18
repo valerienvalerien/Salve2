@@ -5,18 +5,62 @@ import { dirname, join } from 'node:path';
 import {
   projectCash, pricePerPosition, directPrice, resolvePrice, monthlyAgentCost, monthlyManagerCost,
   onboardingCost, managersFor, contributions, breakEvenPositions, summarize, PRICE_FLOOR, ASSUMPTIONS,
+  mbRevenue, mbBreakdown, dealRevenue, marginalPrice, breakEvenMb, MB_ENTRY_POSITIONS, OFFERS,
 } from './finance-model.mjs';
 import { SCENARIOS } from './finance-scenarios.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-assert.equal(pricePerPosition('support', 5), 1500);
-assert.equal(pricePerPosition('helpdesk', 9), 1550);
 assert.equal(Math.round(monthlyAgentCost()), 843);
 assert.equal(Math.round(monthlyManagerCost()), 810);
 
+// pricePerPosition donne le prix de LA n-ième position, pas la moyenne du contrat.
+assert.equal(pricePerPosition('support', 4), 1700);
+assert.equal(pricePerPosition('support', 5), 1500);
+assert.equal(pricePerPosition('helpdesk', 9), 1750);
+
+// Tranches non rétroactives : les quatre premières positions restent au tarif d'entrée.
+assert.equal(MB_ENTRY_POSITIONS, 4);
+assert.equal(mbRevenue('support', 4), 4 * 1700);
+assert.equal(mbRevenue('support', 5), 4 * 1700 + 1500);
+assert.equal(mbRevenue('helpdesk', 7), 4 * 2000 + 3 * 1750);
+assert.deepEqual(mbBreakdown('helpdesk', 3), [{ count: 3, price: 2000 }]);
+assert.deepEqual(mbBreakdown('helpdesk', 7), [{ count: 4, price: 2000 }, { count: 3, price: 1750 }]);
+// La grille n'a plus que deux tarifs : le palier 9+ rétroactif est supprimé.
+assert.equal(OFFERS.support.mb.length, 2);
+assert.equal(OFFERS.helpdesk.mb.length, 2);
+
+// Une remise non rétroactive ne peut jamais faire reculer le CA quand on ajoute une position.
+for (const m of ['support', 'helpdesk']) {
+  for (let n = 2; n <= 30; n++) {
+    assert.ok(mbRevenue(m, n) > mbRevenue(m, n - 1), `${m} : le CA recule à ${n} positions`);
+    assert.equal(mbRevenue(m, n) - mbRevenue(m, n - 1), pricePerPosition(m, n), `${m} à ${n}`);
+  }
+}
+
+// Le seul recul de résultat restant vient du palier de manager, pas du prix.
+// Support à 9 positions : 657 € de marge nouvelle contre 810 € de second manager.
+{
+  const res = n => contributions([{ signedMonth: 1, metier: 'support', positions: n, tarif: 'mb' }]).monthlyResult;
+  for (let n = 2; n <= 16; n++) {
+    const recul = res(n) < res(n - 1);
+    assert.equal(recul, n % 8 === 1 && n > MB_ENTRY_POSITIONS + 1, `support : recul inattendu à ${n} positions`);
+  }
+}
+
 // Les trois modes de tarification résolvent bien trois prix différents.
 assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'mb' }), 2000);
+assert.equal(dealRevenue({ metier: 'helpdesk', positions: 7, tarif: 'mb' }), 4 * 2000 + 3 * 1750);
+// Au-delà de la tranche d'entrée, le prix moyen n'est aucun des deux tarifs affichés.
+assert.equal(resolvePrice({ metier: 'helpdesk', positions: 8, tarif: 'mb' }), 15000 / 8);
+// Le prix marginal est celui de la dernière position : c'est lui qu'on compare au plancher.
+assert.equal(marginalPrice({ metier: 'helpdesk', positions: 8, tarif: 'mb' }), 1750);
+assert.equal(marginalPrice({ metier: 'helpdesk', positions: 3, tarif: 'mb' }), 2000);
+assert.equal(marginalPrice({ metier: 'helpdesk', positions: 8, tarif: 'libre', price: 900 }), 900);
+
+// Point mort marque blanche, tranches comprises.
+assert.equal(breakEvenMb('helpdesk'), 1);
+assert.equal(breakEvenMb('support'), 2);
 assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'direct' }), 2200);
 assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'direct', directLevel: 'haut' }), 2800);
 assert.equal(resolvePrice({ metier: 'helpdesk', positions: 2, tarif: 'libre', price: 1234 }), 1234);

@@ -8,16 +8,26 @@
  */
 
 /** Grilles de prix par position et par mois.
- * `mb` : paliers 1-4 / 5-8 / 9+ de PRICING.md (grille partenaire en vigueur).
+ * `mb` : [tarif d'entrée, tarif volume] de PRICING.md (grille partenaire en vigueur).
+ *   Les tranches ne sont PAS rétroactives : les quatre premières positions restent au
+ *   tarif d'entrée quel que soit le volume total, la cinquième et les suivantes passent
+ *   au tarif volume. C'est ce qui garantit qu'ajouter une position ajoute toujours de la
+ *   marge — une remise rétroactive s'applique aussi aux positions déjà vendues, et peut
+ *   coûter plus que la position gagnée (décision 2026-09-18, cf. AUDIT-FINANCE §1).
+ *   Le palier 9+ à 1 350 / 1 550 € est supprimé : il faisait décrocher le résultat de
+ *   1 503 € (support) et 1 703 € (helpdesk) au passage de 8 à 9 positions.
  * `direct` : fourchette client final du registre interne archivé (bas / médian / haut).
  *   Le direct n'a PAS de grille de volume documentée : le prix ne dépend pas du nombre
  *   de positions, seulement du point choisi dans la fourchette.
  *   Le direct est GELÉ en prospection depuis le 2026-09-07 : ces prix servent à chiffrer
  *   un entrant, pas à planifier une conquête. */
 export const OFFERS = Object.freeze({
-  support: Object.freeze({ mb: [1700, 1500, 1350], direct: [1900, 2150, 2400] }),
-  helpdesk: Object.freeze({ mb: [2000, 1750, 1550], direct: [2200, 2500, 2800] }),
+  support: Object.freeze({ mb: Object.freeze([1700, 1500]), direct: Object.freeze([1900, 2150, 2400]) }),
+  helpdesk: Object.freeze({ mb: Object.freeze([2000, 1750]), direct: Object.freeze([2200, 2500, 2800]) }),
 });
+
+/** Nombre de positions facturées au tarif d'entrée avant le passage au tarif volume. */
+export const MB_ENTRY_POSITIONS = 4;
 
 export const METIER_LABELS = Object.freeze({ support: 'Support applicatif N1', helpdesk: 'Helpdesk IT N1' });
 export const DIRECT_LEVELS = Object.freeze(['bas', 'median', 'haut']);
@@ -55,11 +65,31 @@ export const ASSUMPTIONS = Object.freeze({
   initialCash: 0,
 });
 
-/** Prix marque blanche selon le palier de volume ferme (PRICING.md §1, modèle B). */
-export function pricePerPosition(metier, positions) {
+/** Prix marque blanche de la n-ième position (PRICING.md §1, modèle B).
+ * Attention : c'est le prix de CETTE position, pas le prix moyen du contrat.
+ * Les tranches n'étant pas rétroactives, utiliser mbRevenue() pour un CA. */
+export function pricePerPosition(metier, position) {
+  if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
+  if (!Number.isInteger(position) || position < 1) throw new Error('Nombre de positions invalide');
+  return OFFERS[metier].mb[position > MB_ENTRY_POSITIONS ? 1 : 0];
+}
+
+/** CA mensuel marque blanche d'un contrat de n positions, tranche par tranche. */
+export function mbRevenue(metier, positions) {
   if (!OFFERS[metier]) throw new Error(`Métier inconnu : ${metier}`);
   if (!Number.isInteger(positions) || positions < 1) throw new Error('Nombre de positions invalide');
-  return OFFERS[metier].mb[positions >= 9 ? 2 : positions >= 5 ? 1 : 0];
+  const [entree, volume] = OFFERS[metier].mb;
+  return Math.min(positions, MB_ENTRY_POSITIONS) * entree + Math.max(0, positions - MB_ENTRY_POSITIONS) * volume;
+}
+
+/** Détail des tranches d'un contrat marque blanche, pour l'affichage d'un devis. */
+export function mbBreakdown(metier, positions) {
+  const [entree, volume] = OFFERS[metier].mb;
+  const base = Math.min(positions, MB_ENTRY_POSITIONS);
+  const extra = Math.max(0, positions - MB_ENTRY_POSITIONS);
+  const lignes = [{ count: base, price: entree }];
+  if (extra) lignes.push({ count: extra, price: volume });
+  return lignes;
 }
 
 /** Prix client final selon le point retenu dans la fourchette du registre interne. */
@@ -70,20 +100,36 @@ export function directPrice(metier, level = 'bas') {
   return OFFERS[metier].direct[i];
 }
 
+function tarifOf(deal) {
+  return deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+}
+
 /**
- * Résout le prix mensuel d'une position selon le mode de tarification du contrat.
- * tarif = 'mb' (grille partenaire) | 'direct' (client final) | 'libre' (prix saisi).
+ * CA mensuel d'un contrat selon son mode de tarification.
+ * tarif = 'mb' (grille partenaire, par tranches) | 'direct' (client final) | 'libre' (prix saisi).
  */
-export function resolvePrice(deal) {
-  const tarif = deal.tarif ?? (deal.priceOverride != null || deal.price != null ? 'libre' : 'mb');
+export function dealRevenue(deal) {
+  const tarif = tarifOf(deal);
+  if (tarif === 'mb') return mbRevenue(deal.metier, deal.positions);
+  if (tarif === 'direct') return deal.positions * directPrice(deal.metier, deal.directLevel ?? 'bas');
   if (tarif === 'libre') {
     const p = deal.price ?? deal.priceOverride;
     if (typeof p !== 'number' || !Number.isFinite(p) || p < 0) throw new Error('Prix libre invalide');
-    return p;
+    return deal.positions * p;
   }
-  if (tarif === 'direct') return directPrice(deal.metier, deal.directLevel ?? 'bas');
-  if (tarif === 'mb') return pricePerPosition(deal.metier, deal.positions);
   throw new Error(`Mode de tarification inconnu : ${tarif}`);
+}
+
+/** Prix MOYEN par position. En marque blanche au-delà de quatre positions, ce n'est
+ * aucun des deux prix de la grille : c'est la moyenne des tranches. */
+export function resolvePrice(deal) {
+  return dealRevenue(deal) / deal.positions;
+}
+
+/** Prix de la DERNIÈRE position vendue. C'est lui qui doit rester au-dessus du plancher :
+ * c'est le prix auquel on accepterait la position suivante. */
+export function marginalPrice(deal) {
+  return tarifOf(deal) === 'mb' ? pricePerPosition(deal.metier, deal.positions) : resolvePrice(deal);
 }
 
 /** Salaire chargé mensuel d'une personne, en euros, cotisations plafonnées à 8 × SME. */
@@ -119,15 +165,19 @@ function normalize(deals, a) {
     if (!Number.isInteger(d.signedMonth) || d.signedMonth < 1) throw new Error('Mois de signature invalide');
     if (!Number.isInteger(d.positions) || d.positions < 1) throw new Error('Nombre de positions invalide');
     if (!OFFERS[d.metier]) throw new Error('Métier invalide');
-    const price = resolvePrice(d);
-    return { ...d, price, acquisitionCost: d.acquisitionCost ?? 0, onboarding: d.onboarding ?? onboardingCost(d.positions, a) };
+    const revenue = dealRevenue(d);
+    return {
+      ...d, revenue, price: revenue / d.positions, marginal: marginalPrice(d),
+      acquisitionCost: d.acquisitionCost ?? 0,
+      onboarding: d.onboarding ?? onboardingCost(d.positions, a),
+    };
   });
 }
 
 /** Montant facturé pour un contrat à sa n-ième facture (n commence à 0), crédits de dépôt déduits. */
 function invoiceAmount(deal, invoiceNumber, a) {
   const credit = invoiceNumber < a.invoiceCreditMonths ? deal.positions * a.invoiceCreditPerPosition : 0;
-  return deal.positions * deal.price - credit;
+  return deal.revenue - credit;
 }
 
 /**
@@ -180,14 +230,14 @@ export function contributions(deals, a = ASSUMPTIONS) {
     const managersNow = managersFor(staff, a);
     const marginalManagers = managersNow - managersSoFar;
     managersSoFar = managersNow;
-    const revenue = d.positions * d.price;
+    const revenue = d.revenue;
     const agentCost = d.positions * monthlyAgentCost(a);
     const managerCost = marginalManagers * monthlyManagerCost(a);
     return {
       deal: d, revenue, agentCost, managerCost, marginalManagers,
       contribution: revenue - agentCost - managerCost,
-      perPositionMargin: d.price - monthlyAgentCost(a),
-      belowFloor: d.price < PRICE_FLOOR,
+      perPositionMargin: d.marginal - monthlyAgentCost(a),
+      belowFloor: d.marginal < PRICE_FLOOR,
     };
   });
   const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
@@ -205,6 +255,17 @@ export function breakEvenPositions(price, a = ASSUMPTIONS) {
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
     if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
+  }
+  return null;
+}
+
+/** Nombre de positions nécessaires pour équilibrer un contrat marque blanche, tranches comprises. */
+export function breakEvenMb(metier, a = ASSUMPTIONS) {
+  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  for (let n = 1; n <= 200; n++) {
+    const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
+    const result = mbRevenue(metier, n) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
+    if (result >= 0) return n;
   }
   return null;
 }
