@@ -54,7 +54,8 @@ Synergie est un groupe de **travail temporaire, recrutement et formation**. Cons
 
 | Rôle | Nom | Confiance | Rôle achat | Priorité contact |
 |------|-----|-----------|------------|------------------|
-| Directeur Avant-Vente / Innovation | **Fabien Carre** | Faible-moyenne (1 agrégateur, titre non daté) | Prescripteur / porte d'entrée | **1 — premier contact** |
+| Strategic / International Accounts Director (Nantes) | **Arnaud Maurier** | **Bonne** (LinkedIn actif, Viadeo, 2 agrégateurs concordants) | Prescripteur, défenseur de marge, routeur | **1 — premier contact, angle marge** |
+| Directeur Avant-Vente / Innovation | **Fabien Carre** | Faible-moyenne (1 agrégateur, titre non daté) | Prescripteur / porte d'entrée | **1 bis — premier contact, angle deal neuf** |
 | Directeur des Opérations / Delivery service desk | **non identifié** | — | **Acheteur économique réel** | **2 — la vraie cible** |
 | Responsable du Centre de Services (Orvault) | **non identifié** (poste confirmé par une offre d'emploi citant le rattachement) | Poste : bon / Nom : nul | Porteur de la douleur, coach | 3 — porte d'entrée alternative |
 | Directeur Général, DCS Easyware | François Leloy | Moyenne (post LinkedIn société + annuaires) | Sponsor stratégique, validateur final | 4 — pas avant traction delivery |
@@ -73,11 +74,44 @@ de plateau. Son nom n'est pas trouvable en sources ouvertes accessibles : à sor
 actuelle = DCS Easyware) ou du standard.
 
 ### Le meilleur *premier* interlocuteur (celui qui ouvre la porte)
-**Fabien Carre, Directeur Avant-Vente / Innovation** — sous réserve de vérification du titre.
+
+Deux portes d'entrée valables, avec des angles **opposés**. Ne pas les traiter comme interchangeables :
+l'une défend de l'existant, l'autre cherche du neuf.
+
+#### Porte A — Arnaud Maurier, Strategic / International Accounts Director (Nantes)
+
+*Ajouté le 2026-09-19 sur proposition du fondateur. Mieux sourcé que la porte B.*
+
+**Ce qui le qualifie :**
+1. **Sourcing solide** — profil LinkedIn vivant (posts jusqu'en 2025), Viadeo, agrégateurs concordants.
+   Donc **personnalisable**, contrairement à Fabien Carre.
+2. **Basé à Nantes** — à dix minutes du centre de services d'Orvault. Il voit l'usine à tickets de près.
+3. **Ex-Accounts Delivery Manager** — parle SLA et marge sans traduction.
+4. **Chez DCS depuis 2010** — il sait qui arbitre le make-or-buy ; son routing vaut dix appels au standard.
+
+**Ce qui le limite :**
+1. **Son mandat porte le revenu d'un portefeuille, pas le coût d'un plateau.** Il peut vouloir la marque
+   blanche pour défendre la marge d'un renouvellement, il ne peut pas l'engager. Il ouvre, il ne signe pas.
+2. **C'est le profil le plus averse au risque de la maison.** Sur des comptes stratégiques et
+   internationaux, un incident lui coûte personnellement bien plus que l'économie ne lui rapporte.
+   Un inconnu qui propose de sous-traiter le N1 de ses plus gros clients est d'abord une menace.
+3. **« International » peut aspirer l'échange vers Tigloo / Espagne**, hors sujet pour nous.
+
+> ⚠️ **L'angle change avec lui.** Ne jamais ouvrir par « externalisez votre N1 » : réflexe risque-client
+> immédiat. Ouvrir par la marge : *« Sur vos renouvellements, est-ce qu'il y a des comptes où le prix
+> d'une position France vous met sous pression face à la concurrence ? »* — il défend sa marge au lieu
+> de risquer son client. Fermer par : *« Qui pilote le delivery du centre de services chez vous ? »*
+
+**À vérifier avant envoi :** ses publications publiques s'arrêtent en 2025 — confirmer qu'il est
+toujours en poste.
+
+#### Porte B — Fabien Carre, Directeur Avant-Vente / Innovation
+*(titre à vérifier)*
 
 Pourquoi lui plutôt que le delivery en direct :
-1. **C'est le seul nom exploitable aujourd'hui** ; les autres demandent un travail d'identification
-   préalable qui retarde le premier contact de plusieurs jours.
+1. **Son appétit au risque est le plus élevé de la maison** : il court après des affaires qu'il n'a pas
+   encore gagnées, là où un directeur de comptes protège des clients qu'il a déjà. C'est exactement
+   l'inverse de la porte A — et c'est pour ça que les deux se jouent en parallèle, pas en doublon.
 2. **Son mandat est d'aider à gagner des affaires**, pas de protéger un effectif. Une capacité
    partenaire en marque blanche est pour lui un **moyen de répondre moins cher sans dégrader l'offre**.
 3. **Il n'a pas de territoire à défendre.** Un directeur de production, lui, peut lire la marque blanche
@@ -85,9 +119,13 @@ Pourquoi lui plutôt que le delivery en direct :
 4. **Il route naturellement** : un avant-vente intéressé présente le partenaire au delivery — c'est
    précisément le multi-threading qu'on cherche, et il arrive recommandé en interne plutôt qu'à froid.
 
-**Porte d'entrée alternative** (si pas de réponse sous 8-10 jours) : le **Responsable du Centre de
-Services d'Orvault**, via le standard. Périmètre restreint, douleur concrète, et il nomme son directeur
-pour nous.
+#### Porte C — repli (si A et B restent muettes sous 8-10 jours)
+Le **Responsable du Centre de Services d'Orvault**, via le standard. Périmètre restreint, douleur
+concrète, et il nomme son directeur pour nous.
+
+> **Montage recommandé :** A pour l'accroche personnalisable et le routing, B pour l'appétit au risque,
+> et dans les deux cas la cible reste le **directeur des opérations / delivery**. Ne jamais laisser
+> entendre à l'un qu'on parle à l'autre tant qu'aucun des deux n'a routé.
 
 ### Ce qu'il ne faut pas faire
 - ❌ **Ne pas écrire à Victorien Vaney ni à François Leloy en premier contact.** Sur 500+ personnes le
@@ -119,7 +157,23 @@ Ne jamais demander « le responsable des achats » : ça route vers un acheteur 
    charge côté Salverys.
 5. Les contrats de sous-traitance se signent **chez DCS ou chez Synergie** ?
 
-## Accroche email (à Fabien Carre — 5 lignes, pas de pièce jointe)
+## Accroche A — Arnaud Maurier (angle marge, jamais « externalisation »)
+
+> Objet : le prix d'une position France sur vos renouvellements
+>
+> Bonjour Arnaud,
+>
+> Salverys opère des positions helpdesk N1 francophones depuis Antananarivo, en marque blanche pour
+> des prestataires IT français : vos équipes restent en façade, nous ne sommes jamais visibles du
+> client final.
+>
+> Ma question est simple : sur vos renouvellements, est-ce qu'il y a des comptes où le prix d'une
+> position France vous met sous pression face à la concurrence ? C'est là que le montage sert — sur
+> la ligne de coût, sans toucher au SLA que vous avez signé.
+>
+> Si le sujet a un sens, qui pilote le delivery du centre de services chez vous ?
+
+## Accroche B — Fabien Carre (angle affaire neuve — 5 lignes, pas de pièce jointe)
 
 > Objet : capacité N1 francophone pour vos réponses service desk
 >
@@ -142,11 +196,12 @@ Ne jamais demander « le responsable des achats » : ça route vers un acheteur 
 | # | À obtenir | Comment | Priorité |
 |---|-----------|---------|----------|
 | 1 | Nom du directeur des opérations / delivery | Sales Navigator + appel standard | **Haute** |
-| 2 | Titre exact et adresse de Fabien Carre | LinkedIn, puis test `f.carre@dcsit-group.com` | **Haute** |
-| 3 | Existence d'un nearshore / offshore déjà en place | Question 1 de qualification, offres d'emploi, page delivery du site | **Haute** — change tout le script |
-| 4 | Nom du responsable du centre de services Orvault | Standard Orvault | Moyenne |
-| 5 | Qui signe : DCS ou achats Synergie | Question 5 | Moyenne |
-| 6 | Volume de tickets, ITSM | Qualification | Moyenne |
+| 2 | **Arnaud Maurier toujours en poste ?** (posts publics arrêtés en 2025) + adresse | LinkedIn, puis test `a.maurier@dcsit-group.com` | **Haute** |
+| 3 | Titre exact et adresse de Fabien Carre | LinkedIn, puis test `f.carre@dcsit-group.com` | Moyenne |
+| 4 | Existence d'un nearshore / offshore déjà en place | Question 1 de qualification, offres d'emploi, page delivery du site | **Haute** — change tout le script |
+| 5 | Nom du responsable du centre de services Orvault | Standard Orvault | Moyenne |
+| 6 | Qui signe : DCS ou achats Synergie | Question 5 | Moyenne |
+| 7 | Volume de tickets, ITSM | Qualification | Moyenne |
 
 ## Sources
 
@@ -158,5 +213,9 @@ Ne jamais demander « le responsable des achats » : ça route vers un acheteur 
   (~30 positions à l'ouverture, renforts prévus).
 - Offres d'emploi DCS Easyware (Service Delivery Manager, Coordinateur Environnement Utilisateur
   rattaché au « Responsable du Centre de Services », Responsable Business Unit ESN).
+- LinkedIn / Viadeo / RocketReach / ContactOut : **Arnaud Maurier — Strategic (International) Accounts
+  Director, DCS Easyware, Nantes, dans la maison depuis 2010, anciennement Accounts Delivery Manager**.
+  Profil actif jusqu'en 2025 (dont publications depuis Madrid, filiale Tigloo). Concordance de quatre
+  sources → confiance bonne, mais **statut en poste à reconfirmer en 2026**.
 - Agrégateurs de contacts (LeadIQ, RocketReach) : format email, mention « Fabien Carre — Directeur
   Avant-Vente / Innovation ». **Sources non datées, à traiter comme des pistes, pas comme des faits.**
