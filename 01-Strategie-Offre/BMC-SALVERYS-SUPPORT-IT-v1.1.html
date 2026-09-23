@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>BMC Salverys Support IT</title>
+<style>
+  @page { size: A4 landscape; margin: 0; }
+  :root { --ink:#2E3B4E; --deep:#013C58; --sage:#6F8770; --cream:#F6F2EA; --gold:#F0B429; --line:#C9CFD8; --muted:#5B6778; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:#fff; color:var(--ink); font-family: Inter, -apple-system, "Segoe UI", Arial, sans-serif; }
+  .page { width:297mm; height:210mm; padding:7mm 8mm 6mm; display:flex; flex-direction:column; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--deep); padding-bottom:2mm; margin-bottom:2.5mm; }
+  header h1 { font-family: Georgia, serif; font-size:16pt; margin:0; color:var(--deep); }
+  header h1 span { font-family: Inter, sans-serif; font-size:9pt; color:var(--sage); font-weight:600; margin-left:3mm; }
+  .meta { font-size:7pt; color:var(--muted); text-align:right; line-height:1.4; }
+  .meta b { color:var(--ink); }
+  .canvas { flex:1; display:grid; gap:1.6mm;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr 1fr 0.95fr; min-height:0; }
+  .b { border:1px solid var(--line); border-radius:2mm; padding:2mm 2.4mm; overflow:hidden; background:#fff; font-size:6.35pt; line-height:1.32; }
+  .b h2 { margin:0 0 1.2mm; font-size:7.6pt; color:var(--deep); display:flex; gap:1.5mm; align-items:center; letter-spacing:.2px; }
+  .b h2 i { font-style:normal; background:var(--deep); color:#fff; border-radius:50%; width:4mm; height:4mm; font-size:6pt; display:inline-flex; align-items:center; justify-content:center; flex:none; }
+  .b h3 { margin:1.3mm 0 .4mm; font-size:6.5pt; color:var(--sage); text-transform:uppercase; letter-spacing:.3px; }
+  .b p { margin:0 0 .8mm; }
+  .b ul { margin:0; padding-left:3mm; }
+  .b li { margin:0 0 .45mm; }
+  .kp { grid-column:1/3; grid-row:1/3; }
+  .ka { grid-column:3/5; grid-row:1/2; }
+  .kr { grid-column:3/5; grid-row:2/3; }
+  .vp { grid-column:5/7; grid-row:1/3; background:var(--cream); border-color:#E4DCCB; }
+  .cr { grid-column:7/9; grid-row:1/2; }
+  .ch { grid-column:7/9; grid-row:2/3; }
+  .cs { grid-column:9/11; grid-row:1/3; }
+  .co { grid-column:1/6; grid-row:3/4; }
+  .rv { grid-column:6/11; grid-row:3/4; }
+  .hook { font-family: Georgia, serif; font-size:8.4pt; color:var(--deep); line-height:1.3; margin-bottom:1.6mm; }
+  .pair { margin:0 0 .9mm; }
+  .pair b { color:var(--deep); }
+  .tag { display:inline-block; font-size:5.6pt; font-weight:700; padding:.2mm 1.2mm; border-radius:1mm; background:var(--gold); color:#222C3B; vertical-align:middle; }
+  .tag.s { background:#E3E9E3; color:#3E5240; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  table { border-collapse:collapse; width:100%; }
+  td, th { padding:.35mm 0; text-align:left; }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  tr.t td { border-top:1px solid var(--ink); font-weight:700; }
+  .note { color:var(--muted); font-size:5.8pt; }
+  footer { margin-top:1.8mm; font-size:5.8pt; color:var(--muted); display:flex; justify-content:space-between; }
+  /* page 2 */
+  .p2 { flex:1; display:grid; grid-template-columns: 1.05fr 1fr; gap:4mm; min-height:0; }
+  .card { border:1px solid var(--line); border-radius:2mm; padding:3mm 3.5mm; font-size:7.4pt; line-height:1.4; }
+  .card h2 { margin:0 0 2mm; font-size:9.5pt; color:var(--deep); font-family: Georgia, serif; }
+  .card h3 { margin:2.5mm 0 1mm; font-size:7.6pt; color:var(--sage); text-transform:uppercase; letter-spacing:.3px; }
+  .card table td, .card table th { padding:.8mm 1mm; border-bottom:1px solid #E6E9EE; }
+  .card table th { font-size:6.6pt; color:var(--muted); font-weight:600; }
+  .kpi { display:grid; grid-template-columns:repeat(4,1fr); gap:2mm; margin-bottom:2.5mm; }
+  .kpi div { background:var(--cream); border-radius:1.5mm; padding:2mm; }
+  .kpi small { display:block; font-size:6.2pt; color:var(--muted); }
+  .kpi strong { font-size:11pt; color:var(--deep); font-variant-numeric:tabular-nums; }
+  .card ul { margin:0; padding-left:4mm; }
+  .card li { margin-bottom:.9mm; }
+  .warn { border-left:3px solid var(--gold); padding:1.2mm 2mm; background:#FFF8E6; margin-top:2mm; font-size:6.8pt; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — CANVAS -->
+<section class="page">
+  <header>
+    <h1>Business Model Canvas <span>Salverys — Helpdesk IT N1 en marque blanche</span></h1>
+    <div class="meta">Conçu par <b>Valérien</b> · Date <b>23/09/2026</b> · Version <b>1.1</b><br>Base de calcul : 1 € ≈ 5 000 Ar · montants HT mensuels</div>
+  </header>
+
+  <div class="canvas">
+
+    <div class="b kp">
+      <h2><i>8</i>Partenaires clés</h2>
+      <h3>Financiers</h3>
+      <ul><li>Banque / investisseurs pour le creux de trésorerie avant le 1er encaissement (BFR p. 2)</li></ul>
+      <h3>Commerciaux</h3>
+      <ul><li>Plateformes de référencement et groupements d'ESN / MSP</li></ul>
+      <h3>Stratégiques</h3>
+      <ul><li>Cabinets de recrutement locaux — vivier activé à la signature des positions fermes</li></ul>
+      <h3>Fournisseurs</h3>
+      <ul><li>Stations de travail, 2 accès fibre, énergie (Jirama + carburant)</li></ul>
+      <h3>Technologiques</h3>
+      <ul><li>Ringover Quicktalk (VoIP), Microsoft 365, outils IA</li><li>Outils de ticketing <b>du partenaire</b> : nous travaillons dans son environnement</li></ul>
+      <h3>Prestataires</h3>
+      <ul><li>RH / paie, expert-comptable, branding</li></ul>
+    </div>
+
+    <div class="b ka">
+      <h2><i>7</i>Activités clés</h2>
+      <ul>
+        <li>Prospecter les ESN / MSP : téléphone + LinkedIn</li>
+        <li>Recruter et former des techniciens N1 francophones <b>sur positions fermes signées</b></li>
+        <li>Transition sur les outils du partenaire : accès, scripts, règles d'escalade</li>
+        <li>Délivrer le support N1 au nom du partenaire</li>
+        <li>Piloter la qualité : double écoute, audits, reporting, revue de service</li>
+        <li>Tenir la conformité : NDA, RGPD, gestion des accès</li>
+      </ul>
+    </div>
+
+    <div class="b kr">
+      <h2><i>6</i>Ressources clés</h2>
+      <p><b>Humaines</b> — techniciens support N1 (CDI) ; encadrement et QA assurés par le fondateur au démarrage. Effectif actuel : 0, embauche à la position ferme.</p>
+      <p><b>Matérielles</b> — locaux, laptops / écrans, UPS 3 000 VA, fibre ×2, groupe 3,5 kVA <span class="tag s">à tester avant promesse</span></p>
+      <p><b>Financières</b> — apport 10 M Ar ; dépôt partenaire 900 €/position ; financement du creux</p>
+      <p><b>Intellectuelles</b> — process documentés, scripts, grille QA, marque (dépôt à faire)</p>
+    </div>
+
+    <div class="b vp">
+      <h2><i>2</i>Propositions de valeur</h2>
+      <div class="hook">Un appel d'offres gagné, un pic de tickets ?<br>Une capacité N1 à votre marque — sans recruter.</div>
+      <p class="pair"><b>Recrutement long</b> → nous recrutons, formons et encadrons pour vous. Première prise de tickets visée <b>vers six semaines</b> après signature, autonomie visée <b>vers M+2</b> ; le devis date les jalons.</p>
+      <p class="pair"><b>Niveau offshore aléatoire</b> → sélection sur le savoir-être, la technique et la langue ; double écoute, audits et reporting mensuel.</p>
+      <p class="pair"><b>Image en jeu</b> → agents de <b>langue maternelle française</b>, en marque blanche : vos clients finaux ne voient pas le sous-traitant.</p>
+      <p class="pair"><b>Qualité non garantie</b> → engagement de service écrit : <b>≥ 90 %</b> de prise en charge dans le délai, sinon <b>avoir automatique de 20 %</b>.</p>
+      <p class="pair"><b>Rigidité d'une embauche</b> → une position de 35 h/semaine ou un forfait de débordement, sans masse salariale à porter.</p>
+      <p class="pair"><b>Qui est derrière ?</b> → un fondateur avec 10 ans de carrière en France, pont culturel entre Madagascar et la France.</p>
+    </div>
+
+    <div class="b cr">
+      <h2><i>4</i>Relation client</h2>
+      <ul>
+        <li>Référent d'exploitation par partenaire (le fondateur au démarrage)</li>
+        <li>Reporting qualité mensuel et revue de service</li>
+        <li>Contrat : <b>3 mois initiaux</b>, puis <b>12 mois renouvelables</b></li>
+        <li>Pilote possible : 1 client final ou 200–400 tickets</li>
+      </ul>
+    </div>
+
+    <div class="b ch">
+      <h2><i>3</i>Canaux</h2>
+      <h3>Maintenant (fondateur seul)</h3>
+      <ul>
+        <li>Téléphone + LinkedIn, personal branding du fondateur</li>
+        <li>Email manuel, 10–20/jour</li>
+        <li>Plateformes de référencement et groupements</li>
+      </ul>
+      <h3>Plus tard</h3>
+      <ul><li>Site web + SEO/GEO, Ads, salons, bouche à oreille</li></ul>
+    </div>
+
+    <div class="b cs">
+      <h2><i>1</i>Segments clients</h2>
+      <p><b>ESN et MSP qui revendent du support IT</b>, en marque blanche. France et Canada francophone, jusqu'à ~40 personnes.</p>
+      <h3>Décideurs</h3>
+      <ul><li>Dirigeant, Head of Support, responsable des opérations</li></ul>
+      <h3>Signaux d'achat</h3>
+      <ul>
+        <li>Appel d'offres gagné, montée en charge d'un client</li>
+        <li>Astreintes ou file N1 saturées</li>
+        <li>Recrutement N1 ouvert depuis longtemps</li>
+        <li>Déjà habitués à sous-traiter une partie du support</li>
+      </ul>
+      <h3>Besoin</h3>
+      <ul><li>Augmenter la capacité de production sans recruter et sans que les clients finaux voient le sous-traitant</li></ul>
+    </div>
+
+    <div class="b co">
+      <h2><i>9</i>Structure de coûts</h2>
+      <div class="cols">
+        <div>
+          <h3>Fixes mensuels <span class="tag s">hypothèse pessimiste</span></h3>
+          <table>
+            <tr><td>Encadrement (managers, QA)</td><td class="n">3 M Ar</td></tr>
+            <tr><td>Loyer (60 m²)</td><td class="n">3,6 M Ar</td></tr>
+            <tr><td>Double fibre</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>RH / paie et comptable</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>Énergie (Jirama + carburant)</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>Outils et abonnements</td><td class="n">0,43 M Ar</td></tr>
+            <tr><td>Amort. groupe + UPS (2,25 M Ar / 3 ans)</td><td class="n">0,06 M Ar</td></tr>
+            <tr class="t"><td>Total</td><td class="n">≈ 11,6 M Ar · 2 320 €</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>Variables par position vendue</h3>
+          <table>
+            <tr><td>Coût complet agent <span class="tag">variante testée</span></td><td class="n">3 M Ar · 600 €</td></tr>
+            <tr><td>Poste de travail (4 M Ar / 3 ans)</td><td class="n">0,11 M Ar · 22 €</td></tr>
+            <tr class="t"><td>Total par position</td><td class="n">≈ 3,11 M Ar · 622 €</td></tr>
+          </table>
+          <p class="note" style="margin-top:1.2mm">Onboarding (≈ 400 € par contrat + 400 € par position), recrutement et frais bancaires : à part. Hors acquisition (SEO/GEO, Ads, branding) et aménagement des locaux.</p>
+          <p class="note">Variante : 3 M Ar de coût complet contre un brut de 3,25 M Ar + charges dans le prévisionnel (≈ 736 € chargés).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="b rv">
+      <h2><i>5</i>Sources de revenus</h2>
+      <div class="cols">
+        <div>
+          <h3>B — Poste dédié (35 h/semaine)</h3>
+          <table>
+            <tr><td>Positions 1 à 4</td><td class="n"><b>2 000 €</b>/position</td></tr>
+            <tr><td>Positions 5 et suivantes</td><td class="n"><b>1 750 €</b>/position</td></tr>
+          </table>
+          <p class="note">Par tranches, sans rétroactivité. Tarif volume contre un minimum de positions fermes garanti au contrat. 12+ positions : sur devis.</p>
+          <h3>A — Débordement mutualisé</h3>
+          <p><b>1 120 €/mois</b> pour 400 tickets, puis <b>2,80 €</b> par ticket.</p>
+        </div>
+        <div>
+          <h3>Démarrage</h3>
+          <p><b>Dépôt 900 €/position</b> à la signature, imputé à raison de 300 € sur chacune des 3 premières factures. Pas de frais de mise en service.</p>
+          <h3>Formules</h3>
+          <p>CA(B) = min(n, 4) × 2 000 + max(0, n − 4) × 1 750<br>Résultat = MSCV − 2 320 € · net = × 0,8 (IR 20 %)<br><b>Seuil de rentabilité : 2 positions</b></p>
+          <h3>Paiement</h3>
+          <p>Facturation mensuelle, virement à 30 jours. Prélèvement SEPA <span class="tag s">à vérifier</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer><span>Source de vérité tarifaire : PRICING.md · Audit : AUDIT-BMC-2026-09-23.md</span><span>Salverys — document interne</span></footer>
+</section>
+
+<!-- PAGE 2 — CHIFFRAGE -->
+<section class="page">
+  <header>
+    <h1>Exemple chiffré et hypothèses <span>BMC v1.1 — 7 positions helpdesk dédiées</span></h1>
+    <div class="meta">Montants mensuels HT, régime plein<br>1 € ≈ 5 000 Ar</div>
+  </header>
+
+  <div class="p2">
+    <div class="card">
+      <h2>7 positions helpdesk, mois plein</h2>
+      <div class="kpi">
+        <div><small>Chiffre d'affaires</small><strong>13 250 €</strong></div>
+        <div><small>Taux de MSCV</small><strong>67,1 %</strong></div>
+        <div><small>Résultat av. impôt</small><strong>≈ 6 580 €</strong></div>
+        <div><small>Résultat net (IR 20 %)</small><strong>≈ 5 260 €</strong></div>
+      </div>
+      <table>
+        <tr><th>Poste</th><th>Calcul</th><th class="n">Montant</th></tr>
+        <tr><td>CA</td><td>4 × 2 000 + 3 × 1 750</td><td class="n">13 250 €</td></tr>
+        <tr><td>Prix moyen par position</td><td>13 250 ÷ 7</td><td class="n">≈ 1 893 €</td></tr>
+        <tr><td>Coûts variables</td><td>7 × 622 €</td><td class="n">≈ 4 356 €</td></tr>
+        <tr><td>MSCV</td><td>13 250 − 4 356</td><td class="n">≈ 8 894 €</td></tr>
+        <tr><td>Coûts fixes</td><td>11,59 M Ar</td><td class="n">≈ 2 320 €</td></tr>
+        <tr class="t"><td>Résultat avant impôt</td><td>8 894 − 2 320</td><td class="n">≈ 6 580 €</td></tr>
+        <tr><td>Résultat net</td><td>× 0,8</td><td class="n">≈ 5 260 €</td></tr>
+        <tr><td>Factures 1 à 3</td><td>13 250 − 7 × 300 (dépôt imputé)</td><td class="n">11 150 €</td></tr>
+      </table>
+
+      <h3>Trésorerie de démarrage</h3>
+      <table>
+        <tr><td>2 mois de charges avant le 1er encaissement</td><td>2 × (4 356 + 2 320)</td><td class="n">≈ 13 350 € · 66,8 M Ar</td></tr>
+        <tr><td>Dépôt encaissé à la signature</td><td>7 × 900</td><td class="n">− 6 300 €</td></tr>
+        <tr class="t"><td>BFR net du dépôt</td><td></td><td class="n">≈ 7 050 € · 35 M Ar</td></tr>
+        <tr><td>Investissement</td><td>7 postes + groupe + UPS</td><td class="n">≈ 6 050 € · 30 M Ar</td></tr>
+        <tr><td>Onboarding</td><td>400 + 7 × 400</td><td class="n">≈ 3 200 €</td></tr>
+      </table>
+      <div class="warn">Apport de 10 M Ar (≈ 2 000 €) contre ≈ 16 k€ à financer à 7 positions (BFR net + investissement + onboarding). Si le 1er encaissement glisse à trois mois (embauche M+1, facture M+2, encaissement M+3), ajouter ≈ 6 700 €.</div>
+    </div>
+
+    <div class="card">
+      <h2>Sensibilité et hypothèses</h2>
+      <table>
+        <tr><th>Positions helpdesk</th><th class="n">CA</th><th class="n">Résultat av. impôt</th></tr>
+        <tr><td>1</td><td class="n">2 000 €</td><td class="n">≈ − 940 €</td></tr>
+        <tr><td>2 — seuil</td><td class="n">4 000 €</td><td class="n">≈ + 440 €</td></tr>
+        <tr><td>3</td><td class="n">6 000 €</td><td class="n">≈ + 1 820 €</td></tr>
+        <tr><td>5</td><td class="n">9 750 €</td><td class="n">≈ + 4 320 €</td></tr>
+        <tr><td>7</td><td class="n">13 250 €</td><td class="n">≈ + 6 580 €</td></tr>
+      </table>
+
+      <h3>Variantes à tester</h3>
+      <ul>
+        <li><b>Coût agent</b> : 600 € testé ici. Au coût du prévisionnel (≈ 843 € budgétés), le résultat à 7 positions baisse de ≈ 1 700 €.</li>
+        <li><b>Locaux</b> : 60 m² à 3,6 M Ar correspond à une hypothèse pessimiste arbitraire. Un coworking pour les 2–3 premières positions abaisse le seuil.</li>
+        <li><b>Encadrement</b> : 3 M Ar conservés, alors que le fondateur assure l'encadrement au démarrage. Il reste une marge de prudence tant qu'aucun manager n'est embauché.</li>
+      </ul>
+
+      <h3>Hypothèses</h3>
+      <ul>
+        <li>1 € ≈ 5 000 Ar ; paiement client à 30 jours ; BFR = 2 mois de charges décaissées avant le 1er encaissement.</li>
+        <li>Prix = grille <b>PRICING.md</b> au 2026-09-18 ; tarif volume sur positions fermes uniquement.</li>
+        <li>IR 20 % simplifié : minimum de perception, TVA sur service exporté et frais de change à valider avec l'expert-comptable.</li>
+        <li>Équipements de secours à tester avant d'être promis au partenaire.</li>
+      </ul>
+
+      <h3>Changements depuis la v1.0</h3>
+      <ul>
+        <li>Prix de 1 500 € remplacé par la grille helpdesk 2 000 / 1 750 € par tranches ; ajout du modèle A et du dépôt.</li>
+        <li>Délais : première prise de tickets vers six semaines, autonomie vers M+2 ; « opérationnelle » retiré.</li>
+        <li>SLA 90 % avec avoir de 20 %, contrat 3 + 12 mois ; turnover chiffré retiré.</li>
+        <li>« Accent neutre » remplacé par « langue maternelle française » ; comparaison de coût avec la France retirée.</li>
+        <li>Segments : France et Canada ; canaux hiérarchisés pour un fondateur seul.</li>
+      </ul>
+    </div>
+  </div>
+  <footer><span>Salverys — BMC v1.1 · 23/09/2026</span><span>Document interne — ne chiffre pas un devis : PRICING.md et projection-finances-salverys.html font foi</span></footer>
+</section>
+
+</body>
+</html>

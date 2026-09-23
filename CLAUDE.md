@@ -10,6 +10,12 @@ Structure volontairement resserrée, en démarrage.
 > avec 10 personnes ». Ce n'est ni vérifiable ni vendeur.
 > **Mettre en avant à la place** : process documentés, cadrage qualité (script, double
 > écoute, reporting), pilote mesuré, SLA chiffré.
+>
+> **Exception (décision fondateur 2026-09-23)** : le parcours **factuel et personnel** du
+> fondateur est autorisé, car il porte son personal branding — « fondateur avec 10 ans de
+> carrière en France, pont culturel entre Madagascar et la France ». Il vient **en dernier**,
+> après les preuves de process, et ne remplace jamais le SLA ni le pilote. Restent interdits
+> les chiffres d'équipe invérifiables (« a piloté 1 000+ personnes ») et « repart de zéro ».
 
 ### Niches cibles (par priorité)
 > ⚠️ **Ordre révisé (décision direction 2026-08-28) : le helpdesk IT N1 pour ESN/MSP passe
