@@ -20,3 +20,10 @@
     X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
     Cache-Control = "no-store"
     Referrer-Policy = "no-referrer"
+
+# Vidéos de fond des landing pages (tools/landing-video/render.mjs). Noms non versionnés :
+# cache d'une semaine, pas plus, pour qu'un nouveau rendu se propage.
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

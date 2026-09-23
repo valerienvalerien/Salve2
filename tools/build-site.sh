@@ -17,6 +17,8 @@ PUBLIC_PAGES=(
   espace-candidat.html
   suivi-candidature.html
   mentions-legales.html
+  landing-helpdesk-it-a.html
+  landing-helpdesk-it-b.html
 )
 
 rm -rf _site

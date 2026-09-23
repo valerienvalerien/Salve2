@@ -3,3 +3,7 @@ _site/
 
 # Artefacts de génération du classeur Excel
 *.tmp.xlsx
+
+# Rendu des vidéos de landing : images de contrôle et intermédiaires
+tools/landing-video/stills/
+tools/landing-video/.frames-*

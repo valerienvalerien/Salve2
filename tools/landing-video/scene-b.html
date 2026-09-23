@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Scène B — Le pic du lundi</title>
+<!--
+  Scénario B — « Le pic du lundi » (20 s, boucle). Même lundi matin joué deux fois.
+  1) Sans relais N1 (0 → 9,4 s) : les tickets s'empilent dans la file, les techniciens N2
+     lâchent leurs projets clients pour décrocher ; la colonne « Relais N1 » est vide.
+  2) Même lundi, avec relais N1 sous votre marque (10,4 → 19,2 s) : les mêmes arrivées,
+     prises en charge au fil de l'eau ; la file reste courte, les projets N2 avancent.
+  Toutes les données sont fictives (bandeau « Illustration » dans l'image).
+-->
+<link rel="stylesheet" href="scene.css">
+<style>
+  .phase { position: absolute; height: 48px; padding: 0 22px; border-radius: 99px; display: inline-flex; align-items: center; gap: 10px;
+           font: 800 16px 'Inter'; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .phase::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+  .phase.off { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+  .phase.on { background: var(--coral); color: #fff; box-shadow: 0 14px 36px rgba(224,107,82,.4); }
+  .clock { position: absolute; text-align: right; }
+  .clock small { display: block; font: 700 13px 'Inter'; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 2px; }
+  .clock b { font: 700 46px 'JBM'; color: #fff; letter-spacing: -.02em; }
+
+  .board { position: absolute; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .lane { position: relative; border-radius: 20px; background: rgba(8,36,47,.8); border: 1px solid rgba(255,255,255,.12); overflow: hidden;
+          box-shadow: 0 30px 70px rgba(0,0,0,.38); }
+  .lane h3 { font: 800 19px 'Inter'; color: #fff; padding: 22px 22px 2px; letter-spacing: -.01em; }
+  .lane h4 { font: 500 14px 'Inter'; color: rgba(255,255,255,.5); padding: 0 22px 16px; border-bottom: 1px solid var(--line); }
+  .count { position: absolute; right: 20px; top: 18px; text-align: right; }
+  .count b { display: block; font: 800 40px 'JBM'; line-height: 1; color: #fff; }
+  .count small { font: 700 11px 'Inter'; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+  .relay-ring { position: absolute; inset: 0; border-radius: 20px; border: 2px dashed rgba(255,255,255,.22); pointer-events: none; }
+  .relay-glow { position: absolute; inset: 0; border-radius: 20px; border: 2px solid var(--coral); box-shadow: inset 0 0 60px rgba(224,107,82,.2), 0 0 50px rgba(224,107,82,.25); pointer-events: none; }
+  .empty { position: absolute; left: 0; right: 0; text-align: center; font: 600 17px 'Inter'; color: rgba(255,255,255,.35); }
+  .brandchip { position: absolute; left: 22px; right: 22px; height: 40px; border-radius: 10px; background: rgba(224,107,82,.16); color: #FFB3A3;
+               display: flex; align-items: center; justify-content: center; font: 700 15px 'Inter'; gap: 8px; }
+
+  .tk { position: absolute; height: 30px; border-radius: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14);
+        display: flex; align-items: center; gap: 10px; padding: 0 10px; font: 600 13px 'Inter'; color: rgba(255,255,255,.85); white-space: nowrap; overflow: hidden; }
+  .tk i { font: 700 12px 'JBM'; font-style: normal; color: var(--coral-soft); }
+  .tk .ok { margin-left: auto; width: 18px; height: 18px; border-radius: 50%; background: var(--green); color: #06301f; display: grid; place-items: center; font: 900 11px 'Inter'; }
+
+  .proj { position: absolute; left: 18px; right: 18px; border-radius: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 14px 16px; overflow: hidden; }
+  .proj .pt { font: 700 16px 'Inter'; color: #fff; margin-bottom: 4px; white-space: nowrap; }
+  .proj .ps { position: relative; height: 18px; font: 700 13px 'Inter'; }
+  .proj .ps span { position: absolute; left: 0; top: 0; white-space: nowrap; }
+  .proj .run { color: #5FE0A6; } .proj .stop { color: #FFCB57; }
+  .proj .bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,.1); margin-top: 10px; overflow: hidden; }
+  .proj .bar div { height: 100%; border-radius: 99px; background: var(--green); transform-origin: left; }
+  .proj .hatch { position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(240,180,41,.13) 0 12px, transparent 12px 24px); pointer-events: none; }
+</style>
+</head>
+<body>
+<script src="scene-kit.js"></script>
+<script>
+(function () {
+  const K = SceneKit;
+  const L = 20;
+  // Passe 1 : t ∈ [0 ; 9,4] · bascule : [9,4 ; 10,4] · passe 2 : τ = t − 10,4 ∈ [0 ; 8,8]
+  const SW1 = 9.4, SW2 = 10.4;
+
+  // Mêmes arrivées dans les deux passes (générateur déterministe).
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const SUBJ = ['Mot de passe', 'VPN', 'Imprimante', 'Outlook', 'Teams', 'MFA', 'Accès dossier', 'Nouveau poste', 'Wi-Fi', 'Licence', 'Session bloquée', 'Écran'];
+  const ARR = [{ a: -2 }, { a: -1.4 }];
+  let a = 0.5;
+  while (a < 7.6) { ARR.push({ a }); const peak = a > 1.4 && a < 5.2; a += (peak ? 0.16 : 0.42) + rnd() * (peak ? 0.2 : 0.4); }
+  ARR.forEach((x, i) => { x.id = '#' + (5100 + i * 3 + Math.floor(rnd() * 3)); x.s = SUBJ[Math.floor(rnd() * SUBJ.length)]; });
+
+  // Passe 1 : le N2 absorbe un ticket de temps en temps, le reste s'empile.
+  const N2_TAKES = new Set([1, 5, 10, 16]);
+  const D1 = ARR.map((x, i) => (N2_TAKES.has(i) ? Math.max(x.a, 0) + 1.2 : 1e6));
+  // Passe 2 : relais N1 — prise en charge au fil de l'eau (FIFO, cadence du pool).
+  const D2 = []; let last = -Infinity;
+  ARR.forEach((x, i) => { const d = Math.max(Math.max(x.a, 0) + 0.55, last + 0.24); D2.push(d); last = d; });
+
+  const PROJ = [
+    { t: 'Migration Microsoft 365', p: 0.34, stop: 2.2 },
+    { t: 'Renouvellement de parc', p: 0.58, stop: 3.3 },
+    { t: 'Audit des sauvegardes', p: 0.21, stop: 4.5 },
+  ];
+
+  const pad = n => String(n).padStart(2, '0');
+  const clockAt = tau => { const m = 7 * 60 + 50 + Math.round(K.clamp(tau / 8.8) * 90); return pad(Math.floor(m / 60)) + ':' + pad(m % 60); };
+
+  function mount(root, orient) {
+    const P = orient === 'portrait'
+      ? { W: 1080, H: 1920, bx: 40, by: 1070, bw: 1000, bh: 740, hx: 40, hy: 980, cx: 1040, cy: 960, tagy: 1860, ta: 'center' }
+      : { W: 1920, H: 1080, bx: 960, by: 250, bw: 880, bh: 700, hx: 960, hy: 160, cx: 1840, cy: 136, tagy: 1010, ta: 'right' };
+
+    K.el('div', 'bg', root);
+    const grid = K.el('div', 'grid', root);
+    const h1 = K.el('div', 'halo c', root);
+    const h2 = K.el('div', 'halo t', root);
+
+    const ph1 = K.el('div', 'phase off', root, 'Lundi 8 h · sans relais N1');
+    const ph2 = K.el('div', 'phase on', root, 'Même lundi · relais N1 sous votre marque');
+    for (const e of [ph1, ph2]) Object.assign(e.style, { left: P.hx + 'px', top: P.hy + 'px' });
+    const clock = K.el('div', 'clock', root, '<small>Heure de Paris</small><b>07:50</b>');
+    Object.assign(clock.style, { right: (P.W - P.cx) + 'px', top: P.cy + 'px' });
+    const clockB = clock.querySelector('b');
+
+    const board = K.el('div', 'board', root);
+    Object.assign(board.style, { left: P.bx + 'px', top: P.by + 'px', width: P.bw + 'px', height: P.bh + 'px' });
+    const laneQ = K.el('div', 'lane', board, '<h3>File N1</h3><h4>en attente</h4>');
+    const cnt = K.el('div', 'count', laneQ, '<b>0</b><small>tickets</small>');
+    const cntB = cnt.querySelector('b');
+    const laneN2 = K.el('div', 'lane', board, '<h3>Vos techniciens N2</h3><h4>projets clients</h4>');
+    const laneR = K.el('div', 'lane', board, '<h3>Relais N1</h3><h4>sous votre marque</h4>');
+    const ring = K.el('div', 'relay-ring', laneR);
+    const glow = K.el('div', 'relay-glow', laneR);
+    const empty = K.el('div', 'empty', laneR, 'Aucun relais');
+    empty.style.top = (P.bh / 2 - 10) + 'px';
+    const bchip = K.el('div', 'brandchip', laneR, '<span>●</span> Support · Votre ESN');
+    bchip.style.top = '100px';
+
+    const laneW = (P.bw - 36) / 3;
+    const HEAD = 92, CH = 36;                 // hauteur d'en-tête de colonne, pas d'empilement
+    const qBottom = P.bh - 20;                 // les tickets s'empilent depuis le bas de la file
+    const MAXV = Math.floor((qBottom - HEAD - 10) / CH);
+
+    const projs = PROJ.map((d, i) => {
+      const e = K.el('div', 'proj', laneN2, `<div class="pt">${d.t}</div><div class="ps"><span class="run">● En cours</span><span class="stop">■ En pause — N2 sur le N1</span></div><div class="bar"><div></div></div><div class="hatch"></div>`);
+      e.style.top = (HEAD + 18 + i * 112) + 'px';
+      return { e, d, run: e.querySelector('.run'), stop: e.querySelector('.stop'), bar: e.querySelector('.bar div'), hatch: e.querySelector('.hatch') };
+    });
+
+    // Deux jeux de tickets (un par passe), posés en coordonnées du plateau.
+    const mkSet = () => ARR.map(x => { const e = K.el('div', 'tk', board, `<i>${x.id}</i>${x.s}<span class="ok">✓</span>`); e.style.width = (laneW - 36) + 'px'; return e; });
+    const set1 = mkSet(), set2 = mkSet();
+
+    const tag = K.el('div', 'tag-illu', root, 'Illustration · données fictives');
+    if (P.ta === 'right') tag.style.right = (P.W - P.bx - P.bw) + 'px'; else { tag.style.left = '0'; tag.style.right = '0'; tag.style.textAlign = 'center'; }
+    tag.style.top = P.tagy + 'px';
+
+    const laneX = k => k * (laneW + 18) + 18;
+
+    function layTickets(els, tau, D, dest, alpha) {
+      // Rang lissé dans la file : somme des présences des tickets arrivés avant.
+      let rank = 0, queued = 0;
+      ARR.forEach((x, i) => {
+        const e = els[i];
+        const inP = x.a < 0 ? 1 : K.easeOut(K.seg(tau, x.a, x.a + 0.4));
+        const d = D[i];
+        const leave = K.seg(tau, d, d + 0.6);
+        const qx = laneX(0), qy = qBottom - 30 - rank * CH - (1 - inP) * 60;
+        let x0 = qx, y0 = qy, op = inP, okO = 0;
+        if (tau >= d) {
+          // Trajet vers la colonne qui prend le ticket, puis validation et disparition.
+          const p = K.easeInOut(leave);
+          const tx = laneX(dest === 'n2' ? 1 : 2), ty = dest === 'n2' ? P.bh - 70 : 158 + (i % 7) * 44;
+          x0 = K.lerp(qx, tx, p); y0 = K.lerp(qy, ty, p) - Math.sin(p * Math.PI) * 50;
+          okO = K.seg(tau, d + 0.6, d + 0.8);
+          op = 1 - K.seg(tau, d + 1.1, d + 1.5);
+        }
+        if (rank >= MAXV && tau < d) op *= K.clamp(MAXV + 0.6 - rank);
+        e.style.transform = `translate(${x0.toFixed(1)}px, ${y0.toFixed(1)}px)`;
+        e.style.opacity = (op * alpha).toFixed(3);
+        e.querySelector('.ok').style.opacity = okO.toFixed(3);
+        e.style.borderColor = tau >= d && dest === 'relay' ? 'rgba(224,107,82,.7)' : '';
+        const presence = inP * (1 - K.easeInOut(K.seg(tau, d, d + 0.35)));
+        rank += presence;
+        if (tau >= x.a && tau < d) queued++;
+      });
+      return queued;
+    }
+
+    return function update(t) {
+      const w = 2 * Math.PI * t / L;
+      grid.style.transform = `translate(${(Math.sin(w) * 20).toFixed(2)}px, ${(Math.cos(w) * 14).toFixed(2)}px)`;
+      h1.style.transform = `translate(${(P.bx + P.bw * 0.7 + Math.sin(w) * 90 - 360).toFixed(1)}px, ${(P.by + Math.cos(w) * 60 - 300).toFixed(1)}px)`;
+      h2.style.transform = `translate(${(P.bx - 450 + Math.cos(w) * 120).toFixed(1)}px, ${(P.by + P.bh - 500 + Math.sin(w) * 80).toFixed(1)}px)`;
+
+      const s1 = 1 - K.easeInOut(K.seg(t, SW1, SW1 + 0.5));   // opacité passe 1
+      const s2 = K.easeInOut(K.seg(t, SW2 - 0.5, SW2));        // opacité passe 2
+      const second = t >= SW1 + 0.5;
+      const tau = second ? t - SW2 : t;
+
+      ph1.style.opacity = s1.toFixed(3);
+      ph2.style.opacity = s2.toFixed(3);
+      ph2.style.transform = `translateY(${((1 - s2) * 16).toFixed(1)}px)`;
+
+      // Horloge : déroule le matin, se rembobine pendant la bascule.
+      if (t < SW1) clockB.textContent = clockAt(t);
+      else if (t < SW2) clockB.textContent = clockAt(K.lerp(9.4, 0, K.easeInOut(K.seg(t, SW1, SW2))));
+      else clockB.textContent = clockAt(t - SW2);
+
+      const q1 = layTickets(set1, t, D1, 'n2', s1);
+      const q2 = layTickets(set2, Math.max(tau, 0), D2, 'relay', second ? s2 : 0);
+      cntB.textContent = second ? q2 : (t < SW1 ? q1 : Math.round(q1 * s1));
+      cntB.style.color = !second && q1 > 8 ? '#FF9C85' : '';
+
+      // Colonne relais : vide et en pointillés, puis active.
+      ring.style.opacity = (1 - s2).toFixed(3);
+      glow.style.opacity = s2.toFixed(3);
+      empty.style.opacity = (1 - s2).toFixed(3);
+      bchip.style.opacity = s2.toFixed(3);
+
+      // Projets N2 : en pause pendant la passe 1, continus pendant la passe 2.
+      projs.forEach((p, i) => {
+        let paused, prog;
+        if (!second) {
+          const st = K.seg(t, p.d.stop, p.d.stop + 0.3);
+          paused = st;
+          prog = p.d.p + 0.03 * Math.min(t, p.d.stop);
+        } else {
+          paused = 0;
+          prog = p.d.p + 0.022 * Math.max(tau, 0);
+        }
+        p.run.style.opacity = (1 - paused).toFixed(3);
+        p.stop.style.opacity = paused.toFixed(3);
+        p.hatch.style.opacity = paused.toFixed(3);
+        p.bar.style.transform = `scaleX(${K.clamp(prog).toFixed(4)})`;
+        p.bar.style.background = paused > 0.5 ? '#B98A2A' : '';
+        p.e.style.opacity = (second ? s2 : s1).toFixed(3);
+      });
+    };
+  }
+
+  K.run({ duration: L, fade: 0.9, design: { landscape: [1920, 1080], portrait: [1080, 1920] }, mount });
+})();
+</script>
+</body>
+</html>

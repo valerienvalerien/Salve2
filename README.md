@@ -36,6 +36,11 @@ La version complète antérieure de `PRICING.md` est sauvegardée dans `99-Archi
 `index.html`, `CRM_Salverys.html`, pages métier partenaires, espaces client/candidat, chartes,
 `assets/`, `tools/`. Build : `tools/build-site.sh`.
 
+Landing pages de campagne **Helpdesk IT N1 (ESN/MSP)** avec vidéo de fond, en deux variantes A/B :
+`landing-helpdesk-it-a.html` (« Sous votre marque ») et `landing-helpdesk-it-b.html` (« Le pic du
+lundi »). Scénarios, garde-fous et mesure : `02-Prospection/LANDING-VIDEO-SCENARIOS.md`. Les vidéos
+(`assets/video/`) se régénèrent avec `node tools/landing-video/render.mjs`.
+
 > Après toute modification de `tools/finance-model.mjs` : `node tools/sync-projection.mjs`
 > puis `node tools/finance-model.test.mjs`. Le test échoue si la copie embarquée dans
 > `projection-finances-salverys.html` a dérivé de la source. `tresorerie-salverys.html`

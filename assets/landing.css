@@ -1,0 +1,117 @@
+/* =========================================================
+   Landing pages de campagne — Helpdesk IT N1 (marque blanche)
+   S'ajoute à site.css + .theme-helpdesk. Deux variantes A/B :
+   landing-helpdesk-it-a.html · landing-helpdesk-it-b.html
+   ========================================================= */
+
+/* ----- Nav allégée : une seule action ----- */
+.lp .nav-links { justify-content: flex-end; }
+.lp .brand-logo { height: 36px; }
+
+/* ----- Hero vidéo plein cadre ----- */
+.lp-hero { position: relative; overflow: hidden; min-height: calc(100vh - 70px); min-height: calc(100svh - 70px);
+  display: flex; align-items: center; padding: 64px 0 88px; background: #072530; color: #fff; }
+.lp-media { position: absolute; inset: 0; z-index: 0; background: #072530 center / cover no-repeat; }
+/* Image d'attente = première image de la boucle (chemins relatifs à cette feuille) */
+.lp-media.poster-a { background-image: url(video/landing-a-16x9.jpg); }
+.lp-media.poster-b { background-image: url(video/landing-b-16x9.jpg); }
+.lp-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 50%; }
+/* Voile : dense sous le texte (gauche), léger sur l'animation (droite) */
+.lp-media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(98deg, rgba(7,37,48,.96) 0%, rgba(7,37,48,.9) 34%, rgba(7,37,48,.55) 54%, rgba(7,37,48,.12) 74%, rgba(7,37,48,0) 100%); }
+.lp-hero .container { position: relative; z-index: 1; width: 100%; }
+.lp-copy { max-width: 580px; }
+.lp-hero .eyebrow { background: rgba(255,255,255,.12); color: #FFC2B4; }
+.lp-hero h1 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 58px); line-height: 1.04; letter-spacing: -.03em; margin-bottom: 22px; }
+.lp-hero h1 .hl { color: #fff; background: var(--accent); padding: 0 12px; border-radius: 10px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.lp-hero .lead { font-size: 18.5px; color: rgba(255,255,255,.88); max-width: 540px; margin-bottom: 30px; }
+.lp-hero .lead b { color: #fff; }
+.lp-hero .hero-actions { margin-bottom: 30px; }
+.lp-hero .hero-trust { margin-top: 0; color: rgba(255,255,255,.7); font-size: 13.5px; gap: 12px 24px; }
+.lp-hero .hero-trust b { color: #FFC2B4; }
+
+.lp-vctl { position: absolute; left: 24px; bottom: 22px; z-index: 2; }  /* à gauche : la mention « Illustration » est incrustée en bas à droite de la vidéo */
+.lp-vbtn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.4); background: rgba(7,37,48,.5); color: #fff;
+  display: grid; place-items: center; cursor: pointer; transition: background .2s, border-color .2s; }
+.lp-vbtn:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+.lp-vbtn:focus-visible { outline: 3px solid #FFC2B4; outline-offset: 2px; }
+.lp-vbtn svg { width: 16px; height: 16px; }
+.lp-vbtn .i-play { display: none; }
+.lp-vbtn[aria-pressed="true"] .i-play { display: block; }
+.lp-vbtn[aria-pressed="true"] .i-pause { display: none; }
+.lp-hero.no-motion .lp-vbtn { display: none; }
+
+@media (max-width: 780px) {
+  .lp-hero { padding: 40px 0 64px; }
+  .lp-media::after { background: rgba(7,37,48,.86); }
+  .lp-hero .lead { font-size: 16.5px; }
+  .lp-vctl { left: 16px; bottom: 16px; }
+}
+
+/* Version portrait de la vidéo — même seuil que assets/landing.js.
+   La vidéo 9:16 est posée en bas du hero, sans recadrage latéral : sa moitié haute
+   (décor seul, par construction de la scène) passe sous le texte, l'animation
+   occupe l'espace réservé sous les boutons (≈ 0,85 × largeur d'écran). */
+@media (max-aspect-ratio: 4/5) {
+  .lp-hero { align-items: flex-start; min-height: 0; padding: 40px 0 calc(90vw + 24px); }
+  .lp-media { background-size: 100% auto; background-position: center bottom; }
+  .lp-media video { top: auto; height: auto; }
+  .lp-media.poster-a { background-image: url(video/landing-a-9x16.jpg); }
+  .lp-media.poster-b { background-image: url(video/landing-b-9x16.jpg); }
+  .lp-media::after { background: linear-gradient(180deg, rgba(7,37,48,.96) 0%, rgba(7,37,48,.94) calc(100% - 96vw), rgba(7,37,48,.3) calc(100% - 70vw), rgba(7,37,48,.1) 100%); }
+}
+
+/* ----- Blocs de contenu ----- */
+.lp h2, .lp .section-head h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; }
+.lp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+.lp-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 28px; box-shadow: var(--shadow-sm); }
+.section.soft .lp-card { border-color: transparent; }
+.lp-card h3 { font-size: 19px; font-weight: 800; color: var(--primary); margin-bottom: 10px; letter-spacing: -.01em; }
+.lp-card p { color: var(--text-soft); font-size: 15.5px; }
+.lp-card .tick { margin-top: 12px; }
+.lp-card .tag { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.lp-card.accent { border-top: 4px solid var(--accent); }
+
+.lp-split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.lp-split .lp-card.dark { background: var(--bg-deep); color: #fff; border-color: transparent; }
+.lp-split .lp-card.dark h3 { color: #fff; }
+.lp-split .lp-card.dark .tick li { color: rgba(255,255,255,.88); }
+.lp-split .lp-card.dark .tick li::before { color: var(--accent); }
+@media (max-width: 780px) { .lp-split { grid-template-columns: 1fr; } }
+
+.lp-scope { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 860px; margin: 0 auto; }
+.lp-scope span { padding: 10px 16px; border-radius: var(--radius-pill); background: #fff; border: 1px solid var(--line); font-size: 14.5px; font-weight: 600; color: var(--primary); }
+.lp-note { text-align: center; color: var(--text-mute); font-size: 14px; margin-top: 22px; }
+
+.lp .steps { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 920px) { .lp .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .lp .steps { grid-template-columns: 1fr; } }
+.lp .step .sn { font-family: 'Inter', sans-serif; background: var(--accent-tint); color: var(--accent); }
+
+.lp-sla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.lp-sla > div { border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; }
+.lp-sla b { display: block; font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -.02em; margin-bottom: 6px; }
+.lp-sla p { color: rgba(255,255,255,.78); font-size: 15px; }
+@media (max-width: 780px) { .lp-sla { grid-template-columns: 1fr; } }
+
+.lp-faq { max-width: 780px; margin: 0 auto; }
+.lp-faq details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+.lp-faq summary { cursor: pointer; font-weight: 700; font-size: 17px; color: var(--primary); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.lp-faq summary::-webkit-details-marker { display: none; }
+.lp-faq summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; font-weight: 700; }
+.lp-faq details[open] summary::after { content: "–"; }
+.lp-faq details p { color: var(--text-soft); margin-top: 10px; font-size: 15.5px; }
+
+.lp .contact-copy h2 { font-family: 'Inter', sans-serif; font-weight: 800; }
+.lp .form-field textarea { width: 100%; padding: .625rem .875rem; border: 1.5px solid var(--line); border-radius: .625rem; font: inherit; font-size: .95rem; color: var(--ink); resize: vertical; }
+.lp .form-field textarea:focus { outline: none; border-color: var(--accent); }
+
+.lp-foot { background: var(--primary-deep); color: rgba(255,255,255,.7); padding: 34px 0; font-size: 14px; }
+.lp-foot .container { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+.lp-foot a:hover { color: #fff; }
+.lp-foot .brand-logo { height: 30px; }
+.lp-foot nav { display: flex; gap: 22px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp .reveal { opacity: 1; transform: none; transition: none; }
+}
