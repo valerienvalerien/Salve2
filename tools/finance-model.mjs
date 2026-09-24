@@ -59,7 +59,14 @@ export const PRICE_FLOOR = 920;
 
 export const ASSUMPTIONS = Object.freeze({
   exchangeArPerEuro: 5000,
+  /** Brut mensuel du MANAGER, et de l'agent quand agentAllInAr vaut 0. */
   grossSalaryAr: 3250000,
+  /** Coût complet mensuel d'un agent en ariary, TOUT COMPRIS : rémunération, charges
+   * employeur, congés, absences, formation non facturable et provision de remplacement
+   * (arbitrage A7 du 2026-09-24, BMC v1.3). Quand il est renseigné, il remplace le calcul
+   * brut + cotisations + coussin pour l'agent. 0 = revenir au calcul par le brut.
+   * À valider par la paie : le brut de 3,25 M Ar chargé (≈ 3,68 M Ar) ne tient pas dedans. */
+  agentAllInAr: 3500000,
   smeAr: 300000,
   employerRate: 0.18,
   voipPerAgent: 30,
@@ -67,30 +74,46 @@ export const ASSUMPTIONS = Object.freeze({
   contingency: 0.10,
   toolsPerMonth: 68,
   otherMonthlyCost: 0,
+  /** Structure décaissée tant qu'au moins un agent est en poste (arbitrage A8, BMC v1.3,
+   * hypothèse pessimiste) : encadrement / QA 600 € + loyer 60 m² 720 € + double fibre
+   * 300 € + RH / paie / comptable 300 € + énergie 300 €. Les outils restent dans
+   * toolsPerMonth. L'encadrement est un forfait prévu pour 5 positions : au-delà, un
+   * manager s'ajoute (founderSupervisesUpTo) et le forfait est à recalculer. */
+  structureMonthly: 2220,
+  /** Poste de travail (laptop + écran, 4 M Ar) acheté à la signature, par position. */
+  equipmentPerPosition: 800,
+  /** Groupe électrogène + UPS (2,25 M Ar), achetés une fois, au premier recrutement. */
+  equipmentBase: 450,
   onboardingBase: 400,
   onboardingPerPosition: 400,
-  depositPerPosition: 900,
-  invoiceCreditPerPosition: 300,
+  /** Dépôt rendu par crédit de facture : SUPPRIMÉ de la grille le 2026-09-24 (arbitrage
+   * A1), remplacé par les frais de mise en service ci-dessous. Gardé à 0 pour simuler
+   * l'ancien mécanisme si besoin. */
+  depositPerPosition: 0,
+  invoiceCreditPerPosition: 0,
   invoiceCreditMonths: 3,
-  /** Frais d'activation NON remboursables, encaissés à la signature.
-   * À distinguer du dépôt, qui est une avance intégralement rendue par crédit de facture.
-   * Zéro par défaut : `PRICING.md` §3 dit aujourd'hui qu'il n'y a pas de frais de mise en
-   * service. Les activer est une MODIFICATION DE LA GRILLE, donc une hausse de prix à
-   * vendre — pas un simple réglage d'outil. */
+  /** Frais de mise en service NON remboursables, encaissés à la signature et jamais
+   * imputés sur les mensualités : 490 €/position (PRICING.md §3, arbitrage A1 du
+   * 2026-09-24). Ils financent recrutement, configuration et formation initiale. */
   activationFeePerDeal: 0,
-  activationFeePerPosition: 0,
+  activationFeePerPosition: 490,
   paymentDelayMonths: 1,
   hireDelayMonths: 1,
   firstInvoiceDelayMonths: 2,
   managerCapacity: 8,
   /** Nombre de positions que le fondateur encadre lui-même avant d'embaucher un manager.
-   * 0 = un manager dès la première position (hypothèse prudente par défaut). */
-  founderSupervisesUpTo: 0,
+   * 5 depuis l'arbitrage A10 du 2026-09-24 : le fondateur encadre le lancement (3 + 2
+   * positions), le forfait d'encadrement de structureMonthly couvrant la QA. 0 = un
+   * manager dès la première position. */
+  founderSupervisesUpTo: 5,
   /** Part du CA encaissé perdue en impayés ; 0 par défaut, à régler sur l'expérience réelle. */
   badDebtRate: 0,
-  /** Charges proportionnelles au CA encaissé non détaillées ailleurs : taxes, frais de
-   * change et frais bancaires. 0 par défaut car non vérifié. */
-  revenueChargeRate: 0,
+  /** Charges proportionnelles au CA encaissé : frais bancaires et risque de change, 1 %
+   * (arbitrage A9, BMC v1.3). Taxes non comprises : taux non vérifiés. */
+  revenueChargeRate: 0.01,
+  /** Provision pour avoirs SLA, en part du CA encaissé : 2 % (arbitrage A9). Un avoir de
+   * 20 % au plus un mois sur douze vaut 1,67 % du CA annuel. */
+  slaReserveRate: 0.02,
   initialCash: 0,
 });
 
@@ -164,8 +187,22 @@ export function chargedSalary(a = ASSUMPTIONS) {
   return (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro;
 }
 
+/** Coût mensuel d'un agent. Avec un coût complet tout compris (agentAllInAr), le coussin
+ * ne s'applique pas : les provisions y sont déjà. Sinon, brut chargé + VoIP + coussin. */
 export function monthlyAgentCost(a = ASSUMPTIONS) {
+  if ((a.agentAllInAr ?? 0) > 0) return a.agentAllInAr / a.exchangeArPerEuro + a.voipPerAgent;
   return (chargedSalary(a) + a.voipPerAgent) * (1 + a.contingency);
+}
+
+/** Part du CA retenue en réserves : avoirs SLA + banque et change. */
+export function revenueReserveRate(a = ASSUMPTIONS) {
+  return (a.slaReserveRate ?? 0) + (a.revenueChargeRate ?? 0);
+}
+
+/** Coûts fixes mensuels d'un mois donné : outils et charges toujours, structure
+ * seulement quand au moins un agent est en poste. */
+export function fixedMonthlyCost(agents, a = ASSUMPTIONS) {
+  return a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + (agents > 0 ? (a.structureMonthly ?? 0) : 0);
 }
 
 export function monthlyManagerCost(a = ASSUMPTIONS) {
@@ -242,6 +279,10 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
     const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
     const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    // Équipement : postes achetés à la signature, groupe + UPS au premier mois avec du personnel.
+    const firstStaffMonth = agents > 0 && !rows.some(r => r.agents > 0);
+    const equipment = signedThisMonth.reduce((n, d) => n + d.positions * (a.equipmentPerPosition ?? 0), 0)
+      + (firstStaffMonth ? (a.equipmentBase ?? 0) : 0);
     // Les frais d'activation ne sont pas une avance : ils entrent et ne ressortent jamais.
     const activation = signedThisMonth.reduce((n, d) => n + activationFee(d.positions, a), 0);
     const invoiced = accepted
@@ -252,11 +293,12 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
       .reduce((n, d) => n + invoiceAmount(d, m - a.paymentDelayMonths - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
     const badDebt = receiptGross * (a.badDebtRate ?? 0);
     const receipt = receiptGross - badDebt;
-    const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
-    const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
-    const expense = payroll + overhead + onboarding + acquisition;
+    const revenueCharges = receipt * revenueReserveRate(a);
+    const structure = agents > 0 ? (a.structureMonthly ?? 0) : 0;
+    const overhead = fixedMonthlyCost(agents, a) + revenueCharges;
+    const expense = payroll + overhead + onboarding + acquisition + equipment;
     cash += deposit + activation + receipt - expense;
-    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
+    rows.push({ month: m, agents, managers, payroll, overhead, structure, revenueCharges, onboarding, acquisition, equipment, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
   }
   return rows;
 }
@@ -277,14 +319,16 @@ export function contributions(deals, a = ASSUMPTIONS) {
     const revenue = d.revenue;
     const agentCost = d.positions * monthlyAgentCost(a);
     const managerCost = marginalManagers * monthlyManagerCost(a);
+    const reserves = revenue * revenueReserveRate(a);
     return {
-      deal: d, revenue, agentCost, managerCost, marginalManagers,
-      contribution: revenue - agentCost - managerCost,
-      perPositionMargin: d.marginal - monthlyAgentCost(a),
+      deal: d, revenue, agentCost, managerCost, marginalManagers, reserves,
+      contribution: revenue - agentCost - managerCost - reserves,
+      perPositionMargin: d.marginal * (1 - revenueReserveRate(a)) - monthlyAgentCost(a),
       belowFloor: d.marginal < PRICE_FLOOR,
     };
   });
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const positions = lines.reduce((n, l) => n + l.deal.positions, 0);
+  const fixed = fixedMonthlyCost(positions, a);
   const total = lines.reduce((n, l) => n + l.contribution, 0);
   return { lines, fixedCost: fixed, totalContribution: total, monthlyResult: total - fixed };
 }
@@ -293,9 +337,9 @@ export function contributions(deals, a = ASSUMPTIONS) {
  * les coûts fixes connus et la supervision. Renvoie null si la contribution
  * par position est nulle ou négative : aucun volume ne rattrape un prix en dessous du coût. */
 export function breakEvenPositions(price, a = ASSUMPTIONS) {
-  const perPosition = price - monthlyAgentCost(a);
+  const perPosition = price * (1 - revenueReserveRate(a)) - monthlyAgentCost(a);
   if (perPosition <= 0) return null;
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const fixed = fixedMonthlyCost(1, a);
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
     if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
@@ -305,10 +349,10 @@ export function breakEvenPositions(price, a = ASSUMPTIONS) {
 
 /** Nombre de positions nécessaires pour équilibrer un contrat marque blanche, tranches comprises. */
 export function breakEvenMb(metier, a = ASSUMPTIONS) {
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const fixed = fixedMonthlyCost(1, a);
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
-    const result = mbRevenue(metier, n) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
+    const result = mbRevenue(metier, n) * (1 - revenueReserveRate(a)) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
     if (result >= 0) return n;
   }
   return null;

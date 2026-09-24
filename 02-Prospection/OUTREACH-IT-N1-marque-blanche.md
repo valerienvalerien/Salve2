@@ -240,6 +240,6 @@ Statuts de progression :
 partenaire 1/3/5+ ETP remise au cadrage sous NDA**, jamais en cold email). **Mise à jour
 2026-08-03 : plus de mois pilote à −50 % en marque blanche** (`PRICING.md §3.b`) — le pilote
 reste un **périmètre restreint** (200-400 tickets ou un client final) au tarif du palier, +
-**dépôt d'activation** (§3.a) et **contreparties de risque** : sortie 30 j les 3 premiers
+**frais de mise en service de 490 €/position** (§3) et **contreparties de risque** : sortie 30 j les 3 premiers
 mois · exclusivité 12 mois · appui avant-vente sous 48 h.*  
 *Format identique au master playbook OUTREACH-SEQUENCE.md*

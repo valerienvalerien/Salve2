@@ -56,10 +56,15 @@ FR). Toute priorisation de prospection, de copy ou de chiffrage doit refléter c
 > Portée exacte, conséquences sur le catalogue et **conditions de dégel** : `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` §0.a.
 
 ### Modèle d'équipe (décision direction, 2026-08-14 — remplace le modèle freelance)
-Équipe **100 % salariée** (CDI). Salaire **brut** d'un agent et d'un manager :
-**3 250 000 Ar/mois** (650 € au taux de simulation), avec charges patronales en sus.
-Le coût employeur illustratif d'environ **736 €/personne** suppose un plafond et des taux
-non vérifiés sur la paie réelle ; consulter le prévisionnel avant citation. La stabilité
+Équipe **100 % salariée** (CDI). Salaire **brut** d'un manager : **3 250 000 Ar/mois**
+(650 € au taux de simulation), avec charges patronales en sus, soit un coût employeur
+illustratif d'environ **736 €**.
+**Agent (décision 2026-09-24, BMC v1.3) : coût complet de 3 500 000 Ar/mois (700 €) tout
+compris** — rémunération, charges employeur, congés, absences, formation non facturable et
+provision de remplacement. **À valider par la paie** : le brut de 3,25 M Ar chargé
+(≈ 3,68 M Ar) ne tient pas dans cette enveloppe, le brut agent est donc à redéfinir avec le
+gestionnaire de paie. Plafond et taux restent non vérifiés ; consulter le prévisionnel avant
+citation. La stabilité
 de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
 
 - **Aucun plafond d'effectif** : on embauche sur **positions fermes facturables**, pas sur
@@ -71,7 +76,9 @@ de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
   une **base d'outils chiffrée selon les dépenses déclarées**, à compléter des abonnements
   sans montant confirmé. Le point mort varie par métier et par coût de manager ; une seule
   position support peut être déficitaire (`01-Strategie-Offre/FINANCE-PREVISIONNEL.md`).
-- **Un seul fondateur, non rémunéré** au lancement.
+- **Un seul fondateur, non rémunéré** au lancement. Il **encadre lui-même les 5 premières
+  positions** (lancement de référence : 3 + 2 positions chez deux clients) ; un manager
+  s'ajoute à la 6e.
 - Les équipements et liaisons de secours sont à **chiffrer et tester** avant d'être promis
   au partenaire ; ils ne sont pas implicitement couverts par le salaire.
 - Rentabilité, point mort et trésorerie : `01-Strategie-Offre/FINANCE-PREVISIONNEL.md`.
@@ -89,7 +96,8 @@ de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
   avec source vérifiable. Les anciens benchmarks restent au registre interne.
 - **Délai d'activation — toujours nommer le jalon** : première prise de tickets en
   marque blanche visée **vers six semaines** après signature, sous réserve de recrutement,
-  formation et accès ; autonomie visée **2,5 à 3,5 mois**. Le devis date les jalons.
+  formation et accès ; autonomie visée **vers deux mois** après signature (révisé le
+  2026-09-24, auparavant 2,5 à 3,5 mois). Le devis date les jalons.
   > ⚠️ **Le mot « opérationnel » est proscrit** pour désigner la première prise de tickets :
   > il promet l'autonomie complète en livrant la première connexion. C'est ce glissement,
   > pas le chiffre, qui rendait la promesse attaquable.
@@ -125,9 +133,9 @@ de l'équipe se mesure après démarrage, sans promesse de « zéro turnover ».
 
 ## Source de vérité tarifaire
 
-**`PRICING.md` fait foi pour les devis en marque blanche** : deux modèles IT (débordement et poste dédié), grille par volume ferme, télésecrétariat partenaire, dépôt, horaires et engagement de service. Toute proposition partenaire doit s'y aligner. La version complète antérieure, avec les tarifs directs et la chronologie des décisions, est conservée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` ; elle ne remplace pas la grille partenaire actuelle.
+**`PRICING.md` fait foi pour les devis en marque blanche** : deux modèles IT (débordement et poste dédié), grille par volume ferme, télésecrétariat partenaire, frais de mise en service, horaires et engagement de service. Toute proposition partenaire doit s'y aligner. La version complète antérieure, avec les tarifs directs et la chronologie des décisions, est conservée dans `99-Archives/PRICING-REGISTRE-INTERNE-2026-09-15.md` ; elle ne remplace pas la grille partenaire actuelle.
 
-Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical partenaire · 4) relation client future**. Le dépôt de **900 €/position** concerne le poste dédié ; les modèles sans position réservée nécessitent un cadrage distinct.
+Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical partenaire · 4) relation client future**. Les **frais de mise en service de 490 €/position**, acquis et non imputés, concernent le poste dédié ; ils remplacent depuis le 2026-09-24 le dépôt de 900 € rendu sur les trois premières factures. Les modèles sans position réservée nécessitent un cadrage distinct. **Offre de lancement : poste dédié uniquement** ; le débordement mutualisé (modèle A) n'est ni prospecté ni proposé avant stabilisation des deux premiers contrats.
 
 > ⚠️ **`99-Archives/` ne chiffre rien.** Son README l'écrit en première ligne : rien de ce
 > dossier ne sert à chiffrer un deal, préparer un appel ou écrire de la copy. **Ne jamais

@@ -287,5 +287,5 @@ Bonne continuation,
 
 *Mise à jour 2026-08-03 — `PRICING.md §3.a/§3.b` : **aucune remise sur le prix de gros en
 marque blanche**. Le pilote reste un **périmètre restreint** au tarif de la grille. Mécanique
-d'entrée : **dépôt d'activation imputable** + **3 contreparties de risque** (sortie 30 j les
+d'entrée : **frais de mise en service chiffrés au devis si une capacité est réservée** + **3 contreparties de risque** (sortie 30 j les
 3 premiers mois · exclusivité 12 mois · appui avant-vente sous 48 h).*

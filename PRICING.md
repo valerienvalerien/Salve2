@@ -11,13 +11,15 @@ Salverys prend en charge le support de niveau 1 dans les outils et sous la marqu
 | Absorber un volume variable sans agent attitré | **A — Débordement mutualisé** | Jusqu'à 400 tickets par mois, traités par un pool partagé | **1 120 €/mois** |
 | Réserver une capacité formée à son périmètre | **B — Poste dédié** | Une ou plusieurs positions fermes de 35 h par semaine chacune | **1 700 €/position/mois** en support applicatif N1 ; **2 000 €** en helpdesk IT N1 |
 
+> **Offre de lancement : poste dédié uniquement (décision 2026-09-24).** Le modèle A reste dans la grille, mais il n'est **ni prospecté ni proposé** tant que les deux premiers contrats dédiés ne sont pas stabilisés. Motif : un pool partagé suppose un staffing mesuré, et le lancement se concentre sur des positions garanties au contrat. Une demande entrante de débordement se traite au cas par cas.
+
 Les appels, les canaux, le périmètre des tickets, les horaires et la règle d'escalade sont fixés dans le devis. Une **position** désigne la capacité hebdomadaire de 35 h d'un agent dédié ; elle ne signifie pas une présence continue de 9 h à 18 h tous les jours.
 
 ### A — Débordement mutualisé
 
 - Forfait : **1 120 €/mois pour 400 tickets inclus**. Chaque ticket au-delà : **2,80 €**. Par exemple, 500 tickets traités coûtent `1 120 + 100 × 2,80 = 1 400 €` sur le mois.
 - Aucun agent nominatif ni plage de présence continue n'est compris dans ce prix. Le devis définit les plages de traitement et le volume admissible ; une capacité réservée relève du modèle B.
-- Le dépôt **par position** du modèle B ne s'applique pas automatiquement : ce modèle ne réserve aucune position dédiée. Si le cadrage exige du recrutement ou une capacité réservée, établir un devis en modèle B. Toute autre avance éventuelle doit être chiffrée et imputée explicitement dans le devis.
+- Les frais de mise en service **par position** du modèle B ne s'appliquent pas automatiquement : ce modèle ne réserve aucune position dédiée. Si le cadrage exige du recrutement ou une capacité réservée, établir un devis en modèle B. Tout autre frais de démarrage doit être chiffré explicitement dans le devis.
 
 ### B — Poste dédié
 
@@ -42,6 +44,11 @@ Le tarif volume s'obtient contre un **minimum de positions facturables garanti d
 > supervision est **944,30 €/position** — outils, onboarding et coûts non renseignés en sus.
 > Tant que le plancher n'est pas relevé au-dessus de ce seuil, **ne pas s'en servir comme
 > limite de négociation** : chiffrer le contrat dans `projection-finances-salverys.html`.
+>
+> **Mise à jour du 2026-09-24.** Avec l'agent au coût complet de 3,5 M Ar (730 € VoIP
+> comprise) et 3 % de réserves sur CA, ce seuil tombe à **≈ 857 €** : 920 € repasse
+> au-dessus. Mais la structure du lancement (2 220 €/mois) ne se couvre alors qu'à partir
+> de **40 positions** à 920 €. La décision sur le plancher reste ouverte.
 > Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §1. Le prix à comparer au plancher est celui de la
 > **dernière position de la tranche la plus basse** — 1 500 € en support, 1 750 € en helpdesk —
 > et non la moyenne du contrat, qui masque le prix auquel on accepterait la position suivante.
@@ -71,15 +78,19 @@ Salverys traite, sous la marque d'un télésecrétariat français, les appels qu
 | Soir, 20 h–22 h, et samedi | **1,20 à 1,40 €/appel** |
 | Capacité réservée pour un pic annoncé | **Tarif du créneau +15 à 20 %**, sur engagement de volume |
 
-Le devis fixe les créneaux, le volume, le tarif exact dans la fourchette, les débordements et les outils de prise de rendez-vous. Le dépôt **par position** du modèle B ne s'applique pas automatiquement à une prestation facturée à l'appel sans position réservée ; toute avance éventuelle doit être chiffrée et imputée dans le devis.
+Le devis fixe les créneaux, le volume, le tarif exact dans la fourchette, les débordements et les outils de prise de rendez-vous. Les frais de mise en service **par position** du modèle B ne s'appliquent pas automatiquement à une prestation facturée à l'appel sans position réservée ; tout frais de démarrage doit être chiffré dans le devis.
 
 ## 3. Démarrage et facturation
 
-Pour le **modèle B**, le dépôt d'activation est de **900 € par position ferme**, sans plafond. Il est encaissé à la signature et **entièrement imputé** sur les trois premières factures : **300 € par position et par facture**. Avant le démarrage de la mise en service, une annulation entraîne sa restitution ; une annulation après ce démarrage laisse le dépôt acquis à Salverys selon le contrat. Il n'y a pas de frais de mise en service supplémentaires ni de remise automatique sur le premier mois.
+Pour le **modèle B**, les frais de mise en service sont de **490 € par position ferme**, encaissés à la signature. Ils sont **acquis** et **ne sont pas imputés** sur les mensualités. Ils financent le recrutement, la configuration des accès et des outils et la formation initiale ; le recrutement ne démarre qu'à leur encaissement. Les conditions d'annulation sont fixées au contrat. Il n'y a pas de remise automatique sur le premier mois.
 
-**Exemple :** deux positions helpdesk coûtent 4 000 €/mois. Le partenaire verse 1 800 € à la signature, puis reçoit trois factures de **3 400 €** avant de revenir à **4 000 €** : `1 800 + 3 × 3 400 = 12 000 €`, soit exactement trois mois au tarif normal. Le dépôt avance une partie du paiement ; il ne renchérit pas le service.
+**Exemple :** deux positions helpdesk coûtent 4 000 €/mois. Le partenaire verse **980 €** à la signature, puis reçoit des factures mensuelles de **4 000 €**. Pour le lancement de référence (3 + 2 positions chez deux clients), les frais représentent **2 450 €**, pour un onboarding estimé à 2 800 €.
 
-La première prise de tickets sur les outils du partenaire est visée **environ six semaines après la signature** ; la pleine autonomie sur son périmètre est visée **2,5 à 3,5 mois** après la signature. Le calendrier réel, les jalons de transition et le début de facturation figurent au devis. Un pilote peut être limité à **un client final ou 200–400 tickets** sans baisse automatique du tarif.
+> **Décision du 2026-09-24 : les frais de mise en service remplacent le dépôt d'activation.** Le dépôt de 900 €/position, imputé à raison de 300 € sur les trois premières factures, est supprimé. Il avançait du cash sans rien rapporter ; les frais de 490 € financent l'onboarding sans créer de dette à rembourser par crédit de facture. Contrepartie assumée : l'argument « vous ne le payez pas, vous l'avancez » disparaît. Il faut vendre les frais comme le coût réel de la mise en place.
+
+**Clause de révision EUR/MGA (décision du 2026-09-24).** Les coûts sont en ariary et les prix en euros. Le contrat prévoit une révision tarifaire si le taux EUR/MGA sort d'une bande fixée au devis autour du taux de référence retenu à la signature. La bande, le taux de référence et le préavis de révision figurent au contrat.
+
+La première prise de tickets sur les outils du partenaire est visée **environ six semaines après la signature** ; la pleine autonomie sur son périmètre est visée **vers deux mois** après la signature (révisé le 2026-09-24, auparavant 2,5 à 3,5 mois). Le calendrier réel, les jalons de transition et le début de facturation figurent au devis. Un pilote peut être limité à **un client final ou 200–400 tickets** sans baisse automatique du tarif.
 
 Le contrat prévoit **trois mois initiaux**, puis une période de **douze mois renouvelable**. Une sortie avec préavis de **30 jours pendant les trois premiers mois** peut être accordée au cadrage ; elle doit être écrite dans le contrat. Facturation mensuelle, paiement à 30 jours.
 
@@ -92,6 +103,8 @@ Si l'indicateur contractuel n'est pas tenu sur un mois, Salverys applique automa
 En débordement, le pool prend le relais sans agent attitré. Sur un poste dédié, le manager formé au compte prend en charge les absences ponctuelles ; cela ne promet ni une seconde position simultanée ni un remplacement nominatif gratuit.
 
 ## 5. Concessions négociables
+
+**Objectif de négociation sur la durée (décision du 2026-09-24) : 12 mois fermes, nombre de positions garanti et préavis de 3 mois.** La base contractuelle reste celle du §3 : trois mois initiaux, puis douze mois renouvelables. Un engagement de 12 mois fermes s'obtient en négociation, par exemple contre l'une des concessions ci-dessous ; il n'est pas une condition d'entrée.
 
 À concéder **une à la fois** et à tracer dans la proposition :
 

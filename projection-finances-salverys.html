@@ -148,9 +148,10 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
     <div class="field">
       <label for="scenario">Jeu de contrats</label>
       <select id="scenario">
+        <option value="reference" selected>Référence BMC v1.3 — 3 + 2 helpdesk en M4</option>
         <option value="attente">Attente — aucune signature</option>
         <option value="prudent">Prudent — 1 helpdesk en M4</option>
-        <option value="median" selected>Médian — 2 helpdesk M4 + 2 support M9</option>
+        <option value="median">Médian — 2 helpdesk M4 + 2 support M9</option>
         <option value="expansion">Expansion — 3 contrats, 9 positions</option>
         <option value="custom">Mes contrats</option>
       </select>
@@ -213,7 +214,8 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
 
   <h3>Personnel</h3>
   <div class="grid">
-    <div class="field"><label for="gross">Brut mensuel agent / manager (Ar)</label><input id="gross" type="number" min="0" step="50000" value="3250000"></div>
+    <div class="field"><label for="agentAllIn">Coût complet agent, tout compris (Ar) — 0 = calcul par le brut</label><input id="agentAllIn" type="number" min="0" step="50000" value="3500000"></div>
+    <div class="field"><label for="gross">Brut mensuel manager (et agent si coût complet = 0) (Ar)</label><input id="gross" type="number" min="0" step="50000" value="3250000"></div>
     <div class="field"><label for="rate">Taux de change (Ar par €)</label><input id="rate" type="number" min="1" step="50" value="5000"></div>
     <div class="field"><label for="employer">Cotisations employeur (%)</label><input id="employer" type="number" min="0" max="100" step=".5" value="18"></div>
     <div class="field"><label for="sme">SME retenu (Ar) — plafond 8 × SME</label><input id="sme" type="number" min="0" step="10000" value="300000"></div>
@@ -221,7 +223,7 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
     <div class="field"><label for="voipMgr">VoIP par manager (€/mois)</label><input id="voipMgr" type="number" min="0" value="0"></div>
     <div class="field"><label for="contingency">Coussin sur personnel (%)</label><input id="contingency" type="number" min="0" max="100" value="10"></div>
     <div class="field"><label for="managerCapacity">Positions par manager</label><input id="managerCapacity" type="number" min="1" max="50" value="8"></div>
-    <div class="field"><label for="founderSupervises">Positions encadrées par le fondateur</label><input id="founderSupervises" type="number" min="0" max="20" value="0"></div>
+    <div class="field"><label for="founderSupervises">Positions encadrées par le fondateur</label><input id="founderSupervises" type="number" min="0" max="20" value="5"></div>
   </div>
   <p class="note">Coût employeur par personne : <b id="costLine">—</b></p>
 
@@ -229,6 +231,9 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
   <div class="grid" data-help-group="structure">
     <div class="field" data-help="tools"><label for="tools">Outils récurrents connus (€/mois)</label><input id="tools" type="number" min="0" value="68"></div>
     <div class="field" data-help="other"><label for="other">Charges mensuelles supplémentaires (€)</label><input id="other" type="number" min="0" value="0"></div>
+    <div class="field" data-help="structure"><label for="structure">Structure dès la 1re embauche (€/mois)</label><input id="structure" type="number" min="0" step="10" value="2220"></div>
+    <div class="field" data-help="equipPos"><label for="equipPos">Poste de travail par position (€)</label><input id="equipPos" type="number" min="0" step="50" value="800"></div>
+    <div class="field" data-help="equipBase"><label for="equipBase">Groupe + UPS, une fois (€)</label><input id="equipBase" type="number" min="0" step="50" value="450"></div>
     <div class="field" data-help="onbBase"><label for="onbBase">Onboarding — socle par contrat (€)</label><input id="onbBase" type="number" min="0" step="50" value="400"></div>
     <div class="field" data-help="onbPos"><label for="onbPos">Onboarding — par position (€)</label><input id="onbPos" type="number" min="0" step="50" value="400"></div>
     <div class="field" data-help="hireDelay"><label for="hireDelay">Embauche après signature (mois)</label><input id="hireDelay" type="number" min="0" max="6" value="1"></div>
@@ -238,19 +243,20 @@ summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink-soft)}
   <h3>Encaissement et risque <span class="hint">— même chose : le « ? » donne la source et l'effet du réglage</span></h3>
   <div class="grid" data-help-group="risque">
     <div class="field" data-help="paymentDelay"><label for="paymentDelay">Règlement après facture (mois)</label><input id="paymentDelay" type="number" min="0" max="12" value="1"></div>
-    <div class="field" data-help="deposit"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="900"></div>
-    <div class="field" data-help="credit"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="300"></div>
+    <div class="field" data-help="deposit"><label for="deposit">Dépôt par position (€)</label><input id="deposit" type="number" min="0" step="50" value="0"></div>
+    <div class="field" data-help="credit"><label for="credit">Crédit de dépôt par facture (€)</label><input id="credit" type="number" min="0" step="50" value="0"></div>
     <div class="field" data-help="creditMonths"><label for="creditMonths">Factures créditées (nb)</label><input id="creditMonths" type="number" min="0" max="12" value="3"></div>
-    <div class="field" data-help="activationPos"><label for="activationPos">Frais d'activation par position (€)</label><input id="activationPos" type="number" min="0" step="50" value="0"></div>
-    <div class="field" data-help="activationDeal"><label for="activationDeal">Frais d'activation par contrat (€)</label><input id="activationDeal" type="number" min="0" step="50" value="0"></div>
+    <div class="field" data-help="activationPos"><label for="activationPos">Frais de mise en service par position (€)</label><input id="activationPos" type="number" min="0" step="10" value="490"></div>
+    <div class="field" data-help="activationDeal"><label for="activationDeal">Frais de mise en service par contrat (€)</label><input id="activationDeal" type="number" min="0" step="50" value="0"></div>
     <div class="field" data-help="badDebt"><label for="badDebt">Impayés sur CA encaissé (%)</label><input id="badDebt" type="number" min="0" max="100" step=".5" value="0"></div>
-    <div class="field" data-help="revCharge"><label for="revCharge">Taxes et frais sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="0"></div>
+    <div class="field" data-help="revCharge"><label for="revCharge">Banque, change et taxes sur CA encaissé (%)</label><input id="revCharge" type="number" min="0" max="100" step=".5" value="1"></div>
+    <div class="field" data-help="sla"><label for="sla">Provision avoirs SLA sur CA (%)</label><input id="sla" type="number" min="0" max="100" step=".5" value="2"></div>
   </div>
   <p class="warn" id="depotAlerte" style="display:none"></p>
 
   <details>
     <summary>Ce que cette projection ne contient pas</summary>
-    <p class="note">Impôts et TVA, comptabilité, assurance, frais bancaires et de change, équipement et liaisons de secours, recrutement au-delà du forfait d'onboarding, congés et remplacement, turnover, indemnités de rupture, dettes et créances existantes, dates réelles des factures annuelles. Le modèle A mutualisé (1 120 € / 400 tickets) et le télésecrétariat médical facturé à l'appel ne sont pas projetés : leur staffing n'est pas mesuré. Ajoutez le connu dans « Charges mensuelles supplémentaires », et ne présentez rien à un financeur avant d'avoir rapproché deux mois de dépenses réelles.</p>
+    <p class="note">Impôts et TVA, assurance, amortissements comptables, recrutement au-delà du forfait d'onboarding, indemnités de rupture, dettes et créances existantes, dates réelles des factures annuelles. Le modèle A mutualisé (1 120 € / 400 tickets) et le télésecrétariat médical facturé à l'appel ne sont pas projetés : leur staffing n'est pas mesuré. Ajoutez le connu dans « Charges mensuelles supplémentaires », et ne présentez rien à un financeur avant d'avoir rapproché deux mois de dépenses réelles.</p>
   </details>
 </section>
 
@@ -319,7 +325,14 @@ export const PRICE_FLOOR = 920;
 
 export const ASSUMPTIONS = Object.freeze({
   exchangeArPerEuro: 5000,
+  /** Brut mensuel du MANAGER, et de l'agent quand agentAllInAr vaut 0. */
   grossSalaryAr: 3250000,
+  /** Coût complet mensuel d'un agent en ariary, TOUT COMPRIS : rémunération, charges
+   * employeur, congés, absences, formation non facturable et provision de remplacement
+   * (arbitrage A7 du 2026-09-24, BMC v1.3). Quand il est renseigné, il remplace le calcul
+   * brut + cotisations + coussin pour l'agent. 0 = revenir au calcul par le brut.
+   * À valider par la paie : le brut de 3,25 M Ar chargé (≈ 3,68 M Ar) ne tient pas dedans. */
+  agentAllInAr: 3500000,
   smeAr: 300000,
   employerRate: 0.18,
   voipPerAgent: 30,
@@ -327,30 +340,46 @@ export const ASSUMPTIONS = Object.freeze({
   contingency: 0.10,
   toolsPerMonth: 68,
   otherMonthlyCost: 0,
+  /** Structure décaissée tant qu'au moins un agent est en poste (arbitrage A8, BMC v1.3,
+   * hypothèse pessimiste) : encadrement / QA 600 € + loyer 60 m² 720 € + double fibre
+   * 300 € + RH / paie / comptable 300 € + énergie 300 €. Les outils restent dans
+   * toolsPerMonth. L'encadrement est un forfait prévu pour 5 positions : au-delà, un
+   * manager s'ajoute (founderSupervisesUpTo) et le forfait est à recalculer. */
+  structureMonthly: 2220,
+  /** Poste de travail (laptop + écran, 4 M Ar) acheté à la signature, par position. */
+  equipmentPerPosition: 800,
+  /** Groupe électrogène + UPS (2,25 M Ar), achetés une fois, au premier recrutement. */
+  equipmentBase: 450,
   onboardingBase: 400,
   onboardingPerPosition: 400,
-  depositPerPosition: 900,
-  invoiceCreditPerPosition: 300,
+  /** Dépôt rendu par crédit de facture : SUPPRIMÉ de la grille le 2026-09-24 (arbitrage
+   * A1), remplacé par les frais de mise en service ci-dessous. Gardé à 0 pour simuler
+   * l'ancien mécanisme si besoin. */
+  depositPerPosition: 0,
+  invoiceCreditPerPosition: 0,
   invoiceCreditMonths: 3,
-  /** Frais d'activation NON remboursables, encaissés à la signature.
-   * À distinguer du dépôt, qui est une avance intégralement rendue par crédit de facture.
-   * Zéro par défaut : `PRICING.md` §3 dit aujourd'hui qu'il n'y a pas de frais de mise en
-   * service. Les activer est une MODIFICATION DE LA GRILLE, donc une hausse de prix à
-   * vendre — pas un simple réglage d'outil. */
+  /** Frais de mise en service NON remboursables, encaissés à la signature et jamais
+   * imputés sur les mensualités : 490 €/position (PRICING.md §3, arbitrage A1 du
+   * 2026-09-24). Ils financent recrutement, configuration et formation initiale. */
   activationFeePerDeal: 0,
-  activationFeePerPosition: 0,
+  activationFeePerPosition: 490,
   paymentDelayMonths: 1,
   hireDelayMonths: 1,
   firstInvoiceDelayMonths: 2,
   managerCapacity: 8,
   /** Nombre de positions que le fondateur encadre lui-même avant d'embaucher un manager.
-   * 0 = un manager dès la première position (hypothèse prudente par défaut). */
-  founderSupervisesUpTo: 0,
+   * 5 depuis l'arbitrage A10 du 2026-09-24 : le fondateur encadre le lancement (3 + 2
+   * positions), le forfait d'encadrement de structureMonthly couvrant la QA. 0 = un
+   * manager dès la première position. */
+  founderSupervisesUpTo: 5,
   /** Part du CA encaissé perdue en impayés ; 0 par défaut, à régler sur l'expérience réelle. */
   badDebtRate: 0,
-  /** Charges proportionnelles au CA encaissé non détaillées ailleurs : taxes, frais de
-   * change et frais bancaires. 0 par défaut car non vérifié. */
-  revenueChargeRate: 0,
+  /** Charges proportionnelles au CA encaissé : frais bancaires et risque de change, 1 %
+   * (arbitrage A9, BMC v1.3). Taxes non comprises : taux non vérifiés. */
+  revenueChargeRate: 0.01,
+  /** Provision pour avoirs SLA, en part du CA encaissé : 2 % (arbitrage A9). Un avoir de
+   * 20 % au plus un mois sur douze vaut 1,67 % du CA annuel. */
+  slaReserveRate: 0.02,
   initialCash: 0,
 });
 
@@ -424,8 +453,22 @@ export function chargedSalary(a = ASSUMPTIONS) {
   return (a.grossSalaryAr + Math.min(a.grossSalaryAr, 8 * a.smeAr) * a.employerRate) / a.exchangeArPerEuro;
 }
 
+/** Coût mensuel d'un agent. Avec un coût complet tout compris (agentAllInAr), le coussin
+ * ne s'applique pas : les provisions y sont déjà. Sinon, brut chargé + VoIP + coussin. */
 export function monthlyAgentCost(a = ASSUMPTIONS) {
+  if ((a.agentAllInAr ?? 0) > 0) return a.agentAllInAr / a.exchangeArPerEuro + a.voipPerAgent;
   return (chargedSalary(a) + a.voipPerAgent) * (1 + a.contingency);
+}
+
+/** Part du CA retenue en réserves : avoirs SLA + banque et change. */
+export function revenueReserveRate(a = ASSUMPTIONS) {
+  return (a.slaReserveRate ?? 0) + (a.revenueChargeRate ?? 0);
+}
+
+/** Coûts fixes mensuels d'un mois donné : outils et charges toujours, structure
+ * seulement quand au moins un agent est en poste. */
+export function fixedMonthlyCost(agents, a = ASSUMPTIONS) {
+  return a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + (agents > 0 ? (a.structureMonthly ?? 0) : 0);
 }
 
 export function monthlyManagerCost(a = ASSUMPTIONS) {
@@ -502,6 +545,10 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
     const onboarding = signedThisMonth.reduce((n, d) => n + d.onboarding, 0);
     const acquisition = signedThisMonth.reduce((n, d) => n + d.acquisitionCost, 0);
     const deposit = signedThisMonth.reduce((n, d) => n + d.positions * a.depositPerPosition, 0);
+    // Équipement : postes achetés à la signature, groupe + UPS au premier mois avec du personnel.
+    const firstStaffMonth = agents > 0 && !rows.some(r => r.agents > 0);
+    const equipment = signedThisMonth.reduce((n, d) => n + d.positions * (a.equipmentPerPosition ?? 0), 0)
+      + (firstStaffMonth ? (a.equipmentBase ?? 0) : 0);
     // Les frais d'activation ne sont pas une avance : ils entrent et ne ressortent jamais.
     const activation = signedThisMonth.reduce((n, d) => n + activationFee(d.positions, a), 0);
     const invoiced = accepted
@@ -512,11 +559,12 @@ export function projectCash(deals, months = 24, a = ASSUMPTIONS) {
       .reduce((n, d) => n + invoiceAmount(d, m - a.paymentDelayMonths - (d.signedMonth + a.firstInvoiceDelayMonths), a), 0);
     const badDebt = receiptGross * (a.badDebtRate ?? 0);
     const receipt = receiptGross - badDebt;
-    const revenueCharges = receipt * (a.revenueChargeRate ?? 0);
-    const overhead = a.toolsPerMonth + (a.otherMonthlyCost ?? 0) + revenueCharges;
-    const expense = payroll + overhead + onboarding + acquisition;
+    const revenueCharges = receipt * revenueReserveRate(a);
+    const structure = agents > 0 ? (a.structureMonthly ?? 0) : 0;
+    const overhead = fixedMonthlyCost(agents, a) + revenueCharges;
+    const expense = payroll + overhead + onboarding + acquisition + equipment;
     cash += deposit + activation + receipt - expense;
-    rows.push({ month: m, agents, managers, payroll, overhead, revenueCharges, onboarding, acquisition, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
+    rows.push({ month: m, agents, managers, payroll, overhead, structure, revenueCharges, onboarding, acquisition, equipment, deposit, activation, invoiced, receiptGross, badDebt, receipt, expense, result: receipt + activation - expense, cash });
   }
   return rows;
 }
@@ -537,14 +585,16 @@ export function contributions(deals, a = ASSUMPTIONS) {
     const revenue = d.revenue;
     const agentCost = d.positions * monthlyAgentCost(a);
     const managerCost = marginalManagers * monthlyManagerCost(a);
+    const reserves = revenue * revenueReserveRate(a);
     return {
-      deal: d, revenue, agentCost, managerCost, marginalManagers,
-      contribution: revenue - agentCost - managerCost,
-      perPositionMargin: d.marginal - monthlyAgentCost(a),
+      deal: d, revenue, agentCost, managerCost, marginalManagers, reserves,
+      contribution: revenue - agentCost - managerCost - reserves,
+      perPositionMargin: d.marginal * (1 - revenueReserveRate(a)) - monthlyAgentCost(a),
       belowFloor: d.marginal < PRICE_FLOOR,
     };
   });
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const positions = lines.reduce((n, l) => n + l.deal.positions, 0);
+  const fixed = fixedMonthlyCost(positions, a);
   const total = lines.reduce((n, l) => n + l.contribution, 0);
   return { lines, fixedCost: fixed, totalContribution: total, monthlyResult: total - fixed };
 }
@@ -553,9 +603,9 @@ export function contributions(deals, a = ASSUMPTIONS) {
  * les coûts fixes connus et la supervision. Renvoie null si la contribution
  * par position est nulle ou négative : aucun volume ne rattrape un prix en dessous du coût. */
 export function breakEvenPositions(price, a = ASSUMPTIONS) {
-  const perPosition = price - monthlyAgentCost(a);
+  const perPosition = price * (1 - revenueReserveRate(a)) - monthlyAgentCost(a);
   if (perPosition <= 0) return null;
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const fixed = fixedMonthlyCost(1, a);
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
     if (n * perPosition - managers * monthlyManagerCost(a) - fixed >= 0) return n;
@@ -565,10 +615,10 @@ export function breakEvenPositions(price, a = ASSUMPTIONS) {
 
 /** Nombre de positions nécessaires pour équilibrer un contrat marque blanche, tranches comprises. */
 export function breakEvenMb(metier, a = ASSUMPTIONS) {
-  const fixed = a.toolsPerMonth + (a.otherMonthlyCost ?? 0);
+  const fixed = fixedMonthlyCost(1, a);
   for (let n = 1; n <= 200; n++) {
     const managers = (a.founderSupervisesUpTo ?? 0) >= n ? 0 : Math.ceil(n / a.managerCapacity);
-    const result = mbRevenue(metier, n) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
+    const result = mbRevenue(metier, n) * (1 - revenueReserveRate(a)) - n * monthlyAgentCost(a) - managers * monthlyManagerCost(a) - fixed;
     if (result >= 0) return n;
   }
   return null;
@@ -592,6 +642,7 @@ export function summarize(rows) {
 /* ------------------------------ interface ------------------------------ */
 
 const SCENARIOS = {
+  reference: [{ signedMonth: 4, metier: 'helpdesk', positions: 3, tarif: 'mb', label: 'Client A' }, { signedMonth: 4, metier: 'helpdesk', positions: 2, tarif: 'mb', label: 'Client B' }],
   attente: [],
   prudent: [{ signedMonth: 4, metier: 'helpdesk', positions: 1, tarif: 'mb' }],
   median: [{ signedMonth: 4, metier: 'helpdesk', positions: 2, tarif: 'mb' }, { signedMonth: 9, metier: 'support', positions: 2, tarif: 'mb' }],
@@ -606,14 +657,15 @@ const eur1 = n => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumF
 const NUM = {
   initialCash: 'initialCash', toolsPerMonth: 'tools', otherMonthlyCost: 'other',
   onboardingBase: 'onbBase', onboardingPerPosition: 'onbPos',
-  exchangeArPerEuro: 'rate', grossSalaryAr: 'gross', smeAr: 'sme',
+  exchangeArPerEuro: 'rate', grossSalaryAr: 'gross', agentAllInAr: 'agentAllIn', smeAr: 'sme',
+  structureMonthly: 'structure', equipmentPerPosition: 'equipPos', equipmentBase: 'equipBase',
   voipPerAgent: 'voip', voipPerManager: 'voipMgr',
   managerCapacity: 'managerCapacity', founderSupervisesUpTo: 'founderSupervises',
   depositPerPosition: 'deposit', invoiceCreditPerPosition: 'credit', invoiceCreditMonths: 'creditMonths',
   activationFeePerPosition: 'activationPos', activationFeePerDeal: 'activationDeal',
   paymentDelayMonths: 'paymentDelay', hireDelayMonths: 'hireDelay', firstInvoiceDelayMonths: 'invoiceDelay',
 };
-const PCT = { employerRate: 'employer', contingency: 'contingency', badDebtRate: 'badDebt', revenueChargeRate: 'revCharge' };
+const PCT = { employerRate: 'employer', contingency: 'contingency', badDebtRate: 'badDebt', revenueChargeRate: 'revCharge', slaReserveRate: 'sla' };
 const ALL_FIELDS = [...Object.values(NUM), ...Object.values(PCT), 'horizon'];
 
 function readAssumptions() {
@@ -854,7 +906,9 @@ function render() {
     refreshDealCards(deals, a);
 
     const agent = monthlyAgentCost(a), mgr = monthlyManagerCost(a);
-    $('costLine').textContent = `agent ${eur1(agent)} · manager ${eur1(mgr)} (salaire chargé ${eur1(chargedSalary(a))}, VoIP et coussin compris)`;
+    $('costLine').textContent = a.agentAllInAr > 0
+      ? `agent ${eur1(agent)} (coût complet ${eur1(a.agentAllInAr / a.exchangeArPerEuro)} + VoIP, sans coussin) · manager ${eur1(mgr)} (salaire chargé ${eur1(chargedSalary(a))}, coussin compris)`
+      : `agent ${eur1(agent)} · manager ${eur1(mgr)} (salaire chargé ${eur1(chargedSalary(a))}, VoIP et coussin compris)`;
 
     const last = rows.at(-1);
     $('kpis').innerHTML = [
@@ -869,33 +923,34 @@ function render() {
 
     const tarifLabel = d => d.tarif === 'mb' ? 'marque blanche' : d.tarif === 'direct' ? 'client final, prix saisi' : 'prix libre';
     $('contribTable').innerHTML = deals.length ? `
-      <thead><tr><th>Contrat</th><th>Positions × prix</th><th>CA mensuel</th><th>Agents</th><th>Manager</th><th>Contribution</th></tr></thead>
+      <thead><tr><th>Contrat</th><th>Positions × prix</th><th>CA mensuel</th><th>Réserves</th><th>Agents</th><th>Manager</th><th>Contribution</th></tr></thead>
       <tbody>${contrib.lines.map(l => `<tr>
         <td>${escapeHtml(l.deal.label || METIER_LABELS[l.deal.metier])}<br><span class="note">M${l.deal.signedMonth} · ${tarifLabel(l.deal)}</span></td>
         <td${l.belowFloor ? ' class="neg"' : ''}>${priceFormula(l.deal)}${l.deal.positions > MB_ENTRY_POSITIONS && l.deal.tarif === 'mb' ? `<br><span class="note">moyenne ${eur(l.deal.price)}</span>` : ''}</td>
         <td>${eur(l.revenue)}</td>
+        <td>${l.reserves ? eur(-l.reserves) : '—'}</td>
         <td>${eur(-l.agentCost)}</td>
         <td>${l.marginalManagers ? eur(-l.managerCost) : '—'}</td>
         <td class="${l.contribution < 0 ? 'neg' : 'pos'}">${eur(l.contribution)}</td></tr>`).join('')}</tbody>
       <tfoot>
-        <tr><td colspan="5">Total des contributions</td><td class="${contrib.totalContribution < 0 ? 'neg' : 'pos'}">${eur(contrib.totalContribution)}</td></tr>
-        <tr><td colspan="5">Coûts fixes connus (outils + charges supplémentaires)</td><td>${eur(-contrib.fixedCost)}</td></tr>
-        <tr><td colspan="5">Résultat mensuel à régime plein</td><td class="${contrib.monthlyResult < 0 ? 'neg' : 'pos'}">${eur(contrib.monthlyResult)}</td></tr>
+        <tr><td colspan="6">Total des contributions</td><td class="${contrib.totalContribution < 0 ? 'neg' : 'pos'}">${eur(contrib.totalContribution)}</td></tr>
+        <tr><td colspan="6">Coûts fixes (outils, charges supplémentaires, structure)</td><td>${eur(-contrib.fixedCost)}</td></tr>
+        <tr><td colspan="6">Résultat mensuel à régime plein</td><td class="${contrib.monthlyResult < 0 ? 'neg' : 'pos'}">${eur(contrib.monthlyResult)}</td></tr>
       </tfoot>` : '<tbody><tr><td>Aucun contrat saisi.</td></tr></tbody>';
 
-    const asymptote = agent + mgr / a.managerCapacity;
+    const asymptote = (agent + mgr / a.managerCapacity) / (1 - revenueReserveRate(a));
     const be = ['helpdesk', 'support'].map(m => {
       const n = breakEvenMb(m, a);
       return `${METIER_LABELS[m]} : ${n ? `${n} position${n > 1 ? 's' : ''}` : 'jamais rentable, quel que soit le volume'}`;
     }).join(' · ');
-    $('breakEven').innerHTML = `<b>Point mort en marque blanche.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>sous ce seuil</b>.`;
+    $('breakEven').innerHTML = `<b>Point mort en marque blanche.</b> ${be}. En dessous de <b>${eur1(asymptote)} par position</b>, chaque tranche de ${a.managerCapacity} positions coûte plus de manager qu'elle ne rapporte : aucun volume ne rattrape le prix. Le plancher de négociation de ${PRICE_FLOOR} € de <code>PRICING.md</code> est <b>${PRICE_FLOOR < asymptote ? 'sous ce seuil' : 'au-dessus de ce seuil, mais la structure du lancement ne se couvre qu\'avec du volume'}</b>.`;
 
     $('fluxTable').innerHTML = `
-      <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Activation</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Acquisition</th><th>Structure</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
+      <thead><tr><th>Mois</th><th>Agents</th><th>Mgr</th><th>Dépôt</th><th>Activation</th><th>Facturé</th><th>Encaissé</th><th>Personnel</th><th>Onboarding</th><th>Équipement</th><th>Acquisition</th><th>Structure et réserves</th><th>Résultat hors dépôt</th><th>Cash fin de mois</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td>M${r.month}</td><td>${r.agents}</td><td>${r.managers}</td>
         <td>${r.deposit ? eur(r.deposit) : '—'}</td><td>${r.activation ? eur(r.activation) : '—'}</td><td>${r.invoiced ? eur(r.invoiced) : '—'}</td><td>${r.receipt ? eur(r.receipt) : '—'}</td>
-        <td>${eur(-r.payroll)}</td><td>${r.onboarding ? eur(-r.onboarding) : '—'}</td><td>${r.acquisition ? eur(-r.acquisition) : '—'}</td><td>${eur(-r.overhead)}</td>
+        <td>${eur(-r.payroll)}</td><td>${r.onboarding ? eur(-r.onboarding) : '—'}</td><td>${r.equipment ? eur(-r.equipment) : '—'}</td><td>${r.acquisition ? eur(-r.acquisition) : '—'}</td><td>${eur(-r.overhead)}</td>
         <td class="${r.result < 0 ? 'neg' : 'pos'}">${eur(r.result)}</td>
         <td class="${r.cash < 0 ? 'neg' : 'pos'}">${eur(r.cash)}</td></tr>`).join('')}</tbody>`;
 
@@ -984,7 +1039,7 @@ const HELP = {
     title: 'Embauche après signature — 1 mois',
     body: `<p>Hypothèse : les agents sont recrutés et <b>payés</b> à partir du mois suivant la signature.</p>
       <p><b>C'est ce paramètre qui fabrique le creux de trésorerie.</b> Avec une première facture en M+2 et un règlement à 30 jours, le premier euro arrive en M+3 alors que la paie court depuis M+1 : <b>deux mois de paie à financer par contrat</b>, avant toute recette.</p>
-      <p>Repère commercial : la première prise de tickets est visée vers six semaines après la signature, l'autonomie entre 2,5 et 3,5 mois. Le recrutement doit donc démarrer tôt — mais <b>pas avant l'encaissement du dépôt</b>.</p>
+      <p>Repère commercial : la première prise de tickets est visée vers six semaines après la signature, l'autonomie vers 2 mois. Le recrutement doit donc démarrer tôt — mais <b>pas avant l'encaissement des frais de mise en service</b>.</p>
       <p>Effet du réglage, scénario médian : passer à 2 mois ramène le creux de <b>−4 800 €</b> à <b>−2 304 €</b>. Ce n'est réaliste que si le jalon de prise de tickets glisse d'autant ; sinon, vous déplacez le problème sur la qualité du démarrage.</p>`,
     src: 'PRICING.md §3 · 01-Strategie-Offre/FINANCE-PREVISIONNEL.md §4',
   },
@@ -1008,9 +1063,38 @@ const HELP = {
       <p>Chaque mois de délai supplémentaire coûte <b>4 à 5 k€ de besoin de trésorerie</b>. C'est le paramètre le plus sensible de toute la page : négocier le délai de paiement pèse plus lourd que négocier 50 € sur le prix.</p>`,
     src: 'PRICING.md §3',
   },
+  structure: {
+    title: 'Structure dès la 1re embauche — 2 220 €/mois',
+    body: `<p>Coûts fixes du BMC v1.3 (hypothèse pessimiste), payés tant qu'au moins un agent est en poste :</p>
+      <table><tbody>
+        <tr><td>Encadrement / QA, forfait jusqu'à 5 positions</td><td>3 M Ar</td><td>600 €</td></tr>
+        <tr><td>Loyer, 60 m²</td><td>3,6 M Ar</td><td>720 €</td></tr>
+        <tr><td>Double fibre</td><td>1,5 M Ar</td><td>300 €</td></tr>
+        <tr><td>RH / paie et expert-comptable</td><td>1,5 M Ar</td><td>300 €</td></tr>
+        <tr><td>Énergie (Jirama + carburant)</td><td>1,5 M Ar</td><td>300 €</td></tr>
+      </tbody><tfoot><tr><td><b>Total</b></td><td>11,1 M Ar</td><td><b>2 220 €</b></td></tr></tfoot></table>
+      <p>Les outils restent dans leur propre champ. <span class="flag">Taille et prix des locaux sont arbitraires</span> : c'est un scénario pessimiste, pas un bail. Un coworking pour les premières positions abaisse fortement le point mort.</p>`,
+    src: '01-Strategie-Offre/BMC-SALVERYS-SUPPORT-IT-v1.3.html · arbitrage A8 du 2026-09-24',
+  },
+  equipPos: {
+    title: 'Poste de travail — 800 € par position',
+    body: `<p>Laptop et écran, 4 M Ar par poste, achetés au mois de la signature. Amortis sur 3 ans en comptabilité (≈ 22 €/mois), mais <b>décaissés en une fois</b> : c'est ce qui compte pour la trésorerie.</p>`,
+    src: 'BMC v1.3 · arbitrage A8',
+  },
+  equipBase: {
+    title: 'Groupe électrogène + UPS — 450 €, une fois',
+    body: `<p>Groupe 3,5 kVA et UPS 3 000 VA, 2,25 M Ar, achetés au premier mois avec du personnel. <span class="flag">À tester avant d'être promis</span> au partenaire comme dispositif de continuité.</p>`,
+    src: 'BMC v1.3 · CLAUDE.md, équipements de secours',
+  },
+  sla: {
+    title: 'Provision avoirs SLA — 2 % du CA',
+    body: `<p>L'engagement de service prévoit un avoir de 20 % si l'indicateur n'est pas tenu, dans la limite d'un mois sur douze : au pire <code>20 % ÷ 12 ≈ 1,7 %</code> du CA annuel. La provision de 2 % couvre ce plafond.</p>`,
+    src: 'PRICING.md §4 · arbitrage A9 du 2026-09-24',
+  },
   deposit: {
-    title: 'Dépôt par position — 900 €',
-    body: `<p>Dépôt d'activation du <b>modèle B (poste dédié)</b> : 900 € par position ferme, <b>sans plafond</b>, encaissé à la signature.</p>
+    title: 'Dépôt par position — 0 € depuis le 2026-09-24',
+    body: `<p><span class="flag">Supprimé de la grille le 2026-09-24</span>, remplacé par des frais de mise en service de 490 € par position, acquis. Le champ reste pour simuler l'ancien mécanisme.</p>
+      <p>Ancien dépôt d'activation du <b>modèle B (poste dédié)</b> : 900 € par position ferme, <b>sans plafond</b>, encaissé à la signature.</p>
       <p>Restitué en cas d'annulation <b>avant</b> le démarrage de la mise en service ; acquis à Salverys après, selon le contrat. Le modèle ne simule pas cette restitution.</p>
       <p><span class="flag">Le plafond de 2 700 € a été supprimé le 2026-09-14.</span> Un plafond fixe face à une imputation proportionnelle de 300 €/position ne se recoupait qu'à exactement 3 positions : à 9 positions, on créditait 8 100 € pour 2 700 € réellement encaissés, soit 5 400 € offerts.</p>
       <p>Ne s'applique pas automatiquement au modèle A (débordement mutualisé) ni au médical facturé à l'appel : aucune position n'y est réservée. Toute avance sur ces modèles se chiffre et s'impute explicitement dans le devis.</p>`,
@@ -1037,8 +1121,9 @@ const HELP = {
     src: 'PRICING.md §3',
   },
   activationPos: {
-    title: 'Frais d\'activation par position — 0 € par défaut',
-    body: `<p><span class="flag">Ce n'est pas un réglage d'outil, c'est une hausse de prix.</span> <code>PRICING.md</code> §3 dit aujourd'hui : « Il n'y a pas de frais de mise en service supplémentaires ni de remise automatique sur le premier mois. » Mettre une valeur ici <b>modifie la grille</b> et doit se vendre au partenaire.</p>
+    title: 'Frais de mise en service par position — 490 €',
+    body: `<p><b>Grille en vigueur depuis le 2026-09-24</b> (<code>PRICING.md</code> §3) : 490 € par position, encaissés à la signature, <b>acquis et non imputés</b> sur les mensualités. Ils remplacent le dépôt de 900 €. Pour 5 positions, 2 450 € couvrent l'onboarding de deux contrats (2 800 €) à 350 € près.</p>
+      <p>Le texte ci-dessous date d'avant cette décision ; il reste valable pour comparer les deux mécanismes.</p>
       <p><b>La différence avec le dépôt tient en une phrase :</b></p>
       <table><tbody>
         <tr><td><b>Dépôt</b></td><td>encaissé à la signature, <b>intégralement rendu</b> par crédit sur les premières factures. Avance de trésorerie, total du contrat inchangé.</td></tr>
@@ -1064,8 +1149,8 @@ const HELP = {
     src: 'AUDIT-FINANCE-PREVISIONNEL.md §1',
   },
   revCharge: {
-    title: 'Taxes et frais sur CA encaissé — 0 %',
-    body: `<p>Non renseigné faute de paramètres vérifiés. Ce champ doit couvrir, une fois les taux confirmés :</p>
+    title: 'Banque, change et taxes sur CA encaissé — 1 %',
+    body: `<p><b>1 % depuis le 2026-09-24</b> (arbitrage A9) pour les frais bancaires et le risque de change sur l'encaissement. Les taxes n'y sont pas : leurs taux ne sont pas vérifiés. À compléter, une fois confirmés :</p>
       <ul>
         <li>l'impôt malgache sur le chiffre d'affaires ou le résultat ;</li>
         <li>la TVA, si elle s'applique à une prestation facturée à un donneur d'ordre français ;</li>
@@ -1185,7 +1270,7 @@ for (const id of ALL_FIELDS) $(id).addEventListener('input', render);
 $('horizon').addEventListener('change', render);
 
 buildHelp();
-if (!restore()) setDeals(SCENARIOS.median);
+if (!restore()) setDeals(SCENARIOS.reference);
 render();
 addEventListener('resize', () => { try { drawChart(projectCash(readDeals(), Number($('horizon').value), readAssumptions())); } catch { /* saisie invalide */ } });
 </script>

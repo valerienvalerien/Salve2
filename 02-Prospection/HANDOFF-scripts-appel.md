@@ -51,7 +51,8 @@ et `CONFORMITE-HDS-RGPD.md`.
 **Sources de vérité**
 - `PRICING.md` — prix, SLA 90 %, avoir 20 %, offre −50 % (**direct uniquement**), pilote
   200-400 tickets, durées. **En marque blanche (2026-08-03)** : plus de remise (§3.b),
-  dépôt d'activation 900 €/position (§3.a), palier 5+ à volume ferme facturé (§3).
+  frais de mise en service 490 €/position, acquis (§3, remplace le dépôt depuis le 2026-09-24),
+  tarif volume à partir de la 5e position contre un minimum facturable (§1).
 - `CONFORMITE-HDS-RGPD.md` — zéro enregistrement, zéro stockage, sous-traitant art. 28.
 - `CLAUDE.md` — marque, niches, garde-fous (forfait ≠ abonnement, pas de claim 1 000 collab.).
 

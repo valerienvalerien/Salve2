@@ -506,7 +506,7 @@ la filiale. Deux angles restent ouverts, et l'appel garde toute sa valeur :
 | Offre de lancement — **en direct uniquement** | **1er mois à -50 %** (sans engagement) | `PRICING.md` §7 |
 | Pilote support / helpdesk **en direct** | **200-400 tickets**, 1er mois à -50 % | `PRICING.md` §3 |
 | **Pilote en marque blanche** | **200-400 tickets, PAS de remise** — périmètre restreint au tarif du palier | `PRICING.md` §3.b |
-| **Dépôt d'activation MB** | **900 €/position**, imputé sur les 3 premières factures (300 €/position/mois) | `PRICING.md` §3.a |
+| **Mise en service MB** | **490 €/position** à la signature, acquis, non imputés (remplace le dépôt depuis le 2026-09-24) | `PRICING.md` §3 |
 | **Contreparties MB** (à la place de la remise) | sortie **30 j** les 3 premiers mois · exclusivité **12 mois** · appui avant-vente **48 h** | `PRICING.md` §3.b |
 | **Palier MB 5+ ETP** | **volume ferme facturé** : 5 positions dues, consommées ou non | `PRICING.md` §3 |
 | Durée contrats IT | **dès 3 mois, puis 12 mois** renouvelable | `PRICING.md` §3 |

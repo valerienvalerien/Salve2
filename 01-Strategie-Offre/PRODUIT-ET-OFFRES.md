@@ -39,9 +39,9 @@ Une position B équivaut à 35 h de travail hebdomadaire. Elle ne couvre pas à 
 | 5 à 8 | 1 500 € | 1 750 € |
 | 9 ou plus | 1 350 € | 1 550 € |
 
-Le tarif inférieur s'obtient **contre le minimum de positions facturables garanti**, et non contre un volume attendu. Le dépôt B est de **900 €/position à la signature**, crédité à **300 €/position sur chacune des trois premières factures** ; c'est une avance sans prix additionnel. Aucun frais de mise en service ni remise automatique au premier mois. Le modèle A et le médical facturé à l'appel ne déclenchent pas ce dépôt par position sans capacité réservée au contrat.
+Le tarif inférieur s'obtient **contre le minimum de positions facturables garanti**, et non contre un volume attendu. Le modèle B porte des **frais de mise en service de 490 €/position**, encaissés à la signature, acquis et non imputés sur les mensualités ; ils remplacent depuis le 2026-09-24 le dépôt de 900 € rendu sur les trois premières factures. Aucune remise automatique au premier mois. Le modèle A et le médical facturé à l'appel ne déclenchent pas ces frais par position sans capacité réservée au contrat. **Offre de lancement : poste dédié uniquement** ; le modèle A attend la stabilisation des deux premiers contrats.
 
-Objectif de première prise de tickets sur les outils du partenaire : **environ six semaines après signature**, sous réserve du recrutement, des accès, de la formation et de la validation du périmètre. Pleine autonomie visée : **2,5 à 3,5 mois**. Ces jalons sont des cibles de planification, à dater dans chaque devis ; ne pas dire « opérationnel en six semaines » sans définir l'acte mesuré. Un pilote peut se limiter à un client final ou **200–400 tickets** ; il n'entraîne aucune remise automatique.
+Objectif de première prise de tickets sur les outils du partenaire : **environ six semaines après signature**, sous réserve du recrutement, des accès, de la formation et de la validation du périmètre. Pleine autonomie visée : **vers 2 mois après signature** (arbitrage du 2026-09-24). Ces jalons sont des cibles de planification, à dater dans chaque devis ; ne pas dire « opérationnel en six semaines » sans définir l'acte mesuré. Un pilote peut se limiter à un client final ou **200–400 tickets** ; il n'entraîne aucune remise automatique.
 
 ## 5. Service et limites
 

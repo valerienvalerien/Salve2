@@ -52,7 +52,7 @@ def modele():
     js = """
 import('./tools/finance-model.mjs').then(async M => {
   const { SCENARIOS } = await import('./tools/finance-scenarios.mjs');
-  const deals = SCENARIOS.median;
+  const deals = SCENARIOS.reference;
   process.stdout.write(JSON.stringify({
     a: M.ASSUMPTIONS, offers: M.OFFERS, entree: M.MB_ENTRY_POSITIONS,
     direct: M.DIRECT_REFERENCE, plancher: M.PRICE_FLOOR,
@@ -61,6 +61,7 @@ import('./tools/finance-model.mjs').then(async M => {
     rows: M.projectCash(deals, 24),
     contrib: M.contributions(deals),
     ca: deals.map(d => M.mbRevenue(d.metier, d.positions)),
+    reserveRate: M.revenueReserveRate(),
     onb: deals.map(d => M.onboardingCost(d.positions)),
   }));
 });
@@ -226,7 +227,7 @@ def onglet_hypotheses(wb, m):
         L[lab] = r
 
     bloc(ws, 5, "PERSONNEL")
-    ligne(6, "Brut mensuel agent et manager", a["grossSalaryAr"], "Ar", "Décision direction 2026-08-14. À confirmer sur bulletins de paie.", AR)
+    ligne(6, "Brut mensuel manager (et agent si B39 = 0)", a["grossSalaryAr"], "Ar", "Décision direction 2026-08-14. À confirmer sur bulletins de paie. Depuis le 2026-09-24, l'agent se chiffre au coût complet de la ligne 39.", AR)
     ligne(7, "Taux de change", a["exchangeArPerEuro"], "Ar / €", "Convention de simulation. Remplacer par le taux de paiement réel et ses frais.", '#,##0')
     ligne(8, "Cotisations employeur", a["employerRate"], "% du brut", "HYPOTHÈSE RÉGLEMENTAIRE NON VÉRIFIÉE. À confirmer auprès du gestionnaire de paie.", PCT)
     ligne(9, "SME retenu", a["smeAr"], "Ar", "lexpress.mg, février 2026. Sert au plafond de cotisation.", AR)
@@ -234,12 +235,12 @@ def onglet_hypotheses(wb, m):
     ligne(11, "VoIP par agent", a["voipPerAgent"], "€ / mois", "Devis ou facture à obtenir.", EUR)
     ligne(12, "VoIP par manager", a["voipPerManager"], "€ / mois", "Hypothèse : le manager n'a pas de ligne facturée. À corriger s'il décroche.", EUR)
     ligne(13, "Coussin sur personnel", a["contingency"], "%", "Réserve prudente, retirée du cash. Ce n'est pas une paie versée.", PCT)
-    ligne(14, "Coût d'un agent", None, "€ / mois", "Calculé : (brut + cotisations plafonnées) ÷ change, plus VoIP, plus coussin.", EUR2,
-          "=((B6+MIN(B6,B10)*B8)/B7+B11)*(1+B13)", valeur=m["agent"])
+    ligne(14, "Coût d'un agent", None, "€ / mois", "Calculé : coût complet (ligne 39) ÷ change + VoIP, sans coussin. Si la ligne 39 vaut 0 : (brut + cotisations plafonnées) ÷ change, plus VoIP, plus coussin.", EUR2,
+          "=IF(B39>0,B39/B7+B11,((B6+MIN(B6,B10)*B8)/B7+B11)*(1+B13))", valeur=m["agent"])
     ligne(15, "Coût d'un manager", None, "€ / mois", "Calculé, même formule sans la VoIP agent.", EUR2,
           "=((B6+MIN(B6,B10)*B8)/B7+B12)*(1+B13)", valeur=m["manager"])
     ligne(16, "Positions par manager", a["managerCapacity"], "positions", "Un manager de plus par tranche, DANS CHAQUE MÉTIER.", NB)
-    ligne(17, "Positions encadrées par le fondateur", a["founderSupervisesUpTo"], "positions", "0 = un manager dès la première position. Au-delà, doit correspondre à un temps réellement disponible.", NB)
+    ligne(17, "Positions encadrées par le fondateur", a["founderSupervisesUpTo"], "positions", "Arbitrage A10 du 2026-09-24 : le fondateur encadre le lancement à 5 positions. Un manager s'ajoute à la 6e ; le forfait d'encadrement de la ligne 40 est alors à recalculer.", NB)
 
     bloc(ws, 18, "STRUCTURE ET DÉMARRAGE")
     ligne(19, "Outils récurrents connus", a["toolsPerMonth"], "€ / mois", "REGISTRE-COUTS-OUTILS.md : 65 € d'abonnements + 36 €/an de domaines. Montants DÉCLARÉS, non rapprochés de factures.", EUR)
@@ -251,20 +252,27 @@ def onglet_hypotheses(wb, m):
 
     bloc(ws, 25, "ENCAISSEMENT ET RISQUE")
     ligne(26, "Règlement après facture", a["paymentDelayMonths"], "mois", "PRICING.md §3 : paiement à 30 jours. Paramètre le plus sensible du modèle.", NB)
-    ligne(27, "Dépôt par position", a["depositPerPosition"], "€", "PRICING.md §3. AVANCE de trésorerie : intégralement rendue par crédit de facture.", EUR)
-    ligne(28, "Crédit de dépôt par facture", a["invoiceCreditPerPosition"], "€", "PRICING.md §3.", EUR)
-    ligne(29, "Factures créditées", a["invoiceCreditMonths"], "nb", "PRICING.md §3.", NB)
+    ligne(27, "Dépôt par position", a["depositPerPosition"], "€", "SUPPRIMÉ de la grille le 2026-09-24 (arbitrage A1), remplacé par les frais de mise en service. Gardé pour simuler l'ancien dépôt rendu par crédit de facture.", EUR)
+    ligne(28, "Crédit de dépôt par facture", a["invoiceCreditPerPosition"], "€", "Ancien mécanisme, à 0.", EUR)
+    ligne(29, "Factures créditées", a["invoiceCreditMonths"], "nb", "Ancien mécanisme.", NB)
     ligne(30, "Résidu de dépôt NON rendu", None, "€ / position", "Doit valoir 0. Positif = frais d'activation déguisé, à nommer. Négatif = argent jamais encaissé, offert.", EUR, "=B27-B28*B29", valeur=a["depositPerPosition"] - a["invoiceCreditPerPosition"] * a["invoiceCreditMonths"])
-    ligne(31, "Frais d'activation par contrat", a["activationFeePerDeal"], "€", "JAMAIS rendus, contrairement au dépôt. PRICING.md §3 dit qu'il n'y en a pas : les activer MODIFIE LA GRILLE.", EUR)
-    ligne(32, "Frais d'activation par position", a["activationFeePerPosition"], "€", "Idem. Une avance rendue se défend par « vous ne le payez pas » ; un frais acquis, non.", EUR)
+    ligne(31, "Frais de mise en service par contrat", a["activationFeePerDeal"], "€", "Part fixe éventuelle. PRICING.md §3 n'en prévoit pas.", EUR)
+    ligne(32, "Frais de mise en service par position", a["activationFeePerPosition"], "€", "PRICING.md §3, arbitrage A1 du 2026-09-24 : 490 €/position à la signature, acquis, non imputés sur les mensualités.", EUR)
     ligne(33, "Impayés sur CA encaissé", a["badDebtRate"], "%", "0 % n'est pas une mesure, c'est une absence d'historique.", PCT)
-    ligne(34, "Taxes et frais sur CA encaissé", a["revenueChargeRate"], "%", "Impôt, TVA, frais bancaires. Non renseigné faute de taux vérifiés.", PCT)
+    ligne(34, "Banque, change et taxes sur CA encaissé", a["revenueChargeRate"], "%", "Arbitrage A9 : 1 % de frais bancaires et risque de change. Taxes non comprises : taux non vérifiés.", PCT)
 
     bloc(ws, 35, "DÉPART")
     ligne(36, "Trésorerie de départ", a["initialCash"], "€", "0 mesure un BESOIN THÉORIQUE. Ce n'est pas le solde réel de Salverys.", EUR)
 
+    bloc(ws, 38, "ARBITRAGES DU 2026-09-24 (BMC v1.3)")
+    ligne(39, "Coût complet agent, tout compris", a["agentAllInAr"], "Ar / mois", "Arbitrage A7 : rémunération, charges, congés, absences, formation et remplacement. À VALIDER PAR LA PAIE : le brut de la ligne 6 chargé n'y tient pas. 0 = calcul par le brut.", AR)
+    ligne(40, "Structure dès la 1re embauche", a["structureMonthly"], "€ / mois", "Arbitrage A8, hypothèse pessimiste : encadrement / QA 600 + loyer 60 m² 720 + double fibre 300 + RH / paie / comptable 300 + énergie 300. Payée tant qu'un agent est en poste.", EUR)
+    ligne(41, "Poste de travail par position", a["equipmentPerPosition"], "€", "Laptop + écran, 4 M Ar, décaissés à la signature.", EUR)
+    ligne(42, "Groupe électrogène + UPS", a["equipmentBase"], "€", "2,25 M Ar, décaissés une fois, au premier mois avec du personnel. À tester avant d'être promis.", EUR)
+    ligne(43, "Provision avoirs SLA sur CA encaissé", a["slaReserveRate"], "%", "Arbitrage A9 : avoir de 20 % au plus un mois sur douze = 1,7 % du CA ; provision de 2 %.", PCT)
+
     ws.cell(row=30, column=2).font = Font(name="Arial", size=10, bold=True, color=ROUGE)
-    note(ws, 38, "Aucun chiffre de ce classeur ne représente une dépense constatée tant que les factures, la paie et le solde bancaire n'ont pas été rapprochés. "
+    note(ws, 45, "Aucun chiffre de ce classeur ne représente une dépense constatée tant que les factures, la paie et le solde bancaire n'ont pas été rapprochés. "
                  "Trois hypothèses pèsent sur tout le reste : le taux de cotisation, le plafond et le taux de change. Elles fixent le coût d'une position, donc toute marge annoncée.", 4)
     ws.freeze_panes = "A5"
     return L
@@ -294,12 +302,12 @@ def onglet_grille(wb, m):
     bloc(ws, 11, "PLANCHERS")
     texte(ws.cell(row=12, column=1, value="Plancher de négociation PRICING.md"), taille=10)
     saisie(ws.cell(row=12, column=2, value=m["plancher"]), EUR)
-    texte(ws.cell(row=12, column=4, value="À RÉVISER : n'est rentable à aucun volume. Chaque tranche de 8 positions à ce prix creuse le résultat d'environ 194 €/mois."),
+    texte(ws.cell(row=12, column=4, value="À RÉVISER. Garde-fou de négociation, pas seuil de rentabilité : comparer à la ligne 13, puis chiffrer le contrat avec la structure du lancement."),
           taille=9, couleur=ROUGE, wrap=True)
     texte(ws.cell(row=13, column=1, value="Prix minimal viable, quel que soit le volume"), taille=10)
-    calcul(ws.cell(row=13, column=2, value="=Hypothèses!B14+Hypothèses!B15/Hypothèses!B16"), EUR2, gras=True,
-           valeur=m["agent"] + m["manager"] / m["a"]["managerCapacity"])
-    texte(ws.cell(row=13, column=4, value="Coût d'un agent plus sa quote-part de manager. En dessous, aucun volume ne rattrape le prix."),
+    calcul(ws.cell(row=13, column=2, value="=(Hypothèses!B14+Hypothèses!B15/Hypothèses!B16)/(1-Hypothèses!B34-Hypothèses!B43)"), EUR2, gras=True,
+           valeur=(m["agent"] + m["manager"] / m["a"]["managerCapacity"]) / (1 - m["reserveRate"]))
+    texte(ws.cell(row=13, column=4, value="Coût d'un agent plus sa quote-part de manager, réserves sur CA comprises. En dessous, aucun volume ne rattrape le prix. Structure du lancement non comprise."),
           taille=9, couleur="777777", wrap=True)
 
     bloc(ws, 15, "CLIENT FINAL — AUCUNE GRILLE ARBITRÉE")
@@ -319,8 +327,8 @@ def onglet_contrats(wb, m, deals):
     logo(ws)
     titre(ws, "Contrats", "Cellules bleues : à modifier. Une ligne par contrat, huit au maximum.")
     entete(ws, 5, ["Nom", "Mois de signature", "Métier", "Positions fermes", "Tarif", "Prix libre (€)",
-                   "CA mensuel", "Onboarding", "Dépôt encaissé", "Frais d'activation", "Crédit de dépôt / facture"],
-           [22, 12, 14, 12, 10, 12, 14, 12, 13, 13, 14])
+                   "CA mensuel", "Onboarding", "Dépôt encaissé", "Mise en service", "Crédit de dépôt / facture", "Postes de travail"],
+           [22, 12, 14, 12, 10, 12, 14, 12, 13, 13, 14, 13])
 
     for i in range(8):
         r = 6 + i
@@ -350,10 +358,12 @@ def onglet_contrats(wb, m, deals):
                valeur=(m["a"]["activationFeePerDeal"] + d["positions"] * m["a"]["activationFeePerPosition"] if d else 0))
         calcul(ws.cell(row=r, column=11, value=f'=IF($D{r}="",0,$D{r}*Hypothèses!$B$28)'), EUR,
                valeur=(d["positions"] * m["a"]["invoiceCreditPerPosition"] if d else 0))
+        calcul(ws.cell(row=r, column=12, value=f'=IF($D{r}="",0,$D{r}*Hypothèses!$B$41)'), EUR,
+               valeur=(d["positions"] * m["a"]["equipmentPerPosition"] if d else 0))
 
     note(ws, 15, "Métier : helpdesk ou support, en minuscules. Tarif : « mb » applique la grille par tranches de l'onglet Grille ; toute autre valeur applique le prix libre de la colonne F. "
                  "En client final, le prix est OBLIGATOIREMENT saisi en colonne F : aucune grille directe n'existe. "
-                 "Ligne d'exemple : Partenaire A · 4 · helpdesk · 2 · mb · (vide) → 4 000 € de CA mensuel.", 11)
+                 "Ligne d'exemple : Partenaire A · 4 · helpdesk · 2 · mb · (vide) → 4 000 € de CA mensuel.", 12)
     ws.freeze_panes = "A6"
 
 
@@ -362,7 +372,7 @@ def onglet_flux(wb, m, mois=24):
     logo(ws)
     titre(ws, "Flux mensuels", "Tout est formule. Modifiez Hypothèses ou Contrats : ce tableau suit.")
     entete(ws, 5, ["Mois", "Agents", "Mgr", "Dépôt", "Activation", "Facturé", "Encaissé",
-                   "Personnel", "Onboarding", "Structure", "Résultat", "Cash fin de mois",
+                   "Personnel", "Onboarding et équipement", "Structure et réserves", "Résultat", "Cash fin de mois",
                    "Positions helpdesk", "Positions support"],
            [7, 8, 7, 11, 11, 12, 12, 12, 12, 11, 12, 15, 12, 12])
 
@@ -374,8 +384,9 @@ def onglet_flux(wb, m, mois=24):
     ACT = "Contrats!$J$6:$J$13"
     CRED = "Contrats!$K$6:$K$13"
     MET = "Contrats!$C$6:$C$13"
+    EQ = "Contrats!$L$6:$L$13"
 
-    deals = m["scenarios"]["median"]
+    deals = m["scenarios"]["reference"]
     hire = m["a"]["hireDelayMonths"]
 
     def positions(mois_no, metier):
@@ -409,8 +420,13 @@ def onglet_flux(wb, m, mois=24):
             f'*($A{r}-Hypothèses!$B$26-{D}-Hypothèses!$B$24<Hypothèses!$B$29)*{CRED}))'
             f'*(1-Hypothèses!$B$33)')), EUR, valeur=rw["receipt"])
         calcul(ws.cell(row=r, column=8, value=f'=-($B{r}*Hypothèses!$B$14+$C{r}*Hypothèses!$B$15)'), EUR, valeur=-rw["payroll"])
-        calcul(ws.cell(row=r, column=9, value=f'=-SUMPRODUCT(({D}=$A{r})*{ONB})'), EUR, valeur=-rw["onboarding"])
-        calcul(ws.cell(row=r, column=10, value=f'=-(Hypothèses!$B$19+Hypothèses!$B$20+$G{r}*Hypothèses!$B$34)'), EUR, valeur=-rw["overhead"])
+        calcul(ws.cell(row=r, column=9, value=(
+            f'=-SUMPRODUCT(({D}=$A{r})*{ONB})-SUMPRODUCT(({D}=$A{r})*{EQ})'
+            f'-IF(AND($B{r}>0,COUNTIF($B$6:$B{r},">0")=1),Hypothèses!$B$42,0)')), EUR,
+               valeur=-(rw["onboarding"] + rw["equipment"]))
+        calcul(ws.cell(row=r, column=10, value=(
+            f'=-(Hypothèses!$B$19+Hypothèses!$B$20+IF($B{r}>0,Hypothèses!$B$40,0)'
+            f'+$G{r}*(Hypothèses!$B$34+Hypothèses!$B$43))')), EUR, valeur=-rw["overhead"])
         calcul(ws.cell(row=r, column=11, value=f'=$G{r}+$E{r}+$H{r}+$I{r}+$J{r}'), EUR, valeur=rw["result"])
         if i == 0:
             calcul(ws.cell(row=r, column=12, value=f'=Hypothèses!$B$36+$D{r}+$K{r}'), EUR, gras=True, valeur=rw["cash"])
@@ -425,7 +441,8 @@ def onglet_flux(wb, m, mois=24):
         ws.column_dimensions[get_column_letter(col)].hidden = True
 
     note(ws, 6 + mois + 1,
-         "Personnel, onboarding et structure sont négatifs : ce sont des sorties. Le « Résultat » compte les frais d'activation, qui sont acquis, "
+         "Personnel, onboarding, équipement, structure et réserves sont négatifs : ce sont des sorties. La structure ne se paie qu'avec du personnel en poste ; "
+         "le groupe et l'UPS sortent une fois, au premier mois avec du personnel. Le « Résultat » compte les frais d'activation, qui sont acquis, "
          "mais pas le dépôt, qui n'est qu'une avance rendue par crédit de facture — le dépôt n'apparaît que dans le cash. "
          "Les colonnes M et N (positions par métier) sont masquées : elles servent au calcul du nombre de managers, qui n'est pas mutualisé entre métiers.", 12)
     ws.freeze_panes = "B6"
@@ -435,7 +452,7 @@ def onglet_flux(wb, m, mois=24):
 def onglet_contribution(wb, m, mois):
     ws = wb.create_sheet("Contribution")
     logo(ws)
-    titre(ws, "Contribution à régime plein", "Tous les contrats actifs, hors onboarding, dépôt, impayés et taxes.")
+    titre(ws, "Contribution à régime plein", "Tous les contrats actifs, hors onboarding, équipement, dépôt et impayés.")
     entete(ws, 5, ["Contrat", "Positions", "CA mensuel", "Coût des agents", "Contribution avant supervision"],
            [24, 12, 14, 16, 22])
 
@@ -445,7 +462,7 @@ def onglet_contribution(wb, m, mois):
         r = 6 + i
         L = lignes[i] if i < len(lignes) else None
         calcul(ws.cell(row=r, column=1, value=f'=IF(Contrats!$D{r}="","",IF(Contrats!$A{r}="",Contrats!$C{r},Contrats!$A{r}))'),
-               valeur=(f"Contrat {i + 1}" if L else None))
+               valeur=((f"Client {'AB'[i]}" if i < 2 else f"Contrat {i + 1}") if L else None))
         ws.cell(row=r, column=1).alignment = Alignment(horizontal="left")
         calcul(ws.cell(row=r, column=2, value=f'=IF(Contrats!$D{r}="","",Contrats!$D{r})'), NB,
                valeur=(L["deal"]["positions"] if L else None))
@@ -469,6 +486,10 @@ def onglet_contribution(wb, m, mois):
                valeur=totaux[col])
     ws.cell(row=r, column=1).border = Border(top=Side("thin", color=ENCRE))
 
+    texte(ws.cell(row=16, column=1, value="Réserves SLA, banque et change"), taille=10)
+    calcul(ws.cell(row=16, column=5, value='=-C15*(Hypothèses!$B$34+Hypothèses!$B$43)'), EUR,
+           valeur=-totaux[3] * m["reserveRate"])
+
     fin = 5 + mois
     texte(ws.cell(row=17, column=1, value="Supervision à régime plein"), taille=10)
     mgr_fin = m["rows"][mois - 1]["managers"]
@@ -477,9 +498,12 @@ def onglet_contribution(wb, m, mois):
     texte(ws.cell(row=18, column=1, value="Outils et charges supplémentaires"), taille=10)
     calcul(ws.cell(row=18, column=5, value='=-(Hypothèses!$B$19+Hypothèses!$B$20)'), EUR,
            valeur=-(m["a"]["toolsPerMonth"] + m["a"]["otherMonthlyCost"]))
+    texte(ws.cell(row=19, column=1, value="Structure du lancement"), taille=10)
+    calcul(ws.cell(row=19, column=5, value='=-IF(B15>0,Hypothèses!$B$40,0)'), EUR,
+           valeur=-(m["a"]["structureMonthly"] if totaux[2] > 0 else 0))
 
     texte(ws.cell(row=20, column=1, value="RÉSULTAT MENSUEL À RÉGIME PLEIN"), taille=11, gras=True, couleur=ENCRE)
-    c = ws.cell(row=20, column=5, value="=E15+E17+E18")
+    c = ws.cell(row=20, column=5, value="=E15+E16+E17+E18+E19")
     c.font = Font(name="Arial", size=12, bold=True, color=ENCRE)
     c.number_format = EUR
     VALEURS.setdefault("Contribution", {})["E20"] = m["contrib"]["monthlyResult"]
@@ -488,7 +512,7 @@ def onglet_contribution(wb, m, mois):
 
     note(ws, 22, "La supervision est comptée globalement, au nombre de managers du dernier mois : elle n'est pas répartie par contrat, parce qu'un manager déclenché par "
                  "un contrat sert aussi au suivant dans le même métier. C'est le même « résultat mensuel à régime plein » que la page projection-finances-salverys.html "
-                 "et que grille-negociation-salverys.html — CA moins agents, supervision et outils.", 5)
+                 "— CA moins réserves, agents, supervision, outils et structure.", 5)
     ws.freeze_panes = "A6"
 
 
@@ -504,17 +528,17 @@ def onglet_synthese(wb, m, mois):
         ("Mois du creux", f'=INDEX(Flux!A6:A{fin},MATCH(MIN(Flux!L6:L{fin}),Flux!L6:L{fin},0))', "Quand il tombe.", NB),
         ("Besoin illustratif, creux + 30 %", f'=MAX(0,-MIN(Flux!L6:L{fin}))*1.3', "Coussin arbitraire de 30 %. Hors dettes et coûts non renseignés. PAS une recommandation de capital.", EUR),
         (f"Trésorerie à M{mois}", f'=Flux!L{fin}', "Fin de l'horizon, si aucun nouveau contrat n'est signé après ceux de l'onglet Contrats.", EUR),
-        ("Résultat mensuel à régime plein", "=Contribution!E20", "Tous contrats actifs, hors onboarding, dépôt, impayés et taxes.", EUR),
+        ("Résultat mensuel à régime plein", "=Contribution!E20", "Tous contrats actifs, structure et réserves comprises, hors onboarding, équipement, impayés et taxes.", EUR),
         ("Agents à régime plein", f'=Flux!B{fin}', "", NB),
         ("Managers à régime plein", f'=Flux!C{fin}', "Un par tranche de 8 positions, dans chaque métier. La supervision n'est pas mutualisée entre métiers.", NB),
-        ("Coût d'une position", "=Hypothèses!B14", "Salaire chargé, VoIP et coussin. Trois hypothèses non vérifiées le déterminent.", EUR2),
-        ("Prix minimal viable par position", "=Grille!B13", "En dessous, aucun volume ne rattrape le prix. Le plancher de PRICING.md est SOUS ce seuil.", EUR2),
+        ("Coût d'une position", "=Hypothèses!B14", "Coût complet agent tout compris + VoIP (arbitrage A7, à valider par la paie).", EUR2),
+        ("Prix minimal viable par position", "=Grille!B13", "En dessous, aucun volume ne rattrape le prix. Structure du lancement non comprise.", EUR2),
     ]
     cash = [r["cash"] for r in m["rows"]]
     creux = min(cash)
     vals = [creux, cash.index(creux) + 1, max(0, -creux) * 1.3, cash[-1],
             m["contrib"]["monthlyResult"], m["rows"][-1]["agents"], m["rows"][-1]["managers"],
-            m["agent"], m["agent"] + m["manager"] / m["a"]["managerCapacity"]]
+            m["agent"], (m["agent"] + m["manager"] / m["a"]["managerCapacity"]) / (1 - m["reserveRate"])]
     for i, (lab, f, lecture, fmt) in enumerate(lignes):
         r = 6 + i
         texte(ws.cell(row=r, column=1, value=lab), taille=10, gras=(i == 0))
@@ -527,8 +551,7 @@ def onglet_synthese(wb, m, mois):
         ws.row_dimensions[r].height = 24
 
     bloc(ws, 16, "CE QUE CE CLASSEUR NE CONTIENT PAS")
-    note(ws, 17, "Impôts et TVA, comptabilité, assurance, frais bancaires et de change, équipement et liaisons de secours, recrutement au-delà du forfait d'onboarding, "
-                 "congés et remplacement, turnover, indemnités de rupture, dettes et créances existantes, dates réelles des factures annuelles. "
+    note(ws, 17, "Impôts et TVA, assurance, amortissements comptables, recrutement au-delà du forfait d'onboarding, indemnités de rupture, dettes et créances existantes, dates réelles des factures annuelles. "
                  "Le modèle A mutualisé (1 120 € / 400 tickets) et le télésecrétariat médical facturé à l'appel ne sont pas projetés : leur staffing n'est pas mesuré.", 3)
 
     bloc(ws, 19, "COMMENT S'EN SERVIR")
@@ -547,7 +570,7 @@ def onglet_synthese(wb, m, mois):
 
 def main():
     m = modele()
-    deals = [dict(d, label=f"Contrat {i + 1}") for i, d in enumerate(m["scenarios"]["median"])]
+    deals = [dict(d, label=f"Client {'AB'[i]}") for i, d in enumerate(m["scenarios"]["reference"])]
 
     wb = Workbook()
     wb.remove(wb.active)

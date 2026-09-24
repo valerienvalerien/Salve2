@@ -37,19 +37,12 @@ const COUT_AGENT = monthlyAgentCost();
 const PLANCHER_ETP = 920;
 const MARGE_ALERTE = 0.50;
 
-/* Depot d'activation MB (PRICING.md §3, decide 2026-08-03) : 900 €/position, imputable
- * sur les 3 premieres factures a 300 €/position/mois. Ce n'est pas des
- * frais : le partenaire qui va au bout ne paie rien de plus. C'est une avance de cash,
- * et non une marge ou une couverture définitive du coût d'onboarding. */
-const DEPOT_PAR_POSITION = 900;
-/* Plafond global supprime le 2026-09-14 (PRICING.md §3) : il etait fixe alors que
- * l'imputation est proportionnelle (300 €/position/mois), donc les deux ne se recoupaient
- * qu'a 3 positions exactement. A 9 positions on creditait 8 100 € pour 2 700 € encaisses.
- * Le depot est desormais strictement proportionnel. `plafond` reste lisible par deal pour
- * un cas negocie ; l'imputation suit toujours le montant REELLEMENT verse (total / 3). */
-const DEPOT_PLAFOND = Infinity;
-const DEPOT_IMPUTATION_MENSUELLE = 300;
-const DEPOT_MOIS_IMPUTATION = 3;
+/* Frais de mise en service MB (PRICING.md §3, arbitrage A1 du 2026-09-24) : 490 €/position,
+ * encaisses a la signature, ACQUIS et non imputes sur les mensualites. Ils remplacent le
+ * depot de 900 €/position rendu sur les 3 premieres factures (decide le 2026-08-03,
+ * supprime le 2026-09-24). Ils financent recrutement, configuration et formation initiale.
+ * `deal.miseEnService.parPosition` permet un montant negocie ; `false` les retire. */
+const MES_PAR_POSITION = ASSUMPTIONS.activationFeePerPosition;
 
 /* Volume ferme facturable — generalise a TOUS les paliers (PRICING.md §1, modele B) :
  * chaque tarif s'achete avec un volume engage, pas avec une intention. Sans minimum
@@ -113,7 +106,7 @@ function renderPlanning(deal) {
     { jours: 0, titre: 'Cadrage', detail: 'Périmètre, horaires, volumétrie, accès et référents figés avec le partenaire.' },
     { jours: 14, titre: 'Recrutement et préparation', detail: 'Agents identifiés, accès nominatifs ouverts, base de connaissances et escalades cadrées.' },
     { jours: 35, titre: 'Formation et shadowing', detail: 'Procédures du partenaire, double écoute et tests sur des flux accompagnés.' },
-    { jours: 42, titre: 'Première prise de tickets accompagnée', detail: 'Premier traitement sous supervision ; la pleine autonomie est visée à 2,5–3,5 mois après la signature. L\'engagement de service devient opposable au premier mois plein en régime.' },
+    { jours: 42, titre: 'Première prise de tickets accompagnée', detail: 'Premier traitement sous supervision ; la pleine autonomie est visée vers 2 mois après la signature. L\'engagement de service devient opposable au premier mois plein en régime.' },
   ];
   const li = etapes.map((e, i) => {
     const d1 = addDays(sign, e.jours);
@@ -184,33 +177,29 @@ function renderGrille(deal) {
   </div>${noteMinimum ? `<p class="dl-note">${noteMinimum}</p>` : ''}`;
 }
 
-/* Depot d'activation : montant, plafond et imputation mensuelle (PRICING.md §3). */
-function calcDepot(deal) {
-  if (deal.depot === false) return null;
+/* Frais de mise en service : montant par position et total (PRICING.md §3).
+ * L'ancienne cle `depot: false` reste comprise comme un retrait. */
+function calcMiseEnService(deal) {
+  if (deal.miseEnService === false || deal.depot === false) return null;
   const n = deal.etpRetenus || 1;
-  const parPosition = deal.depot?.parPosition ?? DEPOT_PAR_POSITION;
-  const plafond = deal.depot?.plafond ?? DEPOT_PLAFOND;
-  const total = Math.min(parPosition * n, plafond);
-  return { n, parPosition, plafond, total, mensuel: total / DEPOT_MOIS_IMPUTATION, plafonne: parPosition * n > plafond };
+  const parPosition = deal.miseEnService?.parPosition ?? MES_PAR_POSITION;
+  return { n, parPosition, total: parPosition * n };
 }
 
-function renderDepot(deal) {
-  const d = calcDepot(deal);
+function renderMiseEnService(deal) {
+  const d = calcMiseEnService(deal);
   if (!d) return '';
   return `
-  <h2>L'activation</h2>
+  <h2>La mise en service</h2>
   <div class="dl-box">
-    <p><b>Dépôt d'activation : ${EUR(d.total)}</b> — ${EUR(d.parPosition)} par position${d.plafonne ? `, plafonné à ${EUR(d.plafond)}` : ''}, réglé à la signature.</p>
-    <p><b>Vous ne le payez pas, vous l'avancez.</b> Il est déduit de vos ${DEPOT_MOIS_IMPUTATION} premières
-    factures, à raison de ${EUR(d.mensuel)} par mois. Si le contrat suit son cours, il ne vous coûte
-    rien de plus — ce ne sont pas des frais.</p>
-     <p>Cette avance permet de lancer le recrutement et la formation avant votre premier
-     ticket. Elle vous est <b>intégralement restituée</b> si vous annulez avant le démarrage de la mise
-    en service, et ne nous reste acquis que si vous annulez <b>après</b>, une fois les agents
-    recrutés et formés.</p>
-    <p class="dl-note">Le cadrage et la mise en place restent offerts. Nous ne pratiquons pas de
-    remise de lancement : vous revendez notre prestation, une remise gonflerait votre marge d'un
-    mois sans vous aider à gagner un client. Ce que nous vous accordons à la place figure ci-dessous.</p>
+    <p><b>Frais de mise en service : ${EUR(d.total)}</b> — ${EUR(d.parPosition)} par position, réglés à la signature.</p>
+    <p>Ils financent ce qui se passe avant votre premier ticket : recrutement, configuration des
+    accès et des outils, formation initiale à votre périmètre. Ils ne sont pas déduits des
+    mensualités : votre facture mensuelle reste celle de la grille ci-dessus.</p>
+    <p>Le recrutement démarre à leur encaissement. Les conditions d'annulation figurent au contrat.</p>
+    <p class="dl-note">Nous ne pratiquons pas de remise de lancement : vous revendez notre prestation,
+    une remise gonflerait votre marge d'un mois sans vous aider à gagner un client. Ce que nous vous
+    accordons à la place figure ci-dessous.</p>
   </div>`;
 }
 
@@ -312,7 +301,7 @@ function renderDoc(deal) {
     <p>${H(deal.pilote)}</p>
   </div>` : ''}
 
-  ${renderDepot(deal)}
+  ${renderMiseEnService(deal)}
 
   <h2>Vos garanties</h2>
   <div class="dl-g">
@@ -562,9 +551,12 @@ writeFileSync(join(root, out), page);
     console.error('  La tarification est par tranches : ce total retroactif ne doit pas apparaitre.');
     process.exit(1);
   }
-  const dep = calcDepot(deal);
-  if (dep && !clair.includes(EUR(dep.total))) {
-    console.error(`✗ Vérification : dépôt d'activation (${EUR(dep.total)}) absent du document.`); process.exit(1);
+  const mes = calcMiseEnService(deal);
+  if (mes && !clair.includes(EUR(mes.total))) {
+    console.error(`✗ Vérification : frais de mise en service (${EUR(mes.total)}) absents du document.`); process.exit(1);
+  }
+  if (/d[ée]p[ôo]t d'activation/i.test(clair)) {
+    console.error('✗ Vérification : le document mentionne encore le dépôt d\'activation, supprimé le 2026-09-24.'); process.exit(1);
   }
   if (clair.includes('__') ) { console.error('✗ Vérification : placeholder non remplacé dans le document.'); process.exit(1); }
 }
@@ -577,12 +569,12 @@ console.log(`  Chiffré  : ${chiffre.length} octets · PBKDF2 ${ITER} itération
 /* Recapitulatif economique avant envoi : ce qui est engage et ce qui est concede doit etre
  * vu, pas subi. */
 {
-  const dep = calcDepot(deal);
-  if (dep) {
-    console.log(`  Depot    : ${EUR(dep.total)} a la signature (${EUR(dep.parPosition)} × ${dep.n} position${dep.n > 1 ? 's' : ''}${dep.plafonne ? `, plafonne a ${EUR(dep.plafond)}` : ''})`);
-    console.log(`             impute ${EUR(dep.mensuel)}/mois sur ${DEPOT_MOIS_IMPUTATION} mois — ne pas lancer le recrutement avant encaissement.`);
+  const mes = calcMiseEnService(deal);
+  if (mes) {
+    console.log(`  Mise en service : ${EUR(mes.total)} a la signature (${EUR(mes.parPosition)} × ${mes.n} position${mes.n > 1 ? 's' : ''}), acquis, non imputes`);
+    console.log('                    ne pas lancer le recrutement avant encaissement.');
   } else {
-    console.log('  Depot    : AUCUN (depot:false) — verifier que c\'est bien voulu (PRICING.md §3).');
+    console.log('  Mise en service : AUCUNE (miseEnService:false) — verifier que c\'est bien voulu (PRICING.md §3).');
   }
   const retenue = deal.grille.find((r) => r.retenu);
   if (retenue?.minimumFacturable) {

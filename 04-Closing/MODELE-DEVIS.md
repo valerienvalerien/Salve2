@@ -11,7 +11,8 @@
 > **ne se recopie jamais dans un support public**.
 >
 > ⚠️ **Variante B (MB) — mise à jour 2026-08-03** : **plus de mois pilote à −50 %**. À la
-> place : **dépôt d'activation imputable 900 €/position** (B.4), **contreparties de risque**
+> place : **frais de mise en service de 490 €/position**, acquis et non imputés (B.4, remplacent
+> le dépôt d'activation depuis le 2026-09-24), **contreparties de risque**
 > (B.7) et **minimum facturable** sur le palier 5+ (B.2/B.3). Cf. `PRICING.md §3.a/§3.b`.
 >
 > Identité juridique en cours d'enregistrement → laisser les placeholders `[...]` tant que
@@ -149,19 +150,16 @@ mutualisée, backup intégré) : multiplicateur `1,10 + 0,90/n` (`PRICING.md §3
 
 KPI engagé : **SLA de prise en charge**. Option **Priority** idem B.2.
 
-## B.4 Mise en service & dépôt d'activation (MB)
+## B.4 Mise en service (MB, poste dédié)
 
 | Réf. | Désignation | Qté | PU | Total |
 |---|---|---|---|---|
-| SETUP | **Cadrage & mise en place** (intégration outils, formation aux procédures, armement QA) | 1 | ~~[valeur] €~~ | **0 € — offert** |
-| DEPOT | **Dépôt d'activation** — 900 €/position | [ ] | 900 € | **[ ] €** |
+| MES | **Frais de mise en service** — recrutement, configuration des accès et des outils, formation initiale, armement QA | [ ] positions | 490 € | **[ ] €** |
 
-- **Le dépôt n'est pas des frais** : il est **intégralement imputé** sur les **3 premières
-  factures**, à raison de **300 €/position/mois**. Un partenaire qui va au bout ne paie
-  **rien de plus** — c'est une avance, pas un coût.
-- **Exigible à la signature**, avant démarrage de la mise en service. **Restitué en totalité**
-  si le contrat est annulé **avant** ce démarrage ; **acquis à Salverys** si l'annulation
-  intervient **après** (recrutement engagé, formation lancée).
+- **Exigibles à la signature** ; le recrutement démarre à leur encaissement.
+- **Acquis** et **non imputés** sur les factures mensuelles (`PRICING.md §3`, décision du
+  2026-09-24 qui remplace le dépôt de 900 €/position). Conditions d'annulation : au contrat.
+- **Clause de révision EUR/MGA** : taux de référence, bande et préavis au contrat (art. 4).
 - **Pas de mois pilote à −50 %** en marque blanche (`PRICING.md §3.b`). Le pilote éventuel
   est un **périmètre restreint** — débordement, un client final, lot de **200-400 tickets**
   côté support/IT — **au tarif du palier retenu**, défini au cadrage.

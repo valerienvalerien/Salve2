@@ -29,7 +29,7 @@ def moteur():
     js = """
 import('./tools/finance-model.mjs').then(async M => {
   const { SCENARIOS } = await import('./tools/finance-scenarios.mjs');
-  const deals = SCENARIOS.median;
+  const deals = SCENARIOS.reference;
   const rows = M.projectCash(deals, 24);
   process.stdout.write(JSON.stringify({
     rows, trough: M.summarize(rows).trough,

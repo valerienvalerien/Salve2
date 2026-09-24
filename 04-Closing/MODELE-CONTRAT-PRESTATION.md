@@ -8,10 +8,11 @@
 > avoir **20 %** automatique · offre de lancement **1er mois à −50 %** (jamais essai
 > gratuit) **— en direct uniquement**. Côté médical : « forfait », jamais « abonnement ».
 >
-> ⚠️ **Marque blanche (mise à jour 2026-08-03)** : **pas de remise de lancement**. À la place,
-> **dépôt d'activation imputable** (art. 4, `PRICING.md §3.a`) + **contreparties de risque**
-> (art. 3 / art. 10 / art. 13, `PRICING.md §3.b`) + **minimum facturable** sur le palier 5+
-> (Annexe B).
+> ⚠️ **Marque blanche (mise à jour 2026-09-24)** : **pas de remise de lancement**. À la place,
+> **frais de mise en service de 490 €/position**, acquis et non imputés (art. 4, `PRICING.md §3`),
+> qui remplacent le dépôt d'activation + **contreparties de risque** (art. 3 / art. 10 / art. 13,
+> `PRICING.md §5`) + **minimum facturable** pour le tarif volume (Annexe B) + **clause de
+> révision EUR/MGA** (art. 4).
 >
 > ⚠️ Ce gabarit est un support opérationnel, **pas un avis juridique** : faire valider par
 > un conseil avant signature d'un premier contrat. **L'art. 8 bis (encadrement / absence de
@@ -52,36 +53,37 @@ l'**Annexe [A/B]** et est **figé lors du cadrage** initial.
 - **Variante MB / support / IT** : engagement initial de **3 mois (mois pilote inclus)**,
   puis reconduction par périodes de **12 mois**, sauf dénonciation par l'une des parties
   avec un préavis de **[__ jours — usuellement 60]** avant l'échéance. (24-36 mois réservés
-  aux grands comptes, avec dégressif négocié.)
+  aux grands comptes, avec dégressif négocié.) **Objectif de négociation** (`PRICING.md §5`) :
+  **12 mois fermes**, nombre de positions garanti, préavis de **3 mois** — à obtenir en
+  négociation, pas une condition d'entrée.
 - **Sortie facilitée MB — 30 jours pendant les 3 premiers mois** (contrepartie de risque,
   `PRICING.md §3.b`) : par exception au préavis ci-dessus, le Client peut résilier pendant
-  les **trois (3) premiers mois** moyennant un préavis de **30 jours**, sans indemnité. Le
-  **dépôt d'activation** (art. 4) reste alors **acquis à Salverys** dès lors que la mise en
-  service a démarré, et les positions consommées sont dues au prorata. Au-delà du 3e mois,
+  les **trois (3) premiers mois** moyennant un préavis de **30 jours**, sans indemnité. Les
+  **frais de mise en service** (art. 4) restent **acquis à Salverys**, et les positions
+  consommées sont dues au prorata. Au-delà du 3e mois,
   le préavis de droit commun s'applique.
 
 ## Article 4 — Conditions financières
 
 - Prix et modalités définis au **devis accepté** et à l'**Annexe de niche**, conformes à
   `PRICING.md`.
-- **Mise en service / cadrage : offerts** (affichés à leur valeur — 490 € côté médical —
-  puis ramenés à 0 €). **Jamais facturés**, en direct comme en marque blanche.
+- **Mise en service / cadrage** : offerts en variante directe (affichés à leur valeur, puis
+  ramenés à 0 €). En **variante MB, poste dédié** : frais de mise en service facturés, voir
+  ci-dessous.
 - **Offre de lancement — variante directe uniquement** : 1er mois à **−50 %**, sans
   engagement (le cas échéant, programme « clients fondateurs » dégressif sur 3 mois avec
   contreparties — cf. devis). **Ne s'applique pas à la variante MB** (`PRICING.md §7`).
-- **Dépôt d'activation — variante MB uniquement** (`PRICING.md §3.a`) :
-  - Montant : **900 € par position**, soit **[____] €** au titre du
-    présent contrat.
-  - **Exigible à la signature**, avant tout démarrage de la mise en service.
-  - **Intégralement imputable** : déduit des **trois (3) premières factures mensuelles** à
-    raison de **300 € par position et par mois**. Le dépôt **ne constitue pas des frais** —
-    il ne représente aucun coût supplémentaire pour le Client qui exécute le contrat.
-  - **Restitué intégralement** si le contrat est annulé **avant** le démarrage de la mise en
-    service. **Acquis à Salverys** si l'annulation intervient **après** ce démarrage
-    (recrutement engagé, formation des agents lancée), à titre d'indemnisation forfaitaire
-    des coûts de mise en service exposés.
-  - Le solde éventuellement non imputé à l'issue du 3e mois est **déduit de la facture
-    suivante**.
+- **Frais de mise en service — variante MB, poste dédié** (`PRICING.md §3`) :
+  - Montant : **490 € HT par position**, soit **[____] € HT** au titre du présent contrat.
+  - **Exigibles à la signature** ; le recrutement démarre à leur encaissement.
+  - **Acquis à Salverys** et **non imputés** sur les factures mensuelles. Ils rémunèrent le
+    recrutement, la configuration des accès et des outils et la formation initiale.
+  - Conditions d'annulation avant le démarrage du recrutement : **[à préciser au contrat]**.
+- **Révision EUR/MGA** (`PRICING.md §3`) : les prix sont fixés en euros sur la base d'un taux
+  de référence de **[____] Ar pour 1 €** à la signature. Si le taux publié par
+  **[source à préciser]** s'écarte de plus de **[__] %** de ce taux de référence pendant
+  **[__] mois consécutifs**, chaque partie peut demander la révision des prix, avec un préavis
+  de **[__] jours**.
 - **Révision** : les prix peuvent être révisés à chaque renouvellement annuel, sur
   notification écrite **[__ jours]** avant l'échéance.
 
@@ -215,9 +217,8 @@ contradiction sur le volet données personnelles, le **DPA prévaut**.
   constituée pendant le contrat et l'**historique** des interactions traitées, et
   accompagne le transfert vers le Client ou le prestataire qu'il désigne. Le Client ne
   devient à aucun moment captif.
-- **Sort du dépôt d'activation** : la fraction non encore imputée est **restituée** en cas
-  de résiliation pour manquement de Salverys, et **acquise à Salverys** en cas de
-  résiliation à l'initiative du Client après démarrage de la mise en service (art. 4).
+- **Frais de mise en service** : acquis à Salverys (art. 4). Leur sort en cas de résiliation
+  pour manquement de Salverys est **[à préciser au contrat]**.
 
 ## Article 14 — Droit applicable & litiges
 
@@ -244,18 +245,17 @@ Garder le(s) bloc(s) de niche concerné(s).
 - **Marque blanche totale** : scripts, outils, SLA et **nom du partenaire**.
 - **Télésecrétariat médical FR** : facturation à l'appel traité par créneau (jour
   0,90-1,10 € · soir/samedi 1,20-1,40 € · pics réservés +15-20 %). KPI : **taux de décroché**.
-- **Support N1 SaaS** : ETP/position dégressif (1 ETP 1 700 € · 3 ETP 1 500 € · 5+ 1 350 €).
-  KPI : **SLA de première réponse**.
-- **Helpdesk IT N1 (ITIL)** : ETP/position dégressif (1 ETP 2 000 € · 3 ETP 1 750 € · 5+ 1 550 €).
-  KPI : **SLA de prise en charge**.
-- **Minimum facturable — palier 5+ ETP** (`PRICING.md §3`) : le tarif du palier « 5 positions
-  et plus » (1 350 € support N1 / 1 550 € helpdesk IT) est consenti **en contrepartie d'un
-  volume ferme de cinq (5) positions**, **facturées chaque mois qu'elles soient consommées
-  ou non**, pendant toute la durée de l'engagement. Si le Client facture moins de cinq
-  positions sur un mois donné, le prix applicable à ce mois est celui du **palier
-  3 positions** (1 500 € / 1 750 €), appliqué aux positions effectivement consommées.
-  → Positions fermes retenues : **[__]** · palier applicable : **[__] €/mois/position**.
-- **Dépôt d'activation** : **900 € × [__] positions = [____] €** — art. 4.
+- **Support N1 SaaS** : par tranches non rétroactives (`PRICING.md §1`) — positions 1 à 4 à
+  **1 700 €**, 5e et suivantes à **1 500 €**. KPI : **SLA de première réponse**.
+- **Helpdesk IT N1 (ITIL)** : par tranches non rétroactives — positions 1 à 4 à **2 000 €**,
+  5e et suivantes à **1 750 €**. KPI : **SLA de prise en charge**.
+- **Minimum facturable — tarif volume** (`PRICING.md §1`) : le tarif volume de la 5e position
+  et des suivantes est consenti **en contrepartie d'un minimum de positions garanti**,
+  **facturées chaque mois qu'elles soient consommées ou non**, pendant toute la durée de
+  l'engagement. Si le minimum baisse, la facturation suit le nouveau nombre de positions à
+  compter de la modification contractuelle.
+  → Positions fermes retenues : **[__]** · total mensuel : **[4 × ____ + __ × ____ = ____] €**.
+- **Frais de mise en service** : **490 € × [__] positions = [____] € HT**, à la signature — art. 4.
 - **Pas de remise de lancement** : la variante MB ne comporte **aucun mois pilote à −50 %**
   (`PRICING.md §3.b`). Le pilote éventuel est un **périmètre restreint** (débordement, un
   client final, lot de 200-400 tickets), **au tarif du palier retenu**.

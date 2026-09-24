@@ -6,7 +6,7 @@
 > basculer proprement le mois d'entrée vers le régime avec engagement de service.
 >
 > ⚠️ **Mécanique d'entrée dissociée (2026-08-03)** : **en direct** → mois pilote **−50 %** ;
-> **en marque blanche** → **pas de remise**, mais **dépôt d'activation** encaissé en phase 0
+> **en marque blanche** → **pas de remise**, mais **frais de mise en service** (490 €/position) encaissés en phase 0
 > et **contreparties de risque** (`PRICING.md §3.a/§3.b`).
 >
 > Prix & garanties : `PRICING.md` fait foi. Documents liés : `MODELE-DEVIS.md`,
@@ -48,9 +48,8 @@ l'engagement de service).
 - [ ] **Signature** : devis + contrat de prestation + **DPA**.
 - [ ] **Direct** — choix offre de lancement : mois pilote −50 % ou programme fondateurs.
 - [ ] **Marque blanche** — **pas de remise**. À la place :
-  - [ ] **Dépôt d'activation encaissé** : 900 €/position — **avant tout
-    démarrage de la mise en service**. Rappeler qu'il est **imputé sur les 3 premières
-    factures** (300 €/position/mois) et ne coûte rien au partenaire qui va au bout.
+  - [ ] **Frais de mise en service encaissés** : 490 €/position — **avant tout
+    démarrage du recrutement**. Acquis, non imputés sur les mensualités (`PRICING.md §3`).
   - [ ] **Palier tarifaire figé** : si palier **5+**, acter le **minimum facturable de
     5 positions** (dues consommées ou non) dans l'Annexe B du contrat.
   - [ ] **Contreparties de risque** concédées, écrites et **cochées** dans le devis (B.7) :
@@ -129,10 +128,9 @@ l'engagement de service).
 ## Garde-fous onboarding
 
 - Ne jamais démarrer J1 sans **QA armée et escalades documentées** (promesse one-pager).
-- Ne jamais **facturer** la mise en service (affichée 490 € → **offerte**), en direct comme
-  en MB. Le **dépôt d'activation MB n'est pas une facturation de la mise en service** : il
-  est **imputable** et revient au partenaire dans ses 3 premières factures.
-- **MB** : ne jamais engager de recrutement **avant encaissement du dépôt**.
+- **Direct** : mise en service affichée puis **offerte**. **MB, poste dédié** : mise en service
+  **facturée 490 €/position** à la signature, acquise (décision du 2026-09-24).
+- **MB** : ne jamais engager de recrutement **avant encaissement des frais de mise en service**.
 - **MB** : ne **jamais** consentir de remise sur le prix de gros (`PRICING.md §3.b`). Si le
   partenaire pousse, concéder une **contrepartie de risque** (B.7 du devis) — une seule.
 - Périmètre et seuil **figés au cadrage** — toute extension passe par avenant/devis.

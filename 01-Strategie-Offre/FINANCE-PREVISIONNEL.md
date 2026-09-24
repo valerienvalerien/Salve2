@@ -2,6 +2,16 @@
 
 Version de travail du 2026-09-17. Le modèle historique est conservé dans `99-Archives/FINANCE-PREVISIONNEL-REGISTRE-INTERNE-2026-09-15.md`. Les calculs reproduisibles sont dans `tools/finance-model.mjs` et les scénarios dans `tools/finance-scenarios.mjs` ; la page `projection-finances-salverys.html` utilise ce même moteur, embarqué à l'identique et vérifié par `tools/finance-model.test.mjs`. **Aucun chiffre de cette page ne représente une dépense réellement constatée tant que les factures, la paie et le solde bancaire n'ont pas été rapprochés.**
 
+> **Mise à jour du 2026-09-24 — arbitrages du BMC v1.3** (`AUDIT-BMC-2026-09-23.md` §8-9).
+> Le moteur intègre désormais : l'agent au **coût complet de 3,5 M Ar** tout compris (A7),
+> la **structure du lancement** à 2 220 €/mois dès la première embauche, avec les postes de
+> travail et le groupe + UPS (A8), des **réserves de 2 % (avoirs SLA) et 1 % (banque et
+> change)** sur le CA (A9), le **fondateur encadrant jusqu'à 5 positions** et un scénario de
+> **référence à deux clients, 3 + 2 positions** (A10), et les **frais de mise en service de
+> 490 €/position** à la place du dépôt (A1). Les chiffres ci-dessous en découlent ; les
+> valeurs d'avant l'arbitrage restent reproductibles dans `tools/finance-model.test.mjs`
+> (jeu `LEGACY`).
+
 ## 1. Situation et périmètre
 
 Le fondateur prospecte seul ; aucun agent, manager ni commercial n'est salarié dans le scénario de départ. La prospection active vise les partenaires français en marque blanche. Les offres directes, les clients médicaux directs et la rémunération d'un commercial ne figurent donc pas dans les projections. Un contrat signé peut changer ces hypothèses : il faut alors saisir ses positions, son prix, ses dates et ses coûts dans le simulateur.
@@ -12,18 +22,25 @@ Le scénario de trésorerie part de **0 € de solde initial pour mesurer le bes
 
 | Paramètre | Hypothèse du dépôt | Statut et vérification |
 |---|---:|---|
-| Brut mensuel agent et manager | 3 250 000 Ar chacun | Politique interne, confirmer avec contrat et bulletins de paie |
+| Coût complet agent, tout compris | **3 500 000 Ar (700 €)**, + VoIP 30 € | **Arbitrage A7 du 2026-09-24.** Couvre rémunération, charges, congés, absences, formation et remplacement. **À valider par la paie** : le brut de 3,25 M Ar chargé (≈ 3,68 M Ar) n'y tient pas |
+| Brut mensuel manager | 3 250 000 Ar | Politique interne, confirmer avec contrat et bulletins de paie. Sert aussi à l'agent si le coût complet est mis à 0 |
 | Change de calcul | 5 000 Ar / € | Convention de simulation, remplacer par le taux de paiement réel et ses frais |
 | Cotisations employeur | 18 % sur le brut plafonné à 8 × SME ; SME supposé 300 000 Ar | **Hypothèse réglementaire non vérifiée** ; obtenir assiette et taux applicables auprès du gestionnaire de paie/CNaPS/organisme de santé avant embauche |
 | VoIP par agent | 30 €/mois | Devis ou facture à obtenir, coût susceptible de varier selon les outils du partenaire |
 | VoIP par manager | 0 €/mois | **Hypothèse implicite du modèle** : le manager n'a pas de ligne facturée. À corriger si la supervision décroche ou prend des escalades |
 | Imprévus salaires et VoIP | 10 % | Coussin de simulation, pas une charge comptable |
+| Structure du lancement | **2 220 €/mois** dès la 1re embauche | **Arbitrage A8, hypothèse pessimiste** : encadrement / QA 600 €, loyer 60 m² 720 €, double fibre 300 €, RH / paie / comptable 300 €, énergie 300 €. Taille et prix des locaux arbitraires |
+| Équipement | 800 €/position à la signature ; 450 € de groupe + UPS au 1er recrutement | Arbitrage A8. Décaissé, non amorti dans la trésorerie |
+| Réserves sur CA encaissé | **2 % avoirs SLA + 1 % banque et change** | Arbitrage A9. Taxes non comprises |
+| Encadrement par le fondateur | **5 positions** | Arbitrage A10. Un manager s'ajoute à la 6e |
 | Outils récurrents connus | 68 €/mois dans les scénarios | `REGISTRE-COUTS-OUTILS.md` : 65 €/mois d'abonnements + 36 €/an de domaines ; inclut Claude à 20 €/mois et Ringover à 25 €/mois ; Sales Navigator est inactif |
 | Onboarding | **400 € de socle par contrat + 400 € par position** | Décomposition du registre interne. Le forfait unique de 1 600 €/contrat utilisé jusqu'au 2026-09-16 ne valait que pour un contrat de **trois** positions : il surestimait les petits contrats de 800 € et sous-estimerait les gros. Reste à documenter sur temps passé et dépenses engagées |
 | Facturation | Première facture en M+2 après signature | Hypothèse de délai ; remplacer par les jalons du devis |
 | Encaissement | Un mois après facturation | Hypothèse de règlement à 30 jours, hors retard et impayé |
-| Dépôt B | 900 €/position à la signature, puis crédit 300 €/position sur chacune des trois premières factures | Conforme à `PRICING.md` ; **avance de trésorerie, pas revenu supplémentaire**. Montant, crédit et nombre de factures sont modifiables dans la page de projection, qui **avertit si l'égalité `dépôt = crédit × factures` est rompue** |
-| Frais d'activation | **0 €** | Modélisables depuis le 2026-09-18, à zéro par défaut. `PRICING.md` §3 dit qu'il n'y a pas de frais de mise en service : **les activer modifie la grille**, ce n'est pas un réglage d'outil. Contrairement au dépôt, ils ne sont jamais rendus |
+| Dépôt B | **0 €** — supprimé le 2026-09-24 | Remplacé par les frais de mise en service (A1). Le mécanisme reste simulable dans la page de projection |
+| Frais de mise en service | **490 €/position**, à la signature | `PRICING.md` §3, arbitrage A1 du 2026-09-24. Acquis, jamais imputés sur les mensualités |
+
+Depuis le 2026-09-24, **l'agent coûte 730 €/mois** (700 € de coût complet + 30 € de VoIP, sans coussin puisque les provisions y sont déjà) et **le manager 810,04 €**. Le paragraphe suivant décrit le calcul par le brut, qui ne sert plus qu'au manager et à la variante « coût complet = 0 ».
 
 Le calcul salarial illustratif donne **736,40 €/mois de salaire chargé** par personne : `(3 250 000 + 18 % × min(3 250 000, 8 × 300 000)) / 5 000`. L'agent est **budgété à 843,04 €/mois** avec VoIP et coussin de 10 % ; un manager à **810,04 €/mois** avec ce coussin. Le coussin est retiré du **cash disponible** dans le simulateur comme réserve prudente, même s'il ne constitue pas une paie effectivement versée. Ces valeurs ne comprennent pas les congés de remplacement, le recrutement, l'équipement, les licences supplémentaires, la comptabilité, l'assurance, les impôts, les frais bancaires et de change. Un manager est budgété dès qu'un métier a une position salariée, puis un manager de plus par tranche de huit agents **dans ce métier**.
 
@@ -41,16 +58,25 @@ Une marge de contrat doit inclure **tous les agents et managers déclenchés**, 
 
 **Plus grave que « insuffisant » : 920 € ne devient jamais rentable, à aucun volume.** Huit positions à ce prix rapportent `8 × 76,96 = 615,68 €` et déclenchent un manager à `810,04 €`. Chaque tranche de huit positions vendues à 920 € creuse donc le résultat d'environ 194 € de plus par mois — la perte grandit avec le volume au lieu de se résorber. Le prix en dessous duquel aucun volume ne rattrape la structure est `843,04 + 810,04 / 8 = 944,30 €/position`. Le plancher de `PRICING.md` est **sous ce seuil** : il doit être relevé au-dessus de 944,30 €, et en pratique bien plus haut pour couvrir les outils, l'onboarding et les coûts non renseignés. En attendant cet arbitrage, aucun devis ne doit être approuvé sur le seul critère du plancher.
 
-| Contrat isolé, un métier | CA mensuel | Agents + manager + outils (68 €) | Résultat indicatif mensuel |
-|---|---:|---:|---:|
-| 1 helpdesk | `1 × 2 000` = 2 000 € | 1 721 € | **+279 €** |
-| 1 support | `1 × 1 700` = 1 700 € | 1 721 € | **−21 €** |
-| 2 support | `2 × 1 700` = 3 400 € | 2 564 € | **+836 €** |
-| 5 support | `4 × 1 700 + 1 × 1 500` = 8 300 € | 5 093 € | **+3 207 €** |
-| 7 helpdesk | `4 × 2 000 + 3 × 1 750` = 13 250 € | 6 779 € | **+6 471 €** |
-| 9 support | `4 × 1 700 + 5 × 1 500` = 14 300 € | 9 275 € (9 agents, **2 managers**) | **+5 025 €** |
+**Tableau recalculé le 2026-09-24** avec les hypothèses du BMC v1.3 : agent à 730 €, structure de 2 220 €, outils 68 €, réserves de 3 % du CA, fondateur encadrant jusqu'à 5 positions.
 
-Ces résultats sont des contributions **à régime plein, hors onboarding, taxes et coûts non renseignés**. Ils remplacent ceux calculés sur la grille rétroactive : 5 support donnaient **+2 407 €** au lieu de +3 207 €, et 9 support **+2 875 €** au lieu de +5 025 €. L'écart n'est pas un gain nouveau — c'est le montant que la remise rétroactive prélevait sur des positions déjà vendues au prix fort.
+| Contrat isolé, un métier | CA mensuel | Charges (agents, manager, structure, outils, réserves) | Résultat indicatif mensuel |
+|---|---:|---:|---:|
+| 1 helpdesk | `1 × 2 000` = 2 000 € | 3 078 € | **−1 078 €** |
+| 1 support | `1 × 1 700` = 1 700 € | 3 069 € | **−1 369 €** |
+| 2 helpdesk | `2 × 2 000` = 4 000 € | 3 868 € | **+132 €** |
+| 2 support | `2 × 1 700` = 3 400 € | 3 850 € | **−450 €** |
+| 3 helpdesk | `3 × 2 000` = 6 000 € | 4 658 € | **+1 342 €** |
+| **Référence : 3 + 2 helpdesk, deux clients** | `6 000 + 4 000` = 10 000 € | 6 238 € | **+3 762 €** |
+| 5 support | `4 × 1 700 + 1 × 1 500` = 8 300 € | 6 187 € | **+2 113 €** |
+| 7 helpdesk | `4 × 2 000 + 3 × 1 750` = 13 250 € | 8 606 € (1 manager) | **+4 644 €** |
+| 9 support | `4 × 1 700 + 5 × 1 500` = 14 300 € | 10 907 € (**2 managers**) | **+3 393 €** |
+
+Point mort : **2 positions en helpdesk, 3 en support**. La structure pessimiste pèse plus que le prix : un contrat d'une seule position perd plus de 1 000 € par mois. Le BMC v1.3 affiche 3 771 € pour la référence ; l'écart de 9 € vient des amortissements (123 €) que le moteur ne compte pas, de la VoIP (150 €) qu'il compte, et des outils (68 € contre 86 €).
+
+Les valeurs publiées jusqu'au 2026-09-23, sur l'agent calculé par le brut (843 €), sans structure ni réserves et avec un manager dès la première position, étaient : 1 helpdesk +279 €, 1 support −21 €, 2 support +836 €, 5 support +3 207 €, 7 helpdesk +6 471 €, 9 support +5 025 €.
+
+Ces résultats sont des contributions **à régime plein, hors onboarding, équipement, taxes et coûts non renseignés**. Ils remplacent ceux calculés sur la grille rétroactive : 5 support donnaient **+2 407 €** au lieu de +3 207 €, et 9 support **+2 875 €** au lieu de +5 025 €. L'écart n'est pas un gain nouveau — c'est le montant que la remise rétroactive prélevait sur des positions déjà vendues au prix fort.
 
 Le prix **moyen** d'un contrat n'est jamais un des deux tarifs de la grille dès la cinquième position : sept positions helpdesk se facturent 13 250 €, soit 1 893 € en moyenne. Ne jamais annoncer une moyenne comme un prix unitaire, ni comparer une moyenne au plancher — c'est le tarif de la tranche la plus basse qui dit à quel prix on accepterait la position suivante.
 
@@ -58,18 +84,25 @@ Le prix **moyen** d'un contrat n'est jamais un des deux tarifs de la grille dès
 
 Les scénarios suivants sont **des combinaisons de signatures à tester**, sans probabilité ni cadence commerciale attestée. Les positions sont embauchées en M+1, facturées à partir de M+2, encaissées en M+3. Les managers démarrent avec les agents. L'onboarding est payé à chaque signature, socle plus part par position ; le dépôt B est encaissé le même mois et crédité sur les trois premières factures. Les outils connus coûtent 68 €/mois même en attente. Aucun nouveau deal n'est supposé après les dates décrites.
 
+**Recalculé le 2026-09-24** (frais de mise en service à la place du dépôt, structure, équipement, réserves, fondateur encadrant jusqu'à 5 positions).
+
 | Scénario | Signatures hypothétiques | Factures M12 | Charges M12 | Creux de cash sur 24 mois | Cash M24, solde initial 0 € |
 |---|---|---:|---:|---:|---:|
+| **Référence** | 3 helpdesk + 2 helpdesk, deux clients, en M4 | 10 000 € | 6 238 € | **−16 948 € (M6)** | +50 768 € (positif en M11) |
 | Attente | Aucune | 0 € | 68 € | −1 632 € (M24) | −1 632 € |
-| Prudent | 1 helpdesk en M4 | 2 000 € | 1 721 € | **−3 677 € (M9)** | +506 € |
-| Médian | 2 helpdesk en M4 ; 2 support en M9 | 6 800 € (crédits du second contrat) | 5 060 € | **−4 800 € (M6)** | +24 804 € |
-| Expansion | 3 helpdesk en M3 ; 3 support en M7 ; 3 helpdesk en M10 | 16 200 € (crédits en cours) | 9 275 € | **−5 918 € (M5)** | +93 772 € |
+| Prudent | 1 helpdesk en M4 | 2 000 € | 3 078 € | **−27 272 € (M24)** | −27 272 € |
+| Médian | 2 helpdesk en M4 ; 2 support en M9 | 7 400 € | 5 430 € | **−14 118 € (M11)** | +11 492 € |
+| Expansion | 3 helpdesk en M3 ; 3 support en M7 ; 3 helpdesk en M10 | 17 100 € | 10 811 € | **−16 973 € (M10)** | +56 912 € |
 
-Ces valeurs sont la sortie du moteur de calcul, arrondie à l'euro. Elles remplacent les creux de **−4 477 €** (prudent) et **−5 200 €** (médian) publiés jusqu'au 2026-09-16, qui reposaient sur un onboarding forfaitaire de 1 600 € appliqué même à un contrat d'une seule position. Le scénario d'expansion, à trois positions par contrat, est inchangé. Le modèle d'expansion suppose **trois contrats** et neuf agents recrutés ; il ne décrit pas le pipeline réel. Les factures M12 comprennent les crédits de dépôt encore en cours. À partir du quatrième mois facturé de chaque deal, le plein tarif reprend ; le dépôt n'a jamais augmenté le total contractuel. Les résultats positifs peuvent être effacés par un retard de paiement, un coût d'embauche supérieur ou des charges non renseignées.
+**Lecture.** Le scénario de référence demande **≈ 17 k€** au creux, soit ≈ 15 k€ de financement externe après l'apport de 10 M Ar (≈ 2 000 €) : c'est l'ordre de grandeur du BMC v1.3 (14,4 k€), qui ne compte ni les outils des mois d'attente ni la VoIP. Le scénario prudent ne se rembourse **jamais** : une position seule ne couvre pas une structure de 2 220 €. Avec cette structure, **ne pas signer de lancement sous 2 positions helpdesk**, ou démarrer en coworking.
 
-Le **creux + coussin de 30 %** serait d'environ **4,8 k€ / 6,2 k€ / 7,7 k€** pour les scénarios prudent / médian / expansion. Ce sont des besoins *illustratifs au solde initial zéro*, **pas une recommandation de capital**. L'ancien montant de **25–30 k€** résultait d'une trajectoire avec un poste commercial supprimé et du direct ; il ne doit plus être repris. Le besoin réel est `max(0, −creux − trésorerie disponible)`, augmenté d'un coussin choisi et des dettes/charges non incluses.
+Valeurs d'avant l'arbitrage, conservées pour comparaison : creux de −3 677 € (prudent), −4 800 € (médian) et −5 918 € (expansion).
 
-**Ce que des frais d'activation changeraient.** Sur le scénario médian, des frais alignés sur l'onboarding réel — 400 € de socle plus 400 € par position — ramènent le creux de **−4 800 € à −3 600 €** et avancent le retour à une trésorerie positive de M14 à **M9**. C'est exactement le montant de l'onboarding, neutralisé au mois de la signature. C'est le seul levier qui améliore le creux sans toucher au calendrier de facturation — mais c'est aussi le seul qui coûte quelque chose au partenaire : une avance rendue se défend par « vous ne le payez pas, vous l'avancez », un frais acquis ne se défend plus ainsi. La décision appartient à la grille, pas à l'outil.
+Ces valeurs sont la sortie du moteur de calcul, arrondie à l'euro. Les scénarios supposent des contrats fermes et ne décrivent pas le pipeline réel. Les résultats positifs peuvent être effacés par un retard de paiement, un coût d'embauche supérieur ou des charges non renseignées.
+
+Le **creux + coussin de 30 %** serait d'environ **22,0 k€** pour la référence, **35,5 k€ / 18,4 k€ / 22,1 k€** pour les scénarios prudent / médian / expansion. Ce sont des besoins *illustratifs au solde initial zéro*, **pas une recommandation de capital**. L'ancien montant de **25–30 k€** résultait d'une trajectoire avec un poste commercial supprimé et du direct ; il ne doit plus être repris. Le besoin réel est `max(0, −creux − trésorerie disponible)`, augmenté d'un coussin choisi et des dettes/charges non incluses.
+
+**Frais de mise en service (décision du 2026-09-24).** Les 490 €/position encaissés à la signature financent l'onboarding du mois de signature : 2 450 € pour la référence, face à 2 800 € d'onboarding et 4 450 € d'équipement. Ils sont acquis et ne se déduisent pas des mensualités. Contrepartie : l'argument « vous ne le payez pas, vous l'avancez » du dépôt disparaît.
 
 Trois risques que ces scénarios **ne chiffrent pas** tant qu'ils restent à zéro dans les hypothèses : un impayé ou un défaut de partenaire, les taxes et frais de change sur le CA encaissé, et un allongement du délai de règlement au-delà de 30 jours. Les trois champs existent dans la page de projection ; les laisser à zéro est une décision, pas une absence de risque.
 
@@ -77,7 +110,7 @@ Trois risques que ces scénarios **ne chiffrent pas** tant qu'ils restent à zé
 
 Avant signature, chiffrer le contrat avec le volume **ferme**, la date d'embauche, les coûts d'installation, la couverture horaire et le minimum de marge après supervision. Ne pas embaucher sur des volumes espérés ou sur un pilote sans engagement payé. Avant de présenter ce prévisionnel à un financeur, rapprocher le solde initial et au moins deux mois de coûts réels, vérifier les cotisations et remplacer les dates de scénario par le pipeline signé. Le simulateur offre un point de départ contrôlable ; le suivi comptable mensuel reste la source des faits.
 
-**Décision en attente, à prendre avant le prochain devis :** relever le plancher de négociation de `PRICING.md`, aujourd'hui à 920 €/position, au-dessus de 944,30 € (§3). Tant que ce n'est pas fait, le document tarifaire autorise un prix dont on sait qu'il perd de l'argent à tous les volumes.
+**Décision en attente, à prendre avant le prochain devis :** le plancher de négociation de `PRICING.md` (920 €/position). Avec l'agent à 730 € et 3 % de réserves, le prix sous lequel aucun volume ne couvre la supervision tombe à **≈ 857 €** : 920 € repasse au-dessus, mais il faut **40 positions** à ce prix pour couvrir la structure du lancement. Le plancher reste donc un garde-fou, pas une limite de négociation.
 
 Un entrant en direct se chiffre avec le même outil : la page de projection permet de choisir, contrat par contrat, la grille marque blanche, un prix client final, ou un prix libre. Le mode direct sert à répondre à une demande entrante ; il ne rouvre pas la prospection directe, gelée depuis le 2026-09-07. Il ne porte pas de coût d'acquisition par défaut : en direct, ce coût existe et se saisit dans le champ prévu.
 

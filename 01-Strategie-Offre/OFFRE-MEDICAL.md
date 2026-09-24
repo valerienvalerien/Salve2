@@ -14,7 +14,7 @@ Salverys traite les appels qu'un télésecrétariat français lui confie, **sous
 | Soir 20 h–22 h et samedi | 1,20–1,40 €/appel traité |
 | Pic avec capacité réservée et volume ferme | Tarif du créneau +15–20 %, à confirmer au devis |
 
-Le devis fixe **un tarif exact**, les appels admissibles, les créneaux, les volumes, le temps de traitement estimé, les débordements, les agendas et la relève. Le dépôt de 900 € **par position dédiée IT** ne s'applique pas automatiquement au médical à l'appel. Si une capacité dédiée est réellement réservée, elle doit être dimensionnée et chiffrée distinctement.
+Le devis fixe **un tarif exact**, les appels admissibles, les créneaux, les volumes, le temps de traitement estimé, les débordements, les agendas et la relève. Les frais de mise en service de 490 € **par position dédiée IT** ne s'appliquent pas automatiquement au médical à l'appel. Si une capacité dédiée est réellement réservée, elle doit être dimensionnée et chiffrée distinctement.
 
 Le prévisionnel financier n'attribue **aucune marge médicale présumée** à cette offre : ni la durée moyenne des appels, ni la simultanéité, ni le staffing requis ne sont mesurés. Aucun forfait direct à 350/590/950 € ni claim d'économies « vs France » ne fait partie de l'offre active partenaire.
 
