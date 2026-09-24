@@ -1,0 +1,308 @@
+<meta charset="utf-8">
+<title>Simulateur BMC Salverys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F6F2EA;
+    --surface: #FFFFFF;
+    --ink: #2E3B4E;
+    --muted: #677385;
+    --line: #E3DDD0;
+    --deep: #013C58;
+    --sage: #6F8770;
+    --gold: #C98F0A;
+    --neg: #B6604D;
+    --pos: #4F7A52;
+    --track: #DCD5C6;
+    --band: #013C58;
+    --band-ink: #FFFFFF;
+    --band-muted: #A9C2D0;
+    --row: #F8F5EF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #121820; --surface: #1A222D; --ink: #E4E8EE; --muted: #9AA6B6; --line: #2A3441;
+      --deep: #8CC3DE; --sage: #9DB89E; --gold: #F0B429; --neg: #E08A76; --pos: #8CC08F;
+      --track: #34404F; --band: #0B2E43; --band-ink: #F2F5F8; --band-muted: #8FAFC2; --row: #1F2833;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121820; --surface: #1A222D; --ink: #E4E8EE; --muted: #9AA6B6; --line: #2A3441;
+    --deep: #8CC3DE; --sage: #9DB89E; --gold: #F0B429; --neg: #E08A76; --pos: #8CC08F;
+    --track: #34404F; --band: #0B2E43; --band-ink: #F2F5F8; --band-muted: #8FAFC2; --row: #1F2833;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: Inter, -apple-system, "Segoe UI", Arial, sans-serif; font-size: 14px; line-height: 1.45; padding-inline: 20px; padding-block: 24px 40px; }
+  .wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 20px; }
+  header.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: clamp(24px, 3vw, 32px); margin: 0; color: var(--deep); text-wrap: balance; }
+  .sub { color: var(--muted); margin: 4px 0 0; max-width: 62ch; }
+  button { font: inherit; font-weight: 600; font-size: 13px; color: var(--deep); background: transparent; border: 1px solid var(--deep); border-radius: 6px; padding: 7px 14px; cursor: pointer; }
+  button:hover { background: var(--row); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .band { background: var(--band); color: var(--band-ink); border-radius: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); }
+  .band div { padding: 12px 14px; border-left: 1px solid rgba(255,255,255,.12); }
+  .band div:first-child { border-left: none; }
+  .band small { display: block; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--band-muted); margin-bottom: 4px; }
+  .band strong { font-size: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .band .hl strong { color: var(--gold); }
+  .band .bad strong { color: #FFB4A3; }
+
+  .main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+
+  .controls { display: grid; gap: 16px; }
+  fieldset { margin: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 14px 16px 6px; min-width: 0; }
+  legend { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 17px; color: var(--deep); padding: 0 6px; }
+  .ctl { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 8px 0 10px; border-top: 1px solid var(--line); }
+  .ctl:first-of-type { border-top: none; }
+  .ctl label { font-weight: 500; }
+  .ctl output { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .ctl output span { color: var(--muted); font-weight: 500; margin-left: 6px; font-size: 12px; }
+  .ctl .hint { grid-column: 1 / -1; color: var(--muted); font-size: 12px; }
+  .ctl input[type=range] { grid-column: 1 / -1; width: 100%; accent-color: var(--deep); margin: 6px 0 0; height: 20px; }
+  .ctl.changed output { color: var(--gold); }
+
+  .results { display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+  @media (max-width: 900px) { .results { position: static; } }
+  .card { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 14px 16px; }
+  .card h2 { font-family: Georgia, "Times New Roman", serif; font-size: 17px; margin: 0 0 8px; color: var(--deep); }
+  .tw { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  th { font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  td.c { color: var(--muted); font-size: 12.5px; }
+  tr.t td { font-weight: 700; border-top: 1.5px solid var(--ink); }
+  tr.cur td { background: var(--row); font-weight: 700; }
+  .neg { color: var(--neg); }
+  .pos { color: var(--pos); }
+  .note { color: var(--muted); font-size: 12.5px; margin: 8px 0 0; }
+  .pill { display: inline-block; font-family: Inter, -apple-system, "Segoe UI", Arial, sans-serif; vertical-align: middle; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--row); color: var(--muted); margin-left: 6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Simulateur BMC Salverys</h1>
+      <p class="sub">Helpdesk IT N1 dédié en marque blanche. Chaque curseur modifie une hypothèse du BMC v1.5 ; les résultats se recalculent aussitôt. Montants HT mensuels, sauf indication contraire.</p>
+    </div>
+    <button id="reset" type="button">Revenir au BMC v1.5</button>
+  </header>
+
+  <section class="band" id="band" aria-live="polite"></section>
+
+  <div class="main">
+    <form class="controls" id="controls" onsubmit="return false"></form>
+
+    <div class="results">
+      <div class="card">
+        <h2>Compte de résultat mensuel</h2>
+        <div class="tw"><table id="pl"></table></div>
+      </div>
+      <div class="card">
+        <h2>Financement du démarrage</h2>
+        <div class="tw"><table id="cash"></table></div>
+        <p class="note" id="cashNote"></p>
+      </div>
+      <div class="card">
+        <h2>Sensibilité, un seul client <span class="pill">prix et coûts ci-contre</span></h2>
+        <div class="tw"><table id="sens"></table></div>
+        <p class="note">Au-delà de la tranche d'entrée, un client unique paie les positions suivantes au tarif volume. La ligne surlignée correspond au total de vos deux clients.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const GROUPS = [
+  { id: 'rev', title: 'Revenus' },
+  { id: 'var', title: 'Coûts variables' },
+  { id: 'fix', title: 'Coûts fixes mensuels' },
+  { id: 'start', title: 'Démarrage et trésorerie' },
+];
+
+// Valeurs par défaut = BMC v1.5 (24/09/2026). Les montants en ariary restent en ariary.
+const CONTROLS = [
+  { id: 'posA', g: 'rev', label: 'Positions chez le client A', min: 0, max: 15, step: 1, v: 3, fmt: 'n' },
+  { id: 'posB', g: 'rev', label: 'Positions chez le client B', min: 0, max: 15, step: 1, v: 2, fmt: 'n' },
+  { id: 'prixE', g: 'rev', label: "Prix d'une position, tranche d'entrée", min: 1200, max: 3000, step: 50, v: 2000, fmt: 'eur' },
+  { id: 'prixV', g: 'rev', label: 'Prix d’une position, tarif volume', min: 1000, max: 3000, step: 50, v: 1750, fmt: 'eur' },
+  { id: 'tranche', g: 'rev', label: "Positions au tarif d'entrée, par client", min: 1, max: 12, step: 1, v: 4, fmt: 'n', hint: 'Les positions suivantes chez ce même client passent au tarif volume, sans rétroactivité.' },
+  { id: 'mes', g: 'rev', label: 'Mise en service, par position', min: 0, max: 1500, step: 10, v: 490, fmt: 'eur', hint: 'Encaissée à la signature, non déduite des mensualités.' },
+  { id: 'rate', g: 'rev', label: 'Taux de change', min: 4000, max: 6500, step: 50, v: 5000, fmt: 'rate' },
+
+  { id: 'agent', g: 'var', label: "Coût complet d'un agent", min: 2000000, max: 5500000, step: 50000, v: 3500000, fmt: 'ar', hint: 'Rémunération, charges, congés, absences, formation, remplacement.' },
+  { id: 'sla', g: 'var', label: 'Réserve avoirs SLA', min: 0, max: 6, step: 0.5, v: 2, fmt: 'pct', hint: 'Part du CA mise de côté pour les avoirs de 20 %.' },
+  { id: 'bank', g: 'var', label: 'Réserve banque et change', min: 0, max: 5, step: 0.5, v: 1, fmt: 'pct' },
+
+  { id: 'encad', g: 'fix', label: 'Encadrement et QA', min: 0, max: 8000000, step: 100000, v: 3000000, fmt: 'ar' },
+  { id: 'encadCap', g: 'fix', label: 'Positions couvertes par ce forfait', min: 1, max: 20, step: 1, v: 5, fmt: 'n', hint: 'Au-delà, un manager s’ajoute par tranche de 8 positions.' },
+  { id: 'mgr', g: 'fix', label: 'Coût d’un manager supplémentaire', min: 2500000, max: 7000000, step: 50000, v: 4050000, fmt: 'ar' },
+  { id: 'loyer', g: 'fix', label: 'Loyer', min: 0, max: 8000000, step: 100000, v: 3600000, fmt: 'ar', hint: 'BMC : 60 m², hypothèse pessimiste.' },
+  { id: 'fibre', g: 'fix', label: 'Double fibre', min: 0, max: 3000000, step: 50000, v: 1500000, fmt: 'ar' },
+  { id: 'rh', g: 'fix', label: 'RH, paie et comptable', min: 0, max: 3000000, step: 50000, v: 1500000, fmt: 'ar' },
+  { id: 'energie', g: 'fix', label: 'Énergie (Jirama et carburant)', min: 0, max: 3000000, step: 50000, v: 1500000, fmt: 'ar' },
+  { id: 'outils', g: 'fix', label: 'Outils et abonnements', min: 0, max: 1500000, step: 10000, v: 430000, fmt: 'ar' },
+  { id: 'ir', g: 'fix', label: 'Impôt sur le résultat', min: 0, max: 35, step: 1, v: 20, fmt: 'pct' },
+
+  { id: 'bfrM', g: 'start', label: 'Mois de charges avant le 1er encaissement', min: 1, max: 5, step: 1, v: 2, fmt: 'mois' },
+  { id: 'poste', g: 'start', label: 'Poste de travail, par position', min: 0, max: 8000000, step: 100000, v: 4000000, fmt: 'ar' },
+  { id: 'groupe', g: 'start', label: 'Groupe électrogène et UPS', min: 0, max: 6000000, step: 50000, v: 2250000, fmt: 'ar' },
+  { id: 'onbC', g: 'start', label: 'Onboarding, socle par client', min: 0, max: 1500, step: 50, v: 400, fmt: 'eur' },
+  { id: 'onbP', g: 'start', label: 'Onboarding, par position', min: 0, max: 1500, step: 50, v: 400, fmt: 'eur' },
+  { id: 'apport', g: 'start', label: 'Apport', min: 0, max: 100000000, step: 1000000, v: 10000000, fmt: 'ar' },
+];
+
+const STORE = 'salverys_simulateur_bmc_v1';
+const $ = id => document.getElementById(id);
+const nf = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+const eur = x => (x < 0 ? '− ' : '') + nf.format(Math.abs(Math.round(x))) + ' €';
+const sgn = x => (x > 0 ? '+ ' : '') + eur(x);
+const mar = x => (x / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' M Ar';
+
+function show(c, v, rate) {
+  switch (c.fmt) {
+    case 'eur': return eur(v);
+    case 'ar': return `${mar(v)}<span>${eur(v / rate)}</span>`;
+    case 'pct': return v.toLocaleString('fr-FR') + ' %';
+    case 'rate': return nf.format(v) + ' Ar / €';
+    case 'mois': return v + ' mois';
+    default: return String(v);
+  }
+}
+
+function build() {
+  const form = $('controls');
+  for (const g of GROUPS) {
+    const fs = document.createElement('fieldset');
+    fs.innerHTML = `<legend>${g.title}</legend>`;
+    for (const c of CONTROLS.filter(c => c.g === g.id)) {
+      const d = document.createElement('div');
+      d.className = 'ctl';
+      d.innerHTML = `<label for="${c.id}">${c.label}</label><output id="${c.id}-o" for="${c.id}"></output>
+        <input type="range" id="${c.id}" min="${c.min}" max="${c.max}" step="${c.step}" value="${c.v}">
+        ${c.hint ? `<div class="hint">${c.hint}</div>` : ''}`;
+      fs.appendChild(d);
+    }
+    form.appendChild(fs);
+  }
+  form.addEventListener('input', render);
+}
+
+function read() {
+  const v = {};
+  for (const c of CONTROLS) v[c.id] = Number($(c.id).value);
+  return v;
+}
+
+function clientRevenue(k, v) {
+  return Math.min(k, v.tranche) * v.prixE + Math.max(0, k - v.tranche) * v.prixV;
+}
+
+/** Résultat mensuel à régime plein pour une liste de clients (positions par client). */
+function compute(clients, v) {
+  const n = clients.reduce((a, b) => a + b, 0);
+  const ca = clients.reduce((a, k) => a + clientRevenue(k, v), 0);
+  const agentEur = v.agent / v.rate;
+  const cv = n * agentEur;
+  const reserves = ca * (v.sla + v.bank) / 100;
+  const mscv = ca - cv - reserves;
+  const managers = n > v.encadCap ? Math.ceil((n - v.encadCap) / 8) : 0;
+  const fixedAr = v.encad + v.loyer + v.fibre + v.rh + v.energie + v.outils + managers * v.mgr;
+  const fixed = fixedAr / v.rate;
+  const result = mscv - fixed;
+  const net = result > 0 ? result * (1 - v.ir / 100) : result;
+  return { n, ca, agentEur, cv, reserves, mscv, managers, fixed, result, net };
+}
+
+function breakEven(v) {
+  for (let k = 1; k <= 60; k++) if (compute([k], v).result >= 0) return k;
+  return null;
+}
+
+function render() {
+  const v = read();
+  for (const c of CONTROLS) {
+    $(c.id + '-o').innerHTML = show(c, v[c.id], v.rate);
+    $(c.id).closest('.ctl').classList.toggle('changed', v[c.id] !== c.v);
+  }
+  const named = [['A', v.posA], ['B', v.posB]].filter(([, k]) => k > 0);
+  const clients = named.map(([, k]) => k);
+  const r = compute(clients, v);
+  const taux = r.ca > 0 ? r.mscv / r.ca : 0;
+  const be = breakEven(v);
+
+  // Trésorerie de démarrage : charges payées avant le premier encaissement, sans les réserves.
+  const monthly = r.cv + r.fixed;
+  const bfr = v.bfrM * monthly;
+  const mes = r.n * v.mes;
+  const invest = r.n ? (r.n * v.poste + v.groupe) / v.rate : 0;
+  const onb = clients.length * v.onbC + r.n * v.onbP;
+  const apport = v.apport / v.rate;
+  const need = bfr - mes + invest + onb - apport;
+  const ext = Math.max(0, need);
+
+  $('band').innerHTML = [
+    ['CA', eur(r.ca)],
+    ['MSCV', eur(r.mscv)],
+    ['Taux de MSCV', (taux * 100).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' %', 'hl'],
+    ['Coûts fixes', eur(r.fixed)],
+    ['Résultat av. impôt', eur(r.result), r.result < 0 ? 'bad' : ''],
+    ['Résultat net', eur(r.net), r.net < 0 ? 'bad' : 'hl'],
+    ['Seuil de rentabilité', be ? be + ' position' + (be > 1 ? 's' : '') : 'hors d’atteinte', be ? '' : 'bad'],
+    ['Financement externe', eur(ext)],
+  ].map(([l, x, cls]) => `<div class="${cls || ''}"><small>${l}</small><strong>${x}</strong></div>`).join('');
+
+  const lines = named.length ? named.map(([name, k]) => {
+    const e = Math.min(k, v.tranche), x = Math.max(0, k - v.tranche);
+    const calc = `${e} × ${eur(v.prixE)}` + (x ? ` + ${x} × ${eur(v.prixV)}` : '');
+    return `<tr><td>Client ${name} — ${k} position${k > 1 ? 's' : ''}</td><td class="c">${calc}</td><td class="n">${eur(clientRevenue(k, v))}</td></tr>`;
+  }).join('') : '<tr><td colspan="3" class="c">Aucune position : placez au moins un curseur de client au-dessus de 0.</td></tr>';
+
+  $('pl').innerHTML = `<tr><th>Poste</th><th>Calcul</th><th class="n">Montant</th></tr>
+    ${lines}
+    <tr class="t"><td>Chiffre d'affaires</td><td class="c"></td><td class="n">${eur(r.ca)}</td></tr>
+    <tr><td>Coût complet des agents</td><td class="c">${r.n} × ${eur(r.agentEur)}</td><td class="n">${eur(-r.cv)}</td></tr>
+    <tr><td>Réserves SLA, banque et change</td><td class="c">${(v.sla + v.bank).toLocaleString('fr-FR')} % du CA</td><td class="n">${eur(-r.reserves)}</td></tr>
+    <tr class="t"><td>MSCV</td><td class="c">${(taux * 100).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % du CA</td><td class="n">${eur(r.mscv)}</td></tr>
+    <tr><td>Coûts fixes</td><td class="c">${r.managers ? `dont ${r.managers} manager${r.managers > 1 ? 's' : ''} au-delà de ${v.encadCap} positions` : `forfait d'encadrement jusqu'à ${v.encadCap} positions`}</td><td class="n">${eur(-r.fixed)}</td></tr>
+    <tr class="t"><td>Résultat avant impôt</td><td class="c"></td><td class="n ${r.result < 0 ? 'neg' : ''}">${eur(r.result)}</td></tr>
+    <tr><td>Résultat net</td><td class="c">${r.result > 0 ? `× ${(1 - v.ir / 100).toLocaleString('fr-FR')} (impôt ${v.ir} %)` : 'pas d’impôt sur une perte'}</td><td class="n ${r.net < 0 ? 'neg' : ''}">${eur(r.net)}</td></tr>`;
+
+  $('cash').innerHTML = `<tr><th>Élément</th><th>Calcul</th><th class="n">Montant</th></tr>
+    <tr><td>Charges payées avant encaissement</td><td class="c">agents + coûts fixes</td><td class="n">${eur(monthly)} / mois</td></tr>
+    <tr><td>BFR</td><td class="c">${v.bfrM} × ${eur(monthly)}</td><td class="n">${eur(bfr)}</td></tr>
+    <tr><td>Mise en service encaissée</td><td class="c">${r.n} × ${eur(v.mes)}</td><td class="n">${eur(-mes)}</td></tr>
+    <tr><td>Investissements de départ</td><td class="c">${r.n} postes + groupe et UPS</td><td class="n">${eur(invest)}</td></tr>
+    <tr><td>Onboarding</td><td class="c">${clients.length} × ${eur(v.onbC)} + ${r.n} × ${eur(v.onbP)}</td><td class="n">${eur(onb)}</td></tr>
+    <tr><td>Apport</td><td class="c">${mar(v.apport)}</td><td class="n">${eur(-apport)}</td></tr>
+    <tr class="t"><td>Financement externe estimé</td><td class="c"></td><td class="n">${eur(ext)}</td></tr>`;
+  $('cashNote').textContent = need < 0
+    ? `L'apport couvre le démarrage avec ${eur(-need)} de marge.`
+    : `Si le premier encaissement arrive un mois plus tard, prévoir ${eur(monthly)} de plus.`;
+
+  const rows = [];
+  for (let k = 1; k <= 10; k++) {
+    const s = compute([k], v);
+    rows.push(`<tr class="${k === r.n ? 'cur' : ''}"><td>${k} position${k > 1 ? 's' : ''}${k === be ? ' — seuil' : ''}</td><td class="n">${eur(s.ca)}</td><td class="n">${eur(s.mscv)}</td><td class="n ${s.result < 0 ? 'neg' : 'pos'}">${sgn(s.result)}</td></tr>`);
+  }
+  $('sens').innerHTML = `<tr><th>Positions</th><th class="n">CA</th><th class="n">MSCV</th><th class="n">Résultat</th></tr>${rows.join('')}`;
+
+  try { localStorage.setItem(STORE, JSON.stringify(v)); } catch (e) {}
+}
+
+build();
+try {
+  const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
+  if (saved) for (const c of CONTROLS) if (typeof saved[c.id] === 'number') $(c.id).value = saved[c.id];
+} catch (e) {}
+$('reset').addEventListener('click', () => { for (const c of CONTROLS) $(c.id).value = c.v; render(); });
+render();
+</script>
