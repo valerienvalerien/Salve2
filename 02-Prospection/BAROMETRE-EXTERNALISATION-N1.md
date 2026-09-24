@@ -87,6 +87,27 @@ Puiser dans les 58 ESN/MSP de la base — **y compris les comptes classés NURTU
 n'ont pas de signal d'achat mais peuvent parfaitement avoir un avis. C'est même leur seul
 usage utile à ce stade.
 
+### Qui interroger dans chaque compte
+*(Ajouté le 2026-09-24. Grille reprise de `PLAYBOOK-SALES-NAVIGATOR.md` §6.)*
+
+La bonne personne est celle qui **gère le N1 au quotidien**. Le nom le plus facile à
+trouver (le président) n'est pas forcément la bonne personne.
+
+| Taille | Personne à interroger | Le dirigeant… |
+|---|---|---|
+| 20-100 personnes | **Fondateur / DG** | …est la personne interrogée : il connaît le montage |
+| 100-300 personnes | **Directeur Delivery · Responsable Centre de Services · Service Delivery Manager · DG Ops** | …devient **un sponsor**, jamais le premier contact |
+
+**Ne pas interroger :**
+- **le DSI de l'ESN**, qui gère l'informatique interne et non le helpdesk vendu aux clients ;
+- **les Achats**, qui connaissent le prix mais ni la qualité ni le déclencheur ;
+- **les RH**, qui voient le turnover mais ne décident pas de sous-traiter.
+
+**Pour trouver cette personne** : recherche C de Sales Navigator (`PLAYBOOK-SALES-NAVIGATOR.md` §5),
+avec le filtre *« A changé de poste au cours des 90 derniers jours »* une fois sur deux.
+Un responsable qui vient de prendre son poste fait l'état des lieux et accepte volontiers
+d'en parler.
+
 ### La demande de contact
 LinkedIn de préférence (le sujet est trop spécifique pour un standard), sinon email.
 **Court, daté, sans pièce jointe, sans lien.**
@@ -131,9 +152,37 @@ C'est la question la plus rentable de l'entretien. Elle fait dire à un compte s
 qui le ferait bouger — donc l'accroche exacte à ressortir dans dix-huit mois, ou à utiliser
 sur les autres comptes du même profil.
 
+### Relances : à utiliser seulement si une réponse reste vague
+*(Ajouté le 2026-09-24, à partir d'un questionnaire de 60 questions construit en
+formation « étude de marché ».)*
+
+**On n'envoie jamais le questionnaire par email.** Un dirigeant qui ne nous connaît pas
+remplit rarement un formulaire, et une liste de questions écrites annule l'effet
+« 15 minutes, 4 questions ». Les relances ci-dessous servent **pendant l'entretien**,
+une ou deux au plus, pour préciser une réponse vague. Elles ne s'ajoutent pas aux quatre
+questions.
+
+| Question | Relances possibles |
+|---|---|
+| **1. Organisation** | Combien d'ETP sur le N1 ? · Sur quel outil de ticketing (ServiceNow, GLPI, Jira SM…) ? · Heures ouvrées seulement, ou aussi astreintes et week-end ? · Débordement ponctuel ou poste dédié ? |
+| **2. Déclencheur** | C'était plutôt les pics de tickets, le turnover ou les astreintes ? · Avez-vous d'abord essayé de recruter en interne ? · Qui a pris la décision, et avec qui ? |
+| **3. Ce qui marche / ce qui cloche** | Les SLA sont-ils tenus ? · Les clients finaux voient-ils la différence ? · Le reporting vous suffit-il ? · Quelles exigences de sécurité imposez-vous (VPN, MFA, RGPD) ? |
+| **4. Prix** | Au poste ou au ticket ? · Avec un volume ferme ? · Combien de temps entre la signature et la première prise de tickets ? |
+| **Cas 3 (jamais externalisé)** | Qu'est-ce qui vous rassurerait : un pilote mesuré, un SLA chiffré, la double écoute, un reporting ? · L'IA ou un chatbot couvre-t-il déjà une partie du N1 ? |
+
+**Relances volontairement exclues** : tout ce qui mesure l'intérêt pour Salverys, par
+exemple « un pilote vous intéresse-t-il ? », « nous recommanderiez-vous ? » ou « quel
+budget pour notre offre ? ». Ce sont des questions de vente, et le §5 interdit de vendre
+pendant l'entretien. Elles reviendront au second contact, lors de l'envoi de la synthèse.
+
+**Mesurer la satisfaction** : à la fin de la question 3, demander *« Sur 10,
+recommanderiez-vous votre prestataire à un confrère ? »*. La note permet de classer le
+compte en cas 1 (8 et plus) ou en cas 2 (6 et moins). Pour une note de 7, s'appuyer sur la
+réponse à *« s'il y avait une chose à corriger »*.
+
 ### Ce qu'on consigne
 Dans Airtable, champ **`Prestataire actuel & échéance`** :
-prestataire · nombre d'ETP · depuis quand · ce qui marche · ce qui cloche · fourchette de
+prestataire · nombre d'ETP · depuis quand · note de recommandation /10 · ce qui marche · ce qui cloche · fourchette de
 prix · **date d'échéance ou de préavis** · le déclencheur d'un changement.
 
 Puis `Prochaine action` = **« envoi de la synthèse »**, datée. Et si une échéance de contrat
