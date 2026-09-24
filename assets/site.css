@@ -206,16 +206,6 @@ html:has(.site-head) { scroll-padding-top: 110px; }
 .photo-wrap::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 55%, rgba(20,28,40,.35)); }
 .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .hero-visual .photo-wrap { aspect-ratio: 4/5; }
-/* Accueil : la photo du hero se fond dans la page (bord gauche + pied), sans cadre
-   (fondu marqué à gauche, côté texte ; bords adoucis ailleurs). Le masque ne touche que la photo : les cartes flottantes restent nettes. */
-.home .hero-visual .photo-wrap {
-  border-radius: 0; box-shadow: none; background: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 94%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 94%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 78%, transparent 100%);
-          mask-composite: intersect;
-}
-.home .hero-visual .photo-wrap::after { display: none; }
 .float-card { position: absolute; background: #fff; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 16px 18px; display: flex; align-items: center; gap: 13px; z-index: 2; }
 .float-card .fc-num { font-family: 'Georgia', serif; font-size: 28px; font-weight: 700; color: var(--primary); line-height: 1; }
 .theme-it .float-card .fc-num { font-family: 'Inter', sans-serif; }
@@ -1236,3 +1226,41 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 /* Le CTA du tableau porte un fond plein : le style « verrouillé » générique
    ne doit pas le vider de sa couleur. */
 .pt-cta.is-locked, .pt-cta.is-locked:hover { background: var(--primary); border-color: var(--primary); color: #fff; filter: none; }
+
+/* ---------- Hero photo plein cadre (accueil) ----------
+   La photo occupe tout le hero sous un voile vert profond : opaque à gauche
+   (côté texte), il s'ouvre vers la droite où se trouve le sujet. Un second
+   dégradé fond le pied de la photo dans le bandeau vert qui suit. */
+.home .hero-photo { background: var(--green-deeper); color: #fff; padding: 88px 0 104px; }
+.hero-photo-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-photo-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; }
+.hero-photo-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(28,44,34,.55) 0%, rgba(28,44,34,0) 22%, rgba(28,44,34,0) 70%, var(--green-deep) 100%),
+    linear-gradient(90deg, rgba(28,44,34,.97) 0%, rgba(28,44,34,.90) 30%, rgba(28,44,34,.62) 50%, rgba(28,44,34,.28) 70%, rgba(28,44,34,.12) 100%);
+}
+.home .hero-photo .hero-grid { grid-template-columns: 1.1fr .9fr; }
+.home .hero-photo h1 { color: #fff; }
+.home .hero-photo h1 .hl { color: var(--accent-soft); background: none; padding: 0; }
+.home .hero-photo .eyebrow { background: rgba(255,255,255,.12); color: var(--accent-soft); }
+.home .hero-photo p.lead { color: rgba(255,255,255,.86); }
+.home .hero-photo p.lead b { color: #fff; }
+.home .hero-photo .hero-sub-link { color: rgba(255,255,255,.72); }
+.home .hero-photo .txt-link { color: var(--accent-soft); }
+.home .hero-photo .txt-link:hover { color: #fff; }
+.home .hero-photo .hero-trust { color: rgba(255,255,255,.66); }
+.home .hero-photo .hero-trust b { color: var(--gold-soft); }
+/* Les deux repères flottent en bas à droite, sous le visage */
+.home .hero-photo .hero-visual { align-self: stretch; min-height: 420px; }
+.home .hero-photo .float-card.fc1 { left: auto; right: 250px; bottom: -30px; }
+.home .hero-photo .float-card.fc2 { right: -10px; top: auto; bottom: 190px; }
+.home .hero-photo .float-card .fc-num { white-space: nowrap; }
+@media (max-width: 920px) {
+  .home .hero-photo { padding: 64px 0 90px; }
+  .home .hero-photo .hero-grid { grid-template-columns: 1fr; }
+  .hero-photo-bg img { object-position: 78% 30%; }
+  .hero-photo-bg::after { background: linear-gradient(180deg, rgba(28,44,34,.72) 0%, rgba(28,44,34,.88) 55%, var(--green-deep) 100%); }
+  .home .hero-photo .hero-visual { min-height: 0; display: flex; flex-direction: column; gap: 14px; }
+  .home .hero-photo .float-card { position: static; animation: none; }
+}
