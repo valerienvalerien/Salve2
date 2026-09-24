@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>BMC Salverys Support IT</title>
+<style>
+  @page { size: A4 landscape; margin: 0; }
+  :root { --ink:#2E3B4E; --deep:#013C58; --sage:#6F8770; --cream:#F6F2EA; --gold:#F0B429; --line:#C9CFD8; --muted:#5B6778; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:#fff; color:var(--ink); font-family: Inter, -apple-system, "Segoe UI", Arial, sans-serif; }
+  .page { width:297mm; height:210mm; padding:7mm 8mm 6mm; display:flex; flex-direction:column; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--deep); padding-bottom:2mm; margin-bottom:2.5mm; }
+  header h1 { font-family: Georgia, serif; font-size:16pt; margin:0; color:var(--deep); }
+  header h1 span { font-family: Inter, sans-serif; font-size:9pt; color:var(--sage); font-weight:600; margin-left:3mm; }
+  .meta { font-size:7pt; color:var(--muted); text-align:right; line-height:1.4; }
+  .meta b { color:var(--ink); }
+  .canvas { flex:1; display:grid; gap:1.6mm;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr 1fr 0.95fr; min-height:0; }
+  .b { border:1px solid var(--line); border-radius:2mm; padding:2mm 2.4mm; overflow:hidden; background:#fff; font-size:6.35pt; line-height:1.32; }
+  .b h2 { margin:0 0 1.2mm; font-size:7.6pt; color:var(--deep); display:flex; gap:1.5mm; align-items:center; letter-spacing:.2px; }
+  .b h2 i { font-style:normal; background:var(--deep); color:#fff; border-radius:50%; width:4mm; height:4mm; font-size:6pt; display:inline-flex; align-items:center; justify-content:center; flex:none; }
+  .b h3 { margin:1.3mm 0 .4mm; font-size:6.5pt; color:var(--sage); text-transform:uppercase; letter-spacing:.3px; }
+  .b p { margin:0 0 .8mm; }
+  .b ul { margin:0; padding-left:3mm; }
+  .b li { margin:0 0 .45mm; }
+  .kp { grid-column:1/3; grid-row:1/3; }
+  .ka { grid-column:3/5; grid-row:1/2; }
+  .kr { grid-column:3/5; grid-row:2/3; }
+  .vp { grid-column:5/7; grid-row:1/3; background:var(--cream); border-color:#E4DCCB; }
+  .cr { grid-column:7/9; grid-row:1/2; }
+  .ch { grid-column:7/9; grid-row:2/3; }
+  .cs { grid-column:9/11; grid-row:1/3; }
+  .co { grid-column:1/6; grid-row:3/4; }
+  .rv { grid-column:6/11; grid-row:3/4; }
+  .hook { font-family: Georgia, serif; font-size:8.4pt; color:var(--deep); line-height:1.3; margin-bottom:1.6mm; }
+  .pair { margin:0 0 .9mm; }
+  .pair b { color:var(--deep); }
+  .tag { display:inline-block; font-size:5.6pt; font-weight:700; padding:.2mm 1.2mm; border-radius:1mm; background:var(--gold); color:#222C3B; vertical-align:middle; }
+  .tag.s { background:#E3E9E3; color:#3E5240; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  table { border-collapse:collapse; width:100%; }
+  td, th { padding:.35mm 0; text-align:left; }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  tr.t td { border-top:1px solid var(--ink); font-weight:700; }
+  .note { color:var(--muted); font-size:5.8pt; }
+  footer { margin-top:1.8mm; font-size:5.8pt; color:var(--muted); display:flex; justify-content:space-between; }
+  /* page 2 */
+  .p2 { flex:1; display:grid; grid-template-columns: 1.05fr 1fr; gap:4mm; min-height:0; }
+  .card { border:1px solid var(--line); border-radius:2mm; padding:3mm 3.5mm; font-size:7.4pt; line-height:1.4; }
+  .card h2 { margin:0 0 2mm; font-size:9.5pt; color:var(--deep); font-family: Georgia, serif; }
+  .card h3 { margin:2.5mm 0 1mm; font-size:7.6pt; color:var(--sage); text-transform:uppercase; letter-spacing:.3px; }
+  .card table td, .card table th { padding:.8mm 1mm; border-bottom:1px solid #E6E9EE; }
+  .card table th { font-size:6.6pt; color:var(--muted); font-weight:600; }
+  .kpi { display:grid; grid-template-columns:repeat(4,1fr); gap:2mm; margin-bottom:2.5mm; }
+  .kpi div { background:var(--cream); border-radius:1.5mm; padding:2mm; }
+  .kpi small { display:block; font-size:6.2pt; color:var(--muted); }
+  .kpi strong { font-size:11pt; color:var(--deep); font-variant-numeric:tabular-nums; }
+  .card ul { margin:0; padding-left:4mm; }
+  .card li { margin-bottom:.9mm; }
+  .warn { border-left:3px solid var(--gold); padding:1.2mm 2mm; background:#FFF8E6; margin-top:2mm; font-size:6.8pt; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header>
+    <h1>Business Model Canvas <span>Salverys — Helpdesk IT N1 dédié en marque blanche</span></h1>
+    <div class="meta">Conçu par <b>Valérien</b> · Date <b>24/09/2026</b> · Version <b>1.3</b><br>Base : 1 € ≈ 5 000 Ar · montants HT mensuels sauf indication contraire</div>
+  </header>
+
+  <div class="canvas">
+
+    <div class="b kp">
+      <h2><i>8</i>Partenaires clés</h2>
+      <h3>Financiers</h3>
+      <ul><li>Banques et investisseurs pour couvrir le besoin initial avant le premier encaissement (≈ 14,4 k€, p. 2)</li></ul>
+      <h3>Commerciaux</h3>
+      <ul><li>Plateformes de référencement et groupements d'ESN / MSP</li></ul>
+      <h3>Stratégiques</h3>
+      <ul><li>Cabinets de recrutement locaux, activés uniquement après signature de positions fermes</li></ul>
+      <h3>Fournisseurs</h3>
+      <ul><li>Postes de travail, double fibre, Jirama, carburant et énergie secourue</li></ul>
+      <h3>Technologiques</h3>
+      <ul><li>Ringover Quicktalk (VoIP), Microsoft 365, outils IA</li><li>Outils de ticketing imposés par les clients : nous travaillons dans leur environnement</li></ul>
+      <h3>Prestataires</h3>
+      <ul><li>RH / paie, expert-comptable, conseil RGPD, branding</li></ul>
+    </div>
+
+    <div class="b ka">
+      <h2><i>7</i>Activités clés</h2>
+      <ul>
+        <li>Prospecter les ESN / MSP : téléphone, LinkedIn, recommandations</li>
+        <li>Recruter et former cinq techniciens N1 francophones <b>après signature des positions fermes</b></li>
+        <li>Intégrer les outils, accès, scripts et règles d'escalade des deux clients</li>
+        <li>Délivrer le support N1 en marque blanche</li>
+        <li>Piloter QA, audits d'appels, SLA et revues mensuelles</li>
+        <li>Gérer NDA, RGPD, habilitations et continuité d'activité</li>
+      </ul>
+    </div>
+
+    <div class="b kr">
+      <h2><i>6</i>Ressources clés</h2>
+      <p><b>Humaines</b> — 5 techniciens N1 (CDI) ; supervision initiale par le fondateur. L'enveloppe encadrement / QA couvre le lancement à 5 positions ; <b>recalcul obligatoire au-delà</b>.</p>
+      <p><b>Matérielles</b> — locaux, 5 laptops / écrans, UPS 3 000 VA, double fibre, groupe 3,5 kVA <span class="tag s">à tester avant promesse</span></p>
+      <p><b>Financières</b> — apport 10 M Ar ; frais de mise en service ; financement externe (p. 2)</p>
+      <p><b>Intellectuelles</b> — processus, scripts, documentation, grille QA, marque (dépôt à faire)</p>
+    </div>
+
+    <div class="b vp">
+      <h2><i>2</i>Propositions de valeur</h2>
+      <div class="hook">Un appel d'offres gagné, une file N1 saturée ?<br>Une équipe dédiée à votre marque, sans recruter.</div>
+      <p class="pair"><b>Recrutement long</b> → nous recrutons, formons et encadrons. Première prise de tickets visée <b>vers six semaines</b> après signature, autonomie visée <b>vers M+2</b>, sous réserve des accès et contenus client ; le devis date les jalons.</p>
+      <p class="pair"><b>Niveau offshore aléatoire</b> → sélection technique et comportementale, double écoute, audits d'appels, reporting mensuel.</p>
+      <p class="pair"><b>Image en jeu</b> → français de <b>langue maternelle</b> ; le technicien répond au nom de l'ESN / MSP, le sous-traitant reste invisible.</p>
+      <p class="pair"><b>Qualité non garantie</b> → engagement de service écrit : <b>≥ 90 %</b> de prise en charge dans le délai, sinon <b>avoir automatique de 20 %</b> (1 mois sur 12 au plus).</p>
+      <p class="pair"><b>Rigidité d'une embauche</b> → positions dédiées de 35 h/semaine, garanties au contrat, sans masse salariale à porter.</p>
+      <p class="pair"><b>Qui est derrière ?</b> → un fondateur avec plus de 10 ans de carrière en France, pont culturel France–Madagascar.</p>
+    </div>
+
+    <div class="b cr">
+      <h2><i>4</i>Relation client</h2>
+      <ul>
+        <li>Référent d'exploitation par client (le fondateur au démarrage)</li>
+        <li>Onboarding, comité mensuel, reporting SLA / QA</li>
+        <li><b>Engagement négocié</b> : base de 3 mois initiaux puis 12 mois renouvelables ; objectif en négociation : 12 mois fermes, positions garanties, préavis de 3 mois</li>
+        <li>Pilote possible : 1 client final ou 200–400 tickets</li>
+      </ul>
+    </div>
+
+    <div class="b ch">
+      <h2><i>3</i>Canaux</h2>
+      <h3>Maintenant (fondateur seul)</h3>
+      <ul>
+        <li>Téléphone + LinkedIn, personal branding du fondateur</li>
+        <li>Email manuel, 10–20/jour ; recommandations</li>
+        <li>Plateformes de référencement et groupements</li>
+      </ul>
+      <h3>Après stabilisation des 2 premiers clients</h3>
+      <ul><li>Site web, SEO/GEO, Ads, salons, bouche-à-oreille</li></ul>
+    </div>
+
+    <div class="b cs">
+      <h2><i>1</i>Segments clients</h2>
+      <p><b>ESN et MSP francophones qui revendent du support IT</b> en marque blanche, principalement en France et au Canada, jusqu'à ~40 salariés.</p>
+      <h3>Décideurs</h3>
+      <ul><li>Dirigeant, Head of Support, responsable des opérations</li></ul>
+      <h3>Signaux d'achat</h3>
+      <ul>
+        <li>Appel d'offres gagné, montée en charge</li>
+        <li>Recrutement N1 ouvert depuis longtemps</li>
+        <li>Ressources internes saturées, astreintes</li>
+        <li>Insatisfaction envers un prestataire actuel</li>
+      </ul>
+      <h3>Besoin</h3>
+      <ul><li>Augmenter vite la capacité sans recruter et sans exposer la sous-traitance au client final</li></ul>
+      <h3>Démarrage visé</h3>
+      <ul><li>Deux clients indépendants, 3 + 2 positions, pour limiter la concentration</li></ul>
+    </div>
+
+    <div class="b co">
+      <h2><i>9</i>Structure de coûts</h2>
+      <div class="cols">
+        <div>
+          <h3>Fixes mensuels <span class="tag s">hypothèse pessimiste</span></h3>
+          <table>
+            <tr><td>Encadrement / QA (forfait jusqu'à 5 positions)</td><td class="n">3 M Ar</td></tr>
+            <tr><td>Loyer (60 m²)</td><td class="n">3,6 M Ar</td></tr>
+            <tr><td>Double fibre</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>RH / paie et comptable</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>Énergie (Jirama + carburant)</td><td class="n">1,5 M Ar</td></tr>
+            <tr><td>Outils et abonnements</td><td class="n">0,43 M Ar</td></tr>
+            <tr><td>Amort. groupe + UPS (2,25 M Ar / 3 ans)</td><td class="n">0,06 M Ar</td></tr>
+            <tr class="t"><td>Total comptable · dont décaissé</td><td class="n">2 318 € · 2 306 €</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>Variables par position</h3>
+          <table>
+            <tr><td>Coût complet agent <span class="tag">à valider par la paie</span></td><td class="n">3,5 M Ar · 700 €</td></tr>
+            <tr><td>Amort. poste (4 M Ar / 3 ans)</td><td class="n">0,11 M Ar · 22 €</td></tr>
+            <tr class="t"><td>Total comptable</td><td class="n">≈ 722 €</td></tr>
+          </table>
+          <p class="note" style="margin-top:1mm">Le coût agent comprend rémunération, charges, congés, absences, formation non facturable et provision de remplacement. Repère du dépôt : brut 3,25 M Ar + charges ≈ 3,68 M Ar, hors provisions.</p>
+          <h3>Réserves</h3>
+          <p>Avoirs SLA : 2 % du CA · banque et change : 1 % du CA</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="b rv">
+      <h2><i>5</i>Sources de revenus</h2>
+      <div class="cols">
+        <div>
+          <h3>Positions N1 dédiées (35 h/semaine)</h3>
+          <table>
+            <tr><td>Positions 1 à 4 d'un client</td><td class="n"><b>2 000 €</b>/position</td></tr>
+            <tr><td>5e position et suivantes</td><td class="n"><b>1 750 €</b>/position</td></tr>
+          </table>
+          <p class="note">Par tranches, sans rétroactivité ; tarif volume contre un minimum de positions garanti.</p>
+          <h3>Démarrage à deux clients</h3>
+          <p>A : 3 × 2 000 = 6 000 € · B : 2 × 2 000 = 4 000 €<br><b>CA récurrent : 10 000 €/mois</b></p>
+        </div>
+        <div>
+          <h3>Mise en service</h3>
+          <p><b>490 € par position</b> à la signature, soit 2 450 € pour 5 positions. Acquis dès le lancement du recrutement, non imputés sur les mensualités. Ils financent recrutement, configuration et formation initiale.</p>
+          <h3>Paiement</h3>
+          <p>Facturation mensuelle, virement à 30 jours ; prélèvement SEPA <span class="tag s">à vérifier</span>. Clause de révision si le taux EUR/MGA sort de la bande retenue.</p>
+          <h3>Hors lancement</h3>
+          <p>Débordement mutualisé et facturation au ticket : après stabilisation des deux premiers contrats.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer><span>Grille : PRICING.md · Arbitrages : AUDIT-BMC-2026-09-23.md §8</span><span>Salverys — document interne · 1/2</span></footer>
+</section>
+
+<section class="page">
+  <header>
+    <h1>Exemple chiffré et hypothèses <span>BMC v1.3 — 5 positions dédiées chez 2 clients</span></h1>
+    <div class="meta">Montants mensuels HT, régime plein<br>1 € ≈ 5 000 Ar</div>
+  </header>
+
+  <div class="p2">
+    <div class="card">
+      <h2>Résultat récurrent mensuel</h2>
+      <div class="kpi">
+        <div><small>CA récurrent</small><strong>10 000 €</strong></div>
+        <div><small>Taux de MSCV ajusté</small><strong>60,9 %</strong></div>
+        <div><small>Résultat av. impôt</small><strong>≈ 3 771 €</strong></div>
+        <div><small>Indicatif après 20 %</small><strong>≈ 3 017 €</strong></div>
+      </div>
+      <table>
+        <tr><th>Poste</th><th>Calcul</th><th class="n">Montant</th></tr>
+        <tr><td>CA récurrent</td><td>6 000 + 4 000</td><td class="n">10 000 €</td></tr>
+        <tr><td>Coût complet agents</td><td>5 × 700</td><td class="n">3 500 €</td></tr>
+        <tr><td>Amortissement postes</td><td>5 × 22,22</td><td class="n">≈ 111 €</td></tr>
+        <tr><td>Réserves SLA + banque / change</td><td>3 % du CA</td><td class="n">300 €</td></tr>
+        <tr><td>MSCV ajustée</td><td>10 000 − 3 500 − 111 − 300</td><td class="n">≈ 6 089 €</td></tr>
+        <tr><td>Coûts fixes comptables</td><td>11,59 M Ar</td><td class="n">≈ 2 318 €</td></tr>
+        <tr class="t"><td>Résultat avant impôt</td><td>6 089 − 2 318</td><td class="n">≈ 3 771 €</td></tr>
+        <tr><td>Indicatif après 20 %</td><td>× 0,8</td><td class="n">≈ 3 017 €</td></tr>
+      </table>
+
+      <h3>Trésorerie de démarrage (amortissements exclus)</h3>
+      <table>
+        <tr><td>Décaissements mensuels avant CA</td><td>3 500 agents + 2 306 fixes</td><td class="n">≈ 5 806 €</td></tr>
+        <tr><td>BFR brut, 2 mois</td><td>2 × 5 806</td><td class="n">≈ 11 612 €</td></tr>
+        <tr><td>Mise en service encaissée</td><td>5 × 490</td><td class="n">− 2 450 €</td></tr>
+        <tr><td>BFR net</td><td></td><td class="n">≈ 9 162 €</td></tr>
+        <tr><td>Investissements</td><td>5 postes + groupe + UPS</td><td class="n">≈ 4 450 €</td></tr>
+        <tr><td>Onboarding</td><td>2 × 400 + 5 × 400</td><td class="n">≈ 2 800 €</td></tr>
+        <tr><td>Apport</td><td>10 M Ar</td><td class="n">− 2 000 €</td></tr>
+        <tr class="t"><td>Financement externe estimé</td><td></td><td class="n">≈ 14 412 €</td></tr>
+      </table>
+      <div class="warn">Si le premier encaissement glisse d'un mois (embauche M+1, facture M+2, encaissement M+3), ajouter ≈ 5 806 €. La mise en service (2 450 €) couvre l'onboarding (2 800 €) à 350 € près.</div>
+    </div>
+
+    <div class="card">
+      <h2>Sensibilité et hypothèses</h2>
+      <table>
+        <tr><th>Configuration</th><th class="n">CA</th><th class="n">Résultat av. impôt</th></tr>
+        <tr><td>1 position / 1 client</td><td class="n">2 000 €</td><td class="n">≈ − 1 100 €</td></tr>
+        <tr><td>2 positions / 1 client — seuil</td><td class="n">4 000 €</td><td class="n">≈ + 118 €</td></tr>
+        <tr><td>3 positions / 1 client</td><td class="n">6 000 €</td><td class="n">≈ + 1 335 €</td></tr>
+        <tr><td>5 positions / 1 client</td><td class="n">9 750 €</td><td class="n">≈ + 3 528 €</td></tr>
+        <tr><td>5 positions / 2 clients (3 + 2)</td><td class="n">10 000 €</td><td class="n">≈ + 3 771 €</td></tr>
+      </table>
+
+      <h3>Hypothèses à valider</h3>
+      <ul>
+        <li><b>Coût agent 700 €</b> : suppose un brut inférieur au repère de 3,25 M Ar. Au repère (≈ 736 € chargés + provisions), le résultat à 5 positions baisse d'au moins 180 €.</li>
+        <li><b>Encadrement</b> : 3 M Ar calibrés pour 5 positions, fondateur superviseur. Recalcul avant toute croissance.</li>
+        <li><b>Continuité</b> : positions garanties, planning de remplacement ; sans engagement ferme long, constituer une réserve d'intercontrat.</li>
+        <li><b>Locaux</b> : 60 m² à 3,6 M Ar, hypothèse pessimiste arbitraire.</li>
+        <li><b>Fiscalité</b> : 20 % indicatif ; traitement des frais de mise en service, TVA export et change à valider par l'expert-comptable.</li>
+        <li><b>Résilience</b> : secours énergie et fibre, escalade, sauvegarde et test de continuité validés avant promesse contractuelle.</li>
+      </ul>
+
+      <h3>Changements depuis la v1.2</h3>
+      <ul>
+        <li>Onboarding : socle de 400 € <b>par contrat</b>, soit 2 800 € et non 2 400 €.</li>
+        <li>Réserves SLA et change retirées du BFR : proportionnelles au CA, elles ne se décaissent pas avant le premier encaissement.</li>
+        <li>Financement externe : ≈ 14 412 € (v1.2 : 14 612 €).</li>
+        <li>Délais : « activable en 3 semaines, opérationnelle à M+1 » → première prise de tickets vers six semaines, autonomie vers M+2.</li>
+        <li>Engagement : renvoyé à la négociation, base PRICING.md rappelée ; SLA 90 % et avoir 20 % explicités.</li>
+      </ul>
+    </div>
+  </div>
+  <footer><span>Salverys — BMC v1.3 · 24/09/2026</span><span>Document interne — ne chiffre pas un devis · 2/2</span></footer>
+</section>
+
+</body>
+</html>
