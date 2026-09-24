@@ -206,6 +206,16 @@ html:has(.site-head) { scroll-padding-top: 110px; }
 .photo-wrap::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 55%, rgba(20,28,40,.35)); }
 .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .hero-visual .photo-wrap { aspect-ratio: 4/5; }
+/* Accueil : la photo du hero se fond dans la page (bord gauche + pied), sans cadre
+   (fondu marqué à gauche, côté texte ; bords adoucis ailleurs). Le masque ne touche que la photo : les cartes flottantes restent nettes. */
+.home .hero-visual .photo-wrap {
+  border-radius: 0; box-shadow: none; background: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 94%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 94%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 78%, transparent 100%);
+          mask-composite: intersect;
+}
+.home .hero-visual .photo-wrap::after { display: none; }
 .float-card { position: absolute; background: #fff; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 16px 18px; display: flex; align-items: center; gap: 13px; z-index: 2; }
 .float-card .fc-num { font-family: 'Georgia', serif; font-size: 28px; font-weight: 700; color: var(--primary); line-height: 1; }
 .theme-it .float-card .fc-num { font-family: 'Inter', sans-serif; }
