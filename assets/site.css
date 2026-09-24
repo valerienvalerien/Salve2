@@ -1251,16 +1251,9 @@ body.home { background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 58%, #DDE8DA 
 .home .hero-photo .txt-link:hover { color: #fff; }
 .home .hero-photo .hero-trust { color: rgba(255,255,255,.66); }
 .home .hero-photo .hero-trust b { color: var(--gold-soft); }
-/* Les deux repères flottent en bas à droite, sous le visage */
-.home .hero-photo .hero-visual { align-self: stretch; min-height: 420px; }
-.home .hero-photo .float-card.fc1 { left: auto; right: 250px; bottom: -30px; }
-.home .hero-photo .float-card.fc2 { right: -10px; top: auto; bottom: 190px; }
-.home .hero-photo .float-card .fc-num { white-space: nowrap; }
 @media (max-width: 920px) {
   .home .hero-photo { padding: 64px 0 90px; }
   .home .hero-photo .hero-grid { grid-template-columns: 1fr; }
   .hero-photo-bg img { object-position: 78% 30%; }
   .hero-photo-bg::after { background: linear-gradient(180deg, rgba(28,44,34,.72) 0%, rgba(28,44,34,.88) 55%, var(--green-deep) 100%); }
-  .home .hero-photo .hero-visual { min-height: 0; display: flex; flex-direction: column; gap: 14px; }
-  .home .hero-photo .float-card { position: static; animation: none; }
 }
