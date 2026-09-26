@@ -72,6 +72,9 @@
 .sal-toggle input { position: absolute; opacity: 0; pointer-events: none; }
 .sal-toggle label:has(input:checked) { background: var(--accent); color: #fff; }
 .sal-toggle label:has(input:focus-visible) { outline: 2px solid #fff; outline-offset: 2px; }
+.sal-etp { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.sal-etp b { font-size: 28px; font-weight: 800; color: var(--accent-soft); letter-spacing: -.02em; }
+.sal-etp span { font-size: 13.5px; color: rgba(255,255,255,.75); }
 .sal-txt { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.9); }
 .sal-txt b { color: var(--accent-soft); }
 .sal-prix { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.65); }
@@ -213,6 +216,7 @@
           <label><input type="radio" name="formule" value="mutualise" checked> Mutualisé</label>
           <label><input type="radio" name="formule" value="dedie"> Dédié</label>
         </div>
+        <div class="sal-etp"><b id="rEtp">—</b><span>de charge, sur une base de 35 h par semaine</span></div>
         <p class="sal-txt" id="rSal">—</p>
         <p class="sal-prix">Le prix se donne au rendez-vous de cadrage, avec la grille partenaire, sous accord de confidentialité. <a href="#rappel">Être rappelé →</a></p>
       </div>
@@ -383,19 +387,20 @@
   var H_POSITION = 151.67; // 35 h/semaine
   function salverys(tickets, heures) {
     var f = document.querySelector('input[name=formule]:checked').value;
+    var pos = heures / H_POSITION;
+    var etp = nf1.format(pos);
     var t = nf0.format(tickets), txt;
     if (f === 'mutualise') {
       txt = tickets <= INCLUS_MUTUALISE
-        ? 'Vos <b>' + t + ' tickets N1</b> par mois tiennent dans le forfait de débordement, qui en inclut <b>jusqu\'à 400</b>. Il reste de la marge pour vos pics&nbsp;: <b>' + nf0.format(INCLUS_MUTUALISE - tickets) + ' tickets</b>. Pas d\'agent attitré&nbsp;: un pool partagé les traite sous votre nom, sur le périmètre fixé au devis.'
-        : 'Vos <b>' + t + ' tickets N1</b> par mois dépassent les <b>400 inclus</b> dans le forfait de débordement&nbsp;: les suivants sont facturés au ticket. À ce volume, un poste dédié mérite d\'être comparé.';
+        ? 'Pas besoin de réserver un agent&nbsp;: cette charge de <b>' + etp + ' ETP</b> est absorbée par un pool partagé, sous votre nom. Vos <b>' + t + ' tickets N1</b> par mois tiennent dans le forfait de débordement, qui en inclut <b>jusqu\'à 400</b>&nbsp;: il reste <b>' + nf0.format(INCLUS_MUTUALISE - tickets) + ' tickets</b> de marge pour vos pics.'
+        : 'Cette charge de <b>' + etp + ' ETP</b> dépasse le forfait de débordement&nbsp;: vos <b>' + t + ' tickets N1</b> par mois vont au-delà des <b>400 inclus</b>, et les suivants sont facturés au ticket. À ce volume, un poste dédié mérite d\'être comparé.';
     } else {
-      var pos = heures / H_POSITION;
       var n = Math.max(1, Math.ceil(pos));
-      txt = 'Ces <b>' + nf0.format(heures) + ' h</b> par mois représentent <b>' + nf1.format(pos) + ' position</b> dédiée. ' +
-        (n === 1 ? 'Une position' : '<b>' + n + ' positions</b>') + ' de 35 h par semaine, formée' + (n > 1 ? 's' : '') + ' à votre périmètre, ' +
-        (n === 1 ? 'couvre' : 'couvrent') + ' ces tickets et laisse' + (n > 1 ? 'nt' : '') + ' <b>' + nf0.format(n * H_POSITION - heures) +
+      txt = 'Il vous faudrait <b>' + n + ' position' + (n > 1 ? 's' : '') + ' dédiée' + (n > 1 ? 's' : '') + ' (' + n + ' ETP)</b>, de 35 h par semaine, formée' + (n > 1 ? 's' : '') +
+        ' à votre périmètre. ' + (n === 1 ? 'Elle couvre' : 'Elles couvrent') + ' cette charge de ' + etp + ' ETP et laisse' + (n > 1 ? 'nt' : '') + ' <b>' + nf0.format(n * H_POSITION - heures) +
         ' h</b> par mois pour d\'autres tickets N1 ou vos créneaux tôt et tard.';
     }
+    document.getElementById('rEtp').textContent = etp + ' ETP';
     document.getElementById('rSal').innerHTML = txt;
   }
 
