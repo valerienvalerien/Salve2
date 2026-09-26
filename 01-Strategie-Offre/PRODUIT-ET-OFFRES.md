@@ -51,6 +51,8 @@ En A, le pool absorbe les absences sans agent attitré. En B, le manager formé 
 
 ## 6. Comment le présenter
 
+Pour faire de la première position un point d'entrée plutôt que le contrat cible (menu en trois configurations, N1+, expansion de compte) : `EXPANSION-COMPTE.md`, proposition à arbitrer qui ne modifie pas la grille.
+
 **Ouverture ESN/MSP :** « Quel volume de N1 occupe vos techniciens aujourd'hui, et quel délai vous faut-il pour absorber un nouveau client ? Salverys peut prendre en charge ce périmètre sous votre marque, dans vos outils. On cadre d'abord les horaires, les accès, le volume et l'escalade ; je vous remets ensuite la capacité et le prix adaptés. »
 
 **Question du prix :** présenter les **deux modèles** et remettre la grille partenaire au cadrage confidentiel. Éviter un prix « à partir de 1 350 € » sans dire qu'il suppose **neuf positions fermes**. Le prix est hors taxes, par position et par mois pour B ; A est un forfait de tickets. Pour le médical MB, la fourchette et le créneau exact figurent dans `PRICING.md`.
