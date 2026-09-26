@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Combien d'heures vos N2 passent sur du N1 ? — Salverys</title>
+<meta name="description" content="Calculez en 3 minutes, avec vos propres chiffres, combien d'heures vos techniciens N2 consacrent à des tickets de niveau 1 — et ce que ces heures vous coûtent.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!--
+  Lead magnet « révéler un problème » (méthode Hormozi, voir échange du 2026-09-26).
+  Règles tenues par cette page (CLAUDE.md) :
+  - AUCUN chiffre Salverys, aucun benchmark, aucune comparaison de coût avec la France :
+    tout résultat découle des seules valeurs saisies par le visiteur.
+  - Les valeurs pré-remplies sont des EXEMPLES, affichés comme tels.
+  - Urgence = calendrier réel (première prise de tickets visée vers 6 semaines), jamais
+    une limite de capacité.
+  - Pas de tracking maison : le formulaire passe par Formspree, déjà utilisé sur l'accueil.
+-->
+<style>
+:root{
+  --ink:#18313f;--primary:#013c58;--gold:#8b6424;--yellow:#fce27c;--bg:#f5f8fa;--card:#fff;
+  --line:#dbe5e9;--soft:#5d6d74;--warn-bg:#fff8e7;--warn:#ba8a28;--ok:#2f6b4f;
+  font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);background:var(--bg)
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg)}
+header{background:var(--primary);color:#fff;padding:20px max(20px,calc((100vw - 980px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}
+header a{color:#fff;text-decoration:none}
+header .brand{font-weight:800;letter-spacing:.12em}
+header .back{font-size:.9rem;opacity:.85}
+main{max-width:980px;margin:auto;padding:46px 20px 70px}
+h1{font-size:clamp(1.9rem,4.6vw,3rem);color:var(--primary);margin:8px 0 16px;line-height:1.15}
+h2{color:var(--primary);margin:0 0 14px;font-size:1.35rem}
+p{line-height:1.65;max-width:70ch}
+.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.15em;font-weight:700;font-size:.8rem}
+.lead{font-size:1.18rem}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--yellow);padding:22px;border-radius:4px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;font-size:.95rem;margin-bottom:4px}
+.field .hint{display:block;font-size:.83rem;color:var(--soft);margin-bottom:6px;line-height:1.45}
+.field input{width:100%;padding:10px 12px;border:1px solid #b9c9d0;border-radius:6px;font-size:1rem;font-family:inherit;color:var(--ink)}
+.field input:focus{outline:2px solid var(--primary);outline-offset:1px}
+.unit{display:flex;align-items:center;gap:8px}
+.unit span{font-size:.9rem;color:var(--soft);white-space:nowrap}
+.example-note{font-size:.83rem;background:var(--warn-bg);border-left:3px solid var(--warn);padding:8px 12px;margin:0 0 18px}
+.results{position:sticky;top:16px}
+.big{font-size:clamp(2.3rem,6vw,3.2rem);font-weight:800;color:var(--primary);line-height:1}
+.big small{font-size:.4em;font-weight:700;color:var(--soft)}
+.res-lab{color:var(--soft);font-size:.92rem;margin:6px 0 20px}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-top:1px solid var(--line);padding-top:16px}
+.res-grid div b{display:block;font-size:1.3rem;color:var(--primary)}
+.res-grid div span{font-size:.85rem;color:var(--soft)}
+.formula{font-size:.8rem;color:var(--soft);margin-top:16px;line-height:1.5}
+.cta-block{margin-top:34px;background:var(--primary);color:#fff;padding:28px;border-radius:4px}
+.cta-block h2{color:#fff}
+.cta-block p{color:rgba(255,255,255,.88)}
+.cta-block .date{color:var(--yellow);font-weight:700}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cta-block label{display:block;font-size:.88rem;font-weight:700;margin-bottom:4px}
+.cta-block input{width:100%;padding:10px 12px;border:0;border-radius:6px;font-size:1rem;font-family:inherit;margin-bottom:12px}
+.btn{display:inline-block;background:var(--yellow);color:var(--primary);border:0;text-decoration:none;padding:13px 20px;border-radius:6px;font-weight:800;font-size:1rem;cursor:pointer;font-family:inherit}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6);margin-left:8px}
+.legal{font-size:.8rem;color:rgba(255,255,255,.7);margin-top:10px}
+.success{display:none;font-weight:700}
+.next{margin-top:34px}
+.next ol{padding-left:20px;line-height:1.7}
+footer{border-top:1px solid #dae3e8;padding:20px;text-align:center;color:#536a74;font-size:.9rem}
+@media (max-width:760px){
+  .layout{grid-template-columns:1fr}
+  .results{position:static}
+  .form-row{grid-template-columns:1fr}
+  .btn-ghost{margin:10px 0 0}
+}
+@media print{
+  header,.cta-block,.next,footer{display:none}
+  .layout{grid-template-columns:1fr 1fr}
+  body,main{background:#fff}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">SALVERYS</a>
+  <a class="back" href="simulateur-helpdesk-it.html">Helpdesk IT N1 en marque blanche →</a>
+</header>
+
+<main>
+  <div class="eyebrow">Diagnostic gratuit · ESN, MSP et centres de services</div>
+  <h1>Combien d'heures vos N2 passent-ils sur du N1&nbsp;?</h1>
+  <p class="lead">Un mot de passe réinitialisé par un technicien confirmé, c'est une heure qui n'est ni facturée en projet ni passée sur un vrai incident. Calculez ce que ça représente chez vous, en 3 minutes, <b>avec vos seuls chiffres</b>.</p>
+
+  <div class="layout">
+    <form class="card" id="calc" onsubmit="return false">
+      <h2>Vos chiffres</h2>
+      <p class="example-note">Les valeurs pré-remplies sont des <b>exemples</b> pour montrer le calcul, pas des moyennes de marché. Remplacez-les par les vôtres (un export du mois dernier de votre outil de tickets suffit).</p>
+
+      <div class="field">
+        <label for="tickets">Tickets reçus par mois</label>
+        <span class="hint">Tous canaux confondus, sur le périmètre helpdesk.</span>
+        <div class="unit"><input id="tickets" type="number" min="0" step="10" value="1200"><span>tickets / mois</span></div>
+      </div>
+
+      <div class="field">
+        <label for="partN1">Part de tickets de niveau 1</label>
+        <span class="hint">Résolubles avec une procédure écrite : mots de passe, accès, droits, installations standard, questions d'usage.</span>
+        <div class="unit"><input id="partN1" type="number" min="0" max="100" step="5" value="50"><span>%</span></div>
+      </div>
+
+      <div class="field">
+        <label for="partN2">Part de ces tickets N1 traités par un N2 ou un N3</label>
+        <span class="hint">Faute de N1 disponible : hors heures, pendant les pics, en astreinte, ou parce que le N1 est déjà saturé.</span>
+        <div class="unit"><input id="partN2" type="number" min="0" max="100" step="5" value="30"><span>%</span></div>
+      </div>
+
+      <div class="field">
+        <label for="duree">Temps moyen de traitement d'un ticket N1</label>
+        <span class="hint">Prise en charge, résolution et clôture, interruption comprise.</span>
+        <div class="unit"><input id="duree" type="number" min="0" step="1" value="15"><span>minutes</span></div>
+      </div>
+
+      <div class="field">
+        <label for="coutN2">Coût horaire chargé d'un technicien N2</label>
+        <span class="hint">Salaire brut + charges, rapporté à l'heure travaillée. Votre chiffre de paie.</span>
+        <div class="unit"><input id="coutN2" type="number" min="0" step="1" value="45"><span>€ / heure</span></div>
+      </div>
+
+      <div class="field">
+        <label for="tauxFact">Taux auquel vous facturez une heure de N2 <i>(optionnel)</i></label>
+        <span class="hint">En régie ou en projet. Laissez vide si ces heures ne seraient pas revendues.</span>
+        <div class="unit"><input id="tauxFact" type="number" min="0" step="1" placeholder="ex. 75"><span>€ / heure</span></div>
+      </div>
+    </form>
+
+    <section class="card results" aria-live="polite">
+      <h2>Ce que ça représente</h2>
+      <div class="big" id="rHeures">—</div>
+      <div class="res-lab">heures de N2 par mois consommées par des tickets de niveau 1</div>
+
+      <div class="res-grid">
+        <div><b id="rEtp">—</b><span>équivalent temps plein N2 (base 151,67 h/mois)</span></div>
+        <div><b id="rTickets">—</b><span>tickets N1 par mois qui remontent au N2</span></div>
+        <div><b id="rCoutMois">—</b><span>coût de ces heures par mois, à votre coût chargé</span></div>
+        <div><b id="rCoutAn">—</b><span>sur 12 mois</span></div>
+        <div id="boxFact" hidden><b id="rFact">—</b><span>de chiffre d'affaires non facturé par an, à votre taux</span></div>
+      </div>
+
+      <p class="formula">Calcul : tickets × part N1 × part traitée par un N2 × durée ÷ 60. Aucune donnée Salverys n'entre dans ce résultat. Il ne compare rien au coût d'une externalisation : il mesure seulement le temps que votre N2 passe hors de son niveau.</p>
+      <button class="btn" type="button" onclick="window.print()" style="background:var(--primary);color:#fff;margin-top:6px">Imprimer / enregistrer en PDF</button>
+    </section>
+  </div>
+
+  <section class="cta-block" id="cta">
+    <h2>Vous voulez rendre ces heures à vos N2&nbsp;?</h2>
+    <p>Salverys opère votre N1 en marque blanche, dans vos outils et sous votre nom. Envoyez-nous ce calcul : nous revenons vers vous <b>sous 24 h ouvrées</b> avec un créneau de 15 minutes. Vos chiffres sont déjà joints, vous n'aurez pas à les réexpliquer.</p>
+    <p>Côté calendrier : la première prise de tickets est visée <b>vers six semaines après la signature</b>, sous réserve du recrutement, de la formation et de vos accès. Un accord signé cette semaine, c'est une première prise de tickets visée autour du <span class="date" id="dateCible">—</span>. L'autonomie complète sur votre périmètre est visée 2,5 à 3,5 mois après la signature.</p>
+
+    <form id="form-diag" action="https://formspree.io/f/xjgdkblp" method="POST">
+      <input type="hidden" name="_subject" value="Diagnostic N1 — demande d'échange">
+      <input type="hidden" name="source" value="diagnostic-n1">
+      <input type="hidden" name="diagnostic" id="hDiag">
+      <div class="form-row">
+        <div><label for="d-nom">Nom *</label><input id="d-nom" name="nom" required autocomplete="name"></div>
+        <div><label for="d-societe">Société *</label><input id="d-societe" name="societe" required autocomplete="organization"></div>
+      </div>
+      <label for="d-email">Email professionnel *</label>
+      <input id="d-email" type="email" name="email" required autocomplete="email" placeholder="vous@societe.fr">
+      <button class="btn" type="submit">Envoyer mon calcul et être rappelé →</button>
+      <a class="btn btn-ghost" href="mailto:contact@salverys.fr?subject=Diagnostic%20N1">Écrire par email</a>
+      <p class="legal">Vos réponses servent uniquement à préparer cet échange. Aucune inscription à une liste de diffusion.</p>
+    </form>
+    <p class="success" id="diag-success">✓ Calcul envoyé. Nous revenons vers vous sous 24 h ouvrées.</p>
+  </section>
+
+  <section class="next">
+    <h2>Comment lire ce chiffre</h2>
+    <ol>
+      <li><b>Le plus fiable, c'est votre export.</b> Filtrez un mois de tickets par catégorie et par technicien affecté : la part N1 traitée par vos N2 se lit directement.</li>
+      <li><b>Le coût n'est qu'une partie du problème.</b> Un N2 interrompu par un ticket simple perd aussi du temps à reprendre ce qu'il faisait, et ce temps n'apparaît pas dans le calcul.</li>
+      <li><b>Les tickets hors heures pèsent plus lourd.</b> S'ils partent en astreinte, ils se paient au tarif d'astreinte, pas au coût horaire normal.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>Salverys · Support francophone en marque blanche · Antananarivo · <a href="mentions-legales.html">Mentions légales</a></footer>
+
+<script>
+(function () {
+  var ids = ['tickets', 'partN1', 'partN2', 'duree', 'coutN2', 'tauxFact'];
+  var nf0 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+  var nf1 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+  var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+  var H_MOIS = 151.67; // durée légale mensuelle à 35 h/semaine
+
+  function val(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v >= 0 ? v : 0;
+  }
+  function pct(id) { return Math.min(val(id), 100) / 100; }
+  function set(id, txt) { document.getElementById(id).textContent = txt; }
+
+  function calc() {
+    var ticketsN2 = val('tickets') * pct('partN1') * pct('partN2');
+    var heures = ticketsN2 * val('duree') / 60;
+    var coutMois = heures * val('coutN2');
+    var taux = val('tauxFact');
+
+    set('rHeures', nf0.format(heures) + ' h');
+    set('rEtp', nf1.format(heures / H_MOIS));
+    set('rTickets', nf0.format(ticketsN2));
+    set('rCoutMois', eur.format(coutMois));
+    set('rCoutAn', eur.format(coutMois * 12));
+    document.getElementById('boxFact').hidden = !(taux > 0);
+    if (taux > 0) set('rFact', eur.format(heures * taux * 12));
+
+    document.getElementById('hDiag').value =
+      'Tickets/mois: ' + val('tickets') +
+      ' | Part N1: ' + val('partN1') + '%' +
+      ' | N1 traités par N2: ' + val('partN2') + '%' +
+      ' | Durée ticket N1: ' + val('duree') + ' min' +
+      ' | Coût N2: ' + val('coutN2') + ' €/h' +
+      (taux > 0 ? ' | Taux facturé N2: ' + taux + ' €/h' : '') +
+      ' => ' + nf0.format(heures) + ' h N2/mois sur du N1, ' + eur.format(coutMois) + '/mois';
+  }
+
+  ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+  calc();
+
+  // Jalon « première prise de tickets » : signature cette semaine + 6 semaines.
+  var d = new Date();
+  d.setDate(d.getDate() + 42);
+  set('dateCible', new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long' }).format(d));
+
+  // Envoi Formspree en AJAX, même mécanique que le formulaire de l'accueil.
+  var form = document.getElementById('form-diag');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    calc();
+    var btn = form.querySelector('[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.style.display = 'none';
+        document.getElementById('diag-success').style.display = 'block';
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Réessayer →';
+      });
+  });
+}());
+</script>
+</body>
+</html>

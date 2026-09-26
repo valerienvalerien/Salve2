@@ -10,6 +10,7 @@ PUBLIC_PAGES=(
   simulateur-salverys.html
   simulateur-informatique.html
   simulateur-helpdesk-it.html
+  diagnostic-n1.html
   espace-client.html
   espace-client-medical.html
   espace-client-support.html
