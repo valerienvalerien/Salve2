@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vos N2 sont-ils payés pour clôturer des tickets N1 ? — Salverys</title>
+<meta name="description" content="Calcul gratuit en 3 minutes, avec vos propres chiffres : combien de tickets N1 sont escaladés au niveau 2 ou 3 alors qu'ils n'auraient pas dû l'être, et ce que ce temps vous coûte." />
+<link rel="canonical" href="https://salverys.fr/diagnostic-n1.html" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Salverys" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Vos N2 sont-ils payés pour clôturer des tickets N1 ?" />
+<meta property="og:description" content="Le calcul en 3 minutes, avec vos seuls chiffres." />
+<meta property="og:image" content="https://salverys.fr/assets/img/og-salverys.png" />
+<link rel="stylesheet" href="assets/site.css?v=7" />
+<!--
+  Lead magnet « révéler un problème » (méthode Hormozi, échange du 2026-09-26).
+  Charte : thème Helpdesk de site.css (.theme-helpdesk — bleu pétrole + corail) et
+  logos helpdesk, comme la ligne de service Helpdesk IT N1.
+  Règles tenues par cette page (CLAUDE.md) :
+  - AUCUN chiffre Salverys, aucun benchmark, aucune comparaison de coût avec la France :
+    tout résultat découle des seules valeurs saisies par le visiteur.
+  - Les valeurs pré-remplies sont des EXEMPLES, affichés comme tels.
+  - Urgence = calendrier réel (premiers tickets visés vers 6 semaines), jamais une limite
+    de capacité. Le mot « opérationnel » n'est pas employé.
+  - Pas de tracking maison : le formulaire passe par Formspree, déjà utilisé sur l'accueil.
+  - Vocabulaire : on parle à un donneur d'ordre ; on ne juge ni ses méthodes ni ses équipes
+    (02-Prospection/LEAD-MAGNET-CHIFFRAGE-TICKETS.md §1).
+-->
+<style>
+/* Composants propres au calculateur — tokens de site.css uniquement. */
+.calc-hero { padding: 64px 0 40px; background: var(--bg-soft); }
+.calc-hero h1 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.03em; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; color: var(--primary); max-width: 20ch; margin-bottom: 20px; }
+.calc-hero h1 .hl { color: #fff; background: var(--accent); padding: 0 10px; border-radius: 8px; display: inline-block; line-height: 1.15; }
+.calc-hero .subtitle { font-size: clamp(19px, 2.2vw, 24px); font-weight: 700; color: var(--accent); letter-spacing: -.01em; margin: -6px 0 18px; }
+.calc-hero .lead { font-size: 19px; color: var(--text-soft); max-width: 62ch; }
+.calc-hero .saas-note { margin-top: 14px; font-size: 14.5px; color: var(--text-mute); max-width: 62ch; }
+
+.calc-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+.calc-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); }
+.calc-card h2, .res-card h2 { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 16px; }
+.calc-card h2 { color: var(--primary); }
+.example-note { background: var(--accent-tint); border-radius: 12px; padding: 12px 16px; font-size: 14px; color: var(--text); margin-bottom: 26px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+.q:first-of-type { border-top: 0; padding-top: 0; }
+.q label { display: block; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.q .hint { display: block; font-size: 14px; color: var(--text-soft); margin-bottom: 10px; line-height: 1.5; }
+.q .opt { font-weight: 500; color: var(--text-mute); }
+.q-input { display: flex; align-items: center; gap: 10px; }
+.q-input input { width: 150px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: 600 17px 'Inter', sans-serif; color: var(--ink); background: #fff; transition: border-color .15s; }
+.q-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
+.q-input span { font-size: 15px; color: var(--text-soft); }
+.q-input select { padding: 12px 12px; border: 1.5px solid var(--line); border-radius: 12px; font: 500 15px 'Inter', sans-serif; color: var(--ink); background: #fff; cursor: pointer; }
+.q-input select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
+.q .hint[hidden] { display: none; }
+.q .hint.warn-cap { margin: 8px 0 0; color: var(--accent); font-weight: 600; }
+.q .hint.conv { margin: 8px 0 0; font-size: 12.5px; color: var(--text-mute); }
+
+.res-card { position: sticky; top: 90px; background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); }
+.res-card h2 { color: #fff; }
+.res-big { font-size: clamp(48px, 6vw, 68px); font-weight: 800; letter-spacing: -.03em; line-height: 1; color: var(--accent-soft); }
+.res-big-lab { font-size: 16px; color: rgba(255,255,255,.85); margin: 10px 0 24px; }
+.res-list { list-style: none; border-top: 1px solid rgba(255,255,255,.15); }
+.res-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 15px; color: rgba(255,255,255,.8); }
+.res-list li b { font-size: 20px; font-weight: 800; color: #fff; white-space: nowrap; }
+.sal { margin-top: 22px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); padding: 18px; }
+.sal-head { font-weight: 800; font-size: 15px; margin-bottom: 12px; }
+.sal-toggle { display: inline-flex; background: rgba(0,0,0,.18); border-radius: var(--radius-pill); padding: 4px; gap: 4px; margin-bottom: 14px; }
+.sal-toggle label { position: relative; cursor: pointer; padding: 8px 16px; border-radius: var(--radius-pill); font-size: 14px; font-weight: 700; color: rgba(255,255,255,.75); }
+.sal-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.sal-toggle label:has(input:checked) { background: var(--accent); color: #fff; }
+.sal-toggle label:has(input:focus-visible) { outline: 2px solid #fff; outline-offset: 2px; }
+.sal-etp { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.sal-etp b { font-size: 28px; font-weight: 800; color: var(--accent-soft); letter-spacing: -.02em; }
+.sal-etp span { font-size: 13.5px; color: rgba(255,255,255,.75); }
+.sal-txt { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.9); }
+.sal-txt b { color: var(--accent-soft); }
+.sal-prix { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.65); }
+.sal-prix a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.res-how { margin-top: 20px; font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,.7); }
+.res-how b { color: #fff; font-weight: 600; }
+.res-print { margin-top: 20px; background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.45); border-radius: var(--radius-pill); padding: 10px 18px; font: 600 14px 'Inter', sans-serif; cursor: pointer; }
+.res-print:hover { background: rgba(255,255,255,.1); }
+
+.btn-accent { background: var(--cta); color: var(--cta-text); box-shadow: 0 6px 20px -8px var(--halo), var(--shadow-md); }
+.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px var(--halo), var(--shadow-lg); }
+.date-cible { color: var(--accent-soft); font-weight: 700; white-space: nowrap; }
+
+.chiffrage { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+.chiffrage h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; font-size: clamp(24px, 3vw, 32px); color: var(--primary); margin-bottom: 14px; }
+.chiffrage p { color: var(--text-soft); margin-bottom: 14px; }
+.steps-mini { list-style: none; counter-reset: s; }
+.steps-mini li { counter-increment: s; position: relative; padding: 0 0 18px 48px; font-size: 15px; color: var(--text); }
+.steps-mini li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 10px; background: var(--accent-tint); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.steps-mini li b { display: block; color: var(--primary); }
+
+.hidden-costs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.hidden-costs article { background: var(--bg); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: var(--radius); padding: 24px; }
+.hidden-costs h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+.hidden-costs p { font-size: 15px; color: var(--text-soft); }
+.theme-helpdesk .section-head h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; }
+.theme-helpdesk .contact-band h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; }
+
+@media (max-width: 900px) {
+  .calc-grid, .chiffrage { grid-template-columns: 1fr; }
+  .res-card { position: static; }
+  .hidden-costs { grid-template-columns: 1fr; }
+  .chiffrage { padding: 28px; }
+}
+@media (max-width: 480px) {
+  .calc-card, .res-card { padding: 24px 20px; }
+  .q-input input { width: 120px; }
+}
+@media print {
+  .nav, .topbar, #rappel, #chiffrage, #angles-morts, .footer, .footer-gold, .res-print { display: none !important; }
+  .calc-grid { grid-template-columns: 1fr 1fr; }
+  .res-card { position: static; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body class="theme-helpdesk">
+
+<!-- TOPBAR -->
+<div class="topbar">Helpdesk IT N1 en marque blanche — <b>premiers tickets visés vers six semaines après signature</b>, sous votre nom et dans vos outils</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys-helpdesk.svg" alt="Salverys" /></a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
+      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+      <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="#rappel" class="nav-cta">Être rappelé</a>
+    </nav>
+    <a href="#rappel" class="nav-cta">Être rappelé</a>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ACCROCHE -->
+<section class="calc-hero">
+  <div class="container">
+    <span class="eyebrow"><span class="pulse"></span> Calcul gratuit · 3 minutes · ESN et infogéreurs</span>
+    <h1>Vos N2 sont-ils payés pour clôturer des <span style="white-space:nowrap"><span class="hl">tickets N1</span>&nbsp;?</span></h1>
+    <p class="subtitle">Combien d'heures de N2 partent dans des tickets clôturables au N1&nbsp;?</p>
+    <p class="lead">Une extraction SQL à sortir, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle qui ne remonte plus&nbsp;: chaque ticket N1 traité par un N2 ou un N3, c'est du temps qui n'est ni vendu en projet, ni passé sur un vrai incident. Voyez ce que ça représente chez vous, avec vos propres chiffres.</p>
+    <p class="saas-note">Éditeur de logiciel&nbsp;? Vos «&nbsp;niveaux 2 et 3&nbsp;», ce sont les développeurs ou l'équipe produit qui répondent au support.</p>
+  </div>
+</section>
+
+<!-- CALCULATEUR -->
+<section class="section" style="padding-top:48px">
+  <div class="container calc-grid">
+    <form class="calc-card" id="calc" onsubmit="return false">
+      <h2>Vos chiffres</h2>
+      <p class="example-note">Les chiffres déjà remplis sont des <b>exemples</b>, là pour montrer le calcul&nbsp;: ce ne sont pas des moyennes du marché. Mettez les vôtres. Un coup d'œil au mois dernier dans votre outil de tickets suffit.</p>
+
+      <div class="q">
+        <label for="tickets">Combien de tickets recevez-vous par mois&nbsp;?</label>
+        <span class="hint">Téléphone, email et portail compris.</span>
+        <div class="q-input"><input id="tickets" type="number" inputmode="numeric" min="0" step="10" value="1200"><span>tickets par mois</span></div>
+      </div>
+
+      <div class="q">
+        <label for="simples">Sur 100 tickets, combien sont de vrais tickets N1, clôturables par le N1&nbsp;?</label>
+        <span class="hint">Ceux qui devraient être résolus au niveau 1, en suivant une procédure&nbsp;: une extraction SQL simple, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle à remapper…</span>
+        <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5" value="50"><span>sur 100</span></div>
+      </div>
+
+      <div class="q">
+        <label for="remontes">Sur ces <span class="nbN1">50</span> tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
+        <span class="hint">Escaladés alors qu'ils n'auraient pas dû l'être, parce que personne n'était disponible au N1 à ce moment-là&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
+        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="50" step="1" value="15"><span>sur <span class="nbN1">50</span></span></div>
+        <span class="hint warn-cap" id="capNote" hidden>Ce chiffre ne peut pas dépasser le nombre de tickets N1 de la question précédente : le calcul le ramène à <span class="nbN1">50</span>.</span>
+      </div>
+
+      <div class="q">
+        <label for="duree">Combien de minutes pour résoudre un ticket N1&nbsp;?</label>
+        <span class="hint">De l'ouverture du ticket à sa fermeture, en comptant le temps d'interruption.</span>
+        <div class="q-input"><input id="duree" type="number" inputmode="numeric" min="0" step="1" value="15"><span>minutes</span></div>
+      </div>
+
+      <div class="q">
+        <label for="cout">Combien vous coûte un technicien de niveau 2&nbsp;?</label>
+        <span class="hint">Salaire et charges compris. Donnez le chiffre que vous connaissez&nbsp;: à l'heure, au mois ou à l'année.</span>
+        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><select id="coutUnite" aria-label="Unité du coût"><option value="heure" selected>€ de l'heure</option><option value="jour">€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
+      </div>
+
+      <div class="q">
+        <label for="tarif">Et combien le facturez-vous à vos clients&nbsp;? <span class="opt">(facultatif)</span></label>
+        <span class="hint">Si ce temps pouvait être vendu en régie ou en projet&nbsp;: à l'heure, à la journée (TJM), au mois ou à l'année. Sinon, laissez vide.</span>
+        <div class="q-input"><input id="tarif" type="number" inputmode="numeric" min="0" step="1" placeholder="ex. 550"><select id="tarifUnite" aria-label="Unité du tarif"><option value="heure">€ de l'heure</option><option value="jour" selected>€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
+        <span class="hint conv">Conversions : 7 h par jour, 151,67 h par mois, 1 607 h par an.</span>
+      </div>
+    </form>
+
+    <aside class="res-card" aria-live="polite">
+      <h2>Chez vous, ça fait&nbsp;:</h2>
+      <div class="res-big" id="rHeures">—</div>
+      <p class="res-big-lab">par mois, passées par vos niveaux 2 et 3 sur des tickets qui auraient dû rester au N1.</p>
+      <ul class="res-list">
+        <li><span>Soit, en journées de 7 h</span><b id="rJours">—</b></li>
+        <li><span>Tickets N1 escaladés chaque mois</span><b id="rTickets">—</b></li>
+        <li><span>Salaire payé pour ce travail, par mois</span><b id="rMois">—</b></li>
+        <li><span>Sur un an</span><b id="rAn">—</b></li>
+        <li id="lFact" hidden><span id="lFactLab">Votre TJM, appliqué à ces heures, sur un an</span><b id="rFact">—</b></li>
+      </ul>
+      <div class="sal">
+        <div class="sal-head">Chez Salverys, pour ces tickets&nbsp;:</div>
+        <div class="sal-toggle" role="radiogroup" aria-label="Formule Salverys">
+          <label><input type="radio" name="formule" value="mutualise" checked> Mutualisé</label>
+          <label><input type="radio" name="formule" value="dedie"> Dédié</label>
+        </div>
+        <div class="sal-etp"><b id="rEtp">—</b><span>de charge, sur une base de 35 h par semaine</span></div>
+        <p class="sal-txt" id="rSal">—</p>
+        <p class="sal-prix">Le prix se donne au rendez-vous de cadrage, avec la grille partenaire, sous accord de confidentialité. <a href="#rappel">Être rappelé →</a></p>
+      </div>
+      <p class="res-how" id="rHow">—</p>
+      <p class="res-how">Rien d'autre que vos chiffres&nbsp;: aucune moyenne du marché, aucune comparaison avec nos prix.</p>
+      <button class="res-print" type="button" onclick="window.print()">Garder ce calcul (imprimer ou PDF)</button>
+    </aside>
+  </div>
+</section>
+
+<!-- RAPPEL -->
+<section class="section deep contact-band" id="rappel">
+  <span class="hero-bg-blob b1"></span>
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div class="kicker">La suite</div>
+      <h2>Rendez ces heures à <span class="hl">vos N2 et N3</span>.</h2>
+      <p>Salverys prend en charge vos tickets N1, sous votre nom et dans vos outils. Vos N2 et N3 restent sur les vrais incidents et sur ce que vous facturez.</p>
+      <ul class="tick">
+        <li>Envoyez-nous ce calcul&nbsp;: on vous rappelle sous 24 h ouvrées pour en parler 15 minutes.</li>
+        <li>Vos chiffres partent avec la demande&nbsp;: vous n'aurez pas à les réexpliquer.</li>
+        <li>Si on signe cette semaine, nos premiers tickets chez vous sont visés autour du <span class="date-cible" id="dateCible">—</span>&nbsp;: environ six semaines, le temps de recruter, de former et d'ouvrir les accès.</li>
+        <li>L'équipe est visée pleinement autonome sur votre périmètre 2,5 à 3,5 mois après la signature.</li>
+      </ul>
+    </div>
+    <div class="contact-card">
+      <form id="form-diag" action="https://formspree.io/f/xjgdkblp" method="POST">
+        <input type="hidden" name="_subject" value="Calcul tickets N1 escaladés — demande de rappel" />
+        <input type="hidden" name="source" value="diagnostic-n1" />
+        <input type="hidden" name="calcul" id="hCalcul" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="d-nom">Nom *</label>
+            <input type="text" id="d-nom" name="nom" required placeholder="Dupont" autocomplete="family-name" />
+          </div>
+          <div class="form-field">
+            <label for="d-societe">Société *</label>
+            <input type="text" id="d-societe" name="societe" required placeholder="Votre ESN" autocomplete="organization" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="d-email">Email professionnel *</label>
+          <input type="email" id="d-email" name="email" required placeholder="vous@societe.fr" autocomplete="email" />
+        </div>
+        <div class="form-field">
+          <label for="d-tel">Téléphone <span style="font-weight:500">(pour le rappel)</span></label>
+          <input type="tel" id="d-tel" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" />
+        </div>
+        <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;">
+          Envoyer mon calcul et être rappelé <span class="arrow">→</span>
+        </button>
+        <p class="form-legal">Vos réponses servent seulement à préparer cet appel. Pas de lettre d'information, pas de relance automatique.</p>
+      </form>
+      <div id="diag-success" class="form-success" style="display:none">
+        <div class="form-success-icon">✓</div>
+        <p>Calcul envoyé&nbsp;!</p>
+        <p class="form-success-sub">On vous rappelle sous 24 h ouvrées.<br>
+        En attendant&nbsp;: <a href="mailto:contact@salverys.fr">contact@salverys.fr</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRAGE SUR VRAIS TICKETS -->
+<section class="section soft" id="chiffrage">
+  <div class="container">
+    <div class="chiffrage">
+      <div>
+        <div class="kicker">Aller plus loin, gratuitement</div>
+        <h2>Des chiffres de tête, ou vos vrais tickets&nbsp;?</h2>
+        <p>Le calcul ci-dessus repose sur vos estimations. Pour un chiffre sûr, on peut le refaire sur vos tickets du mois dernier.</p>
+        <p>Nous ne jugeons ni vos méthodes ni vos équipes&nbsp;: nous comptons des volumes, des sujets et des heures. C'est la première étape de n'importe quel devis, faite avant et gratuitement. Nous signons votre accord de confidentialité avant tout envoi, et la page vous reste, que l'on travaille ensemble ou non.</p>
+        <a class="btn btn-accent" href="mailto:contact@salverys.fr?subject=Chiffrage%20sur%20100%20tickets">Demander le chiffrage sur 100 tickets <span class="arrow">→</span></a>
+      </div>
+      <ol class="steps-mini">
+        <li><b>Vous exportez un mois de tickets</b>Sans noms ni clients&nbsp;: le titre, l'heure d'arrivée et qui l'a traité suffisent. Un filtre, un clic.</li>
+        <li><b>Nous en tirons 100 au hasard</b>Pas les 100 derniers&nbsp;: 100 répartis sur tout le mois, pour que le résultat tienne.</li>
+        <li><b>Sous 5 jours ouvrés, vous recevez une page</b>Combien de tickets auraient dû rester au N1, à quelles heures ils arrivent, et par quoi on pourrait commencer.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUE LE CALCUL NE MONTRE PAS -->
+<section class="section" id="angles-morts">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">À garder en tête</div>
+      <h2>Ce que le calcul ne montre pas</h2>
+    </div>
+    <div class="hidden-costs">
+      <article>
+        <h3>Le temps pour s'y remettre</h3>
+        <p>Un N2 coupé en plein diagnostic pour sortir une extraction met du temps à reprendre le fil. Ce temps-là n'est pas compté.</p>
+      </article>
+      <article>
+        <h3>Le prix des soirs et des week-ends</h3>
+        <p>Un ticket N1 traité en astreinte se paie au tarif de l'astreinte, pas à l'heure normale.</p>
+      </article>
+      <article>
+        <h3>Le chiffre exact est dans votre outil</h3>
+        <p>Filtrez le mois dernier par catégorie et par niveau de résolution&nbsp;: vous verrez tout de suite quels tickets N1 sont montés.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc-helpdesk.svg" alt="Salverys" /></a>
+        <p class="brand-desc">Support IT &amp; Applicatif</p>
+        <p style="max-width:280px;margin-top:12px;font-size:14px;">Helpdesk IT N1 en marque blanche pour ESN et infogéreurs, depuis Antananarivo, en français et à l'heure de Paris.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Métiers</h5>
+          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
+          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
+          <a href="#rappel">Être rappelé</a>
+        </div>
+        <div class="footer-col">
+          <h5>Salverys</h5>
+          <a href="index.html#methode">Qui sommes-nous</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="mentions-legales.html">Mentions légales</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© Salverys — Antananarivo → France · Belgique · Canada</span>
+      <span>Calcul indicatif, établi à partir de vos seuls chiffres</span>
+    </div>
+  </div>
+</footer>
+<div class="footer-gold" aria-hidden="true"></div>
+
+<script src="assets/site.js?v=6"></script>
+<script>
+(function () {
+  var nf0 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+  var nf1 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
+  var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+  var H_JOUR = 7; // journée de travail à 35 h/semaine
+  // Heures par unité : 7 h/jour, 151,67 h/mois (35 h × 52/12), 1 607 h/an (durée légale).
+  var HEURES = { heure: 1, jour: 7, mois: 151.67, an: 1607 };
+  var LIB = { heure: '€/h', jour: '€/jour', mois: '€/mois', an: '€/an' };
+  function unite(id) { return document.getElementById(id).value; }
+  function horaire(id) { return val(id) / HEURES[unite(id + 'Unite')]; }
+
+  function val(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v >= 0 ? v : 0;
+  }
+  function set(id, txt) { document.getElementById(id).textContent = txt; }
+
+  // Ce que couvrirait chaque formule (PRICING.md §1) — SANS PRIX : la grille partenaire
+  // ne figure pas sur le site public (PRICING.md, en-tête). Seules des capacités déjà
+  // publiques sont citées : 400 tickets inclus (page Helpdesk IT N1), position de 35 h/semaine.
+  var INCLUS_MUTUALISE = 400;
+  var H_POSITION = 151.67; // 35 h/semaine
+  function salverys(tickets, heures) {
+    var f = document.querySelector('input[name=formule]:checked').value;
+    var pos = heures / H_POSITION;
+    var etp = nf1.format(pos);
+    var t = nf0.format(tickets), txt;
+    if (f === 'mutualise') {
+      txt = tickets <= INCLUS_MUTUALISE
+        ? 'Pas besoin de réserver un agent&nbsp;: cette charge de <b>' + etp + ' ETP</b> est absorbée par un pool partagé, sous votre nom. Vos <b>' + t + ' tickets N1</b> par mois tiennent dans le forfait de débordement, qui en inclut <b>jusqu\'à 400</b>&nbsp;: il reste <b>' + nf0.format(INCLUS_MUTUALISE - tickets) + ' tickets</b> de marge pour vos pics.'
+        : 'Cette charge de <b>' + etp + ' ETP</b> dépasse le forfait de débordement&nbsp;: vos <b>' + t + ' tickets N1</b> par mois vont au-delà des <b>400 inclus</b>, et les suivants sont facturés au ticket. À ce volume, un poste dédié mérite d\'être comparé.';
+    } else {
+      var n = Math.max(1, Math.ceil(pos));
+      txt = 'Il vous faudrait <b>' + n + ' position' + (n > 1 ? 's' : '') + ' dédiée' + (n > 1 ? 's' : '') + ' (' + n + ' ETP)</b>, de 35 h par semaine, formée' + (n > 1 ? 's' : '') +
+        ' à votre périmètre. ' + (n === 1 ? 'Elle couvre' : 'Elles couvrent') + ' cette charge de ' + etp + ' ETP et laisse' + (n > 1 ? 'nt' : '') + ' <b>' + nf0.format(n * H_POSITION - heures) +
+        ' h</b> par mois pour d\'autres tickets N1 ou vos créneaux tôt et tard.';
+    }
+    document.getElementById('rEtp').textContent = etp + ' ETP';
+    document.getElementById('rSal').innerHTML = txt;
+  }
+
+  function calc() {
+    // Q3 porte sur les tickets N1 de Q2 (« sur ces X ») : on la plafonne à X,
+    // et X comme Q3 sont comptés sur les mêmes 100 tickets.
+    var n1 = Math.min(val('simples'), 100);
+    var esc = Math.min(val('remontes'), n1);
+    document.querySelectorAll('.nbN1').forEach(function (el) { el.textContent = nf0.format(n1); });
+    document.getElementById('remontes').max = n1;
+    document.getElementById('capNote').hidden = !(val('remontes') > n1);
+    var remontes = val('tickets') * esc / 100;
+    var heures = remontes * val('duree') / 60;
+    var mois = heures * horaire('cout');
+    var tarif = horaire('tarif');
+
+    set('rHeures', nf0.format(heures) + ' h');
+    set('rJours', nf1.format(heures / H_JOUR) + ' jours');
+    set('rTickets', nf0.format(remontes));
+    set('rMois', eur.format(mois));
+    set('rAn', eur.format(mois * 12));
+    document.getElementById('lFact').hidden = !(tarif > 0);
+    set('lFactLab', (unite('tarifUnite') === 'jour' ? 'Votre TJM' : 'Votre tarif') + ', appliqué à ces heures, sur un an');
+    salverys(remontes, heures);
+    if (tarif > 0) set('rFact', eur.format(heures * tarif * 12));
+
+    document.getElementById('rHow').innerHTML =
+      'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b> par mois. Sur 100, <b>' + nf0.format(n1) +
+      '</b> sont de vrais tickets N1, et <b>' + nf0.format(esc) + ' de ces ' + nf0.format(n1) +
+      '</b> finissent au niveau 2 ou 3&nbsp;: soit <b>' + nf0.format(remontes) + ' tickets</b> par mois, à <b>' +
+      nf0.format(val('duree')) + ' minutes</b> chacun.';
+
+    document.getElementById('hCalcul').value =
+      'Tickets/mois : ' + val('tickets') +
+      ' | Vrais tickets N1 : ' + n1 + ' sur 100' +
+      ' | Escaladés N2/N3 : ' + esc + ' sur ces ' + n1 +
+      ' | Durée : ' + val('duree') + ' min' +
+      ' | Coût N2 : ' + val('cout') + ' ' + LIB[unite('coutUnite')] +
+      (tarif > 0 ? ' | Tarif facturé : ' + val('tarif') + ' ' + LIB[unite('tarifUnite')] : '') +
+      ' | Formule consultée : ' + document.querySelector('input[name=formule]:checked').value +
+      ' => ' + nf0.format(heures) + ' h/mois, ' + eur.format(mois) + '/mois';
+  }
+
+  document.querySelectorAll('input[name=formule]').forEach(function (r) { r.addEventListener('change', calc); });
+  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'tarif', 'coutUnite', 'tarifUnite'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calc);
+    document.getElementById(id).addEventListener('change', calc);
+  });
+  calc();
+
+  // Premiers tickets visés : signature cette semaine + 6 semaines.
+  var d = new Date();
+  d.setDate(d.getDate() + 42);
+  set('dateCible', new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long' }).format(d));
+
+  // Envoi Formspree en AJAX, même mécanique que le formulaire de l'accueil.
+  var form = document.getElementById('form-diag');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    calc();
+    var btn = form.querySelector('[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.style.display = 'none';
+        document.getElementById('diag-success').style.display = 'block';
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.innerHTML = 'Réessayer <span class="arrow">→</span>';
+      });
+  });
+}());
+</script>
+</body>
+</html>
