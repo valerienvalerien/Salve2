@@ -120,6 +120,16 @@ Le N1+ fait passer Salverys de la vente de capacité à la prise en charge d'un 
 4. **Droits d'accès et limites d'intervention écrits.** Un diagnostic plus poussé demande souvent des droits plus larges ; c'est un sujet de sécurité à cadrer avec le partenaire.
 5. **Aucun pourcentage de réduction promis** avant la fin de la période de référence, ni dans la prospection ni dans le devis.
 
+**Ne jamais piloter le taux d'escalade seul.** Il pousse à garder des tickets qui devraient partir au N2 : le partenaire y perd en délai de résolution et en satisfaction de son client final. L'objectif réel est de **réduire le travail évitable du N2**, pas d'empêcher les escalades nécessaires. La revue mensuelle suit donc le taux d'escalade évitable avec trois contre-indicateurs, tous définis dans l'annexe :
+
+| Contre-indicateur | Ce qu'il détecte |
+|---|---|
+| Qualité des escalades : part des tickets que le N2 doit requalifier ou renvoyer | Un ticket escaladé mal diagnostiqué, donc un N1+ qui n'apporte rien |
+| Réouvertures après clôture par le N1 | Des tickets clos trop vite pour éviter une escalade |
+| Délai de résolution de bout en bout, escalades comprises | Des tickets retenus trop longtemps au N1 avant escalade |
+
+Un taux d'escalade qui baisse avec des réouvertures ou un délai de bout en bout qui montent n'est pas un progrès.
+
 Confier un périmètre avec objectifs et encadrement Salverys renforce aussi la lecture « prestation de support », plutôt que mise à disposition de personnel (`PRODUIT-ET-OFFRES.md` §1).
 
 ## 6. Écrire l'expansion dans le premier contrat
@@ -152,6 +162,12 @@ Un déclencheur **ouvre une proposition**, il ne facture rien automatiquement. U
 | 6 mois | Fin de la période de référence ; N1+ ou pack Pilotage |
 | 9 mois | Deuxième client final du partenaire, ou second périmètre |
 | 12 mois | Renouvellement ; FR/EN ou service prioritaire si testés |
+
+**Tension à assumer : l'efficacité réduit le besoin de capacité.** Si la base de connaissance et le N1+ fonctionnent, le même volume se traite avec moins de temps d'agent, et certains partenaires demanderont moins de positions. Trois réponses, à écrire dans l'offre :
+
+- **L'amélioration est rémunérée en elle-même**, par le supplément N1+ et le pack Pilotage, et non par le volume qu'elle ferait gagner.
+- **La capacité libérée a un emploi prévu** : absorber les nouveaux clients finaux du partenaire sans position supplémentaire au début, puis alimenter les déclencheurs d'extension.
+- **Une baisse du minimum ferme ne s'applique qu'à l'échéance** de la période de douze mois, pas en cours de période. Aujourd'hui, `PRICING.md` §1 applique la baisse dès la modification du contrat : c'est une décision de grille (décision n° 10).
 
 **Deuxième périmètre : attention au manager.** Le prévisionnel ne mutualise pas la supervision entre deux métiers. Une position support ajoutée chez un partenaire qui a deux positions helpdesk déclenche un second manager et contribue **+47 €/mois**. Une troisième position helpdesk contribue **+1 157 €/mois**. Approfondir d'abord le même métier, et ouvrir un second métier à partir de deux positions, sauf décision contraire sur la supervision (décision n° 7).
 
@@ -193,3 +209,4 @@ Ces champs s'ajoutent à la table `Comptes` de la base Airtable **au premier con
 7. **Supervision multi-métier** : un manager peut-il couvrir helpdesk et support chez un même partenaire ?
 8. **Frais d'activation** couvrant l'onboarding réel (400 € de socle + 400 €/position) : voir `FINANCE-PREVISIONNEL.md` §4.
 9. **Débordement mutualisé (modèle A) comme capacité de pic** pour un partenaire en poste dédié, une fois le pool mesuré.
+10. **Baisse du minimum ferme à l'échéance annuelle seulement**, pour que les gains d'efficacité ne réduisent pas le contrat en cours de période.
