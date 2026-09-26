@@ -53,6 +53,8 @@
 .q-input span { font-size: 15px; color: var(--text-soft); }
 .q-input select { padding: 12px 12px; border: 1.5px solid var(--line); border-radius: 12px; font: 500 15px 'Inter', sans-serif; color: var(--ink); background: #fff; cursor: pointer; }
 .q-input select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
+.q .hint[hidden] { display: none; }
+.q .hint.warn-cap { margin: 8px 0 0; color: var(--accent); font-weight: 600; }
 .q .hint.conv { margin: 8px 0 0; font-size: 12.5px; color: var(--text-mute); }
 
 .res-card { position: sticky; top: 90px; background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); }
@@ -149,15 +151,16 @@
       </div>
 
       <div class="q">
-        <label for="simples">Sur 100 tickets, combien sont de vrais tickets N1&nbsp;?</label>
+        <label for="simples">Sur 100 tickets, combien sont de vrais tickets N1, clôturables par le N1&nbsp;?</label>
         <span class="hint">Ceux qui devraient être résolus au niveau 1, en suivant une procédure&nbsp;: une extraction SQL simple, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle à remapper…</span>
         <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5" value="50"><span>sur 100</span></div>
       </div>
 
       <div class="q">
-        <label for="remontes">Sur 100 tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
+        <label for="remontes">Sur ces <span class="nbN1">50</span> tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
         <span class="hint">Escaladés alors qu'ils n'auraient pas dû l'être, parce que personne n'était disponible au N1 à ce moment-là&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
-        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="100" step="5" value="30"><span>sur 100</span></div>
+        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="50" step="1" value="15"><span>sur <span class="nbN1">50</span></span></div>
+        <span class="hint warn-cap" id="capNote" hidden>Ce chiffre ne peut pas dépasser le nombre de tickets N1 de la question précédente : le calcul le ramène à <span class="nbN1">50</span>.</span>
       </div>
 
       <div class="q">
@@ -349,11 +352,17 @@
     var v = parseFloat(document.getElementById(id).value);
     return isFinite(v) && v >= 0 ? v : 0;
   }
-  function sur100(id) { return Math.min(val(id), 100) / 100; }
   function set(id, txt) { document.getElementById(id).textContent = txt; }
 
   function calc() {
-    var remontes = val('tickets') * sur100('simples') * sur100('remontes');
+    // Q3 porte sur les tickets N1 de Q2 (« sur ces X ») : on la plafonne à X,
+    // et X comme Q3 sont comptés sur les mêmes 100 tickets.
+    var n1 = Math.min(val('simples'), 100);
+    var esc = Math.min(val('remontes'), n1);
+    document.querySelectorAll('.nbN1').forEach(function (el) { el.textContent = nf0.format(n1); });
+    document.getElementById('remontes').max = n1;
+    document.getElementById('capNote').hidden = !(val('remontes') > n1);
+    var remontes = val('tickets') * esc / 100;
     var heures = remontes * val('duree') / 60;
     var mois = heures * horaire('cout');
     var tarif = horaire('tarif');
@@ -367,14 +376,15 @@
     if (tarif > 0) set('rFact', eur.format(heures * tarif * 12));
 
     document.getElementById('rHow').innerHTML =
-      'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b>, dont <b>' + nf0.format(val('simples')) +
-      ' sur 100</b> sont de vrais tickets N1, dont <b>' + nf0.format(val('remontes')) + ' sur 100</b> finissent au niveau 2 ou 3, à <b>' +
-      nf0.format(val('duree')) + ' minutes</b> chacune.';
+      'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b> par mois. Sur 100, <b>' + nf0.format(n1) +
+      '</b> sont de vrais tickets N1, et <b>' + nf0.format(esc) + ' de ces ' + nf0.format(n1) +
+      '</b> finissent au niveau 2 ou 3&nbsp;: soit <b>' + nf0.format(remontes) + ' tickets</b> par mois, à <b>' +
+      nf0.format(val('duree')) + ' minutes</b> chacun.';
 
     document.getElementById('hCalcul').value =
       'Tickets/mois : ' + val('tickets') +
-      ' | Vrais tickets N1 : ' + val('simples') + ' sur 100' +
-      ' | Escaladés N2/N3 : ' + val('remontes') + ' sur 100' +
+      ' | Vrais tickets N1 : ' + n1 + ' sur 100' +
+      ' | Escaladés N2/N3 : ' + esc + ' sur ces ' + n1 +
       ' | Durée : ' + val('duree') + ' min' +
       ' | Coût N2 : ' + val('cout') + ' ' + LIB[unite('coutUnite')] +
       (tarif > 0 ? ' | Tarif facturé : ' + val('tarif') + ' ' + LIB[unite('tarifUnite')] : '') +
