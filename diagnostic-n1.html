@@ -21,7 +21,7 @@
   Règles tenues par cette page (CLAUDE.md) :
   - AUCUN chiffre Salverys, aucun benchmark, aucune comparaison de coût avec la France :
     tout résultat découle des seules valeurs saisies par le visiteur.
-  - Les valeurs pré-remplies sont des EXEMPLES, affichés comme tels.
+  - Aucune valeur pré-remplie : rien ne s'affiche avant que le visiteur ait saisi ses chiffres.
   - Urgence = calendrier réel (premiers tickets visés vers 6 semaines), jamais une limite
     de capacité. Le mot « opérationnel » n'est pas employé.
   - Pas de tracking maison : le formulaire passe par Formspree, déjà utilisé sur l'accueil.
@@ -156,37 +156,37 @@
   <div class="container calc-grid">
     <form class="calc-card" id="calc" onsubmit="return false">
       <h2>Vos chiffres</h2>
-      <p class="example-note">Les chiffres déjà remplis sont des <b>exemples</b>, là pour montrer le calcul&nbsp;: ce ne sont pas des moyennes du marché. Mettez les vôtres. Un coup d'œil au mois dernier dans votre outil de tickets suffit.</p>
+      <p class="example-note">Mettez vos propres chiffres&nbsp;: un coup d'œil au mois dernier dans votre outil de tickets suffit. Rien n'est envoyé tant que vous ne remplissez pas le formulaire de rappel.</p>
 
       <div class="q">
         <label for="tickets">Combien de tickets recevez-vous par mois&nbsp;?</label>
         <span class="hint">Téléphone, email et portail compris.</span>
-        <div class="q-input"><input id="tickets" type="number" inputmode="numeric" min="0" step="10" value="1200"><span>tickets par mois</span></div>
+        <div class="q-input"><input id="tickets" type="number" inputmode="numeric" min="0" step="10"><span>tickets par mois</span></div>
       </div>
 
       <div class="q">
         <label for="simples">Sur 100 tickets, combien sont de vrais tickets N1, clôturables par le N1&nbsp;?</label>
         <span class="hint">Ceux qui devraient être résolus au niveau 1, en suivant une procédure&nbsp;: une extraction SQL simple, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle à remapper…</span>
-        <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5" value="50"><span>sur 100</span></div>
+        <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5"><span>sur 100</span></div>
       </div>
 
       <div class="q">
-        <label for="remontes">Sur ces <span class="nbN1">50</span> tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
+        <label for="remontes">Sur ces <span class="nbN1q"></span>tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
         <span class="hint">Escaladés alors qu'ils n'auraient pas dû l'être, parce que personne n'était disponible au N1 à ce moment-là&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
-        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="50" step="1" value="15"><span>sur <span class="nbN1">50</span></span></div>
-        <span class="hint warn-cap" id="capNote" hidden>Ce chiffre ne peut pas dépasser le nombre de tickets N1 de la question précédente : le calcul le ramène à <span class="nbN1">50</span>.</span>
+        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="100" step="1"><span>sur <span class="nbN1">—</span></span></div>
+        <span class="hint warn-cap" id="capNote" hidden>Ce chiffre ne peut pas dépasser le nombre de tickets N1 de la question précédente : le calcul le ramène à <span class="nbN1">—</span>.</span>
       </div>
 
       <div class="q">
         <label for="duree">Combien de minutes pour résoudre un ticket N1&nbsp;?</label>
         <span class="hint">De l'ouverture du ticket à sa fermeture, en comptant le temps d'interruption.</span>
-        <div class="q-input"><input id="duree" type="number" inputmode="numeric" min="0" step="1" value="15"><span>minutes</span></div>
+        <div class="q-input"><input id="duree" type="number" inputmode="numeric" min="0" step="1"><span>minutes</span></div>
       </div>
 
       <div class="q">
         <label for="cout">Combien vous coûte un technicien de niveau 2&nbsp;?</label>
         <span class="hint">Salaire et charges compris. Donnez le chiffre que vous connaissez&nbsp;: à l'heure, au mois ou à l'année.</span>
-        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><select id="coutUnite" aria-label="Unité du coût"><option value="heure" selected>€ de l'heure</option><option value="jour">€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
+        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1"><select id="coutUnite" aria-label="Unité du coût"><option value="heure" selected>€ de l'heure</option><option value="jour">€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
         <span class="hint conv">Conversions : 7 h par jour, 151,67 h par mois, 1 607 h par an.</span>
       </div>
 
@@ -202,7 +202,7 @@
         <li><span>Salaire payé pour ce travail, par mois</span><b id="rMois">—</b></li>
         <li><span>Sur un an</span><b id="rAn">—</b></li>
       </ul>
-      <div class="sal">
+      <div class="sal" id="salBloc" hidden>
         <div class="sal-head">Chez Salverys, pour ces tickets&nbsp;:</div>
         <div class="sal-toggle" role="radiogroup" aria-label="Formule Salverys">
           <label><input type="radio" name="formule" value="mutualise" checked> Mutualisé</label>
@@ -401,20 +401,33 @@
   function calc() {
     // Q3 porte sur les tickets N1 de Q2 (« sur ces X ») : on la plafonne à X,
     // et X comme Q3 sont comptés sur les mêmes 100 tickets.
+    var rempli = ['tickets', 'simples', 'remontes', 'duree'].every(function (id) { return document.getElementById(id).value !== ''; });
+    var aCout = document.getElementById('cout').value !== '';
     var n1 = Math.min(val('simples'), 100);
+    var aN1 = document.getElementById('simples').value !== '';
     var esc = Math.min(val('remontes'), n1);
-    document.querySelectorAll('.nbN1').forEach(function (el) { el.textContent = nf0.format(n1); });
-    document.getElementById('remontes').max = n1;
-    document.getElementById('capNote').hidden = !(val('remontes') > n1);
+    document.querySelectorAll('.nbN1').forEach(function (el) { el.textContent = aN1 ? nf0.format(n1) : '—'; });
+    document.querySelectorAll('.nbN1q').forEach(function (el) { el.textContent = aN1 ? nf0.format(n1) + ' ' : ''; });
+    document.getElementById('remontes').max = aN1 ? n1 : 100;
+    document.getElementById('capNote').hidden = !(aN1 && val('remontes') > n1);
     var remontes = val('tickets') * esc / 100;
     var heures = remontes * val('duree') / 60;
     var mois = heures * horaire('cout');
 
+    // Pas de valeurs d'exemple : tant que les 4 premières questions sont vides, aucun
+    // résultat n'est affiché (un exemple par défaut montrait un problème trop petit).
+    document.getElementById('salBloc').hidden = !rempli;
+    if (!rempli) {
+      ['rHeures', 'rJours', 'rTickets', 'rMois', 'rAn'].forEach(function (id) { set(id, '—'); });
+      document.getElementById('rHow').innerHTML = 'Répondez aux quatre premières questions pour voir le résultat.';
+      document.getElementById('hCalcul').value = 'Calcul incomplet';
+      return;
+    }
     set('rHeures', nf0.format(heures) + ' h');
     set('rJours', nf1.format(heures / H_JOUR) + ' jours');
     set('rTickets', nf0.format(remontes));
-    set('rMois', eur.format(mois));
-    set('rAn', eur.format(mois * 12));
+    set('rMois', aCout ? eur.format(mois) : '—');
+    set('rAn', aCout ? eur.format(mois * 12) : '—');
     salverys(remontes, heures);
 
     document.getElementById('rHow').innerHTML =
