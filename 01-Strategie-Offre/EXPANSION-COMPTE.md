@@ -1,25 +1,20 @@
 # Expansion de compte — faire grossir le contrat, pas le prix de la position
 
-Proposition du 2026-09-26. **Ce document ne modifie pas la grille** : `PRICING.md` fait foi pour tout devis. Il décrit comment présenter l'offre marque blanche pour que la première position soit un point d'entrée et non le contrat cible, et liste en §8 les décisions à prendre avant d'en faire une offre. Les calculs viennent de `tools/finance-model.mjs`, avec les hypothèses de `FINANCE-PREVISIONNEL.md` §2 (agent budgété à 843,04 €/mois, manager à 810,04 €/mois, un manager par tranche de huit positions **dans un même métier**).
+Proposition du 2026-09-26, révisée le même jour après relecture. **Ce document ne modifie pas la grille** : `PRICING.md` fait foi pour tout devis. Il décrit comment présenter l'offre marque blanche pour que la première position soit un point d'entrée et non le contrat cible. Les décisions à prendre avant d'en faire une offre sont listées en §9. Les calculs viennent de `tools/finance-model.mjs`, avec les hypothèses de `FINANCE-PREVISIONNEL.md` §2 : agent budgété à 843,04 €/mois, manager à 810,04 €/mois, un manager par tranche de huit positions **dans un même métier**.
 
-## 1. Ce qui est retenu, ce qui est corrigé
+## 1. Principes retenus
 
-| Idée de départ | Verdict | Pourquoi |
-|---|---|---|
-| Augmenter la valeur par partenaire plutôt que le prix de la position | **Retenu, c'est l'axe principal** | La grille est par tranches non rétroactives : les quatre premières positions restent au tarif d'entrée. Passer de 1 à 4 positions multiplie le CA par quatre **sans aucune remise** |
-| Présenter trois configurations au lieu d'un prix unique | **Retenu** | Change la question « combien coûte un agent ? » en « quelle capacité voulez-vous confier ? ». Voir §3 |
-| Suivre l'ACV plutôt que le prix par position | **Retenu** | Voir §2 et §7 |
-| Offre N1+ rattachée au taux d'escalade N2 | **Retenu, meilleur levier de valeur** | À cadrer sans promesse chiffrée tant qu'aucune base n'est mesurée. Voir §4 |
-| Land & expand à partir d'une position | **Retenu, adapté à la marque blanche** | En MB, l'expansion passe surtout par les **clients finaux du partenaire**. Voir §5 |
-| Produit d'entrée à **1 499 €** | **Corrigé** | Ce n'est pas le prix en vigueur : la position coûte **2 000 €** en helpdesk et **1 700 €** en support. À 1 499 €, une position isolée **perd 154 €/mois** avant outils |
-| Configuration à 2 positions pour **2 990–3 500 €** | **Corrigé** | La grille donne **4 000 €** (helpdesk) ou **3 400 €** (support) pour 2 positions, **sans** les services ajoutés. Le menu proposé enrichissait l'offre tout en baissant le prix |
-| Configuration à 3 positions pour **4 500–6 000 €** | **Corrigé** | La grille donne **6 000 €** (helpdesk) ou **5 100 €** (support). Le bas de fourchette abandonnait 1 500 €/mois de contribution |
-| « Jusqu'à environ 7 agents par manager » | **Corrigé** | Le prévisionnel budgète **un manager pour 8 positions** dans un métier |
-| Onze options vendues à la carte | **Écarté** | Illisible, et la plupart consomment du temps d'agent ou de manager déjà compté dans les 35 h d'une position. Voir §6 |
+1. **On vend un niveau de capacité, pas un prix par agent.** La question devient « quelle capacité voulez-vous confier ? » au lieu de « combien coûte un agent ? ».
+2. **Le prix d'une configuration est la somme des positions de la grille, plus les services ajoutés, à prix visible.** Une configuration supérieure ne coûte jamais moins cher que ses positions achetées séparément. Le mot « plancher » est réservé au garde-fou de négociation de `PRICING.md` §1 ; on parle ici de **socle**.
+3. **On fait payer une responsabilité** : le N1+ (§5) est un supplément par position, rattaché au taux d'escalade N2.
+4. **On suit la valeur annuelle et la marge de chaque compte**, pas le prix de la position (§8).
+5. **L'expansion s'écrit dans le premier contrat** : options à prix fixés, revue à trois mois, déclencheurs objectifs (§6).
 
-## 2. Pourquoi la taille du compte compte plus que le prix
+## 2. La base de calcul est la grille : 2 000 € et 1 700 €, pas 1 499 €
 
-Le manager est déclenché dès la première position. Chaque position ajoutée dans le même métier rapporte donc sa marge entière jusqu'à la huitième : **+1 156,96 €/mois** en helpdesk (`2 000 − 843,04`), **+856,96 €/mois** en support (`1 700 − 843,04`).
+Les montants de 1 499 €, 17 988 €, 35 976 € et 53 964 € sont arithmétiquement justes, mais ils partent d'un prix qui n'existe pas dans la grille. `PRICING.md` §1 fixe la position à **2 000 €** en helpdesk IT N1 et **1 700 €** en support applicatif N1, pour les positions 1 à 4.
+
+À 1 499 €, une position seule **perd 154 €/mois** après agent et manager, avant outils. Descendre à 1 499 € est une décision de grille, avec cette conséquence ; ce document ne la prend pas.
 
 | Positions, même métier | CA helpdesk / mois | ACV helpdesk | Contribution helpdesk | CA support / mois | ACV support | Contribution support |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -27,49 +22,89 @@ Le manager est déclenché dès la première position. Chaque position ajoutée 
 | 2 | 4 000 € | 48 000 € | **+1 504 €** (38 %) | 3 400 € | 40 800 € | **+904 €** (27 %) |
 | 3 | 6 000 € | 72 000 € | **+2 661 €** (44 %) | 5 100 € | 61 200 € | **+1 761 €** (35 %) |
 | 4 | 8 000 € | 96 000 € | **+3 818 €** (48 %) | 6 800 € | 81 600 € | **+2 618 €** (39 %) |
-| 5 | 9 750 € | 117 000 € | **+4 725 €** (48 %) | 8 300 € | 99 600 € | **+3 275 €** (39 %) |
 
-Contributions mensuelles à régime plein, après agents et manager, **avant** outils (68 €/mois), onboarding, taxes et coûts non renseignés. Le taux entre parenthèses est la contribution rapportée au CA.
+Contributions mensuelles à régime plein, après agents et manager, **avant** outils (68 €/mois), onboarding, taxes et coûts non renseignés. Le taux entre parenthèses est la contribution rapportée au CA. Les quatre premières positions restent au tarif d'entrée : un partenaire peut quadrupler sa capacité **sans aucune remise**.
 
-Deux conséquences :
+## 3. Ce qui baisse quand un compte grossit
 
-1. **Le ticket et la marge montent ensemble.** Le taux de contribution passe de 17 % à 48 % en helpdesk entre une et quatre positions, à prix unitaire identique.
-2. **En support, une position seule ne se vend pas comme contrat cible** : elle contribue 47 €/mois avant outils. Le prévisionnel l'écrit déjà (§3). Mettre la configuration à deux positions au centre du menu n'est pas qu'un levier d'upsell ; c'est le seuil où le contrat support devient sain.
+Les deux lectures sont vraies, à deux moments différents.
 
-## 3. Le menu en trois configurations
+**Au démarrage, c'est le manager.** Le prévisionnel budgète un manager dès la première position d'un métier. Tant que Salverys n'a qu'un ou deux comptes, ce manager pèse **810 €** sur une position seule, 405 € par position sur deux, 101 € par position sur huit. C'est ce qui rend la position support isolée quasi nulle (+47 €).
 
-Trois configurations, **toutes au prix de la grille**. Ce qui distingue les configurations est d'abord la capacité ; les services supplémentaires sont ceux que cette capacité permet réellement de tenir. Chaque configuration s'annonce en **total mensuel**, jamais en prix par position seul (`PRICING.md` §1).
+**À l'échelle, ce sont les coûts fixes du compte.** Une fois huit agents en poste dans un métier, tous partenaires confondus, le manager coûte environ 101 € par position, quelle que soit la taille de chaque compte. Le prévisionnel suppose d'ailleurs ce partage entre partenaires, et le qualifie d'**optimiste** (`FINANCE-PREVISIONNEL.md` §2). Ce qui se dilue alors avec la taille du compte, c'est ce qu'on paie **une fois par partenaire** :
 
-| | **Démarrage** | **Standard** — configuration cible | **Étendue** |
+| Coût fixe par compte | Chiffré aujourd'hui ? |
+|---|---|
+| Socle d'onboarding | **Oui : 400 €** par contrat, plus 400 € par position |
+| Apprentissage des outils du partenaire (ticketing, accès, procédures) | Partiellement, dans l'onboarding |
+| Gestion du compte, revues mensuelles, reporting | **Non** : temps du fondateur ou du manager, non valorisé |
+| Sécurité, accès, conformité propres au partenaire | **Non** |
+
+Conséquence : suivre la **marge par compte**, coûts fixes du compte compris (§8), et pas seulement la marge par position.
+
+## 4. Le menu en trois configurations
+
+Le prix de chaque configuration est le **socle de positions de la grille**, plus un **pack de services** facturé à part et visible sur le devis. Les montants des packs sont des propositions à arbitrer (§9, décision n° 2).
+
+| | **Démarrage** | **Standard** — configuration recommandée | **Étendue** |
 |---|---|---|---|
 | Positions dédiées (35 h/semaine chacune) | 1 | 2 | 3 à 4 |
-| Helpdesk IT N1 | **2 000 €/mois** | **4 000 €/mois** | **6 000 à 8 000 €/mois** |
-| Support applicatif N1 | **1 700 €/mois** | **3 400 €/mois** | **5 100 à 6 800 €/mois** |
-| Présence possible dans la semaine | 35 h, placées dans la fenêtre convenue | 70 h : **8 h–20 h** en semaine (60 h) avec 10 h de marge, ou **6 h–20 h** (70 h) sans marge | 105 à 140 h : amplitude élargie, samedi selon planning au devis |
+| Socle helpdesk IT N1 | 2 000 € | 4 000 € | 6 000 à 8 000 € |
+| Socle support applicatif N1 | 1 700 € | 3 400 € | 5 100 à 6 800 € |
+| Pack de services | — | **Pilotage : +500 €/mois** | **Pilotage étendu : +1 000 à 1 500 €/mois** |
+| **Total helpdesk / mois** | **2 000 €** | **4 500 €** | **7 000 à 7 500 €** (3 positions) |
+| **Total support / mois** | **1 700 €** | **3 900 €** | **6 100 à 6 600 €** (3 positions) |
+| Contribution helpdesk / mois | +347 € | +2 004 € | +3 661 à +4 161 € |
+| Contribution support / mois | +47 € | +1 404 € | +2 761 à +3 261 € |
+
+Contributions calculées en supposant que les packs ne créent pas de coût décaissé supplémentaire. Ce n'est vrai qu'en partie : ils consomment du temps d'agent sur les 35 h, du temps de manager et du temps de fondateur. Il faudra mesurer ce temps avant de fixer les montants définitifs.
+
+**Contenu** :
+
+| | Démarrage | Standard | Étendue |
+|---|---|---|---|
 | Niveau 1 sous la marque et dans les outils du partenaire | Oui | Oui | Oui |
-| Contrôle qualité (script, double écoute) et reporting mensuel avec revue de service | Oui | Oui | Oui |
+| Contrôle qualité (script, double écoute), reporting mensuel et revue de service | Oui | Oui | Oui |
 | Engagement ≥ 90 % sur l'indicateur du métier, avoir de 20 % | Oui | Oui | Oui |
-| Absences | Le manager prend les absences ponctuelles | Deux agents formés au même périmètre : la file reste tenue pendant une absence, à capacité réduite | Idem, avec plus de redondance |
-| Base de connaissance du partenaire tenue à jour | — | Oui, sur le temps des positions | Oui |
-| Revue mensuelle des escalades N2 (motifs, tickets récurrents, escalades évitables) | — | Oui | Oui, avec plan d'amélioration suivi |
-| N1+ (§4) | — | En option, si décidé | En option, si décidé |
+| Continuité en cas d'absence | **Minimum écrit** (ci-dessous) | **Continuité assurée** par un second agent formé au périmètre | Idem, avec plus de redondance |
+| Base de connaissance du partenaire tenue à jour | — | Pack Pilotage | Oui |
+| Revue mensuelle des escalades N2 : motifs, tickets récurrents, escalades évitables | — | Pack Pilotage | Oui, avec plan d'amélioration suivi |
+| Présence possible dans la semaine | 35 h, placées dans la fenêtre convenue | 70 h : 8 h–20 h en semaine avec 10 h de marge, ou 6 h–20 h sans marge | 105 à 140 h, samedi selon planning au devis |
+| FR/EN, engagement de service prioritaire | — | — | **Activables après la revue à trois mois**, au prix fixé dans le contrat (§6) |
+| N1+ (§5) | — | Supplément par position | Supplément par position |
 
-Règles de présentation :
+**Pourquoi FR/EN et le service prioritaire ne sont pas dans le prix de départ d'Étendue.** L'équipe est à zéro salarié. Aucun historique de service n'existe pour garantir un délai plus court que le standard, et l'anglais des candidats n'est encore qu'auto-évalué (« anglais ~70 % » dans le vivier). Les deux se chiffrent dès le premier contrat et s'activent par avenant une fois mesurés ou testés. Les vendre au démarrage exposerait à l'avoir de 20 % ou à une promesse non tenue.
 
-- **La configuration Standard est celle qu'on recommande** et qu'on détaille en premier. Démarrage existe pour qu'un partenaire prudent ait une porte d'entrée ; il ne doit pas être le point de comparaison implicite.
-- **L'amplitude n'est pas une option, c'est de la capacité.** Couvrir 8 h–20 h en semaine demande 60 h, soit 1,71 position (`PRICING.md` §1, horaires) : c'est la configuration Standard, pas une position unique avec supplément.
-- **La « couverture des absences » ne se vend pas comme garantie.** `PRICING.md` §4 exclut un remplacement nominatif gratuit. Avec deux positions, on décrit ce qui se passe réellement : la file continue, à capacité réduite.
-- **Rien d'une configuration n'est présenté comme déjà en service** : l'équipe est à zéro salarié. Première prise de tickets visée vers six semaines après signature, autonomie visée 2,5 à 3,5 mois, jalons datés au devis.
-- **Au-delà de quatre positions**, la cinquième et les suivantes passent au tarif volume sur minimum ferme ; à partir de douze, devis sur coût réel (`PRICING.md` §1).
+### Continuité minimale dans Démarrage
 
-## 4. N1+ : prendre en charge la charge évitable du N2
+Un partenaire à une position ne doit pas se retrouver sans service le jour où l'agent est absent. C'est le compte le plus fragile, et l'argument le plus facile pour un concurrent. Le minimum écrit au contrat :
 
-C'est l'option qui fait passer Salverys de la vente de capacité à la prise en charge d'un résultat opérationnel. Elle parle directement à la douleur des ESN/MSP : des techniciens N2 occupés par du N1 (`PRODUIT-ET-OFFRES.md` §1).
+- **Absence ponctuelle ou congé planifié** : le manager formé au compte tient la file **dès le premier jour**, à capacité réduite. C'est déjà dans `PRICING.md` §4. Sur un compte d'une position, le manager a la disponibilité pour le faire.
+- **Congés** : planifiés et annoncés au partenaire au moins [X] semaines à l'avance.
+- **Absence longue imprévue** (au-delà de [N] jours ouvrés) : remplacement par un agent formé au compte sous [X] jours ouvrés. Salverys ne peut promettre ce délai **que lorsqu'un second agent du même métier est en poste** et formé en croisé sur ce compte. D'ici là, le manager reste la solution, et le devis le dit.
+
+Les valeurs entre crochets sont à fixer (décision n° 3). Dans Standard, un second agent est formé au même périmètre : la file ne dépend plus d'une seule personne.
+
+**À corriger dans le modèle** : le manager n'a pas de ligne téléphonique budgétée (`FINANCE-PREVISIONNEL.md` §2). S'il tient la file pendant les absences, il en faut une.
+
+### Règles de présentation
+
+- **Standard est la configuration qu'on recommande** et qu'on présente en premier. Démarrage est la porte d'entrée d'un partenaire prudent, pas le point de comparaison.
+- **Toujours annoncer un total mensuel**, jamais un prix par position isolé (`PRICING.md` §1).
+- **L'amplitude horaire est de la capacité, pas une option.** Couvrir 8 h–20 h en semaine demande 60 h, soit 1,71 position (`PRICING.md` §1).
+- **Rien n'est présenté comme déjà en service.** Première prise de tickets visée vers six semaines après signature, autonomie visée à 2,5 à 3,5 mois, jalons datés au devis.
+- **Au-delà de quatre positions**, la cinquième et les suivantes passent au tarif volume, contre un minimum ferme. À partir de douze positions, devis sur coût réel (`PRICING.md` §1).
+
+## 5. N1+ : un supplément par position, pas une offre à part
+
+Le N1+ fait passer Salverys de la vente de capacité à la prise en charge d'un résultat opérationnel. Il répond à la douleur principale des ESN/MSP : des techniciens N2 occupés par du N1 (`PRODUIT-ET-OFFRES.md` §1).
+
+**Prix proposé : +250 à +400 € par position et par mois**, ajouté au socle de la grille. Deux positions helpdesk en N1+ reviennent à 4 500 à 4 800 € avant pack. Ce montant couvre le temps de diagnostic et de base de connaissance. Si le N1+ exige un profil plus qualifié que le salaire uniforme de 3 250 000 Ar brut, le supplément doit aussi couvrir ce surcoût (décision n° 4).
 
 | | Support N1 | N1+ |
 |---|---|---|
-| Traitement | Qualification, procédure, résolution, escalade | Idem, plus diagnostic poussé avant escalade dans les limites de droits convenues |
-| Ticket escaladé | Qualifié | **Enrichi** : diagnostic fait, étapes tentées, pièces jointes, hypothèse |
+| Traitement | Qualification, procédure, résolution, escalade | Idem, plus diagnostic poussé avant escalade, dans les limites de droits convenues |
+| Ticket escaladé | Qualifié | **Enrichi** : diagnostic, étapes tentées, pièces jointes, hypothèse |
 | Base de connaissance | Consultée | **Complétée** à chaque cas résolu non documenté |
 | Tickets récurrents | Traités | **Identifiés** et remontés avec leur volume |
 | Revue mensuelle | Service et qualité | Plus : **taux d'escalade évitable**, motifs, actions décidées avec le partenaire |
@@ -77,68 +112,84 @@ C'est l'option qui fait passer Salverys de la vente de capacité à la prise en 
 **Phrase commerciale :**
 « Vous pouvez nous confier de la capacité N1. Vous pouvez aussi nous confier un périmètre avec un objectif : réduire progressivement ce qui arrive à votre N2 alors que le N1 aurait pu le traiter. On mesure d'abord votre point de départ, puis on le suit chaque mois avec vous. »
 
-Garde-fous :
+**Cadre contractuel** (annexe de niche du contrat, `04-Closing/MODELE-CONTRAT-PRESTATION.md`) :
 
-- **Aucun pourcentage de réduction promis.** Aucune base n'existe tant qu'on n'a pas mesuré le périmètre. Les deux premiers mois en régime servent à établir le taux d'escalade de départ et la définition d'une escalade « évitable », écrite avec le partenaire.
-- **Obligation de moyens, pas de résultat.** L'objectif figure dans la revue de service, pas dans l'avoir contractuel. Le taux d'escalade dépend aussi des droits accordés, de la qualité de la base et des décisions du N2.
-- **Droits d'accès et limite d'intervention écrits au devis.** Un diagnostic plus poussé veut souvent dire des droits plus larges ; c'est un sujet de sécurité à cadrer avec le partenaire, pas à supposer.
-- **Profil et coût à vérifier.** Si le N1+ exige des agents plus qualifiés que le profil actuel, le salaire uniforme de 3 250 000 Ar brut ne tient plus pour ces postes : le supplément de prix doit alors couvrir le surcoût salarial en plus du temps passé sur la base.
-- **Bénéfice contractuel :** confier un périmètre avec objectifs et encadrement Salverys renforce la lecture « prestation de support », et non mise à disposition de personnel (`PRODUIT-ET-OFFRES.md` §1).
+1. **Période de référence de 60 à 90 jours en régime**, avant tout objectif. Elle commence après la transition, pas à la signature. Le taux d'escalade mesuré pendant cette période sert de point de départ.
+2. **Définition écrite de l'« escalade évitable »**, arrêtée avec le partenaire avant la fin de la période de référence : catégories de tickets concernées, droits dont dispose le N1, cas exclus. Sans cette définition, chaque revue devient un débat.
+3. **Engagement de moyens** : diagnostic avant escalade, enrichissement du ticket, mise à jour de la base, revue mensuelle. L'objectif porte sur une **tendance** du taux d'escalade évitable, jamais sur un résultat garanti. Il n'entre pas dans l'avoir de 20 %, qui reste attaché à l'indicateur N1 du métier.
+4. **Droits d'accès et limites d'intervention écrits.** Un diagnostic plus poussé demande souvent des droits plus larges ; c'est un sujet de sécurité à cadrer avec le partenaire.
+5. **Aucun pourcentage de réduction promis** avant la fin de la période de référence, ni dans la prospection ni dans le devis.
 
-## 5. Land & expand en marque blanche
+Confier un périmètre avec objectifs et encadrement Salverys renforce aussi la lecture « prestation de support », plutôt que mise à disposition de personnel (`PRODUIT-ET-OFFRES.md` §1).
 
-En marque blanche, le partenaire ne grossit pas seulement son besoin : il **signe de nouveaux clients finaux**. Chaque client final qu'une ESN ou un éditeur intègre est une occasion de position supplémentaire. Le compte s'étend par ses clients, pas seulement par ses pics.
+## 6. Écrire l'expansion dans le premier contrat
 
-Trajectoire visée, calée sur le contrat de `PRICING.md` §3 (trois mois initiaux, puis douze mois renouvelables) :
+En marque blanche, le partenaire ne grossit pas seulement par ses pics : il **signe de nouveaux clients finaux**, et chacun peut appeler une position de plus. Pour que l'extension ait lieu, elle doit être prévue dans le contrat initial.
 
-| Jalon | Étape | Appui de la conversation |
+**1. Options à prix fixés dans le premier contrat.** Une annexe « Extensions » liste la position supplémentaire au tarif de la grille, les packs, le supplément N1+, FR/EN et le service prioritaire, chacun avec son prix. Ces prix sont garantis pendant la durée du contrat, douze mois renouvelables, sous réserve de révision annuelle. Activer une option devient un **avenant**, pas une nouvelle négociation.
+
+**2. Revue à trois mois, prévue au contrat.** Elle coïncide avec la fin des trois mois initiaux et le passage à la période de douze mois (`PRICING.md` §3). Elle s'appuie sur les données du compte : file en attente, indicateur de service, escalades, tickets hors plage couverte. C'est le moment prévu pour proposer l'extension.
+
+**3. Déclencheurs objectifs**, définis dans l'annexe avec leur mode de mesure dans l'outil du partenaire :
+
+| Déclencheur | Seuil proposé | Proposition associée |
 |---|---|---|
-| Signature | 1 à 2 positions sur un premier client final ou périmètre pilote | Configuration Standard recommandée, Démarrage accepté |
-| ~6 semaines | Première prise de tickets | — |
-| Fin des trois mois initiaux | Passage à la période de 12 mois : **proposer la 2e position** à ce moment | Données mesurées : file en attente, tickets hors plage couverte, temps N2 encore pris par du N1 |
-| ~6 mois | N1+ ou base de connaissance étendue, si la base de départ est mesurée | Taux d'escalade de départ et motifs récurrents |
-| ~9 mois | Deuxième client final du partenaire, ou second périmètre | Réemploi du process déjà rodé sur le premier client |
-| 12 mois | Amplitude élargie, bilingue si validé, renouvellement | Revue annuelle de service |
+| File en attente | Tickets de plus de [N] jours ouvrés au-dessus de [X] % de la file, 4 semaines de suite | Position supplémentaire |
+| Taux d'occupation | Plus de **85 %** sur 4 semaines glissantes. Taux d'occupation = temps de traitement ÷ temps de présence planifié | Position supplémentaire |
+| Tickets hors plage | Plus de [X] % des tickets arrivés hors des heures couvertes | Amplitude étendue, donc capacité |
+| Escalades | Taux d'escalade évitable stable ou en hausse après la période de référence | N1+ |
+| Nouveau client final du partenaire | Signature annoncée par le partenaire | Position dédiée à ce client, ou extension de la capacité |
 
-Ce calendrier est une intention commerciale, pas une promesse au partenaire ni une hypothèse de trésorerie : aucune expansion n'est intégrée dans les scénarios de `FINANCE-PREVISIONNEL.md` §4.
+Un déclencheur **ouvre une proposition**, il ne facture rien automatiquement. Une nouvelle position demande environ six semaines de recrutement et de formation. Les seuils doivent donc alerter **avant** la saturation, pas après.
 
-**Deuxième périmètre : attention au manager.** Le prévisionnel ne mutualise pas la supervision entre deux métiers. Ajouter **une** position support chez un partenaire qui a deux positions helpdesk déclenche un second manager : cette position contribue **+47 €/mois**. À CA proche, une troisième position helpdesk contribue **+1 157 €/mois**. Ordre de préférence : d'abord approfondir le même métier ; ouvrir un second métier à partir de **deux positions**, ou après avoir décidé qu'un manager peut couvrir deux métiers chez un même partenaire (décision n° 6, §8).
+**4. Trajectoire visée** — intention commerciale, pas hypothèse de trésorerie : aucune expansion n'est intégrée aux scénarios de `FINANCE-PREVISIONNEL.md` §4.
 
-Leviers déjà dans la grille pour appuyer l'expansion : le **tarif volume à partir de la 5e position**, contre minimum ferme, et l'**exclusivité par verticale de client final à partir de cinq positions fermes** (`PRICING.md` §5).
+| Jalon | Étape |
+|---|---|
+| Signature | 1 à 2 positions sur un premier client final ou un périmètre pilote |
+| Vers 6 semaines | Première prise de tickets |
+| 3 mois | Revue prévue au contrat ; début de la période de référence N1+ si l'autonomie est atteinte |
+| 6 mois | Fin de la période de référence ; N1+ ou pack Pilotage |
+| 9 mois | Deuxième client final du partenaire, ou second périmètre |
+| 12 mois | Renouvellement ; FR/EN ou service prioritaire si testés |
 
-## 6. Les onze leviers, un par un
+**Deuxième périmètre : attention au manager.** Le prévisionnel ne mutualise pas la supervision entre deux métiers. Une position support ajoutée chez un partenaire qui a deux positions helpdesk déclenche un second manager et contribue **+47 €/mois**. Une troisième position helpdesk contribue **+1 157 €/mois**. Approfondir d'abord le même métier, et ouvrir un second métier à partir de deux positions, sauf décision contraire sur la supervision (décision n° 7).
 
-| Levier | Traitement proposé | Condition avant de le vendre |
-|---|---|---|
-| Plus de positions | **Cœur du menu** (§3) | Aucune : c'est la grille |
-| Amplitude étendue | **Capacité**, intégrée aux configurations Standard et Étendue | Planning écrit au devis ; week-ends, fériés et astreintes sur devis |
-| Deuxième périmètre | Expansion à 9 mois (§5), à 2 positions minimum | Décision n° 6 sur le manager |
-| Capacité flexible en pic | Proposer le **modèle A** (1 120 €/400 tickets, 2,80 € au-delà) en complément d'un poste dédié | A n'est pas encore dimensionné : mesurer temps de traitement et capacité du pool avant de le vendre (`PRODUIT-ET-OFFRES.md` §3) |
-| Engagement de service renforcé | **Pas avant trois mois de mesure** | Aucun historique de service n'existe. Vendre un délai plus court avant d'avoir tenu le délai standard expose à l'avoir de 20 % |
-| Reporting avancé | Intégré à Standard : revue des escalades | Modèle : `05-Process-Delivery/MODELE-REPORTING-CLIENT.md` |
-| Gestion de la base de connaissance | Intégrée à Standard, sur le temps des positions | Dire qu'elle consomme de la capacité, pas qu'elle est gratuite |
-| Onboarding / migration documentaire | Frais d'activation à décider (décision n° 5) | `PRICING.md` §3 exclut aujourd'hui tout frais de mise en service ; les activer change la grille |
-| N1+ | **Option principale** (§4) | Décisions n° 2 et 3 |
-| Bilingue FR/EN | Option pour les partenaires canadiens ou à clients internationaux | Niveau d'anglais **testé** à l'embauche ; le vivier ne comporte qu'une auto-évaluation (« anglais ~70 % »). Supplément à décider (décision n° 4) |
-| Couverture des absences | **Conséquence de la 2e position**, pas une garantie vendue | `PRICING.md` §4 : ni seconde position simultanée ni remplaçant nominatif gratuit |
+## 7. Panier moyen : une hypothèse de répartition, pas une prévision
 
-## 7. Indicateurs commerciaux
+Répartition proposée pour raisonner : **50 % Démarrage, 35 % Standard, 15 % Étendue**, milieu de fourchette pour Étendue à trois positions.
 
-Le prix par position reste celui de la grille ; on suit la **taille des comptes** :
+| Base | Ticket moyen / mois | ACV moyen | Contribution moyenne / mois | Contribution annuelle / compte |
+|---|---:|---:|---:|---:|
+| Prix de la proposition initiale (1 499 / 3 490 / 5 690 €) | 2 825 € | 33 894 € | **+623 €** | 7 481 € |
+| **Grille helpdesk** (2 000 / 4 500 / 7 250 €) | **3 663 €** | **43 950 €** | **+1 461 €** | **17 537 €** |
+| **Grille support** (1 700 / 3 900 / 6 350 €) | **3 168 €** | **38 010 €** | **+966 €** | **11 597 €** |
 
-- **ACV par partenaire** : CA mensuel du contrat × 12, hors dépôt (le dépôt est une avance, pas du CA).
+Contributions avant outils, onboarding, coûts fixes de compte et temps de pack non mesuré.
+
+Lecture :
+
+- **À 1 499 €, la moitié des comptes (Démarrage) perd de l'argent**, et la contribution moyenne est inférieure de moitié à celle de la grille pour un ticket moyen plus faible de 23 %.
+- **Il n'y a pas encore de ticket moyen « d'aujourd'hui »** : aucun contrat n'est signé. La répartition est une hypothèse à remplacer par les contrats réels dès le premier trimestre de ventes. Elle ne doit pas entrer dans le prévisionnel ni dans un document remis à un financeur.
+
+## 8. Indicateurs commerciaux
+
+- **ACV par partenaire** : CA mensuel × 12, hors dépôt (le dépôt est une avance, pas du CA).
+- **Marge par compte** : contribution après agents, manager attribué, onboarding amorti et temps de gestion du compte (§3). Calculée dans `projection-finances-salverys.html` à la signature et à chaque avenant.
 - **Positions par partenaire** : à la signature, puis à 3, 6 et 12 mois.
 - **Taux d'expansion** : positions à 6 mois ÷ positions à la signature.
-- **Contribution par compte** : calculée dans `projection-finances-salverys.html` à chaque avenant, pas seulement à la signature.
+- **Répartition réelle** entre Démarrage, Standard et Étendue, à comparer à l'hypothèse du §7.
 
 Ces champs s'ajoutent à la table `Comptes` de la base Airtable **au premier contrat signé**, pas avant : une colonne vide sur des comptes non signés n'apporte rien.
 
-## 8. Décisions à prendre (direction)
+## 9. Décisions à prendre (direction)
 
-1. **Adopter le menu en trois configurations** pour le cadrage remis au partenaire (`04-Closing/FICHE-OFFRE-FRANCE-cadrage.html`), avec Standard comme recommandation.
-2. **Prix du N1+** : supplément par position, à fixer pour couvrir au moins le temps de base de connaissance et, si le profil change, le surcoût salarial.
-3. **Profil N1+** : même grille salariale que le N1 ou poste distinct.
-4. **Bilingue FR/EN** : supplément et test de langue à l'embauche.
-5. **Frais d'activation** couvrant l'onboarding réel (400 € de socle + 400 €/position) : voir `FINANCE-PREVISIONNEL.md` §4 pour l'effet sur la trésorerie.
-6. **Supervision multi-métier** : un manager peut-il couvrir helpdesk et support chez un même partenaire ? La réponse fixe la taille minimale d'un second périmètre.
-7. **Modèle A comme capacité de pic** pour un client en poste dédié, une fois le pool mesuré.
+1. **Adopter le menu en trois configurations** dans le cadrage remis au partenaire (`04-Closing/FICHE-OFFRE-FRANCE-cadrage.html`), avec Standard comme recommandation.
+2. **Montants des packs** : Pilotage à +500 €/mois, Pilotage étendu à +1 000 à 1 500 €/mois, après mesure du temps qu'ils consomment.
+3. **Continuité minimale de Démarrage** : délai de prévenance des congés, seuil d'absence longue et délai de remplacement.
+4. **N1+** : supplément entre +250 et +400 €/position, et profil (même grille salariale que le N1 ou poste distinct).
+5. **Annexe « Extensions » au modèle de contrat** : liste des options à prix fixés, revue à trois mois, déclencheurs et leurs seuils.
+6. **Prix FR/EN et service prioritaire**, à fixer dans l'annexe même s'ils ne s'activent qu'après test ou mesure.
+7. **Supervision multi-métier** : un manager peut-il couvrir helpdesk et support chez un même partenaire ?
+8. **Frais d'activation** couvrant l'onboarding réel (400 € de socle + 400 €/position) : voir `FINANCE-PREVISIONNEL.md` §4.
+9. **Débordement mutualisé (modèle A) comme capacité de pic** pour un partenaire en poste dédié, une fois le pool mesuré.
