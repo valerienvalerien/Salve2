@@ -1,241 +1,383 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Combien d'heures vos N2 passent sur du N1 ? — Salverys</title>
-<meta name="description" content="Calculez en 3 minutes, avec vos propres chiffres, combien d'heures vos techniciens N2 consacrent à des tickets de niveau 1 — et ce que ces heures vous coûtent.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Combien d'heures vos techniciens passent-ils sur des demandes simples ? — Salverys</title>
+<meta name="description" content="Calcul gratuit en 3 minutes, avec vos propres chiffres : le temps que vos techniciens confirmés passent sur des mots de passe, des accès et des imprimantes, et ce qu'il vous coûte." />
+<link rel="canonical" href="https://salverys.fr/diagnostic-n1.html" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Salverys" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Combien d'heures vos techniciens passent-ils sur des demandes simples ?" />
+<meta property="og:description" content="Le calcul en 3 minutes, avec vos seuls chiffres." />
+<meta property="og:image" content="https://salverys.fr/assets/img/og-salverys.png" />
+<link rel="stylesheet" href="assets/site.css?v=7" />
 <!--
-  Lead magnet « révéler un problème » (méthode Hormozi, voir échange du 2026-09-26).
+  Lead magnet « révéler un problème » (méthode Hormozi, échange du 2026-09-26).
+  Charte : thème Helpdesk de site.css (.theme-helpdesk — bleu pétrole + corail) et
+  logos helpdesk, comme la ligne de service Helpdesk IT N1.
   Règles tenues par cette page (CLAUDE.md) :
   - AUCUN chiffre Salverys, aucun benchmark, aucune comparaison de coût avec la France :
     tout résultat découle des seules valeurs saisies par le visiteur.
   - Les valeurs pré-remplies sont des EXEMPLES, affichés comme tels.
-  - Urgence = calendrier réel (première prise de tickets visée vers 6 semaines), jamais
-    une limite de capacité.
+  - Urgence = calendrier réel (premiers tickets visés vers 6 semaines), jamais une limite
+    de capacité. Le mot « opérationnel » n'est pas employé.
   - Pas de tracking maison : le formulaire passe par Formspree, déjà utilisé sur l'accueil.
+  - Vocabulaire : on parle à un donneur d'ordre ; on ne juge ni ses méthodes ni ses équipes
+    (02-Prospection/LEAD-MAGNET-CHIFFRAGE-TICKETS.md §1).
 -->
 <style>
-:root{
-  --ink:#18313f;--primary:#013c58;--gold:#8b6424;--yellow:#fce27c;--bg:#f5f8fa;--card:#fff;
-  --line:#dbe5e9;--soft:#5d6d74;--warn-bg:#fff8e7;--warn:#ba8a28;--ok:#2f6b4f;
-  font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);background:var(--bg)
+/* Composants propres au calculateur — tokens de site.css uniquement. */
+.calc-hero { padding: 64px 0 40px; background: var(--bg-soft); }
+.calc-hero h1 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.03em; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; color: var(--primary); max-width: 20ch; margin-bottom: 20px; }
+.calc-hero h1 .hl { color: #fff; background: var(--accent); padding: 0 10px; border-radius: 8px; display: inline-block; line-height: 1.15; }
+.calc-hero .lead { font-size: 19px; color: var(--text-soft); max-width: 62ch; }
+.calc-hero .saas-note { margin-top: 14px; font-size: 14.5px; color: var(--text-mute); max-width: 62ch; }
+
+.calc-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+.calc-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); }
+.calc-card h2, .res-card h2 { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 16px; }
+.calc-card h2 { color: var(--primary); }
+.example-note { background: var(--accent-tint); border-radius: 12px; padding: 12px 16px; font-size: 14px; color: var(--text); margin-bottom: 26px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+.q:first-of-type { border-top: 0; padding-top: 0; }
+.q label { display: block; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.q .hint { display: block; font-size: 14px; color: var(--text-soft); margin-bottom: 10px; line-height: 1.5; }
+.q .opt { font-weight: 500; color: var(--text-mute); }
+.q-input { display: flex; align-items: center; gap: 10px; }
+.q-input input { width: 150px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: 600 17px 'Inter', sans-serif; color: var(--ink); background: #fff; transition: border-color .15s; }
+.q-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
+.q-input span { font-size: 15px; color: var(--text-soft); }
+
+.res-card { position: sticky; top: 90px; background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); }
+.res-card h2 { color: #fff; }
+.res-big { font-size: clamp(48px, 6vw, 68px); font-weight: 800; letter-spacing: -.03em; line-height: 1; color: var(--accent-soft); }
+.res-big-lab { font-size: 16px; color: rgba(255,255,255,.85); margin: 10px 0 24px; }
+.res-list { list-style: none; border-top: 1px solid rgba(255,255,255,.15); }
+.res-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 15px; color: rgba(255,255,255,.8); }
+.res-list li b { font-size: 20px; font-weight: 800; color: #fff; white-space: nowrap; }
+.res-how { margin-top: 20px; font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,.7); }
+.res-how b { color: #fff; font-weight: 600; }
+.res-print { margin-top: 20px; background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.45); border-radius: var(--radius-pill); padding: 10px 18px; font: 600 14px 'Inter', sans-serif; cursor: pointer; }
+.res-print:hover { background: rgba(255,255,255,.1); }
+
+.btn-accent { background: var(--cta); color: var(--cta-text); box-shadow: 0 6px 20px -8px var(--halo), var(--shadow-md); }
+.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px var(--halo), var(--shadow-lg); }
+.date-cible { color: var(--accent-soft); font-weight: 700; white-space: nowrap; }
+
+.chiffrage { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+.chiffrage h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; font-size: clamp(24px, 3vw, 32px); color: var(--primary); margin-bottom: 14px; }
+.chiffrage p { color: var(--text-soft); margin-bottom: 14px; }
+.steps-mini { list-style: none; counter-reset: s; }
+.steps-mini li { counter-increment: s; position: relative; padding: 0 0 18px 48px; font-size: 15px; color: var(--text); }
+.steps-mini li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 10px; background: var(--accent-tint); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.steps-mini li b { display: block; color: var(--primary); }
+
+.hidden-costs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.hidden-costs article { background: var(--bg); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: var(--radius); padding: 24px; }
+.hidden-costs h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+.hidden-costs p { font-size: 15px; color: var(--text-soft); }
+.theme-helpdesk .section-head h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; }
+.theme-helpdesk .contact-band h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; }
+
+@media (max-width: 900px) {
+  .calc-grid, .chiffrage { grid-template-columns: 1fr; }
+  .res-card { position: static; }
+  .hidden-costs { grid-template-columns: 1fr; }
+  .chiffrage { padding: 28px; }
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg)}
-header{background:var(--primary);color:#fff;padding:20px max(20px,calc((100vw - 980px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}
-header a{color:#fff;text-decoration:none}
-header .brand{font-weight:800;letter-spacing:.12em}
-header .back{font-size:.9rem;opacity:.85}
-main{max-width:980px;margin:auto;padding:46px 20px 70px}
-h1{font-size:clamp(1.9rem,4.6vw,3rem);color:var(--primary);margin:8px 0 16px;line-height:1.15}
-h2{color:var(--primary);margin:0 0 14px;font-size:1.35rem}
-p{line-height:1.65;max-width:70ch}
-.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.15em;font-weight:700;font-size:.8rem}
-.lead{font-size:1.18rem}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px;align-items:start}
-.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--yellow);padding:22px;border-radius:4px}
-.field{margin-bottom:16px}
-.field label{display:block;font-weight:700;font-size:.95rem;margin-bottom:4px}
-.field .hint{display:block;font-size:.83rem;color:var(--soft);margin-bottom:6px;line-height:1.45}
-.field input{width:100%;padding:10px 12px;border:1px solid #b9c9d0;border-radius:6px;font-size:1rem;font-family:inherit;color:var(--ink)}
-.field input:focus{outline:2px solid var(--primary);outline-offset:1px}
-.unit{display:flex;align-items:center;gap:8px}
-.unit span{font-size:.9rem;color:var(--soft);white-space:nowrap}
-.example-note{font-size:.83rem;background:var(--warn-bg);border-left:3px solid var(--warn);padding:8px 12px;margin:0 0 18px}
-.results{position:sticky;top:16px}
-.big{font-size:clamp(2.3rem,6vw,3.2rem);font-weight:800;color:var(--primary);line-height:1}
-.big small{font-size:.4em;font-weight:700;color:var(--soft)}
-.res-lab{color:var(--soft);font-size:.92rem;margin:6px 0 20px}
-.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-top:1px solid var(--line);padding-top:16px}
-.res-grid div b{display:block;font-size:1.3rem;color:var(--primary)}
-.res-grid div span{font-size:.85rem;color:var(--soft)}
-.formula{font-size:.8rem;color:var(--soft);margin-top:16px;line-height:1.5}
-.cta-block{margin-top:34px;background:var(--primary);color:#fff;padding:28px;border-radius:4px}
-.cta-block h2{color:#fff}
-.cta-block p{color:rgba(255,255,255,.88)}
-.cta-block .date{color:var(--yellow);font-weight:700}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cta-block label{display:block;font-size:.88rem;font-weight:700;margin-bottom:4px}
-.cta-block input{width:100%;padding:10px 12px;border:0;border-radius:6px;font-size:1rem;font-family:inherit;margin-bottom:12px}
-.btn{display:inline-block;background:var(--yellow);color:var(--primary);border:0;text-decoration:none;padding:13px 20px;border-radius:6px;font-weight:800;font-size:1rem;cursor:pointer;font-family:inherit}
-.btn:disabled{opacity:.6;cursor:wait}
-.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6);margin-left:8px}
-.legal{font-size:.8rem;color:rgba(255,255,255,.7);margin-top:10px}
-.success{display:none;font-weight:700}
-.next{margin-top:34px}
-.next ol{padding-left:20px;line-height:1.7}
-footer{border-top:1px solid #dae3e8;padding:20px;text-align:center;color:#536a74;font-size:.9rem}
-@media (max-width:760px){
-  .layout{grid-template-columns:1fr}
-  .results{position:static}
-  .form-row{grid-template-columns:1fr}
-  .btn-ghost{margin:10px 0 0}
+@media (max-width: 480px) {
+  .calc-card, .res-card { padding: 24px 20px; }
+  .q-input input { width: 120px; }
 }
-@media print{
-  header,.cta-block,.next,footer{display:none}
-  .layout{grid-template-columns:1fr 1fr}
-  body,main{background:#fff}
+@media print {
+  .nav, .topbar, #rappel, #chiffrage, #angles-morts, .footer, .footer-gold, .res-print { display: none !important; }
+  .calc-grid { grid-template-columns: 1fr 1fr; }
+  .res-card { position: static; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 </style>
 </head>
-<body>
-<header>
-  <a class="brand" href="index.html">SALVERYS</a>
-  <a class="back" href="simulateur-helpdesk-it.html">Helpdesk IT N1 en marque blanche →</a>
+<body class="theme-helpdesk">
+
+<!-- TOPBAR -->
+<div class="topbar">Helpdesk IT N1 en marque blanche — <b>premiers tickets visés vers six semaines après signature</b>, sous votre nom et dans vos outils</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-salverys-helpdesk.svg" alt="Salverys" /></a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="simulateur-helpdesk-it.html">Helpdesk IT N1</a>
+      <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+      <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="#rappel" class="nav-cta">Être rappelé</a>
+    </nav>
+    <a href="#rappel" class="nav-cta">Être rappelé</a>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+  </div>
 </header>
 
-<main>
-  <div class="eyebrow">Diagnostic gratuit · ESN, MSP et centres de services</div>
-  <h1>Combien d'heures vos N2 passent-ils sur du N1&nbsp;?</h1>
-  <p class="lead">Un mot de passe réinitialisé par un technicien confirmé, c'est une heure qui n'est ni facturée en projet ni passée sur un vrai incident. Calculez ce que ça représente chez vous, en 3 minutes, <b>avec vos seuls chiffres</b>.</p>
-  <p class="small" style="color:var(--soft);font-size:.92rem">Éditeur SaaS sans niveaux formels&nbsp;? Comptez comme «&nbsp;N2&nbsp;» les développeurs ou l'équipe produit qui répondent au support.</p>
-
-  <div class="layout">
-    <form class="card" id="calc" onsubmit="return false">
-      <h2>Vos chiffres</h2>
-      <p class="example-note">Les valeurs pré-remplies sont des <b>exemples</b> pour montrer le calcul, pas des moyennes de marché. Remplacez-les par les vôtres (un export du mois dernier de votre outil de tickets suffit).</p>
-
-      <div class="field">
-        <label for="tickets">Tickets reçus par mois</label>
-        <span class="hint">Tous canaux confondus, sur le périmètre helpdesk.</span>
-        <div class="unit"><input id="tickets" type="number" min="0" step="10" value="1200"><span>tickets / mois</span></div>
-      </div>
-
-      <div class="field">
-        <label for="partN1">Part de tickets de niveau 1</label>
-        <span class="hint">Résolubles avec une procédure écrite : mots de passe, accès, droits, installations standard, questions d'usage.</span>
-        <div class="unit"><input id="partN1" type="number" min="0" max="100" step="5" value="50"><span>%</span></div>
-      </div>
-
-      <div class="field">
-        <label for="partN2">Part de ces tickets N1 traités par un N2 ou un N3</label>
-        <span class="hint">Faute de N1 disponible : hors heures, pendant les pics, en astreinte, ou parce que le N1 est déjà saturé.</span>
-        <div class="unit"><input id="partN2" type="number" min="0" max="100" step="5" value="30"><span>%</span></div>
-      </div>
-
-      <div class="field">
-        <label for="duree">Temps moyen de traitement d'un ticket N1</label>
-        <span class="hint">Prise en charge, résolution et clôture, interruption comprise.</span>
-        <div class="unit"><input id="duree" type="number" min="0" step="1" value="15"><span>minutes</span></div>
-      </div>
-
-      <div class="field">
-        <label for="coutN2">Coût horaire chargé d'un technicien N2</label>
-        <span class="hint">Salaire brut + charges, rapporté à l'heure travaillée. Votre chiffre de paie.</span>
-        <div class="unit"><input id="coutN2" type="number" min="0" step="1" value="45"><span>€ / heure</span></div>
-      </div>
-
-      <div class="field">
-        <label for="tauxFact">Taux auquel vous facturez une heure de N2 <i>(optionnel)</i></label>
-        <span class="hint">En régie ou en projet. Laissez vide si ces heures ne seraient pas revendues.</span>
-        <div class="unit"><input id="tauxFact" type="number" min="0" step="1" placeholder="ex. 75"><span>€ / heure</span></div>
-      </div>
-    </form>
-
-    <section class="card results" aria-live="polite">
-      <h2>Ce que ça représente</h2>
-      <div class="big" id="rHeures">—</div>
-      <div class="res-lab">heures de N2 par mois consommées par des tickets de niveau 1</div>
-
-      <div class="res-grid">
-        <div><b id="rEtp">—</b><span>équivalent temps plein N2 (base 151,67 h/mois)</span></div>
-        <div><b id="rTickets">—</b><span>tickets N1 par mois qui remontent au N2</span></div>
-        <div><b id="rCoutMois">—</b><span>coût de ces heures par mois, à votre coût chargé</span></div>
-        <div><b id="rCoutAn">—</b><span>sur 12 mois</span></div>
-        <div id="boxFact" hidden><b id="rFact">—</b><span>de chiffre d'affaires non facturé par an, à votre taux</span></div>
-      </div>
-
-      <p class="formula">Calcul : tickets × part N1 × part traitée par un N2 × durée ÷ 60. Aucune donnée Salverys n'entre dans ce résultat. Il ne compare rien au coût d'une externalisation : il mesure seulement le temps que votre N2 passe hors de son niveau.</p>
-      <button class="btn" type="button" onclick="window.print()" style="background:var(--primary);color:#fff;margin-top:6px">Imprimer / enregistrer en PDF</button>
-    </section>
+<!-- ACCROCHE -->
+<section class="calc-hero">
+  <div class="container">
+    <span class="eyebrow"><span class="pulse"></span> Calcul gratuit · 3 minutes · ESN et infogéreurs</span>
+    <h1>Combien d'heures vos techniciens passent-ils sur des <span style="white-space:nowrap"><span class="hl">mots de passe</span>&nbsp;?</span></h1>
+    <p class="lead">Chaque mot de passe réinitialisé par un technicien confirmé, c'est du temps qui n'est ni vendu en projet, ni passé sur une vraie panne. Voyez ce que ça représente chez vous, avec vos propres chiffres.</p>
+    <p class="saas-note">Éditeur de logiciel&nbsp;? Vos «&nbsp;techniciens confirmés&nbsp;», ce sont les développeurs ou l'équipe produit qui répondent au support.</p>
   </div>
+</section>
 
-  <section class="cta-block" id="cta">
-    <h2>Vous voulez rendre ces heures à vos N2&nbsp;?</h2>
-    <p>Salverys opère votre N1 en marque blanche, dans vos outils et sous votre nom. Envoyez-nous ce calcul : nous revenons vers vous <b>sous 24 h ouvrées</b> avec un créneau de 15 minutes. Vos chiffres sont déjà joints, vous n'aurez pas à les réexpliquer.</p>
-    <p>Côté calendrier : la première prise de tickets est visée <b>vers six semaines après la signature</b>, sous réserve du recrutement, de la formation et de vos accès. Un accord signé cette semaine, c'est une première prise de tickets visée autour du <span class="date" id="dateCible">—</span>. L'autonomie complète sur votre périmètre est visée 2,5 à 3,5 mois après la signature.</p>
+<!-- CALCULATEUR -->
+<section class="section" style="padding-top:48px">
+  <div class="container calc-grid">
+    <form class="calc-card" id="calc" onsubmit="return false">
+      <h2>Vos chiffres</h2>
+      <p class="example-note">Les chiffres déjà remplis sont des <b>exemples</b>, là pour montrer le calcul&nbsp;: ce ne sont pas des moyennes du marché. Mettez les vôtres. Un coup d'œil au mois dernier dans votre outil de tickets suffit.</p>
 
-    <form id="form-diag" action="https://formspree.io/f/xjgdkblp" method="POST">
-      <input type="hidden" name="_subject" value="Diagnostic N1 — demande d'échange">
-      <input type="hidden" name="source" value="diagnostic-n1">
-      <input type="hidden" name="diagnostic" id="hDiag">
-      <div class="form-row">
-        <div><label for="d-nom">Nom *</label><input id="d-nom" name="nom" required autocomplete="name"></div>
-        <div><label for="d-societe">Société *</label><input id="d-societe" name="societe" required autocomplete="organization"></div>
+      <div class="q">
+        <label for="tickets">Combien de tickets recevez-vous par mois&nbsp;?</label>
+        <span class="hint">Téléphone, email et portail compris.</span>
+        <div class="q-input"><input id="tickets" type="number" inputmode="numeric" min="0" step="10" value="1200"><span>tickets par mois</span></div>
       </div>
-      <label for="d-email">Email professionnel *</label>
-      <input id="d-email" type="email" name="email" required autocomplete="email" placeholder="vous@societe.fr">
-      <button class="btn" type="submit">Envoyer mon calcul et être rappelé →</button>
-      <a class="btn btn-ghost" href="mailto:contact@salverys.fr?subject=Diagnostic%20N1">Écrire par email</a>
-      <p class="legal">Vos réponses servent uniquement à préparer cet échange. Aucune inscription à une liste de diffusion.</p>
+
+      <div class="q">
+        <label for="simples">Sur 100 tickets, combien sont des demandes simples&nbsp;?</label>
+        <span class="hint">Un mot de passe oublié, un accès à ouvrir, une imprimante qui ne répond plus, un logiciel à installer&nbsp;: tout ce qui se règle en suivant une procédure.</span>
+        <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5" value="50"><span>sur 100</span></div>
+      </div>
+
+      <div class="q">
+        <label for="remontes">Sur 100 demandes simples, combien finissent chez un technicien confirmé&nbsp;?</label>
+        <span class="hint">Parce que personne d'autre n'est là pour les prendre&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
+        <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="100" step="5" value="30"><span>sur 100</span></div>
+      </div>
+
+      <div class="q">
+        <label for="duree">Combien de minutes pour régler une demande simple&nbsp;?</label>
+        <span class="hint">De l'ouverture du ticket à sa fermeture, en comptant le temps d'interruption.</span>
+        <div class="q-input"><input id="duree" type="number" inputmode="numeric" min="0" step="1" value="15"><span>minutes</span></div>
+      </div>
+
+      <div class="q">
+        <label for="cout">Combien vous coûte une heure de technicien confirmé&nbsp;?</label>
+        <span class="hint">Salaire et charges, divisés par les heures travaillées. C'est un chiffre de votre paie.</span>
+        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><span>€ de l'heure</span></div>
+      </div>
+
+      <div class="q">
+        <label for="tarif">Et combien la facturez-vous à vos clients&nbsp;? <span class="opt">(facultatif)</span></label>
+        <span class="hint">Si ce temps pouvait être vendu en régie ou en projet. Sinon, laissez vide.</span>
+        <div class="q-input"><input id="tarif" type="number" inputmode="numeric" min="0" step="1" placeholder="ex. 75"><span>€ de l'heure</span></div>
+      </div>
     </form>
-    <p class="success" id="diag-success">✓ Calcul envoyé. Nous revenons vers vous sous 24 h ouvrées.</p>
-  </section>
 
-  <section class="card next" id="chiffrage">
-    <h2>Remplacer ces estimations par vos vrais tickets</h2>
-    <p>Ce calcul repose sur des moyennes que vous avez estimées. Si vous préférez une mesure : envoyez-nous l'export anonymisé d'un mois de tickets (titre, heure de création et niveau de résolution suffisent). Nous en tirons 100 au hasard et vous rendons une page <b>sous 5 jours ouvrés</b> : la part transférable au N1, ses horaires d'arrivée, et le premier lot que nous pourrions prendre.</p>
-    <p>Nous ne regardons ni vos process ni vos équipes, seulement des volumes, des motifs et des horaires. C'est la première étape de tout devis, faite avant et gratuitement. Nous signons votre accord de confidentialité avant tout envoi, et le résultat vous reste, que l'on travaille ensemble ou non.</p>
-    <a class="btn" style="background:var(--primary);color:#fff" href="mailto:contact@salverys.fr?subject=Chiffrage%20sur%20tickets%20r%C3%A9els">Demander le chiffrage sur 100 tickets</a>
-  </section>
+    <aside class="res-card" aria-live="polite">
+      <h2>Chez vous, ça fait&nbsp;:</h2>
+      <div class="res-big" id="rHeures">—</div>
+      <p class="res-big-lab">par mois, passées par vos techniciens confirmés sur des demandes simples.</p>
+      <ul class="res-list">
+        <li><span>Soit, en journées de 7 h</span><b id="rJours">—</b></li>
+        <li><span>Demandes simples qui atterrissent chez eux</span><b id="rTickets">—</b></li>
+        <li><span>Salaire payé pour ce travail, par mois</span><b id="rMois">—</b></li>
+        <li><span>Sur un an</span><b id="rAn">—</b></li>
+        <li id="lFact" hidden><span>Temps que vous auriez pu facturer, sur un an</span><b id="rFact">—</b></li>
+      </ul>
+      <p class="res-how" id="rHow">—</p>
+      <p class="res-how">Rien d'autre que vos chiffres&nbsp;: aucune moyenne du marché, aucune comparaison avec nos prix.</p>
+      <button class="res-print" type="button" onclick="window.print()">Garder ce calcul (imprimer ou PDF)</button>
+    </aside>
+  </div>
+</section>
 
-  <section class="next">
-    <h2>Comment lire ce chiffre</h2>
-    <ol>
-      <li><b>Le plus fiable, c'est votre export.</b> Filtrez un mois de tickets par catégorie et par technicien affecté : la part N1 traitée par vos N2 se lit directement.</li>
-      <li><b>Le coût n'est qu'une partie du problème.</b> Un N2 interrompu par un ticket simple perd aussi du temps à reprendre ce qu'il faisait, et ce temps n'apparaît pas dans le calcul.</li>
-      <li><b>Les tickets hors heures pèsent plus lourd.</b> S'ils partent en astreinte, ils se paient au tarif d'astreinte, pas au coût horaire normal.</li>
-    </ol>
-  </section>
-</main>
+<!-- RAPPEL -->
+<section class="section deep contact-band" id="rappel">
+  <span class="hero-bg-blob b1"></span>
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div class="kicker">La suite</div>
+      <h2>Rendez ces heures à <span class="hl">vos techniciens</span>.</h2>
+      <p>Salverys prend en charge vos demandes simples, sous votre nom et dans vos outils. Vos techniciens restent sur les vraies pannes et sur ce que vous facturez.</p>
+      <ul class="tick">
+        <li>Envoyez-nous ce calcul&nbsp;: on vous rappelle sous 24 h ouvrées pour en parler 15 minutes.</li>
+        <li>Vos chiffres partent avec la demande&nbsp;: vous n'aurez pas à les réexpliquer.</li>
+        <li>Si on signe cette semaine, nos premiers tickets chez vous sont visés autour du <span class="date-cible" id="dateCible">—</span>&nbsp;: environ six semaines, le temps de recruter, de former et d'ouvrir les accès.</li>
+        <li>L'équipe est visée pleinement autonome sur votre périmètre 2,5 à 3,5 mois après la signature.</li>
+      </ul>
+    </div>
+    <div class="contact-card">
+      <form id="form-diag" action="https://formspree.io/f/xjgdkblp" method="POST">
+        <input type="hidden" name="_subject" value="Calcul demandes simples — demande de rappel" />
+        <input type="hidden" name="source" value="diagnostic-n1" />
+        <input type="hidden" name="calcul" id="hCalcul" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="d-nom">Nom *</label>
+            <input type="text" id="d-nom" name="nom" required placeholder="Dupont" autocomplete="family-name" />
+          </div>
+          <div class="form-field">
+            <label for="d-societe">Société *</label>
+            <input type="text" id="d-societe" name="societe" required placeholder="Votre ESN" autocomplete="organization" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="d-email">Email professionnel *</label>
+          <input type="email" id="d-email" name="email" required placeholder="vous@societe.fr" autocomplete="email" />
+        </div>
+        <div class="form-field">
+          <label for="d-tel">Téléphone <span style="font-weight:500">(pour le rappel)</span></label>
+          <input type="tel" id="d-tel" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" />
+        </div>
+        <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;">
+          Envoyer mon calcul et être rappelé <span class="arrow">→</span>
+        </button>
+        <p class="form-legal">Vos réponses servent seulement à préparer cet appel. Pas de lettre d'information, pas de relance automatique.</p>
+      </form>
+      <div id="diag-success" class="form-success" style="display:none">
+        <div class="form-success-icon">✓</div>
+        <p>Calcul envoyé&nbsp;!</p>
+        <p class="form-success-sub">On vous rappelle sous 24 h ouvrées.<br>
+        En attendant&nbsp;: <a href="mailto:contact@salverys.fr">contact@salverys.fr</a></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer>Salverys · Support francophone en marque blanche · Antananarivo · <a href="mentions-legales.html">Mentions légales</a></footer>
+<!-- CHIFFRAGE SUR VRAIS TICKETS -->
+<section class="section soft" id="chiffrage">
+  <div class="container">
+    <div class="chiffrage">
+      <div>
+        <div class="kicker">Aller plus loin, gratuitement</div>
+        <h2>Des chiffres de tête, ou vos vrais tickets&nbsp;?</h2>
+        <p>Le calcul ci-dessus repose sur vos estimations. Pour un chiffre sûr, on peut le refaire sur vos tickets du mois dernier.</p>
+        <p>Nous ne jugeons ni vos méthodes ni vos équipes&nbsp;: nous comptons des volumes, des sujets et des heures. C'est la première étape de n'importe quel devis, faite avant et gratuitement. Nous signons votre accord de confidentialité avant tout envoi, et la page vous reste, que l'on travaille ensemble ou non.</p>
+        <a class="btn btn-accent" href="mailto:contact@salverys.fr?subject=Chiffrage%20sur%20100%20tickets">Demander le chiffrage sur 100 tickets <span class="arrow">→</span></a>
+      </div>
+      <ol class="steps-mini">
+        <li><b>Vous exportez un mois de tickets</b>Sans noms ni clients&nbsp;: le titre, l'heure d'arrivée et qui l'a traité suffisent. Un filtre, un clic.</li>
+        <li><b>Nous en tirons 100 au hasard</b>Pas les 100 derniers&nbsp;: 100 répartis sur tout le mois, pour que le résultat tienne.</li>
+        <li><b>Sous 5 jours ouvrés, vous recevez une page</b>Combien de tickets se règlent par une procédure, à quelles heures ils arrivent, et par quoi on pourrait commencer.</li>
+      </ol>
+    </div>
+  </div>
+</section>
 
+<!-- CE QUE LE CALCUL NE MONTRE PAS -->
+<section class="section" id="angles-morts">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">À garder en tête</div>
+      <h2>Ce que le calcul ne montre pas</h2>
+    </div>
+    <div class="hidden-costs">
+      <article>
+        <h3>Le temps pour s'y remettre</h3>
+        <p>Un technicien coupé en plein diagnostic pour un mot de passe met du temps à reprendre le fil. Ce temps-là n'est pas compté.</p>
+      </article>
+      <article>
+        <h3>Le prix des soirs et des week-ends</h3>
+        <p>Une demande simple traitée en astreinte se paie au tarif de l'astreinte, pas à l'heure normale.</p>
+      </article>
+      <article>
+        <h3>Le chiffre exact est dans votre outil</h3>
+        <p>Filtrez le mois dernier par sujet et par technicien&nbsp;: vous verrez tout de suite qui traite quoi.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="index.html"><img class="brand-logo" src="assets/logo-salverys-blanc-helpdesk.svg" alt="Salverys" /></a>
+        <p class="brand-desc">Support IT &amp; Applicatif</p>
+        <p style="max-width:280px;margin-top:12px;font-size:14px;">Helpdesk IT N1 en marque blanche pour ESN et infogéreurs, depuis Antananarivo, en français et à l'heure de Paris.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Métiers</h5>
+          <a href="simulateur-helpdesk-it.html">Helpdesk IT N1 — Support utilisateurs</a>
+          <a href="simulateur-informatique.html">Support Applicatif &amp; Métier</a>
+          <a href="simulateur-salverys.html">Télésecrétariat médical</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:contact@salverys.fr">contact@salverys.fr</a>
+          <a href="#rappel">Être rappelé</a>
+        </div>
+        <div class="footer-col">
+          <h5>Salverys</h5>
+          <a href="index.html#methode">Qui sommes-nous</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="mentions-legales.html">Mentions légales</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© Salverys — Antananarivo → France · Belgique · Canada</span>
+      <span>Calcul indicatif, établi à partir de vos seuls chiffres</span>
+    </div>
+  </div>
+</footer>
+<div class="footer-gold" aria-hidden="true"></div>
+
+<script src="assets/site.js?v=6"></script>
 <script>
 (function () {
-  var ids = ['tickets', 'partN1', 'partN2', 'duree', 'coutN2', 'tauxFact'];
   var nf0 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
-  var nf1 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+  var nf1 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
   var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-  var H_MOIS = 151.67; // durée légale mensuelle à 35 h/semaine
+  var H_JOUR = 7; // journée de travail à 35 h/semaine
 
   function val(id) {
     var v = parseFloat(document.getElementById(id).value);
     return isFinite(v) && v >= 0 ? v : 0;
   }
-  function pct(id) { return Math.min(val(id), 100) / 100; }
+  function sur100(id) { return Math.min(val(id), 100) / 100; }
   function set(id, txt) { document.getElementById(id).textContent = txt; }
 
   function calc() {
-    var ticketsN2 = val('tickets') * pct('partN1') * pct('partN2');
-    var heures = ticketsN2 * val('duree') / 60;
-    var coutMois = heures * val('coutN2');
-    var taux = val('tauxFact');
+    var remontes = val('tickets') * sur100('simples') * sur100('remontes');
+    var heures = remontes * val('duree') / 60;
+    var mois = heures * val('cout');
+    var tarif = val('tarif');
 
     set('rHeures', nf0.format(heures) + ' h');
-    set('rEtp', nf1.format(heures / H_MOIS));
-    set('rTickets', nf0.format(ticketsN2));
-    set('rCoutMois', eur.format(coutMois));
-    set('rCoutAn', eur.format(coutMois * 12));
-    document.getElementById('boxFact').hidden = !(taux > 0);
-    if (taux > 0) set('rFact', eur.format(heures * taux * 12));
+    set('rJours', nf1.format(heures / H_JOUR) + ' jours');
+    set('rTickets', nf0.format(remontes));
+    set('rMois', eur.format(mois));
+    set('rAn', eur.format(mois * 12));
+    document.getElementById('lFact').hidden = !(tarif > 0);
+    if (tarif > 0) set('rFact', eur.format(heures * tarif * 12));
 
-    document.getElementById('hDiag').value =
-      'Tickets/mois: ' + val('tickets') +
-      ' | Part N1: ' + val('partN1') + '%' +
-      ' | N1 traités par N2: ' + val('partN2') + '%' +
-      ' | Durée ticket N1: ' + val('duree') + ' min' +
-      ' | Coût N2: ' + val('coutN2') + ' €/h' +
-      (taux > 0 ? ' | Taux facturé N2: ' + taux + ' €/h' : '') +
-      ' => ' + nf0.format(heures) + ' h N2/mois sur du N1, ' + eur.format(coutMois) + '/mois';
+    document.getElementById('rHow').innerHTML =
+      'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b>, dont <b>' + nf0.format(val('simples')) +
+      ' sur 100</b> sont simples, dont <b>' + nf0.format(val('remontes')) + ' sur 100</b> vont à un technicien confirmé, à <b>' +
+      nf0.format(val('duree')) + ' minutes</b> chacune.';
+
+    document.getElementById('hCalcul').value =
+      'Tickets/mois : ' + val('tickets') +
+      ' | Demandes simples : ' + val('simples') + ' sur 100' +
+      ' | Chez un technicien confirmé : ' + val('remontes') + ' sur 100' +
+      ' | Durée : ' + val('duree') + ' min' +
+      ' | Coût horaire : ' + val('cout') + ' €' +
+      (tarif > 0 ? ' | Tarif facturé : ' + tarif + ' €/h' : '') +
+      ' => ' + nf0.format(heures) + ' h/mois, ' + eur.format(mois) + '/mois';
   }
 
-  ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'tarif'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calc);
+  });
   calc();
 
-  // Jalon « première prise de tickets » : signature cette semaine + 6 semaines.
+  // Premiers tickets visés : signature cette semaine + 6 semaines.
   var d = new Date();
   d.setDate(d.getDate() + 42);
   set('dateCible', new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long' }).format(d));
@@ -256,7 +398,7 @@ footer{border-top:1px solid #dae3e8;padding:20px;text-align:center;color:#536a74
       })
       .catch(function () {
         btn.disabled = false;
-        btn.textContent = 'Réessayer →';
+        btn.innerHTML = 'Réessayer <span class="arrow">→</span>';
       });
   });
 }());
