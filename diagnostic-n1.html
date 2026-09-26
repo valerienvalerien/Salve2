@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Combien d'heures vos techniciens passent-ils sur des demandes simples ? — Salverys</title>
-<meta name="description" content="Calcul gratuit en 3 minutes, avec vos propres chiffres : le temps que vos techniciens confirmés passent sur des mots de passe, des accès et des imprimantes, et ce qu'il vous coûte." />
+<title>Combien de tickets N1 montent chez vos N2 et N3 ? — Salverys</title>
+<meta name="description" content="Calcul gratuit en 3 minutes, avec vos propres chiffres : combien de tickets N1 sont escaladés au niveau 2 ou 3 alors qu'ils n'auraient pas dû l'être, et ce que ce temps vous coûte." />
 <link rel="canonical" href="https://salverys.fr/diagnostic-n1.html" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Salverys" />
 <meta property="og:locale" content="fr_FR" />
-<meta property="og:title" content="Combien d'heures vos techniciens passent-ils sur des demandes simples ?" />
+<meta property="og:title" content="Combien de tickets N1 montent chez vos N2 et N3 ?" />
 <meta property="og:description" content="Le calcul en 3 minutes, avec vos seuls chiffres." />
 <meta property="og:image" content="https://salverys.fr/assets/img/og-salverys.png" />
 <link rel="stylesheet" href="assets/site.css?v=7" />
@@ -51,6 +51,9 @@
 .q-input input { width: 150px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: 600 17px 'Inter', sans-serif; color: var(--ink); background: #fff; transition: border-color .15s; }
 .q-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
 .q-input span { font-size: 15px; color: var(--text-soft); }
+.q-input select { padding: 12px 12px; border: 1.5px solid var(--line); border-radius: 12px; font: 500 15px 'Inter', sans-serif; color: var(--ink); background: #fff; cursor: pointer; }
+.q-input select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--halo); }
+.q .hint.conv { margin: 8px 0 0; font-size: 12.5px; color: var(--text-mute); }
 
 .res-card { position: sticky; top: 90px; background: var(--bg-deep); color: #fff; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); }
 .res-card h2 { color: #fff; }
@@ -126,9 +129,9 @@
 <section class="calc-hero">
   <div class="container">
     <span class="eyebrow"><span class="pulse"></span> Calcul gratuit · 3 minutes · ESN et infogéreurs</span>
-    <h1>Combien d'heures vos techniciens passent-ils sur des <span style="white-space:nowrap"><span class="hl">mots de passe</span>&nbsp;?</span></h1>
-    <p class="lead">Chaque mot de passe réinitialisé par un technicien confirmé, c'est du temps qui n'est ni vendu en projet, ni passé sur une vraie panne. Voyez ce que ça représente chez vous, avec vos propres chiffres.</p>
-    <p class="saas-note">Éditeur de logiciel&nbsp;? Vos «&nbsp;techniciens confirmés&nbsp;», ce sont les développeurs ou l'équipe produit qui répondent au support.</p>
+    <h1>Combien de tickets montent au niveau 2 alors qu'ils n'auraient <span style="white-space:nowrap"><span class="hl">jamais dû</span>&nbsp;?</span></h1>
+    <p class="lead">Une extraction SQL à sortir, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle qui ne remonte plus&nbsp;: chaque ticket N1 traité par un N2 ou un N3, c'est du temps qui n'est ni vendu en projet, ni passé sur un vrai incident. Voyez ce que ça représente chez vous, avec vos propres chiffres.</p>
+    <p class="saas-note">Éditeur de logiciel&nbsp;? Vos «&nbsp;niveaux 2 et 3&nbsp;», ce sont les développeurs ou l'équipe produit qui répondent au support.</p>
   </div>
 </section>
 
@@ -146,43 +149,44 @@
       </div>
 
       <div class="q">
-        <label for="simples">Sur 100 tickets, combien sont des demandes simples&nbsp;?</label>
-        <span class="hint">Un mot de passe oublié, un accès à ouvrir, une imprimante qui ne répond plus, un logiciel à installer&nbsp;: tout ce qui se règle en suivant une procédure.</span>
+        <label for="simples">Sur 100 tickets, combien sont de vrais tickets N1&nbsp;?</label>
+        <span class="hint">Ceux qui devraient être résolus au niveau 1, en suivant une procédure&nbsp;: une extraction SQL simple, un agrément véhicule rejeté, un document bloqué dans la GED, une imprimante virtuelle à remapper…</span>
         <div class="q-input"><input id="simples" type="number" inputmode="numeric" min="0" max="100" step="5" value="50"><span>sur 100</span></div>
       </div>
 
       <div class="q">
-        <label for="remontes">Sur 100 demandes simples, combien finissent chez un technicien confirmé&nbsp;?</label>
-        <span class="hint">Parce que personne d'autre n'est là pour les prendre&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
+        <label for="remontes">Sur 100 tickets N1, combien finissent au niveau 2 ou 3&nbsp;?</label>
+        <span class="hint">Escaladés alors qu'ils n'auraient pas dû l'être, parce que personne n'était disponible au N1 à ce moment-là&nbsp;: tôt le matin, le soir, pendant un pic, en astreinte.</span>
         <div class="q-input"><input id="remontes" type="number" inputmode="numeric" min="0" max="100" step="5" value="30"><span>sur 100</span></div>
       </div>
 
       <div class="q">
-        <label for="duree">Combien de minutes pour régler une demande simple&nbsp;?</label>
+        <label for="duree">Combien de minutes pour résoudre un ticket N1&nbsp;?</label>
         <span class="hint">De l'ouverture du ticket à sa fermeture, en comptant le temps d'interruption.</span>
         <div class="q-input"><input id="duree" type="number" inputmode="numeric" min="0" step="1" value="15"><span>minutes</span></div>
       </div>
 
       <div class="q">
-        <label for="cout">Combien vous coûte une heure de technicien confirmé&nbsp;?</label>
-        <span class="hint">Salaire et charges, divisés par les heures travaillées. C'est un chiffre de votre paie.</span>
-        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><span>€ de l'heure</span></div>
+        <label for="cout">Combien vous coûte un technicien de niveau 2&nbsp;?</label>
+        <span class="hint">Salaire et charges compris. Donnez le chiffre que vous connaissez&nbsp;: à l'heure, au mois ou à l'année.</span>
+        <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><select id="coutUnite" aria-label="Unité du coût"><option value="heure" selected>€ de l'heure</option><option value="jour">€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
       </div>
 
       <div class="q">
-        <label for="tarif">Et combien la facturez-vous à vos clients&nbsp;? <span class="opt">(facultatif)</span></label>
-        <span class="hint">Si ce temps pouvait être vendu en régie ou en projet. Sinon, laissez vide.</span>
-        <div class="q-input"><input id="tarif" type="number" inputmode="numeric" min="0" step="1" placeholder="ex. 75"><span>€ de l'heure</span></div>
+        <label for="tarif">Et combien le facturez-vous à vos clients&nbsp;? <span class="opt">(facultatif)</span></label>
+        <span class="hint">Si ce temps pouvait être vendu en régie ou en projet&nbsp;: à l'heure, à la journée (TJM), au mois ou à l'année. Sinon, laissez vide.</span>
+        <div class="q-input"><input id="tarif" type="number" inputmode="numeric" min="0" step="1" placeholder="ex. 550"><select id="tarifUnite" aria-label="Unité du tarif"><option value="heure">€ de l'heure</option><option value="jour" selected>€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
+        <span class="hint conv">Conversions : 7 h par jour, 151,67 h par mois, 1 607 h par an.</span>
       </div>
     </form>
 
     <aside class="res-card" aria-live="polite">
       <h2>Chez vous, ça fait&nbsp;:</h2>
       <div class="res-big" id="rHeures">—</div>
-      <p class="res-big-lab">par mois, passées par vos techniciens confirmés sur des demandes simples.</p>
+      <p class="res-big-lab">par mois, passées par vos niveaux 2 et 3 sur des tickets qui auraient dû rester au N1.</p>
       <ul class="res-list">
         <li><span>Soit, en journées de 7 h</span><b id="rJours">—</b></li>
-        <li><span>Demandes simples qui atterrissent chez eux</span><b id="rTickets">—</b></li>
+        <li><span>Tickets N1 escaladés chaque mois</span><b id="rTickets">—</b></li>
         <li><span>Salaire payé pour ce travail, par mois</span><b id="rMois">—</b></li>
         <li><span>Sur un an</span><b id="rAn">—</b></li>
         <li id="lFact" hidden><span>Temps que vous auriez pu facturer, sur un an</span><b id="rFact">—</b></li>
@@ -200,8 +204,8 @@
   <div class="container contact-grid">
     <div class="contact-copy">
       <div class="kicker">La suite</div>
-      <h2>Rendez ces heures à <span class="hl">vos techniciens</span>.</h2>
-      <p>Salverys prend en charge vos demandes simples, sous votre nom et dans vos outils. Vos techniciens restent sur les vraies pannes et sur ce que vous facturez.</p>
+      <h2>Rendez ces heures à <span class="hl">vos N2 et N3</span>.</h2>
+      <p>Salverys prend en charge vos tickets N1, sous votre nom et dans vos outils. Vos N2 et N3 restent sur les vrais incidents et sur ce que vous facturez.</p>
       <ul class="tick">
         <li>Envoyez-nous ce calcul&nbsp;: on vous rappelle sous 24 h ouvrées pour en parler 15 minutes.</li>
         <li>Vos chiffres partent avec la demande&nbsp;: vous n'aurez pas à les réexpliquer.</li>
@@ -211,7 +215,7 @@
     </div>
     <div class="contact-card">
       <form id="form-diag" action="https://formspree.io/f/xjgdkblp" method="POST">
-        <input type="hidden" name="_subject" value="Calcul demandes simples — demande de rappel" />
+        <input type="hidden" name="_subject" value="Calcul tickets N1 escaladés — demande de rappel" />
         <input type="hidden" name="source" value="diagnostic-n1" />
         <input type="hidden" name="calcul" id="hCalcul" />
         <div class="form-row">
@@ -261,7 +265,7 @@
       <ol class="steps-mini">
         <li><b>Vous exportez un mois de tickets</b>Sans noms ni clients&nbsp;: le titre, l'heure d'arrivée et qui l'a traité suffisent. Un filtre, un clic.</li>
         <li><b>Nous en tirons 100 au hasard</b>Pas les 100 derniers&nbsp;: 100 répartis sur tout le mois, pour que le résultat tienne.</li>
-        <li><b>Sous 5 jours ouvrés, vous recevez une page</b>Combien de tickets se règlent par une procédure, à quelles heures ils arrivent, et par quoi on pourrait commencer.</li>
+        <li><b>Sous 5 jours ouvrés, vous recevez une page</b>Combien de tickets auraient dû rester au N1, à quelles heures ils arrivent, et par quoi on pourrait commencer.</li>
       </ol>
     </div>
   </div>
@@ -277,15 +281,15 @@
     <div class="hidden-costs">
       <article>
         <h3>Le temps pour s'y remettre</h3>
-        <p>Un technicien coupé en plein diagnostic pour un mot de passe met du temps à reprendre le fil. Ce temps-là n'est pas compté.</p>
+        <p>Un N2 coupé en plein diagnostic pour sortir une extraction met du temps à reprendre le fil. Ce temps-là n'est pas compté.</p>
       </article>
       <article>
         <h3>Le prix des soirs et des week-ends</h3>
-        <p>Une demande simple traitée en astreinte se paie au tarif de l'astreinte, pas à l'heure normale.</p>
+        <p>Un ticket N1 traité en astreinte se paie au tarif de l'astreinte, pas à l'heure normale.</p>
       </article>
       <article>
         <h3>Le chiffre exact est dans votre outil</h3>
-        <p>Filtrez le mois dernier par sujet et par technicien&nbsp;: vous verrez tout de suite qui traite quoi.</p>
+        <p>Filtrez le mois dernier par catégorie et par niveau de résolution&nbsp;: vous verrez tout de suite quels tickets N1 sont montés.</p>
       </article>
     </div>
   </div>
@@ -335,6 +339,11 @@
   var nf1 = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
   var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
   var H_JOUR = 7; // journée de travail à 35 h/semaine
+  // Heures par unité : 7 h/jour, 151,67 h/mois (35 h × 52/12), 1 607 h/an (durée légale).
+  var HEURES = { heure: 1, jour: 7, mois: 151.67, an: 1607 };
+  var LIB = { heure: '€/h', jour: '€/jour', mois: '€/mois', an: '€/an' };
+  function unite(id) { return document.getElementById(id).value; }
+  function horaire(id) { return val(id) / HEURES[unite(id + 'Unite')]; }
 
   function val(id) {
     var v = parseFloat(document.getElementById(id).value);
@@ -346,8 +355,8 @@
   function calc() {
     var remontes = val('tickets') * sur100('simples') * sur100('remontes');
     var heures = remontes * val('duree') / 60;
-    var mois = heures * val('cout');
-    var tarif = val('tarif');
+    var mois = heures * horaire('cout');
+    var tarif = horaire('tarif');
 
     set('rHeures', nf0.format(heures) + ' h');
     set('rJours', nf1.format(heures / H_JOUR) + ' jours');
@@ -359,21 +368,22 @@
 
     document.getElementById('rHow').innerHTML =
       'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b>, dont <b>' + nf0.format(val('simples')) +
-      ' sur 100</b> sont simples, dont <b>' + nf0.format(val('remontes')) + ' sur 100</b> vont à un technicien confirmé, à <b>' +
+      ' sur 100</b> sont de vrais tickets N1, dont <b>' + nf0.format(val('remontes')) + ' sur 100</b> finissent au niveau 2 ou 3, à <b>' +
       nf0.format(val('duree')) + ' minutes</b> chacune.';
 
     document.getElementById('hCalcul').value =
       'Tickets/mois : ' + val('tickets') +
-      ' | Demandes simples : ' + val('simples') + ' sur 100' +
-      ' | Chez un technicien confirmé : ' + val('remontes') + ' sur 100' +
+      ' | Vrais tickets N1 : ' + val('simples') + ' sur 100' +
+      ' | Escaladés N2/N3 : ' + val('remontes') + ' sur 100' +
       ' | Durée : ' + val('duree') + ' min' +
-      ' | Coût horaire : ' + val('cout') + ' €' +
-      (tarif > 0 ? ' | Tarif facturé : ' + tarif + ' €/h' : '') +
+      ' | Coût N2 : ' + val('cout') + ' ' + LIB[unite('coutUnite')] +
+      (tarif > 0 ? ' | Tarif facturé : ' + val('tarif') + ' ' + LIB[unite('tarifUnite')] : '') +
       ' => ' + nf0.format(heures) + ' h/mois, ' + eur.format(mois) + '/mois';
   }
 
-  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'tarif'].forEach(function (id) {
+  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'tarif', 'coutUnite', 'tarifUnite'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', calc);
+    document.getElementById(id).addEventListener('change', calc);
   });
   calc();
 
