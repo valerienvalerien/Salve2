@@ -57,16 +57,22 @@ Niche : [Télésec médical / Support N1 SaaS / Helpdesk IT]
 | Indicateur | Valeur | Cible | Statut |
 |---|---|---|---|
 | SLA 1re réponse respecté | [ ] % | [seuil cadrage] | 🟢/🟠/🔴 |
+| ↳ Délai de résolution de bout en bout (médiane) | [ ] h | | |
 | Tickets traités / résolus N1 | [ ] / [ ] | | |
+| ↳ Réouvertures après clôture N1 | [ ] % | | |
 | Taux d'escalade N2 | [ ] % | | |
+| ↳ Escalades requalifiées ou renvoyées par le N2 | [ ] % | | |
 
 **Helpdesk IT N1 (ITIL)** — KPI : SLA de prise en charge
 
 | Indicateur | Valeur | Cible | Statut |
 |---|---|---|---|
 | SLA prise en charge respecté | [ ] % | [seuil cadrage] | 🟢/🟠/🔴 |
+| ↳ Délai de résolution de bout en bout par priorité (médiane) | [ ] h | | |
 | Tickets pris en charge / résolus N1 | [ ] / [ ] | | |
+| ↳ Réouvertures après clôture N1 | [ ] % | | |
 | Taux d'escalade N2 | [ ] % | | |
+| ↳ Escalades requalifiées ou renvoyées par le N2 | [ ] % | | |
 
 ### Communs à toutes les niches
 
@@ -86,6 +92,10 @@ Niche : [Télésec médical / Support N1 SaaS / Helpdesk IT]
 ---
 
 ## Règles de remplissage
+
+- **Lignes ↳ : contre-indicateurs, jamais omis.** Ils se lisent avec la ligne au-dessus : un taux
+  d'escalade qui baisse pendant que les réouvertures ou les escalades requalifiées montent n'est
+  pas un progrès. Définitions : `INDICATEURS-APPARIES.md` §4.
 
 - **Statut couleur** : 🟢 cible atteinte · 🟠 sous la cible mais dans la marge · 🔴 sous le
   seuil engagé (déclenche le suivi avoir).

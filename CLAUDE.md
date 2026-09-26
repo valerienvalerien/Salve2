@@ -138,6 +138,21 @@ Rappels clés : **1) Helpdesk IT N1 ESN/MSP · 2) Support N1 SaaS · 3) médical
 > visée, dans `projection-finances-salverys.html`. Le gel du direct porte sur la prospection,
 > pas sur le traitement d'un entrant. Détail : `AUDIT-FINANCE-PREVISIONNEL.md` §0.b.
 
+## Règle des indicateurs appariés (2026-09-26)
+
+**Aucun indicateur ne se propose seul** : KPI, engagement de service, objectif, prime, métrique
+de reporting ou de pilotage. Pour chacun, répondre par écrit, dans le document même :
+**comment un agent, un manager, Salverys ou le partenaire pourrait-il atteindre ce chiffre en
+rendant un moins bon service ?** Puis l'apparier au **contre-indicateur** qui détecte cette
+dégradation. Exemple : un taux d'escalade N2 qui baisse n'est un progrès que si les
+réouvertures, les escalades requalifiées par le N2 et le délai de bout en bout ne montent pas.
+**Le taux de résolution N1 et le taux d'escalade ne s'engagent jamais avec avoir** : un avoir
+paierait Salverys pour retenir des tickets. Paires de référence :
+`05-Process-Delivery/INDICATEURS-APPARIES.md`.
+
+La qualité est le différenciant de Salverys : relire ainsi **tout document existant** touché
+par une session, pas seulement le texte qu'elle écrit.
+
 ## Règle d'arbitrage : SaaS-first avant tout code maison
 
 Avant de proposer d'implémenter une fonctionnalité dans le CRM ou dans un

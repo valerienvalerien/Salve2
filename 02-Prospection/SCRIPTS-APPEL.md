@@ -208,7 +208,7 @@
 **Réponse** — **C'est le réflexe normal — la plupart des SaaS qu'on signe ont eu une mauvaise expérience avant.** 3 différences chez nous : **(1)** français langue maternelle, pas LV1 ; **(2)** KPI hebdomadaires partagés en transparence — vous voyez tout ; **(3)** 1er mois à -50 %, pas d'engagement. Qu'est-ce qui s'était mal passé exactement la dernière fois ?
 
 - Si « qualité de langue » → « Faites le test : on vous met en relation avec un de nos agents demain, vous évaluez. »
-- Si « tickets jamais résolus » → « Notre KPI clé c'est le taux de résolution N1 — on l'engage par contrat, avec 20 % d'avoir si le seuil convenu n'est pas tenu. »
+- Si « tickets jamais résolus » → « Chaque semaine, vous voyez le taux de résolution N1 **à côté** des réouvertures et du délai de résolution de bout en bout. Un ticket clos trop vite se voit immédiatement. Le délai de première réponse est engagé au contrat, avec 20 % d'avoir s'il n'est pas tenu. »
 
 #### Objection 3 — « On utilise [outil obscur] comme support, pas Zendesk. »
 

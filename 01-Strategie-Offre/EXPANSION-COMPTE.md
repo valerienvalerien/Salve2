@@ -128,7 +128,7 @@ Le N1+ fait passer Salverys de la vente de capacité à la prise en charge d'un 
 | Réouvertures après clôture par le N1 | Des tickets clos trop vite pour éviter une escalade |
 | Délai de résolution de bout en bout, escalades comprises | Des tickets retenus trop longtemps au N1 avant escalade |
 
-Un taux d'escalade qui baisse avec des réouvertures ou un délai de bout en bout qui montent n'est pas un progrès.
+Un taux d'escalade qui baisse avec des réouvertures ou un délai de bout en bout qui montent n'est pas un progrès. Paires de référence pour tous les indicateurs : `05-Process-Delivery/INDICATEURS-APPARIES.md`.
 
 Confier un périmètre avec objectifs et encadrement Salverys renforce aussi la lecture « prestation de support », plutôt que mise à disposition de personnel (`PRODUIT-ET-OFFRES.md` §1).
 
