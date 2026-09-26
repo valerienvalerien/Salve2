@@ -120,13 +120,51 @@ Contenu, dans cet ordre :
    extrapolé.
 3. **Répartition horaire** du mois : ouvré / tôt / soir / samedi.
 4. **Heures N2 concernées** par mois, calculées avec *son* temps passé (export) ou *sa*
-   durée moyenne (celle qu'il a saisie dans le calculateur).
+   durée moyenne (celle qu'il a saisie dans le calculateur). En heures et en coût
+   salarial seulement : **pas de « chiffre d'affaires perdu »**. En régie au temps passé,
+   ces heures sont facturées au client au tarif N2 — ce n'est pas une perte pour lui, et
+   l'affirmer le ferait décrocher (décision 2026-09-26, ligne TJM retirée du calculateur).
 5. **Les tickets ambigus**, listés : les questions du cadrage.
 6. **Périmètre de démarrage proposé** : un lot de 200 à 400 tickets, ou ses créneaux tôt /
    soir, et le modèle qui colle (A — débordement mutualisé, B — poste dédié, `PRICING.md`).
 
 **Ce que la restitution ne contient jamais** : un prix (il se donne au cadrage, sous NDA),
 une comparaison avec un coût en France, un jugement sur l'organisation.
+
+### 5.b Au rendez-vous de cadrage (sous NDA) : comparer au coût d'un N1 chez lui
+
+C'est ici, et **seulement ici**, qu'on met le prix Salverys en face d'un coût français.
+Jamais sur le site (le calculateur public reste sans prix : `PRICING.md`, en-tête) ni dans la
+restitution écrite, qui peut circuler.
+
+**La valeur de comparaison est celle du prospect, pas la nôtre.** On lui demande :
+*« Combien vous coûte un technicien N1 chez vous, salaire et charges compris, par mois ? »*
+On compare ensuite **son** chiffre au prix du devis (`PRICING.md` §1) — ce qui en fait une
+comparaison **datée et propre au compte**, la seule que CLAUDE.md autorise.
+
+Formulation type, une fois son chiffre obtenu :
+> « Une position dédiée chez nous, c'est 35 h par semaine formées à votre périmètre, pour
+> [prix du devis] par mois. Vous m'avez dit qu'un N1 vous coûte [son chiffre] chargé. »
+
+Ne pas ajouter de pourcentage d'économie : il le calcule lui-même, et c'est plus convaincant.
+
+**Repère interne si le prospect n'a pas de chiffre** — à ne **jamais** citer comme valeur de
+calcul, ni écrire dans un devis ou sur le site. Recherche du 2026-09-26, chiffres lus dans
+des résumés de moteur de recherche, **non vérifiés à la source** (pages bloquées depuis
+l'environnement de travail) :
+
+| Donnée | Ordre de grandeur | Source |
+|---|---|---|
+| Brut annuel technicien helpdesk **N1** | ~22 750 € (fourchette ~22 100 – 25 300 €) | Glassdoor, mai 2026 |
+| Brut annuel technicien helpdesk (tous niveaux) | médiane ~33 400 € | Journal du Net, 2026 |
+| Charges patronales 2026 | ~40-45 % avant réduction ; ~30 % autour de 2 200 € brut/mois avec la RGDU | PayFit, Keobiz, CCI Paris IdF |
+| **Coût employeur estimé** | **~30 000 à 45 000 €/an**, soit ~2 500 à 3 700 €/mois — hors poste de travail, encadrement et turnover | calcul à partir des lignes ci-dessus |
+
+À re-vérifier sur les pages sources avant tout usage en rendez-vous :
+[Glassdoor N1](https://www.glassdoor.fr/Salaires/technicien-helpdesk-n1-salaire-SRCH_KO0,22.htm) ·
+[Journal du Net](https://www.journaldunet.com/business/salaire/technicien-helpdesk/salaire-01105) ·
+[PayFit charges 2026](https://payfit.com/fr/fiches-pratiques/charges-patronales/) ·
+[CCI Paris IdF](https://www.entreprises.cci-paris-idf.fr/fiches-pratiques/les-charges-sociales-au-1er-janvier-2026)
 
 **Jalon à nommer** (CLAUDE.md) : première prise de tickets visée **vers six semaines** après
 signature, sous réserve du recrutement, de la formation et des accès ; autonomie visée

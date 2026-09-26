@@ -73,9 +73,6 @@
 .sal-toggle input { position: absolute; opacity: 0; pointer-events: none; }
 .sal-toggle label:has(input:checked) { background: var(--accent); color: #fff; }
 .sal-toggle label:has(input:focus-visible) { outline: 2px solid #fff; outline-offset: 2px; }
-.sal-etp { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
-.sal-etp b { font-size: 28px; font-weight: 800; color: var(--accent-soft); letter-spacing: -.02em; }
-.sal-etp span { font-size: 13.5px; color: rgba(255,255,255,.75); }
 .sal-txt { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.9); }
 .sal-txt b { color: var(--accent-soft); }
 .sal-prix { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.65); }
@@ -190,14 +187,9 @@
         <label for="cout">Combien vous coûte un technicien de niveau 2&nbsp;?</label>
         <span class="hint">Salaire et charges compris. Donnez le chiffre que vous connaissez&nbsp;: à l'heure, au mois ou à l'année.</span>
         <div class="q-input"><input id="cout" type="number" inputmode="numeric" min="0" step="1" value="45"><select id="coutUnite" aria-label="Unité du coût"><option value="heure" selected>€ de l'heure</option><option value="jour">€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
-      </div>
-
-      <div class="q">
-        <label for="tarif">Et combien le facturez-vous à vos clients&nbsp;? <span class="opt">(facultatif)</span></label>
-        <span class="hint">Si ce temps pouvait être vendu en régie ou en projet&nbsp;: à l'heure, à la journée (TJM), au mois ou à l'année. Sinon, laissez vide.</span>
-        <div class="q-input"><input id="tarif" type="number" inputmode="numeric" min="0" step="1" placeholder="ex. 550"><select id="tarifUnite" aria-label="Unité du tarif"><option value="heure">€ de l'heure</option><option value="jour" selected>€ par jour</option><option value="mois">€ par mois</option><option value="an">€ par an</option></select></div>
         <span class="hint conv">Conversions : 7 h par jour, 151,67 h par mois, 1 607 h par an.</span>
       </div>
+
     </form>
 
     <aside class="res-card" aria-live="polite">
@@ -209,7 +201,6 @@
         <li><span>Tickets N1 escaladés chaque mois</span><b id="rTickets">—</b></li>
         <li><span>Salaire payé pour ce travail, par mois</span><b id="rMois">—</b></li>
         <li><span>Sur un an</span><b id="rAn">—</b></li>
-        <li id="lFact" hidden><span id="lFactLab">Votre TJM, appliqué à ces heures, sur un an</span><b id="rFact">—</b></li>
       </ul>
       <div class="sal">
         <div class="sal-head">Chez Salverys, pour ces tickets&nbsp;:</div>
@@ -217,7 +208,6 @@
           <label><input type="radio" name="formule" value="mutualise" checked> Mutualisé</label>
           <label><input type="radio" name="formule" value="dedie"> Dédié</label>
         </div>
-        <div class="sal-etp"><b id="rEtp">—</b><span>de charge, sur une base de 35 h par semaine</span></div>
         <p class="sal-txt" id="rSal">—</p>
         <p class="sal-prix">Le prix se donne au rendez-vous de cadrage, avec la grille partenaire, sous accord de confidentialité. <a href="#rappel">Être rappelé →</a></p>
       </div>
@@ -388,20 +378,23 @@
   var H_POSITION = 151.67; // 35 h/semaine
   function salverys(tickets, heures) {
     var f = document.querySelector('input[name=formule]:checked').value;
-    var pos = heures / H_POSITION;
-    var etp = nf1.format(pos);
+    var h = nf0.format(heures);
     var t = nf0.format(tickets), txt;
     if (f === 'mutualise') {
       txt = tickets <= INCLUS_MUTUALISE
-        ? 'Pas besoin de réserver un agent&nbsp;: cette charge de <b>' + etp + ' ETP</b> est absorbée par un pool partagé, sous votre nom. Vos <b>' + t + ' tickets N1</b> par mois tiennent dans le forfait de débordement, qui en inclut <b>jusqu\'à 400</b>&nbsp;: il reste <b>' + nf0.format(INCLUS_MUTUALISE - tickets) + ' tickets</b> de marge pour vos pics.'
-        : 'Cette charge de <b>' + etp + ' ETP</b> dépasse le forfait de débordement&nbsp;: vos <b>' + t + ' tickets N1</b> par mois vont au-delà des <b>400 inclus</b>, et les suivants sont facturés au ticket. À ce volume, un poste dédié mérite d\'être comparé.';
+        ? 'Pas besoin de réserver un agent&nbsp;: un pool partagé traite vos <b>' + t + ' tickets N1</b> par mois sous votre nom. Ils tiennent dans le forfait de débordement, qui en inclut <b>jusqu\'à 400</b>&nbsp;: il reste <b>' + nf0.format(INCLUS_MUTUALISE - tickets) + ' tickets</b> de marge pour vos pics.'
+        : 'Vos <b>' + t + ' tickets N1</b> par mois dépassent les <b>400 inclus</b> dans le forfait de débordement&nbsp;: les suivants sont facturés au ticket. À ce volume, un poste dédié mérite d\'être comparé.';
     } else {
-      var n = Math.max(1, Math.ceil(pos));
-      txt = 'Il vous faudrait <b>' + n + ' position' + (n > 1 ? 's' : '') + ' dédiée' + (n > 1 ? 's' : '') + ' (' + n + ' ETP)</b>, de 35 h par semaine, formée' + (n > 1 ? 's' : '') +
-        ' à votre périmètre. ' + (n === 1 ? 'Elle couvre' : 'Elles couvrent') + ' cette charge de ' + etp + ' ETP et laisse' + (n > 1 ? 'nt' : '') + ' <b>' + nf0.format(n * H_POSITION - heures) +
-        ' h</b> par mois pour d\'autres tickets N1 ou vos créneaux tôt et tard.';
+      // Pas de conversion du temps restant en nombre de tickets : les 151,67 h sont du temps
+      // au planning, pas du temps productif (pauses, formation, qualité, documentation).
+      var n = Math.max(1, Math.ceil(heures / H_POSITION));
+      var plein = heures > 0.75 * n * H_POSITION; // prudence : peu de marge au planning
+      if (plein) {
+        txt = 'Vos <b>' + t + ' tickets escaladés</b> représentent environ <b>' + h + ' h</b> par mois&nbsp;: comptez <b>au moins ' + (n + 1) + ' positions dédiées</b>, car le temps au planning d\'une position n\'est pas entièrement du temps de traitement (pauses, formation, qualité). Le dimensionnement exact se fixe au devis.';
+      } else
+      txt = 'Avec <b>' + (n === 1 ? '1 position dédiée' : n + ' positions dédiées') + '</b> chez nous, vos <b>' + t + ' tickets escaladés</b> sont couverts&nbsp;: ils occupent environ <b>' + h + ' h</b> sur les <b>' + nf0.format(n * H_POSITION) + ' h</b> ' +
+        (n === 1 ? 'de la position' : 'des positions') + ' chaque mois. Le reste sert à vos autres tickets N1, vos créneaux tôt et tard ou vos pics. Le planning et le dimensionnement exacts se fixent au devis.';
     }
-    document.getElementById('rEtp').textContent = etp + ' ETP';
     document.getElementById('rSal').innerHTML = txt;
   }
 
@@ -416,17 +409,13 @@
     var remontes = val('tickets') * esc / 100;
     var heures = remontes * val('duree') / 60;
     var mois = heures * horaire('cout');
-    var tarif = horaire('tarif');
 
     set('rHeures', nf0.format(heures) + ' h');
     set('rJours', nf1.format(heures / H_JOUR) + ' jours');
     set('rTickets', nf0.format(remontes));
     set('rMois', eur.format(mois));
     set('rAn', eur.format(mois * 12));
-    document.getElementById('lFact').hidden = !(tarif > 0);
-    set('lFactLab', (unite('tarifUnite') === 'jour' ? 'Votre TJM' : 'Votre tarif') + ', appliqué à ces heures, sur un an');
     salverys(remontes, heures);
-    if (tarif > 0) set('rFact', eur.format(heures * tarif * 12));
 
     document.getElementById('rHow').innerHTML =
       'Le calcul&nbsp;: <b>' + nf0.format(val('tickets')) + ' tickets</b> par mois. Sur 100, <b>' + nf0.format(n1) +
@@ -440,13 +429,12 @@
       ' | Escaladés N2/N3 : ' + esc + ' sur ces ' + n1 +
       ' | Durée : ' + val('duree') + ' min' +
       ' | Coût N2 : ' + val('cout') + ' ' + LIB[unite('coutUnite')] +
-      (tarif > 0 ? ' | Tarif facturé : ' + val('tarif') + ' ' + LIB[unite('tarifUnite')] : '') +
       ' | Formule consultée : ' + document.querySelector('input[name=formule]:checked').value +
       ' => ' + nf0.format(heures) + ' h/mois, ' + eur.format(mois) + '/mois';
   }
 
   document.querySelectorAll('input[name=formule]').forEach(function (r) { r.addEventListener('change', calc); });
-  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'tarif', 'coutUnite', 'tarifUnite'].forEach(function (id) {
+  ['tickets', 'simples', 'remontes', 'duree', 'cout', 'coutUnite'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', calc);
     document.getElementById(id).addEventListener('change', calc);
   });
