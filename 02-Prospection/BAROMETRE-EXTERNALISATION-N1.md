@@ -40,7 +40,9 @@ faiblesse d'analyse : la donnée n'existe pas dans le dépôt.
 | Donnée | Disponible ? | Où |
 |---|---|---|
 | Coût complet d'un poste interne en France | ✅ 38-50 k€/an (support IT N1) | `PRICING.md` §5 |
-| Notre rate card MB par palier | ✅ 1 350-2 000 €/ETP/mois | `PRICING.md` §3 |
+| Notre grille MB par tranche | ✅ 1 500-2 000 €/position/mois | `PRICING.md` §1 |
+| Prix **publics** offshore d'un agent dédié (service client), par pays | ✅ couloir MG < TN < MU ≈ MA — relevé du 2026-09-26 | `01-Strategie-Offre/BENCHMARK-PRIX-CONCURRENTS-OFFSHORE.md` |
+| Prix public d'une **position helpdesk IT N1 dédiée** chez un concurrent offshore | ❌ **non publié** — sur devis chez tous | idem §7 |
 | Corridor offshore **médical** à l'appel | ✅ 0,50-1 €/appel | `TELESEC-TARGETS.md` |
 | **Ce qu'une ESN française paie réellement son sous-traitant N1, par ETP** | ❌ **inconnu** | — |
 | **Ce qu'elle exige en échange** (SLA, reporting, langue, horaires) | ❌ **inconnu** | — |

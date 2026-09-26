@@ -22,7 +22,7 @@ business** (rangée par dossiers thématiques ci-dessous) et le **site/CRM** (fi
 
 | Dossier | Contenu |
 |---|---|
-| `01-Strategie-Offre/` | Offre médicale, offre irrésistible, éval. stratégique, prévisionnel, branding, narratif callbot, arguments Priority, conformité HDS/RGPD |
+| `01-Strategie-Offre/` | Offre médicale, offre irrésistible, éval. stratégique, prévisionnel, branding, narratif callbot, arguments Priority, conformité HDS/RGPD, **`BENCHMARK-PRIX-CONCURRENTS-OFFSHORE.md`** (prix publics Maghreb / Maurice / Madagascar, veille interne) |
 | `02-Prospection/` | Séquences cold (`OUTREACH-*`), scripts d'appel, one-pagers, **`PLAYBOOK-SALES-NAVIGATOR.md`** (méthode de prospection en production), **`BAROMETRE-EXTERNALISATION-N1.md`** (protocole d'entretiens marché) |
 | `03-Cibles-Prospects/` | Analyses prospects (`PROSPECT-ANALYSIS-*`), décideurs, cibles ESN/télésec, ICP |
 | `04-Closing/` | Devis, contrat de prestation, DPA/RGPD, onboarding client |
